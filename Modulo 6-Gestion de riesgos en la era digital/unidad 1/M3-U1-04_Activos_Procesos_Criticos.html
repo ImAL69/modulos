@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>M3 · U1 · Activos y procesos críticos</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    .subtitle { font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #546e7a; border-left: 4px solid #1976d2; padding-left: 15px; }
+
+    .content-block { margin-bottom: 40px; text-align: justify; }
+
+    .highlight-box {
+        background: #e3f2fd; padding: 25px; border-radius: 12px; border-left: 6px solid #0d47a1; margin: 30px 0; font-size: 1.05rem;
+    }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+    .feature-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; transition: transform 0.2s;
+    }
+    .feature-card:hover { transform: translateY(-5px); border-color: #1565c0; }
+    .card-icon { font-size: 2rem; color: #1565c0; margin-bottom: 15px; display: block; }
+    .card-title { font-weight: 700; color: #0d47a1; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+
+/* =========================
+   Mejora visual + animaciones (ligeras)
+   ========================= */
+:root{
+  --fet-blue:#0d47a1;
+  --fet-blue2:#1565c0;
+  --fet-sky:#e3f2fd;
+  --text:#37474f;
+}
+body{
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(21,101,192,.10), transparent 55%),
+              radial-gradient(900px 600px at 85% 25%, rgba(13,71,161,.08), transparent 60%),
+              linear-gradient(180deg, #f7f9fc 0%, #f0f2f5 60%, #eef3f8 100%);
+}
+.container-extended{
+  isolation:isolate;
+}
+.container-extended::before,
+.container-extended::after{
+  content:"";
+  position:absolute;
+  inset:auto;
+  z-index:-1;
+  filter: blur(0px);
+  opacity:.55;
+  pointer-events:none;
+}
+.container-extended::before{
+  width:520px;height:520px;
+  left:-260px; top:-260px;
+  background: radial-gradient(circle at 30% 30%, rgba(21,101,192,.25), transparent 65%);
+  animation: blobFloat 12s ease-in-out infinite;
+}
+.container-extended::after{
+  width:420px;height:420px;
+  right:-210px; bottom:-210px;
+  background: radial-gradient(circle at 70% 70%, rgba(13,71,161,.22), transparent 65%);
+  animation: blobFloat2 14s ease-in-out infinite;
+}
+@keyframes blobFloat{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(30px,18px) scale(1.05); }
+}
+@keyframes blobFloat2{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(-28px,-14px) scale(1.06); }
+}
+.reveal{
+  opacity:0;
+  transform: translateY(14px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.in-view{
+  opacity:1;
+  transform:none;
+}
+.feature-card, .reason-card, .ra-card, .profile-card, .skill-card, .quiz-card, details{
+  will-change: transform;
+}
+.feature-card:hover, .reason-card:hover, .ra-card:hover, .profile-card:hover, .skill-card:hover{
+  transform: translateY(-6px) scale(1.01);
+}
+kbd{
+  background:#0b2f6b;
+  color:#fff;
+  padding:2px 8px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:.9rem;
+}
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 12px; border-radius:999px;
+  background: rgba(21,101,192,.10);
+  border:1px solid rgba(21,101,192,.25);
+  color: var(--fet-blue2);
+  font-weight:700;
+  font-size:.92rem;
+  margin:6px 8px 0 0;
+}
+.callout{
+  background: #ffffff;
+  border: 1px solid #bbdefb;
+  border-left: 6px solid #1565c0;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  margin: 22px 0;
+}
+.callout h3{
+  margin:0 0 10px 0;
+  font-family:'Montserrat', sans-serif;
+  color: var(--fet-blue);
+}
+.grid-2{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:16px;
+}
+@media (max-width: 860px){
+  .grid-2{ grid-template-columns: 1fr; }
+}
+.small{
+  color:#546e7a;
+  font-size:.95rem;
+}
+hr.soft{
+  border:none;
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(13,71,161,.25), transparent);
+  margin: 28px 0;
+}
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+}
+
+
+    /* Imagen hero (adaptada y más pequeña, sin overlays) */
+    .hero-image{
+        margin: 18px 0 34px 0;
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #e6eef8;
+        border-radius: 14px;
+        overflow: hidden;
+    }
+    .hero-image img{
+        width: 100%;
+        height: 260px;              /* tamaño acordado */
+        object-fit: contain;        /* se ve completa */
+        display:block;
+        background: #ffffff;
+    }
+    @media (max-width: 768px){
+        .hero-image img{ height: 200px; }
+    }
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+
+
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Módulo 3</h1>
+<span class="subtitle">Gestión de riesgos en la era digital: gestión de incidentes y continuidad del negocio</span>
+</div>
+
+
+<div class="content-block reveal"><h3><i class="fa-solid book-open"></i> 1.2 Activos y procesos críticos</h3><span class='badge'>1.2</span><p><strong>Unidad 1 — Identificación y clasificación de riesgos digitales (RAP1)</strong>. Esta unidad construye la base del módulo: <strong>criterio</strong>. Criterio significa que puedes explicar (y defender) por qué un riesgo está arriba o abajo, cómo cambia con controles y por qué impacta la continuidad. Cuando el criterio es sólido, el resto del módulo (respuesta a incidentes y continuidad) se vuelve una consecuencia lógica, no una lista de ‘buenas prácticas’.</p><p>El inventario para riesgo debe incluir datos, identidades, procesos y terceros. La criticidad se define por impacto al negocio y ventanas críticas.</p><hr class="soft"/><div class="reveal highlight-box"><strong>Meta de estudio:</strong> dominar <em>Activos y procesos críticos</em> con criterio, ejemplos aplicados y entregables listos.</div><div class="content-block reveal"><h3><i class="fa-solid diagram-project"></i> Mapa mental del tema</h3><ul>
+<li>Inventario mínimo viable (IMV) orientado a riesgo: datos, identidades, procesos, terceros.</li>
+<li>Criticidad: basada en procesos y ventanas críticas, no solo en ‘servidores’.</li>
+<li>Mapa de dependencias: identidad, DNS, cloud, proveedores; dónde hay ‘single points’.</li>
+<li>Owners y responsabilidades: quién decide, quién opera, quién aprueba cambios.</li>
+<li>Clasificación de datos: sensibilidad y volumen (impacto legal/reputación).</li>
+<li>Cómo pasar del inventario a escenarios: 1–2 riesgos por activo crítico.</li>
+</ul></div><details class="reveal" style="background:#f5faff;border:1px solid #bbdefb;border-radius:12px;padding:14px;margin:12px 0;">
+<summary style="cursor:pointer;font-weight:800;color:#0d47a1;">Escenario — Cuenta privilegiada sin owner</summary>
+<div style="margin-top:10px;"><p>Cuentas admin compartidas o sin owner multiplican probabilidad y reducen capacidad de responder (nadie se hace cargo).</p><h4>Señales/Evidencias</h4><ul>
+<li>Accesos sin trazabilidad</li>
+<li>Cambios no atribuibles</li>
+<li>Auditoría incompleta</li>
+</ul><h4>Controles que cambian el residual</h4><ul>
+<li>IAM con owners, revisiones periódicas</li>
+<li>Privileged Access Management</li>
+<li>Logs inmutables y sesiones grabadas</li>
+</ul></div>
+</details><details class="reveal" style="background:#f5faff;border:1px solid #bbdefb;border-radius:12px;padding:14px;margin:12px 0;">
+<summary style="cursor:pointer;font-weight:800;color:#0d47a1;">Escenario — Tercero crítico sin contingencia</summary>
+<div style="margin-top:10px;"><p>Un SaaS crítico cae (correo, pagos, identidad). Sin plan alterno, la continuidad se rompe aunque tu infra esté perfecta.</p><h4>Señales/Evidencias</h4><ul>
+<li>Timeouts, errores 5xx</li>
+<li>Incidentes del proveedor</li>
+<li>Paro de proceso core</li>
+</ul><h4>Controles que cambian el residual</h4><ul>
+<li>Plan de contingencia y modo degradado</li>
+<li>Proveedor alterno o redundancia</li>
+<li>SLA y monitoreo contractual</li>
+</ul></div>
+</details><div class="content-block reveal"><h3><i class="fa-solid list-check"></i> Checklist de calidad</h3><ul>
+<li>Incluye identidades, llaves y terceros (no solo hardware).</li>
+<li>Cada activo crítico tiene owner.</li>
+<li>Dependencias explícitas y alternativas (si existen).</li>
+<li>Criticidad vinculada a proceso/ventana crítica.</li>
+<li>Riesgos derivados del inventario (coherencia).</li>
+</ul></div><div class="content-block reveal"><h3><i class="fa-solid clipboard"></i> Tabla IMV (mínimo)</h3><pre class="reveal" style="background:#0b2f6b;color:#fff;padding:16px;border-radius:12px;overflow:auto;line-height:1.45;"><code>Elemento | Tipo | Owner | Criticidad | Dependencias | Notas de riesgo
+...</code></pre></div><div class="content-block reveal"><h3><i class="fa-solid clipboard"></i> Mapa de dependencias (texto)</h3><pre class="reveal" style="background:#0b2f6b;color:#fff;padding:16px;border-radius:12px;overflow:auto;line-height:1.45;"><code>Proceso: ...
+Depende de: IdP, BD, DNS, Proveedor X, ...
+Alternativa: ...
+Impacto si falla: ...</code></pre></div><div class="callout reveal"><h3><i class="fa-solid video"></i> Complemento audiovisual (opcional)</h3><p>Si necesitas más perspectiva (casos, ejercicios y explicaciones alternativas), consulta estos resultados y elige el video que mejor encaje con tu caso guía.</p><a href="https://www.youtube.com/results?search_query=inventario+activos+críticos+ciberseguridad+dependencias+owner+IMV+ejemplo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;margin-top:10px;background:linear-gradient(90deg,#0d47a1,#1976d2);color:#fff;text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:800;"><span style="font-size:18px">▶</span> Ver videos relacionados</a></div><div class="callout reveal"><h3><i class="fa-solid flag-checkered"></i> Cierre</h3><ul>
+<li>Entiendo el tema <strong>Activos y procesos críticos</strong> con criterios y evidencias observables.</li>
+<li>Puedo aplicarlo a mi caso guía y producir un entregable defendible.</li>
+<li>Sé qué controles mueven el residual y cómo medir mejora.</li>
+</ul></div></div>
+<script>
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window) || els.length===0){
+    els.forEach(el=>el.classList.add('in-view'));
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
