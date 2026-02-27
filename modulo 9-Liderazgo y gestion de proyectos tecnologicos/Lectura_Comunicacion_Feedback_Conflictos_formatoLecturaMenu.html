@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lectura – Comunicación, feedback, negociación y gestión de conflictos (RAP2)</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .unit-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd; /* Azul institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .unit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.3rem;
+        font-weight: 800;
+        text-transform: none;
+        color: #01579b;
+        margin: 0 auto 10px auto;
+        max-width: 92%;
+        line-height: 1.2;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .unit-subtitle {
+        font-size: 1.05rem;
+        color: #0288d1;
+        font-weight: 600;
+        margin-bottom: 18px;
+        display: block;
+    }
+
+    /* IMAGEN HERO */
+    .hero-img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(1, 87, 155, 0.15);
+        margin: 0 auto 30px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        object-fit: cover;
+        max-height: 360px;
+    }
+
+    /* --- CONTENIDO GENERAL --- */
+    .content {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .content h2 {
+        font-family: 'Montserrat', sans-serif;
+        color: #01579b;
+        font-size: 1.55rem;
+        margin-top: 28px;
+        margin-bottom: 12px;
+    }
+
+    .content p {
+        margin-bottom: 14px;
+        text-align: justify;
+    }
+
+    .content ul {
+        margin: 8px 0 15px 22px;
+        padding: 0;
+    }
+
+    .content li {
+        margin-bottom: 6px;
+    }
+
+    /* --- CAJAS ESPECIALES (AZUL / VERDE / AMARILLO) --- */
+    .axis-box {
+        background-color: #e3f2fd;
+        border-left: 5px solid #1e88e5;
+        padding: 15px 18px;
+        margin: 15px 0;
+        border-radius: 10px;
+    }
+    .axis-box h4 {
+        color: #0d47a1;
+        margin: 0 0 8px 0;
+        font-size: 1.1rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .axis-box ul {
+        margin: 5px 0 5px 20px;
+    }
+
+    .highlight-box {
+        background-color: #e8f5e9;
+        border-left: 5px solid #43a047;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .highlight-box p {
+        margin: 6px 0;
+    }
+
+    .activity-box {
+        background-color: #fff8e1;
+        border-left: 5px solid #ffb300;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .activity-box p {
+        margin: 6px 0;
+    }
+
+    a {
+        color: #1565c0;
+        text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    /* --- FOOTER --- */
+    .footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #555;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ============================
+       FORMATO LECTURA CON MENÚ
+       ============================ */
+    :root{
+      --nav-bg: rgba(255,255,255,.86);
+      --nav-border: rgba(0,0,0,.08);
+      --nav-shadow: 0 16px 40px rgba(0,0,0,.08);
+      --nav-accent: rgba(0,170,85,1);
+      --nav-accent-2: rgba(47,128,237,1);
+      --nav-text: #0d47a1;
+      --nav-muted: rgba(13,71,161,.72);
+    }
+
+    .page-shell{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 14px 80px 14px;
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    /* Sidebar */
+    .side-nav{
+      position: sticky;
+      top: 14px;
+      align-self: start;
+      border-radius: 18px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--nav-border);
+      box-shadow: var(--nav-shadow);
+      padding: 12px;
+      overflow: hidden;
+    }
+
+    .side-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 6px 8px 10px 8px;
+    }
+
+    .side-title{
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: .98rem;
+      color: #004d26;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .side-sub{
+      display:block;
+      margin-top: 2px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: .78rem;
+      color: rgba(0,77,38,.72);
+    }
+
+    .side-meter{
+      width: 78px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.06);
+      overflow: hidden;
+    }
+    .side-meter > div{
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--nav-accent), var(--nav-accent-2));
+    }
+
+    .side-list{
+      list-style: none;
+      margin: 6px 0 0 0;
+      padding: 0;
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+
+    .side-link{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-decoration: none;
+      border-radius: 14px;
+      padding: 10px 10px;
+      border: 1px solid rgba(13,71,161,.12);
+      background: #ffffff;
+      box-shadow: 0 10px 22px rgba(0,0,0,.03);
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .side-link:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(0,0,0,.05);
+      border-color: rgba(13,71,161,.20);
+    }
+
+    .side-ico{
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      background: #eef6ff;
+      border: 1px solid rgba(13,71,161,.14);
+      flex: 0 0 28px;
+    }
+    .side-ico svg{ width: 16px; height: 16px; fill: var(--nav-text); }
+
+    .side-text{
+      min-width: 0;
+    }
+    .side-text b{
+      display:block;
+      font-family:'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: .90rem;
+      color: var(--nav-text);
+      line-height: 1.15;
+    }
+    .side-text span{
+      display:block;
+      font-family:'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .76rem;
+      color: var(--nav-muted);
+      margin-top: 2px;
+      line-height: 1.15;
+    }
+
+    /* Active */
+    .side-link.active{
+      border-color: rgba(0,170,85,.28);
+      background: linear-gradient(180deg, rgba(245,255,249,1), rgba(255,255,255,1));
+      box-shadow: 0 16px 34px rgba(0,170,85,.10);
+    }
+    .side-link.active .side-ico{
+      background: rgba(0,170,85,.12);
+      border-color: rgba(0,170,85,.25);
+    }
+    .side-link.active .side-ico svg{ fill: #0b6b3a; }
+    .side-link.active .side-text b{ color: #0b6b3a; }
+
+    /* Main content tweaks */
+    .main-col .unit-container{
+      margin: 0;
+    }
+
+    /* Floating "Top" button */
+    .fab-top{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(90deg, rgba(0,102,51,1), rgba(0,170,85,1));
+      color: #fff;
+      border: 1px solid rgba(0,102,51,.25);
+      box-shadow: 0 18px 36px rgba(0,102,51,.18);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .15s ease, transform .15s ease;
+      z-index: 1000;
+    }
+    .fab-top.show{ opacity: 1; transform: translateY(0); }
+    .fab-top svg{ width: 18px; height: 18px; fill: #fff; }
+
+    /* Mobile: hide sidebar, show bottom dock nav */
+    .dock{
+      display:none;
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 1200;
+      border-radius: 18px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--nav-border);
+      box-shadow: var(--nav-shadow);
+      padding: 10px 10px;
+    }
+    .dock-row{
+      display:flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    .dock a{
+      flex: 1 1 0;
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid rgba(13,71,161,.12);
+      box-shadow: 0 10px 22px rgba(0,0,0,.03);
+      font-family:'Montserrat',sans-serif;
+      font-weight: 900;
+      font-size: .86rem;
+      color: var(--nav-text);
+    }
+    .dock a svg{ width: 16px; height: 16px; fill: var(--nav-text); }
+
+    @media (max-width: 980px){
+      .page-shell{ grid-template-columns: 1fr; padding-bottom: 110px; }
+      .side-nav{ display:none; }
+      .dock{ display:block; }
+      .uni-logo{
+        position: static;
+        display: block;
+        margin: 0 auto 15px auto;
+      }
+      .unit-title { font-size: 1.9rem; max-width: 100%; }
+      .hero-img { margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-shell" id="top">
+  <!-- SIDEBAR (desktop) -->
+  <aside class="side-nav" aria-label="Navegación de lectura">
+    <div class="side-head">
+      <div>
+        <p class="side-title">Lectura Unidad 2<span class="side-sub">Comunicación y conflictos (RAP2)</span></p>
+      </div>
+      <div class="side-meter" aria-hidden="true"><div id="meterFill"></div></div>
+    </div>
+
+    <ul class="side-list" role="list">
+      <li><a class="side-link" data-sec href="#s1">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v10H5.2L4 15.2V4Zm2 4v2h8V8H6Zm0-3v2h12V5H6Zm0 7h6v2H6v-2Zm9 1 3 3h-3v-3Z"></path></svg></span>
+        <span class="side-text"><b>Comunicación efectiva</b><span>Mensajes por audiencia</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s2">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v6H5.7L4 11.7V4Zm2 3v2h7V7H6Zm0 10h10v2H6v-2Zm0-4h12v2H6v-2Z"></path></svg></span>
+        <span class="side-text"><b>Feedback (SBI)</b><span>Corrección sin dañar el vínculo</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s3">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h6v6H5V4Zm8 0h6v6h-6V4ZM5 14h6v6H5v-6Zm9 0h2v2h-2v-2Z"></path></svg></span>
+        <span class="side-text"><b>Negociación</b><span>Alcance, tiempos y riesgo</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s4">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 5 7-3 7 3v6c0 5-3.1 9.4-7 11-3.9-1.6-7-6-7-11V5Zm4.5 11L6 12.5l1.4-1.4 2.1 2.1L16.7 6l1.4 1.4L9.5 16Z"></path></svg></span>
+        <span class="side-text"><b>Gestión de conflictos</b><span>Tipos y ruta de solución</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s5">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v4H4V4Zm0 6h10v4H4v-4Zm0 6h7v4H4v-4Zm9 0h7v2h-7v-2Zm3-6h4v2h-4v-2Z"></path></svg></span>
+        <span class="side-text"><b>Herramientas mínimas</b><span>Actas, cambios y riesgos</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s6">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 4-3 7-7 11-4-4-7-7-7-11a7 7 0 0 1 7-7Zm1 9h-2V7h2v4Zm0 4h-2v-2h2v2Z"></path></svg></span>
+        <span class="side-text"><b>Cierre y enlaces</b><span>Aplicación al RAP2</span></span>
+      </a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-col">
+    <div class="unit-container">
+
+      <!-- Logo -->
+      <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1"
+           alt="Logo FET" class="uni-logo">
+
+      <div class="header-box">
+        <span class="unit-subtitle">📘 Lectura Unidad 2 · RAP2</span>
+        <h1 class="unit-title">Comunicación, feedback, negociación y gestión de conflictos</h1>
+        <img src="https://www.dropbox.com/scl/fi/5e6v1qy29yh54etcdpn1j/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.39_f1b1242f.jpg?rlkey=1z8a7oucdkbqamhyyn064ez2c&st=efxaqc1a&raw=1"
+             alt="Comunicación y gestión de conflictos en proyectos tecnológicos" class="hero-img">
+      </div>
+
+      <div class="content">
+        <p>
+          En proyectos tecnológicos (y especialmente en <strong>IA</strong> y <strong>ciberseguridad</strong>),
+          muchos “problemas técnicos” en realidad son problemas de <strong>comunicación</strong>:
+          requisitos ambiguos, decisiones no documentadas, cambios que nadie aprobó, expectativas irreales, y conflictos entre áreas.
+          Por eso, el liderazgo en ejecución requiere dominar cuatro habilidades prácticas:
+          <strong>comunicación clara</strong>, <strong>feedback útil</strong>, <strong>negociación</strong> y
+          <strong>gestión de conflictos</strong>.
+        </p>
+
+        <h2 id="s1">1) Comunicación efectiva: decir lo correcto, al público correcto</h2>
+        <div class="axis-box">
+          <p>
+            Comunicar no es “informar mucho”, sino asegurar que las personas entiendan:
+            <strong>qué</strong> está pasando, <strong>por qué</strong>, <strong>qué se espera</strong> y
+            <strong>qué decisión se tomó</strong>.
+          </p>
+          <ul>
+            <li><strong>Directivos / sponsor:</strong> valor, riesgos, decisiones, presupuesto, hitos (lenguaje ejecutivo).</li>
+            <li><strong>Usuarios:</strong> impacto en su trabajo, beneficios, cambios, soporte, capacitación (lenguaje operativo).</li>
+            <li><strong>Equipo técnico:</strong> criterios, dependencias, estándares, tareas, evidencias (lenguaje técnico).</li>
+            <li><strong>Seguridad/Compliance:</strong> controles, aprobaciones, evidencia, trazabilidad, riesgos (lenguaje de control).</li>
+          </ul>
+        </div>
+
+        <div class="highlight-box">
+          <p style="font-weight: bold;">Regla de oro</p>
+          <p>
+            Una buena comunicación deja <strong>registro</strong> de decisiones (acta, correo, herramienta).
+            En IA/ciberseguridad, lo “acordado de palabra” suele convertirse en riesgo.
+          </p>
+        </div>
+
+        <h2 id="s2">2) Feedback: corregir y mejorar sin dañar la colaboración</h2>
+        <p>
+          El feedback sirve para mejorar desempeño, calidad y coordinación, pero debe ser oportuno, específico y accionable.
+          Un líder efectivo evita el feedback “personal” y trabaja sobre evidencias: entregables, resultados y conductas observables.
+        </p>
+
+        <div class="axis-box">
+          <h4>Modelo práctico: SBI (Situación – Comportamiento – Impacto)</h4>
+          <ul>
+            <li><strong>Situación:</strong> describe cuándo y dónde ocurrió (sin exagerar).</li>
+            <li><strong>Comportamiento:</strong> qué se observó concretamente (no “eres irresponsable”, sino “no registraste el cambio”).</li>
+            <li><strong>Impacto:</strong> qué efecto tuvo (retraso, riesgo, retrabajo, confusión).</li>
+          </ul>
+        </div>
+
+        <div class="activity-box">
+          <p><strong>Ejemplos (aplicados al proyecto)</strong></p>
+          <ul>
+            <li>
+              <strong>SBI – Control de cambios:</strong> “En la reunión del martes (S), se desplegó un ajuste sin ticket (B),
+              y eso generó dos fallas y retrabajo (I). Acordemos que todo cambio pasa por ticket + aprobación (acción).”
+            </li>
+            <li>
+              <strong>SBI – Seguridad:</strong> “En la integración con el proveedor (S), se compartieron credenciales por chat (B),
+              y eso aumenta riesgo de exposición (I). Definamos un método seguro de entrega de credenciales (acción).”
+            </li>
+          </ul>
+        </div>
+
+        <h2 id="s3">3) Negociación: priorizar sin perder la relación</h2>
+        <p>
+          Negociar no es “ganar”; es lograr acuerdos viables sobre alcance, tiempos, presupuesto y controles de seguridad.
+          En IA/ciberseguridad suele haber tensiones: <strong>rapidez vs control</strong>, <strong>costo vs calidad</strong>,
+          <strong>beneficio vs riesgo</strong>. Tu tarea como líder es hacer visibles los trade-offs y llevarlos a decisiones.
+        </p>
+
+        <div class="axis-box">
+          <h4>Técnicas útiles en proyectos tecnológicos</h4>
+          <ul>
+            <li><strong>Negociación basada en intereses:</strong> pregunta “¿qué necesitas lograr?” antes de discutir “cómo”.</li>
+            <li><strong>Opciones:</strong> ofrece alternativas (A/B/C) con impacto claro en tiempo, costo y riesgo.</li>
+            <li><strong>Criterios objetivos:</strong> usa métricas, políticas, estándares, evidencias (no opiniones).</li>
+            <li><strong>No negociar lo crítico:</strong> define “líneas rojas” (seguridad, cumplimiento, privacidad, evidencia).</li>
+          </ul>
+        </div>
+
+        <div class="highlight-box">
+          <p style="font-weight: bold;">Ejemplo de negociación (rápido pero seguro)</p>
+          <p>
+            “Podemos salir en 2 semanas si lanzamos un piloto con datos anonimizados y MFA obligatorio.
+            Si quieren producción completa con datos reales y auditoría, necesitamos 4 semanas para pruebas y controles.
+            ¿Qué opción prioriza mejor el riesgo y el objetivo institucional?”
+          </p>
+        </div>
+
+        <h2 id="s4">4) Gestión de conflictos: detectar temprano y resolver con método</h2>
+        <p>
+          El conflicto no es necesariamente malo: puede revelar riesgos, necesidades y decisiones no resueltas.
+          Lo peligroso es el conflicto oculto: sabotaje pasivo, rumores, bloqueo de decisiones, “sí, pero no”.
+          Un líder competente identifica el conflicto temprano y actúa con estructura.
+        </p>
+
+        <div class="axis-box">
+          <h4>Tipos de conflicto (para diagnosticar rápido)</h4>
+          <ul>
+            <li><strong>Por tareas:</strong> desacuerdo sobre qué hacer, prioridades, alcance.</li>
+            <li><strong>Por proceso:</strong> cómo trabajar (reuniones, herramientas, responsables).</li>
+            <li><strong>Por relación:</strong> tensiones personales, falta de respeto, confianza rota.</li>
+            <li><strong>Por valores:</strong> seguridad/ética vs presión por resultados; transparencia vs “hacerlo rápido”.</li>
+          </ul>
+        </div>
+
+        <div class="axis-box">
+          <h4>Ruta práctica de resolución de conflictos (4 pasos)</h4>
+          <ul>
+            <li><strong>1) Clarificar hechos:</strong> ¿qué pasó? ¿qué evidencia hay? (evita suposiciones).</li>
+            <li><strong>2) Identificar intereses:</strong> ¿qué necesita cada parte? (no solo posiciones).</li>
+            <li><strong>3) Acordar solución:</strong> acciones, responsables, fecha, criterios de éxito.</li>
+            <li><strong>4) Registrar y dar seguimiento:</strong> decisiones documentadas + revisión posterior.</li>
+          </ul>
+        </div>
+
+        <h2 id="s5">5) Herramientas mínimas recomendadas (para tu proyecto)</h2>
+        <div class="activity-box">
+          <ul>
+            <li><strong>Acta de decisiones:</strong> qué se decidió, quién aprobó, y por qué.</li>
+            <li><strong>Registro de cambios:</strong> alcance, impacto, responsable, estado.</li>
+            <li><strong>Bitácora de riesgos:</strong> riesgos nuevos, mitigación, dueño, fecha.</li>
+            <li><strong>Acuerdos de trabajo:</strong> comunicación, escalamiento y definición de “hecho”.</li>
+          </ul>
+        </div>
+
+        <h2 id="s6">6) Cierre: el liderazgo se ve en conversaciones difíciles</h2>
+        <p>
+          Comunicar, dar feedback, negociar y manejar conflictos son competencias centrales del <strong>RAP2</strong>.
+          Tu proyecto avanzará más rápido y con menos retrabajo si defines canales, registras decisiones, negocias con criterios
+          y resuelves conflictos con respeto y evidencia. En la siguiente actividad aplicarás estos conceptos a un escenario realista
+          de tu proyecto.
+        </p>
+
+        <h2>🔗 Enlaces de consulta y profundización</h2>
+        <div class="axis-box">
+          <ul>
+            <li>
+              <strong>Guía Scrum – comunicación, eventos y transparencia</strong>:
+              <a href="https://scrumguides.org/" target="_blank" rel="noopener noreferrer">https://scrumguides.org/</a>
+            </li>
+            <li>
+              <strong>Kanban Guides – flujo, visualización y coordinación</strong>:
+              <a href="https://kanbanguides.org/" target="_blank" rel="noopener noreferrer">https://kanbanguides.org/</a>
+            </li>
+            <li>
+              <strong>PMI – recursos sobre liderazgo y habilidades</strong>:
+              <a href="https://www.pmi.org/learning" target="_blank" rel="noopener noreferrer">https://www.pmi.org/learning</a>
+            </li>
+            <li>
+              <strong>NIST CSF – riesgo y gobernanza (para conflictos “seguridad vs rapidez”)</strong>:
+              <a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener noreferrer">https://www.nist.gov/cyberframework</a>
+            </li>
+            <li>
+              <strong>OWASP – prácticas de seguridad aplicadas</strong>:
+              <a href="https://owasp.org/" target="_blank" rel="noopener noreferrer">https://owasp.org/</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Mobile Dock -->
+<nav class="dock" aria-label="Navegación móvil">
+  <div class="dock-row">
+    <a href="#s1" title="Comunicación"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v10H5.2L4 15.2V4Zm2 4v2h8V8H6Zm0-3v2h12V5H6Zm0 7h6v2H6v-2Zm9 1 3 3h-3v-3Z"></path></svg> 1</a>
+    <a href="#s2" title="Feedback"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v6H5.7L4 11.7V4Zm2 3v2h7V7H6Zm0 10h10v2H6v-2Zm0-4h12v2H6v-2Z"></path></svg> 2</a>
+    <a href="#s3" title="Negociación"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h6v6H5V4Zm8 0h6v6h-6V4ZM5 14h6v6H5v-6Zm9 0h2v2h-2v-2Z"></path></svg> 3</a>
+    <a href="#s4" title="Conflictos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 5 7-3 7 3v6c0 5-3.1 9.4-7 11-3.9-1.6-7-6-7-11V5Zm4.5 11L6 12.5l1.4-1.4 2.1 2.1L16.7 6l1.4 1.4L9.5 16Z"></path></svg> 4</a>
+    <a href="#s5" title="Herramientas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v4H4V4Zm0 6h10v4H4v-4Zm0 6h7v4H4v-4Zm9 0h7v2h-7v-2Zm3-6h4v2h-4v-2Z"></path></svg> 5</a>
+    <a href="#s6" title="Cierre"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 4-3 7-7 11-4-4-7-7-7-11a7 7 0 0 1 7-7Zm1 9h-2V7h2v4Zm0 4h-2v-2h2v2Z"></path></svg> 6</a>
+  </div>
+</nav>
+
+<!-- Floating Top -->
+<button class="fab-top" id="fabTop" aria-label="Volver arriba" title="Volver arriba">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5 5 12h4v7h6v-7h4l-7-7Z"></path></svg>
+</button>
+
+<script>
+(function(){
+  const links = Array.from(document.querySelectorAll('.side-link[data-sec]'));
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const meter = document.getElementById('meterFill');
+  const fab = document.getElementById('fabTop');
+
+  function setActiveById(id){
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+  }
+
+  // Smooth scrolling for in-page links
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if(!el) return;
+    e.preventDefault();
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    history.replaceState(null, '', '#' + id);
+  });
+
+  // Floating top
+  fab.addEventListener('click', function(){
+    document.getElementById('top').scrollIntoView({behavior:'smooth'});
+  });
+
+  // Progress + FAB visibility
+  function onScroll(){
+    const st = window.scrollY || document.documentElement.scrollTop;
+    const dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const pct = dh > 0 ? (st / dh) * 100 : 0;
+    if(meter) meter.style.width = Math.max(0, Math.min(100, pct)).toFixed(1) + '%';
+    if(fab) fab.classList.toggle('show', st > 600);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Active section via IntersectionObserver
+  const obs = new IntersectionObserver((entries)=>{
+    const visible = entries
+      .filter(en => en.isIntersecting)
+      .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+    if(visible && visible.target && visible.target.id){
+      setActiveById(visible.target.id);
+    }
+  }, {
+    root: null,
+    threshold: [0.12, 0.2, 0.35, 0.5, 0.7],
+    rootMargin: '-20% 0px -65% 0px'
+  });
+
+  sections.forEach(s => obs.observe(s));
+
+  // Activate on load (hash)
+  const hash = (location.hash || '').replace('#','');
+  if(hash) setActiveById(hash);
+  else if(sections[0]) setActiveById(sections[0].id);
+})();
+</script>
+
+</body>
+</html>

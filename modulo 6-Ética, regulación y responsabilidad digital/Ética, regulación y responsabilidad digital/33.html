@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .aia-dpia-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #455a64; /* Gris Profesional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #263238;
+        margin: 0 auto 15px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* --- TABLA COMPARATIVA --- */
+    .table-wrapper {
+        overflow-x: auto; /* Scroll horizontal en móviles */
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 40px;
+        border: 1px solid #cfd8dc;
+    }
+
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1000px; /* Ancho mínimo para leer bien */
+        font-size: 0.95rem;
+    }
+
+    /* Encabezados */
+    .comparison-table th {
+        background-color: #37474f;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        border: 1px solid #263238;
+        vertical-align: middle;
+    }
+
+    /* Colores específicos para columnas */
+    .th-aia { background-color: #e65100; border-color: #e65100; } /* Naranja AIA */
+    .th-dpia { background-color: #0277bd; border-color: #0277bd; } /* Azul DPIA */
+
+    /* Celdas */
+    .comparison-table td {
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        vertical-align: top;
+        line-height: 1.6;
+    }
+
+    /* Estilo primera columna (Pregunta clave) */
+    .col-key {
+        font-weight: 700;
+        background-color: #eceff1;
+        color: #37474f;
+        width: 15%;
+    }
+
+    /* Estilos de contenido AIA/DPIA */
+    .col-aia { background-color: #fff3e0; width: 25%; } /* Fondo naranja suave */
+    .col-dpia { background-color: #e1f5fe; width: 25%; } /* Fondo azul suave */
+    .col-example { background-color: #f5f5f5; font-style: italic; width: 20%; } /* Gris ejemplo */
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 2rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="aia-dpia-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Evaluación de Impacto Algorítmico (AIA) y DPIA</h1>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Elemento / Pregunta clave</th>
+                    <th>Descripción general</th>
+                    <th class="th-aia">Enfoque en AIA (Algorithmic Impact Assessment)</th>
+                    <th class="th-dpia">Enfoque en DPIA (Data Protection Impact Assessment)</th>
+                    <th>Ejemplo aplicado (caso realista)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-key">1. ¿Qué es?</td>
+                    <td>Son procesos sistemáticos para identificar y gestionar riesgos antes de desplegar un sistema. Buscan anticipar impactos negativos y definir salvaguardas.</td>
+                    <td class="col-aia">Evalúa el impacto de un sistema algorítmico o de IA sobre personas, grupos y sociedad: sesgos, discriminación, transparencia, efectos en derechos y en políticas públicas.</td>
+                    <td class="col-dpia">Evalúa el impacto del tratamiento de datos personales, especialmente cuando es de alto riesgo: volumen de datos, sensibilidad, decisiones automatizadas, perfiles, transferencias, etc.</td>
+                    <td class="col-example">Una entidad pública planea usar IA para priorizar listas de beneficiarios de un programa social y realiza una AIA para analizar si habrá discriminación hacia ciertos barrios o grupos vulnerables. En paralelo, hace una DPIA para revisar qué datos personales usa, si tiene base legal y qué medidas de seguridad adoptará.</td>
+                </tr>
+                
+                <tr>
+                    <td class="col-key">2. ¿Cuándo se debe hacer?</td>
+                    <td>Antes de desplegar o ampliar significativamente un sistema que pueda impactar derechos o tratar datos en alto riesgo. También cuando se modifican sustancialmente objetivos o fuentes de datos.</td>
+                    <td class="col-aia">Cuando se implementan sistemas de IA o algoritmos que afectan acceso a servicios, beneficios, derechos, puntuaciones, rankings o decisiones relevantes (empleo, crédito, educación, seguridad, etc.).</td>
+                    <td class="col-dpia">Cuando el tratamiento es “probablemente de alto riesgo”, por ejemplo: datos sensibles, vigilancia sistemática, decisiones automatizadas con efectos significativos, grandes volúmenes, perfiles a gran escala.</td>
+                    <td class="col-example">Una plataforma educativa que introduce un sistema de analíticas para predecir “riesgo de deserción” debería hacer AIA (impacto en estudiantes etiquetados como “de riesgo”) y DPIA (uso intensivo de datos de rendimiento, conexión, comportamiento en línea).</td>
+                </tr>
+
+                <tr>
+                    <td class="col-key">3. Objetivo principal</td>
+                    <td>Prevenir daños y garantizar que los sistemas se diseñen “con ética y derechos desde el inicio” y no solo se “corrijan” después.</td>
+                    <td class="col-aia">Identificar cómo el uso del algoritmo puede afectar a las personas (justicia, no discriminación, autonomía, transparencia, confianza) y qué medidas se necesitan para reducir esos riesgos.</td>
+                    <td class="col-dpia">Identificar y mitigar riesgos relacionados con privacidad y protección de datos personales (licitud, minimización, seguridad, derechos de acceso, rectificación, oposición, etc.).</td>
+                    <td class="col-example">Un banco quiere usar un modelo de scoring de crédito basado en datos alternativos (comportamiento en apps). El objetivo de la AIA es ver si discrimina a ciertos grupos; el objetivo de la DPIA es asegurar que el uso de esos datos “no tradicionales” respete la normativa de protección de datos.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-key">4. ¿Qué preguntas se hace?</td>
+                    <td>Preguntas orientadas a entender finalidad, datos, beneficiarios, afectados y riesgos.</td>
+                    <td class="col-aia">
+                        - ¿Qué decisiones toma el algoritmo?<br>
+                        - ¿Qué datos de entrada usa?<br>
+                        - ¿Quiénes pueden verse perjudicados?<br>
+                        - ¿Hay sesgos o desigualdades históricas en los datos?<br>
+                        - ¿Existe supervisión humana significativa?<br>
+                        - ¿Qué tan explicables son las decisiones?
+                    </td>
+                    <td class="col-dpia">
+                        - ¿Cuál es la base legal para tratar los datos?<br>
+                        - ¿Son necesarios todos los datos o hay exceso?<br>
+                        - ¿Se informa adecuadamente a las personas?<br>
+                        - ¿Qué medidas técnicas y organizativas protegen los datos?<br>
+                        - ¿Cómo se garantizan los derechos ARCO (acceso, rectificación, cancelación/ supresión, oposición)?
+                    </td>
+                    <td class="col-example">Una ciudad quiere implementar cámaras con reconocimiento facial. Preguntas AIA: ¿se afectará más a ciertos barrios?, ¿puede usarse para vigilar protestas? Preguntas DPIA: ¿qué base legal habilita el reconocimiento facial?, ¿qué pasa si hay falsos positivos?, ¿cuánto tiempo se guardan los datos biométricos?</td>
+                </tr>
+
+                <tr>
+                    <td class="col-key">5. Dimensiones que analiza</td>
+                    <td>Mira más allá de lo técnico: incluye personas, procesos, contexto y poder.</td>
+                    <td class="col-aia">
+                        - Impacto en equidad y no discriminación.<br>
+                        - Impacto en autonomía y dignidad.<br>
+                        - Afectación de grupos vulnerables.<br>
+                        - Efectos en políticas públicas y confianza institucional.<br>
+                        - Riesgos de uso secundario del algoritmo.
+                    </td>
+                    <td class="col-dpia">
+                        - Tipos de datos (sensibles o no).<br>
+                        - Volumen y conservación de datos.<br>
+                        - Flujos y transferencias (internas/externas).<br>
+                        - Medidas de seguridad y confidencialidad.<br>
+                        - Riesgos de violación de datos o uso indebido.
+                    </td>
+                    <td class="col-example">Un sistema de recomendación de becas podría, por diseño, favorecer a estudiantes de ciertos colegios “de prestigio”. La AIA debe analizar ese impacto; la DPIA, revisar si se usan datos sensibles (origen social, datos económicos) y su seguridad.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-key">6. Roles y responsabilidades</td>
+                    <td>Exigen identificar quién responde por el sistema y quién participa en la evaluación.</td>
+                    <td class="col-aia">
+                        - Equipo técnico (desarrollo/IA).<br>
+                        - Equipo de negocio o área usuaria.<br>
+                        - Persona/órgano responsable de ética o impacto social.<br>
+                        - Participación de personas afectadas o representantes (cuando sea posible).
+                    </td>
+                    <td class="col-dpia">
+                        - Responsable del tratamiento de datos (controller).<br>
+                        - Encargados de tratamiento (processors).<br>
+                        - Delegado de protección de datos (si existe).<br>
+                        - Áreas jurídicas, de seguridad de la información y TI.
+                    </td>
+                    <td class="col-example">En una universidad, la AIA se realiza con el área de TI, académica y bienestar estudiantil. La DPIA se hace con TI, jurídico, protección de datos y, preferiblemente, alguien del comité de ética o de derechos humanos.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-key">7. Etapas básicas del proceso</td>
+                    <td>Ambos comparten lógica de “ciclo”: describir, analizar riesgos, proponer medidas, documentar.</td>
+                    <td class="col-aia">
+                        1. Descripción del sistema y su finalidad.<br>
+                        2. Identificación de actores, decisiones y contexto.<br>
+                        3. Mapeo de datos y procesos algorítmicos.<br>
+                        4. Identificación de impactos y riesgos éticos/sociales.<br>
+                        5. Propuesta de medidas de mitigación (cambios en datos, modelo, uso, supervisión).<br>
+                        6. Revisión y seguimiento.
+                    </td>
+                    <td class="col-dpia">
+                        1. Descripción del tratamiento y finalidad.<br>
+                        2. Análisis de necesidad y proporcionalidad.<br>
+                        3. Identificación de riesgos para derechos y libertades.<br>
+                        4. Identificación de medidas técnicas y organizativas para mitigarlos.<br>
+                        5. Decisión: seguir, modificar o no realizar el tratamiento.<br>
+                        6. Revisión periódica.
+                    </td>
+                    <td class="col-example">Una entidad de salud quiere usar IA para priorizar pacientes en lista de espera. En la AIA identifican riesgo de discriminación por edad o lugar de residencia; en la DPIA revisan base legal, minimización de datos y seguridad de historiales clínicos.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-key">8. Resultados esperados (salidas)</td>
+                    <td>No es solo un informe: debe generar decisiones y cambios.</td>
+                    <td class="col-aia">
+                        - Informe que describe el sistema, su contexto y principales riesgos éticos.<br>
+                        - Lista de impactos sobre grupos especificados.<br>
+                        - Recomendaciones de rediseño (datos, modelo, interfaz, gobernanza).<br>
+                        - Plan de monitoreo de desempeño y equidad.
+                    </td>
+                    <td class="col-dpia">
+                        - Informe que documenta riesgos en protección de datos.<br>
+                        - Lista de medidas técnicas/organizativas (cifrado, acceso restringido, anonimización, etc.).<br>
+                        - Decisión justificada sobre la viabilidad del proyecto.<br>
+                        - Plan para gestionar incidentes y solicitudes de derechos.
+                    </td>
+                    <td class="col-example">Tras la AIA y la DPIA de un chatbot de atención ciudadana, la entidad decide: limitar las decisiones automatizadas, incluir advertencias claras, anonimizar datos de conversaciones y revisar periódicamente sesgos en las respuestas.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-key">9. Relación entre AIA y DPIA</td>
+                    <td>No compiten: se complementan. La AIA mira más amplio, la DPIA profundiza en datos personales.</td>
+                    <td class="col-aia">Se concentra en impactos algorítmicos más allá de la privacidad: justicia, poder, impacto social, gobernanza, explicabilidad y confianza.</td>
+                    <td class="col-dpia">Se concentra en riesgos y garantías de protección de datos, pero puede integrar elementos de evaluación algorítmica cuando hay decisiones automatizadas.</td>
+                    <td class="col-example">En un proyecto de IA en educación, la AIA analiza si se está etiquetando injustamente a estudiantes como “de bajo rendimiento”; la DPIA revisa si es legítimo usar tantos datos personales y si existe transparencia hacia estudiantes y familias.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-key">10. Ejemplo 1: selección de personal con IA</td>
+                    <td>Empresa que usa un modelo de IA para filtrar hojas de vida.</td>
+                    <td class="col-aia">AIA: analiza si el modelo favorece inconscientemente a candidatos de ciertos centros educativos, géneros o edades; evalúa si los criterios son explicables para los candidatos.</td>
+                    <td class="col-dpia">DPIA: revisa si el uso de datos de candidatos (CV, redes, test online) cumple con normativa laboral y de protección de datos; si se informa a los candidatos y cuánto se conservan sus datos.</td>
+                    <td class="col-example">Resultado: se ajustan variables del modelo, se incluyen explicaciones generales en las convocatorias y se reduce el tiempo de conservación de los CV.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-key">11. Ejemplo 2: scoring crediticio ampliado</td>
+                    <td>Entidad financiera quiere usar más fuentes de datos (apps, consumo, redes) para evaluar riesgo.</td>
+                    <td class="col-aia">AIA: analiza si el modelo termina dando peor puntaje a ciertos barrios o perfiles socioeconómicos; se revisa si se excluye injustamente a personas con poco historial digital.</td>
+                    <td class="col-dpia">DPIA: determina si hay base legal para usar esos datos adicionales; revisa minimización, seguridad, cesiones a terceros y derechos de los titulares frente al score.</td>
+                    <td class="col-example">Resultado: se decide no usar algunas fuentes demasiado sensibles, se limita el uso a ciertos datos y se habilita un canal para que el cliente consulte y discuta su score.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-key">12. Ejemplo 3: monitoreo educativo y analíticas</td>
+                    <td>Institución educativa usa plataforma que registra cada clic, tiempo de conexión, entregas y participación para generar “perfiles de riesgo”.</td>
+                    <td class="col-aia">AIA: analiza si la etiqueta “estudiante de riesgo” puede estigmatizar o generar trato diferenciado; revisa qué pasa si el sistema se equivoca y cómo se evita que la etiqueta se convierta en profecía autocumplida.</td>
+                    <td class="col-dpia">DPIA: valora tipo de datos recogidos, base legal (interés público/legítimo), tiempo de conservación, con quién se comparten los datos (docentes, familias) y derechos de acceso y oposición.</td>
+                    <td class="col-example">Resultado: se decide usar las analíticas como apoyo al docente, no como base exclusiva de decisiones; se reduce la granularidad de los datos de monitoreo y se comunica claramente a estudiantes qué se registra y por qué.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-key">13. Errores frecuentes</td>
+                    <td>Qué NO hacer.</td>
+                    <td class="col-aia">
+                        - Tratar la AIA como “trámite” sin participación real de personas afectadas.<br>
+                        - Hacerla demasiado tarde, cuando el sistema ya está desplegado.<br>
+                        - Enfocarse solo en la exactitud técnica e ignorar efectos sociales.
+                    </td>
+                    <td class="col-dpia">
+                        - Hacer la DPIA solo como documento para archivo, sin revisar de verdad riesgos y medidas.<br>
+                        - Limitarse a copiar y pegar textualmente leyes sin análisis del contexto.<br>
+                        - No actualizar la DPIA cuando cambian finalidad, datos o tecnología.
+                    </td>
+                    <td class="col-example">En un proyecto de IA en salud se realiza la DPIA solo para cumplir un requisito del proyecto, sin cambiar nada del diseño. Más tarde se descubre que el modelo excluía a pacientes de ciertas zonas con menor acceso a servicios.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-key">14. Buenas prácticas recomendadas</td>
+                    <td>Recomendaciones clave para la unidad.</td>
+                    <td class="col-aia">
+                        - Integrar la AIA desde la fase de diseño del proyecto (“by design”).<br>
+                        - Incluir perspectivas multidisciplinarias (técnicas, legales, sociales, ámbitos de uso).<br>
+                        - Documentar decisiones y justificaciones, especialmente cuando se asumen riesgos.<br>
+                        - Revisar periódicamente el sistema en producción.
+                    </td>
+                    <td class="col-dpia">
+                        - Incluir la DPIA como parte de la gobernanza de datos (no solo en proyectos “especiales”).<br>
+                        - Usar plantillas y checklists, pero adaptándolos al contexto.<br>
+                        - Involucrar a responsables de seguridad, jurídico y protección de datos.<br>
+                        - Definir planes claros de respuesta a incidentes y ejercicios de derechos.
+                    </td>
+                    <td class="col-example">Una organización crea un procedimiento estándar: ningún sistema de IA de alto impacto se pone en producción sin AIA + DPIA aprobadas, plan de monitoreo de sesgos y mecanismos de reclamación accesibles para las personas afectadas.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .governance-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1a237e; /* Azul Institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #1a237e;
+        margin: 0 auto 15px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* --- INTRODUCCIÓN --- */
+    .intro-box {
+        background: #e8eaf6;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        border-left: 5px solid #3949ab;
+    }
+
+    .intro-list {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 20px;
+        list-style-type: disc;
+        font-weight: 700;
+        color: #283593;
+    }
+
+    /* --- SECCIONES DE CONTENIDO --- */
+    .content-section {
+        margin-bottom: 50px;
+    }
+
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #0d47a1;
+        border-bottom: 2px solid #bbdefb;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+        font-weight: 700;
+        margin-top: 40px;
+    }
+
+    /* Tarjetas de Gobierno (Secciones 1 y 2) */
+    .gov-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        border-left: 6px solid #546e7a; /* Gris Azulado */
+    }
+
+    .gov-card h3 {
+        font-family: 'Montserrat', sans-serif;
+        color: #455a64;
+        margin-top: 0;
+        font-size: 1.2rem;
+    }
+
+    .gov-content p { margin-bottom: 15px; line-height: 1.7; }
+
+    .gov-list {
+        padding-left: 20px;
+        margin-bottom: 20px;
+        list-style-type: none;
+    }
+
+    .gov-list > li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+        line-height: 1.6;
+    }
+
+    .gov-list > li::before {
+        content: '•';
+        color: #1a237e;
+        font-weight: bold;
+        font-size: 1.5rem;
+        position: absolute;
+        left: 0;
+        top: -5px;
+    }
+
+    /* Listas anidadas (o ...) */
+    .sub-list {
+        list-style-type: circle;
+        padding-left: 20px;
+        margin-top: 5px;
+        color: #546e7a;
+    }
+    .sub-list li { margin-bottom: 5px; }
+
+    /* --- SECCIÓN 3: CÓDIGOS (LISTA DESTACADA) --- */
+    .code-box {
+        background: #f5f5f5;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #cfd8dc;
+    }
+
+    .highlight-text {
+        font-weight: 600;
+        color: #006064;
+        text-align: center;
+        margin-top: 20px;
+        font-style: italic;
+        display: block;
+    }
+
+    /* --- SECCIÓN 4: COMITÉS (SUB-SECCIONES) --- */
+    .committee-box {
+        background: #fff;
+        border: 1px solid #bbdefb;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .committee-header {
+        background: #e3f2fd;
+        padding: 15px 25px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: #1565c0;
+        border-bottom: 1px solid #bbdefb;
+    }
+
+    .committee-body { padding: 25px; }
+
+    /* --- SECCIÓN 5: CONEXIÓN (BLOQUE FINAL) --- */
+    .connection-box {
+        background: #263238; /* Fondo oscuro */
+        color: #eceff1; /* Texto claro */
+        padding: 40px;
+        border-radius: 15px;
+        margin-top: 50px;
+    }
+
+    .connection-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.4rem;
+        color: #80cbc4;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .connection-list li { margin-bottom: 10px; }
+    .connection-list li::before { color: #80cbc4; } /* Cambiar color bullet en fondo oscuro */
+
+    .warning-box {
+        background: rgba(255,255,255,0.1);
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+        border: 1px dashed #ef5350;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="governance-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Gobierno de datos y algoritmos, códigos de conducta y comités de ética tecnológica</h1>
+    </div>
+
+    <div class="intro-box">
+        <p>En esta parte del módulo vamos a ver cómo se organizan por dentro las instituciones que quieren tomarse en serio la ética digital, la IA responsable y la protección de datos.</p>
+        <p>No basta con decir “somos éticos” o “cumplimos la ley”: hace falta tener estructuras, reglas claras y personas responsables.</p>
+        <p>Eso es, justamente, de lo que hablan:</p>
+        <ul class="intro-list">
+            <li>El gobierno de datos.</li>
+            <li>El gobierno de algoritmos / IA.</li>
+            <li>Los códigos de conducta.</li>
+            <li>Y los comités de ética tecnológica.</li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">1. ¿Qué es el gobierno de datos?</h2>
+        <div class="gov-card">
+            <div class="gov-content">
+                <p>El gobierno de datos (data governance) es el conjunto de políticas, procesos, roles y herramientas que una organización define para:</p>
+                <ul class="gov-list">
+                    <li>Saber qué datos tiene, dónde están y quién los usa.</li>
+                    <li>Asegurar que los datos sean de calidad, seguros y legales.</li>
+                    <li>Decidir cómo se recolectan, comparten y conservan.</li>
+                    <li>Garantizar que se respetan los derechos de las personas titulares de esos datos.</li>
+                </ul>
+                <p><strong>En la práctica, un buen gobierno de datos implica:</strong></p>
+                <ul class="gov-list">
+                    <li>Definir responsables (dueños de datos, custodios, administradores).</li>
+                    <li>Crear políticas sobre:
+                        <ul class="sub-list">
+                            <li>Acceso a datos (quién puede ver qué).</li>
+                            <li>Calidad de datos (cómo se corrigen errores).</li>
+                            <li>Seguridad y privacidad (cifrado, copias, incidentes, etc.).</li>
+                            <li>Conservación y eliminación (hasta cuándo se guardan y cuándo se borran).</li>
+                        </ul>
+                    </li>
+                    <li>Documentar catálogos de datos y flujos (de dónde vienen, a dónde van).</li>
+                </ul>
+                <p>Para este módulo, el gobierno de datos es la base para que cualquier proyecto de IA, analítica o automatización no sea un caos ni una caja negra.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">2. Gobierno de algoritmos y sistemas de IA</h2>
+        <div class="gov-card" style="border-left-color: #0277bd;">
+            <div class="gov-content">
+                <p>Si el gobierno de datos se pregunta “¿qué hacemos con los datos?”, el gobierno de algoritmos se pregunta:</p>
+                <p style="font-weight:bold; color:#0277bd; text-align:center;">“¿Qué hacemos con los modelos, reglas y sistemas que usan esos datos y toman decisiones o hacen recomendaciones?”</p>
+                <p>El gobierno de algoritmos / IA suele incluir:</p>
+                <ul class="gov-list">
+                    <li>Registro o inventario de sistemas de IA y algoritmos relevantes.</li>
+                    <li>Clasificación por nivel de riesgo (bajo, medio, alto) según el impacto en las personas.</li>
+                    <li>Reglas sobre:
+                        <ul class="sub-list">
+                            <li>Cuándo se requiere una evaluación de impacto algorítmico (AIA) o una DPIA.</li>
+                            <li>Qué sistemas necesitan supervisión humana obligatoria.</li>
+                            <li>Qué sistemas requieren mayor transparencia y explicabilidad.</li>
+                        </ul>
+                    </li>
+                    <li>Roles como:
+                        <ul class="sub-list">
+                            <li>Responsable del sistema de IA.</li>
+                            <li>Equipo de revisión ética o de riesgos.</li>
+                            <li>Responsables legales y de protección de datos.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>El objetivo es que la organización sepa qué algoritmos tiene, cómo se comportan y quién responde por ellos, y que pueda corregirlos si generan daños o injusticias.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">3. Códigos de conducta y políticas internas</h2>
+        <div class="code-box">
+            <p>Los códigos de conducta digital y los lineamientos internos sirven para “traducir” los valores y las leyes a reglas concretas de comportamiento dentro de la organización.</p>
+            <p>Un código de conducta en tecnología/IA suele:</p>
+            <ul class="gov-list">
+                <li>Definir principios: respeto por la dignidad humana, privacidad, no discriminación, transparencia, seguridad, responsabilidad.</li>
+                <li>Indicar qué prácticas están permitidas y cuáles no (por ejemplo: no usar datos sin base legal, no reutilizar datos sensibles para otros fines, no implementar vigilancia oculta, etc.).</li>
+                <li>Establecer expectativas para diferentes roles:
+                    <ul class="sub-list">
+                        <li>Desarrolladores/as.</li>
+                        <li>Personal de datos y analítica.</li>
+                        <li>Docentes, directivos, gestores.</li>
+                        <li>Proveedores externos.</li>
+                    </ul>
+                </li>
+                <li>Incluir canales de consulta y denuncia ante dudas éticas o posibles incumplimientos.</li>
+            </ul>
+            <p>Un buen código no debe ser un documento “decorativo”, sino una referencia viva que se use para tomar decisiones diarias:</p>
+            <span class="highlight-text">¿este proyecto va en la línea de lo que declaramos como organización ética?</span>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">4. Comités de ética tecnológica</h2>
+        <p>Los comités de ética tecnológica son grupos formales dentro de la organización que ayudan a revisar y orientar proyectos sensibles relacionados con:</p>
+        <ul class="gov-list">
+            <li>IA y automatización.</li>
+            <li>Tratamiento intensivo de datos personales.</li>
+            <li>Vigilancia (laboral, educativa, urbana).</li>
+            <li>Uso de biometría, geolocalización, analíticas avanzadas, etc.</li>
+        </ul>
+
+        <div class="committee-box">
+            <div class="committee-header">4.1. ¿Quiénes suelen participar?</div>
+            <div class="committee-body">
+                <p>Un comité de este tipo suele ser multidisciplinar, por ejemplo:</p>
+                <ul class="gov-list">
+                    <li>Personas de TI / desarrollo / IA.</li>
+                    <li>Responsables de datos y seguridad de la información.</li>
+                    <li>Representantes de áreas de negocio (académica, talento humano, atención al usuario, etc.).</li>
+                    <li>Área jurídica / protección de datos.</li>
+                    <li>Tal vez alguien de bienestar, psicología, trabajo social o derechos humanos.</li>
+                    <li>En algunos casos, representantes de las personas usuarias o estudiantes.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="committee-box" style="margin-top:20px; border-color:#ffcc80;">
+            <div class="committee-header" style="background:#fff3e0; color:#e65100;">4.2. ¿Qué hace un comité de ética tecnológica?</div>
+            <div class="committee-body">
+                <p>Entre sus funciones típicas:</p>
+                <ul class="gov-list">
+                    <li>Revisar proyectos con alto impacto en derechos (IA en selección de personal, sistemas de vigilancia, analíticas educativas avanzadas, scoring, etc.).</li>
+                    <li>Pedir o validar que se hagan AIA / DPIA antes de implementar.</li>
+                    <li>Formular recomendaciones:
+                        <ul class="sub-list">
+                            <li>Cambiar la forma de uso.</li>
+                            <li>Ajustar modelos o variables.</li>
+                            <li>Mejorar la transparencia y la información al usuario.</li>
+                            <li>Proponer límites o incluso desaconsejar el proyecto.</li>
+                        </ul>
+                    </li>
+                    <li>Hacer seguimiento a proyectos en marcha, especialmente si han generado quejas o riesgos.</li>
+                    <li>Apoyar en la formación y sensibilización en ética digital dentro de la organización.</li>
+                </ul>
+                <p>El comité no reemplaza a la dirección, pero funciona como un <strong>“semáforo ético”</strong> que ayuda a decidir si un proyecto está en verde, amarillo o rojo.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="connection-box">
+        <h2 class="connection-title">5. ¿Cómo se conectan estos tres elementos?</h2>
+        <p>Podemos verlo así:</p>
+        <ul class="gov-list connection-list" style="padding-left:0;">
+            <li>El gobierno de datos asegura que los datos se traten de forma legal, segura y responsable.</li>
+            <li>El gobierno de algoritmos asegura que los modelos y sistemas de IA se diseñen, prueben y usen con criterios éticos y de riesgo.</li>
+            <li>Los códigos de conducta establecen las reglas del juego.</li>
+            <li>Los comités de ética tecnológica ayudan a interpretarlas, aplicarlas y mejorarlas en casos concretos.</li>
+        </ul>
+        <p style="text-align:center; font-weight:bold; margin-top:20px;">En conjunto, forman una especie de ecosistema interno de responsabilidad.</p>
+        
+        <div class="warning-box">
+            <p>Si falta uno de estos elementos, es más fácil que aparezcan:</p>
+            <ul class="gov-list" style="color:#ffcdd2; margin-bottom:0;">
+                <li>Proyectos “cuarto oscuro” (sin control ni transparencia).</li>
+                <li>Uso indebido de datos.</li>
+                <li>Decisiones automatizadas injustas.</li>
+                <li>Pérdida de confianza de estudiantes, empleados, usuarios o ciudadanía.</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lectura – Rol del líder de proyectos tecnológicos y estilos de liderazgo (RAP2)</title>
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .unit-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd; /* Azul institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .unit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        text-transform: none;
+        color: #01579b;
+        margin: 0 auto 10px auto;
+        max-width: 90%;
+        line-height: 1.2;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .unit-subtitle {
+        font-size: 1.1rem;
+        color: #0288d1;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    /* IMAGEN HERO (nueva) */
+    .hero-img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(1, 87, 155, 0.15);
+        margin: 0 auto 30px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+    }
+
+    /* --- CONTENIDO GENERAL --- */
+    .content {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .content h2 {
+        font-family: 'Montserrat', sans-serif;
+        color: #01579b;
+        font-size: 1.6rem;
+        margin-top: 28px;
+        margin-bottom: 12px;
+    }
+
+    .content p {
+        margin-bottom: 14px;
+        text-align: justify;
+    }
+
+    .content ul {
+        margin: 8px 0 15px 22px;
+        padding: 0;
+    }
+
+    .content li {
+        margin-bottom: 6px;
+    }
+
+    /* --- CAJAS ESPECIALES (ADAPTADAS AL ESTILO AZUL) --- */
+    .axis-box {
+        background-color: #e3f2fd;
+        border-left: 5px solid #1e88e5;
+        padding: 15px 18px;
+        margin: 15px 0;
+        border-radius: 10px;
+    }
+    .axis-box h4 {
+        color: #0d47a1;
+        margin: 0 0 8px 0;
+        font-size: 1.1rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .axis-box ul {
+        margin: 5px 0 5px 20px;
+    }
+
+    .highlight-box {
+        background-color: #e8f5e9;
+        border-left: 5px solid #43a047;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .highlight-box p {
+        margin: 6px 0;
+    }
+
+    .activity-box {
+        background-color: #fff8e1;
+        border-left: 5px solid #ffb300;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .activity-box p {
+        margin: 6px 0;
+    }
+
+    .emphasis {
+        font-weight: bold;
+        color: #00796b;
+    }
+
+    a {
+        color: #1565c0;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #555;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 15px auto;
+        }
+        .unit-title { font-size: 1.9rem; max-width: 100%; }
+        .hero-img { margin-bottom: 20px; }
+    }
+
+
+/* --- MEJORAS LECTURA (TOC + DETALLES) --- */
+.toc-box{
+  background:#f3f8ff;
+  border:1px solid rgba(2,136,209,.18);
+  border-left:5px solid #0288d1;
+  border-radius:12px;
+  padding:14px 18px;
+  margin:16px 0 10px 0;
+}
+.toc-box h3{
+  margin:0 0 10px 0;
+  font-family:'Montserrat',sans-serif;
+  color:#01579b;
+  font-size:1.1rem;
+}
+.toc-box ol{ margin:0 0 0 18px; }
+.toc-box li{ margin:6px 0; }
+
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:.85rem;
+  font-weight:700;
+  font-family:'Montserrat',sans-serif;
+  background:#e3f2fd;
+  color:#0d47a1;
+  border:1px solid rgba(13,71,161,.15);
+}
+
+.style-details{
+  border-radius:12px;
+  border:1px solid rgba(13,71,161,.12);
+  background:#ffffff;
+  margin:14px 0;
+  overflow:hidden;
+}
+.style-details summary{
+  cursor:pointer;
+  padding:14px 16px;
+  font-family:'Montserrat',sans-serif;
+  font-weight:800;
+  color:#0d47a1;
+  list-style:none;
+}
+.style-details summary::-webkit-details-marker{ display:none; }
+.style-details .inner{
+  padding:0 16px 14px 16px;
+}
+hr.sep{
+  border:none;
+  height:1px;
+  background:linear-gradient(90deg, rgba(2,136,209,.0), rgba(2,136,209,.25), rgba(2,136,209,.0));
+  margin:24px 0;
+}
+
+</style>
+</head>
+<body>
+
+<div class="unit-container">
+  
+
+  <div class="header-box">
+    <span class="unit-subtitle">Unidad 2 · RAP2 – Lectura guiada</span>
+    <h1 class="unit-title">📘 Rol del líder de proyectos tecnológicos y estilos de liderazgo (RAP2)</h1>
+    <img src="https://www.dropbox.com/scl/fi/okg6s1mior4qs3f8bt4wz/Gemini_Generated_Image_hrwz0mhrwz0mhrwz.png?rlkey=czm7kaoefgkfn26um5tkjp8hs&st=4lxijh9m&raw=1" alt="Lectura - Liderazgo en proyectos" class="hero-img">
+
+
+    <!-- Imagen principal: se conserva la del ejemplo -->
+    
+  </div>
+
+  <div class="content">
+    <p>
+      En proyectos tecnológicos —y con mayor razón en proyectos de <strong>IA</strong> y <strong>ciberseguridad</strong>—
+      el líder no es “quien más sabe de tecnología”, sino quien logra que el equipo <strong>entregue valor de forma segura</strong>,
+      coordinando personas, decisiones, riesgos y comunicación. Esta lectura te da las bases para comprender
+      <strong>qué hace realmente un líder de proyectos tecnológicos</strong> y cómo elegir un estilo de liderazgo
+      adecuado según el momento del proyecto.
+    </p>
+
+    <div class="highlight-box">
+      <p style="font-weight:bold;">✅ Resumen rápido (lo esencial en 30 segundos)</p>
+      <ul>
+        <li><strong>Liderar</strong> es conectar estrategia con ejecución y tomar decisiones bajo incertidumbre.</li>
+        <li>En IA/ciberseguridad, el reto es <strong>rapidez + control</strong> (riesgo, evidencia y cumplimiento).</li>
+        <li>No hay “un estilo único”: el liderazgo efectivo es <strong>adaptativo</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="toc-box">
+      <h3>🧭 Contenido</h3>
+      <ol>
+        <li><a href="#s1">¿Qué es liderar un proyecto tecnológico?</a></li>
+        <li><a href="#s2">Responsabilidades clave del líder</a></li>
+        <li><a href="#s3">Retos específicos en IA y ciberseguridad</a></li>
+        <li><a href="#s4">Estilos de liderazgo: ¿cuál usar y cuándo?</a></li>
+        <li><a href="#s5">Guía práctica para elegir el estilo</a></li>
+        <li><a href="#s6">Cierre</a></li>
+        <li><a href="#links">Enlaces de consulta</a></li>
+      </ol>
+    </div>
+
+    <hr class="sep" />
+
+    <h2 id="s1">1) ¿Qué es liderar un proyecto tecnológico?</h2>
+    <div class="axis-box">
+      <p>
+        Liderar un proyecto tecnológico significa <strong>conducir decisiones</strong> para cumplir objetivos
+        sin perder control del alcance, el tiempo, el costo, la calidad y el riesgo. En la práctica, el líder actúa como
+        <strong>integrador</strong> entre negocio, usuarios y equipos técnicos.
+      </p>
+      <ul>
+        <li><strong>Conecta estrategia con ejecución:</strong> traduce objetivos institucionales en entregables y prioridades.</li>
+        <li><strong>Toma decisiones con incertidumbre:</strong> prioriza, ajusta y negocia cuando cambian condiciones.</li>
+        <li><strong>Protege el valor:</strong> evita alcance inflado y asegura adopción y sostenibilidad.</li>
+        <li><strong>Gestiona riesgos:</strong> anticipa riesgos técnicos, humanos, de datos y de seguridad desde el inicio.</li>
+      </ul>
+    </div>
+
+    <h2 id="s2">2) Responsabilidades clave del líder de proyecto tecnológico</h2>
+    <p>
+      Dependiendo del enfoque (tradicional/ágil/híbrido), el rol puede cambiar de nombre
+      (Project Manager, Product Owner, Scrum Master, Tech Lead, etc.), pero estas responsabilidades suelen ser comunes:
+    </p>
+
+    <div class="highlight-box">
+      <ul>
+        <li><strong>Dirección y alineación:</strong> mantener al equipo alineado con objetivos, alcance y prioridades.</li>
+        <li><strong>Gobernanza y control:</strong> seguimiento del avance, control de cambios, aprobación de hitos y gestión de restricciones.</li>
+        <li><strong>Comunicación:</strong> informar avances y riesgos en lenguaje comprensible para directivos y usuarios.</li>
+        <li><strong>Facilitación:</strong> remover bloqueos y coordinar dependencias (compras, infraestructura, proveedores, otras áreas).</li>
+        <li><strong>Gestión del equipo:</strong> acuerdos de trabajo, roles, conflictos, motivación y clima de colaboración.</li>
+        <li><strong>Riesgos y seguridad:</strong> controles mínimos, trazabilidad y cumplimiento (especialmente con datos).</li>
+      </ul>
+    </div>
+
+    <h2 id="s3">3) Liderazgo en proyectos de IA y ciberseguridad: retos específicos</h2>
+
+    <div class="axis-box">
+      <h4><span class="badge">IA</span> Cuando hay IA</h4>
+      <ul>
+        <li>El desempeño depende de <strong>datos</strong> (calidad, sesgos, disponibilidad, privacidad) y métricas (precisión, recall, falsos positivos).</li>
+        <li>Se debe gestionar expectativas: “funciona” no es suficiente; debe ser <strong>usable, confiable y gobernable</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="axis-box">
+      <h4><span class="badge">Ciberseguridad</span> Cuando hay ciberseguridad</h4>
+      <ul>
+        <li>Las amenazas cambian: el proyecto requiere <strong>mejora continua</strong> y controles verificables.</li>
+        <li>Hay impacto institucional: un error puede significar incidencias, fugas de datos o indisponibilidad.</li>
+      </ul>
+    </div>
+
+    <div class="activity-box">
+      <p><strong>Idea clave</strong></p>
+      <p>
+        En IA/ciberseguridad, el líder debe equilibrar: <strong>rapidez</strong> (entregar valor pronto) y
+        <strong>control</strong> (seguridad, cumplimiento, evidencia y calidad). Muchas veces, eso conduce a enfoques híbridos.
+      </p>
+    </div>
+
+    <h2 id="s4">4) Estilos de liderazgo: ¿cuál usar y cuándo?</h2>
+    <p>
+      Un error común es pensar que existe un estilo único de liderazgo. En proyectos tecnológicos, el líder efectivo es
+      <strong>adaptativo</strong>: cambia el estilo según el equipo, el riesgo y la etapa del proyecto.
+    </p>
+
+    <details class="style-details" open>
+      <summary>4.1 Liderazgo situacional (adaptativo)</summary>
+      <div class="inner">
+        <div class="axis-box" style="margin:0;">
+          <ul>
+            <li>Ajusta dirección y apoyo según la madurez del equipo (competencia + compromiso).</li>
+            <li><strong>Útil cuando:</strong> el equipo es nuevo, hay rotación o el proyecto está en etapa de inicio.</li>
+            <li><strong>Riesgo si se usa mal:</strong> microgestión excesiva o, al contrario, abandono sin guía.</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="style-details">
+      <summary>4.2 Liderazgo servicial (Servant Leadership)</summary>
+      <div class="inner">
+        <div class="axis-box" style="margin:0;">
+          <ul>
+            <li>Facilita el trabajo del equipo, elimina bloqueos y protege el foco en valor.</li>
+            <li><strong>Útil cuando:</strong> se trabaja con enfoques ágiles, se requiere autonomía y aprendizaje rápido.</li>
+            <li><strong>Riesgo si se usa mal:</strong> falta de firmeza para controlar alcance y compromisos.</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="style-details">
+      <summary>4.3 Liderazgo transformacional</summary>
+      <div class="inner">
+        <div class="axis-box" style="margin:0;">
+          <ul>
+            <li>Inspira, moviliza al equipo y fortalece cultura de cambio (visión compartida).</li>
+            <li><strong>Útil cuando:</strong> hay resistencia al cambio, baja adopción o se necesita alinear muchas áreas.</li>
+            <li><strong>Riesgo si se usa mal:</strong> mucha visión, poca estructura (complementar con ejecución y control).</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="style-details">
+      <summary>4.4 Liderazgo transaccional</summary>
+      <div class="inner">
+        <div class="axis-box" style="margin:0;">
+          <ul>
+            <li>Se centra en acuerdos, reglas, cumplimiento de tareas y control (responsabilidad/seguimiento).</li>
+            <li><strong>Útil cuando:</strong> hay alta criticidad, auditoría, seguridad o entregables contractuales.</li>
+            <li><strong>Riesgo si se usa mal:</strong> desmotivación, baja creatividad y poca adaptación.</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <h2 id="s5">5) ¿Cómo elegir el estilo adecuado? (guía práctica)</h2>
+    <div class="highlight-box">
+      <p style="font-weight: bold;">Usa estas preguntas para decidir tu estilo según el contexto:</p>
+      <ul>
+        <li><strong>¿El equipo es nuevo o inexperto?</strong> → más dirección (situacional) + claridad de roles.</li>
+        <li><strong>¿Hay incertidumbre alta?</strong> → más facilitación (servicial) + ciclos cortos + feedback.</li>
+        <li><strong>¿Hay resistencia al cambio?</strong> → transformacional + comunicación + gestión del cambio.</li>
+        <li><strong>¿Hay alta criticidad / cumplimiento / auditoría?</strong> → transaccional + gobernanza + evidencia.</li>
+      </ul>
+    </div>
+
+    <h2 id="s6">6) Cierre: liderazgo como competencia clave del RAP2</h2>
+    <p>
+      Dominar el liderazgo en proyectos tecnológicos significa ser capaz de
+      <strong>coordinar personas, tomar decisiones y gestionar riesgos</strong> para lograr resultados.
+      En la Unidad 2 aplicarás estos conceptos a tu propio proyecto: definirás roles, acuerdos de trabajo
+      y comenzarás a fortalecer una gestión de riesgos más realista para IA/ciberseguridad.
+    </p>
+
+    <h2 id="links">🔗 Enlaces de consulta y profundización</h2>
+    <div class="axis-box">
+      <ul>
+        <li><strong>PMI – Leadership &amp; Project Management</strong>:
+          <a href="https://www.pmi.org/learning" target="_blank" rel="noopener noreferrer">https://www.pmi.org/learning</a>
+        </li>
+        <li><strong>Scrum Guide</strong>:
+          <a href="https://scrumguides.org/" target="_blank" rel="noopener noreferrer">https://scrumguides.org/</a>
+        </li>
+        <li><strong>Kanban Guides</strong>:
+          <a href="https://kanbanguides.org/" target="_blank" rel="noopener noreferrer">https://kanbanguides.org/</a>
+        </li>
+        <li><strong>NIST – Gestión de riesgos</strong>:
+          <a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener noreferrer">https://www.nist.gov/cyberframework</a>
+        </li>
+        <li><strong>OWASP</strong>:
+          <a href="https://owasp.org/" target="_blank" rel="noopener noreferrer">https://owasp.org/</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+  </div>
+</div>
+
+</body>
+</html>

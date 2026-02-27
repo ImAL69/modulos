@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .rubric-sketch-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #3949ab; /* Índigo - Unidad 2 */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #1a237e;
+        margin: 0 auto 15px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* --- TABLA RESPONSIVA --- */
+    .table-wrapper {
+        overflow-x: auto; /* Scroll horizontal en móviles */
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+        border: 1px solid #c5cae9;
+    }
+
+    .rubric-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1100px; /* Ancho mínimo para que el texto no se aplaste */
+        font-size: 0.95rem;
+    }
+
+    /* Encabezados */
+    .rubric-table th {
+        background-color: #3949ab;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        border: 1px solid #1a237e;
+        vertical-align: middle;
+    }
+
+    /* Celdas */
+    .rubric-table td {
+        padding: 15px;
+        border: 1px solid #e8eaf6;
+        vertical-align: top;
+        line-height: 1.6;
+    }
+
+    /* Columnas */
+    .col-criterio {
+        background-color: #e8eaf6;
+        font-weight: 700;
+        color: #1a237e;
+        width: 18%;
+    }
+
+    .col-peso {
+        text-align: center;
+        font-weight: 900;
+        color: #e65100; /* Naranja para el peso */
+        background-color: #fff;
+        width: 7%;
+    }
+
+    /* Niveles de Desempeño */
+    .level-exc { background-color: #e8f5e9; border-left: 4px solid #2e7d32; } /* Verde suave */
+    .level-sat { background-color: #fffde7; border-left: 4px solid #fbc02d; } /* Amarillo suave */
+    .level-basico { background-color: #fff3e0; border-left: 4px solid #ef6c00; } /* Naranja suave */
+    .level-insuf { background-color: #ffebee; border-left: 4px solid #c62828; } /* Rojo suave */
+
+    /* Fila Total */
+    .row-total td {
+        background-color: #1a237e;
+        color: white;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-align: right;
+        font-size: 1.1rem;
+    }
+
+    /* --- NOTA INFORMATIVA --- */
+    .info-box {
+        background: #e3f2fd;
+        border-left: 5px solid #1565c0;
+        padding: 20px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        margin-top: 30px;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="rubric-sketch-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Rúbrica de Evaluación: Boceto de Arquitectura</h1>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th style="border-top-left-radius: 10px;">Criterio</th>
+                    <th style="text-align:center;">Peso (%)</th>
+                    <th style="background:#2e7d32;">Excelente (4)</th>
+                    <th style="background:#f9a825;">Satisfactorio (3)</th>
+                    <th style="background:#ef6c00;">Básico (2)</th>
+                    <th style="background:#c62828; border-top-right-radius: 10px;">Insuficiente (1)</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td class="col-criterio">1. Definición de zonas y segmentación macro</td>
+                    <td class="col-peso">30 %</td>
+                    <td class="level-exc">Define claramente zonas de seguridad (usuarios, servidores, DMZ, invitados, IoT, gestión, nube, etc.) con nombres claros y límites bien marcados. La segmentación es coherente con los riesgos y el tipo de datos; se evidencia un diseño pensado y ordenado.</td>
+                    <td class="level-sat">Define varias zonas de seguridad y segmentación razonable, aunque podría mejorar la claridad de algunos límites o faltan 1–2 zonas que serían relevantes para el escenario.</td>
+                    <td class="level-basico">Hay intento de segmentación, pero las zonas están poco claras, mal nombradas o mezclan elementos muy distintos; se percibe más un “redibujo de la red” que un diseño de seguridad.</td>
+                    <td class="level-insuf">No se identifican zonas de seguridad o el diagrama es prácticamente plano; todo está en una misma red lógica sin separación significativa.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">2. Protección de datos y controles de acceso entre zonas</td>
+                    <td class="col-peso">25 %</td>
+                    <td class="level-exc">Identifica correctamente datos sensibles y los ubica en zonas adecuadas. Muestra controles claros entre zonas (firewalls, VPN, WAF, ACL, etc.) y explica cómo se protege el acceso a esos datos. Incluye cifrado en tránsito y en reposo donde corresponde.</td>
+                    <td class="level-sat">Identifica datos sensibles y algunos controles entre zonas. Se representan medidas de protección (cifrado, firewalls, accesos) pero de forma parcial o poco detallada.</td>
+                    <td class="level-basico">Menciona de forma general “seguridad” o “firewall”, pero no se ve una relación clara entre datos críticos, zonas y controles. El cifrado o la protección de acceso casi no se consideran.</td>
+                    <td class="level-insuf">No se evidencia ninguna intención de proteger datos: no hay controles entre zonas, ni mención de cifrado, ni diferenciación entre datos críticos y no críticos.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">3. Claridad del diagrama y flujos de datos/acceso</td>
+                    <td class="col-peso">15 %</td>
+                    <td class="level-exc">El mapa es legible, organizado y con buena leyenda. Los flujos (flechas, líneas) muestran claramente quién accede a qué, cómo se conectan sedes/nube/IA y por dónde viajan los datos. No hay elementos confusos o contradictorios.</td>
+                    <td class="level-sat">El diagrama es entendible en general, aunque algunos flujos o elementos podrían estar mejor etiquetados o ubicados. Se entiende la idea principal, aun con pequeños vacíos.</td>
+                    <td class="level-basico">El diagrama se ve recargado, desordenado o poco claro. Cuesta seguir los flujos de datos y accesos; faltan etiquetas o la simbología no se explica bien.</td>
+                    <td class="level-insuf">El mapa es ininteligible o casi inexistente; no permite entender cómo está organizada la arquitectura ni los flujos de datos/acceso.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">4. Documento explicativo: justificación, riesgos y mejoras</td>
+                    <td class="col-peso">20 %</td>
+                    <td class="level-exc">El documento (2–3 páginas) describe claramente el escenario, justifica las decisiones de diseño (zonas, controles, cifrado), identifica al menos 2 riesgos reales y propone mejoras futuras sensatas. La argumentación es coherente y conectada con los conceptos del módulo.</td>
+                    <td class="level-sat">El documento explica el diseño y menciona algunos riesgos o mejoras, pero con menor profundidad o sin relacionarlos del todo con los conceptos vistos en clase.</td>
+                    <td class="level-basico">El documento es muy superficial: se limita a describir el dibujo sin justificar por qué se tomaron decisiones ni analizar riesgos.</td>
+                    <td class="level-insuf">No se entrega documento, o el texto es mínimo, desordenado o no corresponde al diseño presentado.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">5. Presentación, organización y cumplimiento de lineamientos</td>
+                    <td class="col-peso">10 %</td>
+                    <td class="level-exc">Entrega completa (diagrama + PDF) en los formatos solicitados. Buena ortografía y redacción. El nombre de archivos y la estructura siguen las indicaciones de la actividad. Se nota cuidado en la presentación.</td>
+                    <td class="level-sat">Entrega completa y en formato adecuado, con pequeños errores de forma u organización que no dificultan la comprensión.</td>
+                    <td class="level-basico">Entrega con errores de formato, archivos mal nombrados o estructura confusa. Aunque el contenido es usable, la presentación dificulta la revisión.</td>
+                    <td class="level-insuf">Entrega incompleta, en formatos incorrectos o no se pueden abrir los archivos; no se siguen las indicaciones dadas.</td>
+                </tr>
+
+                <tr class="row-total">
+                    <td colspan="2">TOTAL</td>
+                    <td colspan="4" style="text-align: center; background-color: #1a237e; color: #fff;">100%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <strong>💡 Recuerda:</strong> Revisa tanto tu diagrama como tu documento escrito antes de enviar para asegurar la máxima puntuación.
+    </div>
+
+</div>
+
+</body>
+</html>

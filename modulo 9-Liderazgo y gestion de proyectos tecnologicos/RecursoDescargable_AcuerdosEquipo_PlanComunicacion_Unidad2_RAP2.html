@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Recurso descargable – Acuerdos de equipo + Plan de comunicación (Unidad 2 · RAP2)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .ai-act-container {
+        font-family: 'Roboto', sans-serif;
+        color: #333;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 40px 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 10px solid #003399; /* Azul institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO TIPOGRÁFICO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 35px;
+        padding: 32px 20px 28px 20px;
+        background: linear-gradient(135deg, #003399 0%, #0055cc 100%);
+        border-radius: 12px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header-box::before {
+        content: '★ ★ ★ ★ ★';
+        position: absolute;
+        top: -10px; right: -10px;
+        font-size: 4rem;
+        color: rgba(255, 204, 0, 0.1);
+        transform: rotate(15deg);
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        margin: 0;
+        letter-spacing: 1px;
+        color: #ffcc00;
+        text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+        animation: fadeInDown 1s ease both;
+    }
+
+    .sub-title {
+        font-size: 1.05rem;
+        font-weight: 300;
+        margin-top: 8px;
+        opacity: 0.92;
+    }
+
+    .kicker {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: .18em;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: #c5dcff;
+    }
+
+    /* --- IMAGEN HERO --- */
+    .resource-hero-wrap{
+        margin: 0 auto 30px auto;
+        max-width: 780px;
+    }
+    .resource-hero{
+        width: 100%;
+        border-radius: 18px;
+        box-shadow: 0 18px 38px rgba(0,0,0,0.18);
+        display:block;
+        object-fit: cover;
+        max-height: 360px;
+    }
+
+    /* --- INTRODUCCIÓN --- */
+    .intro-text {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 30px;
+        padding: 0 10px;
+        color: #555;
+    }
+
+    /* --- GRID DE TARJETAS DE RECURSO --- */
+    .risk-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .risk-card {
+        background: white;
+        border-radius: 12px;
+        padding: 22px 22px 20px 22px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+        transition: transform 0.25s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .risk-card:hover { transform: translateY(-5px); }
+
+    .risk-blue { border-left: 8px solid #0288d1; }
+    .risk-orange { border-left: 8px solid #f57c00; }
+    .risk-green { border-left: 8px solid #388e3c; }
+    .risk-purple { border-left: 8px solid #7b1fa2; }
+
+    .risk-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+
+    .risk-icon { font-size: 1.6rem; }
+    
+    .risk-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .risk-blue .risk-title { color: #0288d1; }
+    .risk-orange .risk-title { color: #f57c00; }
+    .risk-green .risk-title { color: #388e3c; }
+    .risk-purple .risk-title { color: #7b1fa2; }
+
+    .risk-content ul {
+        padding-left: 20px;
+        margin-top: 8px;
+        font-size: 0.96rem;
+        color: #444;
+    }
+    .risk-content li { margin-bottom: 6px; }
+
+    .risk-content p{
+        margin: 0 0 6px 0;
+        font-size: 0.98rem;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: .8rem;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        background: #e3f2fd;
+        color: #0d47a1;
+        margin-top: 4px;
+    }
+
+    .obligations-box {
+        background: #fafafa;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 10px;
+        font-size: 0.9rem;
+        border-top: 2px solid #ddd;
+    }
+    .obligations-title { font-weight: bold; font-size: 0.8rem; color: #666; display: block; margin-bottom: 4px; text-transform: uppercase;}
+
+    /* --- BLOQUE RECOMENDACIÓN PEDAGÓGICA --- */
+    .gpai-section {
+        background: #f3e5f5;
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 35px;
+        border: 2px dashed #ab47bc;
+    }
+
+    .gpai-title {
+        color: #7b1fa2;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.4rem;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* --- IMPORTANCIA (GRID FINAL) --- */
+    .importance-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+        margin-top: 10px;
+    }
+
+    .imp-card {
+        background: #e3f2fd;
+        padding: 16px 14px;
+        border-radius: 10px;
+        text-align: center;
+        color: #0d47a1;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+        margin-top: 32px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #555;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .ai-act-container {
+            padding: 30px 18px 40px 18px;
+        }
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 16px auto;
+        }
+        .main-title { font-size: 2rem; }
+        .intro-text { padding: 0; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="ai-act-container">
+
+    <!-- Logo institucional -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <!-- Header principal -->
+    <div class="header-box">
+        <div class="kicker">Unidad 2 · RAP2 · Liderazgo y gestión</div>
+        <h1 class="main-title">Recurso descargable</h1>
+        <div class="sub-title">Plantilla “Acuerdos de equipo + Plan de comunicación”</div>
+    </div>
+
+    <!-- Imagen hero del recurso -->
+    <div class="resource-hero-wrap">
+        <img src="https://www.dropbox.com/scl/fi/u9cbzilp57q4u0jpo7mfr/Gemini_Generated_Image_rb78curb78curb78.png?rlkey=c79m0bezkwqidfycczatn3uqr&st=bmrvmqdq&raw=1"
+             alt="Ilustración del trabajo colaborativo y comunicación en proyectos tecnológicos"
+             class="resource-hero">
+    </div>
+
+    <!-- Intro -->
+    <div class="intro-text">
+        <p>
+            En esta sección encontrarás la <strong>plantilla institucional</strong> para documentar dos elementos indispensables en proyectos
+            de <strong>IA</strong> y <strong>ciberseguridad</strong>: los <strong>acuerdos de equipo</strong> y el
+            <strong>plan de comunicación</strong>. Este recurso te ayudará a ordenar el trabajo del equipo, reducir conflictos, asegurar
+            la coordinación y mantener evidencia de decisiones críticas (alcance, cambios, seguridad y datos).
+        </p>
+    </div>
+
+    <h2 style="text-align:center; font-family:'Montserrat', sans-serif; color:#003399; margin-bottom:24px;">
+        Vista rápida del recurso
+    </h2>
+    
+    <!-- Tarjetas principales del recurso -->
+    <div class="risk-grid">
+
+        <!-- Qué resuelve / para qué sirve -->
+        <div class="risk-card risk-blue">
+            <div class="risk-header">
+                <span class="risk-icon">📌</span>
+                <h3 class="risk-title">¿Para qué sirve esta plantilla?</h3>
+            </div>
+            <div class="risk-content">
+                <p>Esta plantilla te ayuda a estructurar el trabajo del equipo y a dejar huella de los acuerdos clave del proyecto.</p>
+                <ul>
+                    <li>Definir <strong>roles y responsabilidades</strong> dentro de un equipo multidisciplinario.</li>
+                    <li>Acordar <strong>reglas de trabajo</strong>: comunicación, reuniones, control de cambios y calidad.</li>
+                    <li>Establecer un <strong>plan de comunicación por audiencias</strong> (stakeholders) con mensajes, canales y frecuencia.</li>
+                    <li>Dejar <strong>evidencia</strong> para seguimiento, auditoría y control de riesgos en el RAP2.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Contenido del archivo -->
+        <div class="risk-card risk-orange">
+            <div class="risk-header">
+                <span class="risk-icon">📄</span>
+                <h3 class="risk-title">Contenido del archivo</h3>
+            </div>
+            <div class="risk-content">
+                <p><strong>Nombre sugerido del archivo:</strong></p>
+                <p class="badge">Plantilla_Acuerdos_de_Equipo_y_Plan_de_Comunicacion_Unidad2_RAP2_FET.pdf</p>
+                <p style="margin-top:10px;"><strong>Incluye las siguientes secciones:</strong></p>
+                <ul>
+                    <li>Información general del proyecto (tipo, objetivo, sponsor, líder).</li>
+                    <li>Tabla de equipo y roles (equipo multidisciplinario).</li>
+                    <li>Matriz RACI (mínimo 6 actividades clave).</li>
+                    <li>Acuerdos de trabajo: comunicación, reuniones, tablero, cambios, DoD, seguridad/datos y conflictos.</li>
+                    <li>Plan de comunicación por audiencias (objetivo, mensaje, canal, frecuencia, responsable, evidencia).</li>
+                    <li>Checklist semanal del líder y sección de aprobación/firma.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Instrucciones de uso -->
+        <div class="risk-card risk-green">
+            <div class="risk-header">
+                <span class="risk-icon">🧩</span>
+                <h3 class="risk-title">Instrucciones de uso</h3>
+            </div>
+            <div class="risk-content">
+                <p><strong>Paso a paso recomendado para diligenciar la plantilla:</strong></p>
+                <ul>
+                    <li><strong>Paso 1:</strong> Completa la información general del proyecto (sección 1).</li>
+                    <li><strong>Paso 2:</strong> Define el equipo y roles (sección 2), incluyendo responsables de datos y seguridad.</li>
+                    <li><strong>Paso 3:</strong> Construye la matriz RACI (sección 3) con actividades críticas (accesos, datos, despliegues, cambios).</li>
+                    <li><strong>Paso 4:</strong> Acorda y registra las reglas de trabajo (sección 4) en una reunión de equipo.</li>
+                    <li><strong>Paso 5:</strong> Diligencia el plan de comunicación por audiencias (sección 5).</li>
+                    <li><strong>Paso 6:</strong> Firma/aprueba y publica la versión final en el espacio del curso/proyecto.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Descarga y entrega -->
+        <div class="risk-card risk-purple">
+            <div class="risk-header">
+                <span class="risk-icon">⬇️</span>
+                <h3 class="risk-title">Descarga y entrega</h3>
+            </div>
+            <div class="risk-content">
+                <p>
+                    Descarga el PDF desde el recurso adjunto en la plataforma (<strong>Q10</strong>). Si tu plataforma permite hipervínculo,
+                    puedes asociarlo al archivo cargado con el mismo nombre.
+                </p>
+                <div class="obligations-box">
+                    <span class="obligations-title">Entrega sugerida</span>
+                    <p>
+                        Una vez diligenciado, súbelo como <strong>evidencia del trabajo de la semana</strong> o anéxalo al
+                        <strong>dossier del proyecto</strong> para el cierre del <strong>RAP2</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Recomendación pedagógica -->
+    <div class="gpai-section">
+        <h3 class="gpai-title"><span style="font-size:2rem;">🎓</span> Recomendación pedagógica</h3>
+        <p>
+            Un proyecto tecnológico suele fallar más por <strong>falta de coordinación</strong> que por falta de herramientas.
+            Esta plantilla funciona como un <strong>“contrato operativo”</strong> del equipo: si algo no está acordado y documentado,
+            se convierte en riesgo.
+        </p>
+        <p>
+            Te sugerimos construir la versión inicial en equipo (en una reunión corta) y revisarla al menos una vez durante la unidad
+            para ajustarla según los avances y riesgos identificados.
+        </p>
+
+        <div class="importance-grid">
+            <div class="imp-card">Alinea expectativas del equipo.</div>
+            <div class="imp-card">Reduce conflictos y retrabajos.</div>
+            <div class="imp-card">Fortalece el liderazgo evidenciable del RAP2.</div>
+            <div class="imp-card">Deja trazabilidad útil para auditoría y cierre.</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+    </div>
+
+</div>
+
+</body>
+</html>

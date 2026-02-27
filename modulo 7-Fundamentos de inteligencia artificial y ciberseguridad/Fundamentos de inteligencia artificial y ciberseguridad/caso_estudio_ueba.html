@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Caso de Estudio UEBA – Análisis de Amenazas</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap');
+
+    .ethics-foundations-container {
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 40px;
+        background: #fdfcfb;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        border-top: 6px solid #c0922e;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header-section {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        font-weight: 900;
+        color: #2c3e50;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 85%;
+        position: relative;
+        display: inline-block;
+        animation: fadeUp 1s ease both;
+    }
+
+    .main-title::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: #c0922e;
+        margin: 15px auto 0 auto;
+    }
+
+    .intro-text {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 50px;
+        color: #555;
+    }
+
+    .section-heading {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: #2c3e50;
+        margin-bottom: 40px;
+        margin-top: 60px;
+    }
+
+    .subsection-heading {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        color: #2c3e50;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        border-left: 4px solid #c0922e;
+        padding-left: 15px;
+    }
+
+    .content-box {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+        border-left: 4px solid #c0922e;
+    }
+
+    .highlight {
+        background: #c0922e;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+
+    .elegant-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .elegant-list li {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-left: 30px;
+        position: relative;
+    }
+
+    .elegant-list li:last-child {
+        border-bottom: none;
+    }
+
+    .elegant-list li::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: #c0922e;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .elegant-list strong {
+        color: #c0922e;
+        font-size: 1.1rem;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .nested-list {
+        margin-left: 20px;
+        margin-top: 10px;
+        list-style-type: disc;
+        color: #666;
+    }
+
+    .nested-list li {
+        margin-bottom: 8px;
+        padding-bottom: 0;
+        border-bottom: none;
+        padding-left: 0;
+    }
+
+    .nested-list li::before {
+        content: none;
+    }
+
+    .info-box {
+        background: #e3f2fd;
+        border: 1px solid #90caf9;
+        border-left: 4px solid #2196f3;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .info-box h4 {
+        color: #1565c0;
+        margin-top: 0;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .warning-box {
+        background: #fff3e0;
+        border: 1px solid #ffe0b2;
+        border-left: 4px solid #f57c00;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .warning-box h4 {
+        color: #e65100;
+        margin-top: 0;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .success-box {
+        background: #e8f5e9;
+        border: 1px solid #a5d6a7;
+        border-left: 4px solid #4caf50;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .success-box h4 {
+        color: #2e7d32;
+        margin-top: 0;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+
+    .principle-item {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 4px solid #c0922e;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+    }
+
+    .principle-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .principle-item h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+        color: #2c3e50;
+        margin-top: 0;
+    }
+
+    .case-study-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        margin: 30px 0;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .case-study-box h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: #fff;
+    }
+
+    .case-study-box ul {
+        margin-left: 20px;
+    }
+
+    .case-study-box li {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        margin: 20px 0;
+    }
+
+    .elegant-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .elegant-table thead {
+        background: #2c3e50;
+        color: white;
+    }
+
+    .elegant-table th {
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .elegant-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .elegant-table tbody tr:hover {
+        background: #f8f9fa;
+    }
+
+    .metric-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin: 2px;
+    }
+
+    .badge-modelo {
+        background: #e3f2fd;
+        color: #1565c0;
+    }
+
+    .badge-operativa {
+        background: #f3e5f5;
+        color: #7b1fa2;
+    }
+
+    .deliverables-section {
+        background: #f8f9fa;
+        padding: 30px;
+        border-radius: 12px;
+        margin: 30px 0;
+    }
+
+    .deliverable-item {
+        display: flex;
+        align-items: start;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: white;
+        border-radius: 8px;
+        border-left: 4px solid #c0922e;
+    }
+
+    .deliverable-icon {
+        font-size: 2rem;
+        margin-right: 15px;
+        color: #c0922e;
+    }
+
+    .deliverable-content h5 {
+        margin: 0 0 8px 0;
+        color: #2c3e50;
+        font-size: 1.1rem;
+    }
+
+    .deliverable-content p {
+        margin: 0;
+        color: #666;
+        line-height: 1.6;
+    }
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .main-title { font-size: 2.2rem; max-width: 100%; }
+        .principles-grid { grid-template-columns: 1fr; }
+        .ethics-foundations-container { padding: 30px 20px; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="ethics-foundations-container">
+
+    <div class="header-section">
+        <h1 class="main-title">🛡️ Caso de Estudio UEBA – Análisis de Amenazas</h1>
+
+        <p class="intro-text">
+            Este ejercicio práctico te permite aplicar conceptos avanzados de <strong>User and Entity Behavior Analytics (UEBA)</strong> 
+            y <strong>Security Orchestration, Automation and Response (SOAR)</strong> en un escenario realista de ciberseguridad. 
+            Desarrollarás un análisis completo desde la identificación de activos críticos hasta la automatización de respuesta, 
+            integrando frameworks reconocidos como <strong>MITRE ATT&CK</strong> y <strong>D3FEND</strong>.
+        </p>
+    </div>
+
+    <h2 class="section-heading">🎯 Objetivo del Ejercicio</h2>
+    <div class="content-box">
+        <p style="margin-bottom: 20px;">
+            Elija uno de los dos estudios de caso provistos y desarrolle íntegramente los siguientes objetivos:
+        </p>
+        <ul class="elegant-list">
+            <li>
+                <strong>Describir el contexto y activos críticos</strong>
+                Identificar la organización, su sector, activos tecnológicos y de negocio relevantes.
+            </li>
+            <li>
+                <strong>Proponer el pipeline de IA/UEBA</strong>
+                Modelo, features (características), preprocesamiento de datos y arquitectura técnica.
+            </li>
+            <li>
+                <strong>Analizar métricas</strong>
+                Métricas de modelo (AUC, precision, recall, F1) y métricas operativas (MTTD/MTTR).
+            </li>
+            <li>
+                <strong>Justificar cuantitativamente el umbral de decisión</strong>
+                Considerando prevalencia del ataque y costes operativos.
+            </li>
+            <li>
+                <strong>Mapear TTP relevantes</strong>
+                Con MITRE ATT&CK (tácticas y técnicas) y D3FEND (contramedidas).
+            </li>
+            <li>
+                <strong>Diseñar un playbook SOAR detallado</strong>
+                Con guardrails de seguridad, roles, flujo de decisión y automatización.
+            </li>
+        </ul>
+    </div>
+
+    <h2 class="section-heading">📋 Casos de Estudio Disponibles</h2>
+
+    <div class="case-study-box">
+        <h3>🔴 Caso 1: Exfiltración por DNS/HTTPS</h3>
+        <p><strong>Escenario:</strong></p>
+        <ul>
+            <li>Organización financiera con datos sensibles de clientes</li>
+            <li>Detección de exfiltración de datos mediante túneles DNS y HTTPS cifrado</li>
+            <li>Actores externos con acceso inicial por phishing</li>
+            <li>Necesidad de detectar comportamientos anómalos en tráfico de red</li>
+        </ul>
+        <p style="margin-top: 15px;"><strong>Desafíos clave:</strong></p>
+        <ul>
+            <li>Alto volumen de tráfico legítimo cifrado</li>
+            <li>Falsos positivos por aplicaciones empresariales</li>
+            <li>Detección temprana antes de pérdida significativa de datos</li>
+        </ul>
+    </div>
+
+    <div class="case-study-box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+        <h3>🔴 Caso 2: Amenaza Interna y Movimiento Lateral</h3>
+        <p><strong>Escenario:</strong></p>
+        <ul>
+            <li>Empresa tecnológica con propiedad intelectual crítica</li>
+            <li>Empleado con acceso privilegiado realiza reconocimiento interno</li>
+            <li>Movimiento lateral entre sistemas para acceder a información restringida</li>
+            <li>Necesidad de detectar anomalías en comportamiento de usuarios privilegiados</li>
+        </ul>
+        <p style="margin-top: 15px;"><strong>Desafíos clave:</strong></p>
+        <ul>
+            <li>Usuarios legítimos con permisos amplios</li>
+            <li>Actividad maliciosa mezclada con operaciones normales</li>
+            <li>Detección sin impactar productividad del personal</li>
+        </ul>
+    </div>
+
+    <h2 class="section-heading">📊 Componentes del Informe Técnico</h2>
+
+    <h3 class="subsection-heading">1. Contexto y Activos Críticos</h3>
+    <div class="content-box">
+        <ul class="elegant-list">
+            <li>
+                <strong>Descripción de la organización</strong>
+                Sector, tamaño, perfil de riesgo y contexto regulatorio.
+            </li>
+            <li>
+                <strong>Activos críticos identificados</strong>
+                <ul class="nested-list">
+                    <li>Activos de información (bases de datos, documentos, código fuente)</li>
+                    <li>Activos tecnológicos (servidores, endpoints, infraestructura de red)</li>
+                    <li>Activos humanos (usuarios privilegiados, administradores)</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Superficie de ataque</strong>
+                Vectores de entrada, vulnerabilidades potenciales y exposición al riesgo.
+            </li>
+        </ul>
+    </div>
+
+    <h3 class="subsection-heading">2. Pipeline de IA/UEBA</h3>
+    <div class="content-box">
+        <ul class="elegant-list">
+            <li>
+                <strong>Modelo de Machine Learning propuesto</strong>
+                Justificar elección: Isolation Forest, Autoencoder, Random Forest, XGBoost, etc.
+            </li>
+            <li>
+                <strong>Features (características) del modelo</strong>
+                <ul class="nested-list">
+                    <li>Comportamentales: frecuencia de accesos, horarios, ubicaciones</li>
+                    <li>Red: volumen de tráfico, protocolos, destinos inusuales</li>
+                    <li>Autenticación: intentos fallidos, cambios de credenciales</li>
+                    <li>Entidades relacionadas: dispositivos, aplicaciones, servicios</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Preprocesamiento de datos</strong>
+                Normalización, manejo de valores faltantes, ingeniería de características, ventanas temporales.
+            </li>
+            <li>
+                <strong>Arquitectura del pipeline</strong>
+                Recolección → Preprocesamiento → Detección → Alertamiento → Respuesta
+            </li>
+        </ul>
+    </div>
+
+    <h3 class="subsection-heading">3. Métricas y Evaluación</h3>
+    <div class="content-box">
+        <p><strong>Incluir tabla con métricas simuladas o realistas:</strong></p>
+        
+        <div class="table-container">
+            <table class="elegant-table">
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Métrica</th>
+                        <th>Valor Esperado</th>
+                        <th>Justificación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="metric-badge badge-modelo">Modelo</span></td>
+                        <td>AUC-ROC</td>
+                        <td>0.85 - 0.92</td>
+                        <td>Alta capacidad discriminativa</td>
+                    </tr>
+                    <tr>
+                        <td><span class="metric-badge badge-modelo">Modelo</span></td>
+                        <td>Precision</td>
+                        <td>0.75 - 0.85</td>
+                        <td>Reducir falsos positivos</td>
+                    </tr>
+                    <tr>
+                        <td><span class="metric-badge badge-modelo">Modelo</span></td>
+                        <td>Recall (TPR)</td>
+                        <td>0.80 - 0.90</td>
+                        <td>Detectar amenazas reales</td>
+                    </tr>
+                    <tr>
+                        <td><span class="metric-badge badge-operativa">Operativa</span></td>
+                        <td>MTTD</td>
+                        <td>&lt; 30 minutos</td>
+                        <td>Detección temprana crítica</td>
+                    </tr>
+                    <tr>
+                        <td><span class="metric-badge badge-operativa">Operativa</span></td>
+                        <td>MTTR</td>
+                        <td>&lt; 2 horas</td>
+                        <td>Contención rápida</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <h3 class="subsection-heading">4. Umbral de Decisión</h3>
+    <div class="content-box">
+        <ul class="elegant-list">
+            <li>
+                <strong>Análisis de prevalencia</strong>
+                Tasa base estimada del evento malicioso en el contexto organizacional (ej. 0.1% - 2%).
+            </li>
+            <li>
+                <strong>Análisis de costes</strong>
+                <ul class="nested-list">
+                    <li><strong>Coste por falso positivo (CFP):</strong> Tiempo de analista, interrupción</li>
+                    <li><strong>Coste por falso negativo (CFN):</strong> Pérdida de datos, impacto reputacional</li>
+                    <li><strong>Balance óptimo:</strong> Minimizar coste total esperado</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Justificación cuantitativa</strong>
+                Fórmula: Coste Total = (FP × CFP) + (FN × CFN). Calcular para varios umbrales y seleccionar óptimo.
+            </li>
+        </ul>
+    </div>
+
+    <h3 class="subsection-heading">5. Mapeo con MITRE ATT&CK y D3FEND</h3>
+    <div class="content-box">
+        <p><strong>MITRE ATT&CK - Tácticas y Técnicas del Adversario:</strong></p>
+        <ul class="elegant-list">
+            <li>
+                <strong>Para Exfiltración DNS/HTTPS:</strong>
+                <ul class="nested-list">
+                    <li>T1071 - Application Layer Protocol (DNS, HTTPS)</li>
+                    <li>T1041 - Exfiltration Over C2 Channel</li>
+                    <li>T1048 - Exfiltration Over Alternative Protocol</li>
+                    <li>T1567 - Exfiltration Over Web Service</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Para Amenaza Interna:</strong>
+                <ul class="nested-list">
+                    <li>T1087 - Account Discovery</li>
+                    <li>T1021 - Remote Services (SMB/Windows Admin Shares, RDP)</li>
+                    <li>T1078 - Valid Accounts</li>
+                    <li>T1083 - File and Directory Discovery</li>
+                    <li>T1005 - Data from Local System</li>
+                </ul>
+            </li>
+        </ul>
+
+        <p style="margin-top: 30px;"><strong>D3FEND - Contramedidas Defensivas:</strong></p>
+        <ul class="elegant-list">
+            <li>
+                <strong>D3-NTA:</strong> Network Traffic Analysis - Detección de anomalías en tráfico
+            </li>
+            <li>
+                <strong>D3-DNSA:</strong> DNS Traffic Analysis - Análisis de queries DNS sospechosas
+            </li>
+            <li>
+                <strong>D3-UAL:</strong> User Account Monitoring - Monitoreo de cuentas de usuario
+            </li>
+            <li>
+                <strong>D3-CSPP:</strong> Connection Attempt Analysis - Análisis de intentos de conexión
+            </li>
+        </ul>
+    </div>
+
+    <h3 class="subsection-heading">6. Playbook SOAR</h3>
+    <div class="content-box">
+        <p style="margin-bottom: 20px;"><strong>Componentes del playbook automatizado:</strong></p>
+        
+        <ul class="elegant-list">
+            <li>
+                <strong>Trigger (Disparador)</strong>
+                Alerta UEBA con score superior al umbral definido.
+            </li>
+            <li>
+                <strong>Enriquecimiento automático</strong>
+                <ul class="nested-list">
+                    <li>Consulta a SIEM para eventos correlacionados</li>
+                    <li>Verificación de threat intelligence (VirusTotal, AlienVault OTX)</li>
+                    <li>Contexto de usuario/entidad desde LDAP/AD</li>
+                    <li>Historial de comportamiento del usuario</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Análisis y decisión</strong>
+                <ul class="nested-list">
+                    <li>Score de riesgo agregado (0-100)</li>
+                    <li>Clasificación de severidad: Crítico / Alto / Medio / Bajo</li>
+                    <li>Decisión automatizada vs. escalamiento humano</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Acciones de contención</strong>
+                <ul class="nested-list">
+                    <li><strong>Nivel 1 (Automático):</strong> Logging adicional, notificación a SOC</li>
+                    <li><strong>Nivel 2 (Semiautomático):</strong> Aislar endpoint, requerir re-autenticación MFA</li>
+                    <li><strong>Nivel 3 (Manual aprobado):</strong> Suspender cuenta, bloquear IP, cortar conexiones</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Guardrails de seguridad</strong>
+                <ul class="nested-list">
+                    <li>No bloquear cuentas de administradores sin aprobación humana</li>
+                    <li>Backup de logs antes de acciones destructivas</li>
+                    <li>Rate limiting en acciones automáticas (máx. 10/hora)</li>
+                    <li>Rollback automático si se detecta error</li>
+                    <li>Escalamiento obligatorio para cuentas VIP</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Roles y responsabilidades</strong>
+                <ul class="nested-list">
+                    <li><strong>Analista SOC Tier 1:</strong> Revisión de alertas nivel bajo/medio</li>
+                    <li><strong>Analista SOC Tier 2:</strong> Investigación profunda, aprobación de contención nivel 2</li>
+                    <li><strong>Security Engineer:</strong> Ajuste de reglas, optimización del modelo</li>
+                    <li><strong>Incident Response Lead:</strong> Coordinación de incidentes críticos</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Documentación y métricas</strong>
+                <ul class="nested-list">
+                    <li>Registro automático en ticketing system</li>
+                    <li>Timeline de eventos y acciones tomadas</li>
+                    <li>KPIs: MTTD, MTTR, tasa de falsos positivos, efectividad de contención</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <h2 class="section-heading">📦 Entregables</h2>
+
+    <div class="deliverables-section">
+        <div class="deliverable-item">
+            <div class="deliverable-icon">📄</div>
+            <div class="deliverable-content">
+                <h5>Informe Técnico en PDF (3-4 páginas)</h5>
+                <p>Documento completo con todos los componentes especificados. Formato profesional, 
+                   estructura clara con secciones bien definidas.</p>
+            </div>
+        </div>
+
+        <div class="deliverable-item">
+            <div class="deliverable-icon">📋</div>
+            <div class="deliverable-content">
+                <h5>Portada Obligatoria</h5>
+                <p>Debe indicar claramente: Título del trabajo, Caso elegido (1 o 2), Nombre del estudiante, 
+                   Fecha, Institución.</p>
+            </div>
+        </div>
+
+        <div class="deliverable-item">
+            <div class="deliverable-icon">📊</div>
+            <div class="deliverable-content">
+                <h5>Tabla de Métricas</h5>
+                <p>Incluir tabla formal con métricas de modelo y operativas, valores esperados y justificación 
+                   de cada una.</p>
+            </div>
+        </div>
+
+        <div class="deliverable-item">
+            <div class="deliverable-icon">📚</div>
+            <div class="deliverable-content">
+                <h5>Referencias en Formato APA</h5>
+                <p>Citar: MITRE ATT&CK, D3FEND, NIST (SP 800-61, AI RMF), frameworks UEBA, papers académicos relevantes.</p>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-heading">✅ Criterios de Evaluación</h2>
+
+    <div class="principles-grid">
+        <div class="principle-item">
+            <h4>🎯 Completitud (25%)</h4>
+            <p>Todos los componentes solicitados están presentes y desarrollados adecuadamente.</p>
+        </div>
+        <div class="principle-item">
+            <h4>🔬 Rigor Técnico (25%)</h4>
+            <p>Justificación técnica sólida del modelo, features, métricas y umbrales. Uso correcto de conceptos de ML y ciberseguridad.</p>
+        </div>
+        <div class="principle-item">
+            <h4>🗺️ Mapeo con Frameworks (20%)</h4>
+            <p>Correcta identificación de TTP en MITRE ATT&CK y contramedidas en D3FEND. Coherencia con el caso elegido.</p>
+        </div>
+        <div class="principle-item">
+            <h4>⚙️ Playbook SOAR (20%)</h4>
+            <p>Diseño detallado, realista y operacional. Incluye guardrails, roles, flujo de decisión y automatización apropiada.</p>
+        </div>
+        <div class="principle-item">
+            <h4>📝 Presentación (10%)</h4>
+            <p>Formato profesional, redacción clara, estructura lógica, tablas bien formateadas, referencias correctas en APA.</p>
+        </div>
+    </div>
+
+    <div class="warning-box">
+        <h4>⚠️ Aspectos Críticos a Considerar</h4>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+            <li><strong>Balance operativo:</strong> El umbral debe considerar capacidad real del SOC para manejar alertas.</li>
+            <li><strong>Realismo:</strong> Propuestas deben ser implementables con tecnologías

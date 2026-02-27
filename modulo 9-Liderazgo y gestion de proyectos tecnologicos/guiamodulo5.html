@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .ethics-pro-container {
+        font-family: 'Roboto', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 30px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: white;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-wrapper {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 10px;
+    }
+
+    .gradient-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.6rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 50%, #e65100 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0 auto 10px auto;
+        max-width: 90%;
+        letter-spacing: -1px;
+        line-height: 1.2;
+        animation: textFocusIn 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+        color: #666;
+        margin-bottom: 25px;
+    }
+
+    /* --- IMAGEN HERO --- */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 20px 50px -10px rgba(74, 20, 140, 0.2);
+        margin: 0 auto;
+        display: block;
+        transition: transform 0.4s ease;
+        animation: slideUpFade 1.2s ease forwards;
+        opacity: 0;
+    }
+
+    .hero-image:hover { transform: scale(1.01); }
+
+    /* --- TÍTULOS DE SECCIÓN --- */
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 30px;
+        margin-top: 50px;
+        border-bottom: 2px solid #f3e5f5;
+        padding-bottom: 10px;
+    }
+
+    .section-icon {
+        background: #e65100;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
+        box-shadow: 0 4px 10px rgba(230, 81, 0, 0.3);
+        flex-shrink: 0;
+    }
+
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #4a148c;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    /* --- 1. PROPÓSITO --- */
+    .purpose-card {
+        background: #fff8e1;
+        padding: 30px;
+        border-radius: 15px;
+        border-left: 6px solid #e65100;
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    /* --- 2. RESULTADOS (RAP) --- */
+    .ra-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .ra-box {
+        background: white;
+        border: 1px solid #eee;
+        padding: 25px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ra-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        border-color: #7b1fa2;
+    }
+    .ra-box h3 {
+        color: #7b1fa2;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    /* --- 3. RUTA (Timeline) --- */
+    .timeline-wrapper {
+        position: relative;
+        padding-left: 20px;
+    }
+
+    .timeline-wrapper::before {
+        content: '';
+        position: absolute;
+        left: 29px; top: 0; bottom: 0;
+        width: 2px; background: #e0e0e0; z-index: 0;
+    }
+
+    details.timeline-item {
+        margin-bottom: 15px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        border: 1px solid #f0f0f0;
+        position: relative;
+        z-index: 1;
+    }
+
+    details.timeline-item[open] {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-left: 5px solid #7b1fa2;
+    }
+
+    summary.timeline-summary {
+        padding: 15px 20px 15px 60px;
+        cursor: pointer;
+        position: relative;
+        list-style: none;
+        font-weight: 700;
+        color: #333;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    summary.timeline-summary:hover { background: #fafafa; }
+    summary.timeline-summary::-webkit-details-marker { display: none; }
+
+    summary.timeline-summary::before {
+        content: '';
+        position: absolute;
+        left: 20px; top: 50%; transform: translateY(-50%);
+        width: 16px; height: 16px;
+        background: white; border: 4px solid #aaa;
+        border-radius: 50%; z-index: 2;
+        transition: border-color 0.3s;
+    }
+
+    details[open] summary.timeline-summary::before { border-color: #e65100; }
+
+    summary.timeline-summary::after {
+        content: '+'; font-size: 1.5rem; color: #999; transition: transform 0.3s;
+    }
+    details[open] summary.timeline-summary::after { transform: rotate(45deg); color: #e65100; }
+
+    .timeline-content {
+        padding: 0 20px 20px 60px;
+        color: #555;
+        font-size: 0.95rem;
+        border-top: 1px dashed #eee;
+        margin-top: 5px; padding-top: 15px;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .timeline-content ul {
+        margin: 8px 0 0 18px;
+        padding: 0;
+    }
+
+    .timeline-content li {
+        margin-bottom: 4px;
+    }
+
+    .highlight-activity {
+        background: #f3e5f5; color: #4a148c;
+        padding: 10px 15px; border-radius: 8px;
+        margin-top: 10px; font-weight: 500; font-size: 0.9rem;
+        border-left: 3px solid #7b1fa2;
+    }
+
+    /* --- 4. EVALUACIÓN --- */
+    .eval-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 20px;
+    }
+
+    .eval-unit {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    }
+
+    .eval-unit-header {
+        background: #4a148c;
+        color: white;
+        padding: 15px 20px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .eval-row {
+        padding: 12px 20px;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.95rem;
+    }
+    .eval-row:last-child { border-bottom: none; }
+
+    .score-tag {
+        background: #fff3e0;
+        color: #e65100;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.85rem;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes textFocusIn { 0% { filter: blur(12px); opacity: 0; } 100% { filter: blur(0px); opacity: 1; } }
+    @keyframes slideUpFade { 0% { transform: translateY(40px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 100px;
+        }
+        .gradient-title {
+            font-size: 2rem;
+            max-width: 100%;
+        }
+        .timeline-wrapper::before { left: 19px; }
+        summary.timeline-summary { padding-left: 50px; font-size: 0.9rem; }
+        summary.timeline-summary::before { left: 10px; }
+        .timeline-content { padding-left: 50px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="ethics-pro-container">
+
+    <!-- Logo -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1"
+         alt="Logo Universidad" class="uni-logo">
+
+    <!-- Encabezado -->
+    <div class="header-wrapper">
+        <h1 class="gradient-title">Módulo 5 · Liderazgo y gestión de proyectos tecnológicos</h1>
+        <p class="subtitle">Especialización en Seguridad de la Información · Modalidad virtual (9 semanas)</p>
+
+        <!-- Imagen hero (puedes cambiar el enlace por otra ilustración si lo deseas) -->
+        <img src="https://www.dropbox.com/scl/fi/2uusrvzbv9m9c866evwe8/Gemini_Generated_Image_65n72u65n72u65n7.png?rlkey=p7p9itp9okzr661h3ughuiu23&st=68dpxfjc&raw=1"
+             alt="Ilustración Proyectos Tecnológicos" class="hero-image">
+    </div>
+
+    <!-- 1. PROPÓSITO -->
+    <div class="section-header">
+        <div class="section-icon">1</div>
+        <h2 class="section-title">Propósito del módulo</h2>
+    </div>
+    <div class="purpose-card">
+        <p>
+            Desarrollar en el estudiante la capacidad de <strong>diseñar, liderar y evaluar proyectos tecnológicos</strong>
+            que soporten la transformación digital, con especial énfasis en proyectos de <strong>IA y ciberseguridad</strong>,
+            donde la complejidad técnica, el riesgo y el cumplimiento normativo suelen ser mayores.
+        </p>
+    </div>
+
+    <!-- 2. RESULTADOS DE APRENDIZAJE -->
+    <div class="section-header">
+        <div class="section-icon">2</div>
+        <h2 class="section-title">Resultados de aprendizaje (RAP)</h2>
+    </div>
+
+    <div class="ra-container">
+        <div class="ra-box">
+            <h3>RAP1</h3>
+            <p>
+                Diseñar <strong>planes de proyecto tecnológicos</strong> empleando enfoques tradicionales y ágiles,
+                en función de objetivos estratégicos de la organización.
+            </p>
+        </div>
+        <div class="ra-box">
+            <h3>RAP2</h3>
+            <p>
+                Gestionar <strong>equipos de trabajo, recursos y riesgos</strong> en proyectos relacionados con
+                inteligencia artificial y ciberseguridad.
+            </p>
+        </div>
+        <div class="ra-box">
+            <h3>RAP3</h3>
+            <p>
+                Evaluar <strong>resultados de proyectos</strong> mediante indicadores de desempeño, innovación
+                y sostenibilidad (económica, social y ambiental).
+            </p>
+        </div>
+    </div>
+
+    <!-- 3. RUTA DE APRENDIZAJE / ESTRUCTURA EN Q10 -->
+    <div class="section-header">
+        <div class="section-icon">3</div>
+        <h2 class="section-title">Ruta de aprendizaje y estructura en Q10</h2>
+    </div>
+    <p style="margin-bottom: 20px; font-style: italic; color: #666; text-align: center;">
+        👇 Haz clic en cada bloque para desplegar las páginas, recursos y actividades de la semana
+    </p>
+
+    <div class="timeline-wrapper">
+
+        <!-- MÓDULO 0 -->
+        <details class="timeline-item">
+            <summary class="timeline-summary">Módulo 0 – Bienvenida y guía del curso (antes de Semana 1)</summary>
+            <div class="timeline-content">
+                <p><strong>Carpetas y páginas:</strong></p>
+                <ul>
+                    <li>Página de contenido: Bienvenida al módulo “Liderazgo y gestión de proyectos tecnológicos”.</li>
+                    <li>Página de contenido: Guía de aprendizaje del módulo (propósito, RAP, cronograma y evaluación).</li>
+                    <li>Página de contenido: Justificación del módulo y contexto de proyectos de IA y ciberseguridad.</li>
+                    <li>Foro social (no evaluativo): Presentémonos: experiencia liderando proyectos tecnológicos.</li>
+                    <li>Cuestionario diagnóstico: Conocimientos previos en gestión de proyectos, liderazgo, IA y ciberseguridad.</li>
+                </ul>
+                <div class="highlight-activity">
+                    <strong>Foco:</strong> Ambientación del módulo, presentación de participantes y diagnóstico inicial.
+                </div>
+            </div>
+        </details>
+
+        <!-- SEMANA 1 -->
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 1 – Unidad 1: Diseño estratégico de proyectos tecnológicos (RAP1)</summary>
+            <div class="timeline-content">
+                <p><strong>Carpeta/Módulo:</strong> Unidad 1. Diseño estratégico de proyectos tecnológicos (RAP1).</p>
+                <ul>
+                    <li>Página de contenido: Introducción a la Unidad 1.</li>
+                    <li>Página teórica: 1.1 Proyectos tecnológicos y alineación con la estrategia institucional.</li>
+                    <li>Página teórica: 1.2 Identificación de necesidades y oportunidades de transformación digital.</li>
+                    <li>Carpeta de Lecturas/Vídeos obligatorios: Material didáctico Unidad 1 (Semana 1).</li>
+                    <li>Actividad evaluativa – FORO (Actividad 1 – Momento 1): Alineación estratégica del proyecto elegido.</li>
+                    <li>Página de contenido: Rúbrica Actividad 1 – Proyecto RAP1 (momento 1–2–3).</li>
+                </ul>
+                <div class="highlight-activity">
+                    <strong>Actividad clave:</strong> Foro académico sobre la alineación estratégica del proyecto seleccionado.
+                </div>
+            </div>
+        </details>
+
+        <!-- SEMANA 2 -->
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 2 – Unidad 1 (continuación RAP1)</summary>
+            <div class="timeline-content">
+                <p><strong>Enfoque:</strong> Selección de enfoques de gestión y criterios comparativos.</p>
+                <ul>
+                    <li>Página de contenido: Recordatorio y objetivos de la Semana 2.</li>
+                    <li>Página teórica: 1.3 Enfoques de gestión (PMBOK/PRINCE2) vs. ágiles (Scrum/Kanban) y modelos híbridos.</li>
+                    <li>Recurso descargable: Plantilla comparativa (criterios de selección del enfoque).</li>
+                    <li>Carpeta de Lecturas/Vídeos obligatorios: Material didáctico Unidad 1 (Semana 2).</li>
+                    <li>Actividad evaluativa – TAREA (Actividad 1 – Momento 2): Ensayo comparativo de enfoques para el proyecto.</li>
+                </ul>
+                <div class="highlight-activity">
+                    <strong>Actividad clave:</strong> Ensayo comparativo justificando el enfoque de gestión más adecuado.
+                </div>
+            </div>
+        </details>
+
+        <!-- SEMANA 3 -->
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 3 – Unidad 1 (cierre RAP1)</summary>
+            <div class="timeline-content">
+                <p><strong>Enfoque:</strong> Construcción del plan de proyecto y dossier RAP1.</p>
+                <ul>
+                    <li>Página de contenido: Objetivos de la Semana 3.</li>
+                    <li>Página teórica: 1.4 Definición de alcance y entregables (Acta de constitución).</li>
+                    <li>Página teórica: 1.5 Estructura de desglose del trabajo (EDT/WBS) orientada a entregables.</li>
+                    <li>Página teórica: 1.6 Cronograma del proyecto y ruta crítica (alto nivel).</li>
+                    <li>Página teórica: 1.7 Plan de recursos y roles (matriz RACI).</li>
+                    <li>Página teórica: 1.8 Estimación de costos y presupuesto básico.</li>
+                    <li>Página teórica: 1.9 Identificación de riesgos iniciales y registro de riesgos.</li>
+                    <li>Recurso descargable: Plantillas (Acta + WBS + Cronograma + RACI + Registro de riesgos).</li>
+                    <li>Actividad evaluativa – TAREA (Actividad 1 – Momento 3): Plan de proyecto y entrega del dossier RAP1.</li>
+                </ul>
+                <div class="highlight-activity">
+                    <strong>Actividad clave:</strong> Entrega del <em>dossier RAP1</em> con el plan completo del proyecto.
+                </div>
+            </div>
+        </details>
+
+        <!-- SEMANA 4 -->
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 4 – Unidad 2: Liderazgo, equipos y riesgos en IA/ciberseguridad (RAP2)</summary>
+            <div class="timeline-content">
+                <p><strong>Carpeta/Módulo:</strong> Unidad 2. Liderazgo, equipos y riesgos en proyectos de IA y ciberseguridad (RAP2).</p>
+                <ul>
+                    <li>Página de contenido: Introducción a la Unidad 2.</li>
+                    <li>Página teórica: 2.1 Rol del líder de proyectos tecnológicos y estilos de liderazgo.</li>
+                    <li>Página teórica: 2.2 Liderazgo en adopción de tecnología: gestión del cambio y resistencia organizacional.</li>
+                    <li>Carpeta de Lecturas/Vídeos obligatorios: Material didáctico Unidad 2 (Semana 4).</li>
+                    <li>Actividad evaluativa – FORO (Actividad 2 – Momento 1): Reto de liderazgo en un proyecto de IA/ciberseguridad.</li>
+                    <li>Página de contenido: Rúbrica Actividad 2 – Proyecto RAP2 (momento 1–2–3).</li>
+                </ul>
+                <div class="highlight-activity">
+                    <strong>Actividad clave:</strong> Foro sobre retos de liderazgo en un caso de IA/ciberseguridad.
+                </div>
+            </div>
+        </details>
+
+        <!-- SEMANA 5 -->
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 5 – Unidad 2 (continuación RAP2)</summary>
+            <div class="timeline-content">
+                <p><strong>Enfoque:</strong> Trabajo con equipos multidisciplinarios y comunicación.</p>
+                <ul>
+                    <li>Página de contenido: Objetivos de la Semana 5.</li>
+                    <li>Página teórica: 2.3 Gestión de equipos multidisciplinarios (roles, coordinación, acuerdos de trabajo).</li>
+                    <li>Página teórica: 2.4 Comunicación, feedback, negociación y gestión de conflictos.</li>
+                    <li>Recurso descargable: Plantilla “Acuerdos de equipo + plan de comunicación”.</li>
+                    <li>Actividad evaluativa – TAREA (Actividad 2 – Momento 2): Ensayo reflexivo sobre estilo de liderazgo y plan de mejora.</li>
+                </ul>
+                <div class="highlight-activity">
+                    <strong>Actividad clave:</strong> Ensayo reflexivo sobre el propio estilo de liderazgo y acciones de mejora.
+                </div>
+            </div>
+        </details>
+
+        <!-- SEMANA 6 -->
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 6 – Unidad 2 (cierre RAP2)</summary>
+            <div class="timeline-content">
+                <p><strong>Enfoque:</strong> Stakeholders, recursos y riesgos específicos de IA/ciberseguridad.</p>
+                <ul>
+                    <li>Página de contenido: Objetivos de la Semana 6.</li>
+                    <li>Página teórica: 2.5 Gestión de stakeholders (mapa poder/interés) y patrocinio.</li>
+                    <li>Página teórica: 2.6 Gestión de recursos y riesgos en proyectos de IA/ciberseguridad (técnicos, seguridad, regulatorios, organizacionales).</li>
+                    <li>Recurso descargable: Plantillas “Mapa de stakeholders + matriz de riesgos IA/ciber”.</li>
+                    <li>Actividad evaluativa – TAREA (Actividad 2 – Momento 3): Estudio de caso (equipo + stakeholders + riesgos) y entrega dossier RAP2.</li>
+                </ul>
+                <div class="highlight-activity">
+                    <strong>Actividad clave:</strong> Estudio de caso aplicado y entrega del <em>dossier RAP2</em>.
+                </div>
+            </div>
+        </details>
+
+        <!-- SEMANA 7 -->
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 7 – Unidad 3: Evaluación, indicadores e innovación sostenible (RAP3)</summary>
+            <div class="timeline-content">
+                <p><strong>Carpeta/Módulo:</strong> Unidad 3. Evaluación, indicadores e innovación sostenible en proyectos tecnológicos (RAP3).</p>
+                <ul>
+                    <li>Página de contenido: Introducción a la Unidad 3.</li>
+                    <li>Página teórica: 3.1 Evaluación de resultados y valor generado (beneficios vs entregables).</li>
+                    <li>Página teórica: 3.2 Indicadores: tiempo, costo, alcance, calidad (KPIs) y compromiso (OKRs).</li>
+                    <li>Carpeta de Lecturas/Vídeos obligatorios: Material didáctico Unidad 3 (Semana 7).</li>
+                    <li>Actividad evaluativa – FORO (Actividad 3 – Momento 1): ¿Cómo se mide el éxito de proyectos tecnológicos?</li>
+                    <li>Página de contenido: Rúbrica Actividad 3 – Proyecto RAP3 (momento 1–2–3).</li>
+                </ul>
+                <div class="highlight-activity">
+                    <strong>Actividad clave:</strong> Foro sobre criterios e indicadores de éxito en proyectos tecnológicos.
+                </div>
+            </div>
+        </details>
+
+        <!-- SEMANA 8 -->
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 8 – Unidad 3 (cierre RAP3)</summary>
+            <div class="timeline-content">
+                <p><strong>Enfoque:</strong> Innovación, sostenibilidad y cierre de proyectos.</p>
+                <ul>
+                    <li>Página de contenido: Objetivos de la Semana 8.</li>
+                    <li>Página teórica: 3.3 Indicadores de innovación (adopción, experiencia, aprendizaje) y sostenibilidad (económica, social, ambiental).</li>
+                    <li>Página teórica: 3.4 Cierre de proyectos, retrospectivas y lecciones aprendidas (post-mortem).</li>
+                    <li>Página teórica: 3.5 Tablero de control (cuadro de mando) para seguimiento y toma de decisiones.</li>
+                    <li>Recurso descargable: Plantillas “Sistema de indicadores + tablero + formato lecciones aprendidas”.</li>
+                    <li>Actividad evaluativa – TAREA (Actividad 3 – Momentos 2 y 3): Ensayo de indicadores + evaluación post proyecto y entrega dossier RAP3.</li>
+                </ul>
+                <div class="highlight-activity">
+                    <strong>Actividad clave:</strong> Entrega del <em>dossier RAP3</em> con indicadores y evaluación post proyecto.
+                </div>
+            </div>
+        </details>
+
+        <!-- SEMANA 9 -->
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 9 – Actividad integradora: Simulador de portafolio (RAP1–RAP2–RAP3)</summary>
+            <div class="timeline-content">
+                <p><strong>Carpeta/Módulo:</strong> Unidad transversal. Simulador integrador de portafolio de proyectos tecnológicos.</p>
+                <ul>
+                    <li>Página de contenido: Instrucciones del simulador + roles del equipo + reglas.</li>
+                    <li>Recurso descargable: Plantilla/Simulador (Excel / app) + escenarios de decisión.</li>
+                    <li>Actividad evaluativa – PROYECTO GRUPAL (Actividad 4): Informe integrador del simulador (3–5 páginas + anexos).</li>
+                    <li>Página de contenido: Rúbrica Actividad 4 – Simulador integrador.</li>
+                </ul>
+                <div class="highlight-activity">
+                    <strong>Actividad clave:</strong> Proyecto grupal integrador articulando RAP1, RAP2 y RAP3 a partir del simulador de portafolio.
+                </div>
+            </div>
+        </details>
+
+    </div>
+
+    <!-- 4. SISTEMA DE EVALUACIÓN -->
+    <div class="section-header">
+        <div class="section-icon">4</div>
+        <h2 class="section-title">Sistema de evaluación del módulo</h2>
+    </div>
+
+    <p style="margin-bottom: 20px;">
+        El módulo se evalúa sobre el <strong>100%</strong> de la siguiente manera, a partir de proyectos y dossiers
+        construidos progresivamente:
+    </p>
+
+    <div class="eval-grid">
+        <div class="eval-unit">
+            <div class="eval-unit-header">
+                <span>Actividad 1 – Proyecto RAP1</span>
+                <span>20%</span>
+            </div>
+            <div class="eval-row">
+                <span>Dossier: foro + ensayo + plan de proyecto (RAP1).</span>
+                <span class="score-tag">20%</span>
+            </div>
+        </div>
+
+        <div class="eval-unit">
+            <div class="eval-unit-header">
+                <span>Actividad 2 – Proyecto RAP2</span>
+                <span>20%</span>
+            </div>
+            <div class="eval-row">
+                <span>Dossier: foro + ensayo + estudio de caso (liderazgo y riesgos).</span>
+                <span class="score-tag">20%</span>
+            </div>
+        </div>
+
+        <div class="eval-unit">
+            <div class="eval-unit-header">
+                <span>Actividad 3 – Proyecto RAP3</span>
+                <span>20%</span>
+            </div>
+            <div class="eval-row">
+                <span>Dossier: foro + ensayo + evaluación post proyecto (indicadores).</span>
+                <span class="score-tag">20%</span>
+            </div>
+        </div>
+
+        <div class="eval-unit">
+            <div class="eval-unit-header">
+                <span>Actividad 4 – Simulador integrador</span>
+                <span>40%</span>
+            </div>
+            <div class="eval-row">
+                <span>Proyecto grupal: informe integrador del simulador de portafolio (2–3 estudiantes).</span>
+                <span class="score-tag">40%</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

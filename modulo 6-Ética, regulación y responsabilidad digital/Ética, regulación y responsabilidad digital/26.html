@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .bias-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #6a1b9a; /* Magenta Oscuro */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #4a148c;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(74, 20, 140, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #e1bee7;
+    }
+
+    /* --- TEXTO COMPLETO --- */
+    .content-block {
+        margin-bottom: 40px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+    
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '•';
+        color: #8e24aa;
+        font-weight: bold;
+        font-size: 1.5rem;
+        position: absolute;
+        left: 0;
+        top: -5px;
+    }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #6a1b9a; /* Magenta */
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e1bee7;
+        padding-bottom: 10px;
+        font-weight: 700;
+        margin-top: 40px;
+    }
+
+    /* Subtítulos (a, b, c...) */
+    .sub-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        color: #7b1fa2;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        display: block;
+        background: #f3e5f5;
+        padding: 8px 15px;
+        border-radius: 6px;
+        display: inline-block;
+    }
+
+    /* Caja Destacada (Resumen) */
+    .highlight-box {
+        background: #f3e5f5;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 5px solid #8e24aa;
+        margin: 20px 0;
+    }
+
+    /* --- EJEMPLOS (GRID) --- */
+    .examples-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .example-card {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 25px;
+        transition: transform 0.3s;
+        border-top: 5px solid #ffca28; /* Amarillo/Naranja */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    }
+
+    .example-card:hover { transform: translateY(-5px); }
+
+    .example-title {
+        color: #f57f17;
+        font-size: 1.1rem;
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+    }
+
+    /* --- SOLUCIONES (LISTA VERDE) --- */
+    .solution-box {
+        background: #f1f8e9;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #c5e1a5;
+    }
+    
+    .solution-title {
+        color: #33691e;
+        font-weight: 700;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    /* --- PREGUNTAS GUÍA (ACORDEÓN DETALLADO) --- */
+    details.guide-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #ce93d8;
+        overflow: hidden;
+    }
+
+    summary.guide-summary {
+        padding: 15px 20px;
+        background: #f3e5f5;
+        cursor: pointer;
+        font-weight: 700;
+        color: #6a1b9a;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    summary.guide-summary:hover { background: #e1bee7; }
+    summary.guide-summary::-webkit-details-marker { display: none; }
+    
+    summary.guide-summary::after {
+        content: '+'; font-size: 1.5rem; font-weight: bold;
+    }
+    details[open] summary.guide-summary::after {
+        content: '-';
+    }
+
+    .guide-content {
+        padding: 20px;
+        border-top: 1px solid #ce93d8;
+        color: #4a148c;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 2rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="bias-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Sesgos algorítmicos y discriminación</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/mr5btwokg00he1blsi7l1/Gemini_Generated_Image_co4720co4720co47.png?rlkey=4v097c90gv58s27l7iveuae0t&st=c8d76rlt&raw=1" alt="Sesgos Algorítmicos" class="hero-image">
+    </div>
+
+    <div class="content-block">
+        <p>Cuando escuchamos “algoritmo” o “inteligencia artificial”, muchas veces pensamos en algo objetivo, neutral y “más justo que los humanos”.</p>
+        <p>La realidad es otra: los algoritmos pueden aprender y reproducir nuestros sesgos, e incluso amplificarlos si no se diseñan y supervisan bien.</p>
+        <p><strong>En esta página veremos:</strong></p>
+        <ul>
+            <li>Qué son los sesgos algorítmicos.</li>
+            <li>Cómo se conectan con la discriminación contra personas o grupos.</li>
+            <li>De dónde vienen esos sesgos (datos, diseño, uso del sistema).</li>
+            <li>Ejemplos en contextos reales (empleo, crédito, seguridad, educación).</li>
+            <li>Qué retos éticos y legales plantean.</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1. ¿Qué es un sesgo algorítmico?</h2>
+        <p>Un sesgo algorítmico aparece cuando un sistema de IA o un modelo de decisión:</p>
+        <ul>
+            <li>Produce resultados sistemáticamente desfavorables para ciertos grupos de personas.</li>
+            <li>Trata de manera distinta e injustificada a personas que deberían ser tratadas de forma similar.</li>
+        </ul>
+        <p>No se trata de “errores al azar”: El sesgo algorítmico tiene un patrón, afecta más a unos grupos que a otros (por ejemplo, mujeres vs. hombres, barrios pobres vs. barrios ricos) y puede generar discriminación.</p>
+        
+        <div class="highlight-box">
+            <p><strong>Ejemplos típicos:</strong></p>
+            <ul style="margin-bottom:0;">
+                <li>Una herramienta de selección de personal que rechaza más candidatas mujeres para cargos de tecnología.</li>
+                <li>Un sistema de scoring crediticio que asigna peor puntaje a personas de ciertos barrios, aunque tengan buen historial de pago.</li>
+                <li>Un sistema de reconocimiento facial que falla más con personas de determinados tonos de piel.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2. ¿De dónde vienen los sesgos algorítmicos?</h2>
+        <p>Normalmente no aparecen “de la nada”. Suelen venir de una combinación de factores:</p>
+
+        <span class="sub-title">a) Sesgos en los datos</span>
+        <p>Los modelos aprenden a partir de datos históricos. Si la historia está llena de desigualdades, el modelo puede aprender que eso es “normal”.</p>
+        <p><strong>Ejemplos:</strong> En una empresa donde históricamente la mayoría de personas promovidas a cargos altos eran hombres, el modelo puede aprender que “perfil ideal de liderazgo = masculino”. En un sistema de seguridad, si la policía patrullaba más ciertos barrios, hay más registros de delitos allí. El algoritmo cree que esos barrios son “más peligrosos” y concentra aún más vigilancia allí.</p>
+
+        <span class="sub-title">b) Sesgos en el diseño del modelo</span>
+        <p>Las decisiones de diseño también introducen sesgos, por ejemplo: Qué variables se incluyen y cuáles se dejan por fuera; Cómo se define el “éxito” (qué métrica se optimiza); Qué se considera un “error grave” (falso positivo o falso negativo).</p>
+        <p>Si se optimiza solo por “acierto global”, el modelo puede funcionar bien en promedio, pero muy mal para un grupo minoritario.</p>
+
+        <span class="sub-title">c) Sesgos en la implementación y uso</span>
+        <p>Aunque el modelo esté bien entrenado, puede haber sesgos por: Cómo se usa (en qué contexto, con qué datos nuevos); Quién lo opera y con qué capacitación; Qué decisiones se toman con sus resultados (se toma la salida como “verdad absoluta” o como insumo que se revisa críticamente).</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3. ¿Qué es discriminación algorítmica?</h2>
+        <p>Hablamos de discriminación algorítmica cuando el uso de un sistema de IA: Provoca que ciertas personas o grupos sean tratados peor que otros, sin justificación legítima; Genera desventajas sistemáticas en acceso a oportunidades, recursos o derechos.</p>
+        <p>Puede adoptar distintas formas:</p>
+
+        <span class="sub-title">a) Discriminación directa</span>
+        <p>Ocurre cuando el sistema usa de manera explícita una característica protegida (como género, raza, religión, discapacidad, orientación sexual, etc.) para tomar decisiones.</p>
+        <p><strong>Ejemplo:</strong> Un modelo que descarta explícitamente candidatos “mujeres” o “mayores de 50 años”.</p>
+
+        <span class="sub-title">b) Discriminación indirecta (a través de proxies)</span>
+        <p>Muchas veces la discriminación no usa directamente la variable protegida, pero sí variables que la representan indirectamente (proxies), por ejemplo: Barrio o código postal, Tipo de colegio, Tipo de dispositivo que usa.</p>
+        <p>Aunque el modelo no reciba la variable “raza” o “clase social”, puede terminar segmentando por patrones que se correlacionan con ellas.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4. Ejemplos de sesgos y discriminación algorítmica</h2>
+        <div class="examples-grid">
+            <div class="example-card">
+                <span class="example-title">a) Empleo y recursos humanos</span>
+                <p>Filtrado de hojas de vida que penaliza ciertos tipos de nombres, universidades o barrios. Herramientas de análisis de vídeo que asignan peor “puntaje de liderazgo” a mujeres.</p>
+                <p><strong>Impacto:</strong> Menos oportunidades de acceso a entrevistas y ascensos. Reproducción de estereotipos.</p>
+            </div>
+
+            <div class="example-card">
+                <span class="example-title">b) Crédito y finanzas</span>
+                <p>Sistemas que usan variables de consumo o ubicación para decidir quién es “cliente de riesgo”. Personas con ingresos similares reciben condiciones distintas por su barrio.</p>
+                <p><strong>Impacto:</strong> Exclusión financiera. Mayor costo del crédito.</p>
+            </div>
+
+            <div class="example-card">
+                <span class="example-title">c) Seguridad y justicia</span>
+                <p>Algoritmos que predicen delitos entrenados con datos históricos sesgados. Reconocimiento facial que falla más en ciertos grupos.</p>
+                <p><strong>Impacto:</strong> Mayor probabilidad de ser considerado “sospechoso”. Incremento en controles.</p>
+            </div>
+
+            <div class="example-card">
+                <span class="example-title">d) Educación</span>
+                <p>Sistemas que recomiendan recursos solo a ciertos perfiles. Estudiantes con conexiones lentas etiquetados como “menos comprometidos”.</p>
+                <p><strong>Impacto:</strong> Menor visibilidad de talentos. Desigualdades en oportunidades educativas.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5. ¿Por qué los sesgos algorítmicos son un problema ético y legal?</h2>
+        <p>Los sesgos y la discriminación algorítmica:</p>
+        <ul>
+            <li>Afectan la dignidad de las personas, tratándolas como “riesgo” o “menos aptas” por pertenecer a ciertos grupos.</li>
+            <li>Reproducen y amplifican desigualdades históricas en lugar de corregirlas.</li>
+            <li>Pueden vulnerar derechos fundamentales, como la igualdad, la no discriminación, la protección de datos y el derecho a explicaciones en decisiones automatizadas.</li>
+            <li>Dañan la confianza en instituciones, empresas y tecnologías.</li>
+        </ul>
+        <p>Desde la ética y el derecho, ya no basta con decir “el algoritmo lo dijo”: Las organizaciones siguen siendo responsables de los resultados de sus sistemas de IA y deben prevenir, detectar y corregir sesgos.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">6. ¿Qué podemos hacer frente a los sesgos algorítmicos?</h2>
+        <p>No existe una solución única, pero sí un conjunto de buenas prácticas:</p>
+        
+        <div class="solution-box">
+            <span class="solution-title">Cuestionar los datos</span>
+            Revisar cómo se recolectaron. Detectar si representan de forma equilibrada a los diferentes grupos. Evitar usar datos que reflejan decisiones discriminatorias previas.
+            
+            <br><br><span class="solution-title">Evaluar el impacto en diferentes grupos</span>
+            Medir el rendimiento del modelo por subgrupos. Identificar tasas de error altas para algunos colectivos.
+            
+            <br><br><span class="solution-title">Incorporar principios de equidad</span>
+            No optimizar solo por “exactitud global”. Ajustar el modelo cuando se detecten disparidades.
+            
+            <br><br><span class="solution-title">Transparencia y explicabilidad</span>
+            Explicar cómo funciona el sistema. Informar cuando se está siendo perfilado.
+            
+            <br><br><span class="solution-title">Supervisión humana significativa</span>
+            No dejar decisiones sensibles solo en manos de un algoritmo. Asegurar revisión humana.
+            
+            <br><br><span class="solution-title">Participación y diversidad</span>
+            Incluir perspectivas diversas en el diseño. Escuchar a grupos que podrían verse perjudicados.
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">7. Preguntas guía para el análisis de sesgos y discriminación</h2>
+        <p>Cuando analices un caso en las actividades de la unidad, te pueden ayudar estas preguntas:</p>
+
+        <details class="guide-item">
+            <summary class="guide-summary">¿Qué datos de entrada usa el sistema y qué patrones históricos pueden estar incorporando?</summary>
+            <div class="guide-content">
+                Es importante identificar exactamente qué datos se usan: edad, género, barrio, nivel educativo, historial laboral, historial crediticio, notas académicas, comportamiento en una plataforma, etc. También hay que preguntarse si esos datos reflejan desigualdades históricas: por ejemplo, menos mujeres en cargos directivos, más controles policiales en ciertos barrios, menor acceso a educación de calidad para algunos grupos. Si el sistema aprende de esos datos sin cuestionarlos, es muy probable que “herede” esos patrones injustos.
+            </div>
+        </details>
+
+        <details class="guide-item">
+            <summary class="guide-summary">¿Qué grupos podrían estar recibiendo peores resultados o más errores que otros?</summary>
+            <div class="guide-content">
+                El análisis no puede quedarse en el promedio general. Es necesario mirar cómo se comporta el sistema por grupos: mujeres/hombres, distintos rangos de edad, diferentes barrios, personas con discapacidad, minorías étnicas, etc. Si se detecta, por ejemplo, que un grupo recibe sistemáticamente más rechazos, peores puntajes o más falsos positivos, hay una señal de alerta de posible sesgo y de trato desigual.
+            </div>
+        </details>
+
+        <details class="guide-item">
+            <summary class="guide-summary">¿La diferencia de trato tiene alguna justificación legítima, o parece arbitraria?</summary>
+            <div class="guide-content">
+                No toda diferencia de trato es automáticamente discriminación: a veces hay criterios legítimos (por ejemplo, conocimientos técnicos específicos para un cargo). El problema aparece cuando las diferencias no se pueden justificar de forma razonable o están ligadas a características irrelevantes (barrio, género, apariencia, acento, colegio), o cuando la brecha es desproporcionada. Si no hay una razón clara y relacionada con el objetivo del sistema, la diferencia de trato se acerca a la discriminación.
+            </div>
+        </details>
+
+        <details class="guide-item">
+            <summary class="guide-summary">¿Se informa a las personas que están siendo perfiladas o evaluadas por un algoritmo?</summary>
+            <div class="guide-content">
+                En muchos casos, las personas ni siquiera saben que sus datos se usan para entrenar modelos o que una decisión importante ha sido influida por un algoritmo. Desde la ética y la protección de datos, deberían recibir información clara y previa: que se está usando un sistema automatizado, con qué fines, qué tipo de datos se emplean y qué implicaciones puede tener para ellas.
+            </div>
+        </details>
+
+        <details class="guide-item">
+            <summary class="guide-summary">¿Existen mecanismos para reclamar, pedir revisión humana o corregir errores?</summary>
+            <div class="guide-content">
+                Es clave que las personas no queden atrapadas en la decisión de una “caja negra”. Un sistema responsable debe ofrecer canales para: Presentar una queja o inconformidad; Solicitar explicación de la decisión; Pedir que un ser humano revise el caso y pueda corregirla si fue injusta o errónea. Si no hay forma de reclamar o revisar, el riesgo de discriminación injusta aumenta.
+            </div>
+        </details>
+
+        <details class="guide-item">
+            <summary class="guide-summary">¿Qué cambios podrían reducir los sesgos y la discriminación?</summary>
+            <div class="guide-content">
+                Aquí se trata de pensar soluciones, no solo problemas. Algunas posibilidades: Mejorar la calidad y diversidad de los datos; Eliminar variables que funcionen como proxies de características sensibles; Ajustar el modelo o los umbrales de decisión; Cambiar la forma de uso: no tomar la salida del algoritmo como “verdad absoluta”; Incorporar auditorías periódicas y participación de personas afectadas.
+            </div>
+        </details>
+    </div>
+
+</div>
+
+</body>
+</html>

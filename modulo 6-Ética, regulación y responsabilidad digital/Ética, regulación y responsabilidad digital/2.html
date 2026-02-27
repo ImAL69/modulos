@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .ethics-pro-container {
+        font-family: 'Roboto', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 30px; /* Ajustado padding superior */
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        /* Configuración por defecto (Escritorio) */
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: white;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-wrapper {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 10px;
+    }
+
+    /* Título con margen de seguridad para no chocar con el logo en PC */
+    .gradient-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 50%, #e65100 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0 auto 30px auto; /* Centrado */
+        max-width: 85%; /* Evita que el texto llegue al borde derecho donde está el logo */
+        letter-spacing: -1px;
+        line-height: 1.2;
+        animation: textFocusIn 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    }
+
+    /* --- IMAGEN HERO (Debajo del título) --- */
+    .hero-image {
+        width: 100%;
+        max-width: 800px; /* Tamaño controlado */
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 20px 50px -10px rgba(74, 20, 140, 0.2);
+        margin: 0 auto;
+        display: block;
+        transition: transform 0.4s ease;
+        animation: slideUpFade 1.2s ease forwards;
+        opacity: 0;
+    }
+
+    .hero-image:hover {
+        transform: scale(1.01);
+    }
+
+    /* --- TÍTULOS DE SECCIÓN --- */
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 30px;
+        margin-top: 50px;
+        border-bottom: 2px solid #f3e5f5;
+        padding-bottom: 10px;
+    }
+
+    .section-icon {
+        background: #e65100;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
+        box-shadow: 0 4px 10px rgba(230, 81, 0, 0.3);
+        flex-shrink: 0;
+    }
+
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #4a148c;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    /* --- 1. PROPÓSITO --- */
+    .purpose-card {
+        background: #fff8e1;
+        padding: 30px;
+        border-radius: 15px;
+        border-left: 6px solid #e65100;
+    }
+
+    /* --- 2. RESULTADOS (RA) --- */
+    .ra-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .ra-box {
+        background: white;
+        border: 1px solid #eee;
+        padding: 25px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ra-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        border-color: #7b1fa2;
+    }
+    
+    .ra-box h3 { color: #7b1fa2; margin-top: 0; }
+
+    /* --- 4. RUTA (Timeline) --- */
+    .timeline-wrapper {
+        position: relative;
+        padding-left: 20px;
+    }
+
+    .timeline-wrapper::before {
+        content: '';
+        position: absolute;
+        left: 29px; top: 0; bottom: 0;
+        width: 2px; background: #e0e0e0; z-index: 0;
+    }
+
+    details.timeline-item {
+        margin-bottom: 15px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        border: 1px solid #f0f0f0;
+        position: relative;
+        z-index: 1;
+    }
+
+    details.timeline-item[open] {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-left: 5px solid #7b1fa2;
+    }
+
+    summary.timeline-summary {
+        padding: 15px 20px 15px 60px;
+        cursor: pointer;
+        position: relative;
+        list-style: none;
+        font-weight: 700;
+        color: #333;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    summary.timeline-summary:hover { background: #fafafa; }
+    summary.timeline-summary::-webkit-details-marker { display: none; }
+
+    summary.timeline-summary::before {
+        content: '';
+        position: absolute;
+        left: 20px; top: 50%; transform: translateY(-50%);
+        width: 16px; height: 16px;
+        background: white; border: 4px solid #aaa;
+        border-radius: 50%; z-index: 2;
+        transition: border-color 0.3s;
+    }
+
+    details[open] summary.timeline-summary::before { border-color: #e65100; }
+
+    summary.timeline-summary::after {
+        content: '+'; font-size: 1.5rem; color: #999; transition: transform 0.3s;
+    }
+    details[open] summary.timeline-summary::after { transform: rotate(45deg); color: #e65100; }
+
+    .timeline-content {
+        padding: 0 20px 20px 60px;
+        color: #555;
+        font-size: 0.95rem;
+        border-top: 1px dashed #eee;
+        margin-top: 5px; padding-top: 15px;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .highlight-activity {
+        background: #f3e5f5; color: #4a148c;
+        padding: 10px 15px; border-radius: 8px;
+        margin-top: 10px; font-weight: 500; font-size: 0.9rem;
+        border-left: 3px solid #7b1fa2;
+    }
+
+    /* --- 5. EVALUACIÓN --- */
+    .eval-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .eval-unit {
+        background: #fff; border-radius: 12px; overflow: hidden;
+        border: 1px solid #e0e0e0; box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    }
+
+    .eval-unit-header {
+        background: #4a148c; color: white; padding: 15px 20px;
+        font-family: 'Montserrat', sans-serif; font-weight: 700;
+        display: flex; justify-content: space-between;
+    }
+
+    .eval-row {
+        padding: 15px 20px; border-bottom: 1px solid #f0f0f0;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .eval-row:last-child { border-bottom: none; }
+
+    .score-tag {
+        background: #fff3e0; color: #e65100; padding: 5px 12px;
+        border-radius: 20px; font-weight: bold; font-size: 0.85rem;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes textFocusIn { 0% { filter: blur(12px); opacity: 0; } 100% { filter: blur(0px); opacity: 1; } }
+    @keyframes slideUpFade { 0% { transform: translateY(40px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* --- RESPONSIVE MEDIA QUERIES (Aquí ocurre la magia para que no se monte) --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            /* En móvil: posición estática (bloque), centrado arriba */
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto; 
+            width: 100px;
+        }
+        
+        .gradient-title {
+            font-size: 2rem;
+            max-width: 100%; /* Recupera el ancho completo */
+        }
+        
+        .timeline-wrapper::before { left: 19px; }
+        summary.timeline-summary { padding-left: 50px; font-size: 0.9rem; }
+        summary.timeline-summary::before { left: 10px; }
+        .timeline-content { padding-left: 50px; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="ethics-pro-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-wrapper">
+        <h1 class="gradient-title">Ética, Regulación y Responsabilidad Digital</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/2uusrvzbv9m9c866evwe8/Gemini_Generated_Image_65n72u65n72u65n7.png?rlkey=p7p9itp9okzr661h3ughuiu23&st=68dpxfjc&raw=1" alt="Ilustración Ética Digital" class="hero-image">
+    </div>
+
+    <div class="section-header">
+        <div class="section-icon">1</div>
+        <h2 class="section-title">Propósito del Módulo</h2>
+    </div>
+    <div class="purpose-card">
+        <p style="font-size: 1.1rem; line-height: 1.6;">Este módulo busca que pases de ver la tecnología solo como herramienta a verla también como un espacio donde se juegan la <strong>dignidad, los derechos y las decisiones</strong> sobre las personas.</p>
+        <p><strong>Construirás criterio para responder:</strong></p>
+        <ul>
+            <li>¿Es aceptable que una IA decida sobre un crédito o un empleo?</li>
+            <li>¿Qué límites debería tener la vigilancia digital?</li>
+            <li>¿Cómo se ve una organización tecnológicamente responsable?</li>
+        </ul>
+    </div>
+
+    <div class="section-header">
+        <div class="section-icon">2</div>
+        <h2 class="section-title">Resultados de Aprendizaje</h2>
+    </div>
+    <div class="ra-container">
+        <div class="ra-box">
+            <h3>RA 1</h3>
+            <p><strong>Interpretar</strong> marcos legales y principios éticos que regulan la IA y la protección de datos personales.</p>
+        </div>
+        <div class="ra-box">
+            <h3>RA 2</h3>
+            <p><strong>Evaluar</strong> dilemas éticos asociados a la automatización, vigilancia digital y decisiones algorítmicas.</p>
+        </div>
+        <div class="ra-box">
+            <h3>RA 3</h3>
+            <p><strong>Formular</strong> lineamientos éticos y buenas prácticas para el desarrollo responsable en organizaciones.</p>
+        </div>
+    </div>
+
+    <div class="section-header">
+        <div class="section-icon">3</div>
+        <h2 class="section-title">Ruta de Aprendizaje</h2>
+    </div>
+    <p style="margin-bottom: 20px; font-style: italic; color: #666; text-align: center;">👇 Haz clic en cada semana para desplegar los detalles</p>
+    
+    <div class="timeline-wrapper">
+        
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 1: Fundamentos Éticos y Legales</summary>
+            <div class="timeline-content">
+                <p>Tema: Ética aplicada a la tecnología y marcos legales básicos.</p>
+                <div class="highlight-activity"><strong>Actividad 1 (Foro):</strong> Comentar un caso de uso de IA o datos personales conectado con normas.</div>
+            </div>
+        </details>
+
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 2: Comparación Normativa</summary>
+            <div class="timeline-content">
+                <p>Tema: Marcos nacionales vs internacionales (GDPR, AI Act) y derechos.</p>
+                <div class="highlight-activity"><strong>Actividad 2 (Mapa):</strong> Cuadro comparativo de al menos 3 marcos ético-legales.</div>
+            </div>
+        </details>
+
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 3: Automatización y Vigilancia</summary>
+            <div class="timeline-content">
+                <p>Tema: Plataformas digitales, trabajo y vigilancia en contextos diversos.</p>
+                <div class="highlight-activity"><strong>Actividad 3 (Estudio de Caso):</strong> Análisis de dilemas éticos, riesgos y sesgos.</div>
+            </div>
+        </details>
+
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 4: Sesgos y Transparencia</summary>
+            <div class="timeline-content">
+                <p>Tema: Discriminación algorítmica y tensión seguridad-privacidad.</p>
+                <div class="highlight-activity"><strong>Actividad 4 (Debate):</strong> ¿Hasta dónde es legítima la vigilancia digital?</div>
+            </div>
+        </details>
+
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semanas 5 y 6: IA Responsable</summary>
+            <div class="timeline-content">
+                <p>Tema: Evaluaciones de impacto y enfoques "Ethics by Design".</p>
+                <div class="highlight-activity"><strong>Actividad 5 (Proyecto):</strong> Documento de Lineamientos Éticos para un proyecto real.</div>
+            </div>
+        </details>
+
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 7: Gobierno de Datos</summary>
+            <div class="timeline-content">
+                <p>Tema: Códigos de ética y comités tecnológicos.</p>
+                <div class="highlight-activity"><strong>Actividad 6 (Presentación):</strong> Exposición ejecutiva del código ético a directivos.</div>
+            </div>
+        </details>
+
+        <details class="timeline-item">
+            <summary class="timeline-summary">Semana 8: Cierre Transversal</summary>
+            <div class="timeline-content">
+                <p>Tema: Síntesis y futuro de la responsabilidad digital.</p>
+                <div class="highlight-activity"><strong>Actividad 7 (Foro Cierre):</strong> Reflexión final y compromisos profesionales.</div>
+            </div>
+        </details>
+
+    </div>
+
+    <div class="section-header">
+        <div class="section-icon">4</div>
+        <h2 class="section-title">Sistema de Evaluación</h2>
+    </div>
+    
+    <div class="eval-grid">
+        <div class="eval-unit">
+            <div class="eval-unit-header">
+                <span>Unidad 1</span>
+                <span>30%</span>
+            </div>
+            <div class="eval-row">
+                <span>Foro: Principios Éticos</span>
+                <span class="score-tag">15%</span>
+            </div>
+            <div class="eval-row">
+                <span>Mapa Comparativo</span>
+                <span class="score-tag">15%</span>
+            </div>
+        </div>
+
+        <div class="eval-unit">
+            <div class="eval-unit-header">
+                <span>Unidad 2</span>
+                <span>30%</span>
+            </div>
+            <div class="eval-row">
+                <span>Estudio de Caso (PDF)</span>
+                <span class="score-tag">18%</span>
+            </div>
+            <div class="eval-row">
+                <span>Debate Vigilancia</span>
+                <span class="score-tag">12%</span>
+            </div>
+        </div>
+
+        <div class="eval-unit">
+            <div class="eval-unit-header">
+                <span>Unidad 3 + Cierre</span>
+                <span>40%</span>
+            </div>
+            <div class="eval-row">
+                <span>Doc. Lineamientos</span>
+                <span class="score-tag">22%</span>
+            </div>
+            <div class="eval-row">
+                <span>Presentación Ejecutiva</span>
+                <span class="score-tag">10%</span>
+            </div>
+            <div class="eval-row">
+                <span>Foro Cierre</span>
+                <span class="score-tag" style="background:#e8f5e9; color:#2e7d32;">8%</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

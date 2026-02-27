@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .debate-forum-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0; /* Azul Debate */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #0d47a1;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(13, 71, 161, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #e3f2fd;
+    }
+
+    /* --- INTRODUCCIÓN --- */
+    .intro-box {
+        background: #e3f2fd;
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 5px solid #1565c0;
+        margin-bottom: 40px;
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    /* --- ORGANIZACIÓN (ROLES) --- */
+    .roles-section {
+        margin-bottom: 50px;
+    }
+
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.8rem;
+        color: #1565c0;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #bbdefb;
+        padding-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .roles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .role-card {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+    }
+
+    .role-card:hover { transform: translateY(-5px); }
+
+    .role-icon { font-size: 2rem; display: block; margin-bottom: 10px; }
+    
+    .role-name {
+        font-weight: 700;
+        color: #37474f;
+        display: block;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* --- CASOS DE DEBATE (ACORDEÓN) --- */
+    details.case-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #b0bec5;
+        overflow: hidden;
+    }
+
+    summary.case-summary {
+        padding: 15px 20px;
+        background: #eceff1;
+        cursor: pointer;
+        font-weight: 700;
+        color: #455a64;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    summary.case-summary:hover { background: #cfd8dc; }
+    summary.case-summary::-webkit-details-marker { display: none; }
+    summary.case-summary::after { content: '+'; font-weight: bold; }
+    details[open] summary.case-summary::after { content: '-'; }
+
+    .case-content {
+        padding: 20px;
+        border-top: 1px solid #b0bec5;
+        color: #546e7a;
+    }
+
+    /* --- DINÁMICA (TIMELINE VERTICAL) --- */
+    .timeline-steps {
+        position: relative;
+        padding-left: 20px;
+        margin-top: 30px;
+    }
+
+    .timeline-steps::before {
+        content: '';
+        position: absolute;
+        left: 29px; top: 0; bottom: 0;
+        width: 2px; background: #cfd8dc; z-index: 0;
+    }
+
+    .step-box {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .step-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .step-num {
+        background: #1565c0;
+        color: white;
+        width: 30px; height: 30px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    .step-title {
+        font-weight: 700;
+        color: #0d47a1;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Colores específicos por paso */
+    .step-a .step-num { background: #43a047; } /* Verde A favor */
+    .step-b .step-num { background: #e53935; } /* Rojo En contra */
+    .step-obs .step-num { background: #fb8c00; } /* Naranja Observador */
+
+    /* --- EXPECTATIVAS (FOOTER) --- */
+    .expectations-box {
+        background: #f3e5f5; /* Lila suave */
+        padding: 25px;
+        border-radius: 12px;
+        margin-top: 50px;
+        border: 1px solid #ce93d8;
+    }
+
+    .exp-title {
+        font-weight: 700;
+        color: #7b1fa2;
+        margin-bottom: 10px;
+        display: block;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 2rem; }
+        .roles-grid { grid-template-columns: 1fr 1fr; }
+        .timeline-steps { padding-left: 0; }
+        .timeline-steps::before { display: none; } /* Quitar línea en móvil */
+    }
+
+</style>
+</head>
+<body>
+
+<div class="debate-forum-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">¿Hasta dónde es legítima la vigilancia digital?</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/582qlncvz5yipv61v5bix/Gemini_Generated_Image_7g1vra7g1vra7g1v.png?rlkey=6rqojgctn63s9qzddvvxcq9mv&st=79cj7cg9&raw=1" alt="Foro Debate Vigilancia" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>En este foro vamos a trabajar de forma <strong>grupal y con roles</strong>, siguiendo la Guía de preguntas y roles. El tema central es: <em>¿Hasta dónde es legítima la vigilancia digital sobre las personas en contextos laborales, educativos o de plataformas?</em></p>
+        <p>El objetivo es debatir, argumentar y proponer límites y salvaguardas, conectando con los principios éticos y marcos legales.</p>
+    </div>
+
+    <h2 class="section-title">2. Organización y Roles</h2>
+    <p style="margin-bottom:20px;">Cada grupo debe descargar la guía y asignar un rol a cada integrante:</p>
+    
+    <div class="roles-grid">
+        <div class="role-card">
+            <span class="role-icon">🎙️</span>
+            <span class="role-name">Moderador/a</span>
+        </div>
+        <div class="role-card" style="border-top: 4px solid #43a047;">
+            <span class="role-icon">✅</span>
+            <span class="role-name">Equipo A (A favor)</span>
+        </div>
+        <div class="role-card" style="border-top: 4px solid #e53935;">
+            <span class="role-icon">⛔</span>
+            <span class="role-name">Equipo B (En contra)</span>
+        </div>
+        <div class="role-card" style="border-top: 4px solid #fb8c00;">
+            <span class="role-icon">👀</span>
+            <span class="role-name">Observadores</span>
+        </div>
+        <div class="role-card">
+            <span class="role-icon">📝</span>
+            <span class="role-name">Relator/a</span>
+        </div>
+    </div>
+
+    <h2 class="section-title">3. Casos de Debate (Sugeridos)</h2>
+    
+    <details class="case-item">
+        <summary class="case-summary">Caso 1: Trabajo Remoto (Clic para ver)</summary>
+        <div class="case-content">
+            Una empresa instala un software que registra tiempo en pantalla, aplicaciones abiertas, clics y toma capturas periódicas. Argumenta "productividad y seguridad".
+        </div>
+    </details>
+
+    <details class="case-item">
+        <summary class="case-summary">Caso 2: Exámenes en Línea (Clic para ver)</summary>
+        <div class="case-content">
+            Una universidad usa proctoring que exige cámara, micrófono y acceso total a la pantalla para evitar fraude académico.
+        </div>
+    </details>
+
+    <details class="case-item">
+        <summary class="case-summary">Caso 3: Plataforma de Reparto (Clic para ver)</summary>
+        <div class="case-content">
+            Una app geolocaliza permanentemente a repartidores, almacena historial de rutas y usa esos datos para asignar pedidos o sancionar.
+        </div>
+    </details>
+
+    <h2 class="section-title">4. Dinámica del Foro (Paso a Paso)</h2>
+    <div class="timeline-steps">
+        
+        <div class="step-box">
+            <div class="step-header">
+                <div class="step-num">1</div>
+                <span class="step-title">Apertura (Moderador)</span>
+            </div>
+            <p>Publica el caso elegido y la pregunta central adaptada.</p>
+        </div>
+
+        <div class="step-box step-a">
+            <div class="step-header">
+                <div class="step-num">2</div>
+                <span class="step-title">Equipo A (Más Permisivo)</span>
+            </div>
+            <p>Defiende la utilidad de la vigilancia, señala beneficios y propone condiciones para que sea legítima.</p>
+        </div>
+
+        <div class="step-box step-b">
+            <div class="step-header">
+                <div class="step-num">3</div>
+                <span class="step-title">Equipo B (Más Restrictivo)</span>
+            </div>
+            <p>Explica los riesgos, identifica derechos en tensión y propone alternativas menos invasivas.</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-header">
+                <div class="step-num">4</div>
+                <span class="step-title">Ronda de Réplicas</span>
+            </div>
+            <p>Intercambio de argumentos entre equipos. El moderador puede lanzar preguntas para profundizar.</p>
+        </div>
+
+        <div class="step-box step-obs">
+            <div class="step-header">
+                <div class="step-num">5</div>
+                <span class="step-title">Observadores Críticos</span>
+            </div>
+            <p>Señalan argumentos sólidos, puntos no discutidos y coincidencias entre equipos.</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-header">
+                <div class="step-num">6</div>
+                <span class="step-title">Cierre (Relator)</span>
+            </div>
+            <p>Publica el resumen final con el dilema, argumentos clave, principios éticos y conclusiones del grupo.</p>
+        </div>
+
+    </div>
+
+    <div class="expectations-box">
+        <span class="exp-title">📌 Extensión y Calidad</span>
+        <ul style="margin:0; padding-left:20px;">
+            <li>Cada intervención: entre <strong>150 y 300 palabras</strong>.</li>
+            <li>Lenguaje respetuoso y argumentativo.</li>
+            <li>Uso obligatorio de conceptos del módulo (biometría, sesgos, transparencia, etc.).</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

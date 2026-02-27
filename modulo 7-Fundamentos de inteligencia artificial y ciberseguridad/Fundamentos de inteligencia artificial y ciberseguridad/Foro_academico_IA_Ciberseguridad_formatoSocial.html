@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Foro académico: IA, ciberseguridad y transformación digital</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .forum-container {
+        font-family: 'Roboto', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 30px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        border-top: 6px solid #6a11cb; /* Borde superior índigo */
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* --- LOGO UNIVERSIDAD --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 110px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,255);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 10px;
+    }
+
+    .welcome-title {
+        font-family: 'Nunito', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: #333;
+        margin: 0 auto 25px auto;
+        max-width: 90%;
+        line-height: 1.2;
+        background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .forum-image {
+        width: 100%;
+        max-width: 750px;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(37, 117, 252, 0.2);
+        margin: 0 auto 30px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1s ease 0.5s forwards;
+    }
+
+    /* --- CONTENIDO GENERAL --- */
+    .content {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    .content h2 {
+        font-family: 'Nunito', sans-serif;
+        color: #2c3e50;
+        font-size: 1.6rem;
+        margin-top: 25px;
+        margin-bottom: 12px;
+        font-weight: 800;
+    }
+
+    .content h3 {
+        font-family: 'Nunito', sans-serif;
+        color: #3957ff;
+        font-size: 1.25rem;
+        margin-top: 18px;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
+
+    .content p {
+        margin-bottom: 12px;
+        text-align: justify;
+    }
+
+    .content ul {
+        margin: 8px 0 15px 22px;
+        padding: 0;
+    }
+
+    .content li {
+        margin-bottom: 6px;
+    }
+
+    /* --- CAJAS ESPECIALES --- */
+    .info-box {
+        background: #eef2ff;
+        border-left: 5px solid #4f46e5;
+        padding: 18px 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    }
+
+    .info-box-title {
+        font-weight: 700;
+        color: #312e81;
+        margin-bottom: 6px;
+    }
+
+    .highlight-box {
+        background: #f3f4ff;
+        border-left: 5px solid #6366f1;
+        padding: 15px 18px;
+        border-radius: 12px;
+        margin: 18px 0;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+    }
+
+    .highlight-box strong {
+        color: #3730a3;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .rubric-box {
+        background: #f0f9ff;
+        border: 2px dashed #0ea5e9;
+        padding: 18px 20px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .rubric-box h3 {
+        color: #0369a1;
+    }
+
+    /* --- RECOMENDACIONES --- */
+    .recommendations-box {
+        background: #fff8e1;
+        border: 2px dashed #ffd54f;
+        padding: 25px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        margin-top: 10px;
+    }
+
+    .rec-title {
+        font-family: 'Nunito', sans-serif;
+        color: #f57f17;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .rec-title span.icon { font-size: 1.5rem; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .welcome-title { font-size: 1.9rem; max-width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="forum-container">
+
+    <!-- Logo institucional -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&raw=1"
+         alt="Logo Universidad" class="uni-logo">
+
+    <!-- Encabezado con imagen principal -->
+    <div class="header-box">
+        <h1 class="welcome-title">Foro académico: IA, ciberseguridad y transformación digital</h1>
+
+        <img src="https://www.dropbox.com/scl/fi/xj0z1x3yw7pimgk7bk4il/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.38_2eca0b62.jpg?rlkey=f21srwrp8dvpet04ew0eyu6cd&raw=1"
+             alt="Foro académico IA y ciberseguridad" class="forum-image">
+    </div>
+
+    <div class="content">
+        <!-- Objetivo -->
+        <h2>1. Objetivo del foro</h2>
+        <div class="info-box">
+            <p class="info-box-title">🎯 Propósito académico</p>
+            <p>
+                Reconocer y argumentar el papel estratégico de la inteligencia artificial (IA) y la ciberseguridad en la
+                transformación digital, identificando límites técnicos (sesgo, overfitting, concept/data drift, disponibilidad)
+                y organizacionales, y relacionándolos con marcos de referencia (CIA, NIST CSF, ISO/IEC 27001, Zero Trust).
+            </p>
+            <p>
+                A partir de este análisis, se espera que propongas controles mínimos de <strong>Secure AI by Design</strong>
+                para el dato y el ciclo de vida del modelo, conectándolos con un contexto institucional real.
+            </p>
+        </div>
+
+        <!-- Descripción de la actividad -->
+        <h2>2. Descripción de la actividad</h2>
+        <p>
+            En este foro académico cada estudiante publicará un <strong>aporte inicial</strong> de entre
+            <strong>250 y 300 palabras</strong> y, posteriormente, realizará <strong>dos réplicas sustantivas</strong>
+            (≥ 120 palabras cada una) a compañeros.
+        </p>
+        <p>
+            En el aporte inicial deberás <strong>contrastar beneficios y riesgos</strong> de implementar IA en entornos
+            regulados (salud, finanzas, sector público, educación, etc.) y proponer <strong>controles mínimos</strong>
+            aplicables a tu contexto institucional.
+        </p>
+
+        <!-- Instrucciones paso a paso -->
+        <h2>3. Instrucciones (paso a paso)</h2>
+
+        <div class="highlight-box">
+            <p><strong>3.1 Publica tu aporte inicial</strong></p>
+            <ul>
+                <li>Redacta un texto entre <strong>250 y 300 palabras</strong>.</li>
+                <li>Incluye todos los elementos descritos en el apartado <strong>“Contenido obligatorio”</strong>.</li>
+                <li>Utiliza un lenguaje claro, profesional y respetuoso.</li>
+                <li>Emplea citación breve en formato <strong>APA</strong> para cualquier fuente externa.</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>3.2 Lee y analiza aportes de tus compañeros</strong></p>
+            <ul>
+                <li>Revisa las publicaciones de al menos <strong>5 compañeros/as</strong>.</li>
+                <li>Identifica ideas, enfoques o dudas que puedas complementar o problematizar.</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>3.3 Realiza dos réplicas sustantivas</strong></p>
+            <ul>
+                <li>Elabora <strong>2 réplicas</strong> de al menos <strong>120 palabras</strong> cada una.</li>
+                <li>Añade valor al debate: plantea preguntas críticas, compara enfoques, sugiere mejoras o aporta evidencia adicional.</li>
+                <li>Evita respuestas del tipo “estoy de acuerdo” sin argumentar.</li>
+            </ul>
+        </div>
+
+        <!-- Contenido obligatorio -->
+        <h2>4. Contenido obligatorio del aporte inicial</h2>
+        <p>Tu aportación debe contener, como mínimo, los siguientes elementos:</p>
+
+        <div class="highlight-box">
+            <ul>
+                <li>
+                    <strong>Límites técnicos de la IA:</strong> identificación y explicación de al menos
+                    <strong>tres límites</strong> (por ejemplo: sesgo algorítmico, overfitting, concept/data drift,
+                    problemas de disponibilidad).
+                </li>
+                <li>
+                    <strong>Relación con ciberseguridad (CIA):</strong> vincula cada límite con uno o más requisitos
+                    de <strong>Confidencialidad, Integridad y Disponibilidad</strong>.
+                </li>
+                <li>
+                    <strong>Marcos y normas:</strong> menciona y justifica brevemente al menos un marco o norma aplicable
+                    (p. ej. <em>NIST CSF, NIST AI RMF, ISO/IEC 27001, Zero Trust</em>), explicando por qué es pertinente.
+                </li>
+                <li>
+                    <strong>Controles de Secure AI by Design:</strong> propone de <strong>1 a 3 controles concretos</strong>
+                    para cada límite identificado (ej.: clasificación de datos, monitoreo de drift, pruebas adversarias,
+                    segregación de ambientes, etc.).
+                </li>
+                <li>
+                    <strong>Contexto institucional propio:</strong> vincula tu análisis con tu organización o un entorno
+                    real (1–2 frases que muestren aplicabilidad práctica).
+                </li>
+            </ul>
+        </div>
+
+        <!-- Profundidad esperada -->
+        <h2>5. Profundidad esperada</h2>
+        <p>La participación debe evidenciar:</p>
+        <ul>
+            <li>Comprensión del <strong>rol estratégico</strong> de la IA y la ciberseguridad en la transformación digital.</li>
+            <li>Conciencia sobre la necesidad de <strong>gobernanza de datos y modelos</strong>.</li>
+            <li>
+                Capacidad de <strong>vincular teoría y práctica</strong>: marcos y normas (NIST, ISO, Zero Trust, etc.)
+                con decisiones operativas en un contexto institucional real.
+            </li>
+        </ul>
+
+        <!-- Preguntas detonadoras -->
+        <h2>6. Preguntas detonadoras</h2>
+        <p>
+            Te sugerimos usar estas preguntas como guía para orientar tu aporte y tus réplicas. No es obligatorio responderlas
+            de manera literal, pero sí dialogar con su espíritu crítico:
+        </p>
+        <div class="highlight-box">
+            <ul>
+                <li>
+                    <strong>Pregunta 1:</strong> En un entorno regulado (salud, finanzas, sector público), ¿qué riesgo derivado
+                    del uso de IA consideras más crítico —y por qué—: la pérdida de confidencialidad, la degradación de la
+                    integridad (decisiones erróneas) o la afectación de la disponibilidad? ¿Qué control priorizarías inmediatamente?
+                </li>
+                <li>
+                    <strong>Pregunta 2:</strong> Si solo dispusieras de recursos limitados para gobernar una solución de IA
+                    en producción, ¿qué tres medidas de <em>Secure AI by Design</em> implementarías primero y cómo justificarías
+                    su priorización ante el comité de riesgos?
+                </li>
+            </ul>
+        </div>
+
+        <!-- Criterios de evaluación -->
+        <h2>7. Criterios de evaluación (ponderación total: 10% del curso)</h2>
+        <div class="rubric-box">
+            <h3>7.1 Calidad del aporte inicial — 6 puntos (60% del foro / 6% del curso)</h3>
+            <ul>
+                <li><strong>Excelente (6):</strong> Cumple todos los requisitos, presenta análisis crítico profundo,
+                    ejemplos concretos, vínculo institucional claro y citas correctas.</li>
+                <li><strong>Bueno (4–5):</strong> Cumple la mayoría de requisitos; el análisis es correcto pero con menor
+                    profundidad o concreción.</li>
+                <li><strong>Satisfactorio (2–3):</strong> Cumple los requisitos mínimos; el análisis es más bien descriptivo
+                    o superficial.</li>
+                <li><strong>Insuficiente (0–1):</strong> No cumple requisitos básicos o el contenido es poco relevante
+                    para el propósito del foro.</li>
+            </ul>
+
+            <h3>7.2 Calidad de las réplicas — 3 puntos (30% del foro / 3% del curso)</h3>
+            <ul>
+                <li>
+                    Deberás realizar <strong>2 réplicas</strong>, cada una con valor de <strong>1.5 puntos</strong>.
+                    Se evaluará su <strong>substancia</strong>: que añadan valor, incluyan preguntas útiles, referencias
+                    pertinentes y un tono constructivo.
+                </li>
+            </ul>
+
+            <h3>7.3 Normas formales y citación — 1 punto (10% del foro / 1% del curso)</h3>
+            <ul>
+                <li>
+                    Uso correcto y consistente de <strong>citación breve (APA)</strong>, respeto por las longitudes
+                    solicitadas, redacción clara y respetuosa, y cumplimiento de las indicaciones formales del espacio.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Recomendaciones finales -->
+        <h2>8. Recomendaciones para tu participación</h2>
+        <div class="recommendations-box">
+            <p class="rec-title"><span class="icon">✅</span>Para aprovechar al máximo este foro académico</p>
+            <ul>
+                <li>Conecta tus ideas con tu práctica profesional o contexto institucional.</li>
+                <li>No temas plantear dudas o tensiones: este es un espacio para pensar críticamente.</li>
+                <li>Cuida la calidad argumentativa: justifica tus afirmaciones con marcos, ejemplos o referencias.</li>
+                <li>Lee con atención a tus compañeros: tus réplicas pueden ayudarles a enriquecer sus propios análisis.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer" style="margin-top: 30px; text-align:center; font-size:0.85rem; color:#555; font-family:'Nunito',sans-serif; font-weight:600;">
+        Fundación Escuela Tecnológica de Neiva – FET | Foro académico - Fundamentos de IA y Ciberseguridad
+    </div>
+
+</div>
+
+</body>
+</html>

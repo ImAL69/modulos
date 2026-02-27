@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Recurso descargable – Mapa de stakeholders + Matriz de riesgos IA/ciber (Unidad 2 · RAP2)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .ai-act-container {
+        font-family: 'Roboto', sans-serif;
+        color: #333;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 40px 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 10px solid #003399; /* Azul institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO TIPOGRÁFICO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 35px;
+        padding: 32px 20px 28px 20px;
+        background: linear-gradient(135deg, #003399 0%, #0055cc 100%);
+        border-radius: 12px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header-box::before {
+        content: '★ ★ ★ ★ ★';
+        position: absolute;
+        top: -10px; right: -10px;
+        font-size: 4rem;
+        color: rgba(255, 204, 0, 0.1);
+        transform: rotate(15deg);
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        margin: 0;
+        letter-spacing: 1px;
+        color: #ffcc00;
+        text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+        animation: fadeInDown 1s ease both;
+    }
+
+    .sub-title {
+        font-size: 1.05rem;
+        font-weight: 300;
+        margin-top: 8px;
+        opacity: 0.92;
+    }
+
+    .kicker {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: .18em;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: #c5dcff;
+    }
+
+    /* --- IMAGEN HERO --- */
+    .resource-hero-wrap{
+        margin: 0 auto 30px auto;
+        max-width: 780px;
+    }
+    .resource-hero{
+        width: 100%;
+        border-radius: 18px;
+        box-shadow: 0 18px 38px rgba(0,0,0,0.18);
+        display:block;
+        object-fit: cover;
+        max-height: 360px;
+    }
+
+    /* --- INTRODUCCIÓN --- */
+    .intro-text {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 30px;
+        padding: 0 10px;
+        color: #555;
+    }
+
+    /* --- GRID DE TARJETAS DE RECURSO --- */
+    .risk-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .risk-card {
+        background: white;
+        border-radius: 12px;
+        padding: 22px 22px 20px 22px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+        transition: transform 0.25s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .risk-card:hover { transform: translateY(-5px); }
+
+    .risk-blue { border-left: 8px solid #0288d1; }
+    .risk-orange { border-left: 8px solid #f57c00; }
+    .risk-green { border-left: 8px solid #388e3c; }
+    .risk-purple { border-left: 8px solid #7b1fa2; }
+
+    .risk-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+
+    .risk-icon { font-size: 1.6rem; }
+
+    .risk-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .risk-blue .risk-title { color: #0288d1; }
+    .risk-orange .risk-title { color: #f57c00; }
+    .risk-green .risk-title { color: #388e3c; }
+    .risk-purple .risk-title { color: #7b1fa2; }
+
+    .risk-content ul {
+        padding-left: 20px;
+        margin-top: 8px;
+        font-size: 0.96rem;
+        color: #444;
+    }
+    .risk-content li { margin-bottom: 6px; }
+
+    .risk-content p{
+        margin: 0 0 6px 0;
+        font-size: 0.98rem;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: .8rem;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        background: #e3f2fd;
+        color: #0d47a1;
+        margin-top: 4px;
+    }
+
+    .obligations-box {
+        background: #fafafa;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 10px;
+        font-size: 0.9rem;
+        border-top: 2px solid #ddd;
+    }
+    .obligations-title { font-weight: bold; font-size: 0.8rem; color: #666; display: block; margin-bottom: 4px; text-transform: uppercase;}
+
+    /* --- BLOQUE RECOMENDACIÓN PEDAGÓGICA --- */
+    .gpai-section {
+        background: #f3e5f5;
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 35px;
+        border: 2px dashed #ab47bc;
+    }
+
+    .gpai-title {
+        color: #7b1fa2;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.4rem;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* --- IMPORTANCIA (GRID FINAL) --- */
+    .importance-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+        margin-top: 10px;
+    }
+
+    .imp-card {
+        background: #e3f2fd;
+        padding: 16px 14px;
+        border-radius: 10px;
+        text-align: center;
+        color: #0d47a1;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+        margin-top: 32px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #555;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .ai-act-container {
+            padding: 30px 18px 40px 18px;
+        }
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 16px auto;
+        }
+        .main-title { font-size: 2rem; }
+        .intro-text { padding: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div class="ai-act-container">
+
+    <!-- Logo institucional -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1"
+         alt="Logo FET" class="uni-logo">
+
+    <!-- Header principal -->
+    <div class="header-box">
+        <div class="kicker">Unidad 2 · RAP2 · Liderazgo y gestión</div>
+        <h1 class="main-title">Recurso descargable</h1>
+        <div class="sub-title">
+            Plantillas “Mapa de stakeholders + Matriz de riesgos IA/ciber”
+        </div>
+    </div>
+
+    <!-- Imagen hero del recurso -->
+    <div class="resource-hero-wrap">
+        <img src="https://www.dropbox.com/scl/fi/u9cbzilp57q4u0jpo7mfr/Gemini_Generated_Image_rb78curb78curb78.png?rlkey=c79m0bezkwqidfycczatn3uqr&st=bmrvmqdq&raw=1"
+             alt="Gestión de stakeholders y riesgos en proyectos de IA y ciberseguridad"
+             class="resource-hero">
+    </div>
+
+    <!-- Intro -->
+    <div class="intro-text">
+        <p>
+            En esta sección encontrarás un recurso descargable en formato institucional FET que incluye dos plantillas clave
+            para el cierre del <strong>RAP2</strong>:
+            <strong>(1) Mapa de stakeholders (poder/interés) con estrategia</strong> y
+            <strong>(2) Matriz de riesgos para proyectos de IA/ciberseguridad</strong>.
+            Estas plantillas te permitirán planificar la gestión del proyecto con enfoque realista: personas, decisiones,
+            patrocinio y control del riesgo.
+        </p>
+    </div>
+
+    <h2 style="text-align:center; font-family:'Montserrat', sans-serif; color:#003399; margin-bottom:24px;">
+        Vista rápida del recurso
+    </h2>
+
+    <!-- Tarjetas principales del recurso -->
+    <div class="risk-grid">
+
+        <!-- 1. ¿Para qué sirve este recurso? -->
+        <div class="risk-card risk-blue">
+            <div class="risk-header">
+                <span class="risk-icon">✅</span>
+                <h3 class="risk-title">¿Para qué sirve este recurso?</h3>
+            </div>
+            <div class="risk-content">
+                <p>
+                    Este recurso integra dos plantillas que soportan la gestión estratégica del proyecto desde el liderazgo:
+                    <strong>personas clave</strong> y <strong>riesgos</strong>.
+                </p>
+                <ul>
+                    <li>Identificar <strong>stakeholders críticos</strong> y definir cómo gestionarlos (cerca/satisfecho/informado/monitoreo).</li>
+                    <li>Asegurar <strong>patrocinio</strong> (sponsor) y ruta de <strong>escalamiento</strong> para decisiones y bloqueos.</li>
+                    <li>Registrar riesgos técnicos, de seguridad, de datos/IA, regulatorios y organizacionales con responsables.</li>
+                    <li>Dejar <strong>evidencia y trazabilidad</strong> (auditoría) de comunicaciones, decisiones y controles implementados.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2. Archivo para descargar -->
+        <div class="risk-card risk-orange">
+            <div class="risk-header">
+                <span class="risk-icon">📄</span>
+                <h3 class="risk-title">Archivo para descargar</h3>
+            </div>
+            <div class="risk-content">
+                <p><strong>Nombre del archivo:</strong></p>
+                <p class="badge">
+                    Plantillas_MapaStakeholders_y_MatrizRiesgos_IA_Ciber_Unidad2_RAP2_FET.pdf
+                </p>
+
+                <p style="margin-top:10px;"><strong>Incluye:</strong></p>
+                <ul>
+                    <li><strong>Plantilla 1:</strong> Registro de stakeholders + mapa poder/interés (2x2) + estrategia y evidencia.</li>
+                    <li><strong>Plantilla 2:</strong> Matriz/registro de riesgos (P, I, nivel PxI, respuesta, dueño, evidencia, estado).</li>
+                    <li><strong>Checklist de cierre:</strong> verificación mínima de gestión de stakeholders y riesgos.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. Instrucciones de uso -->
+        <div class="risk-card risk-green">
+            <div class="risk-header">
+                <span class="risk-icon">🧩</span>
+                <h3 class="risk-title">Instrucciones de uso</h3>
+            </div>
+            <div class="risk-content">
+                <p><strong>Paso a paso recomendado:</strong></p>
+                <ul>
+                    <li><strong>Paso 1:</strong> Completa la información general del proyecto.</li>
+                    <li><strong>Paso 2:</strong> Lista stakeholders y asigna poder/interés (alto/medio/bajo) + postura (apoya/neutral/resiste).</li>
+                    <li><strong>Paso 3:</strong> Ubícalos en el mapa 2x2 y define estrategia por cuadrante.</li>
+                    <li><strong>Paso 4:</strong> Registra riesgos por categoría, asigna P e I, calcula nivel y define respuesta.</li>
+                    <li><strong>Paso 5:</strong> Asigna dueño y evidencia/controles medibles (tickets, actas, pruebas, checklist, monitoreo).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 4. Descarga y entrega -->
+        <div class="risk-card risk-purple">
+            <div class="risk-header">
+                <span class="risk-icon">⬇️</span>
+                <h3 class="risk-title">Descarga y uso en el curso</h3>
+            </div>
+            <div class="risk-content">
+                <p>
+                    Descarga el PDF desde el recurso adjunto en la plataforma (<strong>Q10</strong>) y diligéncialo como
+                    <strong>evidencia de cierre del RAP2</strong>. Si el curso lo solicita, anéxalo al dossier del proyecto
+                    o súbelo como archivo independiente.
+                </p>
+                <div class="obligations-box">
+                    <span class="obligations-title">Entrega sugerida</span>
+                    <p>
+                        Úsalo como insumo para tus entregables finales (acuerdos, plan de comunicación, ensayo y foro) y como
+                        soporte de que gestionaste de forma explícita los <strong>stakeholders</strong> y los <strong>riesgos</strong>
+                        del proyecto.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Recomendación pedagógica -->
+    <div class="gpai-section">
+        <h3 class="gpai-title"><span style="font-size:2rem;">🎓</span> Recomendación pedagógica</h3>
+        <p>
+            En proyectos de <strong>IA</strong> y <strong>ciberseguridad</strong>, el riesgo no se gestiona “con intención”,
+            se gestiona con <strong>evidencia</strong>. Asegúrate de registrar controles reales
+            (MFA, backups probados, hardening, revisión de sesgos, monitoreo, aprobaciones) y decisiones formales.
+        </p>
+        <p>
+            Trabaja estas plantillas como un <strong>mapa vivo</strong> del proyecto: actualízalas cuando cambien los actores,
+            aparezcan nuevos riesgos o se implementen controles. Así fortaleces tu liderazgo y la trazabilidad del RAP2.
+        </p>
+
+        <div class="importance-grid">
+            <div class="imp-card">Visualiza quién decide y a quién debes cuidar.</div>
+            <div class="imp-card">Prioriza y documenta riesgos críticos de IA/ciber.</div>
+            <div class="imp-card">Da soporte sólido a tus evidencias de cierre del RAP2.</div>
+            <div class="imp-card">Facilita auditorías, lecciones aprendidas y mejora continua.</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+    </div>
+
+</div>
+
+</body>
+</html>

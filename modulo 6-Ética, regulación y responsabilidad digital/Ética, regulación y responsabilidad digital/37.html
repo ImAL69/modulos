@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .guidelines-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #00796b; /* Teal Oscuro */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #004d40;
+        margin: 0 auto 15px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* --- 1. PROPÓSITO --- */
+    .purpose-box {
+        background: #e0f2f1;
+        padding: 30px;
+        border-radius: 12px;
+        border-left: 6px solid #00695c;
+        margin-bottom: 40px;
+    }
+
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #00796b;
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-weight: 700;
+        border-bottom: 2px solid #b2dfdb;
+        padding-bottom: 10px;
+    }
+
+    .std-list {
+        padding-left: 20px;
+        margin-bottom: 0;
+    }
+
+    .std-list li {
+        margin-bottom: 10px;
+        line-height: 1.6;
+        position: relative;
+        list-style-type: disc;
+    }
+
+    /* --- 2. CONTEXTO --- */
+    .context-box {
+        margin-bottom: 50px;
+        font-size: 1.05rem;
+    }
+
+    .examples-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .example-card {
+        background: #fff;
+        border: 1px solid #cfd8dc;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        color: #455a64;
+        font-weight: 600;
+    }
+
+    /* --- 3. INSTRUCCIONES (TIMELINE DE PASOS) --- */
+    .instructions-container {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 50px;
+    }
+
+    .instructions-container::before {
+        content: '';
+        position: absolute;
+        left: 29px; top: 0; bottom: 0;
+        width: 2px; background: #b2dfdb; z-index: 0;
+    }
+
+    .step-card {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 25px;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+
+    .step-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .step-icon {
+        background: #00897b;
+        color: white;
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .step-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: #004d40;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    .step-content ul { padding-left: 20px; margin-top: 10px; }
+    .step-content li { margin-bottom: 8px; }
+
+    /* Estilo para código/archivos */
+    .code-snippet {
+        font-family: 'Roboto Mono', monospace;
+        background: #263238;
+        color: #80cbc4;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin: 5px 0;
+    }
+
+    /* --- 4. ENTREGABLE --- */
+    .deliverable-box {
+        background: #f1f8e9;
+        border: 2px dashed #8bc34a;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .deliverable-title {
+        font-family: 'Montserrat', sans-serif;
+        color: #33691e;
+        font-weight: 800;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    /* --- 5. EXPECTATIVAS (CHECKLIST) --- */
+    .expectations-box {
+        background: #fafafa;
+        padding: 30px;
+        border-radius: 12px;
+        border-left: 5px solid #546e7a;
+    }
+
+    .check-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .check-list li {
+        margin-bottom: 12px;
+        padding-left: 30px;
+        position: relative;
+    }
+
+    .check-list li::before {
+        content: '✔';
+        position: absolute;
+        left: 0;
+        color: #00897b;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 2rem; }
+        .instructions-container { padding-left: 0; }
+        .instructions-container::before { display: none; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="guidelines-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Documento de Lineamientos Éticos</h1>
+    </div>
+
+    <div class="purpose-box">
+        <h2 class="section-title">1. Propósito de la tarea</h2>
+        <p>Con esta actividad vas a:</p>
+        <ul class="std-list">
+            <li>Aplicar los conceptos de ética, protección de datos, IA responsable y gobierno algorítmico trabajados en el módulo.</li>
+            <li>Elaborar un documento formal de lineamientos éticos para un proyecto tecnológico real o simulado.</li>
+            <li>Usar una herramienta digital (el archivo .py suministrado) para estructurar y generar automáticamente un documento Word bien organizado.</li>
+        </ul>
+        <p style="margin-top:15px;"><strong>Esta tarea está alineada con el RA3:</strong> proponer lineamientos éticos y buenas prácticas para soluciones tecnológicas basadas en datos e IA.</p>
+    </div>
+
+    <div class="context-box">
+        <h2 class="section-title">2. Contexto de trabajo</h2>
+        <p>Deberás escoger <strong>un proyecto tecnológico</strong> (real de tu entorno o un caso simulado) que:</p>
+        <p>Use datos personales y/o genere algún tipo de perfilamiento, automatización, monitoreo o recomendación, por ejemplo:</p>
+        
+        <div class="examples-grid">
+            <div class="example-card">Plataforma educativa con analíticas de aprendizaje.</div>
+            <div class="example-card">Sistema de selección de personal con IA.</div>
+            <div class="example-card">App de seguimiento / geolocalización.</div>
+            <div class="example-card">Chatbot de atención a usuarios.</div>
+            <div class="example-card">Sistema de monitoreo laboral o académico.</div>
+        </div>
+        
+        <p style="text-align:center; margin-top:20px; font-weight:bold; color:#00796b;">Ese será el proyecto para el cual vas a construir tus lineamientos éticos.</p>
+    </div>
+
+    <h2 class="section-title">3. Instrucciones paso a paso (uso del archivo .py)</h2>
+    
+    <div class="instructions-container">
+        
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-icon">1</div>
+                <h3 class="step-title">Descarga el archivo Python</h3>
+            </div>
+            <div class="step-content">
+                <p>Desde la plataforma, descarga el archivo:</p>
+                <span class="code-snippet">Generador_Lineamientos_Eticos.py</span>
+                <p>Guárdalo en una carpeta de tu equipo (por ejemplo: Escritorio o Documentos).</p>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-icon">2</div>
+                <h3 class="step-title">Ejecuta la aplicación</h3>
+            </div>
+            <div class="step-content">
+                <p>Asegúrate de tener instalado <strong>Python 3</strong> en tu equipo.</p>
+                <p>Ejecuta el archivo:</p>
+                <ul>
+                    <li>O bien haciendo doble clic (si tu sistema lo permite),</li>
+                    <li>O desde consola/terminal con:<br><span class="code-snippet">python Generador_Lineamientos_Eticos.py</span></li>
+                </ul>
+                <p>Se abrirá una ventana con el título: <strong>“Generador de Lineamientos Éticos”</strong>.</p>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-icon">3</div>
+                <h3 class="step-title">Explora la estructura del formulario</h3>
+            </div>
+            <div class="step-content">
+                <p>Verás varias secciones, entre otras:</p>
+                <ul style="columns: 2; -webkit-columns: 2; -moz-columns: 2;">
+                    <li>Encabezado del documento.</li>
+                    <li>Información general del proyecto.</li>
+                    <li>Justificación ética y objetivos.</li>
+                    <li>Alcance y grupos afectados.</li>
+                    <li>Principios éticos.</li>
+                    <li>Lineamientos sobre uso de datos.</li>
+                    <li>Algoritmos e IA.</li>
+                    <li>Derechos y reclamación.</li>
+                    <li>Gobernanza: roles.</li>
+                    <li>Evaluación y seguimiento.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-icon">4</div>
+                <h3 class="step-title">Completa cada campo con información de tu proyecto</h3>
+            </div>
+            <div class="step-content">
+                <p><strong>No dejes los textos por defecto como producto final:</strong> debes adaptarlos, ampliarlos y contextualizarlos a tu caso.</p>
+                <p>En los campos de texto largo, desarrolla ideas en párrafos claros (no basta una frase suelta).</p>
+                <p><strong>Asegúrate de:</strong></p>
+                <ul>
+                    <li>Describir bien el proyecto y su contexto.</li>
+                    <li>Justificar por qué requiere lineamientos éticos.</li>
+                    <li>Identificar usuarios, grupos vulnerables y riesgos.</li>
+                    <li>Definir principios éticos aplicables.</li>
+                    <li>Establecer lineamientos concretos sobre datos, algoritmos, sesgos, transparencia, derechos y gobernanza.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-icon">5</div>
+                <h3 class="step-title">Genera el documento Word</h3>
+            </div>
+            <div class="step-content">
+                <p>Cuando termines de llenar el formulario, haz clic en el botón: <strong>“GENERAR DOCUMENTO WORD”</strong>.</p>
+                <p>Elige la carpeta donde deseas guardar el archivo y el nombre (por defecto sugerirá algo como: <span class="code-snippet">Lineamientos_Eticos_[Nombre_Proyecto].docx</span>).</p>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-icon">6</div>
+                <h3 class="step-title">Revisa y ajusta el documento Word</h3>
+            </div>
+            <div class="step-content">
+                <p>Abre el archivo .docx generado. Revisa: redacción, coherencia, ortografía y claridad.</p>
+                <p>Si es necesario, regresa a la aplicación, ajusta campos y vuelve a generar el documento.</p>
+                <p>Puedes hacer pequeñas mejoras de formato en Word (títulos, negritas, viñetas) sin alterar la estructura principal.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="deliverable-box">
+        <span class="deliverable-title">4. Producto a entregar en la plataforma</span>
+        <p>Deberás subir a Q10:</p>
+        <p><strong>Documento final de lineamientos éticos</strong><br>Formato: .docx o .pdf</p>
+        <span class="code-snippet">Lineamientos_Eticos_[TuApellido]_[NombreProyecto].docx/pdf</span>
+        <p style="font-size:0.9rem; margin-top:15px;">(Opcional, si el docente lo solicita) Breve comentario en el campo de entrega (3–5 líneas) indicando: Qué proyecto elegiste y qué parte te resultó más retadora (por ejemplo: sesgos, gobernanza, derechos, etc.).</p>
+    </div>
+
+    <div class="expectations-box">
+        <h2 class="section-title" style="color:#455a64; border-color:#cfd8dc;">5. Qué se espera que contenga tu documento</h2>
+        <p>Aunque la herramienta genera la estructura, se evaluará que el contenido:</p>
+        <ul class="check-list">
+            <li>No sea genérico, sino adaptado a tu proyecto.</li>
+            <li>Incluya una justificación ética clara (por qué este proyecto requiere cuidados especiales).</li>
+            <li>Identifique bien usuarios, personas afectadas y grupos vulnerables.</li>
+            <li>Formule principios éticos relevantes (dignidad, privacidad, no discriminación, transparencia, supervisión humana, proporcionalidad, etc.).</li>
+            <li>Defina lineamientos concretos, no solo declaraciones bonitas, por ejemplo:
+                <ul style="margin-top:5px; list-style:circle; padding-left:20px; color:#555;">
+                    <li>Cómo se minimizan datos.</li>
+                    <li>Qué no se va a hacer con los datos.</li>
+                    <li>Qué decisiones no se dejarán solo en manos del algoritmo.</li>
+                    <li>Cómo se informará a las personas y qué canales de reclamación tendrán.</li>
+                    <li>Quién es responsable de revisar el sistema y con qué frecuencia.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

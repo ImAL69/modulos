@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Material didáctico – Unidad 3 (RAP3)</title>
+  <style>
+:root{
+  --hero1:#0B3D91;
+  --hero2:#0B7285;
+  --hero3:#0EA5A4;
+
+  --g1:#006633;
+  --g2:#00aa55;
+  --g3:#004d26;
+
+  --b1:#0277bd;
+  --b2:#0288d1;
+  --b3:#01579b;
+
+  --bg:#f3f8ff;
+  --paper:#ffffff;
+  --ink:#1b1f24;
+  --muted: rgba(27,31,36,.72);
+  --soft: rgba(0,0,0,.06);
+  --shadow: 0 18px 44px rgba(0,0,0,.10);
+  --shadow2: 0 14px 30px rgba(0,0,0,.06);
+  --r16:16px;
+  --r18:18px;
+  --r22:22px;
+}
+
+*{ box-sizing:border-box; }
+body[isolated]{
+  margin:0;
+  font-family: Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 650px at 15% 0%, rgba(0,170,85,.12), transparent 55%),
+    radial-gradient(1200px 650px at 85% 10%, rgba(2,119,189,.15), transparent 55%),
+    var(--bg);
+}
+
+.page[isolated]{
+  max-width:1120px;
+  margin:0 auto;
+  padding:18px 14px 30px 14px;
+}
+
+/* HERO */
+.top[isolated]{
+  border-radius: var(--r22);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  border:1px solid rgba(0,0,0,.06);
+  background: linear-gradient(120deg, var(--hero1), var(--hero2), var(--hero3));
+  position: relative;
+}
+.top::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(900px 320px at 18% 0%, rgba(255,255,255,.22), transparent 62%),
+    radial-gradient(900px 360px at 82% 10%, rgba(14,165,164,.22), transparent 64%),
+    radial-gradient(850px 360px at 70% 90%, rgba(11,61,145,.18), transparent 62%);
+  pointer-events:none;
+  mix-blend-mode: screen;
+}
+.top-inner[isolated]{
+  position:relative;
+  z-index:1;
+  padding: 18px 18px 16px 18px;
+}
+.kicker[isolated]{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:999px;
+  background: rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.22);
+  font-weight:900;
+  color:#fff;
+  font-size:.92rem;
+}
+.kicker .i{ width:18px;height:18px; fill:#fff; }
+
+.h1[isolated]{
+  margin:10px 0 8px 0;
+  font-size:1.5rem;
+  line-height:1.2;
+  color:#fff;
+  letter-spacing:.2px;
+}
+.sub[isolated]{
+  margin:0;
+  max-width: 82ch;
+  line-height:1.6;
+  color: rgba(255,255,255,.92);
+  font-size:1rem;
+}
+
+.top-strip[isolated]{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:12px;
+  padding: 0 18px 18px 18px;
+  position:relative;
+  z-index:1;
+}
+@media (max-width: 900px){
+  .top-strip[isolated]{ grid-template-columns: 1fr; }
+}
+
+.stat[isolated]{
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: var(--r18);
+  padding: 12px 12px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.stat-ico[isolated]{
+  width:38px;height:38px;
+  border-radius: 15px;
+  display:grid;
+  place-items:center;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.22);
+  flex:0 0 38px;
+}
+.stat-ico .i{ width:18px;height:18px; fill:#fff; }
+.stat b{ display:block; color:#fff; font-size:1.2rem; line-height:1; margin-top:2px; }
+.stat span{ display:block; color: rgba(255,255,255,.92); font-weight:800; margin-top:4px; font-size:.9rem; }
+
+/* TOOLBAR */
+.toolbar[isolated]{
+  margin-top: 14px;
+  display:flex;
+  gap:10px;
+  flex-wrap: wrap;
+  align-items:center;
+}
+.search[isolated]{
+  flex:1 1 340px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius: var(--r18);
+  background: rgba(255,255,255,.96);
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow: var(--shadow2);
+}
+.search .i{ width:18px;height:18px; fill: var(--b3); }
+.search input{
+  width:100%;
+  border:0;
+  outline:none;
+  font-size:1rem;
+  background: transparent;
+}
+.btn[isolated]{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius: var(--r18);
+  border:1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.96);
+  font-weight:900;
+  color: var(--b3);
+  cursor:pointer;
+  box-shadow: var(--shadow2);
+}
+.btn:hover{ transform: translateY(-1px); }
+.btn .i{ width:18px;height:18px; fill: var(--b3); }
+
+/* MAIN GRID */
+.grid[isolated]{
+  margin-top: 12px;
+  display:grid;
+  grid-template-columns: 1.35fr .65fr;
+  gap: 14px;
+}
+@media (max-width: 980px){
+  .grid[isolated]{ grid-template-columns: 1fr; }
+}
+
+.card[isolated]{
+  background: var(--paper);
+  border-radius: var(--r22);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow: var(--shadow2);
+  overflow:hidden;
+}
+.card-h[isolated]{
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid rgba(0,0,0,.06);
+  background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(255,255,255,1));
+}
+.card-h h2{
+  margin:0;
+  font-size:1.05rem;
+  color: var(--g1);
+}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+  font-size:.83rem;
+  color: rgba(0,77,38,.90);
+  background: rgba(14,165,164,.12);
+  border:1px solid rgba(14,165,164,.20);
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+/* ACCORDION */
+.acc{ margin: 12px 14px; border-radius: var(--r18); border:1px solid rgba(0,0,0,.08); box-shadow: 0 12px 26px rgba(0,0,0,.04); overflow:hidden; }
+.acc-sum{
+  list-style:none;
+  cursor:pointer;
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  font-weight:900;
+  background: linear-gradient(180deg, rgba(2,119,189,.08), rgba(255,255,255,1));
+}
+.acc-sum::-webkit-details-marker{ display:none; }
+.acc-left{ display:flex; align-items:center; gap:10px; min-width:0; }
+.acc-ico{ width:36px;height:36px;border-radius:15px; display:grid; place-items:center; background: rgba(2,119,189,.10); border:1px solid rgba(2,119,189,.18); }
+.acc-ico .i{ width:18px;height:18px; fill: var(--b3); }
+.acc-title{ white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
+.acc-right{ display:flex; align-items:center; gap:10px; }
+.chev{ width:34px;height:34px;border-radius:14px; display:grid; place-items:center; background: rgba(0,0,0,.03); border:1px solid rgba(0,0,0,.10); transition: transform .15s ease; }
+.chev .i{ width:18px;height:18px; fill: rgba(0,0,0,.55); }
+details[open] .chev{ transform: rotate(180deg); }
+
+.acc-panel{ padding: 12px 14px 14px 14px; border-top:1px solid rgba(0,0,0,.06); background: #fff; }
+
+.videos-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+}
+@media (max-width: 760px){
+  .videos-grid{ grid-template-columns: 1fr; }
+}
+
+.video-card{
+  border-radius: var(--r18);
+  border:1px solid rgba(0,0,0,.08);
+  overflow:hidden;
+  box-shadow: 0 12px 26px rgba(0,0,0,.04);
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+}
+.thumb{
+  position:relative;
+  border:0;
+  padding:0;
+  background:#000;
+  width:100%;
+  aspect-ratio: 16/9;
+  cursor:pointer;
+}
+.thumb img{ width:100%; height:100%; object-fit:cover; display:block; opacity:.92; }
+.thumb-cta{
+  position:absolute;
+  left: 12px;
+  bottom: 12px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border-radius:999px;
+  background: rgba(255,255,255,.94);
+  border:1px solid rgba(0,0,0,.10);
+  color: var(--b3);
+  font-weight:900;
+}
+.thumb-cta .i{ width:18px;height:18px; fill: var(--b3); }
+
+.video-body{ padding: 12px 12px 14px 12px; display:flex; flex-direction:column; gap:10px; }
+.video-title{ margin:0; font-size:1rem; color: var(--g1); line-height:1.25; }
+.video-claves{ margin:0; color: rgba(27,31,36,.78); line-height:1.35; font-size:.95rem; }
+.tag{
+  display:inline-flex;
+  align-items:center;
+  font-weight:900;
+  font-size:.78rem;
+  color: var(--b3);
+  background: rgba(2,119,189,.10);
+  border:1px solid rgba(2,119,189,.18);
+  padding:3px 8px;
+  border-radius:999px;
+  margin-right: 8px;
+}
+
+.row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+.seen{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius: var(--r16);
+  background: rgba(14,165,164,.10);
+  border:1px solid rgba(14,165,164,.18);
+  font-weight:900;
+  color: rgba(0,77,38,.92);
+}
+.seen input{ width:18px; height:18px; }
+.seen .i{ width:18px;height:18px; fill: rgba(0,77,38,.92); }
+
+.link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius: var(--r16);
+  text-decoration:none;
+  font-weight:900;
+  color: var(--b3);
+  background: rgba(2,119,189,.08);
+  border:1px solid rgba(2,119,189,.14);
+}
+.link .i{ width:18px;height:18px; fill: var(--b3); }
+
+.notes{ display:grid; gap:10px; margin-top:6px; }
+.field{ border-radius: var(--r16); border:1px solid rgba(0,0,0,.10); padding:10px 10px; background: rgba(255,255,255,1); }
+.field-h{ display:flex; align-items:center; gap:10px; font-weight:900; color: rgba(27,31,36,.86); margin-bottom:6px; font-size:.92rem; }
+.field-h .i{ width:18px;height:18px; fill: rgba(27,31,36,.70); }
+.field input{ width:100%; border:0; outline:none; font-size:.96rem; background: transparent; }
+.field:focus-within{ border-color: rgba(0,170,85,.45); box-shadow: 0 0 0 4px rgba(0,170,85,.12); }
+
+/* SIDEBAR */
+.side[isolated]{ position: sticky; top: 12px; align-self: start; }
+.side-pad[isolated]{ padding: 14px 14px; }
+.side h3{ margin:0 0 10px 0; color: var(--g1); font-size:1.02rem; }
+.side p{ margin:0 0 10px 0; color: rgba(27,31,36,.80); line-height:1.45; }
+.box{
+  border-radius: var(--r18);
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  padding:12px 12px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.04);
+}
+.progress{
+  height: 12px;
+  border-radius:999px;
+  background: rgba(0,0,0,.06);
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,.08);
+}
+.progress > div{
+  height:100%;
+  width:0%;
+  background: linear-gradient(90deg, var(--hero1), var(--hero2), var(--hero3));
+  border-radius:999px;
+  transition: width .25s ease;
+}
+.small{ font-size:.9rem; color: rgba(27,31,36,.72); margin: 10px 0 0 0; }
+
+details.helper{ margin-top: 12px; border-radius: var(--r18); border:1px solid rgba(0,0,0,.08); box-shadow: 0 12px 26px rgba(0,0,0,.04); overflow:hidden; background:#fff; }
+details.helper summary{ cursor:pointer; list-style:none; padding:12px 14px; font-weight:900; background: linear-gradient(180deg, rgba(0,170,85,.10), rgba(255,255,255,1)); display:flex; justify-content:space-between; align-items:center; gap:12px; }
+details.helper summary::-webkit-details-marker{ display:none; }
+details.helper .panel{ padding: 10px 14px 14px 14px; border-top:1px solid rgba(0,0,0,.06); }
+details.helper ul{ margin: 10px 0 0 18px; padding:0; }
+details.helper li{ margin: 8px 0; line-height:1.42; }
+
+.footer[isolated]{
+  margin-top:14px;
+  background-color: #ccffcc;
+  color: #004d26;
+  text-align:center;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: var(--r18);
+  border: 1px solid rgba(0,170,85,.14);
+}
+  </style>
+</head>
+<body isolated="">
+  <div class="page" isolated="">
+
+    <header class="top" isolated="">
+      <div class="top-inner" isolated="">
+        <div class="kicker" isolated="">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 4h-1V2h-2v2H9V2H7v2H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H6V6h12v14ZM8 8h2v2H8V8Zm0 4h2v2H8v-2Zm0 4h2v2H8v-2Zm6-8h2v2h-2V8Zm0 4h2v2h-2v-2Zm0 4h2v2h-2v-2Z"/>
+          </svg>
+          Material didáctico · Unidad 3 · RAP3
+        </div>
+        <h1 class="h1" isolated="">🎥 Material didáctico – Unidad 3 (RAP3)</h1>
+        <p class="sub" isolated="">
+          En esta sección encontrarás los <strong>videos obligatorios</strong> para comprender y aplicar la Unidad 3:
+          evaluación de resultados, definición de <strong>KPIs (tiempo, costo, alcance, calidad)</strong>,
+          formulación de <strong>OKRs</strong>, uso de métricas ágiles y control de cambios con evidencia.
+          Marca cada video como <strong>visto</strong> y completa tu <strong>bitácora</strong> (se guarda automáticamente en este navegador).
+        </p>
+      </div>
+
+      <div class="top-strip" isolated="">
+        <div class="stat" isolated="">
+          <div class="stat-ico" isolated="">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 4h-1V2h-2v2H9V2H7v2H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H6V6h12v14ZM8 8h2v2H8V8Zm0 4h2v2H8v-2Zm0 4h2v2H8v-2Zm6-8h2v2h-2V8Zm0 4h2v2h-2v-2Zm0 4h2v2h-2v-2Z"/>
+            </svg>
+          </div>
+          <div><b>6</b><span>Videos obligatorios</span></div>
+        </div>
+        <div class="stat" isolated="">
+          <div class="stat-ico" isolated="">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+            </svg>
+          </div>
+          <div><b>3</b><span>Bloques temáticos</span></div>
+        </div>
+        <div class="stat" isolated="">
+          <div class="stat-ico" isolated="">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+            </svg>
+          </div>
+          <div><b>Bitácora</b><span>Idea · Riesgo · Acción</span></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="toolbar" isolated="">
+      <div class="search" isolated="">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 1 0 4.9 14.3l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0 0 10 2Zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12Z"/>
+        </svg>
+        <input id="q" type="search" placeholder="Buscar: beneficios, KPIs, OKR, métricas ágiles, control de cambios..." />
+      </div>
+      <button class="btn" id="btnReset" isolated="">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 6V3L8 7l4 4V8c2.76 0 5 2.24 5 5a5 5 0 0 1-8.66 3.54l-1.42 1.42A7 7 0 0 0 19 13c0-3.87-3.13-7-7-7Z"/>
+        </svg>
+        Reiniciar
+      </button>
+      <button class="btn" id="btnExport" isolated="">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+        </svg>
+        Exportar bitácora
+      </button>
+    </div>
+
+    <div class="grid" isolated="">
+      <main class="card" isolated="">
+        <div class="card-h" isolated="">
+          <h2>📚 Contenido por bloques</h2>
+          <span class="pill">Clic en la miniatura para vista previa</span>
+        </div>
+
+        <!-- BLOQUE A -->
+        <details class="acc" open>
+          <summary class="acc-sum">
+            <span class="acc-left">
+              <span class="acc-ico">
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"/>
+                </svg>
+              </span>
+              <span class="acc-title">A) Valor, beneficios y tableros de seguimiento</span>
+            </span>
+            <span class="acc-right">
+              <span class="pill">2 videos</span>
+              <span class="chev" aria-hidden="true">
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg>
+              </span>
+            </span>
+          </summary>
+          <div class="acc-panel">
+            <div class="videos-grid">
+
+              <article class="video-card" data-title="gestión de beneficios (valor generado) en proyectos" data-claves="beneficios vs entregables, realización de valor, medición de beneficios" data-sec="a) valor, beneficios y tableros de seguimiento">
+                <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/V-OsbfLjKok" data-loaded="0" aria-label="Abrir vista previa: Gestión de beneficios (valor generado) en proyectos">
+                  <img src="https://img.youtube.com/vi/V-OsbfLjKok/hqdefault.jpg" alt="Miniatura: Gestión de beneficios (valor generado) en proyectos" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                    Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">Gestión de beneficios (valor generado) en proyectos</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    cómo evaluar beneficios vs entregables y asegurar la realización de valor.
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="s0_v0">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg>
+                        Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://www.youtube.com/watch?v=V-OsbfLjKok" target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg>
+                      YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg>
+                        Idea aplicable
+                      </div>
+                      <input type="text" data-note="s0_v0_idea" placeholder="¿Qué idea sobre beneficios aplicarías en tu proyecto?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg>
+                        Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="s0_v0_riesgo" placeholder="¿Qué riesgo ves al no gestionar bien los beneficios?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg>
+                        Acción concreta
+                      </div>
+                      <input type="text" data-note="s0_v0_accion" placeholder="Define una acción para asegurar que el valor se mida y se reporte.">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="video-card" data-title="indicadores y cuadros de mando (tableros de seguimiento)" data-claves="tableros, cuadros de mando, indicadores para stakeholders" data-sec="a) valor, beneficios y tableros de seguimiento">
+                <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/6TM_qviCrCM" data-loaded="0" aria-label="Abrir vista previa: Indicadores y cuadros de mando (tableros de seguimiento)">
+                  <img src="https://img.youtube.com/vi/6TM_qviCrCM/hqdefault.jpg" alt="Miniatura: Indicadores y cuadros de mando (tableros de seguimiento)" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                    Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">Indicadores y cuadros de mando (tableros de seguimiento)</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    cómo organizar indicadores en un tablero para reportar a stakeholders (lectura ejecutiva).
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="s0_v1">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg>
+                        Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://www.youtube.com/watch?v=6TM_qviCrCM" target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg>
+                      YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg>
+                        Idea aplicable
+                      </div>
+                      <input type="text" data-note="s0_v1_idea" placeholder="¿Cómo organizarías tu tablero de control para el RAP3?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg>
+                        Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="s0_v1_riesgo" placeholder="¿Qué riesgo habría si no se actualizan los tableros?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg>
+                        Acción concreta
+                      </div>
+                      <input type="text" data-note="s0_v1_accion" placeholder="Define cómo y cuándo presentarás tu tablero al sponsor.">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </details>
+
+        <!-- BLOQUE B -->
+        <details class="acc" open>
+          <summary class="acc-sum">
+            <span class="acc-left">
+              <span class="acc-ico">
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm1 15h-2v-2h2Zm0-4h-2V7h2Z"/>
+                </svg>
+              </span>
+              <span class="acc-title">B) KPIs, OKRs y métricas ágiles</span>
+            </span>
+            <span class="acc-right">
+              <span class="pill">3 videos</span>
+              <span class="chev" aria-hidden="true">
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg>
+              </span>
+            </span>
+          </summary>
+          <div class="acc-panel">
+            <div class="videos-grid">
+
+              <article class="video-card" data-title="indicadores de gestión de proyectos (kpis aplicados)" data-claves="kpis de tiempo, costo, alcance y calidad" data-sec="b) kpis, okrs y métricas ágiles">
+                <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/Jt9QUR5wzyg" data-loaded="0" aria-label="Abrir vista previa: Indicadores de gestión de proyectos (KPIs aplicados)">
+                  <img src="https://img.youtube.com/vi/Jt9QUR5wzyg/hqdefault.jpg" alt="Miniatura: Indicadores de gestión de proyectos (KPIs aplicados)" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                    Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">Indicadores de gestión de proyectos (KPIs aplicados)</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    selección y uso de KPIs para controlar desempeño (avance, costo, alcance, calidad).
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="s1_v0">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg>
+                        Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://www.youtube.com/watch?v=Jt9QUR5wzyg" target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg>
+                      YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg>
+                        Idea aplicable
+                      </div>
+                      <input type="text" data-note="s1_v0_idea" placeholder="Define 4 KPIs (tiempo, costo, alcance, calidad) para tu proyecto.">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg>
+                        Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="s1_v0_riesgo" placeholder="¿Qué pasa si tus KPIs no tienen línea base ni meta?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg>
+                        Acción concreta
+                      </div>
+                      <input type="text" data-note="s1_v0_accion" placeholder="Escribe una acción para mejorar el seguimiento de KPIs.">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="video-card" data-title="okr (objetivos y resultados clave) explicado" data-claves="cómo formular objetivos y resultados clave medibles" data-sec="b) kpis, okrs y métricas ágiles">
+                <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/XpLLnM8iVJI" data-loaded="0" aria-label="Abrir vista previa: OKR (Objetivos y Resultados Clave) explicado">
+                  <img src="https://img.youtube.com/vi/XpLLnM8iVJI/hqdefault.jpg" alt="Miniatura: OKR (Objetivos y Resultados Clave) explicado" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                    Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">OKR (Objetivos y Resultados Clave) explicado</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    cómo formular OKRs medibles para orientar compromiso y resultados.
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="s1_v1">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg>
+                        Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://www.youtube.com/watch?v=XpLLnM8iVJI" target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg>
+                      YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg>
+                        Idea aplicable
+                      </div>
+                      <input type="text" data-note="s1_v1_idea" placeholder="Redacta 1 objetivo + 3 resultados clave para tu proyecto.">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg>
+                        Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="s1_v1_riesgo" placeholder="¿Qué riesgo hay si tus OKRs no son medibles?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg>
+                        Acción concreta
+                      </div>
+                      <input type="text" data-note="s1_v1_accion" placeholder="Escribe una acción para alinear al equipo con tu OKR.">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="video-card" data-title="métricas ágiles: burndown y burnup (seguimiento del avance)" data-claves="burndown, burnup, seguimiento ágil del avance" data-sec="b) kpis, okrs y métricas ágiles">
+                <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/I6I-zRJrsLU" data-loaded="0" aria-label="Abrir vista previa: Métricas ágiles: Burndown y Burnup (seguimiento del avance)">
+                  <img src="https://img.youtube.com/vi/I6I-zRJrsLU/hqdefault.jpg" alt="Miniatura: Métricas ágiles: Burndown y Burnup (seguimiento del avance)" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                    Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">Métricas ágiles: Burndown y Burnup (seguimiento del avance)</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    cómo leer y usar gráficos ágiles para detectar desviaciones y tomar decisiones.
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="s1_v2">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg>
+                        Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://www.youtube.com/watch?v=I6I-zRJrsLU" target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg>
+                      YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg>
+                        Idea aplicable
+                      </div>
+                      <input type="text" data-note="s1_v2_idea" placeholder="¿Qué métrica ágil usarías para hacer seguimiento semanal?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg>
+                        Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="s1_v2_riesgo" placeholder="¿Qué riesgo hay si no se monitorea la tendencia de avance?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg>
+                        Acción concreta
+                      </div>
+                      <input type="text" data-note="s1_v2_accion" placeholder="Plantea una acción basada en un burndown o burnup.">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </details>
+
+        <!-- BLOQUE C -->
+        <details class="acc" open>
+          <summary class="acc-sum">
+            <span class="acc-left">
+              <span class="acc-ico">
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 4h14v2H5Zm2 4h10v2H7Zm-2 4h14v2H5Zm2 4h10v2H7Z"/>
+                </svg>
+              </span>
+              <span class="acc-title">C) Control de cambios y trazabilidad</span>
+            </span>
+            <span class="acc-right">
+              <span class="pill">1 video</span>
+              <span class="chev" aria-hidden="true">
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg>
+              </span>
+            </span>
+          </summary>
+          <div class="acc-panel">
+            <div class="videos-grid">
+
+              <article class="video-card" data-title="control de cambios (alcance/costo/tiempo) con trazabilidad" data-claves="impacto de cambios en alcance, costo, tiempo y riesgo" data-sec="c) control de cambios y trazabilidad">
+                <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/j15g3fB4ocU" data-loaded="0" aria-label="Abrir vista previa: Control de cambios (alcance/costo/tiempo) con trazabilidad">
+                  <img src="https://img.youtube.com/vi/j15g3fB4ocU/hqdefault.jpg" alt="Miniatura: Control de cambios (alcance/costo/tiempo) con trazabilidad" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                    Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">Control de cambios (alcance/costo/tiempo) con trazabilidad</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    proceso práctico para evaluar impacto, decidir y documentar cambios sin perder control.
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="s2_v0">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg>
+                        Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://www.youtube.com/watch?v=j15g3fB4ocU" target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg>
+                      YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg>
+                        Idea aplicable
+                      </div>
+                      <input type="text" data-note="s2_v0_idea" placeholder="Redacta 1 ejemplo de control de cambios para tu proyecto.">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg>
+                        Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="s2_v0_riesgo" placeholder="¿Qué pasaría si no se analizan impactos de los cambios?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg>
+                        Acción concreta
+                      </div>
+                      <input type="text" data-note="s2_v0_accion" placeholder="Describe cómo documentarás cambios y su trazabilidad en el RAP3.">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </details>
+
+      </main>
+
+      <aside class="card side" isolated="">
+        <div class="side-pad" isolated="">
+          <h3>📓 Bitácora y progreso</h3>
+          <p>
+            Usa esta sección para monitorear tu avance y recordar que la meta de la Unidad 3 es
+            <strong>definir indicadores y tableros que demuestren valor</strong> en tu proyecto de IA/ciberseguridad.
+          </p>
+
+          <div class="box">
+            <p class="small"><strong>Progreso de visualización</strong> (videos marcados como “visto”)</p>
+            <div class="progress" aria-hidden="true">
+              <div id="bar"></div>
+            </div>
+            <p class="small" id="progressLabel">0 de 6 videos vistos</p>
+          </div>
+
+          <details class="helper">
+            <summary>
+              <span>💡 Cómo aprovechar mejor estos videos</span>
+              <span class="pill">Guía rápida</span>
+            </summary>
+            <div class="panel">
+              <ul>
+                <li>Completa al menos <strong>una idea, un riesgo y una acción</strong> por video.</li>
+                <li>Selecciona <strong>4 KPIs</strong> y <strong>1 OKR</strong> de tu bitácora para construir tu tablero.</li>
+                <li>Conecta cada indicador con una <strong>fuente de evidencia</strong> (logs, tickets, reportes, encuestas).</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="footer" isolated="">
+      Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+    </footer>
+
+  </div>
+
+  <script>
+  (function(){
+    const STORAGE_KEY = "MD_U3_RAP3";
+    const seenInputs = Array.from(document.querySelectorAll("[data-seen]"));
+    const noteInputs = Array.from(document.querySelectorAll("[data-note]"));
+    const progressBar = document.getElementById("bar");
+    const progressLabel = document.getElementById("progressLabel");
+    const q = document.getElementById("q");
+    const btnReset = document.getElementById("btnReset");
+    const btnExport = document.getElementById("btnExport");
+    const cards = Array.from(document.querySelectorAll(".video-card"));
+
+    function loadState(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return;
+        const data = JSON.parse(raw);
+        seenInputs.forEach(ch => {
+          const key = ch.getAttribute("data-seen");
+          if(data.seen && data.seen[key] === true) ch.checked = true;
+        });
+        noteInputs.forEach(inp => {
+          const key = inp.getAttribute("data-note");
+          if(data.notes && typeof data.notes[key] === "string") inp.value = data.notes[key];
+        });
+      }catch(e){
+        console.warn("No se pudo cargar el estado de la bitácora", e);
+      }
+      updateProgress();
+    }
+
+    function saveState(){
+      const data = { seen:{}, notes:{} };
+      seenInputs.forEach(ch => {
+        const key = ch.getAttribute("data-seen");
+        data.seen[key] = ch.checked;
+      });
+      noteInputs.forEach(inp => {
+        const key = inp.getAttribute("data-note");
+        data.notes[key] = inp.value || "";
+      });
+      try{
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      }catch(e){
+        console.warn("No se pudo guardar la bitácora", e);
+      }
+      updateProgress();
+    }
+
+    function updateProgress(){
+      const total = seenInputs.length;
+      const seen = seenInputs.filter(ch => ch.checked).length;
+      const pct = total ? Math.round(seen * 100 / total) : 0;
+      if(progressBar) progressBar.style.width = pct + "%";
+      if(progressLabel) progressLabel.textContent = seen + " de " + total + " videos vistos";
+    }
+
+    function handleSearch(){
+      const term = (q.value || "").toLowerCase().trim();
+      cards.forEach(card => {
+        const title = (card.getAttribute("data-title") || "").toLowerCase();
+        const claves = (card.getAttribute("data-claves") || "").toLowerCase();
+        const sec = (card.getAttribute("data-sec") || "").toLowerCase();
+        const match = !term || title.includes(term) || claves.includes(term) || sec.includes(term);
+        card.style.display = match ? "" : "none";
+      });
+    }
+
+    function resetAll(){
+      if(!confirm("Esto borrará el estado guardado de la bitácora en este navegador. ¿Continuar?")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      seenInputs.forEach(ch => ch.checked = false);
+      noteInputs.forEach(inp => inp.value = "");
+      updateProgress();
+    }
+
+    function exportNotes(){
+      let lines = [];
+      cards.forEach(card => {
+        const title = card.querySelector(".video-title") ? card.querySelector(".video-title").textContent.trim() : (card.getAttribute("data-title") || "");
+        const fields = card.querySelectorAll("[data-note]");
+        if(!fields.length) return;
+        lines.push("VIDEO: " + title);
+        fields.forEach(f => {
+          const key = f.getAttribute("data-note") || "";
+          let label = "Nota";
+          if(key.includes("idea")) label = "Idea aplicable";
+          else if(key.includes("riesgo")) label = "Riesgo / resistencia";
+          else if(key.includes("accion")) label = "Acción concreta";
+          lines.push("  - " + label + ": " + (f.value || "").trim());
+        });
+        lines.push("");
+      });
+      const blob = new Blob([lines.join("\n")], {type:"text/plain;charset=utf-8"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Bitacora_Unidad3_RAP3.txt";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Carga estado
+    loadState();
+
+    // Eventos
+    seenInputs.forEach(ch => ch.addEventListener("change", saveState));
+    noteInputs.forEach(inp => inp.addEventListener("input", saveState));
+    if(q) q.addEventListener("input", handleSearch);
+    if(btnReset) btnReset.addEventListener("click", resetAll);
+    if(btnExport) btnExport.addEventListener("click", exportNotes);
+
+    // Embeds de YouTube al vuelo
+    const thumbs = Array.from(document.querySelectorAll(".thumb"));
+    thumbs.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const loaded = btn.getAttribute("data-loaded");
+        if(loaded === "1") return;
+        const src = btn.getAttribute("data-embed");
+        if(!src) return;
+        const iframe = document.createElement("iframe");
+        iframe.width = "100%";
+        iframe.height = "100%";
+        iframe.src = src + "?autoplay=1";
+        iframe.title = "YouTube video player";
+        iframe.frameBorder = "0";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+        btn.innerHTML = "";
+        btn.appendChild(iframe);
+        btn.setAttribute("data-loaded", "1");
+      });
+    });
+
+  })();
+  </script>
+</body>
+</html>

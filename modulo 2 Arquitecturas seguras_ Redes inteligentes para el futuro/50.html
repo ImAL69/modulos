@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .rubric-arch-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0288d1; /* Azul Tech */
+    }
+
+    /* --- LOGO UNIVERSIDAD --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+        border-bottom: 2px solid #e1f5fe;
+        padding-bottom: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #01579b;
+        margin: 0 auto 10px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+    }
+
+    .sub-title {
+        font-size: 1.2rem;
+        color: #0288d1;
+        font-weight: 500;
+    }
+
+    /* --- TARJETAS DE ACTIVIDAD --- */
+    .activity-section {
+        margin-bottom: 50px;
+    }
+
+    .activity-header {
+        background: #0288d1;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px 10px 0 0;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .points-badge {
+        background: #fff;
+        color: #0288d1;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 800;
+    }
+
+    /* --- TABLA RESPONSIVA --- */
+    .table-wrapper {
+        overflow-x: auto;
+        border: 1px solid #b3e5fc;
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .rubric-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 900px;
+        font-size: 0.95rem;
+    }
+
+    .rubric-table th {
+        background-color: #e1f5fe;
+        color: #01579b;
+        padding: 15px;
+        text-align: left;
+        font-weight: 700;
+        border-bottom: 2px solid #b3e5fc;
+    }
+
+    .rubric-table td {
+        padding: 15px;
+        border-bottom: 1px solid #e0e0e0;
+        vertical-align: top;
+        line-height: 1.5;
+    }
+
+    /* Columnas */
+    .col-crit { width: 20%; font-weight: 700; background: #fafafa; color: #455a64; }
+    .col-pts { width: 10%; text-align: center; font-weight: 800; color: #0277bd; background: #fff; }
+    .col-level { width: 17.5%; }
+
+    /* Niveles de Desempeño */
+    .level-exc { background-color: #e8f5e9; border-left: 4px solid #2e7d32; }
+    .level-bueno { background-color: #fffde7; border-left: 4px solid #fbc02d; }
+    .level-basico { background-color: #fff3e0; border-left: 4px solid #ef6c00; }
+    .level-bajo { background-color: #ffebee; border-left: 4px solid #c62828; }
+
+    /* --- SECCIÓN CUESTIONARIO --- */
+    .quiz-box {
+        background: #f5f5f5;
+        border: 1px solid #cfd8dc;
+        border-radius: 10px;
+        padding: 30px;
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .quiz-math {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #37474f;
+        margin: 20px 0;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    /* --- TOTAL --- */
+    .total-box {
+        background: #263238;
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-top: 40px;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .total-box { flex-direction: column; gap: 10px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="rubric-arch-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Plan de Evaluación - Unidad 1</h1>
+        <p class="sub-title">Capas, Patrones y Atributos de Calidad</p>
+    </div>
+
+    <div class="activity-section">
+        <div class="activity-header">
+            <span>💬 FORO: Principios de arquitecturas tecnológicas</span>
+            <span class="points-badge">50 Puntos (50%)</span>
+        </div>
+        
+        <div class="table-wrapper">
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Criterio</th>
+                        <th style="text-align:center;">Pts Max</th>
+                        <th>Excelente</th>
+                        <th>Bueno</th>
+                        <th>Básico</th>
+                        <th>Deficiente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td class="col-crit">1. Uso de conceptos de la Unidad 1<br><span style="font-size:0.8rem; font-weight:normal;">(Capas, patrones, atributos de calidad)</span></td>
+                        <td class="col-pts">20</td>
+                        <td class="level-exc">Integra correctamente términos técnicos (jerárquico, core, resiliencia, segmentación) y los aplica con precisión al caso.</td>
+                        <td class="level-bueno">Usa los conceptos adecuadamente, aunque con alguna imprecisión menor en la terminología técnica.</td>
+                        <td class="level-basico">Menciona los conceptos de forma superficial o con errores conceptuales evidentes sobre arquitectura.</td>
+                        <td class="level-bajo">No utiliza el vocabulario técnico del módulo o lo usa de forma incorrecta.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-crit">2. Análisis y argumentación<br><span style="font-size:0.8rem; font-weight:normal;">(Profundidad, justificación, causas-consecuencias)</span></td>
+                        <td class="col-pts">15</td>
+                        <td class="level-exc">Justifica sólidamente sus decisiones de diseño. Relaciona claramente causas (diseño) con consecuencias (riesgo/negocio).</td>
+                        <td class="level-bueno">Presenta argumentos lógicos, aunque podría profundizar más en el impacto de las decisiones de diseño.</td>
+                        <td class="level-basico">El análisis es descriptivo ("esto es un firewall") sin argumentar el porqué de su uso o ubicación.</td>
+                        <td class="level-bajo">Opiniones sin sustento técnico o argumentos incoherentes.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-crit">3. Participación con compañeros<br><span style="font-size:0.8rem; font-weight:normal;">(Calidad de respuestas, aporte al diálogo)</span></td>
+                        <td class="col-pts">10</td>
+                        <td class="level-exc">Realiza 2 o más réplicas que aportan valor (preguntas, complementos, correcciones constructivas).</td>
+                        <td class="level-bueno">Cumple con las réplicas de manera respetuosa, pero el aporte técnico en ellas es moderado.</td>
+                        <td class="level-basico">Réplicas tipo "estoy de acuerdo" o "buen aporte" sin contenido sustancial.</td>
+                        <td class="level-bajo">No interactúa con compañeros o lo hace de forma irrespetuosa.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-crit">4. Claridad y cumplimiento<br><span style="font-size:0.8rem; font-weight:normal;">(Estructura, redacción, instrucciones)</span></td>
+                        <td class="col-pts">5</td>
+                        <td class="level-exc">Redacción impecable y técnica. Responde a todos los puntos de la opción elegida (A o B).</td>
+                        <td class="level-bueno">Texto claro con errores menores. Sigue la mayoría de instrucciones.</td>
+                        <td class="level-basico">Redacción confusa o incompleta (falta responder alguna pregunta de la guía).</td>
+                        <td class="level-bajo">Mensaje desordenado, difícil de leer o que no sigue la consigna.</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="activity-section">
+        <div class="activity-header" style="background:#37474f;">
+            <span>📝 CUESTIONARIO: Capas, patrones y atributos</span>
+            <span class="points-badge" style="color:#37474f;">50 Puntos (50%)</span>
+        </div>
+        
+        <div class="quiz-box">
+            <p>Evaluación automática de conocimientos teóricos y prácticos vistos en las lecturas.</p>
+            <div class="quiz-math">
+                10 Preguntas &times; 5 Puntos c/u = 50 Puntos
+            </div>
+            <p style="font-size:0.9rem; color:#546e7a;">Temas: Capas lógicas, Topologías, NFRs (Disponibilidad, Escalabilidad, Seguridad).</p>
+        </div>
+    </div>
+
+    <div class="total-box">
+        <span>TOTAL UNIDAD 1</span>
+        <span style="color:#4fc3f7;">100 Puntos (100%)</span>
+    </div>
+
+</div>
+
+</body>
+</html>

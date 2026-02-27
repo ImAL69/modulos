@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unidad 3 – Evaluación de resultados y valor generado (RAP3)</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .unit-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd; /* Azul institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .unit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        text-transform: none;
+        color: #01579b;
+        margin: 0 auto 10px auto;
+        max-width: 90%;
+        line-height: 1.2;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .unit-subtitle {
+        font-size: 1.1rem;
+        color: #0288d1;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    /* IMAGEN HERO (nueva) */
+    .hero-img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(1, 87, 155, 0.15);
+        margin: 0 auto 30px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+    }
+
+    /* --- CONTENIDO GENERAL --- */
+    .content {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .content h2 {
+        font-family: 'Montserrat', sans-serif;
+        color: #01579b;
+        font-size: 1.6rem;
+        margin-top: 28px;
+        margin-bottom: 12px;
+    }
+
+    .content p {
+        margin-bottom: 14px;
+        text-align: justify;
+    }
+
+    .content ul {
+        margin: 8px 0 15px 22px;
+        padding: 0;
+    }
+
+    .content li {
+        margin-bottom: 6px;
+    }
+
+    /* --- CAJAS ESPECIALES (ADAPTADAS AL ESTILO AZUL) --- */
+    .axis-box {
+        background-color: #e3f2fd;
+        border-left: 5px solid #1e88e5;
+        padding: 15px 18px;
+        margin: 15px 0;
+        border-radius: 10px;
+    }
+    .axis-box h4 {
+        color: #0d47a1;
+        margin: 0 0 8px 0;
+        font-size: 1.1rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .axis-box ul {
+        margin: 5px 0 5px 20px;
+    }
+
+    .highlight-box {
+        background-color: #e8f5e9;
+        border-left: 5px solid #43a047;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .highlight-box p {
+        margin: 6px 0;
+    }
+
+    .activity-box {
+        background-color: #fff8e1;
+        border-left: 5px solid #ffb300;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .activity-box p {
+        margin: 6px 0;
+    }
+
+    .emphasis {
+        font-weight: bold;
+        color: #00796b;
+    }
+
+    a {
+        color: #1565c0;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #555;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 15px auto;
+        }
+        .unit-title { font-size: 1.9rem; max-width: 100%; }
+        .hero-img { margin-bottom: 20px; }
+    }
+
+
+/* --- MEJORAS LECTURA (TOC + DETALLES) --- */
+.toc-box{
+  background:#f3f8ff;
+  border:1px solid rgba(2,136,209,.18);
+  border-left:5px solid #0288d1;
+  border-radius:12px;
+  padding:14px 18px;
+  margin:16px 0 10px 0;
+}
+.toc-box h3{
+  margin:0 0 10px 0;
+  font-family:'Montserrat',sans-serif;
+  color:#01579b;
+  font-size:1.1rem;
+}
+.toc-box ol{ margin:0 0 0 18px; }
+.toc-box li{ margin:6px 0; }
+
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:.85rem;
+  font-weight:700;
+  font-family:'Montserrat',sans-serif;
+  background:#e3f2fd;
+  color:#0d47a1;
+  border:1px solid rgba(13,71,161,.15);
+}
+
+.style-details{
+  border-radius:12px;
+  border:1px solid rgba(13,71,161,.12);
+  background:#ffffff;
+  margin:14px 0;
+  overflow:hidden;
+}
+.style-details summary{
+  cursor:pointer;
+  padding:14px 16px;
+  font-family:'Montserrat',sans-serif;
+  font-weight:800;
+  color:#0d47a1;
+  list-style:none;
+}
+.style-details summary::-webkit-details-marker{ display:none; }
+.style-details .inner{
+  padding:0 16px 14px 16px;
+}
+hr.sep{
+  border:none;
+  height:1px;
+  background:linear-gradient(90deg, rgba(2,136,209,.0), rgba(2,136,209,.25), rgba(2,136,209,.0));
+  margin:24px 0;
+}
+
+  
+/* ============================
+   FORMATO LECTURA 2 (SIDENAV)
+   ============================ */
+:root{
+  --nav-bg: rgba(255,255,255,.86);
+  --nav-border: rgba(0,0,0,.08);
+  --nav-shadow: 0 16px 40px rgba(0,0,0,.08);
+  --nav-accent: rgba(0,170,85,1);
+  --nav-accent-2: rgba(47,128,237,1);
+  --nav-text: #0d47a1;
+  --nav-muted: rgba(13,71,161,.72);
+}
+
+.page-shell{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 14px 80px 14px;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 16px;
+}
+
+/* Sidebar */
+.side-nav{
+  position: sticky;
+  top: 14px;
+  align-self: start;
+  border-radius: 18px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
+  padding: 12px;
+  overflow: hidden;
+}
+
+.side-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 6px 8px 10px 8px;
+}
+
+.side-title{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: .98rem;
+  color: #004d26;
+  margin: 0;
+  line-height: 1.1;
+}
+.side-sub{
+  display:block;
+  margin-top: 2px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: .78rem;
+  color: rgba(0,77,38,.72);
+}
+
+.side-meter{
+  width: 78px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.06);
+  overflow: hidden;
+}
+.side-meter > div{
+  width: 0%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--nav-accent), var(--nav-accent-2));
+}
+
+.side-list{
+  list-style: none;
+  margin: 6px 0 0 0;
+  padding: 0;
+  display:flex;
+  flex-direction:column;
+  gap: 6px;
+}
+
+.side-link{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  text-decoration: none;
+  border-radius: 14px;
+  padding: 10px 10px;
+  border: 1px solid rgba(13,71,161,.12);
+  background: #ffffff;
+  box-shadow: 0 10px 22px rgba(0,0,0,.03);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.side-link:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(0,0,0,.05);
+  border-color: rgba(13,71,161,.20);
+}
+
+.side-ico{
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  display:grid;
+  place-items:center;
+  background: #eef6ff;
+  border: 1px solid rgba(13,71,161,.14);
+  flex: 0 0 28px;
+}
+.side-ico svg{ width: 16px; height: 16px; fill: var(--nav-text); }
+
+.side-text{
+  min-width: 0;
+}
+.side-text b{
+  display:block;
+  font-family:'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: .90rem;
+  color: var(--nav-text);
+  line-height: 1.15;
+}
+.side-text span{
+  display:block;
+  font-family:'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: .76rem;
+  color: var(--nav-muted);
+  margin-top: 2px;
+  line-height: 1.15;
+}
+
+/* Active */
+.side-link.active{
+  border-color: rgba(0,170,85,.28);
+  background: linear-gradient(180deg, rgba(245,255,249,1), rgba(255,255,255,1));
+  box-shadow: 0 16px 34px rgba(0,170,85,.10);
+}
+.side-link.active .side-ico{
+  background: rgba(0,170,85,.12);
+  border-color: rgba(0,170,85,.25);
+}
+.side-link.active .side-ico svg{ fill: #0b6b3a; }
+.side-link.active .side-text b{ color: #0b6b3a; }
+
+/* Main content tweaks */
+.main-col .unit-container{
+  margin: 0;
+}
+
+/* Floating "Top" button */
+.fab-top{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display:grid;
+  place-items:center;
+  background: linear-gradient(90deg, rgba(0,102,51,1), rgba(0,170,85,1));
+  color: #fff;
+  border: 1px solid rgba(0,102,51,.25);
+  box-shadow: 0 18px 36px rgba(0,102,51,.18);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .15s ease, transform .15s ease;
+  z-index: 1000;
+}
+.fab-top.show{ opacity: 1; transform: translateY(0); }
+.fab-top svg{ width: 18px; height: 18px; fill: #fff; }
+
+/* Mobile: hide sidebar, show bottom dock nav */
+.dock{
+  display:none;
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1200;
+  border-radius: 18px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
+  padding: 10px 10px;
+}
+.dock-row{
+  display:flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+.dock a{
+  flex: 1 1 0;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 8px;
+  padding: 10px 10px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(13,71,161,.12);
+  box-shadow: 0 10px 22px rgba(0,0,0,.03);
+  font-family:'Montserrat',sans-serif;
+  font-weight: 900;
+  font-size: .86rem;
+  color: var(--nav-text);
+}
+.dock a svg{ width: 16px; height: 16px; fill: var(--nav-text); }
+
+@media (max-width: 980px){
+  .page-shell{ grid-template-columns: 1fr; padding-bottom: 110px; }
+  .side-nav{ display:none; }
+  .dock{ display:block; }
+}
+
+  </style>
+</head>
+<body>
+
+<div class="page-shell" id="top">
+  <aside class="side-nav" aria-label="Navegación de lectura">
+    <div class="side-head">
+      <div>
+        <p class="side-title">Lectura Unidad 3<span class="side-sub">Resultados y valor (RAP3)</span></p>
+      </div>
+      <div class="side-meter" aria-hidden="true"><div id="meterFill"></div></div>
+    </div>
+
+    <ul class="side-list" role="list">
+      <li><a class="side-link" data-sec href="#s1">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c3.9 0 7 3.1 7 7 0 5-7 13-7 13S5 14 5 9c0-3.9 3.1-7 7-7Zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"></path></svg></span>
+        <span class="side-text"><b>Adopción</b><span>Qué es y por qué falla</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s2">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 6v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4Z"></path></svg></span>
+        <span class="side-text"><b>Resistencia</b><span>Tipos y señales</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s3">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 19.6 19.6 22l-7.1-7.1a6 6 0 0 1-7.8-7.8l3 3 2.1-2.1-3-3a6 6 0 0 1 7.8 7.8L22 19.6Z"></path></svg></span>
+        <span class="side-text"><b>Acciones</b><span>Qué debe liderar</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s4">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 2A3.5 3.5 0 0 0 6 5.5V6a3 3 0 0 0 0 6v.5A3.5 3.5 0 0 0 9.5 16H10v6H8v-3H6v3H4v-4.5A5.5 5.5 0 0 1 7 12a5 5 0 0 1-1-3 5 5 0 0 1 1-3 5.5 5.5 0 0 1 2.5-4Z M14 16h.5A3.5 3.5 0 0 0 18 12.5V12a3 3 0 0 0 0-6v-.5A3.5 3.5 0 0 0 14.5 2H14a5.5 5.5 0 0 1 2.5 4 5 5 0 0 1 1 3 5 5 0 0 1-1 3 5.5 5.5 0 0 1-2.5 4Z"></path></svg></span>
+        <span class="side-text"><b>Modelos</b><span>ADKAR & Kotter</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s5">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h2v2h10l-2 4 2 4H8v10H6V2Z"></path></svg></span>
+        <span class="side-text"><b>IA & Seguridad</b><span>Adopción con confianza</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s6">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16v2H4v-2Zm2-2V7h3v10H6Zm5 0V4h3v13h-3Zm5 0v-8h3v8h-3Z"></path></svg></span>
+        <span class="side-text"><b>KPIs</b><span>Indicadores mínimos</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#links">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h3v2h-3a3 3 0 0 0 0 6h3v2h-3a5 5 0 0 1-5-5Zm7-1h2v2h-2v-2Zm4.1-4h3a5 5 0 0 1 0 10h-3v-2h3a3 3 0 0 0 0-6h-3V7Z"></path></svg></span>
+        <span class="side-text"><b>Enlaces</b><span>Consulta y profundidad</span></span>
+      </a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-col">
+
+    <div class="unit-container">
+      <div class="header-box">
+        <span class="unit-subtitle">📘 Lectura – Unidad 3 (RAP3)</span>
+        <h1 class="unit-title">Evaluación de resultados y valor generado (beneficios vs entregables)</h1>
+        <!-- Hero: puedes reemplazar esta imagen por otra más específica si lo deseas -->
+        <img src="https://www.dropbox.com/scl/fi/5e6v1qy29yh54etcdpn1j/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.39_f1b1242f.jpg?rlkey=1z8a7oucdkbqamhyyn064ez2c&raw=1" 
+             alt="Evaluación de resultados y valor generado" class="hero-img">
+      </div>
+
+      <div class="content">
+        <p>
+          En proyectos tecnológicos, especialmente en <strong>IA</strong> y <strong>ciberseguridad</strong>, es común “entregar cosas”
+          (software, dashboards, políticas, controles) y aun así <strong>no generar valor</strong> real para la organización.
+          Por eso, en esta unidad aprenderás a evaluar el proyecto desde una mirada crítica:
+          <strong>¿qué beneficios se prometieron?</strong> vs <strong>¿qué entregables se produjeron?</strong>
+          y, sobre todo, <strong>¿qué cambió realmente</strong> en el desempeño, el riesgo, la continuidad o la experiencia del usuario?
+        </p>
+
+        <div class="highlight-box">
+          <p style="font-weight: bold;">Idea clave</p>
+          <p>
+            <strong>Entregables</strong> = productos o resultados tangibles del proyecto (lo que se construye/instala/documenta).<br>
+            <strong>Beneficios (valor)</strong> = mejoras medibles que ocurren gracias a esos entregables (lo que cambia y se sostiene en el tiempo).
+          </p>
+        </div>
+
+        <h2 id="s1">1) ¿Por qué beneficios ≠ entregables?</h2>
+        <div class="axis-box">
+          <p>
+            Un entregable puede existir sin generar valor si no se adopta, no se integra, no se usa o no reduce riesgos reales.
+            Por ejemplo:
+          </p>
+          <ul>
+            <li><strong>Ciberseguridad:</strong> “Implementamos MFA” (entregable) vs “Reducimos accesos no autorizados y phishing exitoso” (beneficio).</li>
+            <li><strong>IA:</strong> “Modelo entrenado” (entregable) vs “Mejoramos la precisión de decisiones y reducimos tiempos operativos” (beneficio).</li>
+            <li><strong>Gobierno:</strong> “Política redactada” (entregable) vs “Cumplimiento y auditoría con evidencia” (beneficio).</li>
+          </ul>
+        </div>
+
+        <h2 id="s2">2) Marco práctico para evaluar valor: de la promesa a la evidencia</h2>
+        <div class="activity-box">
+          <p><strong>Paso 1: define beneficios esperados</strong></p>
+          <ul>
+            <li>¿Qué problema disminuye? ¿qué mejora? ¿qué riesgo reduce?</li>
+            <li>¿Quién se beneficia y cómo se mide?</li>
+          </ul>
+
+          <p><strong>Paso 2: define indicadores (KPI/OKR)</strong></p>
+          <ul>
+            <li>Que sean medibles, verificables y con línea base (antes) + meta (después).</li>
+            <li>Incluye al menos 1 indicador de adopción y 1 de calidad/seguridad.</li>
+          </ul>
+
+          <p><strong>Paso 3: establece fuentes de evidencia</strong></p>
+          <ul>
+            <li>Logs, reportes de SIEM/EDR, tickets, auditoría, métricas de rendimiento, encuestas, tiempos de proceso.</li>
+            <li>Actas de aprobación, pruebas, checklist de despliegue, evidencias de capacitación.</li>
+          </ul>
+
+          <p><strong>Paso 4: compara “antes vs después”</strong></p>
+          <ul>
+            <li>Evalúa si el cambio se sostiene y si hay efectos secundarios (costos, fricción, nuevos riesgos).</li>
+          </ul>
+        </div>
+
+        <h2 id="s3">3) Plantilla conceptual: cadena de valor del proyecto</h2>
+        <div class="highlight-box">
+          <ul>
+            <li><strong>Entradas (Inputs):</strong> recursos (personas, tiempo, presupuesto, herramientas, datos).</li>
+            <li><strong>Actividades:</strong> implementación, capacitación, configuración, pruebas, comunicación.</li>
+            <li><strong>Entregables (Outputs):</strong> lo producido (sistema, control, modelo, procedimiento, reporte).</li>
+            <li><strong>Resultados (Outcomes):</strong> cambios observables (uso, reducción de fallas, menor riesgo, mayor productividad).</li>
+            <li><strong>Impacto:</strong> valor sostenible (menos incidentes, cumplimiento, continuidad, reputación, eficiencia).</li>
+          </ul>
+        </div>
+
+        <h2 id="s4">4) Indicadores recomendados (según tipo de proyecto)</h2>
+
+        <div class="axis-box">
+          <h4>4.1 Proyectos de ciberseguridad</h4>
+          <ul>
+            <li><strong>Reducción del riesgo:</strong> # incidentes, severidad, superficie de ataque, vulnerabilidades críticas abiertas.</li>
+            <li><strong>Tiempo de respuesta:</strong> MTTD/MTTR (detectar y responder).</li>
+            <li><strong>Adopción:</strong> % usuarios con MFA activo, % endpoints con EDR, % cumplimiento de hardening.</li>
+            <li><strong>Eficacia operativa:</strong> disminución de falsos positivos, calidad de alertas, tickets resueltos.</li>
+          </ul>
+        </div>
+
+        <div class="axis-box">
+          <h4>4.2 Proyectos de IA</h4>
+          <ul>
+            <li><strong>Calidad del modelo:</strong> precisión/recall/F1 (según caso), tasa de error aceptable, estabilidad.</li>
+            <li><strong>Impacto operativo:</strong> tiempo por proceso, reducción de retrabajo, productividad por rol.</li>
+            <li><strong>Calidad de datos:</strong> completitud, consistencia, % registros válidos, reducción de duplicados.</li>
+            <li><strong>Riesgo ético/técnico:</strong> sesgo, explicabilidad, drift, control de decisiones automatizadas.</li>
+            <li><strong>Adopción:</strong> % usuarios que usan la recomendación/resultado, satisfacción, cumplimiento del nuevo flujo.</li>
+          </ul>
+        </div>
+
+        <h2 id="s5">5) Errores frecuentes al “medir valor” (y cómo evitarlos)</h2>
+        <div class="activity-box">
+          <ul>
+            <li><strong>Error:</strong> medir solo “entrega” (cumplí hitos). <strong>Solución:</strong> medir resultados (uso, reducción de riesgo, eficiencia).</li>
+            <li><strong>Error:</strong> no tener línea base. <strong>Solución:</strong> registrar “antes” con datos o evidencias iniciales.</li>
+            <li><strong>Error:</strong> métricas sin dueño. <strong>Solución:</strong> responsable por indicador y periodicidad.</li>
+            <li><strong>Error:</strong> confundir adopción con capacitación. <strong>Solución:</strong> medir uso real (logs, tickets, encuestas).</li>
+            <li><strong>Error:</strong> ignorar efectos secundarios. <strong>Solución:</strong> evaluar fricción, costo y riesgos emergentes.</li>
+          </ul>
+        </div>
+
+        <h2 id="s6">6) Cierre: cómo se evidencia “valor” en el dossier RAP3</h2>
+        <div class="highlight-box">
+          <p>
+            En tu dossier RAP3, el valor debe quedar demostrado con una lógica simple:
+            <strong>Entregable</strong> → <strong>Indicador</strong> → <strong>Evidencia</strong> → <strong>Resultado</strong>.
+            Si falta uno de esos elementos, la evaluación queda incompleta.
+          </p>
+        </div>
+
+        <h2 id="links">🔗 Enlaces de consulta y profundización</h2>
+        <div class="axis-box">
+          <ul>
+            <li>
+              <strong>PMI – Enfoques de medición y valor en gestión de proyectos</strong>:
+              <a target="_blank" rel="noopener noreferrer" href="https://www.pmi.org/learning">https://www.pmi.org/learning</a>
+            </li>
+            <li>
+              <strong>NIST CSF – Gestión del riesgo (resultados y mejora)</strong>:
+              <a target="_blank" rel="noopener noreferrer" href="https://www.nist.gov/cyberframework">https://www.nist.gov/cyberframework</a>
+            </li>
+            <li>
+              <strong>OWASP – Buenas prácticas de seguridad (evidencia y control)</strong>:
+              <a target="_blank" rel="noopener noreferrer" href="https://owasp.org/">https://owasp.org/</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer">
+          Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Mobile Dock -->
+<nav class="dock" aria-label="Navegación móvil">
+  <div class="dock-row">
+    <a href="#s1" title="Beneficios vs entregables"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c3.9 0 7 3.1 7 7 0 5-7 13-7 13S5 14 5 9c0-3.9 3.1-7 7-7Zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"></path></svg> 1</a>
+    <a href="#s2" title="Marco práctico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 6v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4Z"></path></svg> 2</a>
+    <a href="#s3" title="Cadena de valor"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 19.6 19.6 22l-7.1-7.1a6 6 0 0 1-7.8-7.8l3 3 2.1-2.1-3-3a6 6 0 0 1 7.8 7.8L22 19.6Z"></path></svg> 3</a>
+    <a href="#s4" title="Indicadores recomendados"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16v2H4v-2Zm2-2V7h3v10H6Zm5 0V4h3v13h-3Zm5 0v-8h3v8h-3Z"></path></svg> 4</a>
+    <a href="#s5" title="Errores frecuentes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 15h2v2h-2v-2Zm0-8h2v6h-2V7Zm1-5C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2Z"></path></svg> 5</a>
+    <a href="#links" title="Enlaces"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h3v2h-3a3 3 0 0 0 0 6h3v2h-3a5 5 0 0 1-5-5Zm7-1h2v2h-2v-2Zm4.1-4h3a5 5 0 0 1 0 10h-3v-2h3a3 3 0 0 0 0-6h-3V7Z"></path></svg> Links</a>
+  </div>
+</nav>
+
+<!-- Floating Top -->
+<button class="fab-top" id="fabTop" aria-label="Volver arriba" title="Volver arriba">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5 5 12h4v7h6v-7h4l-7-7Z"></path></svg>
+</button>
+
+<script>
+(function(){
+  const links = Array.from(document.querySelectorAll('.side-link[data-sec]'));
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const meter = document.getElementById('meterFill');
+  const fab = document.getElementById('fabTop');
+
+  function setActiveById(id){
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+  }
+
+  // Smooth scrolling for in-page links
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if(!el) return;
+    e.preventDefault();
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    history.replaceState(null, '', '#' + id);
+  });
+
+  // Floating top
+  fab.addEventListener('click', function(){
+    document.getElementById('top').scrollIntoView({behavior:'smooth'});
+  });
+
+  // Progress + FAB visibility
+  function onScroll(){
+    const st = window.scrollY || document.documentElement.scrollTop;
+    const dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const pct = dh > 0 ? (st / dh) * 100 : 0;
+    if(meter) meter.style.width = Math.max(0, Math.min(100, pct)).toFixed(1) + '%';
+    if(fab) fab.classList.toggle('show', st > 600);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Active section via IntersectionObserver
+  const obs = new IntersectionObserver((entries)=>{
+    const visible = entries
+      .filter(en => en.isIntersecting)
+      .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+    if(visible && visible.target && visible.target.id){
+      setActiveById(visible.target.id);
+    }
+  }, {
+    root: null,
+    threshold: [0.12, 0.2, 0.35, 0.5, 0.7],
+    rootMargin: '-20% 0px -65% 0px'
+  });
+
+  sections.forEach(s => obs.observe(s));
+
+  // Activate on load (hash)
+  const hash = (location.hash || '').replace('#','');
+  if(hash) setActiveById(hash);
+  else if(sections[0]) setActiveById(sections[0].id);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .building-blocks-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd; /* Azul Bloque */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #01579b;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(2, 119, 189, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #b3e5fc;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '🧱';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #0277bd;
+        border-bottom: 2px solid #e1f5fe;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #e1f5fe;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #0288d1;
+    }
+
+    .key-question {
+        font-weight: 700;
+        color: #01579b;
+        font-style: italic;
+        text-align: center;
+        display: block;
+        margin: 20px 0;
+        font-size: 1.1rem;
+    }
+
+    /* --- DEFINICIÓN (CAJA) --- */
+    .def-box {
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #cfd8dc;
+        margin-bottom: 20px;
+    }
+    .def-title { font-weight: 700; color: #455a64; margin-bottom: 10px; display: block; }
+
+    /* --- BLOQUES BASE (GRID) --- */
+    .blocks-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .block-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
+        border-top: 4px solid #00acc1;
+    }
+
+    .block-card:hover { transform: translateY(-5px); border-color: #00838f; }
+
+    .block-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: #006064;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .block-content { font-size: 0.95rem; color: #546e7a; line-height: 1.5; }
+    
+    .block-example {
+        margin-top: auto;
+        padding-top: 10px;
+        font-style: italic;
+        font-size: 0.9rem;
+        color: #78909c;
+        border-top: 1px dashed #cfd8dc;
+    }
+
+    /* --- ESCENARIOS (ACORDEONES DE COLORES) --- */
+    details.scenario-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #cfd8dc;
+        overflow: hidden;
+    }
+
+    summary.scenario-summary {
+        padding: 15px 20px;
+        background: #f5f5f5;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+        font-size: 1.1rem;
+    }
+
+    summary.scenario-summary:hover { background: #eceff1; }
+    summary.scenario-summary::-webkit-details-marker { display: none; }
+    
+    summary.scenario-summary::after { content: '+'; font-size: 1.5rem; font-weight: bold; }
+    details[open] summary.scenario-summary::after { content: '-'; }
+
+    .scenario-content {
+        padding: 20px;
+        border-top: 1px solid #cfd8dc;
+        color: #37474f;
+    }
+
+    /* Colores por Escenario */
+    /* A: Educativo (Azul) */
+    .scen-a summary { color: #1565c0; border-left: 5px solid #1565c0; }
+    .scen-a[open] summary { background: #e3f2fd; }
+    
+    /* B: PYME (Verde) */
+    .scen-b summary { color: #2e7d32; border-left: 5px solid #2e7d32; }
+    .scen-b[open] summary { background: #e8f5e9; }
+
+    /* C: Multi-sede (Naranja) */
+    .scen-c summary { color: #ef6c00; border-left: 5px solid #ef6c00; }
+    .scen-c[open] summary { background: #fff3e0; }
+
+    /* D: Cloud (Violeta) */
+    .scen-d summary { color: #6a1b9a; border-left: 5px solid #6a1b9a; }
+    .scen-d[open] summary { background: #f3e5f5; }
+
+    /* E: IoT/OT (Rojo) */
+    .scen-e summary { color: #c62828; border-left: 5px solid #c62828; }
+    .scen-e[open] summary { background: #ffebee; }
+
+    /* F: Regulación (Gris Oscuro) */
+    .scen-f summary { color: #455a64; border-left: 5px solid #455a64; }
+    .scen-f[open] summary { background: #eceff1; }
+
+    /* Subtítulos dentro del escenario */
+    .scen-sub { font-weight: 700; display: block; margin-top: 15px; margin-bottom: 5px; color: #546e7a; }
+
+    /* --- REGLA PRÁCTICA (CAJA) --- */
+    .rule-box {
+        background: #e0f2f1;
+        padding: 25px;
+        border-radius: 12px;
+        border: 2px dashed #009688;
+        text-align: center;
+    }
+    .rule-list { list-style: decimal; padding-left: 20px; text-align: left; display: inline-block; }
+    .rule-list li { margin-bottom: 5px; font-weight: 600; color: #00695c; }
+
+    /* --- PREGUNTAS (ACORDEÓN SIMPLE) --- */
+    details.qa-item {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    summary.qa-summary {
+        padding: 10px;
+        cursor: pointer;
+        color: #0277bd;
+        font-weight: 600;
+    }
+    
+    .qa-content { padding: 10px 20px 20px 20px; color: #455a64; font-size: 0.95rem; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .blocks-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="building-blocks-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">3.2 Escenarios de aplicación y “building blocks” por tipo de organización</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/vrtm314r7h4n72tlrdljd/Gemini_Generated_Image_b2em0rb2em0rb2em.png?rlkey=k3m6ucagjd8rr26rok7td1bty&st=o4k0jmj4&raw=1" alt="Building Blocks" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>En la práctica, una red segura no se diseña “desde cero” cada vez. Se construye con bloques reutilizables (building blocks): piezas técnicas y operativas que se combinan según el tipo de organización, su tamaño, su nivel de riesgo y sus servicios críticos.</p>
+        <span class="key-question">La pregunta clave de esta sección es: ¿Qué combinación de bloques necesito según el entorno para lograr conectividad segura y operable?</span>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1) ¿Qué es un “building block” en redes y seguridad?</h2>
+        <div class="def-box">
+            <span class="def-title">Definición:</span>
+            <p>Un building block es un componente (o conjunto de componentes) que cumple una función clara dentro de la arquitectura, por ejemplo: controlar acceso, segmentar, proteger el perímetro, habilitar acceso remoto, monitorear y responder, asegurar servicios críticos.</p>
+        </div>
+        <p><strong>Características de un buen building block:</strong></p>
+        <ul>
+            <li><strong>Repetible:</strong> se puede aplicar en sede A, sede B o nube con el mismo patrón.</li>
+            <li><strong>Medible:</strong> genera evidencia (logs, métricas, pruebas).</li>
+            <li><strong>Operable:</strong> el equipo puede sostenerlo (gestión, cambios, alertas).</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2) Building blocks base (los “mínimos”)</h2>
+        <p>Estos bloques suelen ser transversales, cambian de tamaño según el tipo de organización:</p>
+        
+        <div class="blocks-grid">
+            
+            <div class="block-card">
+                <span class="block-title">2.1 Identidad y acceso (IAM)</span>
+                <div class="block-content">Incluye: directorio, roles (RBAC), MFA, políticas de acceso. <strong>Para qué sirve:</strong> que el acceso dependa de identidad/rol, no solo de estar “conectado”.</div>
+                <div class="block-example">Ejemplo: MFA obligatorio para administrativos y TI.</div>
+            </div>
+
+            <div class="block-card">
+                <span class="block-title">2.2 Segmentación por zonas</span>
+                <div class="block-content">Incluye: VLAN/VRF, ACL, firewall interno entre zonas. <strong>Para qué sirve:</strong> limitar movimiento lateral y separar riesgos.</div>
+                <div class="block-example">Ejemplo: redes separadas para usuarios, servidores, IoT.</div>
+            </div>
+
+            <div class="block-card">
+                <span class="block-title">2.3 Perímetro y publicación segura</span>
+                <div class="block-content">Incluye: NGFW, DMZ, WAF (si hay web/APIs), filtrado saliente. <strong>Para qué sirve:</strong> controlar lo que entra y sale, proteger servicios expuestos.</div>
+                <div class="block-example">Ejemplo: portal web en DMZ con WAF.</div>
+            </div>
+
+            <div class="block-card">
+                <span class="block-title">2.4 Acceso remoto seguro</span>
+                <div class="block-content">Incluye: MFA, políticas por rol, acceso por aplicación (ZTNA) y VPN restringida cuando aplica. <strong>Para qué sirve:</strong> habilitar trabajo remoto sin “abrir la red”.</div>
+            </div>
+
+            <div class="block-card">
+                <span class="block-title">2.5 Control de acceso a la red (NAC)</span>
+                <div class="block-content">Incluye: 802.1X en LAN/WLAN, perfiles por rol, cuarentena, invitados. <strong>Para qué sirve:</strong> que entrar a la red sea un proceso controlado y trazable.</div>
+            </div>
+
+            <div class="block-card">
+                <span class="block-title">2.6 Observabilidad y registros</span>
+                <div class="block-content">Incluye: NMS, syslog/SIEM, alertas, dashboards. <strong>Para qué sirve:</strong> detectar fallas y amenazas sin depender solo del “usuario que llama”.</div>
+            </div>
+
+            <div class="block-card">
+                <span class="block-title">2.7 Continuidad</span>
+                <div class="block-content">Incluye: redundancia, copias, pruebas de recuperación, planes de contingencia. <strong>Para qué sirve:</strong> recuperarse ante fallas o incidentes.</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3) Escenarios por tipo de organización</h2>
+        
+        <details class="scenario-item scen-a">
+            <summary class="scenario-summary">Escenario A: Institución educativa / Campus</summary>
+            <div class="scenario-content">
+                <span class="scen-sub">Características típicas:</span> muchos usuarios simultáneos, BYOD, necesidad de Wi-Fi robusto, invitados constantes, servicios académicos críticos.
+                <span class="scen-sub">Building blocks prioritarios:</span> WLAN gestionada, NAC/802.1X, Segmentación por zonas, Perímetro NGFW, Monitoreo.
+                <span class="scen-sub">Ejemplo de combinación:</span> SSID “Institucional” con 802.1X → asigna VLAN según rol. SSID “Invitados” aislado solo Internet. IoT en VLAN separada.
+            </div>
+        </details>
+
+        <details class="scenario-item scen-b">
+            <summary class="scenario-summary">Escenario B: PYME / Una sede</summary>
+            <div class="scenario-content">
+                <span class="scen-sub">Características típicas:</span> un sitio principal, equipo TI reducido, necesidad de “mínimo viable seguro”.
+                <span class="scen-sub">Building blocks prioritarios:</span> Perímetro NGFW, Segmentación mínima, MFA, Backups, Logs básicos.
+                <span class="scen-sub">Ejemplo:</span> VPN o ZTNA para 20 usuarios remotos con MFA. VLAN invitados separada.
+            </div>
+        </details>
+
+        <details class="scenario-item scen-c">
+            <summary class="scenario-summary">Escenario C: Organización multi-sede</summary>
+            <div class="scenario-content">
+                <span class="scen-sub">Características típicas:</span> varias sedes, enlaces variables, necesidad de continuidad y gobernanza central.
+                <span class="scen-sub">Building blocks prioritarios:</span> SD-WAN, Modelo de segmentación estándar, Acceso remoto coherente, Perímetro distribuido o SASE, Monitoreo centralizado.
+                <span class="scen-sub">Ejemplo:</span> SD-WAN con dos enlaces por sede. Políticas: videoclases y LMS con prioridad.
+            </div>
+        </details>
+
+        <details class="scenario-item scen-d">
+            <summary class="scenario-summary">Escenario D: Organización “cloud-first”</summary>
+            <div class="scenario-content">
+                <span class="scen-sub">Características típicas:</span> apps SaaS, datos en nube, identidad como centro del control, riesgo de fuga por mala configuración.
+                <span class="scen-sub">Building blocks prioritarios:</span> Identidad fuerte (MFA, RBAC), ZTNA, Segmentación en nube, Registro y monitoreo cloud, Protección de APIs/Apps.
+                <span class="scen-sub">Ejemplo:</span> Acceso a servicios internos por ZTNA + MFA. Registros de cambios en nube + alertas.
+            </div>
+        </details>
+
+        <details class="scenario-item scen-e">
+            <summary class="scenario-summary">Escenario E: Entornos con IoT/OT</summary>
+            <div class="scenario-content">
+                <span class="scen-sub">Características típicas:</span> dispositivos sin buen parcheo, protocolos especiales, prioridad en disponibilidad, riesgo alto si se mezclan con TI.
+                <span class="scen-sub">Building blocks prioritarios:</span> Segmentación estricta OT/IoT vs TI, Acceso administrativo controlado, Monitoreo de tráfico, Perímetro y firewalls internos, Gestión de cambios disciplinada.
+                <span class="scen-sub">Ejemplo:</span> IoT/OT solo se comunica con servidores específicos. Administración remota solo desde bastión con MFA.
+            </div>
+        </details>
+
+        <details class="scenario-item scen-f">
+            <summary class="scenario-summary">Escenario F: Alta regulación</summary>
+            <div class="scenario-content">
+                <span class="scen-sub">Características típicas:</span> auditorías, cumplimiento, datos sensibles, necesidad fuerte de trazabilidad y control.
+                <span class="scen-sub">Building blocks prioritarios:</span> Identidad + MFA + PAM, Segmentación por criticidad, WAF/NGFW/IDS/IPS, SIEM + retención de logs, Controles de continuidad.
+                <span class="scen-sub">Ejemplo:</span> Políticas de acceso por rol con aprobación y trazabilidad. Logs centralizados para auditoría.
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4) Cómo escoger “building blocks” sin complicarte</h2>
+        
+        <div class="rule-box">
+            <p>Define el entorno e identifica servicios críticos y riesgos. Luego selecciona bloques en este orden:</p>
+            <ol class="rule-list">
+                <li>Identidad (quién)</li>
+                <li>Segmentación (hasta dónde)</li>
+                <li>Perímetro/publicación (por dónde)</li>
+                <li>Remoto (cómo entra)</li>
+                <li>Monitoreo/logs (cómo lo veo)</li>
+                <li>Continuidad (cómo me recupero)</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">Preguntas Clave</h2>
+        
+        <details class="qa-item">
+            <summary class="qa-summary">¿Qué es un “building block” en redes y seguridad?</summary>
+            <div class="qa-content">Es un componente reutilizable de arquitectura (técnico y operable) que cumple una función clara y que puede repetirse en distintos entornos con el mismo patrón.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Por qué conviene pensar en building blocks en lugar de “listas de herramientas”?</summary>
+            <div class="qa-content">Porque los bloques se diseñan para integrarse, operar y medirse. Una lista de herramientas sin arquitectura termina en controles aislados y mayor riesgo.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Cuáles son los building blocks mínimos para un campus educativo típico?</summary>
+            <div class="qa-content">WLAN gestionada, NAC/802.1X por rol, segmentación por zonas, perímetro NGFW y monitoreo de enlaces/servicios críticos.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Qué building block es más crítico cuando hay muchas sedes remotas?</summary>
+            <div class="qa-content">SD-WAN, porque asegura continuidad, visibilidad y priorización por aplicación con control central.</div>
+        </details>
+        
+        <details class="qa-item">
+            <summary class="qa-summary">¿Cuál es el mayor error en entornos IoT/OT?</summary>
+            <div class="qa-content">Mezclar IoT/OT con la red de usuarios o servidores. La solución base es segmentación estricta + allowlist.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">En una organización cloud-first, ¿qué bloque se vuelve el “centro” del control?</summary>
+            <div class="qa-content">La identidad (IAM). En nube, “estar dentro de la red” no es suficiente; el control debe basarse en quién y bajo qué condiciones accede.</div>
+        </details>
+    </div>
+
+</div>
+
+</body>
+</html>

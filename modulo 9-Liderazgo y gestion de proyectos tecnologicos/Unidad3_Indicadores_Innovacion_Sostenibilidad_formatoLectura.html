@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unidad 3 – Indicadores de innovación y sostenibilidad (RAP3)</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .unit-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd; /* Azul institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .unit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        text-transform: none;
+        color: #01579b;
+        margin: 0 auto 10px auto;
+        max-width: 90%;
+        line-height: 1.2;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .unit-subtitle {
+        font-size: 1.1rem;
+        color: #0288d1;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    /* IMAGEN HERO (nueva) */
+    .hero-img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(1, 87, 155, 0.15);
+        margin: 0 auto 30px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+    }
+
+    /* --- CONTENIDO GENERAL --- */
+    .content {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .content h2 {
+        font-family: 'Montserrat', sans-serif;
+        color: #01579b;
+        font-size: 1.6rem;
+        margin-top: 28px;
+        margin-bottom: 12px;
+    }
+
+    .content p {
+        margin-bottom: 14px;
+        text-align: justify;
+    }
+
+    .content ul {
+        margin: 8px 0 15px 22px;
+        padding: 0;
+    }
+
+    .content li {
+        margin-bottom: 6px;
+    }
+
+    /* --- CAJAS ESPECIALES (ADAPTADAS AL ESTILO AZUL) --- */
+    .axis-box {
+        background-color: #e3f2fd;
+        border-left: 5px solid #1e88e5;
+        padding: 15px 18px;
+        margin: 15px 0;
+        border-radius: 10px;
+    }
+    .axis-box h4 {
+        color: #0d47a1;
+        margin: 0 0 8px 0;
+        font-size: 1.1rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .axis-box ul {
+        margin: 5px 0 5px 20px;
+    }
+
+    .highlight-box {
+        background-color: #e8f5e9;
+        border-left: 5px solid #43a047;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .highlight-box p {
+        margin: 6px 0;
+    }
+
+    .activity-box {
+        background-color: #fff8e1;
+        border-left: 5px solid #ffb300;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .activity-box p {
+        margin: 6px 0;
+    }
+
+    .emphasis {
+        font-weight: bold;
+        color: #00796b;
+    }
+
+    a {
+        color: #1565c0;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #555;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 15px auto;
+        }
+        .unit-title { font-size: 1.9rem; max-width: 100%; }
+        .hero-img { margin-bottom: 20px; }
+    }
+
+
+/* --- MEJORAS LECTURA (TOC + DETALLES) --- */
+.toc-box{
+  background:#f3f8ff;
+  border:1px solid rgba(2,136,209,.18);
+  border-left:5px solid #0288d1;
+  border-radius:12px;
+  padding:14px 18px;
+  margin:16px 0 10px 0;
+}
+.toc-box h3{
+  margin:0 0 10px 0;
+  font-family:'Montserrat',sans-serif;
+  color:#01579b;
+  font-size:1.1rem;
+}
+.toc-box ol{ margin:0 0 0 18px; }
+.toc-box li{ margin:6px 0; }
+
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:.85rem;
+  font-weight:700;
+  font-family:'Montserrat',sans-serif;
+  background:#e3f2fd;
+  color:#0d47a1;
+  border:1px solid rgba(13,71,161,.15);
+}
+
+.style-details{
+  border-radius:12px;
+  border:1px solid rgba(13,71,161,.12);
+  background:#ffffff;
+  margin:14px 0;
+  overflow:hidden;
+}
+.style-details summary{
+  cursor:pointer;
+  padding:14px 16px;
+  font-family:'Montserrat',sans-serif;
+  font-weight:800;
+  color:#0d47a1;
+  list-style:none;
+}
+.style-details summary::-webkit-details-marker{ display:none; }
+.style-details .inner{
+  padding:0 16px 14px 16px;
+}
+hr.sep{
+  border:none;
+  height:1px;
+  background:linear-gradient(90deg, rgba(2,136,209,.0), rgba(2,136,209,.25), rgba(2,136,209,.0));
+  margin:24px 0;
+}
+
+  
+/* ============================
+   FORMATO LECTURA 2 (SIDENAV)
+   ============================ */
+:root{
+  --nav-bg: rgba(255,255,255,.86);
+  --nav-border: rgba(0,0,0,.08);
+  --nav-shadow: 0 16px 40px rgba(0,0,0,.08);
+  --nav-accent: rgba(0,170,85,1);
+  --nav-accent-2: rgba(47,128,237,1);
+  --nav-text: #0d47a1;
+  --nav-muted: rgba(13,71,161,.72);
+}
+
+.page-shell{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 14px 80px 14px;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 16px;
+}
+
+/* Sidebar */
+.side-nav{
+  position: sticky;
+  top: 14px;
+  align-self: start;
+  border-radius: 18px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
+  padding: 12px;
+  overflow: hidden;
+}
+
+.side-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 6px 8px 10px 8px;
+}
+
+.side-title{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: .98rem;
+  color: #004d26;
+  margin: 0;
+  line-height: 1.1;
+}
+.side-sub{
+  display:block;
+  margin-top: 2px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: .78rem;
+  color: rgba(0,77,38,.72);
+}
+
+.side-meter{
+  width: 78px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.06);
+  overflow: hidden;
+}
+.side-meter > div{
+  width: 0%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--nav-accent), var(--nav-accent-2));
+}
+
+.side-list{
+  list-style: none;
+  margin: 6px 0 0 0;
+  padding: 0;
+  display:flex;
+  flex-direction:column;
+  gap: 6px;
+}
+
+.side-link{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  text-decoration: none;
+  border-radius: 14px;
+  padding: 10px 10px;
+  border: 1px solid rgba(13,71,161,.12);
+  background: #ffffff;
+  box-shadow: 0 10px 22px rgba(0,0,0,.03);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.side-link:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(0,0,0,.05);
+  border-color: rgba(13,71,161,.20);
+}
+
+.side-ico{
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  display:grid;
+  place-items:center;
+  background: #eef6ff;
+  border: 1px solid rgba(13,71,161,.14);
+  flex: 0 0 28px;
+}
+.side-ico svg{ width: 16px; height: 16px; fill: var(--nav-text); }
+
+.side-text{
+  min-width: 0;
+}
+.side-text b{
+  display:block;
+  font-family:'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: .90rem;
+  color: var(--nav-text);
+  line-height: 1.15;
+}
+.side-text span{
+  display:block;
+  font-family:'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: .76rem;
+  color: var(--nav-muted);
+  margin-top: 2px;
+  line-height: 1.15;
+}
+
+/* Active */
+.side-link.active{
+  border-color: rgba(0,170,85,.28);
+  background: linear-gradient(180deg, rgba(245,255,249,1), rgba(255,255,255,1));
+  box-shadow: 0 16px 34px rgba(0,170,85,.10);
+}
+.side-link.active .side-ico{
+  background: rgba(0,170,85,.12);
+  border-color: rgba(0,170,85,.25);
+}
+.side-link.active .side-ico svg{ fill: #0b6b3a; }
+.side-link.active .side-text b{ color: #0b6b3a; }
+
+/* Main content tweaks */
+.main-col .unit-container{
+  margin: 0;
+}
+
+/* Floating "Top" button */
+.fab-top{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display:grid;
+  place-items:center;
+  background: linear-gradient(90deg, rgba(0,102,51,1), rgba(0,170,85,1));
+  color: #fff;
+  border: 1px solid rgba(0,102,51,.25);
+  box-shadow: 0 18px 36px rgba(0,102,51,.18);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .15s ease, transform .15s ease;
+  z-index: 1000;
+}
+.fab-top.show{ opacity: 1; transform: translateY(0); }
+.fab-top svg{ width: 18px; height: 18px; fill: #fff; }
+
+/* Mobile: hide sidebar, show bottom dock nav */
+.dock{
+  display:none;
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1200;
+  border-radius: 18px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
+  padding: 10px 10px;
+}
+.dock-row{
+  display:flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+.dock a{
+  flex: 1 1 0;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 8px;
+  padding: 10px 10px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(13,71,161,.12);
+  box-shadow: 0 10px 22px rgba(0,0,0,.03);
+  font-family:'Montserrat',sans-serif;
+  font-weight: 900;
+  font-size: .86rem;
+  color: var(--nav-text);
+}
+.dock a svg{ width: 16px; height: 16px; fill: var(--nav-text); }
+
+@media (max-width: 980px){
+  .page-shell{ grid-template-columns: 1fr; padding-bottom: 110px; }
+  .side-nav{ display:none; }
+  .dock{ display:block; }
+}
+
+  </style>
+</head>
+<body>
+
+<div class="page-shell" id="top">
+  <aside class="side-nav" aria-label="Navegación de lectura">
+    <div class="side-head">
+      <div>
+        <p class="side-title">Lectura Unidad 3<span class="side-sub">Indicadores innovación & sostenibilidad</span></p>
+      </div>
+      <div class="side-meter" aria-hidden="true"><div id="meterFill"></div></div>
+    </div>
+
+    <ul class="side-list" role="list">
+      <li><a class="side-link" data-sec href="#s1">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c3.9 0 7 3.1 7 7 0 5-7 13-7 13S5 14 5 9c0-3.9 3.1-7 7-7Zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"></path></svg></span>
+        <span class="side-text"><b>Adopción</b><span>Qué es y por qué falla</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s2">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 6v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4Z"></path></svg></span>
+        <span class="side-text"><b>Resistencia</b><span>Tipos y señales</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s3">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 19.6 19.6 22l-7.1-7.1a6 6 0 0 1-7.8-7.8l3 3 2.1-2.1-3-3a6 6 0 0 1 7.8 7.8L22 19.6Z"></path></svg></span>
+        <span class="side-text"><b>Acciones</b><span>Qué debe liderar</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s4">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 2A3.5 3.5 0 0 0 6 5.5V6a3 3 0 0 0 0 6v.5A3.5 3.5 0 0 0 9.5 16H10v6H8v-3H6v3H4v-4.5A5.5 5.5 0 0 1 7 12a5 5 0 0 1-1-3 5 5 0 0 1 1-3 5.5 5.5 0 0 1 2.5-4Z M14 16h.5A3.5 3.5 0 0 0 18 12.5V12a3 3 0 0 0 0-6v-.5A3.5 3.5 0 0 0 14.5 2H14a5.5 5.5 0 0 1 2.5 4 5 5 0 0 1 1 3 5 5 0 0 1-1 3 5.5 5.5 0 0 1-2.5 4Z"></path></svg></span>
+        <span class="side-text"><b>Modelos</b><span>ADKAR & Kotter</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s5">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h2v2h10l-2 4 2 4H8v10H6V2Z"></path></svg></span>
+        <span class="side-text"><b>IA & Seguridad</b><span>Adopción con confianza</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s6">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16v2H4v-2Zm2-2V7h3v10H6Zm5 0V4h3v13h-3Zm5 0v-8h3v8h-3Z"></path></svg></span>
+        <span class="side-text"><b>KPIs</b><span>Indicadores mínimos</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#links">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h3v2h-3a3 3 0 0 0 0 6h3v2h-3a5 5 0 0 1-5-5Zm7-1h2v2h-2v-2Zm4.1-4h3a5 5 0 0 1 0 10h-3v-2h3a3 3 0 0 0 0-6h-3V7Z"></path></svg></span>
+        <span class="side-text"><b>Enlaces</b><span>Consulta y profundidad</span></span>
+      </a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-col">
+
+    <div class="unit-container">
+      <div class="header-box">
+        <span class="unit-subtitle">📘 Lectura – Unidad 3 (RAP3)</span>
+        <h1 class="unit-title">Indicadores de innovación (adopción, experiencia, aprendizaje) y sostenibilidad (económica, social, ambiental)</h1>
+        <img src="https://www.dropbox.com/scl/fi/5e6v1qy29yh54etcdpn1j/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.39_f1b1242f.jpg?rlkey=1z8a7oucdkbqamhyyn064ez2c&raw=1" 
+             alt="Indicadores de innovación y sostenibilidad" class="hero-img">
+      </div>
+
+      <div class="content">
+        <p>
+          En proyectos tecnológicos, el éxito no se mide solo por “cumplir el alcance” o “entregar a tiempo”.
+          Un proyecto verdaderamente transformador se reconoce por su capacidad de generar <strong>innovación</strong> (cambio útil y adoptado)
+          y sostenerse en el tiempo sin convertirse en un costo oculto, un riesgo o un “sistema abandonado”.
+          En esta lectura aprenderás a definir indicadores para medir: <strong>adopción</strong>, <strong>experiencia</strong>,
+          <strong>aprendizaje</strong> y <strong>sostenibilidad</strong> (económica, social y ambiental).
+        </p>
+
+        <div class="highlight-box">
+          <p style="font-weight: bold;">Idea clave</p>
+          <p>
+            <strong>Innovación</strong> = se usa, mejora resultados y se aprende con ella.<br>
+            <strong>Sostenibilidad</strong> = puede mantenerse (costos, capacidades, impacto social y ambiental) sin comprometer la operación ni la seguridad.
+          </p>
+        </div>
+
+        <h2 id="s1">1) Indicadores de innovación</h2>
+        <p>
+          Los indicadores de innovación responden a tres preguntas: <strong>¿se adoptó?</strong>, <strong>¿mejoró la experiencia?</strong>,
+          <strong>¿el equipo/organización aprendió y mejoró el proceso?</strong>.
+        </p>
+
+        <div class="axis-box">
+          <h4>1.1 Adopción (uso real)</h4>
+          <ul>
+            <li><strong>Tasa de adopción:</strong> % de usuarios objetivo que usan la solución (por semana/mes).</li>
+            <li><strong>Uso activo:</strong> # usuarios activos (DAU/WAU/MAU) o # sesiones por periodo.</li>
+            <li><strong>Cumplimiento del flujo:</strong> % de procesos ejecutados con la nueva herramienta vs método anterior.</li>
+            <li><strong>Abandono:</strong> % usuarios que dejan de usarla después de X semanas.</li>
+            <li><strong>Cobertura de despliegue:</strong> % sedes/áreas/roles alcanzados.</li>
+          </ul>
+          <p><strong>Evidencia:</strong> logs, analítica de uso, reportes del sistema, auditoría de procesos, tickets.</p>
+        </div>
+
+        <div class="axis-box">
+          <h4>1.2 Experiencia (calidad percibida y fricción)</h4>
+          <ul>
+            <li><strong>Satisfacción de usuario (CSAT):</strong> encuesta corta posterior al uso (1–5).</li>
+            <li><strong>NPS:</strong> disposición a recomendar (si aplica a servicios internos).</li>
+            <li><strong>Esfuerzo del usuario (CES):</strong> “¿qué tan fácil fue lograr la tarea?”</li>
+            <li><strong>Tiempo por tarea:</strong> reducción del tiempo para completar procesos clave.</li>
+            <li><strong>Errores de usuario:</strong> tasa de fallos, formaciones incompletas, rechazos, reintentos.</li>
+          </ul>
+          <p><strong>Evidencia:</strong> encuestas, tiempos del sistema, observación de proceso, tickets recurrentes, métricas UX.</p>
+        </div>
+
+        <div class="axis-box">
+          <h4>1.3 Aprendizaje (mejora continua y capacidad instalada)</h4>
+          <ul>
+            <li><strong>Lecciones aprendidas implementadas:</strong> # acciones de mejora aplicadas vs identificadas.</li>
+            <li><strong>Tiempo de resolución:</strong> reducción de MTTR o tiempos de soporte (operación más madura).</li>
+            <li><strong>Calidad de documentación:</strong> % componentes con manual/guía/seguridad/recuperación.</li>
+            <li><strong>Capacitación efectiva:</strong> % aprobados en validación práctica; reducción de errores post-capacitación.</li>
+            <li><strong>Madurez del equipo:</strong> cumplimiento de rutinas (revisiones, retrospectivas, control de cambios).</li>
+          </ul>
+          <p><strong>Evidencia:</strong> bitácoras, actas, checklist, repositorio documental, registros de soporte, auditoría interna.</p>
+        </div>
+
+        <h2 id="s2">2) Indicadores de sostenibilidad (económica, social, ambiental)</h2>
+        <p>
+          La sostenibilidad se mide en el tiempo: no es “que funcione hoy”, sino que pueda mantenerse, escalarse y operarse sin
+          comprometer recursos críticos, bienestar de las personas ni el entorno.
+        </p>
+
+        <div class="axis-box">
+          <h4>2.1 Sostenibilidad económica (viabilidad y costo total)</h4>
+          <ul>
+            <li><strong>TCO (Costo Total de Propiedad):</strong> licencias + infraestructura + soporte + mantenimiento + capacitación.</li>
+            <li><strong>Costo por usuario/proceso:</strong> costo mensual dividido por usuarios o transacciones.</li>
+            <li><strong>ROI (si aplica):</strong> (beneficios monetizados − costo) / costo.</li>
+            <li><strong>Costo de no calidad:</strong> incidentes, retrabajo, fallas, multas, indisponibilidad.</li>
+            <li><strong>Capacidad de sostenimiento:</strong> % soporte interno vs dependencia de terceros.</li>
+          </ul>
+          <p><strong>Evidencia:</strong> presupuesto, reportes de costos, órdenes de compra, horas invertidas, reportes de incidentes.</p>
+        </div>
+
+        <div class="axis-box">
+          <h4>2.2 Sostenibilidad social (bienestar, inclusión, confianza)</h4>
+          <ul>
+            <li><strong>Impacto en usuarios:</strong> percepción de utilidad, reducción de carga operativa, satisfacción laboral.</li>
+            <li><strong>Accesibilidad:</strong> cumplimiento de requisitos básicos de acceso (roles, interfaz, soporte).</li>
+            <li><strong>Equidad (IA):</strong> análisis de sesgo por grupos relevantes (si aplica) y acciones correctivas.</li>
+            <li><strong>Privacidad y confianza:</strong> cumplimiento de políticas, incidentes de datos, quejas, auditoría.</li>
+            <li><strong>Competencias fortalecidas:</strong> % de equipo con habilidades nuevas aplicadas en operación.</li>
+          </ul>
+          <p><strong>Evidencia:</strong> encuestas, reportes, auditoría, capacitación, indicadores de seguridad y cumplimiento.</p>
+        </div>
+
+        <div class="axis-box">
+          <h4>2.3 Sostenibilidad ambiental (uso eficiente de recursos)</h4>
+          <ul>
+            <li><strong>Consumo energético:</strong> estimación/medición de infraestructura (servidores, nube, equipos).</li>
+            <li><strong>Eficiencia del cómputo:</strong> optimización de cargas (horarios, escalado, uso de recursos).</li>
+            <li><strong>Reducción de papel/traslados:</strong> procesos digitalizados, trámites en línea, menor impresión.</li>
+            <li><strong>Ciclo de vida tecnológico:</strong> reutilización, mantenimiento, disposición responsable de equipos.</li>
+          </ul>
+          <p><strong>Evidencia:</strong> métricas de nube, consumo estimado, políticas TI verde, reportes de inventario y reutilización.</p>
+        </div>
+
+        <h2 id="s3">3) Reglas para crear indicadores útiles (y no “bonitos”)</h2>
+        <div class="activity-box">
+          <ul>
+            <li><strong>Regla 1:</strong> cada indicador debe tener línea base (antes), meta (después) y periodo.</li>
+            <li><strong>Regla 2:</strong> define el dueño del indicador y cómo se recolecta la evidencia.</li>
+            <li><strong>Regla 3:</strong> si el indicador no cambia decisiones, elimínalo (no sirve para gestionar).</li>
+            <li><strong>Regla 4:</strong> evita medir solo “actividad” (nº reuniones). Mide resultados (uso, mejora, reducción de riesgo).</li>
+            <li><strong>Regla 5:</strong> integra seguridad y cumplimiento dentro de innovación (innovación sin confianza no escala).</li>
+          </ul>
+        </div>
+
+        <h2 id="s4">4) Tablero recomendado para el dossier RAP3 (innovación + sostenibilidad)</h2>
+        <div class="highlight-box">
+          <p>
+            Para demostrar innovación sostenible, se recomienda añadir al tablero del RAP3:
+          </p>
+          <ul>
+            <li><strong>Innovación:</strong> 1 indicador de adopción + 1 de experiencia + 1 de aprendizaje.</li>
+            <li><strong>Sostenibilidad:</strong> 1 indicador económico + 1 social + 1 ambiental.</li>
+          </ul>
+          <p>
+            Con esto evidencias que tu proyecto no solo “se implementa”, sino que <strong>se usa</strong>, <strong>mejora</strong> y <strong>permanece</strong>.
+          </p>
+        </div>
+
+        <h2 id="links">🔗 Enlaces de consulta y profundización</h2>
+        <div class="axis-box">
+          <ul>
+            <li>
+              <strong>PMI – Recursos de medición y valor en proyectos</strong>:
+              <a target="_blank" rel="noopener noreferrer" href="https://www.pmi.org/learning">https://www.pmi.org/learning</a>
+            </li>
+            <li>
+              <strong>NIST CSF – Gestión del riesgo y mejora continua</strong>:
+              <a target="_blank" rel="noopener noreferrer" href="https://www.nist.gov/cyberframework">https://www.nist.gov/cyberframework</a>
+            </li>
+            <li>
+              <strong>OWASP – Prácticas de seguridad aplicadas</strong>:
+              <a target="_blank" rel="noopener noreferrer" href="https://owasp.org/">https://owasp.org/</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="activity-box">
+          <p><strong>Cierre</strong></p>
+          <p>
+            Innovar no es “hacer algo nuevo”: es <strong>lograr cambio útil</strong>.
+            Y sostener no es “que no falle”: es <strong>operar con costo controlado, confianza, impacto social positivo y uso eficiente de recursos</strong>.
+            Eso es innovación sostenible.
+          </p>
+        </div>
+
+        <div class="footer">
+          Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Mobile Dock (reuse from template for basic navigation) -->
+<nav class="dock" aria-label="Navegación móvil">
+  <div class="dock-row">
+    <a href="#s1" title="Innovación"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c3.9 0 7 3.1 7 7 0 5-7 13-7 13S5 14 5 9c0-3.9 3.1-7 7-7Zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"></path></svg> 1</a>
+    <a href="#s2" title="Sostenibilidad"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 6v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4Z"></path></svg> 2</a>
+    <a href="#s3" title="Reglas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 19.6 19.6 22l-7.1-7.1a6 6 0 0 1-7.8-7.8l3 3 2.1-2.1-3-3a6 6 0 0 1 7.8 7.8L22 19.6Z"></path></svg> 3</a>
+    <a href="#s4" title="Tablero RAP3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16v2H4v-2Zm2-2V7h3v10H6Zm5 0V4h3v13h-3Zm5 0v-8h3v8h-3Z"></path></svg> Tablero</a>
+    <a href="#links" title="Enlaces"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h3v2h-3a3 3 0 0 0 0 6h3v2h-3a5 5 0 0 1-5-5Zm7-1h2v2h-2v-2Zm4.1-4h3a5 5 0 0 1 0 10h-3v-2h3a3 3 0 0 0 0-6h-3V7Z"></path></svg> Links</a>
+  </div>
+</nav>
+
+<!-- Floating Top -->
+<button class="fab-top" id="fabTop" aria-label="Volver arriba" title="Volver arriba">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5 5 12h4v7h6v-7h4l-7-7Z"></path></svg>
+</button>
+
+<script>
+(function(){
+  const links = Array.from(document.querySelectorAll('.side-link[data-sec]'));
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const meter = document.getElementById('meterFill');
+  const fab = document.getElementById('fabTop');
+
+  function setActiveById(id){
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+  }
+
+  // Smooth scrolling for in-page links
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if(!el) return;
+    e.preventDefault();
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    history.replaceState(null, '', '#' + id);
+  });
+
+  // Floating top
+  fab.addEventListener('click', function(){
+    document.getElementById('top').scrollIntoView({behavior:'smooth'});
+  });
+
+  // Progress + FAB visibility
+  function onScroll(){
+    const st = window.scrollY || document.documentElement.scrollTop;
+    const dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const pct = dh > 0 ? (st / dh) * 100 : 0;
+    if(meter) meter.style.width = Math.max(0, Math.min(100, pct)).toFixed(1) + '%';
+    if(fab) fab.classList.toggle('show', st > 600);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Active section via IntersectionObserver
+  const obs = new IntersectionObserver((entries)=>{
+    const visible = entries
+      .filter(en => en.isIntersecting)
+      .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+    if(visible && visible.target && visible.target.id){
+      setActiveById(visible.target.id);
+    }
+  }, {
+    root: null,
+    threshold: [0.12, 0.2, 0.35, 0.5, 0.7],
+    rootMargin: '-20% 0px -65% 0px'
+  });
+
+  sections.forEach(s => obs.observe(s));
+
+  // Activate on load (hash)
+  const hash = (location.hash || '').replace('#','');
+  if(hash) setActiveById(hash);
+  else if(sections[0]) setActiveById(sections[0].id);
+})();
+</script>
+
+</body>
+</html>

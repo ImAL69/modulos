@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .evaluation-criteria-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #00796b; /* Turquesa Oscuro */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #004d40;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(0, 121, 107, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #b2dfdb;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '✅';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #e0f2f1;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #009688;
+    }
+
+    .intro-question {
+        font-weight: 700;
+        color: #00695c;
+        font-size: 1.1rem;
+        text-align: center;
+        display: block;
+        margin: 15px 0;
+        font-style: italic;
+    }
+
+    /* --- GRID DE CRITERIOS (1-11) --- */
+    .criteria-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    @media (min-width: 768px) {
+        .criteria-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .crit-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
+        border-top: 5px solid #00796b;
+    }
+
+    .crit-card:hover { transform: translateY(-5px); border-color: #004d40; }
+
+    .crit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        color: #004d40;
+        font-weight: 700;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e0f2f1;
+        display: block;
+    }
+
+    .crit-analysis {
+        background: #f5f5f5;
+        padding: 10px;
+        border-radius: 6px;
+        margin-top: 10px;
+        font-size: 0.95rem;
+    }
+    
+    .crit-example {
+        margin-top: auto; /* Empuja al fondo */
+        padding-top: 15px;
+        font-style: italic;
+        color: #546e7a;
+        font-size: 0.9rem;
+        border-top: 1px dashed #cfd8dc;
+    }
+    
+    .crit-example strong { color: #00796b; font-style: normal; }
+
+    /* --- SECCIÓN PREGUNTAS (ACORDEÓN) --- */
+    .qa-section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #004d40;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        text-align: center;
+        border-bottom: 2px solid #b2dfdb;
+        padding-bottom: 15px;
+    }
+
+    details.qa-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #cfd8dc;
+        overflow: hidden;
+    }
+
+    summary.qa-summary {
+        padding: 15px 20px;
+        background: #e0f2f1;
+        cursor: pointer;
+        font-weight: 700;
+        color: #00695c;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    summary.qa-summary:hover { background: #b2dfdb; }
+    summary.qa-summary::-webkit-details-marker { display: none; }
+    
+    summary.qa-summary::after { content: '+'; font-size: 1.5rem; color: #004d40; }
+    details[open] summary.qa-summary::after { content: '-'; }
+
+    .qa-content {
+        padding: 20px;
+        border-top: 1px solid #b2dfdb;
+        color: #37474f;
+        background: #ffffff;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .criteria-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="evaluation-criteria-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">3.1 Criterios de evaluación de tecnologías y mecanismos de seguridad</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/3ooz94kr4abmv0w5968hf/Gemini_Generated_Image_p17kpp17kpp17kpp.png?rlkey=9bwibzoodc4lqb2i1ubpagw21&st=4yiuovnx&raw=1" alt="Criterios de Evaluación" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>Hasta ahora has visto tecnologías de red (LAN/WLAN/campus, WAN/SD-WAN, acceso remoto, IoT/OT) y mecanismos de seguridad (NGFW, WAF, IDS/IPS, VPN, ZTNA, NAC/802.1X, segmentación, monitoreo).</p>
+        
+        <span class="intro-question">En esta sección respondemos una pregunta central: ¿Cómo comparo alternativas y selecciono la opción más adecuada para un entorno específico, con argumentos técnicos y evidencia?</span>
+
+        <p>Evaluar bien evita dos errores frecuentes:</p>
+        <ul>
+            <li>Elegir por moda: “lo último” sin que resuelva el problema real.</li>
+            <li>Elegir por costo inicial: “lo más barato” que luego sale caro por caídas, incidentes y horas de soporte.</li>
+        </ul>
+        <p>La evaluación se hace con criterios que cubren función, riesgo, continuidad, experiencia, operación y evidencia.</p>
+    </div>
+
+    <div class="criteria-grid">
+
+        <div class="crit-card">
+            <span class="crit-title">1) Adecuación al entorno (fit técnico y funcional)</span>
+            <p>Este criterio valida si la solución encaja con el escenario real: volumen, tipo de usuarios, criticidad de servicios y restricciones.</p>
+            <div class="crit-analysis">
+                <strong>Qué se analiza:</strong> Entorno: campus, sedes, remoto, nube, IoT/OT. Escala: número de usuarios/dispositivos simultáneos, crecimiento esperado. Tipo de tráfico: videoclases, LMS, VoIP, datos frecuentes, telemetría IoT. Condiciones: horarios pico, movilidad, cobertura física, ancho de banda disponible.
+            </div>
+            <div class="crit-example">
+                <strong>Ejemplo:</strong> En un campus con alta densidad, una WLAN sin control central suele fallar en roaming y soporte. En una sede pequeña, puede ser suficiente una solución más simple si hay baja densidad y poco cambio.
+            </div>
+        </div>
+
+        <div class="crit-card">
+            <span class="crit-title">2) Seguridad efectiva (riesgo mitigado + reducción de exposición)</span>
+            <p>No se mide por “cuántas herramientas tengo”, sino por si la solución reduce riesgos reales y limita la superficie de ataque.</p>
+            <div class="crit-analysis">
+                <strong>Qué se analiza:</strong> Mínimo privilegio: acceso solo a lo necesario. Segmentación: separación de zonas (usuarios, servidores, invitados, IoT/OT, gestión, DMZ). Identidad: control por usuario/rol y no solo por IP. Exposición: servicios publicados con control (y no “toda la red abierta”).
+            </div>
+            <div class="crit-example">
+                <strong>Ejemplo:</strong> ZTNA suele ser más segura que una VPN abierta porque entrega acceso por aplicación. NAC/802.1X es superior a clave compartida en Wi-Fi porque permite trazabilidad y control por roles.
+            </div>
+        </div>
+
+        <div class="crit-card">
+            <span class="crit-title">3) Disponibilidad y resiliencia (continuidad ante fallos)</span>
+            <p>Una solución puede ser “segura” pero inútil si tumba servicios críticos. Aquí se evalúa qué pasa cuando algo falla.</p>
+            <div class="crit-analysis">
+                <strong>Qué se analiza:</strong> Redundancia: enlaces, equipos, rutas, regiones. Failover: conmutación automática y tiempos de recuperación. Puntos únicos de fallo: “si cae X, se cae toda la organización”. Contención: que un fallo afecte a una zona/sede, no a todo.
+            </div>
+            <div class="crit-example">
+                <strong>Ejemplo:</strong> SD-WAN con doble enlace puede mantener conectividad si cae un ISP. Un firewall en alta disponibilidad evita que una caída del equipo deje a todos sin internet/accesos.
+            </div>
+        </div>
+
+        <div class="crit-card">
+            <span class="crit-title">4) Rendimiento y experiencia (latencia, capacidad, estabilidad)</span>
+            <p>No basta con “conectar”: la red debe funcionar bien en condiciones reales, especialmente en hora pico.</p>
+            <div class="crit-analysis">
+                <strong>Qué se analiza:</strong> Latencia y pérdida: impacto en videollamada, LMS, apps y nube. Capacidad real: throughput del firewall, controladora Wi-Fi, switches, enlaces WAN. Efecto de controles: inspección profunda/SSL inspection puede consumir recursos. Priorización: políticas por aplicación, QoS, rutas preferidas.
+            </div>
+            <div class="crit-example">
+                <strong>Ejemplo:</strong> Un NGFW subdimensionado provoca lentitud general. Un Wi-Fi mal diseñado (sin densidad/planificación) se cae en evaluaciones masivas.
+            </div>
+        </div>
+
+        <div class="crit-card">
+            <span class="crit-title">5) Operación y administrabilidad (gestión, cambios, soporte)</span>
+            <p>Una solución es viable si se puede sostener con el equipo humano real, sin depender de “héroes” técnicos.</p>
+            <div class="crit-analysis">
+                <strong>Qué se analiza:</strong> Gestión centralizada: políticas aplicables sin ir “equipo por equipo”. Monitoreo y alertas: visibilidad de fallos, saturación, amenazas. Cambios controlados: plantillas, procedimientos, rollback. Complejidad: entre más compleja, más riesgo de mala configuración.
+            </div>
+            <div class="crit-example">
+                <strong>Ejemplo:</strong> WLAN gestionada y SD-WAN reducen trabajo repetitivo. Una arquitectura muy compleja sin personal capacitado termina con reglas abiertas, excepciones sin control y fallas constantes.
+            </div>
+        </div>
+
+        <div class="crit-card">
+            <span class="crit-title">6) Integración y compatibilidad (ecosistema real)</span>
+            <p>La selección debe funcionar con infraestructura existente y con lo que el negocio usa (identidad, nube, aplicaciones, equipos legacy).</p>
+            <div class="crit-analysis">
+                <strong>Qué se analiza:</strong> Identidad: integración con AD/LDAP/Google/Azure. Nube/híbrido: conectividad y políticas consistentes. Legacy: apps antiguas que requieren red interna o protocolos específicos. IoT/OT: dispositivos que no soportan agentes, parches o autenticación moderna.
+            </div>
+            <div class="crit-example">
+                <strong>Ejemplo:</strong> En OT, muchas veces el control se logra con segmentación y allowlists en vez de agentes. Un NAC que no integra bien con autenticación de la institución se vuelve difícil de operar.
+            </div>
+        </div>
+
+        <div class="crit-card">
+            <span class="crit-title">7) Escalabilidad (crecer sin rediseñar todo)</span>
+            <p>Evalúa si la solución puede soportar crecimiento en usuarios, sedes, dispositivos y servicios sin volverse caótica.</p>
+            <div class="crit-analysis">
+                <strong>Qué se analiza:</strong> Arquitectura modular: crecer por bloques (sedes, VLAN/zonas, APs). Automatización: evitar configuraciones manuales repetitivas. Límites técnicos/licencias: máximos de usuarios, throughput, sesiones. Planificación IP/segmentación: espacio para expansión sin re-trabajo.
+            </div>
+            <div class="crit-example">
+                <strong>Ejemplo:</strong> Una red plana funciona al inicio, pero con crecimiento se vuelve insegura e inmanejable. Un diseño jerárquico y segmentado crece con menos riesgo.
+            </div>
+        </div>
+
+        <div class="crit-card">
+            <span class="crit-title">8) Criterio: Costo total (TCO) y sostenibilidad</span>
+            <p>Se evalúa el costo real durante la vida útil, no solo lo que cuesta “comprar”.</p>
+            <div class="crit-analysis">
+                <strong>Qué se analiza:</strong> Licencias y renovaciones, soporte, garantías. Capacitación del equipo y curva de aprendizaje. Costos de enlaces (WAN/nube) y expansión. Costos indirectos: caídas, incidentes, pérdida de productividad.
+            </div>
+            <div class="crit-example">
+                <strong>Ejemplo:</strong> Una solución barata sin soporte puede salir carísima por caídas y horas-hombre. Una inversión mayor puede justificarse si reduce incidentes y estabiliza la operación.
+            </div>
+        </div>
+
+        <div class="crit-card">
+            <span class="crit-title">9) Evidencia y verificabilidad (cómo demostrar que funciona)</span>
+            <p>Una buena selección siempre define cómo se comprobará que la solución cumple lo prometido.</p>
+            <div class="crit-analysis">
+                <strong>Qué se analiza:</strong> Logs útiles: accesos, bloqueos, cambios, eventos. Métricas: disponibilidad, latencia, saturación, failover. Pruebas: acceso por rol, segmentación real, simulación de fallas. Auditoría: trazabilidad para investigación y cumplimiento.
+            </div>
+            <div class="crit-example">
+                <strong>Ejemplo:</strong> ZTNA debe mostrar qué usuario accedió a qué aplicación y desde qué dispositivo. NAC debe evidenciar autenticaciones, perfiles aplicados, dispositivos en cuarentena. WAN debe demostrar failover y rendimiento.
+            </div>
+        </div>
+
+        <div class="crit-card">
+            <span class="crit-title">10) Riesgo operativo y mantenimiento de postura (configuración, errores y deriva)</span>
+            <p>No basta con implementar: la seguridad puede degradarse con el tiempo si hay “deriva” de configuración y excepciones.</p>
+            <div class="crit-analysis">
+                <strong>Qué se analiza:</strong> Gobierno de cambios: quién aprueba, cómo se registra y se revierte. Estandarización: plantillas y reglas consistentes por zona. Revisión periódica: permisos, reglas, excepciones, cuentas privilegiadas. Actualizaciones: parches de seguridad, firmas, certificados.
+            </div>
+            <div class="crit-example">
+                <strong>Ejemplo:</strong> Un firewall puede terminar con “reglas temporales” que se vuelven permanentes; un NAC puede perder efectividad si no se mantiene inventario y perfiles.
+            </div>
+        </div>
+
+        <div class="crit-card">
+            <span class="crit-title">11) Consistencia de políticas (mismo control en campus, sedes, nube y remoto)</span>
+            <p>En entornos modernos, la gente y los servicios están distribuidos; por eso importa que las políticas no cambien “según el lugar” sin razón.</p>
+            <div class="crit-analysis">
+                <strong>Qué se analiza:</strong> Política por identidad/rol aplicada igual en diferentes puntos (campus vs remoto). Zonas y reglas coherentes entre on-prem y nube. Excepciones bien justificadas (pocas, documentadas y monitoreadas).
+            </div>
+            <div class="crit-example">
+                <strong>Ejemplo:</strong> Un administrativo debería tener el mismo nivel de control de acceso esté en campus o remoto. Si remoto es “más abierto”, se vuelve el camino preferido del atacante.
+            </div>
+        </div>
+
+    </div>
+
+    <h2 class="qa-section-title">Preguntas y Respuestas Clave</h2>
+
+    <details class="qa-item">
+        <summary class="qa-summary">¿Qué significa evaluar una tecnología o mecanismo de seguridad?</summary>
+        <div class="qa-content">
+            Significa comparar alternativas con criterios objetivos para escoger la opción que mejor encaja con el entorno y sus riesgos, asegurando que sea operable, sostenible y verificable con evidencia.
+        </div>
+    </details>
+
+    <details class="qa-item">
+        <summary class="qa-summary">¿Por qué “la mejor tecnología” no es igual para todos los entornos?</summary>
+        <div class="qa-content">
+            Porque campus, sedes, remoto e IoT/OT tienen necesidades distintas de escala, criticidad, continuidad, riesgo y operación. Una solución ideal para data center puede ser excesiva o inmanejable en una sede pequeña.
+        </div>
+    </details>
+
+    <details class="qa-item">
+        <summary class="qa-summary">¿Cuál es la diferencia entre “seguridad en papel” y seguridad efectiva?</summary>
+        <div class="qa-content">
+            La seguridad efectiva se demuestra con políticas aplicadas, segmentación real, autenticación fuerte, registros y pruebas (bloqueos correctos, accesos por rol, alertas). La seguridad en papel solo existe en documentos sin evidencia operacional.
+        </div>
+    </details>
+
+    <details class="qa-item">
+        <summary class="qa-summary">¿Qué significa “mínimo privilegio” en redes y acceso?</summary>
+        <div class="qa-content">
+            Que cada usuario o dispositivo solo puede acceder a los recursos necesarios para su función, y nada más. Esto reduce movimiento lateral y limita el impacto de una credencial comprometida.
+        </div>
+    </details>
+
+    <details class="qa-item">
+        <summary class="qa-summary">¿Por qué la disponibilidad es un criterio de evaluación de seguridad?</summary>
+        <div class="qa-content">
+            Porque un control de seguridad que causa caídas o bloquea servicios críticos puede afectar continuidad del negocio. Seguridad y disponibilidad deben convivir: proteger sin paralizar la operación.
+        </div>
+    </details>
+
+    <details class="qa-item">
+        <summary class="qa-summary">¿Qué debo revisar para evaluar resiliencia en WAN o acceso remoto?</summary>
+        <div class="qa-content">
+            Redundancia de enlaces, failover (automático y probado), ausencia de puntos únicos de falla, monitoreo de saturación y planes de contingencia que permitan mantener servicios críticos ante fallas.
+        </div>
+    </details>
+
+    <details class="qa-item">
+        <summary class="qa-summary">¿Qué relación tiene el rendimiento con controles como NGFW, WAF o inspección TLS?</summary>
+        <div class="qa-content">
+            Estos controles consumen recursos porque inspeccionan tráfico; si no están dimensionados, impactan latencia y velocidad. Evaluarlos exige medir throughput real, CPU/memoria, sesiones concurrentes y comportamiento en hora pico.
+        </div>
+    </details>
+
+    <details class="qa-item">
+        <summary class="qa-summary">¿Por qué la administrabilidad puede decidir una selección aunque la otra opción sea más “segura” en teoría?</summary>
+        <div class="qa-content">
+            Porque una solución casi imposible de operar terminará mal configurada o sin monitoreo, lo que en la práctica la hace insegura. La seguridad real depende de implementación correcta y mantenimiento continuo.
+        </div>
+    </details>
+
+    <details class="qa-item">
+        <summary class="qa-summary">¿Qué implica “compatibilidad” cuando hay IoT/OT?</summary>
+        <div class="qa-content">
+            Que muchos dispositivos no soportan agentes, parches frecuentes o autenticación avanzada; por eso el control debe apoyarse en segmentación, allowlists, accesos administrativos controlados y monitoreo de tráfico.
+        </div>
+    </details>
+
+    <details class="qa-item">
+        <summary class="qa-summary">¿Qué es el TCO y por qué importa al seleccionar tecnologías?</summary>
+        <div class="qa-content">
+            El TCO es el costo total de propiedad (compra + licencias + soporte + operación + capacitación + crecimiento + costos por fallas). Importa porque el costo real aparece en el tiempo, no solo al comprar.
+        </div>
+    </details>
+
+    <details class="qa-item">
+        <summary class="qa-summary">¿Qué evidencias mínimas deberían existir para validar una solución de acceso remoto?</summary>
+        <div class="qa-content">
+            MFA habilitado, políticas por rol, registros de acceso (usuario-aplicación-dispositivo), segmentación que limite alcance, alertas ante comportamientos sospechosos y pruebas verificables con usuarios de roles distintos.
+        </div>
+    </details>
+
+    <details class="qa-item">
+        <summary class="qa-summary">¿Qué es la “deriva” de configuración y por qué se evalúa?</summary>
+        <div class="qa-content">
+            Es cuando la configuración real se aleja del diseño por cambios no controlados, excepciones y reglas “temporales” permanentes. Se evalúa porque debilita seguridad y operación, aumentando el riesgo con el tiempo.
+        </div>
+    </details>
+
+</div>
+
+</body>
+</html>

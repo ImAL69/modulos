@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .design-eval-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative; /* Necesario para el logo absoluto */
+        overflow: hidden;
+        border-top: 8px solid #00897b; /* Verde Azulado */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #004d40;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(0, 77, 64, 0.15);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #e0f2f1;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 40px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '•';
+        color: #00897b;
+        font-weight: bold;
+        font-size: 1.5rem;
+        position: absolute;
+        left: 0;
+        top: -5px;
+    }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #00695c;
+        border-bottom: 2px solid #b2dfdb;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* Caja de Definición */
+    .definition-box {
+        background: #e0f2f1;
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 5px solid #00897b;
+        margin-bottom: 25px;
+    }
+
+    /* Grid de Principios */
+    .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    .principle-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+    
+    .principle-card strong { color: #004d40; display: block; margin-bottom: 5px; }
+
+    /* --- PASOS (TIMELINE) --- */
+    .steps-container {
+        position: relative;
+        padding-left: 20px;
+    }
+    
+    .steps-container::before {
+        content: '';
+        position: absolute;
+        left: 29px; top: 0; bottom: 0;
+        width: 2px; background: #b2dfdb; z-index: 0;
+    }
+
+    .step-item {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .step-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .step-num {
+        background: #00897b;
+        color: white;
+        width: 30px; height: 30px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    .step-title {
+        font-weight: 700;
+        color: #004d40;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* --- EVALUACIÓN (CICLO) --- */
+    .cycle-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .cycle-card {
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+    }
+
+    .cycle-before { background: #00897b; }
+    .cycle-during { background: #00695c; }
+    .cycle-after { background: #004d40; }
+
+    .cycle-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        display: block;
+        text-transform: uppercase;
+    }
+    
+    .cycle-card ul { text-align: left; color: white; margin-bottom: 0; }
+    .cycle-card li::before { color: #b2dfdb; }
+
+    /* --- CRITERIOS (CHECKLIST) --- */
+    .criteria-box {
+        background: #f1f8e9;
+        border: 1px solid #c5e1a5;
+        border-radius: 12px;
+        padding: 25px;
+    }
+
+    .criteria-group { margin-bottom: 15px; }
+    .criteria-title { font-weight: 700; color: #33691e; display: block; margin-bottom: 5px; }
+
+    /* --- EJEMPLO (DESTACADO) --- */
+    .example-section {
+        background: #e0f7fa;
+        padding: 30px;
+        border-radius: 12px;
+        border-left: 6px solid #006064;
+        margin-top: 40px;
+    }
+    
+    .example-title {
+        font-family: 'Montserrat', sans-serif;
+        color: #006064;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .steps-container { padding-left: 0; }
+        .steps-container::before { display: none; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="design-eval-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Diseño y evaluación de soluciones responsables</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/7ti9v6tcksqig74rya7ej/Gemini_Generated_Image_asatg7asatg7asat.png?rlkey=i0mfzdmt0izorz1ixshv5l5g6&st=d9hoo1x3&raw=1" alt="Diseño Responsable" class="hero-image">
+    </div>
+
+    <div class="content-block">
+        <p>En esta unidad ya no solo analizamos problemas: empezamos a pensar <strong>cómo deberían diseñarse y evaluarse soluciones tecnológicas responsables</strong>, especialmente cuando usan IA y datos personales.</p>
+        <p>Cuando hablamos de “soluciones responsables” nos referimos a sistemas, proyectos o servicios digitales que:</p>
+        <ul>
+            <li>Resuelven un problema real.</li>
+            <li>Respetan derechos y principios éticos.</li>
+            <li>Tienen controles para prevenir daños y corregir errores.</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1. ¿Qué significa diseñar una solución responsable?</h2>
+        <div class="definition-box">
+            <p>Diseñar responsablemente implica que, desde el inicio del proyecto, el equipo se pregunta:</p>
+            <ul style="margin-bottom:0;">
+                <li>¿Para qué se va a usar esta tecnología?</li>
+                <li>¿Quién gana y quién podría perder con su implementación?</li>
+                <li>¿Qué datos vamos a usar y qué riesgos trae su uso?</li>
+                <li>¿Qué límites y salvaguardas vamos a poner?</li>
+            </ul>
+        </div>
+        <p>No es solo “hacer que funcione”, sino preguntarse: <strong>“¿Funciona bien para quién, bajo qué condiciones y con qué consecuencias?”</strong></p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2. Principios que deben guiar el diseño</h2>
+        <p>Al diseñar una solución responsable, deberíamos tener siempre presentes algunos principios:</p>
+        
+        <div class="principles-grid">
+            <div class="principle-card">
+                <strong>Finalidad legítima y clara:</strong> el sistema responde a un problema definido, no se crea “porque sí” o solo por moda tecnológica.
+            </div>
+            <div class="principle-card">
+                <strong>Proporcionalidad:</strong> la solución no es más invasiva o compleja de lo necesario.
+            </div>
+            <div class="principle-card">
+                <strong>Privacidad y protección de datos:</strong> se usan los datos mínimos necesarios y se protegen adecuadamente.
+            </div>
+            <div class="principle-card">
+                <strong>No discriminación y equidad:</strong> se analizan los posibles sesgos y se evitan decisiones injustas.
+            </div>
+            <div class="principle-card">
+                <strong>Transparencia y explicabilidad:</strong> las personas entienden, al menos en términos generales, qué hace el sistema y cómo les afecta.
+            </div>
+            <div class="principle-card">
+                <strong>Supervisión humana y rendición de cuentas:</strong> hay responsables identificados y mecanismos para corregir errores o abusos.
+            </div>
+        </div>
+        <p style="margin-top:15px;">Estos principios se conectan con los marcos que ya viste (UNESCO, OCDE, marcos nacionales, guías de autoridades de datos).</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3. Pasos para el diseño responsable</h2>
+        <p>Cuando una organización diseña una solución basada en IA o datos, podría seguir un flujo como este:</p>
+        
+        <div class="steps-container">
+            
+            <div class="step-item">
+                <div class="step-header">
+                    <div class="step-num">1</div>
+                    <span class="step-title">Definir el problema y el contexto</span>
+                </div>
+                <ul>
+                    <li>¿Qué necesidad concreta queremos resolver?</li>
+                    <li>¿Quiénes son las personas usuarias y quiénes pueden verse afectadas indirectamente?</li>
+                    <li>¿Ya se han intentado otras soluciones menos invasivas?</li>
+                </ul>
+            </div>
+
+            <div class="step-item">
+                <div class="step-header">
+                    <div class="step-num">2</div>
+                    <span class="step-title">Mapear actores y grupos afectados</span>
+                </div>
+                <ul>
+                    <li>¿Quién desarrolla, quién usa y quién es evaluado por el sistema?</li>
+                    <li>¿Hay grupos vulnerables (niños, personas con discapacidad, minorías, personas con poca alfabetización digital)?</li>
+                </ul>
+            </div>
+
+            <div class="step-item">
+                <div class="step-header">
+                    <div class="step-num">3</div>
+                    <span class="step-title">Diseñar el uso de datos</span>
+                </div>
+                <ul>
+                    <li>¿Qué datos necesitamos realmente?</li>
+                    <li>¿Podemos eliminar datos sensibles o reducir el volumen?</li>
+                    <li>¿Cómo se informará a las personas sobre el uso de sus datos?</li>
+                </ul>
+            </div>
+
+            <div class="step-item">
+                <div class="step-header">
+                    <div class="step-num">4</div>
+                    <span class="step-title">Elegir y entrenar el modelo (si hay IA)</span>
+                </div>
+                <ul>
+                    <li>¿Qué fuentes de datos se usarán para entrenar?</li>
+                    <li>¿Se revisan posibles sesgos en los datos?</li>
+                    <li>¿Qué métricas se usarán para evaluar el modelo (no solo exactitud, sino equidad)?</li>
+                </ul>
+            </div>
+
+            <div class="step-item">
+                <div class="step-header">
+                    <div class="step-num">5</div>
+                    <span class="step-title">Diseñar la interfaz y la experiencia de usuario</span>
+                </div>
+                <ul>
+                    <li>¿El sistema indica claramente cuándo una decisión está automatizada?</li>
+                    <li>¿Se ofrece información comprensible para las personas afectadas?</li>
+                    <li>¿Se facilitan canales de ayuda, reclamo y revisión?</li>
+                </ul>
+            </div>
+
+            <div class="step-item">
+                <div class="step-header">
+                    <div class="step-num">6</div>
+                    <span class="step-title">Definir gobernanza y responsabilidades</span>
+                </div>
+                <ul>
+                    <li>¿Quién es responsable de la solución dentro de la organización?</li>
+                    <li>¿Quién revisa periódicamente riesgos, sesgos y problemas reportados?</li>
+                    <li>¿Qué se hará si se detecta un impacto negativo importante?</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4. Evaluación de soluciones responsables: antes, durante y después</h2>
+        <p>No basta con evaluar al final. Una solución responsable se evalúa en <strong>todo su ciclo de vida</strong>:</p>
+        
+        <div class="cycle-grid">
+            <div class="cycle-card cycle-before">
+                <span class="cycle-title">Antes (Ex ante)</span>
+                <ul>
+                    <li>Aquí entran herramientas como la AIA y la DPIA.</li>
+                    <li>Se identifican riesgos, se valoran impactos y se ajusta el diseño antes de desplegar el sistema.</li>
+                </ul>
+            </div>
+
+            <div class="cycle-card cycle-during">
+                <span class="cycle-title">Durante (Monitoreo)</span>
+                <ul>
+                    <li>Se observan resultados reales: ¿funciona como se esperaba?</li>
+                    <li>Se revisan errores, quejas, sesgos detectados y se realizan ajustes.</li>
+                    <li>Se monitorean indicadores (ej. tasas de error por grupo, reclamaciones).</li>
+                </ul>
+            </div>
+
+            <div class="cycle-card cycle-after">
+                <span class="cycle-title">Después (Revisión)</span>
+                <ul>
+                    <li>Se reevalúa si el sistema sigue siendo proporcional, útil y éticamente aceptable.</li>
+                    <li>Si cambian datos o contexto, se actualiza la AIA/DPIA.</li>
+                    <li>Se decide si continuar, modificar o retirar la solución.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5. Criterios para evaluar si una solución es “responsable”</h2>
+        <p>Al evaluar, podemos hacernos preguntas como:</p>
+        
+        <div class="criteria-box">
+            <div class="criteria-group">
+                <span class="criteria-title">Legal y ético</span>
+                ¿Cumple con la normativa de protección de datos y otros marcos aplicables? ¿Respeta los principios de dignidad, justicia, no discriminación, transparencia?
+            </div>
+            <div class="criteria-group">
+                <span class="criteria-title">Técnico</span>
+                ¿El sistema es robusto y fiable? ¿Se ha probado adecuadamente con diferentes grupos y escenarios?
+            </div>
+            <div class="criteria-group">
+                <span class="criteria-title">Organizacional</span>
+                ¿Existen roles y procesos claros para gestionar el sistema? ¿Hay formación para las personas que lo usan?
+            </div>
+            <div class="criteria-group">
+                <span class="criteria-title">Desde la perspectiva de las personas afectadas</span>
+                ¿Entienden qué hace el sistema y cómo les afecta? ¿Tienen voz para plantear dudas, quejas o propuestas de mejora? ¿Existen canales reales para corregir errores o injusticias?
+            </div>
+        </div>
+    </div>
+
+    <div class="example-section">
+        <h2 class="example-title">6. Ejemplo sencillo para conectar con las actividades</h2>
+        <p>Imagina una institución educativa que quiere implementar un sistema que: Analiza datos de conexión, entregas y notas. Clasifica estudiantes en “bajo riesgo”, “riesgo medio” y “alto riesgo de deserción”.</p>
+        
+        <p><strong>Diseño responsable:</strong></p>
+        <ul>
+            <li>Define claramente que el objetivo es ofrecer apoyo, no castigar.</li>
+            <li>Limita los datos a lo realmente necesario.</li>
+            <li>Informa a estudiantes que se usarán sus datos para identificar necesidades de acompañamiento.</li>
+            <li>Revisa si el sistema no está penalizando más a estudiantes con mala conexión o que trabajan y estudian.</li>
+            <li>Asegura que la decisión final de intervenir siempre pase por una persona (docente, bienestar, etc.).</li>
+        </ul>
+
+        <p><strong>Evaluación responsable:</strong></p>
+        <ul>
+            <li>Antes de desplegarlo, se hace una AIA (impacto en estigmatización, equidad) y una DPIA (datos personales).</li>
+            <li>Durante el uso, se observa si algunos grupos aparecen siempre como “alto riesgo” y se analizan posibles sesgos.</li>
+            <li>Se revisa anualmente si el sistema realmente ayuda a retener estudiantes o si genera efectos negativos no deseados.</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

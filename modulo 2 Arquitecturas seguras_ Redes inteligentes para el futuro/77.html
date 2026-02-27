@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .ai-components-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #651fff; /* Morado IA */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #4a148c;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(101, 31, 255, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #d1c4e9;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '🔹';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #6200ea;
+        border-bottom: 2px solid #b388ff;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #ede7f6;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #673ab7;
+    }
+
+    .key-question {
+        font-weight: 700;
+        color: #4a148c;
+        font-style: italic;
+        text-align: center;
+        display: block;
+        margin: 20px 0;
+        font-size: 1.1rem;
+    }
+
+    /* --- GRID DE COMPONENTES (1-12) --- */
+    .components-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    .component-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
+        border-top: 4px solid #7c4dff; /* Violeta */
+    }
+
+    .component-card:hover { transform: translateY(-5px); border-color: #651fff; }
+
+    .comp-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #311b92;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .comp-content { font-size: 0.95rem; color: #455a64; line-height: 1.6; }
+
+    .comp-example {
+        margin-top: auto;
+        padding: 10px;
+        background: #f3e5f5;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        color: #4a148c;
+        border-left: 3px solid #ab47bc;
+    }
+    
+    .comp-example strong { display: block; margin-bottom: 5px; }
+
+    /* --- CASOS (ACORDEÓN) --- */
+    details.case-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #b39ddb;
+        overflow: hidden;
+    }
+
+    summary.case-summary {
+        padding: 15px 20px;
+        background: #f3e5f5;
+        cursor: pointer;
+        font-weight: 700;
+        color: #512da8;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    summary.case-summary:hover { background: #e1bee7; }
+    summary.case-summary::-webkit-details-marker { display: none; }
+    
+    summary.case-summary::after { content: '+'; font-size: 1.5rem; color: #7e57c2; }
+    details[open] summary.case-summary::after { content: '-'; }
+
+    .case-content {
+        padding: 20px;
+        border-top: 1px solid #b39ddb;
+        color: #37474f;
+    }
+
+    /* --- PREGUNTAS Y RESPUESTAS (ESTILO CHAT) --- */
+    .qa-box {
+        background: #eceff1;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+    }
+
+    .qa-q {
+        font-weight: 700;
+        color: #0d47a1;
+        margin-bottom: 10px;
+        display: block;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .qa-a {
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #00bcd4;
+        color: #455a64;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .components-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="ai-components-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">1.1 Componentes de una plataforma de IA y analítica</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/y0j62ll4hpl5z4waiawrc/Gemini_Generated_Image_dfxdmddfxdmddfxd.png?rlkey=p3jan9mghxbbqsfaj47ajqoum&st=4a2e5bnz&raw=1" alt="Componentes Plataforma IA" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>Una plataforma de IA y analítica es el conjunto integrado de piezas (tecnológicas y operativas) que permiten pasar de datos crudos a información útil y finalmente a modelos de IA en producción, con control, trazabilidad y mejora continua. No es una sola herramienta: es un ecosistema donde cada componente cumple un rol específico y se conecta con otros.</p>
+        <span class="key-question">La pregunta guía del tema es: ¿Qué componentes forman una plataforma de IA y analítica y cómo se conectan para producir resultados confiables, escalables y seguros?</span>
+    </div>
+
+    <div class="components-grid">
+        
+        <div class="component-card">
+            <span class="comp-title">1) Fuentes de datos (Data Sources)</span>
+            <div class="comp-content">
+                Son los sistemas donde se originan los datos que alimentan analítica e IA.
+                <ul>
+                    <li>Transaccionales: ERP/CRM, sistemas académicos.</li>
+                    <li>Aplicaciones y plataformas: LMS, portales web.</li>
+                    <li>Logs y eventos: accesos, seguridad.</li>
+                    <li>IoT/OT: sensores, cámaras.</li>
+                    <li>Fuentes externas: open data, clima.</li>
+                </ul>
+            </div>
+            <div class="comp-example">
+                <strong>Ejemplo real (educación):</strong> LMS genera actividad, Sistema académico notas, Mesa de ayuda tickets. Estos tres juntos permiten analítica de riesgo.
+            </div>
+        </div>
+
+        <div class="component-card">
+            <span class="comp-title">2) Ingesta de datos (Data Ingestion)</span>
+            <div class="comp-content">
+                Procesos para capturar datos y moverlos desde las fuentes hacia la plataforma.
+                <ul>
+                    <li>Batch (por lotes): diario/semanal.</li>
+                    <li>Streaming (tiempo real): eventos continuos.</li>
+                    <li>APIs/Integraciones: conexión entre sistemas.</li>
+                </ul>
+            </div>
+            <div class="comp-example">
+                <strong>Ejemplo real (multi-sede):</strong> Sedes envían eventos a un bus/cola central. Si una sede cae, se reintenta (buffer).
+            </div>
+        </div>
+
+        <div class="component-card">
+            <span class="comp-title">3) Almacenamiento (Storage)</span>
+            <div class="comp-content">
+                La plataforma necesita “lugares” distintos porque no todo dato se maneja igual.
+                <ul>
+                    <li>Data Lake: datos en bruto o semiprocesados.</li>
+                    <li>Data Warehouse: datos modelados y limpios.</li>
+                    <li>Bases operativas: datos transaccionales.</li>
+                    <li>Repositorios de archivos: documentos, imágenes.</li>
+                </ul>
+            </div>
+            <div class="comp-example">
+                <strong>Ejemplo real (salud):</strong> Data lake para históricos, Warehouse para indicadores, Base transaccional para el día a día.
+            </div>
+        </div>
+
+        <div class="component-card">
+            <span class="comp-title">4) Procesamiento y transformación (ETL/ELT)</span>
+            <div class="comp-content">
+                Es el “cerebro” que limpia, integra y prepara datos para análisis o IA.
+                <ul>
+                    <li>Limpieza, normalización, integración, agregación, enriquecimiento.</li>
+                </ul>
+            </div>
+            <div class="comp-example">
+                <strong>Ejemplo real (riesgo académico):</strong> Unificar estudiante por ID, calcular variables (% asistencia), generar dataset listo.
+            </div>
+        </div>
+
+        <div class="component-card">
+            <span class="comp-title">5) Gobierno de datos (Data Governance)</span>
+            <div class="comp-content">
+                Sin gobierno, la plataforma puede ser grande… pero poco confiable.
+                <ul>
+                    <li>Catálogo de datos, clasificación, linaje, reglas de calidad, retención.</li>
+                </ul>
+            </div>
+            <div class="comp-example">
+                <strong>Ejemplo real:</strong> Si un director pregunta el origen de un indicador, el linaje debe responder: fuente → transformaciones → cálculo.
+            </div>
+        </div>
+
+        <div class="component-card">
+            <span class="comp-title">6) Seguridad y control de acceso</span>
+            <div class="comp-content">
+                En IA, los datos suelen ser sensibles: no todo el mundo debe ver todo.
+                <ul>
+                    <li>Identidad y roles (RBAC) + MFA.</li>
+                    <li>Aislamiento por entornos.</li>
+                    <li>Cifrado (tránsito/reposo).</li>
+                    <li>Auditoría.</li>
+                </ul>
+            </div>
+            <div class="comp-example">
+                <strong>Ejemplo real:</strong> Bienestar ve agregados, Coordinación ve listas limitadas, TI solo administra.
+            </div>
+        </div>
+
+        <div class="component-card">
+            <span class="comp-title">7) Analítica e inteligencia de negocio (BI)</span>
+            <div class="comp-content">
+                Antes de IA, casi siempre hay analítica descriptiva.
+                <ul>
+                    <li>Dashboards, reportes, análisis exploratorio, segmentación, alertas.</li>
+                </ul>
+            </div>
+            <div class="comp-example">
+                <strong>Ejemplo real (mesa ayuda):</strong> KPIs (tiempo respuesta, backlog). Alertas (“incidentes críticos aumentaron 30%”).
+            </div>
+        </div>
+
+        <div class="component-card">
+            <span class="comp-title">8) Desarrollo de modelos IA (ML Development)</span>
+            <div class="comp-content">
+                Es el entorno donde se construyen modelos: experimentación, features y algoritmos.
+                <ul>
+                    <li>Notebooks, librerías ML, feature engineering, entrenamiento, validación.</li>
+                </ul>
+            </div>
+            <div class="comp-example">
+                <strong>Ejemplo real:</strong> Features (palabras clave, categoría). Evaluación (accuracy + F1).
+            </div>
+        </div>
+
+        <div class="component-card">
+            <span class="comp-title">9) MLOps: ciclo de vida del modelo</span>
+            <div class="comp-content">
+                MLOps hace que la IA sea sostenible: versionar, desplegar, monitorear y actualizar.
+                <ul>
+                    <li>Versionado, registro de experimentos, pipelines, validación, despliegue controlado.</li>
+                </ul>
+            </div>
+            <div class="comp-example">
+                <strong>Ejemplo real:</strong> Nuevo modelo se prueba con 10% de tráfico. Si mejora, se amplía; si falla, rollback.
+            </div>
+        </div>
+
+        <div class="component-card">
+            <span class="comp-title">10) Serving: despliegue e inferencia</span>
+            <div class="comp-content">
+                Convertir el modelo en un servicio disponible y seguro.
+                <ul>
+                    <li>API de inferencia, gateway, rate limiting, autenticación, escalamiento.</li>
+                </ul>
+            </div>
+            <div class="comp-example">
+                <strong>Ejemplo real:</strong> Chatbot consulta servicio de IA. Debe haber control de acceso y límites.
+            </div>
+        </div>
+
+        <div class="component-card">
+            <span class="comp-title">11) Observabilidad</span>
+            <div class="comp-content">
+                En IA debes monitorear: Infraestructura (latencia, CPU), Servicio (tiempos, éxito), Modelo (calidad, drift, sesgos).
+            </div>
+            <div class="comp-example">
+                <strong>Ejemplo real:</strong> Si baja la tasa de clics, el modelo puede estar desalineado (drift).
+            </div>
+        </div>
+
+        <div class="component-card">
+            <span class="comp-title">12) Orquestación y automatización</span>
+            <div class="comp-content">
+                Coordina trabajos: ingestión → transformación → entrenamiento → despliegue.
+                <ul>
+                    <li>Scheduler, pipelines, dependencias, reintentos.</li>
+                </ul>
+            </div>
+            <div class="comp-example">
+                <strong>Ejemplo real:</strong> Domingo: actualiza dataset → entrena → valida → publica reporte.
+            </div>
+        </div>
+
+    </div>
+
+    <h2 class="section-title">Mini-casos reales (para aterrizarlo)</h2>
+    
+    <details class="case-item">
+        <summary class="case-summary">Caso 1: Predicción de deserción (Educación)</summary>
+        <div class="case-content">
+            Fuentes: LMS + notas + asistencia. Ingesta: batch diario. Almacenamiento: lake + warehouse. Transformación: variables riesgo. Modelo: clasificación. Serving: API + dashboard. Seguridad: roles + auditoría. MLOps: retraining mensual.
+        </div>
+    </details>
+
+    <details class="case-item">
+        <summary class="case-summary">Caso 2: Clasificación de tickets (TI)</summary>
+        <div class="case-content">
+            Fuentes: mesa ayuda + logs. Ingesta: streaming/batch. Modelo: NLP. Serving: integrado a tickets. Observabilidad: precisión de clasificación.
+        </div>
+    </details>
+
+    <details class="case-item">
+        <summary class="case-summary">Caso 3: IoT/OT con analítica predictive maintenance</summary>
+        <div class="case-content">
+            Fuentes: sensores. Ingesta: streaming. Analítica: anomalías. IA: alertas. Seguridad: segmentación OT/TI.
+        </div>
+    </details>
+
+    <h2 class="section-title">Preguntas y Respuestas</h2>
+    
+    <div class="qa-box">
+        <span class="qa-q">¿Por qué una plataforma de IA y analítica no es solo “un modelo”?</span>
+        <div class="qa-a">Porque necesita datos, ingesta, almacenamiento, transformación, seguridad, operación, despliegue, monitoreo y mejora continua. El modelo es solo una parte del ecosistema.</div>
+    </div>
+
+    <div class="qa-box">
+        <span class="qa-q">¿Qué diferencia hay entre Data Lake y Data Warehouse y por qué suelen coexistir?</span>
+        <div class="qa-a">El lake guarda datos masivos y flexibles (crudos/semiprocesados); el warehouse contiene datos limpios y modelados para KPIs y análisis. Coexisten porque sirven propósitos distintos y complementarios.</div>
+    </div>
+
+    <div class="qa-box">
+        <span class="qa-q">¿Qué es MLOps y por qué es esencial en producción?</span>
+        <div class="qa-a">MLOps es el conjunto de prácticas para versionar, desplegar, monitorear y actualizar modelos de forma controlada. Sin MLOps, la IA se vuelve frágil, difícil de mantener y riesgosa.</div>
+    </div>
+
+    <div class="qa-box">
+        <span class="qa-q">¿Qué se debe monitorear además de la infraestructura cuando hay IA en producción?</span>
+        <div class="qa-a">Se debe monitorear el desempeño del modelo (drift, calidad, sesgos) y métricas de negocio asociadas, no solo CPU/latencia.</div>
+    </div>
+
+    <div class="qa-box">
+        <span class="qa-q">¿Cuál es un riesgo típico al exponer un modelo como API y cómo se controla?</span>
+        <div class="qa-a">Riesgo: abuso o acceso no autorizado (fuga de datos, DoS, extracción). Control: autenticación por rol, rate limiting, WAF, logs/auditoría, segmentación y cifrado.</div>
+    </div>
+
+</div>
+
+</body>
+</html>

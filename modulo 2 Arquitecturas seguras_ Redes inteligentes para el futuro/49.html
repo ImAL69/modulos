@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .forum-arch-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #283593; /* Azul Profundo */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #1a237e;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(26, 35, 126, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #c5cae9;
+    }
+
+    /* --- SECCIÓN 1: PROPÓSITO --- */
+    .purpose-section {
+        background: #e8eaf6;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 50px;
+        border-left: 5px solid #3949ab;
+    }
+
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #283593;
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-weight: 700;
+        border-bottom: 2px solid #c5cae9;
+        padding-bottom: 10px;
+    }
+
+    .std-list {
+        padding-left: 20px;
+        margin-bottom: 20px;
+        list-style-type: disc;
+    }
+
+    .std-list li {
+        margin-bottom: 8px;
+        line-height: 1.6;
+    }
+
+    .ra-box {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px dashed #1a237e;
+        margin-top: 20px;
+    }
+
+    /* --- SECCIÓN 2: CONSIGNA (PASOS) --- */
+    .step-container {
+        margin-bottom: 40px;
+    }
+
+    .step-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .step-number {
+        background: #00695c; /* Teal */
+        color: white;
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        font-family: 'Orbitron', sans-serif;
+        flex-shrink: 0;
+    }
+
+    .step-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #004d40;
+        margin: 0;
+    }
+
+    .step-content {
+        padding-left: 20px;
+        border-left: 2px solid #b2dfdb;
+        margin-left: 20px;
+    }
+
+    /* --- OPCIONES (GRID) --- */
+    .options-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .option-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 25px;
+        transition: transform 0.3s;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+
+    .option-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+
+    /* Opción A */
+    .card-a { border-top: 5px solid #1565c0; }
+    .title-a { color: #1565c0; font-weight: 800; font-size: 1.2rem; margin-bottom: 15px; display: block; }
+
+    /* Opción B */
+    .card-b { border-top: 5px solid #00897b; }
+    .title-b { color: #00897b; font-weight: 800; font-size: 1.2rem; margin-bottom: 15px; display: block; }
+
+    .question-item {
+        margin-bottom: 15px;
+    }
+    .question-item strong { color: #37474f; display: block; margin-bottom: 5px; }
+
+    /* Nota de extensión */
+    .extension-note {
+        background: #fff3e0;
+        color: #e65100;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 30px;
+        font-size: 0.95rem;
+        border-left: 4px solid #ff9800;
+    }
+
+    /* --- PASO 3: RESPUESTAS --- */
+    .reply-list li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .reply-list li::before {
+        content: '💬';
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 0.9rem;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .step-content { padding-left: 10px; margin-left: 10px; border-left: none; }
+        .options-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="forum-arch-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Foro: Principios de arquitecturas tecnológicas seguras e inteligentes</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/rwoves4w12h4bdddakuj0/Gemini_Generated_Image_94nmfl94nmfl94nm.png?rlkey=ij7b5bm38fz2a2h5jldwgkm4n&st=dk5a913l&raw=1" alt="Foro Arquitectura" class="hero-image">
+    </div>
+
+    <div class="purpose-section">
+        <h2 class="section-title">1. Propósito del foro</h2>
+        <p>Este foro tiene como objetivo que pongas en práctica, desde el inicio de la Unidad 1, los conceptos trabajados sobre:</p>
+        <ul class="std-list">
+            <li>Capas de arquitectura tecnológica y de red (1.1)</li>
+            <li>Patrones de arquitectura y su impacto en seguridad y escalabilidad (1.2)</li>
+            <li>Atributos de calidad en arquitecturas seguras e inteligentes (1.3)</li>
+        </ul>
+        <p>A través del análisis de un caso, se busca que:</p>
+        <ul class="std-list">
+            <li>Empieces a pensar como arquitecto/a, no solo como administrador de dispositivos.</li>
+            <li>Identifiques principios de diseño seguro y sus consecuencias en la práctica.</li>
+            <li>Relaciones el diseño de la arquitectura con riesgos, continuidad del servicio y capacidad de crecimiento.</li>
+        </ul>
+        
+        <div class="ra-box">
+            <p><strong>Este foro es evaluativo y aporta al RA1 del módulo:</strong></p>
+            <p>“Diseña arquitecturas tecnológicas seguras e inteligentes, integrando principios de conectividad, escalabilidad y protección de datos.”</p>
+            <p style="font-size:0.9rem; color:#546e7a; margin-top:10px;">(El porcentaje exacto dentro de la nota del módulo se indicará en el plan de evaluación: sugerido 10–15 %.)</p>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2 class="section-title">2. Consigna del foro</h2>
+
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <span class="step-title">Paso 1. Revisa el material de la Unidad 1</span>
+            </div>
+            <div class="step-content">
+                <p>Antes de participar, asegúrate de haber leído:</p>
+                <ul class="std-list">
+                    <li>La introducción a la Unidad 1.</li>
+                    <li>La página 1.1 Conceptos básicos y capas de arquitectura.</li>
+                    <li>La página 1.2 Patrones de arquitectura y su impacto en seguridad y escalabilidad.</li>
+                    <li>La página 1.3 Atributos de calidad en arquitecturas seguras e inteligentes.</li>
+                </ul>
+                <p>Puedes tener abiertas las páginas mientras redactas tu aporte.</p>
+            </div>
+        </div>
+
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <span class="step-title">Paso 2. Publica tu intervención en el foro</span>
+            </div>
+            <div class="step-content">
+                <p>En <strong>una sola publicación inicial</strong>, elige <strong>uno</strong> de estos dos enfoques y desarróllalo con claridad:</p>
+                
+                <div class="options-grid">
+                    
+                    <div class="option-card card-a">
+                        <span class="title-a">Opción A – Analizando un caso real o cercano</span>
+                        <p>Piensa en una red o arquitectura que conozcas (puede ser de tu trabajo, institución educativa, laboratorio o un escenario descrito en clase) y responde:</p>
+                        
+                        <div class="question-item">
+                            <strong>¿Qué patrón(es) de arquitectura reconoces?</strong>
+                            Por ejemplo: jerárquica acceso–distribución–núcleo, hub-and-spoke, nube pública, híbrida, etc.
+                        </div>
+                        <div class="question-item">
+                            <strong>¿Qué tan “segura e inteligente” consideras esa arquitectura?</strong>
+                            Menciona al menos dos atributos de calidad (por ejemplo: disponibilidad, seguridad, escalabilidad, resiliencia, rendimiento, monitoreo) y explica brevemente cómo se ven afectados.
+                        </div>
+                        <div class="question-item">
+                            <strong>¿Qué decisión de diseño mejorarías primero y por qué?</strong>
+                            Propón al menos una mejora concreta (segmentación, DMZ, redundancia, monitoreo, etc.) y justifica tu respuesta con base en los conceptos de la unidad.
+                        </div>
+                    </div>
+
+                    <div class="option-card card-b">
+                        <span class="title-b">Opción B – Construyendo principios de arquitectura segura e inteligente</span>
+                        <p>Sin referirte a un caso específico, responde:</p>
+                        
+                        <div class="question-item">
+                            <strong>Menciona y explica al menos tres principios que, para ti, debe cumplir una arquitectura tecnológica segura e inteligente.</strong>
+                            Por ejemplo: segmentar por zonas, evitar puntos únicos de fallo, proteger datos sensibles en tránsito y reposo, diseñar para crecer, monitorear todo lo crítico, etc.
+                        </div>
+                        <div class="question-item">
+                            <strong>Relaciona cada principio con un atributo de calidad.</strong>
+                            Explica cómo ese principio mejora disponibilidad, seguridad, escalabilidad, resiliencia, rendimiento u observabilidad.
+                        </div>
+                        <div class="question-item">
+                            <strong>Explica las consecuencias de ignorar uno de esos principios.</strong>
+                            ¿Qué tipo de incidentes, caídas o riesgos podrían aparecer si no se aplica?
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="extension-note">
+                    <strong>🔎 Extensión orientativa del aporte inicial:</strong><br>
+                    Entre 2 y 3 párrafos bien desarrollados (no se evaluará por número de líneas, sino por claridad, profundidad y conexión con los conceptos del módulo).
+                </div>
+            </div>
+        </div>
+
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <span class="step-title">Paso 3. Responde a tus compañeros/as</span>
+            </div>
+            <div class="step-content">
+                <p>Luego de publicar tu intervención inicial:</p>
+                <ul class="std-list">
+                    <li>Lee las participaciones de tus compañeros/as.</li>
+                    <li>Elige al menos <strong>dos (2)</strong> aportes y realiza una respuesta a cada uno.</li>
+                </ul>
+                <p><strong>En tus respuestas puedes:</strong></p>
+                <ul class="reply-list" style="list-style:none; padding:0;">
+                    <li>Aportar un ángulo adicional (por ejemplo, otro atributo de calidad afectado).</li>
+                    <li>Proponer otra posible mejora para la arquitectura descrita.</li>
+                    <li>Hacer una pregunta que ayude a profundizar el análisis.</li>
+                    <li>Relacionar lo que dice tu compañero/a con otro contenido de la unidad (capas, patrones, NFR, etc.).</li>
+                </ul>
+                <p style="font-style:italic; color:#546e7a;">Evita respuestas del tipo “estoy de acuerdo” sin explicación. Se valorarán los aportes que sumen sentido, argumentos o nuevas ideas.</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

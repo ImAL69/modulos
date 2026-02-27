@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .principles-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 30px;
+        background: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #37474f; /* Gris Oscuro */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #37474f;
+        margin: 0 auto 20px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Tu enlace corregido) */
+    .hero-img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+    }
+
+    /* --- INTRODUCCIÓN --- */
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 40px;
+        padding: 20px;
+        background: #eceff1;
+        border-radius: 10px;
+        border-left: 5px solid #607d8b;
+    }
+
+    /* --- GRID DE LOS 4 PRINCIPIOS --- */
+    .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Tarjetas anchas */
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .p-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+        transition: transform 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .p-card:hover { transform: translateY(-5px); }
+
+    /* Colores Específicos por Principio */
+    .card-transparencia { border-top: 6px solid #00bcd4; } /* Cian */
+    .card-explicabilidad { border-top: 6px solid #9c27b0; } /* Violeta */
+    .card-nodisc { border-top: 6px solid #ff9800; } /* Naranja */
+    .card-account { border-top: 6px solid #4caf50; } /* Verde */
+
+    .p-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 15px;
+    }
+
+    .p-icon { font-size: 2rem; }
+    
+    .p-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin: 0;
+        color: #333;
+    }
+
+    .p-content { font-size: 0.95rem; line-height: 1.6; }
+    .p-content ul { padding-left: 20px; margin-bottom: 15px; }
+    .p-content li { margin-bottom: 8px; }
+
+    /* Caja de Ejemplo dentro de la tarjeta */
+    .example-box {
+        background: #fafafa;
+        border: 1px dashed #bdbdbd;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+        font-size: 0.9rem;
+    }
+    .example-title { font-weight: bold; display: block; margin-bottom: 5px; color: #555; }
+
+    /* --- SECCIÓN 5: CONEXIONES --- */
+    .connections-section {
+        background: #263238; /* Fondo oscuro */
+        color: #eceff1;
+        padding: 40px;
+        border-radius: 15px;
+        margin-bottom: 50px;
+    }
+
+    .conn-title {
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+        color: #80cbc4;
+    }
+
+    .conn-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    .conn-item {
+        background: rgba(255,255,255,0.1);
+        padding: 15px;
+        border-radius: 8px;
+    }
+    .conn-item strong { color: #80cbc4; display: block; margin-bottom: 5px; }
+
+    /* --- SECCIÓN 6: REFLEXIÓN --- */
+    .reflection-box {
+        background: #fff3e0;
+        border-left: 5px solid #ff9800;
+        padding: 30px;
+        border-radius: 8px;
+    }
+
+    .ref-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: #e65100;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 1.8rem; max-width: 100%; }
+        .principles-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="principles-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Transparencia, Explicabilidad, No Discriminación y Accountability</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/uhvgjowb0uz034tlbsqe8/Gemini_Generated_Image_al7faval7faval7f.png?rlkey=53aq0h1uuy36cwz5quesod45o&st=1w8tse8i&raw=1" alt="Principios Éticos" class="hero-img">
+    </div>
+
+    <div class="intro-text">
+        <p>Cuando hablamos de ética en tecnologías emergentes, hay cuatro principios que se vuelven especialmente importantes en el contexto de IA y tratamiento de datos. Estos principios no reemplazan a los clásicos (dignidad, autonomía, justicia), sino que los <strong>aterrizan</strong> a los retos concretos de sistemas que procesan grandes volúmenes de datos y toman decisiones automáticamente.</p>
+    </div>
+
+    <div class="principles-grid">
+
+        <div class="p-card card-transparencia">
+            <div class="p-header">
+                <span class="p-icon">👁️</span>
+                <h3 class="p-title">1. Transparencia: que las cosas no pasen “a oscuras”</h3>
+            </div>
+            <div class="p-content">
+                <p>Las personas tienen derecho a saber, de forma clara y accesible:</p>
+                <ul>
+                    <li>Que se está usando IA o modelos automatizados.</li>
+                    <li>Qué datos se están recopilando y para qué.</li>
+                    <li>Quién es el responsable del tratamiento.</li>
+                    <li>Qué impacto aproximado puede tener ese sistema en su vida.</li>
+                </ul>
+                <p>No basta con un aviso legal largo. Se debe usar lenguaje sencillo y explicar lo esencial.</p>
+                <div class="example-box">
+                    <span class="example-title">Ejemplo Sencillo:</span>
+                    Si una institución usa IA para becas, el estudiante debe saber que existe el sistema, qué datos lo alimentan y que puede ejercer sus derechos.
+                </div>
+            </div>
+        </div>
+
+        <div class="p-card card-explicabilidad">
+            <div class="p-header">
+                <span class="p-icon">🧠</span>
+                <h3 class="p-title">2. Explicabilidad: poder entender las decisiones</h3>
+            </div>
+            <div class="p-content">
+                <p>Va un paso más allá de la transparencia: responde a <strong>“¿Por qué tomó esa decisión conmigo?”</strong>.</p>
+                <p>Aunque no se explique cada cálculo matemático, se deben ofrecer explicaciones comprensibles sobre:</p>
+                <ul>
+                    <li>Factores principales que influyeron.</li>
+                    <li>Condiciones que cambiarían el resultado.</li>
+                    <li>Limitaciones del sistema.</li>
+                </ul>
+                <div class="example-box">
+                    <span class="example-title">Ejemplo:</span>
+                    Si alguien es rechazado en selección de personal por IA, se le debe explicar qué criterios pesaron más y si hubo revisión humana.
+                </div>
+            </div>
+        </div>
+
+        <div class="p-card card-nodisc">
+            <div class="p-header">
+                <span class="p-icon">⚖️</span>
+                <h3 class="p-title">3. No Discriminación: evitar injusticias</h3>
+            </div>
+            <div class="p-content">
+                <p>Un sistema de IA puede discriminar si:</p>
+                <ul>
+                    <li>Se entrena con datos sesgados (históricos excluyentes).</li>
+                    <li>Usa variables “proxies” (ej. código postal como sustituto de raza).</li>
+                    <li>Aplica un modelo genérico a poblaciones diferentes sin evaluar.</li>
+                </ul>
+                <p>Implica revisar datos, medir resultados por subpoblaciones y corregir el sistema.</p>
+                <div class="example-box">
+                    <span class="example-title">Ejemplo:</span>
+                    Un modelo de ascensos que solo elige hombres porque aprendió de datos históricos donde las mujeres no eran promovidas. La ética exige corregir esto.
+                </div>
+            </div>
+        </div>
+
+        <div class="p-card card-account">
+            <div class="p-header">
+                <span class="p-icon">✅</span>
+                <h3 class="p-title">4. Accountability: responsabilidad y cuentas</h3>
+            </div>
+            <div class="p-content">
+                <p>Siempre debe haber <strong>personas identificables</strong> que respondan. No es aceptable decir “Fue el algoritmo”.</p>
+                <p>Implica:</p>
+                <ul>
+                    <li>Definir quién es responsable de cada parte.</li>
+                    <li>Documentar decisiones clave (por qué este modelo, qué datos).</li>
+                    <li>Establecer auditoría y canales de reclamo.</li>
+                </ul>
+                <div class="example-box">
+                    <span class="example-title">Ejemplo:</span>
+                    En un proyecto educativo con IA, debe estar claro quién responde si hay una brecha de datos o un error de evaluación.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="connections-section">
+        <h2 class="conn-title">5. ¿Cómo se conectan estos principios?</h2>
+        <div class="conn-grid">
+            <div class="conn-item">
+                <strong>Transparencia + Explicabilidad</strong>
+                La gente sabe que hay IA y entiende, en términos generales, por qué toma decisiones.
+            </div>
+            <div class="conn-item">
+                <strong>No discriminación + Accountability</strong>
+                Se revisan sesgos activamente y alguien se hace cargo de corregirlos.
+            </div>
+            <div class="conn-item">
+                <strong>Transparencia + Accountability</strong>
+                No solo se informa; se puede probar quién decidió qué y bajo qué criterios.
+            </div>
+        </div>
+        
+        <p style="margin-top:30px; text-align:center;"><strong>En la práctica, hazte estas preguntas:</strong><br>
+        ¿Saben que hay IA? (Transparencia) • ¿Podemos explicar la decisión? (Explicabilidad) • ¿Revisamos sesgos? (No discriminación) • ¿Quién responde si falla? (Accountability)</p>
+    </div>
+
+    <div class="reflection-box">
+        <span class="ref-title">6. Preguntas para reflexión</span>
+        <ul style="margin:0; padding-left:20px;">
+            <li>¿Has visto algún sistema “opaco” (poco transparente) en tu trabajo o entorno?</li>
+            <li>¿Qué te genera más preocupación: la falta de explicaciones, el riesgo de discriminación o la falta de responsables?</li>
+            <li>Si tuvieras que priorizar, ¿por cuál de estos cuatro principios empezarías a mejorar un proyecto?</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

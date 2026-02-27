@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .resources-uia-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #00897b; /* Verde Azulado */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .meta-tag {
+        display: inline-block;
+        background: #e0f2f1;
+        color: #00695c;
+        padding: 5px 15px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        border: 1px solid #b2dfdb;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #004d40;
+        margin: 0 auto 20px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(0, 77, 64, 0.15);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #e0f2f1;
+    }
+
+    /* --- SECCIONES DE RECURSOS --- */
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #00695c;
+        border-bottom: 2px solid #b2dfdb;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 50px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* GRID DE TARJETAS */
+    .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .resource-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .resource-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        border-color: #00897b;
+    }
+
+    /* Bordes de color por tipo */
+    .type-dpia { border-left: 5px solid #0277bd; } /* Azul */
+    .type-aia { border-left: 5px solid #ef6c00; } /* Naranja */
+
+    .res-link {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #004d40;
+        text-decoration: none;
+        margin-bottom: 10px;
+        display: block;
+        line-height: 1.4;
+    }
+
+    .res-link:hover { color: #00897b; text-decoration: underline; }
+
+    .res-desc {
+        font-size: 0.95rem;
+        color: #546e7a;
+        line-height: 1.6;
+    }
+
+    .badge-icon { font-size: 1.2rem; margin-bottom: 10px; display: block; }
+
+    /* --- PLANTILLA AIA (ESTILO DOCUMENTO) --- */
+    .template-box {
+        background: #fafafa;
+        border: 1px solid #cfd8dc;
+        padding: 40px;
+        border-radius: 8px;
+        margin-top: 30px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .template-title {
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        font-size: 1.4rem;
+        color: #37474f;
+        margin-bottom: 30px;
+        border-bottom: 1px dashed #90a4ae;
+        padding-bottom: 15px;
+    }
+
+    .template-section {
+        margin-bottom: 25px;
+    }
+
+    .template-section h3 {
+        font-size: 1.1rem;
+        color: #00796b;
+        background: #e0f2f1;
+        padding: 8px 12px;
+        border-radius: 4px;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .template-content {
+        padding-left: 15px;
+        font-size: 0.95rem;
+    }
+
+    .template-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .template-list li {
+        margin-bottom: 8px;
+        position: relative;
+        padding-left: 20px;
+    }
+
+    .template-list li::before {
+        content: '☐';
+        position: absolute;
+        left: 0;
+        color: #78909c;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .resources-grid { grid-template-columns: 1fr; }
+        .template-box { padding: 20px; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="resources-uia-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <span class="meta-tag">Recurso Descargable</span>
+        <h1 class="main-title">Plantillas para AIA / DPIA y Checklist de Cumplimiento</h1>
+        <p style="font-size:0.9rem; color:#78909c; margin-top:10px;">Se completa al abrir el recurso. • Sin restricción de fecha.</p>
+        
+        <img src="https://www.dropbox.com/scl/fi/d3rxjxnhgz2c1uh71px94/Gemini_Generated_Image_r4dyror4dyror4dy.png?rlkey=qmrx9k3e8ed9ovrdb2qwi4l50&st=i2652zve&raw=1" alt="Herramientas de Evaluación" class="hero-image">
+    </div>
+
+    <h2 class="section-title">1. DPIA / EIPD (Protección de Datos)</h2>
+    <div class="resources-grid">
+        
+        <div class="resource-card type-dpia">
+            <span class="badge-icon">🇪🇸</span>
+            <a href="https://www.aepd.es/documento/modelo-informe-eipd-sector-privado.rtf" target="_blank" class="res-link">Modelo de informe de EIPD – Sector privado (AEPD)</a>
+            <div class="res-desc">Modelo editable orientado a responsables de tratamiento en el sector privado, alineado con RGPD.</div>
+        </div>
+
+        <div class="resource-card type-dpia">
+            <span class="badge-icon">📘</span>
+            <a href="https://www.aepd.es/guias/guia-gestion-del-riesgo-y-evaluacion-de-impacto-en-tratamientos-de-datos-personales.pdf" target="_blank" class="res-link">Guía de gestión del riesgo y evaluación de impacto – AEPD (PDF)</a>
+            <div class="res-desc">Incluye metodología, ejemplos y orientaciones prácticas para EIPD/DPIA.</div>
+        </div>
+
+        <div class="resource-card type-dpia">
+            <span class="badge-icon">🇪🇺</span>
+            <a href="https://www.edpb.europa.eu/sme-data-protection-guide/practical-resources-for-smes/spain/template-data-protection-impact_en" target="_blank" class="res-link">Template Data Protection Impact Assessment – EDPB</a>
+            <div class="res-desc">Plantilla de DPIA pensada para PYMEs, publicada por el Comité Europeo de Protección de Datos (Inglés).</div>
+        </div>
+
+        <div class="resource-card type-dpia">
+            <span class="badge-icon">🇯🇪</span>
+            <a href="https://jerseyoic.org/media/joqfvcyo/16_tk_dpia-template_interactive.pdf" target="_blank" class="res-link">Data Protection Impact Assessment Template – Jersey OIC</a>
+            <div class="res-desc">Ejemplo de plantilla completa (PDF editable) para documentar el proceso y resultado de una DPIA.</div>
+        </div>
+
+        <div class="resource-card type-dpia">
+            <span class="badge-icon">🇬🇧</span>
+            <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/" target="_blank" class="res-link">ICO: “How do we do a DPIA?” + sample template</a>
+            <div class="res-desc">Página con explicación paso a paso y un modelo de DPIA que se puede descargar y adaptar.</div>
+        </div>
+
+    </div>
+
+    <h2 class="section-title" style="color:#e65100; border-bottom-color:#ffe0b2;">2. AIA – Evaluación de Impacto Algorítmico</h2>
+    <div class="resources-grid">
+        
+        <div class="resource-card type-aia">
+            <span class="badge-icon">🇨🇦</span>
+            <a href="https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/responsible-use-ai/algorithmic-impact-assessment.html" target="_blank" class="res-link">Algorithmic Impact Assessment – Gobierno de Canadá</a>
+            <div class="res-desc">Herramienta oficial online. Cuestionario obligatorio para sistemas de decisión automatizada en el sector público.</div>
+        </div>
+
+        <div class="resource-card type-aia">
+            <span class="badge-icon">🌐</span>
+            <a href="https://oecd-opsi.org/toolkits/algorithmic-impact-assessment/" target="_blank" class="res-link">Algorithmic Impact Assessment – OECD OPSI</a>
+            <div class="res-desc">Explica el modelo AIA inspirado en Canadá y ofrece el cuestionario como herramienta reutilizable.</div>
+        </div>
+
+        <div class="resource-card type-aia">
+            <span class="badge-icon">📄</span>
+            <a href="https://ainowinstitute.org/publication/algorithmic-impact-assessments-report-2" target="_blank" class="res-link">Modelo “Algorithmic Impact Assessment” (Sector Público)</a>
+            <div class="res-desc">Documento con una propuesta de modelo para AIA, que puede servirte como referencia de estructura.</div>
+        </div>
+
+    </div>
+
+    <h2 class="section-title">3. Plantilla Sencilla (Para copiar y pegar)</h2>
+    <p>Esta estructura la puedes pegar en Word/Excel y usarla como archivo: <strong>“Plantilla AIA – Evaluación de Impacto Algorítmico (versión FET)”</strong></p>
+
+    <div class="template-box">
+        <h2 class="template-title">PLANTILLA AIA - ESTRUCTURA SUGERIDA</h2>
+
+        <div class="template-section">
+            <h3>1. Datos generales del proyecto</h3>
+            <ul class="template-list">
+                <li>Nombre del sistema de IA / algoritmo</li>
+                <li>Área responsable</li>
+                <li>Fecha / versión de la evaluación</li>
+                <li>Persona responsable de la AIA</li>
+            </ul>
+        </div>
+
+        <div class="template-section">
+            <h3>2. Descripción del sistema</h3>
+            <ul class="template-list">
+                <li>Objetivo del sistema (¿para qué se usa?)</li>
+                <li>Tipo de decisiones que apoya o automatiza</li>
+                <li>Usuarios principales (internos / externos)</li>
+                <li>Personas/grupos afectados por las decisiones</li>
+            </ul>
+        </div>
+
+        <div class="template-section">
+            <h3>3. Datos y modelo</h3>
+            <ul class="template-list">
+                <li>Fuentes de datos (internas, externas)</li>
+                <li>Tipos de datos (personales, sensibles, biométricos, etc.)</li>
+                <li>Variables clave que usa el modelo</li>
+                <li>Algoritmo / técnica principal (explicado en lenguaje sencillo)</li>
+            </ul>
+        </div>
+
+        <div class="template-section">
+            <h3>4. Impacto en personas y grupos</h3>
+            <ul class="template-list">
+                <li>¿Qué decisiones o resultados produce para las personas?</li>
+                <li>¿Qué grupos pueden verse más afectados (por género, edad, barrio, condición socioeconómica)?</li>
+                <li>¿Qué riesgos de sesgo y discriminación se identifican?</li>
+            </ul>
+        </div>
+
+        <div class="template-section">
+            <h3>5. Transparencia y explicabilidad</h3>
+            <ul class="template-list">
+                <li>¿Se informa a las personas que hay decisiones automatizadas?</li>
+                <li>¿Pueden recibir alguna explicación comprensible?</li>
+                <li>¿Se documenta cómo funciona el sistema para auditorías internas?</li>
+            </ul>
+        </div>
+
+        <div class="template-section">
+            <h3>6. Supervisión humana y vías de reclamación</h3>
+            <ul class="template-list">
+                <li>¿Hay revisión humana de decisiones importantes?</li>
+                <li>¿La persona puede reclamar y pedir revisión? ¿Cómo?</li>
+                <li>¿Quién es responsable de revisar casos conflictivos?</li>
+            </ul>
+        </div>
+
+        <div class="template-section">
+            <h3>7. Riesgos identificados</h3>
+            <div class="template-content">
+                <p>Evaluar probabilidad/impacto (bajo, medio, alto) para:</p>
+                <ul class="template-list">
+                    <li>Privacidad</li>
+                    <li>No discriminación</li>
+                    <li>Autonomía y dignidad</li>
+                    <li>Confianza y reputación</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="template-section">
+            <h3>8. Medidas de mitigación</h3>
+            <ul class="template-list">
+                <li>Cambios propuestos en datos (eliminar variables, mejorar calidad, representar mejor grupos).</li>
+                <li>Cambios en el modelo (umbral de decisión, métricas de equidad).</li>
+                <li>Cambios en la forma de uso (solo apoyo a la decisión, no decisión automática final).</li>
+                <li>Controles de gobernanza (auditorías periódicas, revisión de desempeño y sesgos).</li>
+            </ul>
+        </div>
+
+        <div class="template-section">
+            <h3>9. Plan de seguimiento</h3>
+            <ul class="template-list">
+                <li>Indicadores a monitorear (errores, reclamaciones, brechas por grupo).</li>
+                <li>Frecuencia de revisión de la AIA.</li>
+                <li>Responsable de actualizar el documento.</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Lecturas recomendadas: Gobernanza, SecMLOps y adversarial ML</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    body { background:#f5f5f5; margin:0; padding:0; }
+
+    .unit-container {
+        font-family:'Open Sans',sans-serif;
+        color:#444;
+        max-width:1100px;
+        margin:40px auto;
+        padding:60px 30px;
+        background:#fff;
+        border-radius:20px;
+        box-shadow:0 10px 40px rgba(0,0,0,0.08);
+        position:relative;
+        border-top:8px solid #0277bd;
+    }
+
+    .uni-logo{
+        position:absolute; top:30px; right:30px; width:120px;
+        background:rgba(255,255,255,0.9); padding:5px;
+        border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .header-box{ text-align:center; margin-bottom:30px; }
+    .unit-title{
+        font-family:'Montserrat',sans-serif; font-size:2.2rem;
+        font-weight:800; text-transform:uppercase; color:#01579b;
+        margin:0 0 8px 0;
+    }
+    .unit-subtitle{
+        font-size:1rem; color:#0288d1; font-weight:600; margin-bottom:20px;
+    }
+
+    .hero-img{
+        width:100%; max-width:820px; border-radius:15px;
+        margin:0 auto 25px auto; display:block;
+        box-shadow:0 20px 40px rgba(1,87,155,0.15);
+    }
+
+    .section{ margin-bottom:24px; font-size:0.98rem; line-height:1.7; text-align:justify; }
+    .section h2{
+        font-family:'Montserrat',sans-serif; color:#01579b; font-size:1.5rem;
+        margin-bottom:10px;
+    }
+
+    .intro-note{
+        background:#e1f5fe; border-left:5px solid #0288d1;
+        border-radius:10px; padding:14px 16px; margin-bottom:20px;
+    }
+
+    table{
+        width:100%; border-collapse:collapse; font-size:0.9rem;
+        margin-bottom:25px;
+    }
+    thead{
+        background:#e3f2fd;
+    }
+    th,td{
+        border:1px solid #bbdefb;
+        padding:10px;
+        vertical-align:top;
+        text-align:left;
+    }
+    th{
+        font-family:'Montserrat',sans-serif;
+        font-weight:600;
+        color:#0d47a1;
+        font-size:0.9rem;
+    }
+    tbody tr:nth-child(even){
+        background:#f7fbff;
+    }
+
+    .highlight-box{
+        border-radius:14px; padding:18px 20px; margin-bottom:10px;
+        background:#f1f8e9; border-left:5px solid #7cb342;
+    }
+
+    ul{ padding-left:22px; margin-top:6px; }
+    li{ margin-bottom:6px; }
+
+    @media (max-width:768px){
+        .unit-container{ padding:30px 15px; margin:20px 10px; }
+        .uni-logo{ position:static; margin:0 auto 15px auto; display:block; }
+        table, thead, tbody, th, td, tr{ display:block; }
+        thead{ display:none; }
+        tr{ margin-bottom:15px; border:1px solid #bbdefb; border-radius:10px; overflow:hidden; }
+        td{ border:none; border-bottom:1px solid #e3f2fd; }
+        td:last-child{ border-bottom:none; }
+        td::before{
+            content:attr(data-label);
+            display:block;
+            font-weight:600;
+            color:#0d47a1;
+            margin-bottom:4px;
+            font-family:'Montserrat',sans-serif;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="unit-container">
+
+<img class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&raw=1" alt="Logo institucional">
+
+<div class="header-box">
+    <span class="unit-subtitle">Fundamentos de IA y Ciberseguridad</span>
+    <h1 class="unit-title">Lecturas recomendadas: gobernanza, SecMLOps y adversarial ML</h1>
+    <img class="hero-img"
+         src="https://www.dropbox.com/scl/fi/unaj3xgnl3jt1i85j9rs3/Gemini_Generated_Image_byybj6byybj6byyb.png?rlkey=ftt9pit1cmsveux2d7xiagqij&raw=1"
+         alt="Lecturas y recursos sobre IA segura">
+</div>
+
+<div class="section">
+    <div class="intro-note">
+        <p>
+            En el siguiente cuadro encontrarás una selección curada de <strong>lecturas académicas y recursos técnicos</strong>
+            (SciELO, RedALyC, arXiv y otros), organizada por tema y objetivo.
+            Está pensada para apoyar el aprendizaje en:
+            <strong>gobernanza de datos</strong>, <strong>seguridad en MLOps</strong>,
+            <strong>robustez frente a ataques adversariales</strong> y
+            <strong>observabilidad / operación de modelos en producción</strong>.
+        </p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tema / objetivo</th>
+                <th>Lectura (título)</th>
+                <th>Tipo / por qué leer</th>
+                <th>Enlace</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Tema / objetivo">
+                    Gobernanza, datos y políticas — entender componentes organizacionales y de datos para IA en el sector público y privado.
+                </td>
+                <td data-label="Lectura (título)">
+                    Inteligencia artificial y gobernanza de datos en las administraciones públicas: reflexiones y evidencias para su desarrollo.
+                </td>
+                <td data-label="Tipo / por qué leer">
+                    Artículo académico (RedALyC). Marco conceptual y cinco componentes de gobernanza;
+                    útil para diseñar políticas y RACI.
+                </td>
+                <td data-label="Enlace">
+                    https://www.redalyc.org/journal/2815/281567964002/html/
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tema / objetivo">
+                    Panorama regional y adaptación sectorial (LatAm).
+                </td>
+                <td data-label="Lectura (título)">
+                    Inteligencia artificial en la gestión organizacional: Impacto y realidad latinoamericana.
+                </td>
+                <td data-label="Tipo / por qué leer">
+                    Artículo (SciELO). Contexto latinoamericano y retos regulatorios;
+                    sirve para adaptar roadmap por sector.
+                </td>
+                <td data-label="Enlace">
+                    https://ve.scielo.org/scielo.php?script=sci_arttext&pid=S2542-30882023000300226
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tema / objetivo">
+                    Riesgos y prácticas de seguridad en MLOps.
+                </td>
+                <td data-label="Lectura (título)">
+                    Security Risks and Best Practices of MLOps: A Multivocal Literature Review.
+                </td>
+                <td data-label="Tipo / por qué leer">
+                    CEUR Workshop (revisión multivocal). Mapea riesgos en pipelines MLOps
+                    y contramedidas prácticas para operaciones seguras.
+                </td>
+                <td data-label="Enlace">
+                    https://ceur-ws.org/Vol-3731/paper13.pdf
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tema / objetivo">
+                    Concepto y alcance de MLSecOps (vincular seguridad con MLOps).
+                </td>
+                <td data-label="Lectura (título)">
+                    What is MLSecOps? — MLSecOps Community.
+                </td>
+                <td data-label="Tipo / por qué leer">
+                    Recurso técnico/comunitario. Define MLSecOps (supply chain, provenance, GRC, adversarial)
+                    y prioridades operativas.
+                </td>
+                <td data-label="Enlace">
+                    https://mlsecops.com/what-is-mlsecops
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tema / objetivo">
+                    Robustez y ataques adversariales — fundamentos y taxonomía.
+                </td>
+                <td data-label="Lectura (título)">
+                    A reading survey on adversarial machine learning: Adversarial attacks and their understanding (Kotyan, arXiv).
+                </td>
+                <td data-label="Tipo / por qué leer">
+                    Survey (arXiv). Revisión comprensiva de ataques (evasion, poisoning, model extraction)
+                    y defensas; base para prácticas con IBM ART.
+                </td>
+                <td data-label="Enlace">
+                    https://arxiv.org/abs/2308.03363
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tema / objetivo">
+                    Adversarial + XAI — amenazas cuando hay explicabilidad y humano en el lazo.
+                </td>
+                <td data-label="Lectura (título)">
+                    Adversarial Attacks in Explainable Machine Learning: A Survey of Threats Against Models and Humans (WIREs, 2024).
+                </td>
+                <td data-label="Tipo / por qué leer">
+                    Revisión avanzada (Wiley). Conecta adversarial con explainability y evaluación humana;
+                    útil para análisis de riesgo y diseño de tests.
+                </td>
+                <td data-label="Enlace">
+                    https://doi.org/10.1002/widm.1567
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tema / objetivo">
+                    Observabilidad, métricas y operación en producción.
+                </td>
+                <td data-label="Lectura (título)">
+                    Observabilidad y Monitoreo en MLOps: Asegurando la Salud y el Rendimiento de tus Modelos en Producción (artículo técnico).
+                </td>
+                <td data-label="Tipo / por qué leer">
+                    Guía técnica / artículo aplicado. Cobertura práctica de telemetría, métricas ML,
+                    <em>drift</em> y <em>alerting</em> (útil para demos con Prometheus/Grafana/Evidently).
+                </td>
+                <td data-label="Enlace">
+                    https://blog.sergiomarquez.dev/post/observabilidad-monitoreo-mlops-modelos-produccion-salud-rendimiento-20250809
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tema / objetivo">
+                    Contexto sectorial y consideraciones regulatorias (ejemplo México).
+                </td>
+                <td data-label="Lectura (título)">
+                    Inteligencia artificial y su impacto en la automatización del trabajo en México (SciELO).
+                </td>
+                <td data-label="Tipo / por qué leer">
+                    Artículo regional (SciELO). Contextualiza implicaciones sociales y regulatorias;
+                    ayuda a definir criterios de riesgo/valor por sector.
+                </td>
+                <td data-label="Enlace">
+                    https://ve.scielo.org/scielo.php?script=sci_arttext&pid=S2542-30882025000100004
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tema / objetivo">
+                    Taxonomías y surveys técnicas (profundizar).
+                </td>
+                <td data-label="Lectura (título)">
+                    A taxonomy and survey of attacks against machine learning — Pitropakis et al.
+                </td>
+                <td data-label="Tipo / por qué leer">
+                    Revisión técnica / taxonomía ampliamente citada; usar para referencia técnica y bibliografía.
+                </td>
+                <td data-label="Enlace">
+                    https://scholar.google.com/scholar?q=A+taxonomy+and+survey+of+attacks+against+machine+learning
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tema / objetivo">
+                    Aplicaciones adversariales en seguridad (IDS/malware).
+                </td>
+                <td data-label="Lectura (título)">
+                    Adversarial machine learning applied to intrusion and malware scenarios: A systematic review (IEEE Access / revisión).
+                </td>
+                <td data-label="Tipo / por qué leer">
+                    Revisión aplicada; conecta adversarial ML con escenarios reales de ciberseguridad (IDS, malware).
+                </td>
+                <td data-label="Enlace">
+                    https://scholar.google.com/scholar?q=Adversarial+machine+learning+applied+to+intrusion+and+malware+scenarios
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h2>¿Para qué sirve leer estos artículos?</h2>
+    <div class="highlight-box">
+        <ul>
+            <li><strong>Comprender fundamentos:</strong> establecen conceptos clave de gobernanza, privacidad y seguridad aplicados a IA, formando la base teórica del módulo.</li>
+            <li><strong>Relacionar teoría y práctica:</strong> ofrecen prácticas y recomendaciones (MLOps, MLSecOps, observabilidad) que pueden aplicarse en talleres y ejercicios.</li>
+            <li><strong>Evaluar riesgos y defensas:</strong> los <em>surveys</em> y revisiones sobre ataques adversariales ayudan a identificar vulnerabilidades, vectores de ataque y estrategias de mitigación.</li>
+            <li><strong>Contextualizar decisiones regulatorias:</strong> los artículos regionales y normativos permiten adaptar controles (GDPR, AI Act, normas sectoriales) según el contexto local.</li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>

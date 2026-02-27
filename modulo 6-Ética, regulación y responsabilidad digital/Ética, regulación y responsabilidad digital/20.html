@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .automation-full-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #37474f; /* Gris Tecnológico */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #263238;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #eceff1;
+    }
+
+    /* --- BLOQUES DE TEXTO COMPLETO --- */
+    .content-block {
+        margin-bottom: 40px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p {
+        margin-bottom: 15px;
+    }
+    
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; /* Quitamos bullets por defecto para personalizarlos */
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    /* Personalización de viñetas */
+    .content-block li::before {
+        content: '•';
+        color: #0d47a1;
+        font-weight: bold;
+        font-size: 1.5rem;
+        position: absolute;
+        left: 0;
+        top: -5px;
+    }
+
+    /* Títulos de Sección (H2) */
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #0d47a1; /* Azul fuerte */
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e3f2fd;
+        padding-bottom: 10px;
+        font-weight: 700;
+        margin-top: 40px;
+    }
+
+    /* Subtítulos (a, b, c...) */
+    .sub-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        color: #1565c0;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        display: block;
+        background: #e3f2fd;
+        padding: 8px 15px;
+        border-radius: 6px;
+        display: inline-block;
+    }
+
+    /* Caja Destacada (Resumen/En Resumen) */
+    .highlight-box {
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 5px solid #37474f;
+        margin: 20px 0;
+        font-style: italic;
+    }
+
+    /* Caja de Preguntas Clave (Estilo Chat/Pregunta) */
+    .question-card {
+        background: #fff3e0;
+        border: 1px solid #ffe0b2;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .question-card strong {
+        color: #e65100;
+        display: block;
+        margin-bottom: 8px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.05rem;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 2rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="automation-full-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Automatización, Trabajo y Plataformas Digitales</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/m4f7c0nduag5p2ujcwk2x/Gemini_Generated_Image_7wc4gj7wc4gj7wc4.png?rlkey=ts6gwrej3ltivdkqqyycnf4z1&st=b8fbkrhf&raw=1" alt="Automatización y Trabajo" class="hero-image">
+    </div>
+
+    <div class="content-block">
+        <p>En los últimos años, la automatización y las plataformas digitales han cambiado profundamente cómo trabajamos, cómo nos contratan y cómo somos evaluados.</p>
+        <p>Ya no se trata solo de robots en fábricas: hoy hablamos de algoritmos que asignan turnos, aplicaciones que controlan cada movimiento de un repartidor, sistemas que miden en tiempo real la productividad, y plataformas que conectan a millones de trabajadores “independientes” con clientes en todo el mundo.</p>
+        <p><strong>En esta página veremos:</strong></p>
+        <ul>
+            <li>Qué entendemos por automatización en el trabajo.</li>
+            <li>Qué son y cómo funcionan las plataformas digitales de trabajo.</li>
+            <li>Qué oportunidades ofrecen.</li>
+            <li>Qué dilemas éticos y riesgos generan para las personas trabajadoras.</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1. ¿Qué es la automatización en el trabajo hoy?</h2>
+        <p>Tradicionalmente, automatizar significaba usar máquinas para hacer tareas físicas repetitivas.</p>
+        <p>Hoy, la automatización incluye también:</p>
+        <ul>
+            <li><strong>Automatización de procesos:</strong> software que realiza tareas administrativas (RPA, bots que llenan formularios, sistemas que contestan correos o chats básicos).</li>
+            <li><strong>Algoritmos de gestión y decisión:</strong>
+                <ul style="list-style: circle; margin-top:5px; padding-left:15px;">
+                    <li>Sistemas que deciden qué empleado atiende a qué cliente.</li>
+                    <li>Modelos que recomiendan ascensos, despidos o bonos.</li>
+                    <li>Análisis de rendimiento en tiempo real.</li>
+                </ul>
+            </li>
+            <li><strong>IA en recursos humanos:</strong> filtrado de hojas de vida, pruebas en línea, análisis de voz o vídeo para seleccionar candidatos.</li>
+            <li><strong>Automatización del seguimiento:</strong> monitoreo de teclas, tiempo de conexión, geolocalización, capturas de pantalla, cámaras y sensores.</li>
+        </ul>
+        <div class="highlight-box">
+            <strong>En resumen:</strong> La automatización ya no solo reemplaza tareas manuales, también toma decisiones, organiza el trabajo y evalúa a las personas.
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2. Plataformas digitales de trabajo: ¿qué son?</h2>
+        <p>Las plataformas digitales de trabajo son aplicaciones o sitios web que conectan a quienes demandan un servicio con personas que lo ofrecen.</p>
+        <p><strong>Algunos ejemplos típicos:</strong></p>
+        <ul>
+            <li>Plataformas de transporte o reparto (viajes, comidas, domicilios).</li>
+            <li>Plataformas de servicios bajo demanda (limpieza, cuidados, oficios varios).</li>
+            <li>Plataformas de trabajo en línea (freelance, microtareas, diseño, programación, traducción, etc.).</li>
+        </ul>
+        <p><strong>Características comunes:</strong></p>
+        <ul>
+            <li>El trabajo se organiza a través de una app o página.</li>
+            <li>El “jefe” visible suele ser un algoritmo: asigna viajes, tareas, pedidos, turnos.</li>
+            <li>La reputación se construye mediante calificaciones, estrellas y comentarios de clientes.</li>
+            <li>La relación laboral muchas veces se define como independiente o por prestación de servicios, aunque en la práctica hay alto nivel de control.</li>
+        </ul>
+        <p>Esto plantea una pregunta clave: <strong>¿Hasta qué punto estas plataformas son solo “intermediarias” y hasta qué punto gestionan y controlan el trabajo como un empleador?</strong></p>
+        <p>En la práctica, muchas plataformas se presentan como simples intermediarias, pero al fijar tarifas, asignar tareas, definir penalizaciones y condiciones de uso, ejercen un control muy similar al de un empleador. Éticamente es importante reconocer ese poder y asumir responsabilidades sobre las condiciones de trabajo y los riesgos asociados.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3. Oportunidades que ofrecen automatización y plataformas</h2>
+        <p>No todo es negativo. La automatización y las plataformas también traen beneficios reales:</p>
+        <ul>
+            <li><strong>Mayor eficiencia:</strong> tareas que antes requerían horas ahora se hacen en minutos o segundos.</li>
+            <li><strong>Nuevas formas de ingreso:</strong> personas que antes no accedían a ciertos mercados ahora pueden ofrecer servicios desde su ciudad o desde su casa.</li>
+            <li><strong>Flexibilidad horaria (al menos en teoría):</strong> posibilidad de conectarse y desconectarse, combinar estudios, cuidados y trabajo.</li>
+            <li><strong>Acceso a datos y métricas:</strong> tanto organizaciones como personas pueden conocer su rendimiento, tiempos, patrones de demanda, etc.</li>
+        </ul>
+        <p>El reto es que estos beneficios no se conviertan en excusa para normalizar prácticas injustas, invasivas o deshumanizadoras.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4. Dilemas éticos en automatización del trabajo</h2>
+        <p>Algunos dilemas que aparecen repetidamente:</p>
+
+        <span class="sub-title">a) ¿Quién decide y con base en qué?</span>
+        <p>Cuando un algoritmo decide: A quién contratar o a quién descartar, quién recibe más pedidos o mejores rutas, quién es etiquetado como “productivo” o “de riesgo”. Surgen preguntas:</p>
+        <ul>
+            <li><strong>¿Qué datos está usando?</strong> Suele usar datos de rendimiento (tiempos, errores, cumplimiento de metas), datos de comportamiento (horas de conexión, ubicación), datos de reputación (calificaciones de clientes) y a veces datos personales (edad, formación, historial laboral). El problema aparece cuando se usan datos que no son necesarios o que reflejan sesgos históricos.</li>
+            <li><strong>¿Hay sesgos en esos datos (género, edad, barrio, tipo de dispositivo, etc.)?</strong> Es muy probable. Por ejemplo, personas de ciertos barrios pueden tener peores conexiones o más tráfico, lo que afecta sus tiempos; o las mujeres pueden haber tenido menos oportunidades históricas, lo que distorsiona los datos. Si el modelo aprende de datos sesgados, puede reproducir o aumentar esas desigualdades.</li>
+            <li><strong>¿La persona puede pedir una explicación o revisar la decisión?</strong> En muchos sistemas no, o solo de forma limitada. Cada vez más se considera necesario que las personas puedan conocer las razones generales de una decisión automatizada y tener un canal para reclamar, pedir revisión humana o corrección.</li>
+        </ul>
+        <p>Aquí se cruzan los principios de: Transparencia y explicabilidad, No discriminación y Responsabilidad (accountability).</p>
+
+        <span class="sub-title">b) Intensificación y control del trabajo</span>
+        <p>La automatización también permite: Medir cada segundo conectado, controlar velocidad de entrega, pausas, ubicación, tiempos de respuesta, comparar constantemente a los trabajadores entre sí.</p>
+        <p>Esto puede mejorar la organización, pero también: Generar presión constante, estrés y sensación de vigilancia permanente; desincentivar pausas necesarias para la salud; afectar la autonomía y el sentimiento de dignidad profesional.</p>
+
+        <span class="sub-title">c) Confusión de roles y responsabilidades</span>
+        <p>En muchas plataformas: La empresa se presenta como solo “mediadora”. Sin embargo, define tarifas, penalizaciones, criterios de acceso, desactivaciones, etc.</p>
+        <p>Ética y jurídicamente, esto abre el dilema: <strong>¿Quién es realmente responsable de las condiciones de trabajo, de los riesgos y de los daños?</strong></p>
+        <p>Aunque el contrato llame al trabajador “independiente”, la plataforma que fija las reglas, tarifas, algoritmos y sanciones tiene una responsabilidad clara sobre las condiciones de trabajo. No se puede dejar toda la carga en la persona trabajadora cuando el control efectivo lo tiene la empresa que diseña y gestiona el sistema digital.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5. Dilemas éticos específicos en plataformas digitales</h2>
+        <p>En el caso de plataformas, algunos problemas frecuentes son:</p>
+        <ul>
+            <li><strong>Opacidad algorítmica:</strong> Las personas trabajadoras no saben cómo se calculan sus puntuaciones. No se explica por qué reciben menos pedidos o por qué fueron desactivadas.</li>
+            <li><strong>Desactivaciones y sanciones automáticas:</strong> Cuentas bloqueadas sin aviso claro ni canal de apelación. Dependencia económica de una app que puede “apagarse” para ti de un día para otro.</li>
+            <li><strong>Dependencia y precariedad:</strong> Ingresos variables e inciertos. Costos de herramientas, equipos y riesgos asumidos por el trabajador (vehículo, celular, salud, seguridad).</li>
+            <li><strong>Uso extensivo de datos personales y de comportamiento:</strong> GPS, tiempos, clics, chats, evaluaciones de clientes, etc. Perfilamiento y vigilancia continua sin siempre explicar qué se hace con esa información.</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">6. Conexión con IA, datos personales y vigilancia</h2>
+        <p>La automatización y las plataformas no se entienden sin datos: Cada viaje, entrega, clic o calificación genera un rastro. Los modelos de IA aprenden de esos datos y los reutilizan para tomar nuevas decisiones. El ciclo es continuo: más datos → más automatización → más datos.</p>
+        <p>Esto plantea preguntas éticas y legales esenciales:</p>
+        
+        <div class="question-card">
+            <strong>¿Qué consentimientos existen realmente?</strong>
+            Muchas veces el “consentimiento” se reduce a aceptar términos y condiciones largos que casi nadie lee. Éticamente esto es muy débil: lo adecuado sería informar de manera clara qué datos se recogen, con qué finalidad y qué opciones tiene la persona para aceptar o rechazar ciertos usos.
+        </div>
+
+        <div class="question-card">
+            <strong>¿Se respeta la finalidad original de los datos?</strong>
+            No siempre. A veces datos recogidos para “mejorar el servicio” se usan después para fines comerciales, análisis de riesgo o decisiones que la persona no esperaba. El principio de finalidad exige que no se cambie el uso de los datos sin una base jurídica clara y, en muchos casos, sin informar o pedir un nuevo consentimiento.
+        </div>
+
+        <div class="question-card">
+            <strong>¿Hay límites claros a la vigilancia?</strong>
+            En muchos casos, no. La tecnología permite vigilar casi todo el tiempo, pero eso no significa que sea legítimo hacerlo. Deberían existir límites temporales (no vigilar fuera de la jornada), límites de detalle (no registrar todo lo que se hace en el dispositivo) y reglas claras sobre qué datos no se recopilan.
+        </div>
+
+        <div class="question-card">
+            <strong>¿Se garantiza el derecho a acceder, corregir o borrar esos datos?</strong>
+            Legalmente este derecho existe en muchos países, pero en la práctica puede ser difícil ejercerlo: formularios complicados, falta de respuesta, desconocimiento de los canales. Las empresas deberían facilitar el acceso, la corrección y, cuando proceda, la eliminación o anonimización de datos.
+        </div>
+
+        <div class="question-card">
+            <strong>¿Quién puede usar esos datos en el futuro (aseguradoras, bancos, otras empresas)?</strong>
+            Si no hay límites claros, los datos podrían compartirse con terceros (aseguradoras, bancos, anunciantes) para tomar decisiones que afectan al trabajador (primas de seguro, acceso a créditos, ofertas segmentadas). Un buen gobierno de datos debe restringir estos usos y exigir transparencia y control a la persona sobre con quién se comparten sus datos.
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">7. Preguntas para el análisis en la Unidad 2</h2>
+        <p>A lo largo de la unidad, te invitaremos a usar estas preguntas como guía al analizar casos:</p>
+        
+        <div class="highlight-box" style="background: #e8f5e9; border-left-color: #2e7d32; font-style: normal;">
+            <ul>
+                <li><strong>¿Qué tareas se están automatizando o gestionando por medio de algoritmos en este caso?</strong> Es importante identificar si el sistema automatiza la asignación de tareas, la evaluación del rendimiento, las sanciones, los pagos, la planificación de turnos, etc. En otras palabras, qué funciones que antes hacía un humano ahora están en manos de un algoritmo.</li>
+                <li><strong>¿Qué datos se recopilan sobre las personas trabajadoras y para qué se usan?</strong> Conviene listar los tipos de datos (identificación, ubicación, rendimiento, reputación, comportamiento en la app) y explicar qué decisiones se toman con ellos (asignar más o menos trabajo, calcular bonos, bloquear cuentas, etc.).</li>
+                <li><strong>¿Qué beneficios obtienen la organización y las personas? ¿Quién gana más?</strong> Se pueden señalar los beneficios para la empresa (eficiencia, reducción de costos, más información) y para la persona (ingreso, flexibilidad, acceso a trabajo), y luego evaluar si el reparto de beneficios es equilibrado o si la organización obtiene mucho más a costa de riesgos para el trabajador.</li>
+                <li><strong>¿Qué riesgos aparecen para la privacidad, la no discriminación, la salud y la autonomía?</strong> Aquí se describen riesgos como vigilancia excesiva, uso de datos para fines no esperados, posibles sesgos que afecten a ciertos grupos, estrés, presión por estar siempre disponible y pérdida de control sobre cómo trabajar, relacionándolos con los principios éticos que se vulneran.</li>
+                <li><strong>¿Qué medidas éticas y legales podrían equilibrar mejor la relación entre automatización, productividad y derechos laborales?</strong> Se pueden proponer acciones concretas: límites a la vigilancia, transparencia sobre el algoritmo, derecho a explicación y apelación, participación de los trabajadores en el diseño de reglas, cumplimiento de la ley de datos personales, evaluaciones de impacto y supervisión humana en decisiones críticas.</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .perimeter-controls-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #311b92; /* Violeta Oscuro */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #311b92;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(49, 27, 146, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #d1c4e9;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '🛡️';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #4527a0;
+        border-bottom: 2px solid #d1c4e9;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #ede7f6;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #673ab7;
+    }
+
+    /* --- PREGUNTA CLAVE (CAJA DESTACADA) --- */
+    .key-question-box {
+        background: #ffffff;
+        border: 2px solid #b39ddb;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+    }
+
+    .key-q-title {
+        font-weight: 700;
+        color: #512da8;
+        display: block;
+        margin-bottom: 5px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* --- GRID CLÁSICO --- */
+    .classic-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .classic-card {
+        background: #f5f5f5; /* Gris clásico */
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        border-left: 5px solid #757575;
+    }
+    
+    .classic-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #424242;
+        margin-bottom: 10px;
+        display: block;
+        text-transform: uppercase;
+    }
+
+    /* --- GRID NUEVA GENERACIÓN --- */
+    .nextgen-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .nextgen-card {
+        background: #ffffff;
+        border: 1px solid #b39ddb;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(103, 58, 183, 0.1);
+        transition: transform 0.3s;
+        border-left: 5px solid #7e57c2; /* Violeta vibrante */
+    }
+
+    .nextgen-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(103, 58, 183, 0.2); }
+
+    .nextgen-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #512da8;
+        margin-bottom: 10px;
+        display: block;
+        text-transform: uppercase;
+    }
+
+    /* --- LISTAS DENTRO DE TARJETAS --- */
+    .card-list {
+        padding-left: 20px;
+        margin-bottom: 10px;
+        list-style-type: disc;
+        color: #546e7a;
+        font-size: 0.95rem;
+    }
+    .card-list li { margin-bottom: 5px; padding-left: 0; }
+    .card-list li::before { content: none; }
+
+    /* --- CRITERIOS (CHECKLIST) --- */
+    .criteria-box {
+        background: #e8eaf6;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px dashed #3949ab;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .classic-grid, .nextgen-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="perimeter-controls-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">2.1 Controles perimetrales clásicos y de nueva generación</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/85g5eliuh7wwwfzn0u6zm/Gemini_Generated_Image_wwesbrwwesbrwwes.png?rlkey=1anzdngiylre64vwx81brq7aa&st=zh8klh4b&raw=1" alt="Controles Perimetrales" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>El perímetro es el punto donde tu red se encuentra con “lo externo”: Internet, proveedores, sedes, nube, redes de terceros o accesos remotos. Aunque hoy hablamos de cloud y Zero Trust, el perímetro sigue siendo crítico porque ahí se concentran tres necesidades:</p>
+        <ul>
+            <li>Exposición controlada: publicar lo mínimo necesario (portales, VPN/ZTNA, APIs).</li>
+            <li>Protección del tráfico entrante y saliente: evitar intrusiones y fugas de datos.</li>
+            <li>Visibilidad y respuesta: detectar patrones anómalos y actuar.</li>
+        </ul>
+        <p>La diferencia entre controles “clásicos” y “de nueva generación” no es solo marketing: es el salto de controlar puertos e IPs a controlar aplicaciones, usuarios, contenido, comportamiento y amenazas.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1) ¿Qué es un control perimetral?</h2>
+        <p>Un control perimetral es cualquier mecanismo ubicado en el borde (o cerca del borde) que:</p>
+        <ul>
+            <li>decide qué tráfico entra/sale,</li>
+            <li>inspecciona tráfico para detectar amenazas,</li>
+            <li>segmenta zonas (Internet ↔ DMZ ↔ LAN),</li>
+            <li>y registra eventos para auditoría e investigación.</li>
+        </ul>
+        <div class="key-question-box">
+            <span class="key-q-title">Pregunta clave: ¿Por qué el perímetro es un punto de alto riesgo?</span>
+            <p>Porque es el punto donde los atacantes intentan entrar, donde se publican servicios, y por donde también puede salir información sensible. Si el perímetro es débil, el resto de controles internos tiene que “aguantar” demasiada presión.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2) Controles perimetrales clásicos</h2>
+        
+        <div class="classic-grid">
+            
+            <div class="classic-card">
+                <span class="classic-title">2.1 Firewall tradicional</span>
+                <p><strong>Qué hace:</strong> permite o bloquea tráfico según IP, puerto, protocolo, estado (stateful inspection).</p>
+                <p><strong>Limitaciones:</strong> no entiende aplicaciones (solo puertos), no analiza contenido. Hoy muchas amenazas viajan por HTTPS (puerto 443).</p>
+                <div class="key-question-box" style="border-color:#bdbdbd;">
+                    <span class="key-q-title" style="color:#616161;">Pregunta clave: ¿Qué pasa si solo tengo firewall clásico en un mundo cifrado?</span>
+                    Que puedes permitir conexiones “legítimas” por 443 que en realidad contienen malware. El puerto no describe el riesgo real.
+                </div>
+            </div>
+
+            <div class="classic-card">
+                <span class="classic-title">2.2 NAT (Traducción de direcciones)</span>
+                <p><strong>Qué hace:</strong> oculta direcciones internas y controla cómo salen/entran conexiones. Aporta reducción de exposición directa.</p>
+                <div class="key-question-box" style="border-color:#bdbdbd;">
+                    <span class="key-q-title" style="color:#616161;">Pregunta clave: ¿Por qué “tener NAT” no significa “estar seguro”?</span>
+                    Porque un servicio publicado con NAT sigue siendo accesible desde Internet; si está vulnerable, pueden atacarlo igual. La seguridad real depende de controles de acceso e inspección.
+                </div>
+            </div>
+
+            <div class="classic-card">
+                <span class="classic-title">2.3 Proxy (directo / inverso)</span>
+                <p>Proxy directo controla navegación. Proxy inverso protege servicios publicados. Aporta control de contenido y registro detallado.</p>
+                <div class="key-question-box" style="border-color:#bdbdbd;">
+                    <span class="key-q-title" style="color:#616161;">Pregunta clave: ¿Qué ventaja tiene un proxy frente a solo un firewall?</span>
+                    El proxy entiende mejor el tráfico web, puede aplicar políticas de contenido, autenticación y registro más fino; no se queda solo en IP/puerto.
+                </div>
+            </div>
+
+            <div class="classic-card">
+                <span class="classic-title">2.4 DMZ (Zona desmilitarizada)</span>
+                <p><strong>Qué es:</strong> una red separada para servicios que deben ser accesibles desde el exterior (web, portales, etc.). Aporta contención del riesgo.</p>
+                <div class="key-question-box" style="border-color:#bdbdbd;">
+                    <span class="key-q-title" style="color:#616161;">Pregunta clave: ¿Por qué publicar un servidor “directo” en la LAN es mala práctica?</span>
+                    Porque si ese servidor cae, el atacante ya está dentro de la red interna. La DMZ crea una barrera y permite reglas estrictas hacia adentro.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3) Controles de nueva generación (qué agregan y por qué importan)</h2>
+        
+        <div class="nextgen-grid">
+            
+            <div class="nextgen-card">
+                <span class="nextgen-title">3.1 NGFW (Firewall de nueva generación)</span>
+                <p>Mantiene lo clásico pero suma: inspección por aplicación (App-ID), políticas por usuario, inspección profunda (DPI), filtrado por categorías, integración con IPS/antimalware, TLS/SSL inspection.</p>
+                <p><strong>Por qué importa:</strong> hoy el tráfico “malicioso” suele ir camuflado en aplicaciones web, APIs y HTTPS.</p>
+                <div class="key-question-box">
+                    <span class="key-q-title">Pregunta clave: ¿Qué decisión crítica vuelve potente (o riesgoso) un NGFW?</span>
+                    La inspección de tráfico cifrado (TLS). Si no se diseña bien, puede afectar servicios o privacidad; si se diseña bien, mejora drásticamente detección.
+                </div>
+            </div>
+
+            <div class="nextgen-card">
+                <span class="nextgen-title">3.2 IDS/IPS (Detección y prevención)</span>
+                <p>IDS: detecta y alerta. IPS: detecta y bloquea. Nueva generación: firmas + comportamiento, integración con inteligencia de amenazas.</p>
+                <div class="key-question-box">
+                    <span class="key-q-title">Pregunta clave: ¿Por qué IPS puede ser peligroso si no se calibra?</span>
+                    Porque puede bloquear tráfico legítimo (falsos positivos) y tumbar servicios. Debe ajustarse por criticidad.
+                </div>
+            </div>
+
+            <div class="nextgen-card">
+                <span class="nextgen-title">3.3 WAF (Web Application Firewall)</span>
+                <p>Protege aplicaciones web y APIs contra ataques comunes: SQLi, XSS, bots, abuso de endpoints.</p>
+                <div class="key-question-box">
+                    <span class="key-q-title">Pregunta clave: ¿Cuándo es prácticamente obligatorio un WAF?</span>
+                    Cuando publicas portales o APIs con exposición alta (usuarios externos), especialmente si manejan datos sensibles.
+                </div>
+            </div>
+
+            <div class="nextgen-card">
+                <span class="nextgen-title">3.4 Secure Web Gateway / DNS Security / CASB</span>
+                <p>SWG: control de navegación. DNS security: bloquear dominios maliciosos. CASB: control de SaaS.</p>
+                <div class="key-question-box">
+                    <span class="key-q-title">Pregunta clave: ¿Por qué el perímetro hoy también incluye “salida a SaaS”?</span>
+                    Porque buena parte del trabajo ocurre en nube. El riesgo no solo está en lo que entra: también en cómo y qué datos salen.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4) Controles perimetrales para conectividad remota y multi-sede</h2>
+        <p>En entornos con sedes y teletrabajo, el perímetro se multiplica:</p>
+        <ul>
+            <li>VPN: túnel cifrado, útil pero puede dar acceso amplio.</li>
+            <li>ZTNA: acceso por aplicación, reduce lateralidad.</li>
+            <li>SASE (cuando aplica): “perímetro como servicio” combinando acceso + seguridad en nube.</li>
+        </ul>
+        <div class="key-question-box">
+            <span class="key-q-title">Pregunta clave: ¿Qué enfoque es más coherente con mínimo privilegio: VPN o ZTNA?</span>
+            <p>ZTNA, porque entrega acceso específico a aplicaciones y reduce exposición de red. VPN se reserva para casos específicos, muy controlados y segmentados.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5) Cómo elegir entre controles clásicos y de nueva generación (criterios)</h2>
+        <p>No se trata de “todo nuevo” vs “todo viejo”. Se trata de combinación adecuada:</p>
+        
+        <div class="criteria-box">
+            <ul class="card-list" style="color:#37474f;">
+                <li><strong>Criticidad del servicio:</strong> si hay servicios expuestos, WAF/NGFW se vuelve más relevante.</li>
+                <li><strong>Volumen y tipo de tráfico:</strong> campus con miles de usuarios necesita control web/DNS y segmentación fuerte.</li>
+                <li><strong>Nivel de amenaza:</strong> si hay riesgo de ataques dirigidos o ransomware, NGFW+IPS+logs es clave.</li>
+                <li><strong>Capacidad operativa:</strong> un control avanzado sin personal para operarlo = control mal configurado.</li>
+                <li><strong>Privacidad y cumplimiento:</strong> inspección TLS debe manejarse con política clara.</li>
+            </ul>
+        </div>
+
+        <div class="key-question-box">
+            <span class="key-q-title">Pregunta clave: ¿Cuál es el error más común al modernizar el perímetro?</span>
+            <p>Instalar tecnología avanzada sin: segmentar internamente, definir políticas mínimas necesarias, monitorear logs, y sin proceso de cambios. Resultado: “equipo caro” con reglas abiertas o mal calibradas.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">6) Resultado práctico esperado en tu unidad</h2>
+        <p>Al finalizar este tema, el estudiante debe poder:</p>
+        <ul>
+            <li>explicar diferencias reales entre firewall clásico y NGFW,</li>
+            <li>justificar cuándo se requiere DMZ y qué se ubica allí,</li>
+            <li>proponer WAF/IPS según exposición de servicios,</li>
+            <li>definir criterios de selección para campus, sedes, remoto e IoT/OT,</li>
+            <li>y describir evidencias de verificación (logs, pruebas de acceso, alertas).</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

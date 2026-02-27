@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Operación, monitoreo y respuesta vs Gobierno, sectores y roadmap</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    body { background:#f5f5f5; margin:0; padding:0; }
+
+    .unit-container {
+        font-family:'Open Sans',sans-serif;
+        color:#444;
+        max-width:1100px;
+        margin:40px auto;
+        padding:60px 30px;
+        background:#fff;
+        border-radius:20px;
+        box-shadow:0 10px 40px rgba(0,0,0,0.08);
+        position:relative;
+        border-top:8px solid #0277bd;
+    }
+
+    .uni-logo{
+        position:absolute; top:30px; right:30px; width:120px;
+        background:rgba(255,255,255,0.9); padding:5px;
+        border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .header-box{ text-align:center; margin-bottom:30px; }
+    .unit-title{
+        font-family:'Montserrat',sans-serif; font-size:2.2rem;
+        font-weight:800; text-transform:uppercase; color:#01579b;
+        margin:0 0 8px 0;
+    }
+    .unit-subtitle{
+        font-size:1rem; color:#0288d1; font-weight:600; margin-bottom:20px;
+    }
+
+    .hero-img{
+        width:100%; max-width:820px; border-radius:15px;
+        margin:0 auto 25px auto; display:block;
+        box-shadow:0 20px 40px rgba(1,87,155,0.15);
+    }
+
+    .section{ margin-bottom:24px; font-size:0.98rem; line-height:1.7; text-align:justify; }
+    .section h2{
+        font-family:'Montserrat',sans-serif; color:#01579b; font-size:1.5rem;
+        margin-bottom:10px;
+    }
+
+    .intro-note{
+        background:#e1f5fe; border-left:5px solid #0288d1;
+        border-radius:10px; padding:14px 16px; margin-bottom:20px;
+    }
+
+    table{
+        width:100%; border-collapse:collapse; font-size:0.9rem;
+        margin-bottom:25px;
+    }
+    thead{
+        background:#e3f2fd;
+    }
+    th,td{
+        border:1px solid #bbdefb;
+        padding:10px;
+        vertical-align:top;
+        text-align:left;
+    }
+    th{
+        font-family:'Montserrat',sans-serif;
+        font-weight:600;
+        color:#0d47a1;
+        font-size:0.9rem;
+    }
+    tbody tr:nth-child(even){
+        background:#f7fbff;
+    }
+
+    @media (max-width:768px){
+        .unit-container{ padding:30px 15px; margin:20px 10px; }
+        .uni-logo{ position:static; margin:0 auto 15px auto; display:block; }
+        table, thead, tbody, th, td, tr{ display:block; }
+        thead{ display:none; }
+        tr{ margin-bottom:15px; border:1px solid #bbdefb; border-radius:10px; overflow:hidden; }
+        td{ border:none; border-bottom:1px solid #e3f2fd; }
+        td:last-child{ border-bottom:none; }
+        td::before{
+            content:attr(data-label);
+            display:block;
+            font-weight:600;
+            color:#0d47a1;
+            margin-bottom:4px;
+            font-family:'Montserrat',sans-serif;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="unit-container">
+
+<img class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&raw=1" alt="Logo institucional">
+
+<div class="header-box">
+    <span class="unit-subtitle">Unidad 3 – Operación vs Gobierno</span>
+    <h1 class="unit-title">Operación, monitoreo y respuesta vs Gobierno, sectores y roadmap</h1>
+    <img class="hero-img"
+         src="https://www.dropbox.com/scl/fi/9nhpej7ek7kb4tfdqd4fe/Gemini_Generated_Image_tpvd3jtpvd3jtpvd.png?rlkey=2p1xbhcuv3ppq22ugvuh875ws&raw=1"
+         alt="Operación y gobierno de IA segura">
+</div>
+
+<div class="section">
+    <div class="intro-note">
+        <p>
+            Este cuadro comparativo resume las diferencias y complementariedades entre
+            <strong>Operación, monitoreo y respuesta</strong> y
+            <strong>Gobierno, sectores y roadmap</strong> dentro de un enfoque de Arquitectura y SecMLOps.
+        </p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Categoría</th>
+                <th>Operación, monitoreo y respuesta</th>
+                <th>Gobierno, sectores y roadmap</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Categoría">Definición breve</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    Conjunto de prácticas técnicas y operativas para mantener modelos en producción:
+                    monitorizar rendimiento y seguridad, detectar anomalías/<em>drift</em>, gestionar alertas,
+                    ejecutar <em>playbooks</em> y remediar incidentes.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    Marco organizacional, políticas y hoja de ruta para gobernar el uso de IA en la organización;
+                    adaptación por sector y planificación para madurar desde piloto hasta gobierno central.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Objetivos principales</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - Detectar degradación y ataques rápido (MTTD).<br>
+                    - Minimizar impacto y tiempo de recuperación (MTTR).<br>
+                    - Mantener disponibilidad y fiabilidad del servicio ML.<br>
+                    - Asegurar trazabilidad y evidencia para <em>forensics</em>.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Asegurar cumplimiento normativo y ético en el uso de IA.<br>
+                    - Establecer responsabilidades y procesos de aprobación.<br>
+                    - Priorizar casos de uso por riesgo/valor y escalar capacidades.<br>
+                    - Definir roadmap de madurez y gobernanza.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Alcance / foco</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - Telemetría (latencia, <em>throughput</em>).<br>
+                    - Métricas ML (AUC, precision@k, <em>drift</em>).<br>
+                    - <em>Logging &amp; lineage</em> (sample IDs, <em>features</em>, versión de modelo).<br>
+                    - Integración SIEM/SOAR; <em>playbooks</em>.<br>
+                    - <em>Shadow</em>/<em>canary deployments</em>; <em>rollback</em>.<br>
+                    - Almacenamiento de evidencia forense (inmutable).
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Políticas de uso y seguridad de IA.<br>
+                    - Model registry con firma y <em>metadata</em>.<br>
+                    - Procesos de aprobación y checklist pre-producción.<br>
+                    - Comité de gobernanza y matriz RACI.<br>
+                    - Auditorías periódicas y <em>reporting</em>.<br>
+                    - Roadmap técnico/organizacional (piloto → plataforma → gobierno).
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Controles técnicos recomendados</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - <em>Shadow-mode</em> y <em>canary releases</em>.<br>
+                    - Monitoreo de <em>drift</em> de datos y modelos.<br>
+                    - <em>Rate limiting</em>, <em>circuit breakers</em>.<br>
+                    - <em>Alert enrichment</em> (reputación, contexto).<br>
+                    - Firma de modelos y gestión de claves (KMS).<br>
+                    - <em>Backups</em> y almacenamiento inmutable para logs.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Políticas obligatorias para promoción de modelos.<br>
+                    - Requisitos de pruebas (adversarial tests, fairness tests) en CI.<br>
+                    - DPIA obligatoria para casos con datos personales.<br>
+                    - Registro de decisiones y evidencias (who/what/when/why).<br>
+                    - Requisitos contractuales y SLAs.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Controles organizacionales / procesos</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - <em>Playbooks</em> SOAR (enriquecimiento → contención → remediación).<br>
+                    - Triage y priorización (<em>score-based</em>).<br>
+                    - Escalado a SecOps / Privacy según gravedad.<br>
+                    - Retroalimentación para <em>retraining</em> y CI.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Comité de IA / Risk Board para aprobaciones.<br>
+                    - Políticas de retención y minimización de datos.<br>
+                    - Formación y certificación de roles (MLOps, SecOps, Data Stewards).<br>
+                    - Auditorías internas/externas regulares.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Roles y responsabilidades (ejemplos)</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - MLOps: monitorización, despliegue, <em>rollback</em>.<br>
+                    - SOC/SecOps: correlación y remediación de incidentes.<br>
+                    - Analistas/SOC: triage, investigación.<br>
+                    - Data Scientist: análisis de degradación y <em>retraining</em>.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Comité de IA: gobernanza y aprobaciones.<br>
+                    - Privacy/Legal (DPO): DPIA, cumplimiento.<br>
+                    - Product Owner: prioridad de casos de uso.<br>
+                    - CISO/SecOps: políticas de seguridad y exigencias técnicas.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">KPIs / métricas claves</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - MTTD, MTTR.<br>
+                    - Volumen de alertas por 1k eventos; tiempo medio por alerta.<br>
+                    - Precision@k, PPV en producción (por prevalencia).<br>
+                    - <em>Drift score</em>, alertas de calidad de datos.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - % de modelos con evidencia completa en registry.<br>
+                    - % de despliegues con <em>shadow-mode</em> previo.<br>
+                    - Tiempo medio para aprobación regulatoria / DPIA.<br>
+                    - Número de auditorías pasadas / hallazgos abiertos.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Detección y respuesta</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - Detección basada en reglas + modelos (UEBA, anomalías en scores).<br>
+                    - Correlación en SIEM y enriquecimiento automático.<br>
+                    - <em>Playbooks</em> definidos para tipos de incidentes (adversarial, drift, data leak).<br>
+                    - Automatización parcial (quarantine, block) y <em>human-in-the-loop</em> para decisiones críticas.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Definición de políticas de escalado y <em>reporting</em> legal.<br>
+                    - Procesos para notificación a <em>stakeholders</em> y reguladores.<br>
+                    - Planes de continuidad y comunicación pública cuando aplique.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Logs, trazabilidad y evidencia</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - Logs de inferencia con IDs, <em>features</em> y versión de modelo.<br>
+                    - Almacenamiento inmutable (WORM) para <em>forensics</em>.<br>
+                    - Trazabilidad de <em>lineage</em> para reproducibilidad.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Requerimiento de registros para auditoría (who/what/when/why).<br>
+                    - Evidencias para DPIA / AIA y revisiones regulatorias.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Integración con CI/CD-ML</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - Tests en CI: rendimiento, regresión, adversarial.<br>
+                    - Pipelines de despliegue con <em>canary/shadow</em> y <em>rollback</em> automático.<br>
+                    - <em>Gate checks</em> que bloquean promoción si fallan métricas.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Políticas que establecen pruebas mínimas obligatorias en CI.<br>
+                    - Evidencia registrada (artefactos, logs) para aprobación en Model Registry.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Riesgos típicos</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - Falsos positivos que saturan analistas.<br>
+                    - <em>Drift</em> no detectado degradando performance.<br>
+                    - Ataques adversarios (evasion, poisoning).<br>
+                    - Exfiltración de datos desde logs/feature stores.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Falta de gobernanza produciendo uso indebido de modelos.<br>
+                    - Procesos de aprobación insuficientes (promoción de modelos inseguros).<br>
+                    - Falta de DPIA / incumplimiento regulatorio.<br>
+                    - Silos organizativos que impiden respuesta coordinada.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Mitigaciones clave</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - <em>Threshold tuning</em> + triage priorizado.<br>
+                    - Disparadores de <em>retraining</em> y monitor de <em>drift</em>.<br>
+                    - Tests adversarios continuos; <em>sandboxing</em>.<br>
+                    - DLP y control de accesos al feature store.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Políticas de “Secure AI by Design”.<br>
+                    - Comité de revisiones, aprobación obligatoria para modelos de alto riesgo.<br>
+                    - Registro y auditoría periódica; formación obligatoria.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Herramientas y plataformas (ejemplos)</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - Observabilidad: Prometheus, Grafana, ELK/Opensearch.<br>
+                    - ML monitoring: Evidently.ai, WhyLabs, Fiddler.<br>
+                    - SIEM/SOAR: Splunk, Elastic SIEM, TheHive + Cortex.<br>
+                    - Serving: Seldon, BentoML, KFServing.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Model registry &amp; tracking: MLflow, DVC.<br>
+                    - Feature store: Feast.<br>
+                    - CI/CD: GitHub Actions, ArgoCD, Jenkins.<br>
+                    - Governance: herramientas de catalogación (Alation, DataHub) y registries auditables.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Entregables esperados</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - Diagrama de flujo de alertas y 2 <em>playbooks</em> (drift y adversarial).<br>
+                    - Lista de métricas/KPIs y umbrales accionables.<br>
+                    - Ejemplo de logs y esquema de <em>lineage</em>.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Política de gobernanza (1 página).<br>
+                    - Roadmap de 3 fases con hitos y entregables.<br>
+                    - RACI y mapeo normativo (CIA / NIST / ISO).
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Sectorización / adaptaciones</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    (Implementación técnica similar) pero prioridades varían: p. ej., en finanzas tolerancia baja a FN;
+                    en educación prioridad en privacidad y DPIA.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    Diseño específico por sector: educación (protección estudiantes/DPIA), gobierno (trazabilidad y transparencia),
+                    finanzas (KYC/AML y baja tolerancia a fraude), salud (PHI y validación clínica).
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Roadmap &amp; fases (vinculado a la operación)</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - Piloto: activar monitorización básica y <em>shadow-mode</em>.<br>
+                    - Plataforma: automatizar CI/CD-ML y alertas; integrar SIEM.<br>
+                    - Gobierno: operaciones integradas con comité y auditoría.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Piloto (0–6m): POC con <em>shadow-mode</em> y DPIA preliminar.<br>
+                    - Plataforma (6–18m): pipelines reproducibles, registry, pruebas adversarias en CI.<br>
+                    - Gobierno (18–36m): políticas corporativas, auditorías externas y gobierno centralizado.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Mapeo a estándares / compliance</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    La operación debe cumplir requisitos técnicos de integridad, disponibilidad y privacidad exigidos
+                    por las normas aplicables.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    El gobierno debe incorporar NIST AI RMF (evidencias: Govern/Map/Measure/Manage) y estándares de
+                    riesgo IA (ISO/IEC 23894).
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Ejemplos prácticos</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    - <em>Playbook</em>: detección de <em>drift</em> → sample check → bloquear inferencia para segmento afectado
+                      → <em>retrain/rollback</em>.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    - Política: requisito de firma de modelos y checklist de promoción que incluye tests adversarios,
+                      DPIA y aprobación Legal/Security.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Tiempo estimado de implementación</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    Piloto (2–6 semanas para monitoreo básico), plataforma (3–9 meses),
+                    integración SOAR (3–6 meses adicionales).
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    Piloto → Gobierno: roadmap típico 6–36 meses según recursos y prioridades.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Costes / recursos (alta)</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    Necesidad de ingesta de telemetría, almacenamiento de logs y analistas SOC y MLOps dedicados.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    Necesidad de inversión organizacional (comités, auditorías, formación) y herramientas de <em>governance</em>.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Checklist mínimo operativo</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    <em>Shadow-mode</em> habilitado; monitor de <em>drift</em> activo; <em>playbooks</em> definidos;
+                    <em>logging</em> con <em>lineage</em>; <em>alert enrichment</em>.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    Model registry con firma; DPIA o evidencia de privacidad; RACI definido; roadmap y calendario de auditorías.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Criterios de aceptación / QA</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    Detección de <em>drift</em> configurada con alertas accionables; SLAs de triage definidos;
+                    reproducibilidad de incidentes.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    Políticas publicadas; % de modelos con evidencias completas &gt; X%; roadmap aprobado por comité.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Categoría">Riesgos residuales y aceptación</td>
+                <td data-label="Operación, monitoreo y respuesta">
+                    Riesgos residuales: ataques sofisticados que eluden detección, coste de falsos positivos.
+                    Requiere monitoreo continuo.
+                </td>
+                <td data-label="Gobierno, sectores y roadmap">
+                    Riesgos residuales: decisiones organizativas deficientes, <em>gaps</em> regulatorios no cubiertos
+                    por la normativa local; mitigación por auditoría y revisión continua.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+</body>
+</html>

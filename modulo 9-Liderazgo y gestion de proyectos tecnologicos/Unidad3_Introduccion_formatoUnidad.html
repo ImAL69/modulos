@@ -1,0 +1,408 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Unidad 3: Introducción a la Unidad (RAP3)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .unit-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd; /* Azul institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .unit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 3rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: #01579b;
+        margin: 0 auto 10px auto;
+        max-width: 85%;
+        line-height: 1.2;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .unit-subtitle {
+        font-size: 1.3rem;
+        color: #0288d1;
+        font-weight: 600;
+        margin-bottom: 30px;
+        display: block;
+    }
+
+    /* IMAGEN HERO */
+    .hero-img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(1, 87, 155, 0.15);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+    }
+
+    /* --- TEXTO INTRODUCTORIO --- */
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 30px;
+        padding: 0 10px;
+    }
+
+    .intro-text p {
+        margin-bottom: 18px;
+    }
+
+    /* --- BLOQUE FOCO / RAP3 --- */
+    .ra-box {
+        background: linear-gradient(135deg, #0277bd 0%, #00acc1 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 20px rgba(0, 172, 193, 0.3);
+    }
+
+    .ra-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        display: block;
+        text-transform: uppercase;
+        opacity: 0.9;
+    }
+
+    .ra-content {
+        font-size: 1.05rem;
+        font-weight: 500;
+        line-height: 1.7;
+    }
+
+    /* --- TITULOS SECCIONES --- */
+    .content-title {
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        color: #01579b;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    /* --- GRID DE TEMAS PRINCIPALES --- */
+    .topics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    .topic-card {
+        background: white;
+        border: 1px solid #e1f5fe;
+        border-radius: 15px;
+        padding: 25px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: left;
+    }
+
+    .topic-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        border-color: #0288d1;
+    }
+
+    .topic-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        display: block;
+        color: #0277bd;
+    }
+
+    .topic-card h3 {
+        color: #01579b;
+        margin-top: 0;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        border-bottom: 2px solid #b3e5fc;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    .topic-card ul { padding-left: 20px; color: #555; }
+    .topic-card li { margin-bottom: 8px; font-size: 0.95rem; }
+
+    /* --- CONEXIÓN CON RAP3 / RESULTADO --- */
+    .connection-box {
+        background: #e1f5fe;
+        padding: 30px;
+        border-radius: 15px;
+        color: #01579b;
+        margin-bottom: 35px;
+    }
+
+    .connection-box h3 {
+        margin-top: 0;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 10px;
+    }
+
+    .connection-box p {
+        color: #01579b;
+        margin-bottom: 12px;
+    }
+
+    .connection-box ul {
+        list-style: disc;
+        padding-left: 22px;
+        color: #01579b;
+    }
+
+    .connection-box li {
+        margin-bottom: 6px;
+    }
+
+    /* --- ¿QUÉ ENCONTRARÁS? (ACTIVIDADES / RECURSOS) --- */
+    .activities-section {
+        background: #f1f8e9;
+        padding: 32px;
+        border-radius: 20px;
+        margin-bottom: 35px;
+        border: 1px dashed #aed581;
+    }
+
+    .activities-section h2 {
+        margin-top: 0;
+        font-family: 'Montserrat', sans-serif;
+        color: #33691e;
+        text-align: center;
+        margin-bottom: 18px;
+    }
+
+    .activities-section p {
+        margin-bottom: 16px;
+    }
+
+    .activities-section ul {
+        padding-left: 22px;
+        color: #555;
+    }
+
+    .activities-section li {
+        margin-bottom: 8px;
+    }
+
+    /* --- RECOMENDACIONES PARA AVANZAR --- */
+    .expectations-box {
+        background: #fffde7;
+        padding: 28px;
+        border-radius: 15px;
+        color: #f57f17;
+        margin-bottom: 10px;
+        border: 1px solid #fff9c4;
+    }
+
+    .expectations-box h3 {
+        margin-top: 0;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 10px;
+    }
+
+    .expectations-box p {
+        margin-bottom: 0;
+        color: #795548;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .unit-title { font-size: 2.2rem; max-width: 100%; }
+        .hero-img { margin-bottom: 20px; }
+        .activities-section { padding: 20px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="unit-container">
+
+    <!-- Logo institucional -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1"
+         alt="Logo Universidad" class="uni-logo">
+
+    <!-- Encabezado -->
+    <div class="header-box">
+        <span class="unit-subtitle">Módulo 5 – Liderazgo y gestión de proyectos tecnológicos</span>
+        <h1 class="unit-title">Unidad 3: Control, calidad y valor en proyectos tecnológicos (RAP3)</h1>
+
+        <!-- Imagen principal (puedes cambiarla por otra de la Unidad 3) -->
+        <img src="https://www.dropbox.com/scl/fi/afcdzedthq5co3bj1yghp/img2.png?rlkey=tm0vsi0li3qaub5rf6jo4o0g7&st=8s5n7huo&raw=1"
+             alt="Unidad 3 - Control, calidad y valor en proyectos tecnológicos" class="hero-img">
+    </div>
+
+    <!-- Introducción -->
+    <div class="intro-text">
+        <p>
+            Bienvenido(a) a la <strong>Unidad 3</strong>. En esta etapa avanzamos desde “liderar y planear” hacia un reto clave de los proyectos tecnológicos:
+            <strong>controlar la ejecución, la calidad y la entrega de valor</strong> en contextos donde existen incertidumbre, cambios, restricciones y riesgos
+            (especialmente en proyectos de <strong>IA</strong> y <strong>ciberseguridad</strong>).
+        </p>
+        <p>
+            Mientras que en las unidades anteriores definiste el proyecto, su enfoque y la forma de coordinar equipos y stakeholders,
+            ahora aprenderás a <strong>gobernar el proyecto en marcha</strong>: seguimiento del avance, control de cambios, aseguramiento de calidad,
+            gestión de incidentes o desviaciones, y construcción de evidencias que permitan justificar decisiones ante directivos, auditoría y usuarios.
+        </p>
+    </div>
+
+    <!-- Foco de la unidad / conexión con RAP3 -->
+    <div class="ra-box">
+        <span class="ra-title">Foco de la Unidad 3 (RAP3)</span>
+        <div class="ra-content">
+            Valorar y controlar la ejecución de un proyecto tecnológico, aplicando criterios de seguimiento, calidad y gestión del cambio
+            para asegurar que la solución <strong>entregue valor</strong>, sea <strong>confiable</strong>, <strong>segura</strong> y <strong>sostenible</strong>
+            en el tiempo.
+        </div>
+    </div>
+
+    <!-- ¿Qué trabajaremos en la Unidad 3? -->
+    <h2 class="content-title">¿Qué trabajaremos en la Unidad 3?</h2>
+    <p style="text-align:center; margin-bottom:25px;">
+        A lo largo de esta unidad desarrollarás capacidades para controlar la ejecución del proyecto con un enfoque práctico:
+    </p>
+
+    <div class="topics-grid">
+        <!-- Tema 1 -->
+        <div class="topic-card">
+            <span class="topic-icon">📊</span>
+            <h3>1. Seguimiento, métricas y control del avance</h3>
+            <ul>
+                <li>Definirás indicadores para monitorear progreso (cumplimiento de entregables, calidad, riesgos y adopción).</li>
+                <li>Aplicarás herramientas de seguimiento según el enfoque (tradicional/ágil/híbrido): hitos, tableros, burndown, reportes ejecutivos.</li>
+                <li>Aprenderás a detectar desviaciones y tomar decisiones tempranas para evitar sobrecostos y retrasos.</li>
+            </ul>
+        </div>
+
+        <!-- Tema 2 -->
+        <div class="topic-card">
+            <span class="topic-icon">🧭</span>
+            <h3>2. Control de cambios, alcance y gobierno del proyecto</h3>
+            <ul>
+                <li>Establecerás un proceso de control de cambios (solicitud, análisis de impacto, decisión y trazabilidad).</li>
+                <li>Gestionarás la expectativa de stakeholders (priorización, compromisos y comunicación de decisiones).</li>
+                <li>Fortalecerás el patrocinio y la ruta de escalamiento para decisiones críticas.</li>
+            </ul>
+        </div>
+
+        <!-- Tema 3 -->
+        <div class="topic-card">
+            <span class="topic-icon">🛡️</span>
+            <h3>3. Calidad, seguridad y cierre con evidencia</h3>
+            <ul>
+                <li>Definirás criterios de aceptación, pruebas y evidencias (funcionales, seguridad, datos/IA, cumplimiento).</li>
+                <li>Integrarás controles clave: hardening, accesos, monitoreo, backups, continuidad y gestión de incidentes.</li>
+                <li>Cerrarás el proyecto con una entrega ordenada: documentación, lecciones aprendidas, transición operacional y plan de mejora.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Conexión con RAP3 -->
+    <div class="connection-box">
+        <h3>🔗 ¿Cómo se conecta con el RAP3?</h3>
+        <p>
+            El <strong>RAP3</strong> busca que puedas <strong>valorar y controlar</strong> la ejecución de un proyecto tecnológico,
+            aplicando criterios de seguimiento, calidad y gestión del cambio para asegurar que la solución entregue valor y sea sostenible.
+        </p>
+        <p>
+            Por eso, en esta unidad el énfasis no estará en “explicar conceptos”, sino en <strong>aplicar controles</strong> y generar evidencia real.
+        </p>
+        <p><strong>Al finalizar la Unidad 3 podrás:</strong></p>
+        <ul>
+            <li><strong>Monitorear</strong> el avance del proyecto con métricas e informes claros para stakeholders.</li>
+            <li><strong>Gestionar cambios</strong> de alcance con proceso, trazabilidad y decisiones justificadas.</li>
+            <li><strong>Asegurar calidad</strong> a través de criterios de aceptación, pruebas y evidencia.</li>
+            <li><strong>Integrar controles</strong> de seguridad y cumplimiento desde la ejecución, no al final.</li>
+            <li><strong>Cerrar</strong> el proyecto con entrega formal, lecciones aprendidas y transición operativa.</li>
+        </ul>
+    </div>
+
+    <!-- ¿Qué encontrarás en esta unidad? -->
+    <div class="activities-section">
+        <h2>🧩 ¿Qué encontrarás en esta unidad?</h2>
+        <p>Durante la Unidad 3 encontrarás recursos y actividades pensadas para llevar estos conceptos a la práctica:</p>
+        <ul>
+            <li><strong>Lecturas guiadas</strong> con conceptos aplicados a IA/ciberseguridad (métricas, control de cambios, aseguramiento de calidad).</li>
+            <li><strong>Recursos descargables</strong> (formatos para seguimiento, control de cambios y checklist de calidad/seguridad).</li>
+            <li><strong>Actividades evaluativas</strong> orientadas a producir evidencia: reportes de avance, decisiones de cambio, plan de pruebas y cierre.</li>
+            <li><strong>Espacios de discusión</strong> para argumentar decisiones de control, priorización y gestión del riesgo.</li>
+        </ul>
+    </div>
+
+    <!-- Recomendación para avanzar -->
+    <div class="expectations-box">
+        <h3>✅ Recomendación para avanzar</h3>
+        <p>
+            Para aprovechar esta unidad, trabaja sobre el mismo proyecto definido en las unidades anteriores.
+            Piensa como líder: cada avance debe tener <strong>evidencia</strong>, cada cambio debe tener <strong>decisión</strong>,
+            y cada entrega debe tener <strong>criterios de aceptación</strong> claros y acordados.
+        </p>
+    </div>
+
+    <p style="text-align:center; font-size:0.9rem; color:#777; margin-top:20px;">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+    </p>
+
+</div>
+
+</body>
+</html>

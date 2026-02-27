@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cuadro comparativo – Límites técnicos y organizacionales de IA en seguridad</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    body { background:#f5f5f5; margin:0; padding:0; }
+
+    .unit-container {
+        font-family:'Open Sans',sans-serif;
+        color:#444;
+        max-width:1100px;
+        margin:40px auto;
+        padding:60px 30px;
+        background:#fff;
+        border-radius:20px;
+        box-shadow:0 10px 40px rgba(0,0,0,0.08);
+        position:relative;
+        border-top:8px solid #0277bd;
+    }
+
+    .uni-logo{
+        position:absolute; top:30px; right:30px; width:120px;
+        background:rgba(255,255,255,0.9); padding:5px;
+        border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .header-box{ text-align:center; margin-bottom:30px; }
+    .unit-title{
+        font-family:'Montserrat',sans-serif; font-size:2.2rem;
+        font-weight:800; text-transform:uppercase; color:#01579b;
+        margin:0 0 8px 0;
+    }
+    .unit-subtitle{
+        font-size:1rem; color:#0288d1; font-weight:600; margin-bottom:20px;
+    }
+
+    .hero-img{
+        width:100%; max-width:820px; border-radius:15px;
+        margin:0 auto 25px auto; display:block;
+        box-shadow:0 20px 40px rgba(1,87,155,0.15);
+    }
+
+    .section{ margin-bottom:32px; font-size:0.98rem; line-height:1.7; text-align:justify; }
+    .section h2{
+        font-family:'Montserrat',sans-serif; color:#01579b; font-size:1.5rem;
+        margin-bottom:10px;
+    }
+
+    .intro-note{
+        background:#e1f5fe; border-left:5px solid #0288d1;
+        border-radius:10px; padding:14px 16px; margin-bottom:20px;
+    }
+
+    table{
+        width:100%; border-collapse:collapse; font-size:0.9rem;
+        margin-bottom:25px;
+    }
+    thead{
+        background:#e3f2fd;
+    }
+    th,td{
+        border:1px solid #bbdefb;
+        padding:10px;
+        vertical-align:top;
+        text-align:left;
+    }
+    th{
+        font-family:'Montserrat',sans-serif;
+        font-weight:600;
+        color:#0d47a1;
+        font-size:0.9rem;
+    }
+    tbody tr:nth-child(even){
+        background:#f7fbff;
+    }
+
+    .highlight-box, .checklist-box, .resources-box{
+        border-radius:14px; padding:18px 20px; margin-bottom:20px;
+    }
+    .highlight-box{ background:#fffde7; border-left:5px solid #f9a825; }
+    .checklist-box{ background:#f1f8e9; border-left:5px solid #7cb342; }
+    .resources-box{ background:#e1f5fe; border-left:5px solid #0288d1; }
+
+    ul{ padding-left:22px; margin-top:6px; }
+    li{ margin-bottom:6px; }
+
+    .subheading{
+        font-family:'Montserrat',sans-serif;
+        font-size:1.05rem;
+        color:#0277bd;
+        margin:10px 0 6px 0;
+    }
+
+    @media (max-width:768px){
+        .unit-container{ padding:30px 15px; margin:20px 10px; }
+        .uni-logo{ position:static; margin:0 auto 15px auto; display:block; }
+        table, thead, tbody, th, td, tr{ display:block; }
+        thead{ display:none; }
+        tr{ margin-bottom:15px; border:1px solid #bbdefb; border-radius:10px; overflow:hidden; }
+        td{ border:none; border-bottom:1px solid #e3f2fd; }
+        td:last-child{ border-bottom:none; }
+        td::before{
+            content:attr(data-label);
+            display:block;
+            font-weight:600;
+            color:#0d47a1;
+            margin-bottom:4px;
+            font-family:'Montserrat',sans-serif;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="unit-container">
+
+<img class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&raw=1" alt="Logo institucional">
+
+<div class="header-box">
+    <span class="unit-subtitle">Unidad 1 – Fundamentos de IA y Ciberseguridad</span>
+    <h1 class="unit-title">Cuadro comparativo de límites de IA en seguridad</h1>
+    <img class="hero-img"
+         src="https://www.dropbox.com/scl/fi/unaj3xgnl3jt1i85j9rs3/Gemini_Generated_Image_byybj6byybj6byyb.png?rlkey=ftt9pit1cmsveux2d7xiagqij&raw=1"
+         alt="Límites técnicos y organizacionales de IA en seguridad">
+</div>
+
+<div class="section">
+    <div class="intro-note">
+        <p>
+            A continuación se presenta un <strong>cuadro comparativo</strong> que sintetiza los
+            <strong>límites técnicos y organizacionales</strong> más relevantes al integrar IA en entornos de seguridad,
+            su impacto sobre las propiedades <strong>CIA</strong>, implicaciones organizacionales, marcos/normas aplicables
+            y controles sugeridos bajo el enfoque de <strong>Secure AI by Design</strong>.
+        </p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Límite / Ámbito</th>
+                <th>Definición / síntoma</th>
+                <th>Impacto en CIA<br>(Confid., Integr., Dispon.)</th>
+                <th>Implicaciones organizacionales</th>
+                <th>Marcos / normas aplicables</th>
+                <th>Controles y salvaguardas recomendadas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Límite / Ámbito">Sesgo algorítmico</td>
+                <td data-label="Definición / síntoma">
+                    Resultados discriminatorios o sistemáticamente favorables/lesivos por sesgos en datos, etiquetado o diseño.
+                </td>
+                <td data-label="Impacto en CIA">
+                    Integridad (decisiones erróneas), Confidencialidad (perfilado indebido),
+                    Disponibilidad (recursos mal dirigidos).
+                </td>
+                <td data-label="Implicaciones organizacionales">
+                    Reputación, riesgo legal, pérdida de confianza; necesidad de gobernanza de datos y revisión de <em>fairness</em>.
+                </td>
+                <td data-label="Marcos / normas aplicables">
+                    NIST AI RMF (gestión de riesgo de IA); ISO/IEC 27001 (gobierno de la información); marcos de ética.
+                </td>
+                <td data-label="Controles y salvaguardas recomendadas">
+                    Validación de equidad; tests de <em>fairness</em>; muestreo/re-balanceo;
+                    métricas de equidad en pipelines; auditoría externa; políticas de uso aceptable.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Límite / Ámbito">Overfitting / Mala generalización</td>
+                <td data-label="Definición / síntoma">
+                    Modelo que memoriza el entrenamiento y falla en datos reales/operativos.
+                </td>
+                <td data-label="Impacto en CIA">
+                    Integridad (predicciones incorrectas); Disponibilidad (sistemas que disparan falsas alarmas).
+                </td>
+                <td data-label="Implicaciones organizacionales">
+                    Necesidad de pruebas robustas, entornos de <em>staging</em> y validación con datos reales;
+                    mayor carga de analistas.
+                </td>
+                <td data-label="Marcos / normas aplicables">
+                    Buenas prácticas MLOps; NIST AI RMF; ISO/IEC 23894 (gestión del ciclo de vida de IA).
+                </td>
+                <td data-label="Controles y salvaguardas recomendadas">
+                    Validación cruzada; <em>hold-out</em> temporal; pruebas en producción (canary);
+                    métricas de generalización; pipelines CI/CD con <em>gates</em> de calidad.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Límite / Ámbito">Concept / Data drift</td>
+                <td data-label="Definición / síntoma">
+                    Cambios en distribución de datos o en la relación entrada→salida que degradan el rendimiento con el tiempo.
+                </td>
+                <td data-label="Impacto en CIA">
+                    Integridad (degradación de la precisión), Disponibilidad (aumento de falsos positivos/negativos).
+                </td>
+                <td data-label="Implicaciones organizacionales">
+                    Debe implementarse monitoreo continuo, <em>retraining</em> planificado y gobernanza de versiones.
+                </td>
+                <td data-label="Marcos / normas aplicables">
+                    NIST AI RMF; NIST CSF (detectar/recuperar); ISO/IEC 27001 (cambios y mantenimiento).
+                </td>
+                <td data-label="Controles y salvaguardas recomendadas">
+                    Monitorización de <em>drift</em> (estadística y ML); alertas y umbrales operativos;
+                    pipelines automatizados de <em>retraining</em>; trazabilidad de <em>datasets</em>.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Límite / Ámbito">Vulnerabilidades adversarias (adversarial attacks)</td>
+                <td data-label="Definición / síntoma">
+                    Entradas manipuladas para evadir o corromper modelos.
+                </td>
+                <td data-label="Impacto en CIA">
+                    Integridad (evadir detección), Confidencialidad (exfiltración mediante modelos),
+                    Disponibilidad (denegación de servicio ML).
+                </td>
+                <td data-label="Implicaciones organizacionales">
+                    Requiere pruebas de robustez, defensa en profundidad y análisis de amenazas específicos a ML.
+                </td>
+                <td data-label="Marcos / normas aplicables">
+                    NIST CSF (gestión de incidentes); guías de robustez ML (NIST y comunidad).
+                </td>
+                <td data-label="Controles y salvaguardas recomendadas">
+                    <em>Hardening</em> (adversarial training); sanitización de <em>inputs</em>;
+                    verificación post-inferencia; <em>sandboxing</em>; límites de tasa;
+                    detección de anomalías por capa.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Límite / Ámbito">Disponibilidad (infraestructura)</td>
+                <td data-label="Definición / síntoma">
+                    Caídas, latencias o denegación de servicio que impiden inferencias.
+                </td>
+                <td data-label="Impacto en CIA">
+                    Disponibilidad principalmente; también afecta integridad operativa.
+                </td>
+                <td data-label="Implicaciones organizacionales">
+                    Necesidad de resiliencia, redundancia, SLAs y continuidad del servicio.
+                </td>
+                <td data-label="Marcos / normas aplicables">
+                    ISO/IEC 27001 (BCP/DR); NIST CSF (recuperar).
+                </td>
+                <td data-label="Controles y salvaguardas recomendadas">
+                    Arquitectura redundante; escalado automático; <em>circuit breakers</em>;
+                    <em>cachés</em> seguros; pruebas de carga; SLAs y <em>runbooks</em> de recuperación.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Límite / Ámbito">Opacidad / Falta de explicabilidad</td>
+                <td data-label="Definición / síntoma">
+                    Modelos cuya lógica no es interpretable, dificultando auditoría y decisión humana.
+                </td>
+                <td data-label="Impacto en CIA">
+                    Integridad (difícil valorar si la salida es correcta), Confidencialidad (dificultad para detectar usos indebidos).
+                </td>
+                <td data-label="Implicaciones organizacionales">
+                    Problemas regulatorios (exigencia de explicabilidad) y operativos (desconfianza del operador).
+                </td>
+                <td data-label="Marcos / normas aplicables">
+                    NIST AI RMF; requisitos regulatorios según sector.
+                </td>
+                <td data-label="Controles y salvaguardas recomendadas">
+                    Modelos interpretables donde sea crítico; <em>explainability logs</em>;
+                    registros de decisión; interfaces de auditoría; documentación de <em>features</em>.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Límite / Ámbito">Calidad y linaje de datos</td>
+                <td data-label="Definición / síntoma">
+                    Datos incompletos, sucios, sin trazabilidad ni versionado.
+                </td>
+                <td data-label="Impacto en CIA">
+                    Integridad (entradas incorrectas), Confidencialidad (mal manejo de datos sensibles).
+                </td>
+                <td data-label="Implicaciones organizacionales">
+                    Necesidad de clasificación, gobernanza, catalogación y procesos ETL controlados.
+                </td>
+                <td data-label="Marcos / normas aplicables">
+                    ISO/IEC 27001 (gestión de activos); GDPR/RGPD (protección de datos).
+                </td>
+                <td data-label="Controles y salvaguardas recomendadas">
+                    Catalogación y clasificación; <em>lineage</em>; validación y limpieza automática;
+                    políticas de retención; DLP; cifrado en tránsito y reposo.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Límite / Ámbito">Gobernanza y roles insuficientes</td>
+                <td data-label="Definición / síntoma">
+                    Ausencia de roles claros (data owner, model owner, security officer) y procesos (RACI).
+                </td>
+                <td data-label="Impacto en CIA">
+                    Afecta todas las propiedades CIA por falta de responsabilidad y control.
+                </td>
+                <td data-label="Implicaciones organizacionales">
+                    Decisiones desacopladas; incumplimiento normativo; dificultad para responder incidentes.
+                </td>
+                <td data-label="Marcos / normas aplicables">
+                    ISO/IEC 27001 (roles y responsabilidades); NIST CSF (gobernanza).
+                </td>
+                <td data-label="Controles y salvaguardas recomendadas">
+                    Definir RACI; comités de riesgo IA; <em>approval gates</em>;
+                    documentación de políticas; entrenamiento y simulacros.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Límite / Ámbito">Cumplimiento regulatorio</td>
+                <td data-label="Definición / síntoma">
+                    Normas sectoriales o legales no consideradas (protección de datos, AI Act).
+                </td>
+                <td data-label="Impacto en CIA">
+                    Confidencialidad (protección de datos personales); Integridad (reportes obligatorios);
+                    riesgo legal.
+                </td>
+                <td data-label="Implicaciones organizacionales">
+                    Penalizaciones; necesidad de evaluaciones de impacto (DPIA/AIA); requisitos de transparencia.
+                </td>
+                <td data-label="Marcos / normas aplicables">
+                    GDPR/RGPD; AI Act (en evolución); normas sectoriales; NIST AI RMF para evaluación de riesgos.
+                </td>
+                <td data-label="Controles y salvaguardas recomendadas">
+                    DPIA/AIA; registros de tratamiento; cláusulas contractuales; políticas de privacidad;
+                    <em>opt-outs</em> y mecanismos de consentimiento.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h2>Mapeo rápido a marcos y cómo usarlos en la práctica</h2>
+    <div class="highlight-box">
+        <p class="subheading">NIST CSF</p>
+        <p>
+            Marco operativo para mapear funciones <strong>Identify, Protect, Detect, Respond, Recover</strong>.
+            Útil para integrar controles de IA dentro de procesos de seguridad existentes (SOC, SOAR, respuesta a incidentes).
+        </p>
+
+        <p class="subheading">NIST AI RMF</p>
+        <p>
+            Orientado a riesgos específicos de IA (desempeño, equidad, robustez, gobernanza). Útil para establecer
+            etapas de evaluación y criterios de aceptación del modelo.
+        </p>
+
+        <p class="subheading">ISO/IEC 27001</p>
+        <p>
+            Marco de gestión de seguridad de la información, útil para políticas, gestión de activos,
+            control de accesos y continuidad del negocio.
+        </p>
+
+        <p class="subheading">Zero Trust</p>
+        <p>
+            Patrón arquitectónico que minimiza supuestos de confianza. Útil para segregar ambientes,
+            controlar accesos y reforzar la autenticación.
+        </p>
+
+        <p>
+            Usa estos marcos de forma complementaria: por ejemplo, <strong>ISO/IEC 27001 + NIST CSF</strong> para
+            gobernanza e integridad operacional, y <strong>NIST AI RMF</strong> para riesgos técnicos del modelo.
+        </p>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Checklist de controles mínimos de Secure AI by Design</h2>
+    <div class="checklist-box">
+        <p class="subheading">Gobernanza y roles</p>
+        <ul>
+            <li>Definir <strong>data owner, model owner, security owner</strong> y matriz RACI.</li>
+            <li>Política de uso de IA y de datos (aprobaciones, DPIA/AIA).</li>
+        </ul>
+
+        <p class="subheading">Datos</p>
+        <ul>
+            <li>Clasificación y etiquetado de sensibilidad.</li>
+            <li><em>Data lineage</em> y versionado.</li>
+            <li>DLP; cifrado en tránsito y reposo; controles de acceso basados en roles.</li>
+        </ul>
+
+        <p class="subheading">Desarrollo y pruebas</p>
+        <ul>
+            <li>Pipelines CI/CD con <em>gates</em> de calidad (tests de sesgo, tests de robustez).</li>
+            <li>Validación con datos fuera de muestra y escenarios adversarios.</li>
+            <li>Documentación (<em>model cards</em>, <em>datasheets</em> de datos).</li>
+        </ul>
+
+        <p class="subheading">Despliegue y operación</p>
+        <ul>
+            <li>Segregación de ambientes (dev/staging/prod).</li>
+            <li>Firma y versionado de modelos; control de cambios.</li>
+            <li>Monitorización de rendimiento y <em>drift</em> con alertas y umbrales.</li>
+        </ul>
+
+        <p class="subheading">Respuesta y mantenimiento</p>
+        <ul>
+            <li><em>Playbook</em> de incidentes específico para fallos del modelo o ataques ML.</li>
+            <li>Plan de <em>retraining</em> y <em>rollback</em>.</li>
+            <li>Auditorías periódicas (internas/externas) y registros de decisiones (<em>explainability logs</em>).</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Recomendaciones prácticas para una institución</h2>
+    <div class="highlight-box">
+        <ul>
+            <li>Mapear un activo crítico (ej.: pipeline de alertas SOC) y realizar un mini-DPIA/AIA sobre datos, modelo, outputs críticos, actores y consecuencias.</li>
+            <li>Priorizar controles proporcionales: donde el impacto potencial sea alto, usar modelos explicables, doble verificación humana y políticas de <em>fallback</em>.</li>
+            <li>Implementar monitorización <em>early-warning</em> (métricas de <em>drift</em>, tasa de alertas accionables) y definir umbrales que disparen revisiones o <em>retraining</em>.</li>
+            <li>Documentar todo: versiones de <em>datasets</em>, decisiones de selección de modelos, métricas, criterios de umbral y evidencia de pruebas frente a casos adversarios.</li>
+            <li>Formar equipos mixtos: especialistas ML + <em>security engineers</em> + compliance/legal para decisiones multidisciplinarias.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Recursos sugeridos para profundizar</h2>
+    <div class="resources-box">
+        <ul>
+            <li><strong>NIST Cybersecurity Framework (CSF)</strong></li>
+            <li><strong>NIST AI Risk Management Framework (AI RMF)</strong></li>
+            <li><strong>ISO/IEC 27001</strong></li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>

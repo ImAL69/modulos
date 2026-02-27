@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .surveillance-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #b71c1c; /* Rojo Oscuro (Alerta) */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #b71c1c;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(183, 28, 28, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #ffcdd2;
+    }
+
+    /* --- TEXTO COMPLETO --- */
+    .content-block {
+        margin-bottom: 40px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+    
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '👁️';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #880e4f; /* Vinotinto */
+        margin-bottom: 20px;
+        border-bottom: 2px solid #f8bbd0;
+        padding-bottom: 10px;
+        font-weight: 700;
+        margin-top: 40px;
+    }
+
+    /* Caja de Definición */
+    .definition-card {
+        background: #fce4ec;
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 5px solid #880e4f;
+        margin-bottom: 30px;
+    }
+
+    /* --- ACORDEONES DE DETALLE (Tipos de Vigilancia) --- */
+    details.type-item {
+        background: #fff;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        overflow: hidden;
+    }
+
+    summary.type-summary {
+        padding: 20px;
+        background: #fff;
+        cursor: pointer;
+        font-weight: 700;
+        color: #c62828; /* Rojo */
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    summary.type-summary:hover { background: #ffebee; }
+    summary.type-summary::-webkit-details-marker { display: none; }
+    
+    summary.type-summary::after {
+        content: '+'; font-size: 1.5rem; color: #b71c1c;
+    }
+    details[open] summary.type-summary::after {
+        content: '-';
+    }
+
+    .type-content {
+        padding: 25px;
+        border-top: 1px solid #ffebee;
+        color: #424242;
+    }
+
+    /* Subsecciones dentro del acordeón */
+    .sub-heading {
+        color: #ad1457;
+        font-weight: 700;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        display: block;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* --- SECCIÓN 6: PRINCIPIOS (GRID) --- */
+    .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .principle-card {
+        background: #f3e5f5;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #e1bee7;
+    }
+
+    .principle-card strong { color: #4a148c; display: block; margin-bottom: 5px; }
+
+    /* --- SECCIÓN 7: PREGUNTAS FINAL (CHECKLIST) --- */
+    .checklist-box {
+        background: #fff8e1; /* Amarillo pálido */
+        padding: 30px;
+        border-radius: 15px;
+        border: 2px dashed #ffb300;
+    }
+
+    .check-q {
+        font-weight: 800;
+        color: #e65100;
+        display: block;
+        margin-bottom: 5px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .check-item { margin-bottom: 20px; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 2rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="surveillance-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Vigilancia Digital: Biometría, Geolocalización y Monitoreo</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/4rvjitcx22qkll3ra90q9/Gemini_Generated_Image_v6enwdv6enwdv6en-1.png?rlkey=wvlo5n6atqwtcgtiwqwk0233s&st=xicccawq&raw=1" alt="Vigilancia Digital" class="hero-image">
+    </div>
+
+    <div class="content-block">
+        <p>La digitalización ha traído herramientas muy potentes para automatizar, organizar y mejorar procesos. Pero también ha facilitado algo que antes era mucho más difícil: vigilar de manera continua, detallada y casi invisible a las personas.</p>
+        <p>Hoy es posible:</p>
+        <ul>
+            <li>Identificar a alguien por su rostro, su huella o su voz.</li>
+            <li>Saber dónde está casi todo el tiempo gracias al celular.</li>
+            <li>Registrar lo que hace en el trabajo o en clase: cuánto se conecta, qué abre, cuánto tarda, qué escribe.</li>
+        </ul>
+        <p><strong>En esta página veremos:</strong></p>
+        <ul>
+            <li>Qué entendemos por vigilancia digital.</li>
+            <li>Qué es la biometría y para qué se usa.</li>
+            <li>Cómo funciona la geolocalización en la vida diaria.</li>
+            <li>En qué consiste el monitoreo laboral y educativo.</li>
+            <li>Cuáles son los principales riesgos éticos y de derechos que todo profesional debería reconocer.</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1. ¿Qué es la vigilancia digital?</h2>
+        <div class="definition-card">
+            <p>Podemos llamar vigilancia digital al conjunto de prácticas y tecnologías que recopilan, registran y analizan información sobre las personas a través de dispositivos y sistemas conectados.</p>
+        </div>
+        <p><strong>Algunas características:</strong></p>
+        <ul>
+            <li>Muchas veces es continua, no puntual (no es solo “mirar una vez”, es seguir a la persona todo el tiempo).</li>
+            <li>Puede ser invisible o poco evidente: sucede “por detrás” mientras usamos aplicaciones, plataformas o servicios.</li>
+            <li>Se basa en datos: quién eres, qué haces, dónde estás, con quién interactúas, qué buscas, qué compras, cómo te mueves.</li>
+        </ul>
+        <p>La vigilancia digital puede tener fines legítimos (seguridad, control de acceso, protección de bienes, mejora del servicio), pero también puede derivar en: Abusos de poder, Invasión de la intimidad, Discriminación y control excesivo.</p>
+    </div>
+
+    <details class="type-item">
+        <summary class="type-summary">2. Biometría: cuando tu cuerpo es tu contraseña</summary>
+        <div class="type-content">
+            <p>La biometría es el uso de características físicas o de comportamiento de una persona para identificarla o autenticarla.</p>
+            
+            <span class="sub-heading">Ejemplos de datos biométricos:</span>
+            <ul>
+                <li>Huella dactilar.</li>
+                <li>Reconocimiento facial.</li>
+                <li>Iris o retina.</li>
+                <li>Voz.</li>
+                <li>Geometría de la mano.</li>
+                <li>Patrón de escritura o firma.</li>
+            </ul>
+
+            <span class="sub-heading">Usos frecuentes:</span>
+            <p>Desbloqueo de celulares y computadores, Controles de acceso a edificios, Sistemas de fichaje, Verificación de identidad en bancos.</p>
+
+            <span class="sub-heading">Ventajas:</span>
+            <p>Pueden ser cómodos, dificultan la suplantación y facilitan la seguridad.</p>
+
+            <span class="sub-heading">Riesgos y dilemas éticos:</span>
+            <ul>
+                <li>Los datos biométricos son altamente sensibles: no puedes cambiar de cara como cambias una contraseña.</li>
+                <li>Un robo de datos biométricos tiene consecuencias graves a largo plazo.</li>
+                <li>Sistemas de reconocimiento facial masivos pueden convertirse en vigilancia generalizada.</li>
+                <li>Pueden amplificar sesgos (ciertos tonos de piel, géneros).</li>
+            </ul>
+
+            <span class="sub-heading">Preguntas clave:</span>
+            <p>¿Es realmente necesario usar biometría? ¿Quién almacena esos datos y por cuánto tiempo? ¿La persona puede negarse sin ser castigada?</p>
+        </div>
+    </details>
+
+    <details class="type-item">
+        <summary class="type-summary">3. Geolocalización: saber dónde estás</summary>
+        <div class="type-content">
+            <p>La geolocalización permite saber la posición aproximada de una persona u objeto en el espacio, gracias a GPS, WiFi y sensores.</p>
+
+            <span class="sub-heading">Usos cotidianos:</span>
+            <p>Apps de transporte, mapas, seguridad, registro de rutas de trabajo.</p>
+
+            <span class="sub-heading">Ventajas:</span>
+            <p>Mejora la logística, optimiza rutas y ayuda en emergencias.</p>
+
+            <span class="sub-heading">Riesgos y dilemas éticos:</span>
+            <ul>
+                <li>Permite construir un historial de movimientos muy detallado.</li>
+                <li>Puede revelar información sensible (política, religiosa, salud).</li>
+                <li>Puede convertirse en una forma de control total.</li>
+            </ul>
+
+            <span class="sub-heading">Preguntas clave:</span>
+            <p>¿Hasta qué punto es legítimo rastrear? ¿Se limita al horario de trabajo? ¿La persona sabe que la están geolocalizando?</p>
+        </div>
+    </details>
+
+    <details class="type-item">
+        <summary class="type-summary">4. Monitoreo laboral: ¿hasta dónde?</summary>
+        <div class="type-content">
+            <p>Incluye herramientas para observar y registrar lo que hacen los trabajadores: Software de registro de tiempo, cámaras, análisis de correos/chats, dispositivos de control de rutas.</p>
+
+            <span class="sub-heading">Objetivos legítimos:</span>
+            <p>Proteger activos, garantizar seguridad, mejorar procesos, cumplir obligaciones legales.</p>
+
+            <span class="sub-heading">Riesgos y dilemas:</span>
+            <ul>
+                <li>Convertir el trabajo en vigilancia constante.</li>
+                <li>Promover culturas de desconfianza.</li>
+                <li>Impactar la salud mental (estrés).</li>
+                <li>Difuminar fronteras entre vida laboral y personal.</li>
+            </ul>
+
+            <span class="sub-heading">Preguntas clave:</span>
+            <p>¿El nivel de vigilancia es proporcional? ¿Se informa claramente a los trabajadores? ¿Existen límites temporales y espaciales?</p>
+        </div>
+    </details>
+
+    <details class="type-item">
+        <summary class="type-summary">5. Monitoreo educativo: aulas físicas y virtuales</summary>
+        <div class="type-content">
+            <p>Aparece en plataformas LMS, herramientas de proctoring, control de asistencia biométrico y cámaras.</p>
+
+            <span class="sub-heading">Objetivos:</span>
+            <p>Garantizar integridad en exámenes, asegurar asistencia, analizar participación, proteger instalaciones.</p>
+
+            <span class="sub-heading">Riesgos éticos:</span>
+            <ul>
+                <li>Tratar a estudiantes como sospechosos por defecto.</li>
+                <li>Invadir espacios íntimos (cámara en casa).</li>
+                <li>Analizar en exceso el comportamiento digital.</li>
+                <li>Afectar la confianza pedagógica.</li>
+            </ul>
+
+            <span class="sub-heading">Preguntas clave:</span>
+            <p>¿Hay formas menos invasivas? ¿Se explica qué se va a monitorizar? ¿Se respeta la dignidad, especialmente de menores?</p>
+        </div>
+    </details>
+
+    <div class="content-block">
+        <h2 class="section-title">6. Principios éticos y marcos legales en juego</h2>
+        <p>En contextos de vigilancia digital están especialmente en juego:</p>
+        
+        <div class="principles-grid">
+            <div class="principle-card"><strong>Privacidad e intimidad:</strong> Derecho a espacios no vigilados.</div>
+            <div class="principle-card"><strong>Autonomía:</strong> Poder tomar decisiones libres sin presión.</div>
+            <div class="principle-card"><strong>Dignidad:</strong> Ser tratada como sujeto, no como recurso.</div>
+            <div class="principle-card"><strong>No discriminación:</strong> Evitar vigilancia selectiva o sesgos.</div>
+            <div class="principle-card"><strong>Transparencia:</strong> Dejar claro qué se recolecta y cómo.</div>
+            <div class="principle-card"><strong>Proporcionalidad:</strong> La vigilancia debe ser adecuada y no excesiva.</div>
+        </div>
+        
+        <p style="margin-top:20px;">Las leyes de protección de datos, regulación laboral y normas educativas marcan límites. Pero incluso cuando la ley no es detallada, existe el deber ético de no abusar del poder tecnológico.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">7. Preguntas para analizar prácticas de vigilancia digital</h2>
+        <p>Cuando te enfrentes a un caso, usa estas preguntas:</p>
+        
+        <div class="checklist-box">
+            <div class="check-item">
+                <span class="check-q">¿Cuál es el objetivo declarado?</span>
+                Seguridad, control de acceso, cumplimiento, integridad, etc.
+            </div>
+            <div class="check-item">
+                <span class="check-q">¿Los medios son proporcionales al riesgo?</span>
+                ¿Realmente se justifica ese nivel de vigilancia?
+            </div>
+            <div class="check-item">
+                <span class="check-q">¿Qué datos se recolectan y quién accede?</span>
+                Piensa en volumen y sensibilidad.
+            </div>
+            <div class="check-item">
+                <span class="check-q">¿Se ha informado clara y previamente?</span>
+                ¿Saben qué se monitoriza y sus derechos?
+            </div>
+            <div class="check-item">
+                <span class="check-q">¿Existen alternativas menos invasivas?</span>
+                Cambios organizativos, medidas pedagógicas, etc.
+            </div>
+            <div class="check-item">
+                <span class="check-q">¿Qué mecanismos hay para reclamar?</span>
+                ¿Se puede cuestionar una sanción basada en monitoreo?
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

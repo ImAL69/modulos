@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .qa-guide-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0; /* Azul Tech */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #0d47a1;
+        margin: 0 auto 10px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* --- SECCIONES DE PREGUNTAS --- */
+    .section-heading {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #1565c0;
+        margin-top: 50px;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #bbdefb;
+        padding-bottom: 10px;
+        font-weight: 700;
+    }
+
+    /* TARJETA DE PREGUNTA Y RESPUESTA */
+    .qa-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+    }
+
+    .question-header {
+        background: #e3f2fd;
+        padding: 20px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: #0d47a1;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #bbdefb;
+    }
+
+    .answer-body {
+        padding: 25px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+        color: #455a64;
+    }
+
+    .answer-body p { margin-bottom: 15px; }
+
+    .answer-body ul { 
+        padding-left: 20px; 
+        margin-bottom: 15px; 
+        list-style-type: none; 
+    }
+
+    .answer-body li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .answer-body li::before {
+        content: '🔹';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 2rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="qa-guide-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Preguntas guía para tu estudio</h1>
+    </div>
+
+    <h2 class="section-heading">1.1 Conceptos básicos y capas de arquitectura</h2>
+
+    <div class="qa-card">
+        <div class="question-header">¿Qué diferencia hay entre una “red” vista solo como dispositivos y una “arquitectura tecnológica” vista como estructura?</div>
+        <div class="answer-body">
+            <p>Ver la red solo como dispositivos es enfocarse en “qué equipos hay” (switches, routers, AP, etc.).</p>
+            <p>Verla como arquitectura tecnológica es pensar en cómo se organizan y relacionan esos componentes para cumplir objetivos de negocio: qué se conecta con qué, por dónde viajan los datos, qué zonas son críticas, dónde se ubican los servicios y qué controles existen. La arquitectura incorpora además ideas de capas, servicios, datos, seguridad, disponibilidad y escalabilidad, no solo el inventario de equipos.</p>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="question-header">¿Por qué es útil pensar la arquitectura en capas (negocio, aplicaciones, datos, infraestructura, seguridad)?</div>
+        <div class="answer-body">
+            <p>Pensar en capas permite ordenar la complejidad: cada capa se centra en un tipo de decisión.</p>
+            <p>En la capa de negocio se define qué necesita la organización; en la de aplicaciones se decide qué sistemas soportan esos procesos; en la de datos se define cómo se almacenan y protegen; en infraestructura se ve cómo se conectan físicamente y lógicamente; y la seguridad actúa de forma transversal. Esto ayuda a identificar mejor dónde están los problemas (por ejemplo, un problema de datos vs un problema de red) y dónde conviene ubicar controles de seguridad.</p>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="question-header">¿Qué rol cumplen las capas de acceso, distribución y núcleo en una arquitectura de red jerárquica?</div>
+        <div class="answer-body">
+            <ul>
+                <li>La capa de acceso conecta a los usuarios y dispositivos finales (PC, impresoras, IoT, etc.) y suele aplicar políticas básicas (VLAN, autenticación en puertos, Wi-Fi).</li>
+                <li>La capa de distribución agrupa varias redes de acceso y se encarga de enrutamiento interno, políticas de filtrado más avanzadas y, en algunos casos, calidad de servicio.</li>
+                <li>La capa núcleo (core) proporciona una conectividad rápida y muy disponible entre las distintas partes de la red. Idealmente, en el core se minimiza la complejidad y se prioriza rendimiento y redundancia.</li>
+            </ul>
+            <p>Cada capa tiene un rol claro que facilita el diseño, la operación y la aplicación de medidas de seguridad.</p>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="question-header">¿Cómo se relaciona la capa de datos con decisiones de arquitectura de red?</div>
+        <div class="answer-body">
+            <p>La capa de datos define qué información es crítica, dónde se almacena y cómo se mueve. Esto impacta la arquitectura de red porque obliga a decidir:</p>
+            <ul>
+                <li>En qué segmentos o zonas deben estar las bases de datos.</li>
+                <li>Cómo se accede a esos datos (solo desde ciertos servidores, desde DMZ, desde sedes remotas, etc.).</li>
+                <li>Qué nivel de protección, redundancia y rendimiento necesitan los enlaces que manejan datos sensibles o críticos.</li>
+            </ul>
+            <p>En resumen, saber cómo son y dónde están los datos permite diseñar segmentación, rutas y controles de red acordes a su importancia y sensibilidad.</p>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="question-header">¿Qué papel juega la capa de seguridad como capa transversal en la arquitectura?</div>
+        <div class="answer-body">
+            <p>La capa de seguridad no es un “bloque” aislado, sino un conjunto de controles que atraviesa todas las capas. Afecta cómo se diseñan:</p>
+            <ul>
+                <li>Los procesos de negocio (qué datos se recogen, quién los ve).</li>
+                <li>Las aplicaciones (autenticación, autorización, cifrado).</li>
+                <li>Los datos (clasificación, protección, copias de seguridad).</li>
+                <li>La red (firewalls, IDS/IPS, VPN, segmentación, monitoreo).</li>
+            </ul>
+            <p>Al actuar como capa transversal, la seguridad permite que la arquitectura sea defendible: reduce superficie de ataque, limita el impacto de fallos y facilita detectar y responder a incidentes.</p>
+        </div>
+    </div>
+
+    <h2 class="section-heading">1.2 Patrones de arquitectura y su impacto</h2>
+
+    <div class="qa-card">
+        <div class="question-header">¿Qué es un patrón de arquitectura y por qué es útil conocerlos?</div>
+        <div class="answer-body">
+            <p>Un patrón de arquitectura es una forma recurrente y probada de organizar componentes de red o sistemas para resolver un problema típico (por ejemplo, red jerárquica, hub-and-spoke, DMZ, arquitectura híbrida, etc.).</p>
+            <p>Conocerlos permite:</p>
+            <ul>
+                <li>Entender más rápido cómo está organizada una red.</li>
+                <li>Anticipar ventajas y riesgos en seguridad y escalabilidad.</li>
+                <li>Reutilizar soluciones que ya han funcionado en muchos contextos, en lugar de improvisar cada vez.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="question-header">¿Cómo influye el patrón jerárquico (acceso–distribución–núcleo) en la seguridad de una red?</div>
+        <div class="answer-body">
+            <p>El patrón jerárquico facilita una seguridad por capas:</p>
+            <ul>
+                <li>En acceso se aplican controles cercanos al usuario (VLAN, autenticación, políticas por puerto).</li>
+                <li>En distribución se consolidan flujos y se aplican políticas más avanzadas (ACL, QoS, a veces firewalls internos).</li>
+                <li>En el núcleo se prioriza rendimiento y alta disponibilidad, intentando mantener la configuración lo más simple posible.</li>
+            </ul>
+            <p>Esto permite ubicarlos controles donde son más eficaces, aislar fallos y limitar la propagación de incidentes. Si se diseña mal (por ejemplo, core sin redundancia o distribución sin políticas claras), toda la red queda más expuesta.</p>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="question-header">¿Qué impacto tiene el patrón hub-and-spoke en la seguridad y en la escalabilidad de una WAN?</div>
+        <div class="answer-body">
+            <p>En seguridad, el patrón hub-and-spoke permite centralizar controles en el hub (firewalls, proxies, inspección de tráfico), lo que simplifica la gestión. Sin embargo, también crea una dependencia fuerte: si el hub falla o es comprometido, todas las sedes pueden verse afectadas.</p>
+            <p>En escalabilidad, es fácil agregar nuevas sedes conectándolas al hub, pero a medida que el tráfico crece, el hub puede convertirse en cuello de botella. Una mala planificación de capacidad puede degradar el rendimiento de toda la red WAN.</p>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="question-header">¿De qué manera el patrón microservicios + APIs cambia las exigencias sobre la arquitectura de red?</div>
+        <div class="answer-body">
+            <p>Con microservicios y APIs, una aplicación se fragmenta en muchos servicios pequeños que se comunican entre sí. Esto genera:</p>
+            <ul>
+                <li>Más comunicaciones internas (tráfico este-oeste) dentro del data center o la nube.</li>
+                <li>Mayor número de endpoints que proteger (más superficies de ataque).</li>
+                <li>Necesidad de controles finos: autenticación entre servicios, gateways de API, segmentación interna, políticas de tráfico, etc.</li>
+            </ul>
+            <p>La arquitectura de red debe ser capaz de manejar más conexiones, más reglas y un monitoreo más detallado para mantener seguridad y rendimiento.</p>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="question-header">¿Qué retos de seguridad y escalabilidad plantea una arquitectura híbrida (on-premise + nube)?</div>
+        <div class="answer-body">
+            <p>En una arquitectura híbrida:</p>
+            <ul>
+                <li>La seguridad se complica porque el “perímetro” ya no es solo el firewall de la sede, sino múltiples puntos: conexiones VPN, enlaces dedicados, servicios expuestos en la nube, SaaS, etc. Se deben alinear políticas de seguridad en ambos entornos.</li>
+                <li>En escalabilidad, la nube ofrece crecimiento flexible, pero se debe asegurar que la conectividad y la red on-premise soporten ese crecimiento (ancho de banda, latencia, rutas, segmentación).</li>
+                <li>Además, la complejidad de monitoreo y operación aumenta: hay que observar y gestionar dos mundos que se comportan distinto.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="section-heading">1.3 Atributos de calidad en arquitecturas seguras e inteligentes</h2>
+
+    <div class="qa-card">
+        <div class="question-header">¿Qué atributos de calidad son más críticos en una arquitectura de red segura e inteligente y por qué?</div>
+        <div class="answer-body">
+            <p>Los más críticos suelen ser:</p>
+            <ul>
+                <li>Disponibilidad: los servicios deben estar operativos cuando se necesitan.</li>
+                <li>Seguridad: proteger datos, usuarios y servicios ante ataques o uso indebido.</li>
+                <li>Escalabilidad: capacidad de crecer sin que la red se vuelva inestable o ingobernable.</li>
+                <li>Resiliencia: aguantar fallos y recuperarse sin colapsar.</li>
+                <li>Rendimiento: mantener una respuesta aceptable, incluso bajo carga.</li>
+                <li>Observabilidad/monitoreo: ver lo que está ocurriendo para poder actuar.</li>
+            </ul>
+            <p>Sin estos atributos bien considerados, la arquitectura puede funcionar en condiciones ideales, pero fallar rápidamente ante crecimiento, incidentes o ataques.</p>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="question-header">¿Cómo se relacionan redundancia y resiliencia en una arquitectura de red?</div>
+        <div class="answer-body">
+            <p>La redundancia consiste en tener elementos duplicados (enlaces, equipos, rutas, sitios) para evitar que un fallo único derribe el servicio.</p>
+            <p>La resiliencia es la capacidad de resistir y recuperarse de fallos o incidentes.</p>
+            <p>La redundancia es uno de los mecanismos que ayudan a lograr resiliencia: si falla un enlace, entra otro; si cae un firewall, toma el relevo su par en alta disponibilidad.</p>
+            <p>Sin embargo, la resiliencia no es solo duplicar todo: también implica buenos procedimientos, monitoreo, pruebas, planes de recuperación y diseño que limite el impacto de cualquier fallo.</p>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="question-header">¿Por qué la seguridad no puede analizarse aislada de rendimiento y usabilidad?</div>
+        <div class="answer-body">
+            <p>Porque en la práctica, una arquitectura debe equilibrar seguridad, rendimiento y usabilidad:</p>
+            <ul>
+                <li>Un diseño muy seguro pero sin considerar rendimiento puede generar latencias altas, cuellos de botella y una mala experiencia de usuario.</li>
+                <li>Una arquitectura muy “segura” pero difícil de usar puede llevar a que los usuarios busquen atajos (como compartir credenciales, usar redes no autorizadas, etc.), lo que termina reduciendo la seguridad real.</li>
+                <li>Por otro lado, priorizar solo rendimiento y comodidad sin controles adecuados deja la red expuesta.</li>
+            </ul>
+            <p>La clave es diseñar controles y políticas que protejan sin bloquear el trabajo cotidiano, y dimensionar la arquitectura para soportar el impacto que esos controles tienen sobre el tráfico.</p>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="question-header">¿Qué papel juega el monitoreo (observabilidad) en la calidad de una arquitectura segura e inteligente?</div>
+        <div class="answer-body">
+            <p>El monitoreo es esencial porque permite:</p>
+            <ul>
+                <li>Detectar problemas de rendimiento antes de que se conviertan en caídas.</li>
+                <li>Identificar comportamientos anómalos que pueden indicar ataques o fallos (tráfico inusual, intentos de acceso, errores recurrentes).</li>
+                <li>Medir si los atributos de calidad (disponibilidad, rendimiento, seguridad) se están cumpliendo realmente.</li>
+                <li>Tomar decisiones informadas para mejorar la arquitectura: reubicar servicios, aumentar capacidad, ajustar políticas, etc.</li>
+            </ul>
+            <p>Sin observabilidad, la arquitectura funciona “a ciegas” y se vuelve difícil de operar y de mejorar.</p>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="question-header">¿Cómo puedes usar los atributos de calidad para justificar cambios en una arquitectura existente?</div>
+        <div class="answer-body">
+            <p>Los atributos de calidad permiten argumentar técnicamente por qué un cambio es necesario. Por ejemplo:</p>
+            <ul>
+                <li>Si la red presenta caídas frecuentes, puedes justificar redundancia adicional o enlaces de respaldo desde el atributo disponibilidad/resiliencia.</li>
+                <li>Si la latencia es alta, puedes proponer cambios en rutas, segmentación o ubicación de servicios desde el atributo rendimiento.</li>
+                <li>Si hay incidentes de seguridad o poca visibilidad, puedes recomendar más segmentación, un SIEM o mejor monitoreo desde los atributos de seguridad y observabilidad.</li>
+            </ul>
+            <p>En resumen, los atributos de calidad se convierten en un lenguaje común para explicar por qué una mejora no es un “capricho técnico”, sino una necesidad para el negocio y la continuidad de los servicios.</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

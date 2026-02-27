@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .module-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* --- LOGO UNIVERSIDAD (Esquina) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 10;
+        transition: transform 0.3s ease;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- HERO SECTION --- */
+    .hero-section {
+        text-align: center;
+        margin-bottom: 60px;
+        position: relative;
+        z-index: 1;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 15px;
+        letter-spacing: -1px;
+        animation: slideInDown 1s ease-out both;
+    }
+
+    /* --- IMAGEN DESTACADA --- */
+    .hero-image {
+        width: 100%;
+        max-width: 850px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        margin: 30px auto;
+        display: block;
+        opacity: 0;
+        animation: fadeIn 1.5s ease 0.5s forwards;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto;
+        color: #555;
+    }
+
+    .highlight-box {
+        background: #eef2f3;
+        border-left: 5px solid #2c5364;
+        padding: 20px;
+        margin: 30px auto;
+        max-width: 850px;
+        text-align: left;
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+    }
+
+    /* --- GRID --- */
+    .content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 25px;
+        margin-bottom: 60px;
+    }
+
+    /* --- TARJETAS --- */
+    .card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        border: 1px solid rgba(0,0,0,0.05);
+        cursor: pointer;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15);
+        border-color: #2c5364;
+    }
+
+    .card-header {
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: linear-gradient(to right, #ffffff, #f9f9f9);
+    }
+
+    .card-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+        flex-shrink: 0;
+        background: linear-gradient(135deg, #2c5364 0%, #203a43 100%);
+        box-shadow: 0 4px 10px rgba(44, 83, 100, 0.3);
+    }
+
+    .card-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    .expand-icon {
+        margin-left: auto;
+        color: #aaa;
+        font-weight: bold;
+        transition: transform 0.3s ease;
+    }
+
+    .card.active .expand-icon { transform: rotate(180deg); color: #2c5364; }
+
+    /* Contenido Oculto */
+    .card-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.6s ease-in-out;
+        background: #fff;
+    }
+
+    .card-content-inner {
+        padding: 0 25px 25px 25px;
+        border-top: 1px dashed #e0e0e0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #666;
+    }
+
+    .card-content-inner ul { padding-left: 20px; margin-top: 10px; }
+    .card-content-inner li { margin-bottom: 8px; }
+
+    .card.active .card-content { max-height: 1000px; }
+
+    /* Animaciones */
+    @keyframes slideInDown {
+        from { opacity: 0; transform: translateY(-30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .main-title { font-size: 2rem; }
+        .uni-logo { width: 80px; top: 10px; right: 10px; }
+        .content-grid { grid-template-columns: 1fr; }
+        .highlight-box { margin: 20px 0; }
+        .module-container { padding: 30px 15px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="module-container">
+
+    <!-- Logo FET -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1"
+         alt="Logo Universidad" class="uni-logo">
+
+    <!-- HERO -->
+    <div class="hero-section">
+        <h1 class="main-title">Liderazgo y gestión de proyectos tecnológicos</h1>
+
+        <!-- Imagen nueva del héroe -->
+        <img src="https://www.dropbox.com/scl/fi/jfhwa11178gwz8sup9zx0/img1.png?rlkey=xvoalc2fl7awimu7tg6o9hhj2&st=f16qvwq4&raw=1"
+             alt="Ilustración Proyectos Tecnológicos" class="hero-image">
+
+        <p class="intro-text">
+            Hoy prácticamente todas las organizaciones hablan de <strong>transformación digital</strong>, pero muchos
+            proyectos tecnológicos no se conectan bien con la estrategia institucional, se complican por problemas de
+            equipo o liderazgo y carecen de indicadores claros para demostrar si realmente generaron valor.
+        </p>
+
+        <div class="highlight-box">
+            <strong>En este módulo trabajaremos para responder preguntas como:</strong><br><br>
+            • ¿Cómo alinear un proyecto tecnológico con la estrategia de la organización?<br>
+            • ¿Qué tipo de liderazgo necesitan los equipos que trabajan con IA y ciberseguridad?<br>
+            • ¿Cómo demostrar, con indicadores, que un proyecto realmente aportó valor sostenible?
+        </div>
+    </div>
+
+    <!-- TARJETAS -->
+    <div class="content-grid">
+
+        <!-- 1. De qué trata este módulo -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">📂</div>
+                <h3 class="card-title">1. ¿De qué trata este módulo?</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>
+                        Este módulo se centra en el <strong>diseño, liderazgo y evaluación de proyectos tecnológicos</strong>
+                        en contextos de transformación digital, con énfasis en IA y ciberseguridad.
+                    </p>
+                    <p>Analizaremos problemas habituales de los proyectos tecnológicos, como:</p>
+                    <ul>
+                        <li>No se conectan bien con la estrategia institucional.</li>
+                        <li>Se complican por problemas de equipo, comunicación o liderazgo.</li>
+                        <li>No tienen indicadores claros para saber si realmente generaron valor.</li>
+                    </ul>
+                    <p>Trabajaremos sobre estos puntos a partir de:</p>
+                    <ul>
+                        <li>Enfoques tradicionales de gestión de proyectos (PMBOK/PMI, PRINCE2).</li>
+                        <li>Enfoques ágiles (Scrum, Kanban) y modelos híbridos.</li>
+                        <li>
+                            Retos particulares de proyectos de IA y ciberseguridad:
+                            datos sensibles, riesgos, normativas, ética, continuidad del servicio, entre otros.
+                        </li>
+                    </ul>
+                    <p>
+                        La idea es que pases de la teoría a <strong>decisiones concretas</strong> sobre cómo plantear,
+                        liderar y evaluar proyectos tecnológicos.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Qué vas a lograr (RAP) -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">2. ¿Qué vas a lograr en este curso?</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>Al finalizar el módulo se espera que puedas:</p>
+
+                    <div class="highlight-box">
+                        <p><strong>RAP1: Diseñar planes de proyecto tecnológicos</strong></p>
+                        <p>
+                            Utilizando enfoques tradicionales, ágiles o híbridos, según el contexto, y manteniendo
+                            la coherencia con los objetivos estratégicos de la organización.
+                        </p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <p><strong>RAP2: Gestionar equipos, recursos y riesgos en proyectos de IA y ciberseguridad</strong></p>
+                        <p>
+                            Comprender tu rol como líder de proyecto, coordinar personas con perfiles muy distintos,
+                            manejar conflictos y anticipar riesgos técnicos, organizacionales y de seguridad.
+                        </p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <p><strong>RAP3: Evaluar resultados con indicadores de desempeño, innovación y sostenibilidad</strong></p>
+                        <p>
+                            No solo verificar que “el proyecto se entregó”, sino demostrar impacto, aprendizajes y
+                            mejoras para futuros proyectos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Organización del módulo -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🧩</div>
+                <h3 class="card-title">3. ¿Cómo está organizado el módulo?</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>
+                        Trabajaremos durante <strong>9 semanas</strong> en modalidad virtual, organizadas en
+                        <strong>tres unidades</strong> y una <strong>actividad integradora</strong>.
+                    </p>
+
+                    <p><strong>Unidad 1. Diseño estratégico de proyectos tecnológicos (RAP1)</strong></p>
+                    <ul>
+                        <li>Proyectos tecnológicos y su relación con la estrategia institucional.</li>
+                        <li>Elección de enfoques de gestión de proyectos (tradicional, ágil, híbrido).</li>
+                        <li>Definición de alcance, cronograma, recursos y primeros riesgos.</li>
+                    </ul>
+
+                    <p><strong>Unidad 2. Liderazgo, equipos y riesgos en proyectos de IA y ciberseguridad (RAP2)</strong></p>
+                    <ul>
+                        <li>Tu rol como líder de proyecto tecnológico.</li>
+                        <li>Estilos de liderazgo y gestión de equipos multidisciplinarios.</li>
+                        <li>Gestión de recursos, stakeholders y riesgos en proyectos de IA/ciberseguridad.</li>
+                    </ul>
+
+                    <p><strong>Unidad 3. Evaluación, indicadores e innovación sostenible (RAP3)</strong></p>
+                    <ul>
+                        <li>Cómo medir el éxito de un proyecto (tiempo, costo, alcance, calidad).</li>
+                        <li>Indicadores de innovación y sostenibilidad.</li>
+                        <li>Cierre de proyectos, lecciones aprendidas y madurez organizacional.</li>
+                    </ul>
+
+                    <p><strong>Actividad transversal – Simulador integrador</strong></p>
+                    <p>
+                        En pequeños equipos gestionarás un portafolio de proyectos usando un simulador o plantilla
+                        interactiva. Deberán tomar decisiones frente a cambios de presupuesto, incidentes, retrasos y
+                        nuevas exigencias, justificando sus acciones con datos e indicadores.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Tipo de actividades -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🛠️</div>
+                <h3 class="card-title">4. ¿Qué tipo de actividades vas a encontrar?</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>
+                        Para que el aprendizaje sea lo más aplicado posible, el curso combina diferentes tipos de
+                        actividades:
+                    </p>
+                    <p><strong>Foros académicos</strong></p>
+                    <p>
+                        Espacios para debatir casos reales o simulados, compartir experiencias y contrastar puntos de
+                        vista con tus compañeros.
+                    </p>
+
+                    <p><strong>Ensayos y reflexiones escritas</strong></p>
+                    <p>
+                        Actividades para aterrizar las teorías de gestión de proyectos y liderazgo, conectándolas con
+                        tu práctica profesional.
+                    </p>
+
+                    <p><strong>Estudios de caso</strong></p>
+                    <p>
+                        Construirás documentos de proyecto: actas de constitución, WBS, cronogramas, matrices de
+                        riesgos, mapas de stakeholders, sistemas de indicadores, etc.
+                    </p>
+
+                    <p><strong>Simulador integrador</strong></p>
+                    <p>
+                        Un ejercicio grupal para gestionar un portafolio de proyectos, tomar decisiones y analizar
+                        las consecuencias en términos de riesgos, recursos e indicadores.
+                    </p>
+
+                    <p>
+                        Cada actividad estará claramente descrita en la plataforma Q10: propósito, pasos, fechas de
+                        entrega y criterios de evaluación.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Evaluación -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">📊</div>
+                <h3 class="card-title">5. ¿Cómo será la evaluación?</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>En términos generales, tu desempeño se valorará a través de:</p>
+                    <ul>
+                        <li>Proyecto RAP1 – Diseño estratégico de un proyecto tecnológico (20 %)</li>
+                        <li>Proyecto RAP2 – Liderazgo, equipos y riesgos en proyectos de IA/ciberseguridad (20 %)</li>
+                        <li>Proyecto RAP3 – Evaluación, indicadores e innovación sostenible (20 %)</li>
+                        <li>Simulador integrador de portafolio de proyectos tecnológicos (40 %)</li>
+                    </ul>
+                    <p>
+                        Más allá de los porcentajes, el enfoque de evaluación busca que construyas
+                        <strong>productos útiles</strong>: documentos, análisis y decisiones aplicables a tu contexto laboral.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Lo que se espera del estudiante -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🙋</div>
+                <h3 class="card-title">6. ¿Qué se espera de ti en este entorno virtual?</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>Para aprovechar al máximo el módulo, se espera que puedas:</p>
+                    <ul>
+                        <li>
+                            Participar activamente en los foros: leer a tus compañeros, responder con respeto
+                            y aportar desde tu experiencia.
+                        </li>
+                        <li>Cumplir los tiempos de entrega propuestos en el cronograma.</li>
+                        <li>
+                            Conectar el curso con tu realidad profesional: traer ejemplos de tu entorno,
+                            proyectos de tu organización o ideas que te gustaría desarrollar.
+                        </li>
+                        <li>
+                            Preguntar sin miedo: si algo no queda claro, usar la plataforma, el correo o los
+                            foros para resolver dudas.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Lo que ofrece el docente -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">👨‍🏫</div>
+                <h3 class="card-title">7. ¿Qué puedes esperar de tu docente?</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>A lo largo del curso contarás con acompañamiento para:</p>
+                    <ul>
+                        <li>Aclarar conceptos teóricos y metodológicos.</li>
+                        <li>
+                            Orientarte en el diseño de tus proyectos y en el uso de plantillas y herramientas
+                            para la gestión de proyectos.
+                        </li>
+                        <li>
+                            Retroalimentar tus entregas con comentarios que te ayuden a mejorar de forma
+                            progresiva.
+                        </li>
+                        <li>
+                            Mantener un ambiente de respeto, confianza y aprendizaje colaborativo en todos los
+                            espacios del módulo.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Mensaje final de bienvenida -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🚀</div>
+                <h3 class="card-title">8. Mensaje final de bienvenida</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>
+                        Este módulo está pensado para que no solo “gestiones proyectos”, sino para que
+                        <strong>lideres cambios reales</strong> en organizaciones que necesitan transformarse.
+                    </p>
+                    <p>Ojalá este espacio te permita:</p>
+                    <ul>
+                        <li>Poner nombre y estructura a muchas cosas que ya haces en tu práctica profesional.</li>
+                        <li>
+                            Desarrollar nuevas formas de mirar los proyectos tecnológicos, especialmente en IA
+                            y ciberseguridad.
+                        </li>
+                        <li>Construir red y aprender de la experiencia de tus compañeros.</li>
+                    </ul>
+                    <p style="text-align:center; font-weight:bold; margin-top:15px; color:#2c5364;">
+                        ¡Bienvenido(a) al módulo "Liderazgo y gestión de proyectos tecnológicos"!
+                    </p>
+                    <p style="text-align:center; font-style:italic; color:#1a5e3b;">
+                        Será un gusto acompañarte en este proceso de formación y crecimiento profesional.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function toggleCard(card) {
+        card.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>

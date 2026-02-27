@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Unidad 2 · RAP2 – Actividad 2: Ensayo reflexivo sobre liderazgo</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .module-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* --- LOGO UNIVERSIDAD (Esquina) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 10;
+        transition: transform 0.3s ease;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- HERO SECTION --- */
+    .hero-section {
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 1;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 10px;
+        letter-spacing: -0.5px;
+        animation: slideInDown 1s ease-out both;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    .week-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: #eef2f3;
+        color: #203a43;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-top: 4px;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 850px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        margin: 24px auto 0;
+        display: block;
+        opacity: 0;
+        animation: fadeIn 1.5s ease 0.5s forwards;
+    }
+
+    .intro-text {
+        font-size: 1.02rem;
+        line-height: 1.8;
+        max-width: 820px;
+        margin: 22px auto 0;
+        color: #555;
+        text-align: left;
+    }
+
+    .highlight-box {
+        background: #eef2f3;
+        border-left: 5px solid #2c5364;
+        padding: 16px 18px;
+        margin: 26px auto 0;
+        max-width: 820px;
+        text-align: left;
+        border-radius: 0 8px 8px 0;
+        font-size: 0.97rem;
+    }
+
+    /* --- GRID TARJETAS --- */
+    .content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 25px;
+        margin-top: 45px;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        border: 1px solid rgba(0,0,0,0.05);
+        cursor: pointer;
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 38px -10px rgba(0,0,0,0.15);
+        border-color: #2c5364;
+    }
+
+    .card-header {
+        padding: 20px 22px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: linear-gradient(to right, #ffffff, #f9f9f9);
+    }
+
+    .card-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+        flex-shrink: 0;
+        background: linear-gradient(135deg, #2c5364 0%, #203a43 100%);
+        box-shadow: 0 4px 10px rgba(44, 83, 100, 0.3);
+    }
+
+    .card-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    .expand-icon {
+        margin-left: auto;
+        color: #aaa;
+        font-weight: bold;
+        transition: transform 0.3s ease;
+    }
+
+    .card.active .expand-icon { transform: rotate(180deg); color: #2c5364; }
+
+    .card-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.6s ease-in-out;
+        background: #fff;
+    }
+
+    .card-content-inner {
+        padding: 0 22px 22px 22px;
+        border-top: 1px dashed #e0e0e0;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: #555;
+        text-align: left;
+    }
+
+    .card-content-inner ul { padding-left: 20px; margin-top: 10px; }
+    .card-content-inner li { margin-bottom: 6px; }
+
+    .card.active .card-content { max-height: 1200px; }
+
+    .mini-label {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #6b7280;
+        margin-bottom: 4px;
+        font-weight: 600;
+    }
+
+    .criteria-list li strong {
+        color: #2c5364;
+    }
+
+    strong {
+        color: #203a43;
+    }
+
+    .tip-footer {
+        margin-top: 30px;
+        font-size: 0.9rem;
+        text-align: center;
+        color: #555;
+        font-style: italic;
+    }
+
+    .footer {
+        margin-top: 24px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #666;
+        padding-top: 10px;
+        border-top: 1px solid #e0e0e0;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    }
+
+    a {
+        color: #1d4ed8;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    a:hover { text-decoration: underline; }
+
+    /* Animaciones */
+    @keyframes slideInDown {
+        from { opacity: 0; transform: translateY(-30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .main-title { font-size: 2rem; }
+        .uni-logo { width: 80px; top: 10px; right: 10px; }
+        .module-container { padding: 30px 15px; }
+        .intro-text, .highlight-box { margin-left: 0; margin-right: 0; }
+        .content-grid { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+<body>
+
+<div class="module-container">
+
+    <!-- Logo FET -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1"
+         alt="Logo Universidad" class="uni-logo">
+
+    <!-- HERO / ENCABEZADO DE LA ACTIVIDAD -->
+    <div class="hero-section">
+        <h1 class="main-title">Unidad 2 · RAP2</h1>
+        <p class="subtitle"><strong>Actividad 2 – Ensayo reflexivo: estilo de liderazgo y plan de mejora</strong></p>
+        <div class="week-pill">Momento 2 · Producto escrito evaluativo</div>
+
+        <img src="https://www.dropbox.com/scl/fi/u9cbzilp57q4u0jpo7mfr/Gemini_Generated_Image_rb78curb78curb78.png?rlkey=c79m0bezkwqidfycczatn3uqr&st=bmrvmqdq&raw=1"
+             alt="Liderazgo reflexivo en proyectos tecnológicos" class="hero-image">
+
+        <p class="intro-text">
+            En esta actividad elaborarás un <strong>ensayo reflexivo</strong> donde analizarás tu estilo de liderazgo (actual o deseado)
+            aplicado a un proyecto de <strong>IA</strong> y/o <strong>ciberseguridad</strong>. El propósito es que conectes teoría con práctica:
+            cómo lideras (o liderarías), qué fortalezas tienes, qué riesgos se generan por tu estilo y qué
+            <strong>plan de mejora</strong> implementarás para liderar equipos multidisciplinarios con mejor comunicación, coordinación
+            y control del riesgo.
+        </p>
+
+        <div class="highlight-box">
+            <strong>Recuerda:</strong> más que repetir teoría, este ensayo debe mostrar cómo piensas, decides y mejoras tu liderazgo
+            cuando enfrentas proyectos tecnológicos con presión, riesgos y trabajo interdisciplinario.
+        </div>
+    </div>
+
+    <!-- TARJETAS DE CONTENIDO DE LA ACTIVIDAD -->
+    <div class="content-grid">
+
+        <!-- 1. Propósito -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">1. Propósito de la actividad</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p class="mini-label">¿Para qué es este ensayo?</p>
+                    <p>
+                        Demostrar que eres capaz de <strong>reconocer y justificar</strong> un estilo de liderazgo pertinente al contexto del proyecto,
+                        identificar brechas (áreas de mejora) y diseñar un <strong>plan de acción</strong> realista para fortalecer tu desempeño como líder
+                        de proyectos tecnológicos.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Instrucciones de la tarea -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">📌</div>
+                <h3 class="card-title">2. Instrucciones de la tarea</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p class="mini-label">Formato y entrega</p>
+                    <ul>
+                        <li><strong>Producto:</strong> Ensayo reflexivo (documento en PDF o Word).</li>
+                        <li><strong>Extensión sugerida:</strong> 2–3 páginas (aprox. 900–1200 palabras).</li>
+                        <li><strong>Formato:</strong> letra 12, interlineado 1.5, márgenes normales, normas básicas de presentación.</li>
+                        <li><strong>Entrega:</strong> subir a la plataforma en la sección <em>“Actividad 2 – Momento 2”</em>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Caso de referencia -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🧠</div>
+                <h3 class="card-title">3. Caso de referencia (contexto obligatorio)</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p class="mini-label">Escoge un proyecto real o verosímil</p>
+                    <p>El ensayo debe estar contextualizado en un proyecto real o verosímil. Usa uno de estos escenarios (o el tuyo):</p>
+                    <ul>
+                        <li><strong>Escenario IA:</strong> implementación de un modelo con datos institucionales (predicción, clasificación, recomendación) que impacta decisiones.</li>
+                        <li><strong>Escenario ciberseguridad:</strong> despliegue de control (MFA, EDR, SIEM, DLP, hardening) que cambia hábitos y accesos.</li>
+                        <li><strong>Escenario híbrido:</strong> detección de anomalías/fraude con IA + monitoreo y respuesta (SOC/CSIRT).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Estructura del ensayo -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🧩</div>
+                <h3 class="card-title">4. Estructura obligatoria del ensayo</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p class="mini-label">Secciones mínimas</p>
+
+                    <p><strong>1) Introducción (contexto del proyecto)</strong></p>
+                    <ul>
+                        <li>Organización/área, objetivo del proyecto y por qué es relevante.</li>
+                        <li>Equipo multidisciplinario involucrado y reto principal (adopción, resistencia, riesgos, presión de tiempo, etc.).</li>
+                    </ul>
+
+                    <p><strong>2) Mi estilo de liderazgo (actual o deseado)</strong></p>
+                    <ul>
+                        <li>Describe tu estilo predominante: <strong>situacional</strong>, <strong>transformacional</strong>, <strong>servicial</strong>, <strong>transaccional</strong> u otro.</li>
+                        <li>Justifica por qué ese estilo es (o no es) adecuado para el proyecto y el equipo.</li>
+                        <li>Incluye un ejemplo realista: una decisión difícil, una resistencia del usuario o un conflicto entre áreas.</li>
+                    </ul>
+
+                    <p><strong>3) Análisis reflexivo: fortalezas, riesgos y brechas</strong></p>
+                    <ul>
+                        <li><strong>Fortalezas:</strong> ¿qué aporta tu estilo al equipo? (claridad, motivación, control, acompañamiento, velocidad, etc.).</li>
+                        <li><strong>Riesgos:</strong> ¿qué puede salir mal por tu estilo? (malas decisiones, rigidez, exceso de control, falta de escucha, baja exigencia, etc.).</li>
+                        <li><strong>Brechas:</strong> identifica 2–3 habilidades a fortalecer (comunicación, feedback, negociación, manejo de conflictos, delegación, control de cambios, etc.).</li>
+                    </ul>
+
+                    <p><strong>4) Plan de mejora (acción concreta)</strong></p>
+                    <ul>
+                        <li>Define <strong>3 acciones</strong> puntuales y medibles (qué harás, cómo, cuándo y con qué evidencia).</li>
+                        <li>Incluye un componente de <strong>comunicación</strong> y uno de <strong>gestión del conflicto</strong>.</li>
+                        <li>Define <strong>2 indicadores</strong> para medir tu mejora (p. ej.: cumplimiento de acuerdos, menos retrabajo, satisfacción del equipo, reducción de incidentes, menor escalamiento, etc.).</li>
+                    </ul>
+
+                    <p><strong>5) Conclusión</strong></p>
+                    <ul>
+                        <li>Síntesis: qué aprendiste sobre tu liderazgo y cómo impacta el proyecto.</li>
+                        <li>Compromiso: qué cambiarás desde ahora para liderar mejor en IA/ciberseguridad.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Criterios de evaluación -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">✅</div>
+                <h3 class="card-title">5. Criterios de evaluación (orientación)</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p class="mini-label">Qué tendrá en cuenta el docente</p>
+                    <ul class="criteria-list">
+                        <li><strong>Pertinencia y claridad del contexto:</strong> el proyecto se entiende y es coherente con IA/ciberseguridad.</li>
+                        <li><strong>Rigor del análisis del estilo de liderazgo:</strong> justificación, ejemplos y relación con el equipo.</li>
+                        <li><strong>Profundidad reflexiva:</strong> reconoce fortalezas, riesgos y brechas de manera honesta y argumentada.</li>
+                        <li><strong>Plan de mejora aplicable:</strong> acciones concretas, medibles e indicadores claros.</li>
+                        <li><strong>Presentación:</strong> redacción, organización, coherencia y normas formales básicas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Recursos y recomendación final -->
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🔗</div>
+                <h3 class="card-title">6. Recursos de apoyo y recomendación final</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p class="mini-label">Enlaces sugeridos</p>
+                    <ul>
+                        <li>
+                            <strong>PMI – Leadership (recursos de liderazgo y habilidades)</strong>:
+                            <a target="_blank" rel="noopener noreferrer" href="https://www.pmi.org/learning">https://www.pmi.org/learning</a>
+                        </li>
+                        <li>
+                            <strong>Scrum Guide (liderazgo servicial, equipos y transparencia)</strong>:
+                            <a target="_blank" rel="noopener noreferrer" href="https://scrumguides.org/">https://scrumguides.org/</a>
+                        </li>
+                        <li>
+                            <strong>NIST CSF (gobernanza y riesgo cibernético)</strong>:
+                            <a target="_blank" rel="noopener noreferrer" href="https://www.nist.gov/cyberframework">https://www.nist.gov/cyberframework</a>
+                        </li>
+                        <li>
+                            <strong>OWASP (mejores prácticas y riesgos de seguridad)</strong>:
+                            <a target="_blank" rel="noopener noreferrer" href="https://owasp.org/">https://owasp.org/</a>
+                        </li>
+                    </ul>
+
+                    <div class="highlight-box" style="margin-top:18px; border-left-color:#2c5364;">
+                        <strong>📌 Recomendación final:</strong> Un buen ensayo no “describe teoría”; muestra decisiones y aprendizajes.
+                        Piensa en situaciones reales: resistencia, urgencias, incidentes, presión por resultados, negociación de alcance.
+                        Allí se ve el liderazgo.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <p class="tip-footer">
+        Antes de entregar, verifica que tu ensayo responda a cada sección de la estructura y evidencie tu estilo de liderazgo,
+        tus brechas y un plan de mejora concreto para el contexto de IA y ciberseguridad.
+    </p>
+
+    <div class="footer">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+    </div>
+
+</div>
+
+<script>
+    function toggleCard(card) {
+        card.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>

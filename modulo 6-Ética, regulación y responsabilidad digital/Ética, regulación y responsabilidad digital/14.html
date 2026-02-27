@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .comparison-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 30px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #00796b; /* Teal Oscuro */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #004d40;
+        margin: 0 auto 20px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        background: #e0f2f1;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: justify;
+        border-left: 5px solid #00796b;
+    }
+
+    /* --- ESTILOS DE TABLAS --- */
+    .table-wrapper {
+        overflow-x: auto; /* Scroll horizontal en móviles */
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 50px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+        min-width: 700px; /* Asegura ancho mínimo para que no se deforme el texto */
+    }
+
+    /* Cabecera de Tabla */
+    .styled-table thead tr {
+        background-color: #00897b; /* Teal */
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .styled-table th, .styled-table td {
+        padding: 15px 20px;
+        vertical-align: top; /* Alineación superior para textos largos */
+    }
+
+    .styled-table th {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+    }
+
+    /* Filas y Zebra Striping */
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f2fcfb; /* Verde muy pálido */
+    }
+
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 3px solid #00897b;
+    }
+
+    .styled-table tbody tr:hover {
+        background-color: #b2dfdb; /* Hover effect */
+        color: #004d40;
+    }
+
+    /* Columnas específicas */
+    .col-aspect {
+        font-weight: 700;
+        color: #00695c;
+        width: 20%;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .col-content {
+        width: 40%;
+        line-height: 1.6;
+    }
+
+    /* Títulos de Sección */
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 2px solid #00796b;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        margin-top: 40px;
+    }
+
+    .section-number {
+        background: #00796b;
+        color: white;
+        width: 35px; height: 35px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #263238;
+        margin: 0;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 2rem; max-width: 100%; }
+        /* Las tablas tienen scroll propio, no se rompen */
+    }
+
+</style>
+</head>
+<body>
+
+<div class="comparison-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Comparación de Marcos Normativos y Derechos</h1>
+    </div>
+
+    <div class="intro-text">
+        <p>Cuando hablamos de protección de datos, IA y ética digital, no basta con mirar solo “nuestra” ley. Hoy convivimos con: Marcos nacionales (Constitución, habeas data, ley de protección de datos, decretos, circulares, etc.) y Marcos internacionales y regionales (Declaración Universal de Derechos Humanos, Convenio 108, RGPD/GDPR, AI Act, Convención Americana de Derechos Humanos, entre otros).</p>
+    </div>
+
+    <div class="section-header">
+        <div class="section-number">1</div>
+        <h2 class="section-title">Comparación marcos nacionales vs marcos internacionales</h2>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Aspecto</th>
+                    <th>Marcos nacionales<br><small>(ej. Constitución, Ley 1581, etc.)</small></th>
+                    <th>Marcos internacionales / regionales<br><small>(ej. DUDH, Convenio 108, RGPD, AI Act, CADH)</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-aspect">Naturaleza</td>
+                    <td class="col-content">Normas internas de cada país (Constitución, leyes estatutarias, decretos, guías de la autoridad nacional).</td>
+                    <td class="col-content">Tratados, convenios y reglamentos aplicables a varios países o a una región (UE, sistema interamericano, ONU, etc.).</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Alcance territorial</td>
+                    <td class="col-content">Rigen principalmente dentro del territorio nacional; regulan también transferencias internacionales.</td>
+                    <td class="col-content">Se aplican a todos los Estados parte (p. ej., UE, Consejo de Europa, OEA) y sirven como referencia global de buenas prácticas.</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Enfoque</td>
+                    <td class="col-content">Desarrollan el derecho al habeas data, regulan el tratamiento de datos por entidades públicas y privadas nacionales.</td>
+                    <td class="col-content">Enfatizan derechos humanos (privacidad, intimidad, igualdad) y establecen estándares mínimos o avanzados de protección de datos e IA.</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Nivel de detalle</td>
+                    <td class="col-content">En general más generales; algunos temas (riesgo, decisiones automatizadas, IA) están menos desarrollados.</td>
+                    <td class="col-content">RGPD y AI Act son muy detallados: bases jurídicas, DPIA, DPO, niveles de riesgo en IA, obligaciones técnicas y organizativas.</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Enfoque basado en riesgo</td>
+                    <td class="col-content">Presente, pero a veces poco explícito o menos desarrollado.</td>
+                    <td class="col-content">Central: a mayor riesgo para derechos y libertades, mayores exigencias (DPIA, controles reforzados, supervisión humana, etc.).</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">IA y decisiones automatizadas</td>
+                    <td class="col-content">Tratan el tema de forma general (uso de datos, transparencia, finalidad), sin regulación específica de IA en muchos países.</td>
+                    <td class="col-content">RGPD reconoce derechos frente a decisiones automatizadas; AI Act clasifica la IA por niveles de riesgo (inaceptable, alto, limitado, mínimo).</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Autoridad de control</td>
+                    <td class="col-content">Autoridad nacional (superintendencia/agencia de protección de datos) que vigila, orienta y sanciona a nivel país.</td>
+                    <td class="col-content">Autoridades de cada país coordinadas por organismos regionales (EDPB en la UE), con fuerte poder para sancionar y armonizar criterios.</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Sanciones</td>
+                    <td class="col-content">Sanciones administrativas, disciplinarias o penales según el ordenamiento interno; montos y rigor varían.</td>
+                    <td class="col-content">Multas muy elevadas en el caso del RGPD; presión fuerte para el cumplimiento y la implementación de buenas prácticas globales.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-header">
+        <div class="section-number">2</div>
+        <h2 class="section-title">Derechos de las personas (núcleo común)</h2>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Derecho de la persona</th>
+                    <th>Cómo aparece en marcos nacionales</th>
+                    <th>Cómo aparece en marcos internacionales<br><small>(RGPD, Convenios, etc.)</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-aspect">Información y transparencia</td>
+                    <td class="col-content">Derecho a ser informado sobre quién trata sus datos, con qué finalidad, qué tipo de datos, plazos y destinatarios.</td>
+                    <td class="col-content">Requisito fuerte de transparencia: avisos claros, lenguaje sencillo, información sobre finalidades, base jurídica, derechos y contactos.</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Acceso</td>
+                    <td class="col-content">Derecho a conocer qué datos suyos tiene una organización y cómo los trata.</td>
+                    <td class="col-content">Derecho de acceso explícito: copia o detalle de datos, finalidad, categorías, destinatarios, periodos de conservación.</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Rectificación / actualización</td>
+                    <td class="col-content">Derecho a corregir datos inexactos, incompletos o desactualizados.</td>
+                    <td class="col-content">Reconocido como derecho a la rectificación, con plazos y procedimientos definidos; incluye obligación de corregir datos erróneos.</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Supresión / cancelación / “olvido”</td>
+                    <td class="col-content">Derecho a solicitar eliminación de datos cuando ya no son necesarios o se tratan indebidamente, con límites según otras normas.</td>
+                    <td class="col-content">Derecho de supresión y, en RGPD, “derecho al olvido” en ciertos casos; obligación de borrar o anonimizar cuando ya no hay base legal.</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Oposición y limitación del tratamiento</td>
+                    <td class="col-content">Posibilidad de oponerse a ciertos usos de datos o restringir el tratamiento en condiciones específicas.</td>
+                    <td class="col-content">Derecho de oposición y de limitación del tratamiento, especialmente relevante para marketing, perfilamiento y ciertos usos automatizados.</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Portabilidad de datos</td>
+                    <td class="col-content">No siempre está previsto de forma explícita en todas las leyes nacionales.</td>
+                    <td class="col-content">Reconocido en RGPD: derecho a recibir los datos en formato estructurado y a transferirlos a otro responsable.</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Decisiones automatizadas y perfilamiento</td>
+                    <td class="col-content">Tratado de manera general a través de principios (finalidad, proporcionalidad, no discriminación).</td>
+                    <td class="col-content">RGPD reconoce derecho a no ser objeto solo de decisiones automatizadas con efectos significativos, y a obtener intervención humana y explicación.</td>
+                </tr>
+                <tr>
+                    <td class="col-aspect">Reclamación y tutela</td>
+                    <td class="col-content">Posibilidad de presentar quejas ante la autoridad nacional de protección de datos o acudir a la justicia.</td>
+                    <td class="col-content">Garantía de recurso ante autoridades de control y tribunales; protección reforzada de derechos humanos en convenios y cartas de derechos.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

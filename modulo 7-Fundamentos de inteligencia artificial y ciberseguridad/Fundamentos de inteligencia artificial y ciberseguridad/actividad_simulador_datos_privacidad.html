@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Actividad — Simulador de Clasificación de Datos y Privacidad en IA</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap');
+
+    .ethics-foundations-container {
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 40px;
+        background: #fdfcfb;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        border-top: 6px solid #c0922e;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header-section {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.7rem;
+        font-weight: 900;
+        color: #2c3e50;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        position: relative;
+        display: inline-block;
+        animation: fadeUp 1s ease both;
+    }
+
+    .main-title::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: #c0922e;
+        margin: 15px auto 0 auto;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 40px;
+        color: #555;
+    }
+
+    .section-heading {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+
+    .definitions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    .def-card {
+        background: white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border-top: 5px solid #ccc;
+        transition: transform 0.3s;
+    }
+
+    .def-card:hover { transform: translateY(-5px); }
+
+    .def-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .card-moral { border-color: #78909c; }
+    .card-moral h3 { color: #546e7a; }
+
+    .card-etica { border-color: #c0922e; }
+    .card-etica h3 { color: #c0922e; }
+
+    .card-ley { border-color: #2c3e50; }
+    .card-ley h3 { color: #2c3e50; }
+
+    .compass-section {
+        background: #f4f4f4;
+        padding: 35px;
+        border-radius: 15px;
+        margin-bottom: 45px;
+    }
+
+    .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+    }
+
+    .principle-item {
+        background: white;
+        padding: 20px 22px;
+        border-radius: 10px;
+        border-left: 4px solid #c0922e;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+
+    .principle-item h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.25rem;
+        color: #2c3e50;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .principle-icon { font-size: 1.5rem; }
+
+    .other-principles-box {
+        margin-bottom: 40px;
+        padding: 0 5px;
+    }
+
+    .elegant-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .elegant-list li {
+        margin-bottom: 18px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .elegant-list li:last-child {
+        border-bottom: none;
+    }
+
+    .elegant-list strong {
+        color: #c0922e;
+        font-size: 1.05rem;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    details.warning-box {
+        background: #fff3e0;
+        border: 1px solid #ffe0b2;
+        border-radius: 8px;
+        padding: 15px 18px;
+        margin-bottom: 35px;
+        cursor: pointer;
+    }
+
+    summary.warning-title {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 1.1rem;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    summary.warning-title::after { content: '▼'; margin-left: auto; font-size: 0.8rem; }
+    details[open] summary.warning-title::after { content: '▲'; }
+
+    .warning-content {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #ffcc80;
+        color: #5d4037;
+        font-size: 0.98rem;
+    }
+
+    .reflection-box {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 35px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .reflection-box h3 {
+        font-family: 'Playfair Display', serif;
+        color: #c0922e;
+        margin-top: 0;
+        font-size: 1.7rem;
+    }
+
+    .reflection-questions {
+        text-align: left;
+        display: inline-block;
+        max-width: 800px;
+        font-size: 1.02rem;
+    }
+
+    .reflection-questions li {
+        margin-bottom: 10px;
+    }
+
+    .code-block {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 16px 18px;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        overflow-x: auto;
+        margin: 18px 0;
+        border-left: 4px solid #c0922e;
+    }
+
+    .code-block code {
+        color: #ecf0f1;
+    }
+
+    .highlight {
+        background: #c0922e;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+
+    .info-box {
+        background: #e3f2fd;
+        border: 1px solid #90caf9;
+        border-left: 4px solid #2196f3;
+        border-radius: 8px;
+        padding: 20px 22px;
+        margin: 20px 0 35px 0;
+    }
+
+    .info-box h4 {
+        color: #1565c0;
+        margin-top: 0;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .step-number {
+        display: inline-block;
+        background: #c0922e;
+        color: white;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        border-radius: 50%;
+        font-weight: bold;
+        margin-right: 10px;
+        font-size: 0.95rem;
+    }
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .main-title { font-size: 2.1rem; max-width: 100%; }
+        .principles-grid { grid-template-columns: 1fr; }
+        .definitions-grid { grid-template-columns: 1fr; }
+        .ethics-foundations-container { padding: 30px 20px; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="ethics-foundations-container">
+
+    <div class="header-section">
+        <h1 class="main-title">📊 Actividad — Simulador de Clasificación de Datos y Privacidad en IA</h1>
+        <p class="intro-text">
+            En esta actividad trabajarás con un <strong>simulador/plantilla guiada</strong> (generalmente en Excel) para analizar un 
+            <strong>caso institucional real o plausible</strong>. El foco está en clasificar los datos, documentar su 
+            <strong>calidad y linaje</strong> y definir <strong>controles de privacidad</strong> avanzados 
+            (anonimización, <em>Differential Privacy</em>, <em>Federated Learning</em>), alineados con marcos normativos como 
+            <span class="highlight">GDPR</span>, <span class="highlight">AI Act</span> y normas sectoriales, a fin de proponer un 
+            conjunto mínimo de <strong>controles técnicos y organizacionales</strong> que garanticen seguridad y cumplimiento.
+        </p>
+    </div>
+
+    <h2 class="section-heading">🎯 Objetivo general</h2>
+    <div class="other-principles-box" style="margin-top: 0;">
+        <p style="font-size: 1.05rem; line-height: 1.8; text-align: justify;">
+            Analizar y modelar, mediante el simulador/plantilla guiada, un <strong>caso institucional real o plausible</strong> 
+            que permita evaluar la <strong>clasificación de datos</strong>, <strong>calidad/linaje</strong> y 
+            <strong>controles de privacidad</strong> (anonimización, Differential Privacy, Federated Learning) para proponer un 
+            conjunto mínimo de <strong>controles técnicos y organizacionales</strong> que garanticen seguridad y cumplimiento 
+            (<strong>GDPR, AI Act, normas sectoriales</strong>).
+        </p>
+    </div>
+
+    <h2 class="section-heading">👥 Público objetivo</h2>
+    <div class="info-box">
+        <h4>Perfil de los participantes</h4>
+        <p>
+            La actividad está dirigida a <strong>estudiantes de especialización (nivel posgrado)</strong>. 
+            Se exige un nivel de:
+        </p>
+        <ul>
+            <li><strong>Rigor técnico:</strong> comprensión de modelos de IA, riesgos de datos y controles de privacidad.</li>
+            <li><strong>Justificación normativa:</strong> referencia a marcos como GDPR, AI Act y guías técnicas.</li>
+            <li><strong>Claridad en la evidencia:</strong> capacidad de documentar artefactos que demuestran el cumplimiento.</li>
+        </ul>
+    </div>
+
+    <h2 class="section-heading">⏱️ Duración y ponderación</h2>
+    <div class="definitions-grid">
+        <div class="def-card card-etica">
+            <h3>Características de la entrega</h3>
+            <ul style="margin-left: 18px;">
+                <li><strong>Modalidad:</strong> entrega <strong>individual</strong>.</li>
+                <li><strong>Duración estimada:</strong> trabajo autónomo equivalente a una práctica de módulo.</li>
+            </ul>
+        </div>
+        <div class="def-card card-moral">
+            <h3>Peso en la nota</h3>
+            <ul style="margin-left: 18px;">
+                <li><strong>Ponderación sugerida:</strong> 10% de la nota del módulo.</li>
+                <li>El porcentaje puede ser <strong>configurado por el docente</strong> según el diseño del curso.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="section-heading">🧭 Instrucciones — paso a paso</h2>
+
+    <div class="compass-section">
+        <h3 class="section-heading" style="font-size: 1.6rem;"><span class="step-number">1</span> Preparación y selección del caso</h3>
+        <div class="principles-grid">
+            <div class="principle-item">
+                <h4><span class="principle-icon">📁</span> Recolección de documentación</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Reúne la <strong>documentación básica</strong>:
+                        <ul style="margin-left: 18px;">
+                            <li>Fuentes de datos y formatos.</li>
+                            <li>Descripción del proceso de negocio asociado.</li>
+                            <li>Contratos y acuerdos de tratamiento de datos (si existen).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🏥</span> Elección del caso institucional</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Selecciona un caso concreto:
+                        <ul style="margin-left: 18px;">
+                            <li>Historial de compras.</li>
+                            <li>Registros clínicos o historias médicas.</li>
+                            <li>Logs de acceso o trazas de sistemas.</li>
+                            <li>Imágenes médicas o de videovigilancia.</li>
+                            <li>Sistema de recomendación, scoring, etc.</li>
+                        </ul>
+                    </li>
+                    <li>Explica brevemente el <strong>contexto</strong>:
+                        <ul style="margin-left: 18px;">
+                            <li>Origen de los datos.</li>
+                            <li>Responsables (controlador / procesador).</li>
+                            <li>Finalidad del modelo de IA.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="compass-section">
+        <h3 class="section-heading" style="font-size: 1.6rem;"><span class="step-number">2</span> Abrir la plantilla / simulador (Excel)</h3>
+        <p style="margin-bottom: 15px; text-align: justify;">
+            Trabajarás con una <strong>plantilla o simulador en Excel</strong>. Si no la recibes desde la plataforma, 
+            debes crear una con las <strong>columnas mínimas</strong> que se indican a continuación.
+        </p>
+        <div class="code-block">
+<code>Columnas sugeridas:
+Tipo de dato | Sensibilidad | Base legal / Requisito | Modelo de IA (tarea + inputs/outputs) |
+Riesgo AI (Bajo/Medio/Alto) | Controles técnicos | Controles organizacionales |
+Procedimientos operativos | Evidencia / artefactos | Responsable (rol) |
+Fecha / versión | Observaciones</code>
+        </div>
+        <p style="font-size: 0.98rem;">
+            Puedes añadir columnas adicionales si tu caso requiere más detalle (por ejemplo: sistema, entorno, etiqueta de dataset, etc.).
+        </p>
+    </div>
+
+    <div class="compass-section">
+        <h3 class="section-heading" style="font-size: 1.6rem;"><span class="step-number">3</span> Completar el simulador — por pasos y con evidencia</h3>
+        <div class="principles-grid">
+            <div class="principle-item">
+                <h4><span class="principle-icon">📚</span> Tipo de dato y sensibilidad</h4>
+                <ul style="margin-left: 18px;">
+                    <li><strong>Tipo de dato:</strong> describe variables, formato, frecuencia y propietarios.</li>
+                    <li><strong>Sensibilidad:</strong> clasifica en:
+                        <ul style="margin-left: 18px;">
+                            <li>Público.</li>
+                            <li>Interno.</li>
+                            <li>Confidencial.</li>
+                            <li>Datos sensibles.</li>
+                        </ul>
+                    </li>
+                    <li>Justifica usando criterios de:
+                        <ul style="margin-left: 18px;">
+                            <li>Riesgo de reidentificación.</li>
+                            <li>Impacto en los derechos de las personas.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🔗</span> Calidad y linaje de datos</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Documenta:
+                        <ul style="margin-left: 18px;">
+                            <li>Origen (sistemas fuente, APIs, sensores).</li>
+                            <li>Transformaciones (ETL, limpieza, agregaciones).</li>
+                            <li>Versionado de datasets.</li>
+                            <li>Checksums u otras garantías de integridad.</li>
+                            <li>Responsables de cada etapa.</li>
+                        </ul>
+                    </li>
+                    <li>Crea un <strong>diagrama de flujo/linaje</strong> (desde ingesta hasta entrenamiento/despliegue) y
+                        adjúntalo como evidencia.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🤖</span> Modelo de IA</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Especifica la <strong>tarea</strong> (clasificación, regresión, NLP, visión, etc.).</li>
+                    <li>Indica las <strong>features</strong> relevantes y la naturaleza de las salidas.</li>
+                    <li>Señala si la salida:
+                        <ul style="margin-left: 18px;">
+                            <li>Automatiza decisiones.</li>
+                            <li>Soporta decisiones humanas (human-in-the-loop).</li>
+                            <li>Impacto potencial en personas o procesos críticos.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🛡️</span> Controles técnicos</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Propón controles concretos, por ejemplo:
+                        <ul style="margin-left: 18px;">
+                            <li>Pseudonimización con salt.</li>
+                            <li>Anonymización (método utilizado).</li>
+                            <li><em>Differential Privacy</em> para outputs o <em>DP-SGD</em> en entrenamiento (indicando 
+                                <strong>ε objetivo</strong> y <em>max_grad_norm</em> si aplica).</li>
+                            <li><em>Federated Learning</em> con <em>secure aggregation</em>.</li>
+                            <li>Cifrado en tránsito y en reposo.</li>
+                            <li>DLP, RBAC, logging, <em>gates</em> en CI/CD.</li>
+                        </ul>
+                    </li>
+                    <li>Para cada control indica:
+                        <ul style="margin-left: 18px;">
+                            <li><strong>Responsable técnico.</strong></li>
+                            <li><strong>Estado:</strong> implementado / en curso / no aplicado.</li>
+                            <li><strong>Parámetros críticos</strong> (cuando proceda).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🏛️</span> Controles organizacionales y procedimentales</h4>
+                <ul style="margin-left: 18px;">
+                    <li>DPIA / AIA (evaluaciones de impacto).</li>
+                    <li>Contratos con procesadores y cláusulas de tratamiento de datos.</li>
+                    <li>Políticas de retención y borrado.</li>
+                    <li>Matriz RACI y responsabilidades definidas.</li>
+                    <li>Entrenamiento del equipo y respuesta a incidentes.</li>
+                    <li>Frecuencia de revisiones y auditorías.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">⚖️</span> Mapeo a cumplimiento y riesgos residuales</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Relaciona controles con:
+                        <ul style="margin-left: 18px;">
+                            <li><strong>GDPR:</strong> minimización, DPIA, derechos ARCO/RTBF, etc.</li>
+                            <li><strong>AI Act:</strong> clasificación de nivel de riesgo y obligaciones (si aplica).</li>
+                            <li><strong>NIST AI RMF:</strong> funciones Govern, Map, Measure, Manage.</li>
+                            <li>Normas sectoriales relevantes.</li>
+                        </ul>
+                    </li>
+                    <li>Identifica <strong>riesgos residuales</strong> tras los controles y propón mitigaciones o planes de 
+                        monitorización.</li>
+                    <li>Para cada control registra la <strong>evidencia</strong> que demuestra su aplicación:
+                        pseudomap.csv, notebooks de entrenamiento con DP, DPIA.pdf, bias_report.pdf, logs SIEM, model card, scripts ETL, etc.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="reflection-box">
+        <h3><span class="step-number">4</span> Justificación crítica (requisito obligatorio)</h3>
+        <div class="reflection-questions">
+            <ul>
+                <li>Para cada <strong>control clave</strong>, explica <strong>por qué es pertinente</strong> frente al riesgo identificado.</li>
+                <li>Describe <strong>qué ocurriría si no se implementara</strong>:
+                    consecuencias técnicas, legales y reputacionales.</li>
+                <li>Asegúrate de que esta justificación sea coherente con:
+                    <ul style="margin-left: 18px;">
+                        <li>La clasificación de sensibilidad.</li>
+                        <li>El nivel de riesgo AI (bajo/medio/alto).</li>
+                        <li>Las obligaciones de cumplimiento normativo.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="section-heading">📦 Productos finales a entregar</h2>
+    <div class="definitions-grid">
+        <div class="def-card card-etica">
+            <h3>A) Exportación del simulador</h3>
+            <ul style="margin-left: 18px;">
+                <li>Exporta el simulador a <strong>PDF</strong> o captura clara de pantalla.</li>
+                <li>Puede ser el propio archivo de <strong>Excel exportado a PDF</strong>.</li>
+                <li>Debe verse claramente la(s) fila(s) completada(s) con toda la información requerida.</li>
+            </ul>
+        </div>
+        <div class="def-card card-moral">
+            <h3>B) Comentario individual (máx. 1 página)</h3>
+            <ul style="margin-left: 18px;">
+                <li>Formato <strong>PDF o DOCX</strong>.</li>
+                <li>Incluye una interpretación corta que resuma:
+                    <ul style="margin-left: 18px;">
+                        <li>Contexto y caso.</li>
+                        <li>Decisión de sensibilidad de los datos.</li>
+                        <li><strong>3 controles principales:</strong> técnico, organizacional y procedimental.</li>
+                        <li>Evaluación del riesgo residual.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="def-card card-ley">
+            <h3>C) Evidencias (opcional pero valorado)</h3>
+            <ul style="margin-left: 18px;">
+                <li>Archivos referenciados en el simulador:
+                    <ul style="margin-left: 18px;">
+                        <li>pseudomap.csv en carpeta segura.</li>
+                        <li>notebook .ipynb con DP-SGD.</li>
+                        <li>DPIA.pdf, bias_report.pdf, etc.</li>
+                    </ul>
+                </li>
+                <li>Si son archivos grandes, puedes:
+                    <ul style="margin-left: 18px;">
+                        <li>Entregarlos en enlace a repositorio privado.</li>
+                        <li>O empaquetarlos en un .zip protegido.</li>
+                    </ul>
+                </li>
+                <li>Entrega todo <strong>empaquetado o enlazado</strong> según las reglas de la plataforma.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="section-heading">📐 Formato y reglas formales</h2>
+    <div class="compass-section">
+        <div class="principles-grid">
+            <div class="principle-item">
+                <h4><span class="principle-icon">📄</span> Extensión y formato</h4>
+                <ul style="margin-left: 18px;">
+                    <li><strong>Extensión total:</strong> 1–2 páginas equivalentes (exportación del simulador + comentario ≤ 1 página).</li>
+                    <li>Las evidencias adicionales se anexan aparte (no alargan la memoria principal).</li>
+                    <li><strong>Formato preferente:</strong> PDF para enunciado y comentario.</li>
+                    <li>El archivo de Excel original puede adjuntarse opcionalmente.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">📚</span> Referencias y nivel técnico</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Cita las normas/guías utilizadas (<strong>mínimo:</strong> GDPR, AI Act si aplica y NIST AI RMF).</li>
+                    <li>Utiliza un estilo breve: autor/organismo, año o URL.</li>
+                    <li>Se espera:
+                        <ul style="margin-left: 18px;">
+                            <li>Explicación técnica de los controles (por qué funcionan, parámetros críticos).</li>
+                            <li>Justificación jurídica mínima coherente con el caso.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">✨</span> Originalidad académica</h4>
+                <ul style="margin-left: 18px;">
+                    <li>El trabajo es <strong>individual</strong>.</li>
+                    <li>Cita siempre las fuentes utilizadas (papers, guías, código de terceros, etc.).</li>
+                    <li>Evita el plagio y sigue las políticas éticas de tu institución y del módulo.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-heading">📊 Criterios de evaluación (rúbrica)</h2>
+    <div class="compass-section">
+        <p style="text-align: justify;">
+            La actividad se califica sobre <strong>100 puntos</strong> (equivalente al 10% del módulo, según configuración del docente).
+            La siguiente distribución es una sugerencia que puedes usar como referencia:
+        </p>
+        <div class="principles-grid">
+            <div class="principle-item">
+                <h4><span class="principle-icon">🔍</span> Comprensión y contexto del caso (15 pts)</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Descripción clara del dato, su fuente y finalidad.</li>
+                    <li>Identificación de responsables y entorno institucional.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🏷️</span> Clasificación y sensibilidad (15 pts)</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Uso correcto de niveles de sensibilidad.</li>
+                    <li>Justificación basada en:
+                        <ul style="margin-left: 18px;">
+                            <li>Riesgo de reidentificación.</li>
+                            <li>Impacto en derechos.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🧬</span> Calidad / linaje y diagrama (10 pts)</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Documentación de orígenes, transformaciones y versionado.</li>
+                    <li>Identificación de responsables y controles de integridad.</li>
+                    <li>Diagrama de flujo/linaje claro y comprensible.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🛡️</span> Controles técnicos (20 pts)</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Relevancia frente a los riesgos del caso.</li>
+                    <li>Concreción (parámetros, arquitectura, herramientas).</li>
+                    <li>Factibilidad y estado (implementado / en curso / no aplicado).</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🏛️</span> Controles organizacionales y procedimentales (10 pts)</h4>
+                <ul style="margin-left: 18px;">
+                    <li>DPIA, contratos, RACI y governance.</li>
+                    <li>CI/CD gates, monitorización y respuesta a incidentes.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">⚖️</span> Mapeo a cumplimiento normativo (10 pts)</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Relación explícita con GDPR, AI Act (si aplica) y NIST AI RMF (mínimo).</li>
+                    <li>Claridad en las obligaciones que se cubren y posibles brechas.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🚨</span> Riesgos residuales (10 pts)</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Identificación de riesgos que persisten.</li>
+                    <li>Argumentación de por qué no se controlan totalmente.</li>
+                    <li>Propuestas de mitigación o monitorización continua.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">📝</span> Entrega y comentario (10 pts)</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Comentario conciso (≤ 1 página) y coherente con el simulador.</li>
+                    <li>Calidad de la redacción, uso de referencias y alineación con el objetivo.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="other-principles-box">
+        <h2 class="section-heading" style="font-size:1.5rem; text-align:left;">✅ Checklist final antes de entregar</h2>
+        <ul class="elegant-list">
+            <li><strong>✓ Caso institucional definido</strong> Contexto, datos, finalidad y responsables descritos.</li>
+            <li><strong>✓ Simulador completado</strong> Columnas clave diligenciadas con controles y evidencias.</li>
+            <li><strong>✓ Diagrama de linaje</strong> Flujo de datos desde la ingesta hasta el despliegue.</li>
+            <li><strong>✓ Controles técnicos y organizacionales</strong> Propuestos y justificados frente al riesgo.</li>
+            <li><strong>✓ Mapeo a cumplimiento</strong> GDPR, AI Act (si aplica), NIST AI RMF y normas sectoriales.</li>
+            <li><strong>✓ Riesgos residuales</strong> Identificados con mitigaciones y monitoreo.</li>
+            <li><strong>✓ Comentario individual</strong> Máximo una página, claro y coherente.</li>
+            <li><strong>✓ Referencias</strong> Normas y guías citadas correctamente.</li>
+        </ul>
+    </div>
+
+    <p style="margin-bottom:25px; text-align:center; font-size: 13px; color:#666;">
+        Fundación Escuela Tecnológica de Neiva – FET | Clasificación de datos y privacidad en sistemas de IA
+    </p>
+
+</div>
+
+</body>
+</html>

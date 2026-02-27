@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Fundamentos de Inteligencia Artificial y Ciberseguridad – Descripción del módulo</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .unit-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd; /* Azul institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .unit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: #01579b;
+        margin: 0 auto 10px auto;
+        max-width: 85%;
+        line-height: 1.2;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .unit-subtitle {
+        font-size: 1.2rem;
+        color: #0288d1;
+        font-weight: 600;
+        margin-bottom: 30px;
+        display: block;
+    }
+
+    /* IMAGEN HERO */
+    .hero-img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(1, 87, 155, 0.15);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+    }
+
+    /* --- TEXTO INTRODUCTORIO --- */
+    .intro-text {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 40px;
+        padding: 0 10px;
+    }
+
+    /* --- RESULTADOS DE APRENDIZAJE (RA) --- */
+    .ra-box {
+        background: linear-gradient(135deg, #0277bd 0%, #00acc1 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 50px;
+        box-shadow: 0 10px 20px rgba(0, 172, 193, 0.3);
+    }
+
+    .ra-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        display: block;
+        text-transform: uppercase;
+        opacity: 0.9;
+    }
+
+    .ra-content {
+        font-size: 1.02rem;
+        font-weight: 600;
+        line-height: 1.7;
+        text-align: left;
+    }
+
+    .ra-content ul {
+        margin-top: 10px;
+        padding-left: 20px;
+    }
+
+    /* --- BLOQUES DE CONTENIDO (GRID) --- */
+    .content-title {
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        color: #01579b;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+
+    .topics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-bottom: 50px;
+    }
+
+    .topic-card {
+        background: white;
+        border: 1px solid #e1f5fe;
+        border-radius: 15px;
+        padding: 25px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: left;
+    }
+
+    .topic-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        border-color: #0288d1;
+    }
+
+    .topic-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        display: block;
+        color: #0277bd;
+    }
+
+    .topic-card h3 {
+        color: #01579b;
+        margin-top: 0;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        border-bottom: 2px solid #b3e5fc;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    .topic-card ul { padding-left: 20px; color: #555; }
+    .topic-card li { margin-bottom: 8px; font-size: 0.95rem; }
+
+    /* --- SECCION CRONOGRAMA / ACTIVIDADES --- */
+    .activities-section {
+        background: #f1f8e9;
+        padding: 40px;
+        border-radius: 20px;
+        margin-bottom: 40px;
+        border: 1px dashed #aed581;
+    }
+
+    .activities-section h2 {
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        color: #33691e;
+        margin-top: 0;
+        margin-bottom: 25px;
+    }
+
+    .activity-card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 18px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        border-left: 6px solid #558b2f;
+    }
+
+    .activity-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 6px;
+    }
+
+    .act-badge {
+        background: #558b2f;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+    }
+
+    .act-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: #33691e;
+        font-size: 1.02rem;
+    }
+
+    /* --- EXPECTATIVAS --- */
+    .expectations-box {
+        background: #e1f5fe;
+        padding: 30px;
+        border-radius: 15px;
+        color: #01579b;
+        margin-bottom: 40px;
+    }
+
+    .expectations-box h3 {
+        margin-top: 0;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .check-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .check-list li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 12px;
+        font-size: 1rem;
+    }
+
+    .check-list li::before {
+        content: '✔';
+        position: absolute;
+        left: 0;
+        color: #0288d1;
+        font-weight: bold;
+    }
+
+    /* --- EVALUACIÓN --- */
+    .evaluation-section {
+        background: #fffde7;
+        padding: 30px;
+        border-radius: 15px;
+        border: 1px solid #fff9c4;
+        margin-bottom: 10px;
+    }
+
+    .evaluation-section h2 {
+        font-family: 'Montserrat', sans-serif;
+        color: #f57f17;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .evaluation-section ul {
+        margin: 0;
+        padding-left: 20px;
+        color: #555;
+    }
+
+    .evaluation-section li {
+        margin-bottom: 8px;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .unit-title { font-size: 2.1rem; max-width: 100%; }
+        .hero-img { margin-bottom: 20px; }
+        .activities-section { padding: 20px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="unit-container">
+
+    <!-- Logo institucional -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&raw=1"
+         alt="Logo Universidad" class="uni-logo">
+
+    <!-- Encabezado -->
+    <div class="header-box">
+        <span class="unit-subtitle">Módulo – Especialización en IA y Ciberseguridad</span>
+        <h1 class="unit-title">Fundamentos de Inteligencia Artificial y Ciberseguridad</h1>
+
+        <!-- Imagen principal -->
+        <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg"
+             alt="Fundamentos de Inteligencia Artificial y Ciberseguridad" class="hero-img">
+    </div>
+
+    <!-- 1. Propósito del módulo -->
+    <div class="intro-text">
+        <h2 class="content-title" style="margin-bottom:20px;">1. Propósito del módulo</h2>
+        <p>
+            Este módulo busca que pases de ver la <strong>inteligencia artificial</strong> y la
+            <strong>ciberseguridad</strong> solo como tecnologías aisladas a comprenderlas como
+            <strong>componentes estratégicos</strong> que, integrados, transforman la forma en que las organizaciones
+            gestionan la información, la seguridad y la innovación.
+        </p>
+        <p><strong>A lo largo del curso vas a:</strong></p>
+        <ul>
+            <li>Comprender los principios, alcances y limitaciones de la inteligencia artificial y la ciberseguridad en el contexto de la transformación digital.</li>
+            <li>Analizar casos reales donde convergen IA y ciberseguridad, evaluando sus implicaciones técnicas, éticas y organizacionales.</li>
+            <li>Integrar conocimientos para identificar oportunidades de aplicación conjunta que permitan diseñar soluciones seguras, responsables y eficientes.</li>
+        </ul>
+        <p><strong>En resumen, este módulo te ayuda a construir criterio para responder a preguntas como:</strong></p>
+        <ul>
+            <li>¿Cuáles son los límites técnicos y organizacionales de la IA en entornos regulados?</li>
+            <li>¿Cómo se pueden proteger los datos y modelos de IA durante todo su ciclo de vida?</li>
+            <li>¿Qué controles y arquitecturas son necesarios para operar IA segura y confiable?</li>
+        </ul>
+    </div>
+
+    <!-- 2. Resultados de aprendizaje RA1-RA3 -->
+    <div class="ra-box">
+        <span class="ra-title">2. Resultados de aprendizaje del módulo (RA)</span>
+        <div class="ra-content">
+            <p>Al finalizar el módulo, deberías ser capaz de:</p>
+            <ul>
+                <li><strong>RA1.</strong> Analizar los principios, alcances y limitaciones de la inteligencia artificial y la ciberseguridad como componentes estratégicos de la transformación digital.</li>
+                <li><strong>RA2.</strong> Evaluar casos de uso donde convergen IA y ciberseguridad, considerando sus implicaciones técnicas, éticas y organizacionales.</li>
+                <li><strong>RA3.</strong> Integrar conocimientos fundamentales para identificar oportunidades de aplicación conjunta en contextos reales, proponiendo soluciones que atiendan tanto a la eficiencia operativa como a la seguridad, la privacidad y el cumplimiento normativo.</li>
+            </ul>
+            <p>
+                Cada unidad y actividad del curso está diseñada para ayudarte a avanzar en uno o varios de estos resultados.
+            </p>
+        </div>
+    </div>
+
+    <!-- 3. Organización general del módulo -->
+    <h2 class="content-title">3. Organización general del módulo</h2>
+    <p style="text-align:center; margin-bottom:25px;">
+        El módulo se desarrolla en <strong>tres unidades de aprendizaje</strong> y una
+        <strong>actividad transversal de cierre</strong>:
+    </p>
+
+    <div class="topics-grid">
+        <!-- Unidad 1 -->
+        <div class="topic-card">
+            <span class="topic-icon">🧠</span>
+            <h3>Unidad 1 – Principios, alcances y limitaciones</h3>
+            <ul>
+                <li>Límites técnicos de la IA: sesgos, overfitting, concept/data drift, disponibilidad.</li>
+                <li>Requisitos de ciberseguridad: confidencialidad, integridad, disponibilidad (CIA).</li>
+                <li>Marcos de referencia: NIST CSF, ISO/IEC 27001, Zero Trust.</li>
+                <li>Controles mínimos de <em>Secure AI by Design</em> para el dato y el ciclo de vida del modelo.</li>
+            </ul>
+        </div>
+
+        <!-- Unidad 2 -->
+        <div class="topic-card">
+            <span class="topic-icon">🔍</span>
+            <h3>Unidad 2 – Evaluación de casos de uso IA + ciberseguridad</h3>
+            <ul>
+                <li>Casos reales y simulados: SOC aumentado, IDS/IPS con ML, UEBA.</li>
+                <li>Análisis de métricas de modelos (accuracy, recall, AUC) y métricas operativas (MTTD/MTTR).</li>
+                <li>Ajuste de umbrales, detección de fraude, malware y autenticación adaptativa.</li>
+                <li>Propuesta de playbooks y controles complementarios.</li>
+            </ul>
+        </div>
+
+        <!-- Unidad 3 -->
+        <div class="topic-card">
+            <span class="topic-icon">🏗️</span>
+            <h3>Unidad 3 – Integración y oportunidades de aplicación conjunta</h3>
+            <ul>
+                <li>Diseño de arquitecturas SecMLOps seguras: CI/CD, firma de modelos, segregación, observabilidad y auditoría.</li>
+                <li>Planes de operación continua: monitoreo de drift, registro, respuesta a incidentes y roadmap sectorial.</li>
+                <li>Roles, responsabilidades y gobernanza.</li>
+                <li><strong>Actividad transversal de cierre:</strong> foro de síntesis y reflexión sobre retos técnicos, éticos y regulatorios.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 4. Cronograma de trabajo -->
+    <div class="activities-section">
+        <h2>4. Cronograma de trabajo (semanas y actividades)</h2>
+        <p style="margin-bottom:18px;">
+            El módulo se organiza en <strong>8 semanas</strong> con actividades específicas alineadas a los RA:
+        </p>
+
+        <div class="activity-card">
+            <div class="activity-header">
+                <span class="act-badge">Semana 1 – RA1</span>
+                <span class="act-title">Fundamentos y límites de IA y ciberseguridad</span>
+            </div>
+            <p>
+                <strong>Actividad principal:</strong> Foro sobre fundamentos y límites de la IA y la ciberseguridad.
+                Comentarás sobre límites técnicos y organizacionales, relacionándolos con marcos y proponiendo controles.
+            </p>
+        </div>
+
+        <div class="activity-card">
+            <div class="activity-header">
+                <span class="act-badge">Semana 2 – RA1</span>
+                <span class="act-title">Protección del dato y privacidad para IA</span>
+            </div>
+            <p>
+                <strong>Actividad principal:</strong> Ejercicio/simulador para clasificar datos, linaje y controles de privacidad.
+                Deberás proponer controles mínimos y realizar un análisis de riesgos.
+            </p>
+        </div>
+
+        <div class="activity-card">
+            <div class="activity-header">
+                <span class="act-badge">Semana 3 – RA2</span>
+                <span class="act-title">Evaluación de casos de uso IA + ciberseguridad</span>
+            </div>
+            <p>
+                <strong>Actividad principal:</strong> Estudio de caso sobre detección y respuesta inteligente a amenazas,
+                con análisis de métricas y propuesta de playbook.
+            </p>
+        </div>
+
+        <div class="activity-card">
+            <div class="activity-header">
+                <span class="act-badge">Semana 4 – RA2</span>
+                <span class="act-title">Simulación de ajuste de umbrales y fraude</span>
+            </div>
+            <p>
+                <strong>Actividad principal:</strong> Simulación de ajuste de umbrales y detección de fraude.
+                Analizarás impacto en carga operativa y tasa de error, proponiendo controles complementarios.
+            </p>
+        </div>
+
+        <div class="activity-card">
+            <div class="activity-header">
+                <span class="act-badge">Semanas 5 y 6 – RA3</span>
+                <span class="act-title">Diseño de arquitecturas seguras SecMLOps</span>
+            </div>
+            <p>
+                <strong>Actividad principal:</strong> Diseño de un <em>blueprint</em> de arquitectura segura con
+                controles y gobernanza.
+            </p>
+        </div>
+
+        <div class="activity-card">
+            <div class="activity-header">
+                <span class="act-badge">Semana 7 – RA3</span>
+                <span class="act-title">Plan de operación continua y roadmap</span>
+            </div>
+            <p>
+                <strong>Actividad principal:</strong> Proyecto/informe con KPIs, monitoreo, respuesta a incidentes
+                y fases de despliegue.
+            </p>
+        </div>
+
+        <div class="activity-card">
+            <div class="activity-header">
+                <span class="act-badge">Semana 8 – RA1–RA3</span>
+                <span class="act-title">Síntesis y reflexión final</span>
+            </div>
+            <p>
+                <strong>Actividad principal:</strong> Foro de cierre: “¿Qué necesitamos para operar IA segura en la institución?”.
+            </p>
+        </div>
+    </div>
+
+    <!-- 5. Forma de evaluación del módulo -->
+    <div class="evaluation-section">
+        <h2>5. Forma de evaluación del módulo</h2>
+        <p>
+            La evaluación combina trabajo individual, participación en foros y productos escritos. Cada actividad
+            aporta un porcentaje a la nota final:
+        </p>
+        <ul>
+            <li><strong>Unidad 1 (RA1)</strong>
+                <ul>
+                    <li>Foro: <strong>10%</strong></li>
+                    <li>Ejercicio/simulador: <strong>10%</strong></li>
+                </ul>
+            </li>
+            <li><strong>Unidad 2 (RA2)</strong>
+                <ul>
+                    <li>Estudio de caso: <strong>20%</strong></li>
+                    <li>Simulación: <strong>15%</strong></li>
+                </ul>
+            </li>
+            <li><strong>Unidad 3 (RA3)</strong>
+                <ul>
+                    <li>Diseño de blueprint: <strong>15%</strong></li>
+                    <li>Proyecto/informe: <strong>10%</strong></li>
+                </ul>
+            </li>
+            <li><strong>Actividad transversal</strong>
+                <ul>
+                    <li>Foro de cierre: <strong>20%</strong></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 6. Expectativas del estudiante -->
+    <div class="expectations-box">
+        <h3>6. ¿Qué se espera de ti en este módulo?</h3>
+        <ul class="check-list">
+            <li>Participar en foros y debates, aportando ideas propias y respetando las de los demás.</li>
+            <li>Construir tus trabajos paso a paso, evitando dejar todo para última hora.</li>
+            <li>Conectar la teoría con tu contexto profesional, usando ejemplos reales o cercanos.</li>
+            <li>Cuidar la ética en tu forma de estudiar: citar fuentes, evitar plagio y respetar la privacidad.</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

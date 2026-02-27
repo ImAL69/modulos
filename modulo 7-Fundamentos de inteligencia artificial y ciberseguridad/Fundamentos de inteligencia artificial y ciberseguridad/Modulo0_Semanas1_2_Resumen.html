@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Módulo 0 · Fundamentos de IA y Ciberseguridad – Ruta Semana 1 y 2</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap');
+
+    .module-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 10;
+        transition: transform 0.3s ease;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    .hero-section {
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 1;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 10px;
+        letter-spacing: -0.5px;
+        animation: slideInDown 1s ease-out both;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    .week-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: #eef2f3;
+        color: #203a43;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-top: 4px;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 850px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        margin: 24px auto 0;
+        display: block;
+        opacity: 0;
+        animation: fadeIn 1.5s ease 0.5s forwards;
+        object-fit: cover;
+    }
+
+    .intro-text {
+        font-size: 1.02rem;
+        line-height: 1.8;
+        max-width: 820px;
+        margin: 22px auto 0;
+        color: #555;
+        text-align: left;
+    }
+
+    .highlight-box {
+        background: #eef2f3;
+        border-left: 5px solid #2c5364;
+        padding: 16px 18px;
+        margin: 26px auto 0;
+        max-width: 820px;
+        text-align: left;
+        border-radius: 0 8px 8px 0;
+        font-size: 0.97rem;
+    }
+
+    .content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 25px;
+        margin-top: 45px;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        border: 1px solid rgba(0,0,0,0.05);
+        cursor: pointer;
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 38px -10px rgba(0,0,0,0.15);
+        border-color: #2c5364;
+    }
+
+    .card-header {
+        padding: 20px 22px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: linear-gradient(to right, #ffffff, #f9f9f9);
+    }
+
+    .card-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+        flex-shrink: 0;
+        background: linear-gradient(135deg, #2c5364 0%, #203a43 100%);
+        box-shadow: 0 4px 10px rgba(44, 83, 100, 0.3);
+    }
+
+    .card-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    .expand-icon {
+        margin-left: auto;
+        color: #aaa;
+        font-weight: bold;
+        transition: transform 0.3s ease;
+    }
+
+    .card.active .expand-icon { transform: rotate(180deg); color: #2c5364; }
+
+    .card-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.6s ease-in-out;
+        background: #fff;
+    }
+
+    .card-content-inner {
+        padding: 0 22px 22px 22px;
+        border-top: 1px dashed #e0e0e0;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: #555;
+        text-align: left;
+    }
+
+    .card-content-inner ul { padding-left: 20px; margin-top: 10px; }
+    .card-content-inner li { margin-bottom: 6px; }
+
+    .card.active .card-content { max-height: 900px; }
+
+    .mini-label {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #6b7280;
+        margin-bottom: 4px;
+        font-weight: 600;
+    }
+
+    strong { color: #203a43; }
+
+    .tip-footer {
+        margin-top: 30px;
+        font-size: 0.9rem;
+        text-align: center;
+        color: #555;
+        font-style: italic;
+    }
+
+    .footer {
+        margin-top: 24px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #666;
+        padding-top: 10px;
+        border-top: 1px solid #e0e0e0;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    }
+
+    @keyframes slideInDown {
+        from { opacity: 0; transform: translateY(-30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .main-title { font-size: 2rem; }
+        .uni-logo { width: 80px; top: 10px; right: 10px; }
+        .module-container { padding: 30px 15px; }
+        .intro-text, .highlight-box { margin-left: 0; margin-right: 0; }
+        .content-grid { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+<body>
+
+<div class="module-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1"
+         alt="Logo Universidad" class="uni-logo">
+
+    <div class="hero-section">
+        <h1 class="main-title">Ruta del módulo · Semana 1 y 2</h1>
+        <p class="subtitle"><strong>Fundamentos de IA y Ciberseguridad</strong></p>
+        <div class="week-pill">Resumen de avance</div>
+
+        <img src="https://www.dropbox.com/scl/fi/5zndfdd1vs81l1fnqumne/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.37_c326823b.jpg?rlkey=yjl3fkup194d9cv8ju01sn1ht&st=lvxlccmm&raw=1"
+             alt="Fundamentos de Inteligencia Artificial y Ciberseguridad" class="hero-image">
+
+        <p class="intro-text">
+            En el módulo de la <strong>Semana 1</strong>, analizamos el papel estratégico de la <strong>inteligencia artificial</strong> y la
+            <strong>ciberseguridad</strong> en la transformación digital, y cómo su adopción exige no solo capacidades técnicas
+            sino también gobierno, cumplimiento y controles proporcionales al riesgo. Se exploraron los límites técnicos y
+            organizacionales de la IA, su impacto operativo y la forma de alinearlos con marcos de referencia como la tríada
+            <strong>CIA</strong>, <strong>NIST CSF</strong>, <strong>ISO/IEC 27001</strong> y principios <strong>Zero Trust</strong>.
+        </p>
+
+        <div class="highlight-box">
+            <p><strong>Transición hacia la Semana 2</strong></p>
+            <p>
+                Para la <strong>Semana 2</strong> avanzamos hacia la aplicación práctica sobre <strong>privacidad y protección del dato</strong>
+                en proyectos de IA: clasificación y linaje de datos, calidad y controles de privacidad (anonimización, Differential Privacy,
+                Federated Learning) para proponer controles mínimos que permitan cumplimiento con <strong>GDPR</strong>, <strong>AI Act</strong>
+                y normas sectoriales.
+            </p>
+        </div>
+    </div>
+
+    <div class="content-grid">
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🧠</div>
+                <h3 class="card-title">Semana 1 · Rol estratégico de IA y Ciberseguridad</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p class="mini-label">Enfoque conceptual y de marcos</p>
+                    <ul>
+                        <li>Papel de la IA y la ciberseguridad en la transformación digital.</li>
+                        <li>Límites técnicos y organizacionales de la IA y su impacto operativo.</li>
+                        <li>Relación con la tríada <strong>CIA</strong> y marcos como <strong>NIST CSF</strong>, <strong>ISO/IEC 27001</strong> y <strong>Zero Trust</strong>.</li>
+                        <li>Necesidad de gobierno, cumplimiento y controles proporcionales al riesgo.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🔐</div>
+                <h3 class="card-title">Semana 2 · Privacidad y protección del dato</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p class="mini-label">Aplicación práctica en proyectos de IA</p>
+                    <ul>
+                        <li>Clasificación y linaje de datos en soluciones de IA.</li>
+                        <li>Calidad del dato como requisito para seguridad y confiabilidad.</li>
+                        <li>Controles de privacidad: <strong>anonimización</strong>, <strong>Differential Privacy</strong> y <strong>Federated Learning</strong>.</li>
+                        <li>Diseño de controles mínimos para cumplimiento con <strong>GDPR</strong>, <strong>AI Act</strong> y normas sectoriales.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <p class="tip-footer">
+        Vuelve a esta página cuando necesites recordar el hilo conductor entre las semanas: de los fundamentos estratégicos
+        a la protección práctica del dato en proyectos de IA.
+    </p>
+
+    <div class="footer">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+    </div>
+
+</div>
+
+<script>
+    function toggleCard(card) {
+        card.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>

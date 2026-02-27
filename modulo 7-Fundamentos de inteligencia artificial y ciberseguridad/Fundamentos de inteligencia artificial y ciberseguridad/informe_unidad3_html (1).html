@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Proyecto Unidad 3 — Informe de Operación, Monitoreo y Roadmap de Adopción</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap');
+
+    .ethics-foundations-container {
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 40px;
+        background: #fdfcfb;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        border-top: 6px solid #c0922e;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.8);
+        border-radius: 8px;
+        padding: 5px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    .header-section {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        font-weight: 900;
+        color: #2c3e50;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 85%;
+        position: relative;
+        display: inline-block;
+        animation: fadeUp 1s ease both;
+    }
+
+    .main-title::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: #c0922e;
+        margin: 15px auto 0 auto;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 20px 40px rgba(44, 62, 80, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        border: 1px solid #eee;
+        opacity: 0;
+        animation: zoomInSmooth 1.2s ease 0.3s forwards;
+    }
+
+    .intro-text {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 50px;
+        color: #555;
+    }
+
+    .definitions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-bottom: 60px;
+    }
+
+    .def-card {
+        background: white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border-top: 5px solid #ccc;
+        transition: transform 0.3s;
+    }
+
+    .def-card:hover { transform: translateY(-5px); }
+
+    .def-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .card-moral { border-color: #78909c; }
+    .card-moral h3 { color: #546e7a; }
+
+    .card-etica { border-color: #c0922e; }
+    .card-etica h3 { color: #c0922e; }
+
+    .card-ley { border-color: #2c3e50; }
+    .card-ley h3 { color: #2c3e50; }
+
+    .compass-section {
+        background: #f4f4f4;
+        padding: 40px;
+        border-radius: 15px;
+        margin-bottom: 60px;
+    }
+
+    .section-heading {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: #2c3e50;
+        margin-bottom: 40px;
+    }
+
+    .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .principle-item {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 4px solid #c0922e;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+
+    .principle-item h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+        color: #2c3e50;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .principle-icon { font-size: 1.5rem; }
+
+    .other-principles-box {
+        margin-bottom: 60px;
+        padding: 0 20px;
+    }
+
+    .elegant-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .elegant-list li {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .elegant-list li:last-child {
+        border-bottom: none;
+    }
+
+    .elegant-list strong {
+        color: #c0922e;
+        font-size: 1.1rem;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    details.warning-box {
+        background: #fff3e0;
+        border: 1px solid #ffe0b2;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 50px;
+        cursor: pointer;
+    }
+
+    summary.warning-title {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 1.1rem;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    summary.warning-title::after { content: '▼'; margin-left: auto; font-size: 0.8rem; }
+    details[open] summary.warning-title::after { content: '▲'; }
+
+    .warning-content {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #ffcc80;
+        color: #5d4037;
+    }
+
+    .reflection-box {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 40px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .reflection-box h3 {
+        font-family: 'Playfair Display', serif;
+        color: #c0922e;
+        margin-top: 0;
+        font-size: 1.8rem;
+    }
+
+    .reflection-questions {
+        text-align: left;
+        display: inline-block;
+        max-width: 800px;
+    }
+
+    .reflection-questions li {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        font-style: italic;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    table th {
+        background: #2c3e50;
+        color: white;
+        padding: 12px;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #eee;
+    }
+
+    table tr:hover {
+        background: #f9f9f9;
+    }
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomInSmooth {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 2.2rem; max-width: 100%; }
+        .principles-grid { grid-template-columns: 1fr; }
+        .definitions-grid { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="ethics-foundations-container">
+
+    <div class="header-section">
+        <h1 class="main-title">🤖 Proyecto Unidad 3 — Informe de Operación, Monitoreo y Roadmap de Adopción</h1>
+
+        <p class="intro-text">
+            Esta actividad explica, paso a paso, qué se espera del trabajo de la Unidad 3: 
+            <strong>"Proyecto / Informe de operación, monitoreo y roadmap de adopción"</strong>. 
+            Está pensado para ayudarte a estructurar el informe de 4–6 páginas (PDF) que propone 
+            un plan operativo continuo para sistemas de IA seguros, con foco en monitoreo, 
+            respuesta a incidentes, gobernanza y roadmap sectorial (salud, finanzas, sector público).
+        </p>
+    </div>
+
+    <h2 class="section-heading">🎯 Objetivo del trabajo</h2>
+    <div class="other-principles-box" style="margin-top: 0;">
+        <p style="font-size: 1.1rem; line-height: 1.8; text-align: justify;">
+            Proponer un <strong>plan de operación continua</strong> para sistemas de IA seguros que incluya: 
+            monitoreo de drift, registro/versionado de modelos, playbook de respuesta a incidentes de IA 
+            y un roadmap de implementación por sectores. El entregable debe demostrar la capacidad de 
+            convertir un diseño técnico en un plan de gestión y gobierno institucionalmente viable.
+        </p>
+    </div>
+
+    <h2 class="section-heading">📋 Paso a paso (guía práctica para elaborar el informe)</h2>
+
+    <div class="definitions-grid">
+        <div class="def-card card-moral">
+            <h3>Paso 1 — Selección del caso y contexto</h3>
+            <p>Elige el blueprint o caso de referencia (el blueprint previo u otro caso realista).</p>
+            <p>Describe brevemente el contexto: sector elegido (salud, finanzas o sector público), alcance del sistema de IA, actores clave y objetivo del servicio.</p>
+            <p>Indica supuestos importantes (p. ej., volumen de datos, latencia esperada, restricciones regulatorias).</p>
+        </div>
+
+        <div class="def-card card-etica">
+            <h3>Paso 2 — Resumen ejecutivo</h3>
+            <p>Redacta un resumen claro con las principales propuestas: KPIs/SLOs, periodicidad de retraining, responsables clave, fases del roadmap y principales riesgos.</p>
+            <p>Este resumen debe permitir a un directivo comprender las decisiones críticas sin leer todo el documento.</p>
+        </div>
+
+        <div class="def-card card-ley">
+            <h3>Paso 3 — Definición de KPIs y SLOs</h3>
+            <p>Lista los KPIs operativos y de modelo (ejemplos abajo).</p>
+            <p>Define SLOs cuantitativos asociados (umbral esperado, frecuencia de medición, responsable).</p>
+            <p>Crea una tabla simple con: Métrica | Objetivo/SLO | Frecuencia | Responsable | Acción si se incumple.</p>
+        </div>
+    </div>
+
+    <div class="compass-section">
+        <h3 class="section-heading" style="font-size: 1.5rem;">📊 Ejemplo de métricas</h3>
+        <div class="principles-grid">
+            <div class="principle-item">
+                <h4><span class="principle-icon">📈</span> Performance</h4>
+                <p>AUC/ROC, Accuracy, F1, tasa FPR/FNR.</p>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">⚙️</span> Operación</h4>
+                <p>Latencia p95, Disponibilidad (%), Throughput.</p>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">💾</span> Calidad de datos</h4>
+                <p>% valores faltantes, % features con drift.</p>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🔒</span> Seguridad</h4>
+                <p>Nº incidentes/mes, tiempo medio de detección (MTTD).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="definitions-grid">
+        <div class="def-card card-etica">
+            <h3>Paso 4 — Política de retraining y versionado</h3>
+            <p><strong>Define reglas de retraining:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li><strong>Time-based:</strong> p. ej., cada 3–6 meses.</li>
+                <li><strong>Data-triggered:</strong> p. ej., si drift de features > X% o si la métrica clave cae > Y puntos.</li>
+                <li><strong>Performance-triggered:</strong> p. ej., si AUC disminuye > 0.03 en producción.</li>
+            </ul>
+            <p>Describe el proceso de validación antes de volver a producción (tests, A/B, canary).</p>
+            <p>Indica el esquema de registro/versionado de modelos (model registry): metadatos mínimos.</p>
+        </div>
+
+        <div class="def-card card-moral">
+            <h3>Paso 5 — Plan de observabilidad</h3>
+            <p>Define qué medir y cómo (logs, métricas, trazas, muestras de datos).</p>
+            <p>Establece frecuencias, umbrales y tipos de alerta (informativa, crítica, urgente).</p>
+            <p><strong>Herramientas sugeridas:</strong> Prometheus + Grafana, ELK/EFK, Evidently, Sentry, OpenTelemetry.</p>
+            <p>Mecanismos de retención y privacidad de telemetría (GDPR/sector salud: anonimización, minimización).</p>
+        </div>
+
+        <div class="def-card card-ley">
+            <h3>Paso 6 — Playbook de incidentes de IA</h3>
+            <p>Estructura el playbook con pasos concretos:</p>
+            <ul style="margin-left: 20px;">
+                <li><strong>Detección:</strong> señales de alerta (drift, caída de métricas, comportamiento anómalo).</li>
+                <li><strong>Clasificación y priorización:</strong> impacto y urgencia.</li>
+                <li><strong>Contención:</strong> rollback, degradación controlada, bloqueo de entrada de datos.</li>
+                <li><strong>Mitigación temporal:</strong> reglas heurísticas, modelos alternativos.</li>
+                <li><strong>Comunicación:</strong> notificación a stakeholders.</li>
+                <li><strong>Recuperación y restauración:</strong> criterios para re-despliegue.</li>
+                <li><strong>Post-mortem:</strong> análisis de causa raíz, lecciones aprendidas.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="definitions-grid">
+        <div class="def-card card-etica">
+            <h3>Paso 7 — Roles, gobernanza y RACI</h3>
+            <p>Define roles mínimos: Data Scientist, MLOps/DevOps, InfoSec, Compliance/Legal, Product Owner, Responsable de datos (DPO).</p>
+            <p>Presenta una matriz RACI (Responsable / Aprobador / Consultado / Informado) para tareas críticas.</p>
+            <p>Especifica responsables de KPIs, alertas y decisiones de rollback.</p>
+        </div>
+
+        <div class="def-card card-moral">
+            <h3>Paso 8 — Roadmap de implantación</h3>
+            <p>Define fases: Piloto → Validación → Escalado → Producción → Mantenimiento.</p>
+            <p>Para cada fase, indica actividades clave, criterios de paso, recursos necesarios y estimación temporal.</p>
+            <p><strong>Adapta prioridades por sector:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li><strong>Salud:</strong> énfasis en privacidad, validación clínica y consentimiento.</li>
+                <li><strong>Finanzas:</strong> pruebas de estrés, latencia y auditoría de modelos.</li>
+                <li><strong>Sector público:</strong> transparencia, cumplimiento normativo y accesibilidad.</li>
+            </ul>
+        </div>
+
+        <div class="def-card card-ley">
+            <h3>Paso 9 — Análisis de riesgos</h3>
+            <p>Enumera riesgos principales (ej.: drift no detectado, fuga de datos, ataques adversariales, incumplimiento regulatorio).</p>
+            <p>Para cada riesgo, indica probabilidad, impacto y medidas de mitigación (técnicas y organizacionales).</p>
+        </div>
+    </div>
+
+    <div class="definitions-grid">
+        <div class="def-card card-etica">
+            <h3>Paso 10 — Conclusiones</h3>
+            <p>Resume las acciones prioritarias inmediatas (primeros 90 días).</p>
+            <p>Recomienda métricas de éxito iniciales y actividades de gobernanza a calendarizar.</p>
+            <p>Señala investigaciones o auditorías adicionales necesarias.</p>
+        </div>
+
+        <div class="def-card card-moral">
+            <h3>Paso 11 — Referencias y anexos</h3>
+            <p>Añade referencias en formato APA o IEEE (elige uno y aplica consistentemente).</p>
+            <p><strong>Anexos recomendados:</strong> tabla detallada de KPIs, matriz RACI, cronograma/Gantt, estimación de costes desglosada.</p>
+        </div>
+    </div>
+
+    <div class="reflection-box">
+        <h3>📄 Formato y entrega</h3>
+        <div class="reflection-questions">
+            <ul>
+                <li><strong>Formato:</strong> PDF, 4–6 páginas (no incluir anexos extensos en el conteo principal; anexos cortos sí).</li>
+                <li><strong>Normas de citación:</strong> APA o IEEE (consistencia).</li>
+                <li><strong>Elementos visuales recomendados:</strong> tablas claras (KPIs/SLOs), una matriz RACI y un cronograma simple.</li>
+            </ul>
+        </div>
+    </div>
+
+    <details class="warning-box">
+        <summary class="warning-title">✅ Recomendaciones finales (Clic para ver)</summary>
+        <div class="warning-content">
+            <ul>
+                <li><strong>Coherencia:</strong> Asegúrate de que todos los pasos estén alineados y se complementen entre sí.</li>
+                <li><strong>Claridad:</strong> Usa tablas y diagramas para facilitar la comprensión de información compleja.</li>
+                <li><strong>Viabilidad:</strong> Propón soluciones realistas y ejecutables en el contexto elegido.</li>
+                <li><strong>Profesionalismo:</strong> Mantén un tono técnico pero accesible para diferentes audiencias.</li>
+            </ul>
+        </div>
+    </details>
+
+    <p style="margin-bottom:50px; text-align:center; font-size: 13px; color:#666;">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+    </p>
+
+</div>
+
+</body>
+</html>

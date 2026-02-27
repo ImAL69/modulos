@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .unit2-full-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1a237e; /* Índigo Profundo */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .unit-badge {
+        display: inline-block;
+        background: #e8eaf6;
+        color: #1a237e;
+        padding: 6px 16px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+        border: 1px solid #c5cae9;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #1a237e;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Tu enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(26, 35, 126, 0.3);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #c5cae9;
+    }
+
+    /* --- TEXTO INTRODUCTORIO --- */
+    .intro-section {
+        background: #fafafa;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        text-align: justify;
+        border-left: 5px solid #1a237e;
+    }
+
+    .intro-section ul { padding-left: 20px; margin-bottom: 20px; }
+    .intro-section li { margin-bottom: 8px; }
+
+    /* --- PREGUNTA CENTRAL --- */
+    .question-box {
+        text-align: center;
+        margin: 40px 0;
+        padding: 30px;
+        background: #fff3e0;
+        border-radius: 15px;
+        border: 2px dashed #ffb74d;
+    }
+
+    .question-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        color: #ef6c00;
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+
+    .question-text {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #37474f;
+        font-style: italic;
+    }
+
+    /* --- SECCIONES DE TEXTO CON TÍTULO --- */
+    .section-block { margin-bottom: 50px; }
+
+    .block-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #283593;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e8eaf6;
+        padding-bottom: 10px;
+    }
+
+    .text-content {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .text-content ul { padding-left: 20px; margin-bottom: 20px; }
+    .text-content li { margin-bottom: 10px; }
+
+    /* --- GRID DE CONTEXTOS (Texto Completo) --- */
+    .context-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    .context-card {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 25px;
+        transition: transform 0.3s;
+        border-top: 5px solid #ef6c00; /* Naranja */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    }
+
+    .context-card:hover { transform: translateY(-5px); }
+
+    .context-card strong {
+        color: #ef6c00;
+        font-size: 1.1rem;
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* --- OBJETIVOS (RA2) --- */
+    .objectives-box {
+        background: #e8eaf6;
+        padding: 40px;
+        border-radius: 15px;
+        margin-bottom: 50px;
+    }
+
+    .obj-list { list-style: none; padding: 0; }
+    
+    .obj-list > li {
+        margin-bottom: 20px;
+        padding-left: 30px;
+        position: relative;
+    }
+
+    .obj-list > li::before {
+        content: '🎯';
+        position: absolute;
+        left: 0; top: 2px;
+    }
+
+    .obj-list strong { color: #1a237e; }
+
+    /* Sub-listas de objetivos */
+    .sub-list {
+        margin-top: 10px;
+        padding-left: 20px;
+        list-style: disc;
+        color: #546e7a;
+    }
+
+    /* --- CÓMO SE TRABAJARÁ --- */
+    .method-box {
+        background: #fff;
+        border: 2px solid #1a237e;
+        padding: 30px;
+        border-radius: 12px;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 2rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="unit2-full-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <span class="unit-badge">Introducción</span>
+        <h1 class="main-title">Unidad 2: Dilemas Éticos en Automatización y Vigilancia</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/9328rquvbzn2w91slpm9i/Gemini_Generated_Image_80vs2680vs2680vs.png?rlkey=9oxeupc86wus2ldhdrdd8iblv&st=j3zc9q83&raw=1" alt="Vigilancia y Automatización" class="hero-image">
+    </div>
+
+    <div class="intro-section">
+        <p>En la <strong>Unidad 1</strong> nos centramos en los marcos legales y los principios éticos que enmarcan el uso de tecnologías emergentes: protección de datos, derechos de las personas, principios de transparencia, no discriminación y responsabilidad, así como referentes internacionales (RGPD, AI Act, UNESCO, OCDE, etc.).</p>
+        
+        <p>En esta <strong>Unidad 2</strong> damos un paso más: vamos a mirar qué pasa cuando esos principios se ponen a prueba en escenarios reales de automatización y vigilancia. Es decir, cuando algoritmos y sistemas de IA:</p>
+        <ul>
+            <li>Toman decisiones sobre personas (quién recibe un beneficio, quién es “riesgo”, quién entra o no a un sistema).</li>
+            <li>Observan, registran y analizan comportamientos (cámaras, sensores, rastreo digital, monitoreo en línea, etc.).</li>
+        </ul>
+    </div>
+
+    <div class="question-box">
+        <div class="question-title">La pregunta central de esta unidad es:</div>
+        <div class="question-text">
+            "¿Hasta dónde es legítimo automatizar y vigilar, y qué condiciones deben cumplirse para que esas prácticas sean éticamente aceptables y compatibles con los derechos de las personas?"
+        </div>
+    </div>
+
+    <p style="text-align:justify; margin-bottom:40px;">No se trata de demonizar la automatización y la vigilancia (que pueden tener usos legítimos), sino de aprender a reconocer los dilemas, identificar límites ético–legales y proponer salvaguardas concretas.</p>
+
+    <div class="section-block">
+        <h2 class="block-title">¿Qué entendemos por “dilemas éticos en automatización y vigilancia”?</h2>
+        <div class="text-content">
+            <p>En esta unidad trabajaremos con situaciones en las que:</p>
+            <ul>
+                <li>Una decisión automatizada puede ser eficiente, pero al mismo tiempo generar injusticias, sesgos o falta de explicación.</li>
+                <li>Un sistema de vigilancia puede aumentar la seguridad, pero también afectar la privacidad, la confianza y la autonomía de las personas.</li>
+                <li>Se cruzan intereses legítimos de organizaciones (seguridad, control de calidad, productividad) con derechos fundamentales de las personas (intimidad, no discriminación, libertad de expresión, etc.).</li>
+            </ul>
+
+            <p style="margin-top:30px; font-weight:bold;">Veremos ejemplos en contextos como:</p>
+            <div class="context-grid">
+                <div class="context-card">
+                    <strong>Entornos laborales:</strong>
+                    monitoreo de desempeño, control de tiempos, videovigilancia.
+                </div>
+                <div class="context-card">
+                    <strong>Entornos educativos:</strong>
+                    proctoring, analíticas de aprendizaje, seguimiento de plataformas.
+                </div>
+                <div class="context-card">
+                    <strong>Entornos urbanos y de seguridad:</strong>
+                    cámaras inteligentes, reconocimiento facial, sistemas predictivos.
+                </div>
+                <div class="context-card">
+                    <strong>Entornos digitales:</strong>
+                    seguimiento de comportamiento en línea, scores, segmentación y perfilamiento.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-block objectives-box">
+        <h2 class="block-title" style="border-color:#c5cae9; color:#1a237e;">Objetivos de la Unidad 2 (RA2)</h2>
+        <p style="margin-bottom:20px;">Al finalizar esta unidad se espera que puedas:</p>
+        
+        <ul class="obj-list text-content">
+            <li><strong>Identificar dilemas éticos</strong> frecuentes en escenarios de automatización y vigilancia con IA y datos personales, reconociendo actores, intereses y posibles conflictos de derechos.</li>
+            
+            <li><strong>Analizar críticamente</strong> casos de automatización y vigilancia usando los principios éticos trabajados (transparencia, explicabilidad, no discriminación, responsabilidad, autonomía, dignidad, etc.) y los marcos legales estudiados en la Unidad 1.</li>
+            
+            <li><strong>Evaluar impactos</strong> de sistemas de automatización y vigilancia sobre:
+                <ul class="sub-list">
+                    <li>La privacidad y el control de la información personal.</li>
+                    <li>La igualdad y la no discriminación.</li>
+                    <li>La confianza y el clima organizacional o social (miedo, autocensura, vigilancia excesiva).</li>
+                </ul>
+            </li>
+            
+            <li><strong>Proponer salvaguardas y controles</strong> para estos sistemas, tales como:
+                <ul class="sub-list">
+                    <li>Límites a la vigilancia y al uso de datos.</li>
+                    <li>Revisión humana significativa en decisiones automatizadas.</li>
+                    <li>Mecanismos de transparencia, información y consentimiento.</li>
+                    <li>Procedimientos de queja, apelación y reparación.</li>
+                </ul>
+            </li>
+            
+            <li><strong>Desarrollar criterio profesional</strong> para tomar postura argumentada frente a proyectos reales de automatización y vigilancia, diferenciando entre:
+                <ul class="sub-list">
+                    <li>Usos proporcionados y justificados.</li>
+                    <li>Usos que exigen ajustes o salvaguardas adicionales.</li>
+                    <li>Usos que resultan éticamente inaceptables.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section-block method-box">
+        <h2 class="block-title">¿Cómo se trabajará esta unidad?</h2>
+        <div class="text-content">
+            <p>En la plataforma encontrarás:</p>
+            <ul>
+                <li><strong>Páginas teóricas</strong> sobre automatización, vigilancia, perfilamiento y toma de decisiones automatizadas.</li>
+                <li><strong>Lecturas y casos breves</strong> que muestran conflictos reales en contextos laborales, educativos, urbanos y digitales.</li>
+                <li><strong>Actividades aplicadas</strong> (foros, análisis de casos, uso de matrices) donde tendrás que:
+                    <ul style="margin-top:5px; list-style:circle;">
+                        <li>Explorar un caso.</li>
+                        <li>Detectar los dilemas.</li>
+                        <li>Proponer alternativas y salvaguardas.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p style="text-align:center; font-weight:bold; margin-top:20px; font-size:1.1rem; color:#1a237e;">
+                Esta unidad busca que pases de “conozco los principios y la ley” a “puedo usarlos para tomar decisiones y argumentar frente a situaciones complejas de automatización y vigilancia”.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

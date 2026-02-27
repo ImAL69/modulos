@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .rubric-full-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 30px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #00695c; /* Teal Oscuro */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #004d40;
+        margin: 0 auto 10px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* --- ESTILOS DE TABLAS --- */
+    .table-wrapper {
+        overflow-x: auto; /* Scroll horizontal en móviles */
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 50px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .rubric-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 900px; /* Ancho mínimo */
+        font-size: 0.9rem;
+    }
+
+    /* Celdas Generales */
+    .rubric-table td, .rubric-table th {
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        vertical-align: top;
+        line-height: 1.5;
+    }
+
+    /* Columnas */
+    .col-criterio { background-color: #fafafa; font-weight: 700; width: 20%; color: #333; }
+    .col-peso { text-align: center; font-weight: 900; width: 8%; background-color: #fff; }
+    
+    /* Niveles de Desempeño */
+    .level-excelente { background-color: #e8f5e9; color: #1b5e20; } /* Verde suave */
+    .level-bueno { background-color: #fffde7; color: #333; } /* Amarillo muy suave */
+    .level-basico { background-color: #fff3e0; color: #e65100; } /* Naranja suave */
+    .level-deficiente { background-color: #ffebee; color: #c62828; } /* Rojo suave */
+
+    /* --- ESTILOS ESPECÍFICOS GRUPAL (Teal) --- */
+    .group-header {
+        background-color: #00695c;
+        color: white;
+        padding: 15px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    .group-table th { background-color: #00897b; color: white; text-align: left; }
+    .group-table .col-peso { color: #00695c; }
+
+    /* --- ESTILOS ESPECÍFICOS INDIVIDUAL (Indigo) --- */
+    .individual-header {
+        background-color: #283593;
+        color: white;
+        padding: 15px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 40px; /* Separación */
+    }
+    .individual-table th { background-color: #3949ab; color: white; text-align: left; }
+    .individual-table .col-peso { color: #283593; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 2rem; max-width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="rubric-full-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Rúbrica de Evaluación del Foro</h1>
+    </div>
+
+    <div class="group-header">Criterios grupal del foro: 50 %</div>
+    
+    <div class="table-wrapper">
+        <table class="rubric-table group-table">
+            <thead>
+                <tr>
+                    <th>Criterio grupal</th>
+                    <th style="text-align:center;">Peso</th>
+                    <th style="background:#2e7d32;">Nivel Excelente</th>
+                    <th style="background:#f9a825;">Nivel Bueno</th>
+                    <th style="background:#ef6c00;">Nivel Básico</th>
+                    <th style="background:#c62828;">Nivel Deficiente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-criterio">1. Uso de roles y estructura del debate</td>
+                    <td class="col-peso">15 %</td>
+                    <td class="level-excelente">El grupo respeta claramente los roles (moderador, equipo A, equipo B, observadores, relator) y la secuencia propuesta en la guía. Cada rol interviene según lo esperado y el hilo del debate se entiende fácilmente.</td>
+                    <td class="level-bueno">La mayoría de los roles se cumplen y la estructura general del debate se mantiene, aunque hay pequeños desajustes (algún rol poco visible o desorden en el orden de intervenciones).</td>
+                    <td class="level-basico">Los roles aparecen de forma confusa (varios no se evidencian o se mezclan) y/o la estructura del debate es poco clara.</td>
+                    <td class="level-deficiente">No se respetan los roles ni la estructura del debate; el foro del grupo parece una suma de mensajes sueltos sin organización.</td>
+                </tr>
+                <tr>
+                    <td class="col-criterio">2. Profundidad y pertinencia de los argumentos del grupo</td>
+                    <td class="col-peso">20 %</td>
+                    <td class="level-excelente">El grupo analiza el caso con profundidad, identifica bien los dilemas éticos y los conecta con el contexto de vigilancia digital. Los argumentos son claros, relevantes y van más allá de opiniones superficiales.</td>
+                    <td class="level-bueno">El grupo presenta argumentos pertinentes y relacionados con el caso, aunque algunos son poco desarrollados o se repiten. Se reconocen dilemas éticos, pero de manera limitada.</td>
+                    <td class="level-basico">El análisis es superficial: se describen opiniones generales sin profundizar en los dilemas ni en las consecuencias de la vigilancia.</td>
+                    <td class="level-deficiente">Los argumentos son irrelevantes o se alejan del tema del foro; no se evidencian dilemas ni análisis.</td>
+                </tr>
+                <tr>
+                    <td class="col-criterio">3. Conexión con principios éticos y marcos legales vistos en el módulo</td>
+                    <td class="col-peso">10 %</td>
+                    <td class="level-excelente">El grupo integra de manera explícita y correcta varios conceptos del módulo (privacidad, transparencia, explicabilidad, no discriminación, proporcionalidad, sesgos, decisiones automatizadas, protección de datos, etc.).</td>
+                    <td class="level-bueno">El grupo usa algunos conceptos del módulo, aunque de forma parcial o sin mucha explicación. Se nota la intención de conectar con la teoría.</td>
+                    <td class="level-basico">Se mencionan muy pocos conceptos del módulo y/o se usan de forma confusa; la relación con la teoría es débil.</td>
+                    <td class="level-deficiente">No hay conexión con los contenidos del módulo; el debate se queda solo en opiniones personales.</td>
+                </tr>
+                <tr>
+                    <td class="col-criterio">4. Calidad de la síntesis final del relator/a</td>
+                    <td class="col-peso">5 %</td>
+                    <td class="level-excelente">La síntesis recoge claramente el dilema central, los argumentos a favor y en contra, los principios éticos clave y los principales aprendizajes del grupo. Es breve, clara y bien organizada.</td>
+                    <td class="level-bueno">La síntesis cubre los puntos principales, pero omite algún elemento (dilema central, principios, acuerdos/desacuerdos). Aun así, ayuda a entender el debate del grupo.</td>
+                    <td class="level-basico">La síntesis es muy general o desordenada; cuesta identificar qué se debatió y qué aprendió el grupo.</td>
+                    <td class="level-deficiente">No se presenta síntesis o el texto no refleja lo ocurrido en el debate.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="individual-header">Criterios individuales del foro: 50 %</div>
+
+    <div class="table-wrapper">
+        <table class="rubric-table individual-table">
+            <thead>
+                <tr>
+                    <th>Criterio individual</th>
+                    <th style="text-align:center;">Peso</th>
+                    <th style="background:#2e7d32;">Nivel Excelente</th>
+                    <th style="background:#f9a825;">Nivel Bueno</th>
+                    <th style="background:#ef6c00;">Nivel Básico</th>
+                    <th style="background:#c62828;">Nivel Deficiente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-criterio">1. Cumplimiento del rol asignado (Moderador, Equipo A, Equipo B, Observador, Relator)</td>
+                    <td class="col-peso">15 %</td>
+                    <td class="level-excelente">La participación refleja claramente el rol asignado: modera, argumenta, observa o sintetiza según lo esperado. Aporta de forma responsable al trabajo del grupo.</td>
+                    <td class="level-bueno">Se evidencia el rol, aunque con algunos vacíos (por ejemplo, moderador con poca conducción, observador con poco análisis).</td>
+                    <td class="level-basico">El rol se cumple de forma mínima o confusa; la intervención podría haber sido hecha por cualquier otro rol.</td>
+                    <td class="level-deficiente">No se evidencia el rol o la persona casi no participa.</td>
+                </tr>
+                <tr>
+                    <td class="col-criterio">2. Calidad y claridad del aporte individual</td>
+                    <td class="col-peso">15 %</td>
+                    <td class="level-excelente">El mensaje es claro, bien estructurado y argumentado. Expone una postura comprensible, con razon</td>
+                    <td class="level-bueno">El mensaje es entendible y tiene argumentos, aunque algo repetitivos o poco ordenados.</td>
+                    <td class="level-basico">El aporte es muy breve o poco claro; expresa opinión, pero casi sin justificación.</td>
+                    <td class="level-deficiente">El aporte es irrelevante, ofensivo o no guarda relación con el tema.</td>
+                </tr>
+                <tr>
+                    <td class="col-criterio">3. Integración de conceptos del módulo en el aporte</td>
+                    <td class="col-peso">10 %</td>
+                    <td class="level-excelente">Utiliza de forma explícita y adecuada al menos dos conceptos del módulo (por ejemplo: vigilancia digital, biometría, geolocalización, privacidad, transparencia, sesgos, decisiones automatizadas, proporcionalidad, etc.).</td>
+                    <td class="level-bueno">Utiliza al menos un concepto del módulo de forma correcta, aunque sin mucha elaboración.</td>
+                    <td class="level-basico">Menciona conceptos del módulo de forma vaga o imprecisa.</td>
+                    <td class="level-deficiente">No usa ningún concepto del módulo o los usa de forma incorrecta.</td>
+                </tr>
+                <tr>
+                    <td class="col-criterio">4. Interacción con los aportes de otros (réplicas y diálogo)</td>
+                    <td class="col-peso">10 %</td>
+                    <td class="level-excelente">Responde a compañeros/as aportando ideas nuevas, preguntas o contraargumentos respetuosos. Se nota que leyó y consideró lo que dijeron otros.</td>
+                    <td class="level-bueno">Responde a compañeros con comentarios pertinentes, aunque breves o poco desarrollados.</td>
+                    <td class="level-basico">Se limita a respuestas muy superficiales (“estoy de acuerdo”, “muy bien”) sin aportar nada nuevo.</td>
+                    <td class="level-deficiente">No interactúa con otros compañeros o las respuestas son irrelevantes.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

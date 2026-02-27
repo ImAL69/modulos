@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Material didáctico – Unidad 2 (RAP2)</title>
+  <style>
+:root{
+  /* Paleta hero (más estética, azul–teal, menos verde) */
+  --hero1:#0B3D91;
+  --hero2:#0B7285;
+  --hero3:#0EA5A4;
+
+  /* Basado en el formato de lectura (paleta verde + azul institucional) */
+  --g1:#006633;
+  --g2:#00aa55;
+  --g3:#004d26;
+
+  --b1:#0277bd;   /* azul institucional */
+  --b2:#0288d1;
+  --b3:#01579b;
+
+  --bg:#f3f8ff;
+  --paper:#ffffff;
+  --ink:#1b1f24;
+  --muted: rgba(27,31,36,.72);
+  --soft: rgba(0,0,0,.06);
+  --shadow: 0 18px 44px rgba(0,0,0,.10);
+  --shadow2: 0 14px 30px rgba(0,0,0,.06);
+  --r16:16px;
+  --r18:18px;
+  --r22:22px;
+}
+
+*{ box-sizing:border-box; }
+body[isolated]{
+  margin:0;
+  font-family: Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 650px at 15% 0%, rgba(0,170,85,.12), transparent 55%),
+    radial-gradient(1200px 650px at 85% 10%, rgba(2,119,189,.15), transparent 55%),
+    var(--bg);
+}
+
+.page[isolated]{
+  max-width:1120px;
+  margin:0 auto;
+  padding:18px 14px 30px 14px;
+}
+
+/* TOP HEADER (inspirado en lecturas) */
+.top[isolated]{
+  border-radius: var(--r22);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  border:1px solid rgba(0,0,0,.06);
+  background: linear-gradient(120deg, var(--hero1), var(--hero2), var(--hero3));
+  position: relative;
+position: relative;
+}
+.top::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(900px 320px at 18% 0%, rgba(255,255,255,.22), transparent 62%),
+    radial-gradient(900px 360px at 82% 10%, rgba(14,165,164,.22), transparent 64%),
+    radial-gradient(850px 360px at 70% 90%, rgba(11,61,145,.18), transparent 62%);
+  pointer-events:none;
+  mix-blend-mode: screen;
+}
+.top-inner[isolated]{
+  position:relative;
+  z-index:1;
+  padding: 18px 18px 16px 18px;
+}
+.kicker[isolated]{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:999px;
+  background: rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.22);
+  font-weight:900;
+  color:#fff;
+  font-size:.92rem;
+}
+.kicker .i{ width:18px;height:18px; fill:#fff; }
+
+.h1[isolated]{
+  margin:10px 0 8px 0;
+  font-size:1.5rem;
+  line-height:1.2;
+  color:#fff;
+  letter-spacing:.2px;
+}
+.sub[isolated]{
+  margin:0;
+  max-width: 78ch;
+  line-height:1.55;
+  color: rgba(255,255,255,.92);
+  font-size:1rem;
+}
+
+.top-strip[isolated]{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:12px;
+  padding: 0 18px 18px 18px;
+  position:relative;
+  z-index:1;
+}
+@media (max-width: 900px){
+  .top-strip[isolated]{ grid-template-columns: 1fr; }
+}
+
+.stat[isolated]{
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: var(--r18);
+  padding: 12px 12px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.stat-ico[isolated]{
+  width:38px;height:38px;
+  border-radius: 15px;
+  display:grid;
+  place-items:center;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.22);
+  flex:0 0 38px;
+}
+.stat-ico .i{ width:18px;height:18px; fill:#fff; }
+.stat b{ display:block; color:#fff; font-size:1.2rem; line-height:1; margin-top:2px; }
+.stat span{ display:block; color: rgba(255,255,255,.92); font-weight:800; margin-top:4px; font-size:.92rem; }
+
+/* TOOLBAR */
+.toolbar[isolated]{
+  margin-top: 14px;
+  display:flex;
+  gap:10px;
+  flex-wrap: wrap;
+  align-items:center;
+}
+.search[isolated]{
+  flex:1 1 340px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius: var(--r18);
+  background: rgba(255,255,255,.92);
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow: var(--shadow2);
+}
+.search .i{ width:18px;height:18px; fill: var(--b3); }
+.search input{
+  width:100%;
+  border:0;
+  outline:none;
+  font-size:1rem;
+  background: transparent;
+}
+.btn[isolated]{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius: var(--r18);
+  border:1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.96);
+  font-weight:900;
+  color: var(--b3);
+  cursor:pointer;
+  box-shadow: var(--shadow2);
+}
+.btn:hover{ transform: translateY(-1px); }
+.btn .i{ width:18px;height:18px; fill: var(--b3); }
+
+/* MAIN GRID */
+.grid[isolated]{
+  margin-top: 12px;
+  display:grid;
+  grid-template-columns: 1.35fr .65fr;
+  gap: 14px;
+}
+@media (max-width: 980px){
+  .grid[isolated]{ grid-template-columns: 1fr; }
+}
+
+.card[isolated]{
+  background: var(--paper);
+  border-radius: var(--r22);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow: var(--shadow2);
+  overflow:hidden;
+}
+.card-h[isolated]{
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid rgba(0,0,0,.06);
+  background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(255,255,255,1));
+}
+.card-h h2{
+  margin:0;
+  font-size:1.05rem;
+  color: var(--g1);
+}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+  font-size:.85rem;
+  color: rgba(0,77,38,.90);
+  background: rgba(14,165,164,.12);
+  border:1px solid rgba(14,165,164,.20);
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+/* ACCORDION */
+.acc{ margin: 12px 14px; border-radius: var(--r18); border:1px solid rgba(0,0,0,.08); box-shadow: 0 12px 26px rgba(0,0,0,.04); overflow:hidden; }
+.acc-sum{
+  list-style:none;
+  cursor:pointer;
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  font-weight:900;
+  background: linear-gradient(180deg, rgba(2,119,189,.08), rgba(255,255,255,1));
+}
+.acc-sum::-webkit-details-marker{ display:none; }
+.acc-left{ display:flex; align-items:center; gap:10px; min-width:0; }
+.acc-ico{ width:36px;height:36px;border-radius:15px; display:grid; place-items:center; background: rgba(2,119,189,.10); border:1px solid rgba(2,119,189,.18); }
+.acc-ico .i{ width:18px;height:18px; fill: var(--b3); }
+.acc-title{ white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
+.acc-right{ display:flex; align-items:center; gap:10px; }
+.chev{ width:34px;height:34px;border-radius:14px; display:grid; place-items:center; background: rgba(0,0,0,.03); border:1px solid rgba(0,0,0,.10); transition: transform .15s ease; }
+.chev .i{ width:18px;height:18px; fill: rgba(0,0,0,.55); }
+details[open] .chev{ transform: rotate(180deg); }
+
+.acc-panel{ padding: 12px 14px 14px 14px; border-top:1px solid rgba(0,0,0,.06); background: #fff; }
+
+.videos-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+}
+@media (max-width: 760px){
+  .videos-grid{ grid-template-columns: 1fr; }
+}
+
+.video-card{
+  border-radius: var(--r18);
+  border:1px solid rgba(0,0,0,.08);
+  overflow:hidden;
+  box-shadow: 0 12px 26px rgba(0,0,0,.04);
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+}
+.thumb{
+  position:relative;
+  border:0;
+  padding:0;
+  background:#000;
+  width:100%;
+  aspect-ratio: 16/9;
+  cursor:pointer;
+}
+.thumb img{ width:100%; height:100%; object-fit:cover; display:block; opacity:.92; }
+.thumb-cta{
+  position:absolute;
+  left: 12px;
+  bottom: 12px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border-radius:999px;
+  background: rgba(255,255,255,.94);
+  border:1px solid rgba(0,0,0,.10);
+  color: var(--b3);
+  font-weight:900;
+}
+.thumb-cta .i{ width:18px;height:18px; fill: var(--b3); }
+
+.video-body{ padding: 12px 12px 14px 12px; display:flex; flex-direction:column; gap:10px; }
+.video-title{ margin:0; font-size:1rem; color: var(--g1); line-height:1.25; }
+.video-claves{ margin:0; color: rgba(27,31,36,.78); line-height:1.35; font-size:.95rem; }
+.tag{
+  display:inline-flex;
+  align-items:center;
+  font-weight:900;
+  font-size:.78rem;
+  color: var(--b3);
+  background: rgba(2,119,189,.10);
+  border:1px solid rgba(2,119,189,.18);
+  padding:3px 8px;
+  border-radius:999px;
+  margin-right: 8px;
+}
+
+.row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+.seen{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius: var(--r16);
+  background: rgba(14,165,164,.10);
+  border:1px solid rgba(14,165,164,.18);
+  font-weight:900;
+  color: rgba(0,77,38,.92);
+}
+.seen input{ width:18px; height:18px; }
+.seen .i{ width:18px;height:18px; fill: rgba(0,77,38,.92); }
+
+.link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius: var(--r16);
+  text-decoration:none;
+  font-weight:900;
+  color: var(--b3);
+  background: rgba(2,119,189,.08);
+  border:1px solid rgba(2,119,189,.14);
+}
+.link .i{ width:18px;height:18px; fill: var(--b3); }
+
+.notes{ display:grid; gap:10px; }
+.field{ border-radius: var(--r16); border:1px solid rgba(0,0,0,.10); padding:10px 10px; background: rgba(255,255,255,1); }
+.field-h{ display:flex; align-items:center; gap:10px; font-weight:900; color: rgba(27,31,36,.86); margin-bottom:6px; font-size:.92rem; }
+.field-h .i{ width:18px;height:18px; fill: rgba(27,31,36,.70); }
+.field input{ width:100%; border:0; outline:none; font-size:.96rem; background: transparent; }
+.field:focus-within{ border-color: rgba(0,170,85,.45); box-shadow: 0 0 0 4px rgba(0,170,85,.12); }
+
+/* SIDEBAR */
+.side[isolated]{ position: sticky; top: 12px; align-self: start; }
+.side-pad[isolated]{ padding: 14px 14px; }
+.side h3{ margin:0 0 10px 0; color: var(--g1); font-size:1.02rem; }
+.side p{ margin:0 0 10px 0; color: rgba(27,31,36,.80); line-height:1.45; }
+.box{
+  border-radius: var(--r18);
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  padding:12px 12px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.04);
+}
+.progress{
+  height: 12px;
+  border-radius:999px;
+  background: rgba(0,0,0,.06);
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,.06);
+}
+.progress > div{
+  height:100%;
+  width:0%;
+  background: linear-gradient(90deg, var(--hero1), var(--hero2), var(--hero3));
+  border-radius:999px;
+}
+.small{ font-size:.9rem; color: rgba(27,31,36,.72); margin: 10px 0 0 0; }
+
+details.helper{ margin-top: 12px; border-radius: var(--r18); border:1px solid rgba(0,0,0,.08); box-shadow: 0 12px 26px rgba(0,0,0,.04); overflow:hidden; background:#fff; }
+details.helper summary{ cursor:pointer; list-style:none; padding:12px 14px; font-weight:900; background: linear-gradient(180deg, rgba(0,170,85,.10), rgba(255,255,255,1)); display:flex; justify-content:space-between; align-items:center; gap:12px; }
+details.helper summary::-webkit-details-marker{ display:none; }
+details.helper .panel{ padding: 10px 14px 14px 14px; border-top:1px solid rgba(0,0,0,.06); }
+details.helper ul{ margin: 10px 0 0 18px; padding:0; }
+details.helper li{ margin: 8px 0; line-height:1.42; }
+
+.footer[isolated]{
+  margin-top:14px;
+  background-color: #ccffcc;
+  color: #004d26;
+  text-align:center;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: var(--r18);
+  border: 1px solid rgba(0,170,85,.14);
+}
+</style>
+</head>
+<body isolated="">
+  <div class="page" isolated="">
+
+    <header class="top" isolated="">
+      <div class="top-inner" isolated="">
+        <div class="kicker" isolated="">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 4h-1V2h-2v2H9V2H7v2H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H6V6h12v14ZM8 8h2v2H8V8Zm0 4h2v2H8v-2Zm0 4h2v2H8v-2Zm6-8h2v2h-2V8Zm0 4h2v2h-2v-2Zm0 4h2v2h-2v-2Z"/></svg> Material didáctico · Unidad 2 · RAP2
+        </div>
+        <h1 class="h1" isolated="">🎥 Vídeos obligatorios – Unidad 2 (RAP2)</h1>
+        <p class="sub" isolated="">
+          En esta página encontrarás los <strong>videos obligatorios</strong> (en español) para fortalecer
+          <strong>rol del líder</strong>, <strong>estilos de liderazgo</strong>, <strong>gestión del cambio</strong> y
+          <strong>gestión de riesgos</strong> en proyectos de <strong>IA</strong> y <strong>ciberseguridad</strong>.
+          Puedes <strong>marcar “visto”</strong> y completar tu <strong>bitácora</strong> aquí mismo (se guarda automáticamente).
+        </p>
+      </div>
+
+      <div class="top-strip" isolated="">
+        <div class="stat" isolated="">
+          <div class="stat-ico" isolated=""><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 4h-1V2h-2v2H9V2H7v2H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H6V6h12v14ZM8 8h2v2H8V8Zm0 4h2v2H8v-2Zm0 4h2v2H8v-2Zm6-8h2v2h-2V8Zm0 4h2v2h-2v-2Zm0 4h2v2h-2v-2Z"/></svg></div>
+          <div><b>10</b><span>Videos obligatorios</span></div>
+        </div>
+        <div class="stat" isolated="">
+          <div class="stat-ico" isolated=""><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/></svg></div>
+          <div><b>5</b><span>Bloques temáticos</span></div>
+        </div>
+        <div class="stat" isolated="">
+          <div class="stat-ico" isolated=""><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg></div>
+          <div><b>Bitácora</b><span>Idea · Riesgo · Acción</span></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="toolbar" isolated="">
+      <div class="search" isolated="">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 1 0 4.9 14.3l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0 0 10 2Zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12Z"/></svg>
+        <input id="q" type="search" placeholder="Buscar: ADKAR, Kotter, RACI, NIST, MLOps, DevSecOps..." />
+      </div>
+      <button class="btn" id="btnReset" isolated=""><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6V3L8 7l4 4V8c2.76 0 5 2.24 5 5a5 5 0 0 1-8.66 3.54l-1.42 1.42A7 7 0 0 0 19 13c0-3.87-3.13-7-7-7Z"/></svg> Reiniciar</button>
+      <button class="btn" id="btnExport" isolated=""><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg> Exportar bitácora</button>
+    </div>
+
+    <div class="grid" isolated="">
+      <main class="card" isolated="">
+        <div class="card-h" isolated="">
+          <h2>📚 Contenido por bloques</h2>
+          <span class="pill">Clic en la miniatura para vista previa</span>
+        </div>
+
+        
+      <details class="acc" open>
+        <summary class="acc-sum">
+          <span class="acc-left">
+            <span class="acc-ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/></svg></span>
+            <span class="acc-title">A) Liderazgo del proyecto y coordinación de equipos</span>
+          </span>
+          <span class="acc-right">
+            <span class="pill">2 videos</span>
+            <span class="chev" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg></span>
+          </span>
+        </summary>
+        <div class="acc-panel">
+          <div class="videos-grid">
+            
+          <article class="video-card" data-title="estilos de liderazgo en project management" data-claves="estilos de liderazgo y cómo adaptarlos a la situación del proyecto." data-sec="a) liderazgo del proyecto y coordinación de equipos">
+            <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/LrNklg1x-tE" data-loaded="0" aria-label="Abrir vista previa: Estilos de liderazgo en Project Management">
+              <img src="https://img.youtube.com/vi/LrNklg1x-tE/hqdefault.jpg" alt="Miniatura: Estilos de liderazgo en Project Management" loading="lazy">
+              <span class="thumb-cta"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Vista previa</span>
+            </button>
+
+            <div class="video-body">
+              <h3 class="video-title">Estilos de liderazgo en Project Management</h3>
+              <p class="video-claves"><span class="tag">Claves</span> estilos de liderazgo y cómo adaptarlos a la situación del proyecto.</p>
+
+              <div class="row">
+                <label class="seen">
+                  <input type="checkbox" data-seen="s0_v0">
+                  <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/></svg> Visto</span>
+                </label>
+                <a class="link" href="https://www.youtube.com/watch?v=LrNklg1x-tE" target="_blank" rel="noopener noreferrer">
+                  <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg> YouTube
+                </a>
+              </div>
+
+              <div class="notes">
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg> Idea aplicable</div>
+                  <input type="text" data-note="s0_v0_idea" placeholder="¿Qué aplicarías en tu proyecto?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/></svg> Riesgo / resistencia</div>
+                  <input type="text" data-note="s0_v0_riesgo" placeholder="¿Qué riesgo o resistencia identificas?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/></svg> Acción concreta</div>
+                  <input type="text" data-note="s0_v0_accion" placeholder="¿Qué harás (quién + cuándo)">
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          <article class="video-card" data-title="¿qué es una matriz raci? organiza tus proyectos" data-claves="roles y responsabilidades para evitar confusiones en equipos multidisciplinarios." data-sec="a) liderazgo del proyecto y coordinación de equipos">
+            <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/9ZU90s5rIuY" data-loaded="0" aria-label="Abrir vista previa: ¿Qué es una matriz RACI? Organiza tus proyectos">
+              <img src="https://img.youtube.com/vi/9ZU90s5rIuY/hqdefault.jpg" alt="Miniatura: ¿Qué es una matriz RACI? Organiza tus proyectos" loading="lazy">
+              <span class="thumb-cta"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Vista previa</span>
+            </button>
+
+            <div class="video-body">
+              <h3 class="video-title">¿Qué es una matriz RACI? Organiza tus proyectos</h3>
+              <p class="video-claves"><span class="tag">Claves</span> roles y responsabilidades para evitar confusiones en equipos multidisciplinarios.</p>
+
+              <div class="row">
+                <label class="seen">
+                  <input type="checkbox" data-seen="s0_v1">
+                  <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/></svg> Visto</span>
+                </label>
+                <a class="link" href="https://www.youtube.com/watch?v=9ZU90s5rIuY" target="_blank" rel="noopener noreferrer">
+                  <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg> YouTube
+                </a>
+              </div>
+
+              <div class="notes">
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg> Idea aplicable</div>
+                  <input type="text" data-note="s0_v1_idea" placeholder="¿Qué aplicarías en tu proyecto?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/></svg> Riesgo / resistencia</div>
+                  <input type="text" data-note="s0_v1_riesgo" placeholder="¿Qué riesgo o resistencia identificas?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/></svg> Acción concreta</div>
+                  <input type="text" data-note="s0_v1_accion" placeholder="¿Qué harás (quién + cuándo)">
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          </div>
+        </div>
+      </details>
+    
+
+      <details class="acc" open>
+        <summary class="acc-sum">
+          <span class="acc-left">
+            <span class="acc-ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/></svg></span>
+            <span class="acc-title">B) Gestión del cambio y resistencia organizacional</span>
+          </span>
+          <span class="acc-right">
+            <span class="pill">2 videos</span>
+            <span class="chev" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg></span>
+          </span>
+        </summary>
+        <div class="acc-panel">
+          <div class="videos-grid">
+            
+          <article class="video-card" data-title="modelo adkar para la gestión del cambio (explicación)" data-claves="adopción individual: conciencia, deseo, conocimiento, habilidad y refuerzo." data-sec="b) gestión del cambio y resistencia organizacional">
+            <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/TpI3gO_eKfo" data-loaded="0" aria-label="Abrir vista previa: Modelo ADKAR para la gestión del cambio (explicación)">
+              <img src="https://img.youtube.com/vi/TpI3gO_eKfo/hqdefault.jpg" alt="Miniatura: Modelo ADKAR para la gestión del cambio (explicación)" loading="lazy">
+              <span class="thumb-cta"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Vista previa</span>
+            </button>
+
+            <div class="video-body">
+              <h3 class="video-title">Modelo ADKAR para la gestión del cambio (explicación)</h3>
+              <p class="video-claves"><span class="tag">Claves</span> adopción individual: conciencia, deseo, conocimiento, habilidad y refuerzo.</p>
+
+              <div class="row">
+                <label class="seen">
+                  <input type="checkbox" data-seen="s1_v0">
+                  <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/></svg> Visto</span>
+                </label>
+                <a class="link" href="https://www.youtube.com/watch?v=TpI3gO_eKfo" target="_blank" rel="noopener noreferrer">
+                  <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg> YouTube
+                </a>
+              </div>
+
+              <div class="notes">
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg> Idea aplicable</div>
+                  <input type="text" data-note="s1_v0_idea" placeholder="¿Qué aplicarías en tu proyecto?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/></svg> Riesgo / resistencia</div>
+                  <input type="text" data-note="s1_v0_riesgo" placeholder="¿Qué riesgo o resistencia identificas?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/></svg> Acción concreta</div>
+                  <input type="text" data-note="s1_v0_accion" placeholder="¿Qué harás (quién + cuándo)">
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          <article class="video-card" data-title="8 pasos para la gestión del cambio – modelo de kotter" data-claves="cambio organizacional: urgencia, coalición, visión, comunicación y anclaje cultural." data-sec="b) gestión del cambio y resistencia organizacional">
+            <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/L4NBKTWnI3c" data-loaded="0" aria-label="Abrir vista previa: 8 pasos para la gestión del cambio – Modelo de Kotter">
+              <img src="https://img.youtube.com/vi/L4NBKTWnI3c/hqdefault.jpg" alt="Miniatura: 8 pasos para la gestión del cambio – Modelo de Kotter" loading="lazy">
+              <span class="thumb-cta"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Vista previa</span>
+            </button>
+
+            <div class="video-body">
+              <h3 class="video-title">8 pasos para la gestión del cambio – Modelo de Kotter</h3>
+              <p class="video-claves"><span class="tag">Claves</span> cambio organizacional: urgencia, coalición, visión, comunicación y anclaje cultural.</p>
+
+              <div class="row">
+                <label class="seen">
+                  <input type="checkbox" data-seen="s1_v1">
+                  <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/></svg> Visto</span>
+                </label>
+                <a class="link" href="https://www.youtube.com/watch?v=L4NBKTWnI3c" target="_blank" rel="noopener noreferrer">
+                  <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg> YouTube
+                </a>
+              </div>
+
+              <div class="notes">
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg> Idea aplicable</div>
+                  <input type="text" data-note="s1_v1_idea" placeholder="¿Qué aplicarías en tu proyecto?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/></svg> Riesgo / resistencia</div>
+                  <input type="text" data-note="s1_v1_riesgo" placeholder="¿Qué riesgo o resistencia identificas?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/></svg> Acción concreta</div>
+                  <input type="text" data-note="s1_v1_accion" placeholder="¿Qué harás (quién + cuándo)">
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          </div>
+        </div>
+      </details>
+    
+
+      <details class="acc" open>
+        <summary class="acc-sum">
+          <span class="acc-left">
+            <span class="acc-ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/></svg></span>
+            <span class="acc-title">C) Riesgos y seguridad durante la ejecución (ciberseguridad)</span>
+          </span>
+          <span class="acc-right">
+            <span class="pill">2 videos</span>
+            <span class="chev" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg></span>
+          </span>
+        </summary>
+        <div class="acc-panel">
+          <div class="videos-grid">
+            
+          <article class="video-card" data-title="nist cybersecurity framework 2.0 – todo lo que necesitas saber" data-claves="gestión de riesgo cibernético (gobernar, identificar, proteger, detectar, responder, recuperar)." data-sec="c) riesgos y seguridad durante la ejecución (ciberseguridad)">
+            <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/dDHMro1NxM0" data-loaded="0" aria-label="Abrir vista previa: NIST Cybersecurity Framework 2.0 – Todo lo que necesitas saber">
+              <img src="https://img.youtube.com/vi/dDHMro1NxM0/hqdefault.jpg" alt="Miniatura: NIST Cybersecurity Framework 2.0 – Todo lo que necesitas saber" loading="lazy">
+              <span class="thumb-cta"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Vista previa</span>
+            </button>
+
+            <div class="video-body">
+              <h3 class="video-title">NIST Cybersecurity Framework 2.0 – Todo lo que necesitas saber</h3>
+              <p class="video-claves"><span class="tag">Claves</span> gestión de riesgo cibernético (gobernar, identificar, proteger, detectar, responder, recuperar).</p>
+
+              <div class="row">
+                <label class="seen">
+                  <input type="checkbox" data-seen="s2_v0">
+                  <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/></svg> Visto</span>
+                </label>
+                <a class="link" href="https://www.youtube.com/watch?v=dDHMro1NxM0" target="_blank" rel="noopener noreferrer">
+                  <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg> YouTube
+                </a>
+              </div>
+
+              <div class="notes">
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg> Idea aplicable</div>
+                  <input type="text" data-note="s2_v0_idea" placeholder="¿Qué aplicarías en tu proyecto?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/></svg> Riesgo / resistencia</div>
+                  <input type="text" data-note="s2_v0_riesgo" placeholder="¿Qué riesgo o resistencia identificas?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/></svg> Acción concreta</div>
+                  <input type="text" data-note="s2_v0_accion" placeholder="¿Qué harás (quién + cuándo)">
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          <article class="video-card" data-title="aprende e implementa nist csf 2.0 (taller en español)" data-claves="aplicación práctica del marco para proyectos reales." data-sec="c) riesgos y seguridad durante la ejecución (ciberseguridad)">
+            <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/mbFzUJ8h3aE" data-loaded="0" aria-label="Abrir vista previa: Aprende e implementa NIST CSF 2.0 (taller en español)">
+              <img src="https://img.youtube.com/vi/mbFzUJ8h3aE/hqdefault.jpg" alt="Miniatura: Aprende e implementa NIST CSF 2.0 (taller en español)" loading="lazy">
+              <span class="thumb-cta"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Vista previa</span>
+            </button>
+
+            <div class="video-body">
+              <h3 class="video-title">Aprende e implementa NIST CSF 2.0 (taller en español)</h3>
+              <p class="video-claves"><span class="tag">Claves</span> aplicación práctica del marco para proyectos reales.</p>
+
+              <div class="row">
+                <label class="seen">
+                  <input type="checkbox" data-seen="s2_v1">
+                  <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/></svg> Visto</span>
+                </label>
+                <a class="link" href="https://www.youtube.com/watch?v=mbFzUJ8h3aE" target="_blank" rel="noopener noreferrer">
+                  <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg> YouTube
+                </a>
+              </div>
+
+              <div class="notes">
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg> Idea aplicable</div>
+                  <input type="text" data-note="s2_v1_idea" placeholder="¿Qué aplicarías en tu proyecto?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/></svg> Riesgo / resistencia</div>
+                  <input type="text" data-note="s2_v1_riesgo" placeholder="¿Qué riesgo o resistencia identificas?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/></svg> Acción concreta</div>
+                  <input type="text" data-note="s2_v1_accion" placeholder="¿Qué harás (quién + cuándo)">
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          </div>
+        </div>
+      </details>
+    
+
+      <details class="acc" open>
+        <summary class="acc-sum">
+          <span class="acc-left">
+            <span class="acc-ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg></span>
+            <span class="acc-title">D) IA en proyectos: operación, gobierno y riesgos</span>
+          </span>
+          <span class="acc-right">
+            <span class="pill">2 videos</span>
+            <span class="chev" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg></span>
+          </span>
+        </summary>
+        <div class="acc-panel">
+          <div class="videos-grid">
+            
+          <article class="video-card" data-title="gobernanza de modelos de inteligencia artificial (mlops)" data-claves="control del ciclo de vida del modelo, riesgos y gobernanza para evitar “ia ingobernable”." data-sec="d) ia en proyectos: operación, gobierno y riesgos">
+            <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/jsqhoWIBtkI" data-loaded="0" aria-label="Abrir vista previa: Gobernanza de modelos de Inteligencia Artificial (MLOps)">
+              <img src="https://img.youtube.com/vi/jsqhoWIBtkI/hqdefault.jpg" alt="Miniatura: Gobernanza de modelos de Inteligencia Artificial (MLOps)" loading="lazy">
+              <span class="thumb-cta"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Vista previa</span>
+            </button>
+
+            <div class="video-body">
+              <h3 class="video-title">Gobernanza de modelos de Inteligencia Artificial (MLOps)</h3>
+              <p class="video-claves"><span class="tag">Claves</span> control del ciclo de vida del modelo, riesgos y gobernanza para evitar “IA ingobernable”.</p>
+
+              <div class="row">
+                <label class="seen">
+                  <input type="checkbox" data-seen="s3_v0">
+                  <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/></svg> Visto</span>
+                </label>
+                <a class="link" href="https://www.youtube.com/watch?v=jsqhoWIBtkI" target="_blank" rel="noopener noreferrer">
+                  <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg> YouTube
+                </a>
+              </div>
+
+              <div class="notes">
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg> Idea aplicable</div>
+                  <input type="text" data-note="s3_v0_idea" placeholder="¿Qué aplicarías en tu proyecto?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/></svg> Riesgo / resistencia</div>
+                  <input type="text" data-note="s3_v0_riesgo" placeholder="¿Qué riesgo o resistencia identificas?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/></svg> Acción concreta</div>
+                  <input type="text" data-note="s3_v0_accion" placeholder="¿Qué harás (quién + cuándo)">
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          <article class="video-card" data-title="¿qué es mlops? (explicación fácil)" data-claves="puesta en producción, monitoreo, calidad y continuidad del modelo." data-sec="d) ia en proyectos: operación, gobierno y riesgos">
+            <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/qZg4wd7XlRg" data-loaded="0" aria-label="Abrir vista previa: ¿Qué es MLOps? (explicación fácil)">
+              <img src="https://img.youtube.com/vi/qZg4wd7XlRg/hqdefault.jpg" alt="Miniatura: ¿Qué es MLOps? (explicación fácil)" loading="lazy">
+              <span class="thumb-cta"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Vista previa</span>
+            </button>
+
+            <div class="video-body">
+              <h3 class="video-title">¿Qué es MLOps? (explicación fácil)</h3>
+              <p class="video-claves"><span class="tag">Claves</span> puesta en producción, monitoreo, calidad y continuidad del modelo.</p>
+
+              <div class="row">
+                <label class="seen">
+                  <input type="checkbox" data-seen="s3_v1">
+                  <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/></svg> Visto</span>
+                </label>
+                <a class="link" href="https://www.youtube.com/watch?v=qZg4wd7XlRg" target="_blank" rel="noopener noreferrer">
+                  <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg> YouTube
+                </a>
+              </div>
+
+              <div class="notes">
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg> Idea aplicable</div>
+                  <input type="text" data-note="s3_v1_idea" placeholder="¿Qué aplicarías en tu proyecto?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/></svg> Riesgo / resistencia</div>
+                  <input type="text" data-note="s3_v1_riesgo" placeholder="¿Qué riesgo o resistencia identificas?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/></svg> Acción concreta</div>
+                  <input type="text" data-note="s3_v1_accion" placeholder="¿Qué harás (quién + cuándo)">
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          </div>
+        </div>
+      </details>
+    
+
+      <details class="acc" open>
+        <summary class="acc-sum">
+          <span class="acc-left">
+            <span class="acc-ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 4h-1V2h-2v2H9V2H7v2H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H6V6h12v14ZM8 8h2v2H8V8Zm0 4h2v2H8v-2Zm0 4h2v2H8v-2Zm6-8h2v2h-2V8Zm0 4h2v2h-2v-2Zm0 4h2v2h-2v-2Z"/></svg></span>
+            <span class="acc-title">E) Entregar “rápido, pero seguro” (DevSecOps)</span>
+          </span>
+          <span class="acc-right">
+            <span class="pill">2 videos</span>
+            <span class="chev" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg></span>
+          </span>
+        </summary>
+        <div class="acc-panel">
+          <div class="videos-grid">
+            
+          <article class="video-card" data-title="¿qué es devsecops? (explicación sencilla y visual)" data-claves="integrar seguridad desde el inicio del ciclo de desarrollo." data-sec="e) entregar “rápido, pero seguro” (devsecops)">
+            <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/AFFUrFqFFnA" data-loaded="0" aria-label="Abrir vista previa: ¿Qué es DevSecOps? (explicación sencilla y visual)">
+              <img src="https://img.youtube.com/vi/AFFUrFqFFnA/hqdefault.jpg" alt="Miniatura: ¿Qué es DevSecOps? (explicación sencilla y visual)" loading="lazy">
+              <span class="thumb-cta"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Vista previa</span>
+            </button>
+
+            <div class="video-body">
+              <h3 class="video-title">¿Qué es DevSecOps? (explicación sencilla y visual)</h3>
+              <p class="video-claves"><span class="tag">Claves</span> integrar seguridad desde el inicio del ciclo de desarrollo.</p>
+
+              <div class="row">
+                <label class="seen">
+                  <input type="checkbox" data-seen="s4_v0">
+                  <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/></svg> Visto</span>
+                </label>
+                <a class="link" href="https://www.youtube.com/watch?v=AFFUrFqFFnA" target="_blank" rel="noopener noreferrer">
+                  <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg> YouTube
+                </a>
+              </div>
+
+              <div class="notes">
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg> Idea aplicable</div>
+                  <input type="text" data-note="s4_v0_idea" placeholder="¿Qué aplicarías en tu proyecto?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/></svg> Riesgo / resistencia</div>
+                  <input type="text" data-note="s4_v0_riesgo" placeholder="¿Qué riesgo o resistencia identificas?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/></svg> Acción concreta</div>
+                  <input type="text" data-note="s4_v0_accion" placeholder="¿Qué harás (quién + cuándo)">
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          <article class="video-card" data-title="¿qué es devops y devsecops? (explicación)" data-claves="cultura, prácticas y coordinación entre desarrollo, operaciones y seguridad." data-sec="e) entregar “rápido, pero seguro” (devsecops)">
+            <button class="thumb" type="button" data-embed="https://www.youtube.com/embed/FiYXJW5R72s" data-loaded="0" aria-label="Abrir vista previa: ¿Qué es DevOps y DevSecOps? (explicación)">
+              <img src="https://img.youtube.com/vi/FiYXJW5R72s/hqdefault.jpg" alt="Miniatura: ¿Qué es DevOps y DevSecOps? (explicación)" loading="lazy">
+              <span class="thumb-cta"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Vista previa</span>
+            </button>
+
+            <div class="video-body">
+              <h3 class="video-title">¿Qué es DevOps y DevSecOps? (explicación)</h3>
+              <p class="video-claves"><span class="tag">Claves</span> cultura, prácticas y coordinación entre desarrollo, operaciones y seguridad.</p>
+
+              <div class="row">
+                <label class="seen">
+                  <input type="checkbox" data-seen="s4_v1">
+                  <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/></svg> Visto</span>
+                </label>
+                <a class="link" href="https://www.youtube.com/watch?v=FiYXJW5R72s" target="_blank" rel="noopener noreferrer">
+                  <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg> YouTube
+                </a>
+              </div>
+
+              <div class="notes">
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/></svg> Idea aplicable</div>
+                  <input type="text" data-note="s4_v1_idea" placeholder="¿Qué aplicarías en tu proyecto?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/></svg> Riesgo / resistencia</div>
+                  <input type="text" data-note="s4_v1_riesgo" placeholder="¿Qué riesgo o resistencia identificas?">
+                </div>
+                <div class="field">
+                  <div class="field-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/></svg> Acción concreta</div>
+                  <input type="text" data-note="s4_v1_accion" placeholder="¿Qué harás (quién + cuándo)">
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          </div>
+        </div>
+      </details>
+    
+      </main>
+
+      <aside class="card side" isolated="">
+        <div class="side-pad" isolated="">
+          <h3>✅ Evidencia de visualización</h3>
+          <p>
+            Por cada video registra:
+            <strong>(1)</strong> Idea aplicable,
+            <strong>(2)</strong> Resistencia/riesgo,
+            <strong>(3)</strong> Acción concreta de liderazgo o cambio.
+          </p>
+
+          <div class="box">
+            <div style="font-weight:900;color:var(--g1); margin-bottom:10px;">Progreso de la unidad</div>
+            <div class="progress"><div id="bar"></div></div>
+            <p class="small"><span id="done">0</span> / <span id="tot">10</span> marcados “visto”</p>
+          </div>
+
+          <details class="helper" open>
+            <summary>
+              🧠 Cómo sacar alta nota
+              <span aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg></span>
+            </summary>
+            <div class="panel">
+              <ul>
+                <li><strong>Idea:</strong> algo aplicable (no teoría).</li>
+                <li><strong>Riesgo:</strong> realista y del contexto.</li>
+                <li><strong>Acción:</strong> concreta (quién + cuándo).</li>
+              </ul>
+              <p class="small" style="margin-top:10px;">
+                Tip: si completas los 3 campos por video, ya tienes insumos listos para tu dossier.
+              </p>
+            </div>
+          </details>
+
+          <details class="helper">
+            <summary>
+              🧾 ¿Qué hace “Exportar bitácora”?
+              <span aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg></span>
+            </summary>
+            <div class="panel">
+              <p class="small" style="margin:0;">
+                Genera un texto con tus notas (idea, riesgo, acción) y lo copia al portapapeles para pegarlo en tu documento.
+              </p>
+            </div>
+          </details>
+
+        </div>
+      </aside>
+    </div>
+
+    <div class="footer" isolated="">
+      Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+    </div>
+  </div>
+
+<script>
+  const MD = {"sections": [{"title": "A) Liderazgo del proyecto y coordinación de equipos", "videos": [{"title": "Estilos de liderazgo en Project Management", "url": "https://www.youtube.com/watch?v=LrNklg1x-tE", "claves": "estilos de liderazgo y cómo adaptarlos a la situación del proyecto.", "yid": "LrNklg1x-tE"}, {"title": "¿Qué es una matriz RACI? Organiza tus proyectos", "url": "https://www.youtube.com/watch?v=9ZU90s5rIuY", "claves": "roles y responsabilidades para evitar confusiones en equipos multidisciplinarios.", "yid": "9ZU90s5rIuY"}]}, {"title": "B) Gestión del cambio y resistencia organizacional", "videos": [{"title": "Modelo ADKAR para la gestión del cambio (explicación)", "url": "https://www.youtube.com/watch?v=TpI3gO_eKfo", "claves": "adopción individual: conciencia, deseo, conocimiento, habilidad y refuerzo.", "yid": "TpI3gO_eKfo"}, {"title": "8 pasos para la gestión del cambio – Modelo de Kotter", "url": "https://www.youtube.com/watch?v=L4NBKTWnI3c", "claves": "cambio organizacional: urgencia, coalición, visión, comunicación y anclaje cultural.", "yid": "L4NBKTWnI3c"}]}, {"title": "C) Riesgos y seguridad durante la ejecución (ciberseguridad)", "videos": [{"title": "NIST Cybersecurity Framework 2.0 – Todo lo que necesitas saber", "url": "https://www.youtube.com/watch?v=dDHMro1NxM0", "claves": "gestión de riesgo cibernético (gobernar, identificar, proteger, detectar, responder, recuperar).", "yid": "dDHMro1NxM0"}, {"title": "Aprende e implementa NIST CSF 2.0 (taller en español)", "url": "https://www.youtube.com/watch?v=mbFzUJ8h3aE", "claves": "aplicación práctica del marco para proyectos reales.", "yid": "mbFzUJ8h3aE"}]}, {"title": "D) IA en proyectos: operación, gobierno y riesgos", "videos": [{"title": "Gobernanza de modelos de Inteligencia Artificial (MLOps)", "url": "https://www.youtube.com/watch?v=jsqhoWIBtkI", "claves": "control del ciclo de vida del modelo, riesgos y gobernanza para evitar “IA ingobernable”.", "yid": "jsqhoWIBtkI"}, {"title": "¿Qué es MLOps? (explicación fácil)", "url": "https://www.youtube.com/watch?v=qZg4wd7XlRg", "claves": "puesta en producción, monitoreo, calidad y continuidad del modelo.", "yid": "qZg4wd7XlRg"}]}, {"title": "E) Entregar “rápido, pero seguro” (DevSecOps)", "videos": [{"title": "¿Qué es DevSecOps? (explicación sencilla y visual)", "url": "https://www.youtube.com/watch?v=AFFUrFqFFnA", "claves": "integrar seguridad desde el inicio del ciclo de desarrollo.", "yid": "AFFUrFqFFnA"}, {"title": "¿Qué es DevOps y DevSecOps? (explicación)", "url": "https://www.youtube.com/watch?v=FiYXJW5R72s", "claves": "cultura, prácticas y coordinación entre desarrollo, operaciones y seguridad.", "yid": "FiYXJW5R72s"}]}]};
+  const KEY = "fet_md_u2_rap2_v2";
+
+  function loadState(){
+    try { return JSON.parse(localStorage.getItem(KEY) || "{}"); }
+    catch(e) { return {}; }
+  }
+  function saveState(st){ localStorage.setItem(KEY, JSON.stringify(st)); }
+
+  const st = loadState();
+
+  // Seen checkboxes
+  document.querySelectorAll('[data-seen]').forEach(cb => {
+    const k = cb.getAttribute('data-seen');
+    cb.checked = !!st[k]?.seen;
+    cb.addEventListener('change', () => {
+      st[k] = st[k] || {};
+      st[k].seen = cb.checked;
+      saveState(st);
+      updateProgress();
+    });
+  });
+
+  // Notes
+  document.querySelectorAll('[data-note]').forEach(inp => {
+    const k = inp.getAttribute('data-note'); // sX_vY_field
+    const parts = k.split('_');
+    const vidKey = parts.slice(0,2).join('_');   // sX_vY
+    const fieldKey = parts.slice(2).join('_');  // idea/riesgo/accion
+    inp.value = (st[vidKey]?.[fieldKey] || "");
+    inp.addEventListener('input', () => {
+      st[vidKey] = st[vidKey] || {};
+      st[vidKey][fieldKey] = inp.value;
+      saveState(st);
+    });
+  });
+
+  // Lazy iframe on thumb click
+  document.querySelectorAll('.thumb').forEach(th => {
+    th.addEventListener('click', () => {
+      if(th.dataset.loaded === "1") return;
+      const src = th.dataset.embed;
+      const iframe = document.createElement('iframe');
+      iframe.src = src + "?autoplay=1";
+      iframe.title = "Vista previa del video";
+      iframe.loading = "lazy";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.border = "0";
+      th.innerHTML = "";
+      th.appendChild(iframe);
+      th.dataset.loaded = "1";
+    });
+  });
+
+  // Search filter
+  const q = document.getElementById('q');
+  q.addEventListener('input', () => {
+    const term = (q.value || "").trim().toLowerCase();
+    document.querySelectorAll('.video-card').forEach(card => {
+      const hay = (card.dataset.title + " " + card.dataset.claves + " " + card.dataset.sec);
+      const ok = !term || hay.includes(term);
+      card.style.display = ok ? "" : "none";
+    });
+  });
+
+  // Progress bar
+  function updateProgress(){
+    const tot = document.querySelectorAll('[data-seen]').length;
+    const done = Array.from(document.querySelectorAll('[data-seen]')).filter(x => x.checked).length;
+    document.getElementById('tot').textContent = tot;
+    document.getElementById('done').textContent = done;
+    document.getElementById('bar').style.width = (tot ? (done/tot)*100 : 0) + "%";
+  }
+  updateProgress();
+
+  // Reset
+  document.getElementById('btnReset').addEventListener('click', () => {
+    if(!confirm("¿Reiniciar vistos y notas de esta página?")) return;
+    localStorage.removeItem(KEY);
+    location.reload();
+  });
+
+  // Export notes
+  document.getElementById('btnExport').addEventListener('click', async () => {
+    const state = loadState();
+    const lines = [];
+    lines.push("BITÁCORA – Material didáctico Unidad 2 (RAP2)");
+    lines.push("------------------------------------------------");
+    document.querySelectorAll('.video-card').forEach(card => {
+      const title = card.querySelector('.video-title')?.textContent?.trim() || "Video";
+      const cb = card.querySelector('[data-seen]');
+      const vidKey = cb?.getAttribute('data-seen');
+      const rec = (vidKey && state[vidKey]) ? state[vidKey] : {};
+      const seen = rec.seen ? "✅ VISTO" : "⬜ NO MARCADO";
+      const idea = (rec.idea || "").trim();
+      const riesgo = (rec.riesgo || "").trim();
+      const accion = (rec.accion || "").trim();
+      lines.push("");
+      lines.push(`${seen} — ${title}`);
+      lines.push(`• Idea: ${idea || "-"}`);
+      lines.push(`• Riesgo/Resistencia: ${riesgo || "-"}`);
+      lines.push(`• Acción: ${accion || "-"}`);
+    });
+    const text = lines.join("\n");
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("✅ Bitácora copiada al portapapeles. Pégala en tu documento.");
+    } catch(e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      alert("✅ Bitácora copiada (modo compatibilidad). Pégala en tu documento.");
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Foro académico: IA/ML en Ciberseguridad - Lecturas guiadas</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .forum-container {
+        font-family: 'Roboto', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 30px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        border-top: 6px solid #6a11cb; /* Borde superior índigo */
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* --- LOGO UNIVERSIDAD --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 110px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,255);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 10px;
+    }
+
+    .welcome-title {
+        font-family: 'Nunito', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: #333;
+        margin: 0 auto 25px auto;
+        max-width: 90%;
+        line-height: 1.2;
+        background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .forum-image {
+        width: 100%;
+        max-width: 750px;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(37, 117, 252, 0.2);
+        margin: 0 auto 30px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1s ease 0.5s forwards;
+    }
+
+    /* --- CONTENIDO GENERAL --- */
+    .content {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    .content h2 {
+        font-family: 'Nunito', sans-serif;
+        color: #2c3e50;
+        font-size: 1.6rem;
+        margin-top: 25px;
+        margin-bottom: 12px;
+        font-weight: 800;
+    }
+
+    .content h3 {
+        font-family: 'Nunito', sans-serif;
+        color: #3957ff;
+        font-size: 1.25rem;
+        margin-top: 18px;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
+
+    .content p {
+        margin-bottom: 12px;
+        text-align: justify;
+    }
+
+    .content ul {
+        margin: 8px 0 15px 22px;
+        padding: 0;
+    }
+
+    .content li {
+        margin-bottom: 6px;
+    }
+
+    /* --- CAJAS ESPECIALES --- */
+    .info-box {
+        background: #eef2ff;
+        border-left: 5px solid #4f46e5;
+        padding: 18px 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    }
+
+    .info-box-title {
+        font-weight: 700;
+        color: #312e81;
+        margin-bottom: 6px;
+    }
+
+    .highlight-box {
+        background: #f3f4ff;
+        border-left: 5px solid #6366f1;
+        padding: 15px 18px;
+        border-radius: 12px;
+        margin: 18px 0;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+    }
+
+    .highlight-box strong {
+        color: #3730a3;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .rubric-box {
+        background: #f0f9ff;
+        border: 2px dashed #0ea5e9;
+        padding: 18px 20px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .rubric-box h3 {
+        color: #0369a1;
+    }
+
+    /* --- RECOMENDACIONES --- */
+    .recommendations-box {
+        background: #fff8e1;
+        border: 2px dashed #ffd54f;
+        padding: 25px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        margin-top: 10px;
+    }
+
+    .rec-title {
+        font-family: 'Nunito', sans-serif;
+        color: #f57f17;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .rec-title span.icon { font-size: 1.5rem; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .welcome-title { font-size: 1.9rem; max-width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="forum-container">
+
+    <!-- Logo institucional -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&raw=1"
+         alt="Logo Universidad" class="uni-logo">
+
+    <!-- Encabezado con imagen principal -->
+    <div class="header-box">
+        <h1 class="welcome-title">Foro académico: IA/ML en ciberseguridad a partir de lecturas guiadas</h1>
+
+        <img src="https://www.dropbox.com/scl/fi/xj0z1x3yw7pimgk7bk4il/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.38_2eca0b62.jpg?rlkey=f21srwrp8dvpet04ew0eyu6cd&raw=1"
+             alt="Foro académico IA/ML en ciberseguridad" class="forum-image">
+    </div>
+
+    <div class="content">
+        <!-- Objetivo / contexto -->
+        <h2>1. Contexto y propósito del foro</h2>
+        <div class="info-box">
+            <p class="info-box-title">🎯 Objetivo</p>
+            <p>
+                A partir de la lectura de tres recursos sobre el uso de inteligencia artificial y machine learning en
+                ciberseguridad, este foro busca que reflexiones de forma crítica sobre los casos de uso, beneficios,
+                limitaciones técnicas y consideraciones operativas y de seguridad asociadas a estas tecnologías.
+            </p>
+            <p>
+                Tu participación debe conectar las ideas de las lecturas con la realidad de las organizaciones,
+                especialmente en lo relativo a riesgos, operación diaria del equipo de seguridad y controles recomendados.
+            </p>
+        </div>
+
+        <!-- Recursos -->
+        <h2>2. Recursos obligatorios</h2>
+        <p>Antes de participar en el foro, accede y lee cuidadosamente los siguientes recursos:</p>
+        <ul>
+            <li>
+                <strong>Uso de IA y Machine Learning en Ciberseguridad — OpenWebinars</strong><br>
+                <a href="https://openwebinars.net/blog/uso-de-inteligencia-artificial-y-machine-learning-en-ciberseguridad/" target="_blank">
+                    https://openwebinars.net/blog/uso-de-inteligencia-artificial-y-machine-learning-en-ciberseguridad/
+                </a>
+            </li>
+            <li>
+                <strong>¿Qué es MLOps? — Elastic</strong><br>
+                <a href="https://www.elastic.co/es/what-is/mlops" target="_blank">
+                    https://www.elastic.co/es/what-is/mlops
+                </a>
+            </li>
+            <li>
+                <strong>Machine Learning en Ciberseguridad — F5</strong><br>
+                <a href="https://www.f5.com/es_es/company/blog/machine-learning-in-cybersecurity" target="_blank">
+                    https://www.f5.com/es_es/company/blog/machine-learning-in-cybersecurity
+                </a>
+            </li>
+        </ul>
+
+        <!-- Instrucciones paso a paso -->
+        <h2>3. Instrucciones de participación</h2>
+
+        <div class="highlight-box">
+            <p><strong>3.1 Lectura y toma de notas</strong></p>
+            <ul>
+                <li>Lee los tres artículos completos.</li>
+                <li>Toma notas sobre: casos de uso, beneficios, limitaciones técnicas, consideraciones de operación y seguridad.</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>3.2 Publica tu respuesta inicial</strong></p>
+            <ul>
+                <li>Redacta un mensaje en español de entre <strong>150 y 300 palabras</strong>.</li>
+                <li>Responde a <strong>una o ambas preguntas detonantes</strong> (ver sección 4).</li>
+                <li>Cita al menos <strong>uno de los recursos</strong> (puedes incluir la URL o el nombre de la fuente en el texto).</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>3.3 Comenta a tus compañeros</strong></p>
+            <ul>
+                <li>Comenta al menos en <strong>2 publicaciones</strong> de compañeros.</li>
+                <li>Cada comentario debe tener <strong>mínimo 40 palabras</strong>.</li>
+                <li>Tu comentario debe aportar una <strong>reflexión crítica</strong> o una <strong>expansión práctica</strong> (no basta con decir “estoy de acuerdo”).</li>
+                <li>Realiza estos comentarios dentro de los <strong>4 días siguientes</strong> a tu primera publicación.</li>
+            </ul>
+        </div>
+
+        <!-- Preguntas detonantes -->
+        <h2>4. Preguntas detonantes (elige y responde 1 o ambas)</h2>
+        <div class="highlight-box">
+            <ul>
+                <li>
+                    <strong>Pregunta 1 – Análisis y comparación:</strong><br>
+                    ¿Qué enfoque de aplicación de IA/ML en ciberseguridad te parece más viable para una organización mediana
+                    (por ejemplo, detección de fraude, análisis de logs o autenticación adaptativa)?<br>
+                    Justifica tu elección considerando factores operativos (carga de analistas, necesidad de datos, monitorización)
+                    y riesgos (falsos positivos/negativos, ataques adversarios, privacidad).
+                </li>
+                <li>
+                    <strong>Pregunta 2 – Caso de uso concreto:</strong><br>
+                    Identifica una implementación concreta (breve caso de uso) extraída de los artículos o inspirada en ellos.
+                    Describe: <br>
+                    a) qué problema resuelve, <br>
+                    b) qué datos necesita y qué riesgos de privacidad implica, y <br>
+                    c) al menos dos controles técnicos u organizacionales que recomendarías (por ejemplo: MFA, sandboxing,
+                    shadow-mode, pruebas adversarias, monitoreo continuo).
+                </li>
+            </ul>
+        </div>
+
+        <!-- Sugerencias para el contenido de la respuesta -->
+        <h2>5. Sugerencias para estructurar tu respuesta</h2>
+        <ul>
+            <li>Inicia con una breve frase que conecte las lecturas con tu contexto (laboral, académico o institucional).</li>
+            <li>Si eliges la <strong>Pregunta 1</strong>, compara al menos dos enfoques (ej.: análisis de logs vs. autenticación adaptativa) y justifica cuál priorizarías.</li>
+            <li>Si eliges la <strong>Pregunta 2</strong>, describe el caso de uso en 2–3 frases y céntrate en riesgos y controles.</li>
+            <li>Incluye al menos una referencia explícita, por ejemplo: <em>(OpenWebinars, 2025)</em> o “como menciona Elastic en su artículo sobre MLOps…”.</li>
+        </ul>
+
+        <!-- Recomendaciones y tono -->
+        <h2>6. Recomendaciones para tu participación</h2>
+        <div class="recommendations-box">
+            <p class="rec-title"><span class="icon">✅</span>Para aprovechar mejor este foro</p>
+            <ul>
+                <li>Mantén un tono respetuoso, crítico y constructivo.</li>
+                <li>Relaciona siempre las ideas de los artículos con <strong>situaciones reales</strong> (organizaciones medianas, tu entorno o casos conocidos).</li>
+                <li>Evita copiar directamente de las lecturas; sintetiza con tus propias palabras.</li>
+                <li>Usa ejemplos concretos cuando hables de riesgos (falsos positivos, adversarial ML, sobrecarga del SOC, etc.).</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer" style="margin-top: 30px; text-align:center; font-size:0.85rem; color:#555; font-family:'Nunito',sans-serif; font-weight:600;">
+        Fundación Escuela Tecnológica de Neiva – FET | Foro académico - IA/ML en Ciberseguridad
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .rubric-container {
+        font-family: 'Roboto', sans-serif;
+        color: #444;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 50px 30px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1a237e; /* Azul Académico */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #1a237e;
+        margin: 0 auto 10px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .sub-title {
+        font-size: 1.2rem;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    /* --- TABLA RESPONSIVA --- */
+    .table-wrapper {
+        overflow-x: auto; /* Permite scroll horizontal en móviles */
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+    }
+
+    .rubric-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 800px; /* Asegura que no se aplaste en móviles */
+        font-size: 0.95rem;
+    }
+
+    /* Encabezados */
+    .rubric-table th {
+        background-color: #1a237e;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        border: 1px solid #1a237e;
+    }
+
+    /* Celdas */
+    .rubric-table td {
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        vertical-align: top;
+        line-height: 1.5;
+    }
+
+    /* Estilos por Columna */
+    .col-criterio {
+        background-color: #f5f5f5;
+        font-weight: 700;
+        color: #283593;
+        width: 20%;
+    }
+
+    .col-valor {
+        text-align: center;
+        font-weight: 900;
+        color: #d81b60; /* Magenta para el puntaje */
+        background-color: #fffde7;
+        width: 8%;
+    }
+
+    /* Niveles de Desempeño (Colores suaves de fondo) */
+    .level-excelente { background-color: #e8f5e9; color: #1b5e20; font-weight: 500; } /* Verde suave */
+    .level-aceptable { background-color: #ffffff; color: #444; }
+    .level-basico { background-color: #fff3e0; color: #e65100; } /* Naranja suave */
+    .level-deficiente { background-color: #ffebee; color: #c62828; } /* Rojo suave */
+
+    /* Fila de Totales */
+    .row-total td {
+        background-color: #1a237e;
+        color: white;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-align: right;
+        font-size: 1.1rem;
+    }
+
+    /* --- NOTA INFORMATIVA --- */
+    .info-box {
+        background: #e3f2fd;
+        border-left: 5px solid #2196f3;
+        padding: 20px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        margin-top: 30px;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 2rem; max-width: 100%; }
+        /* La tabla tiene su propio scroll, no necesita más ajustes aquí */
+    }
+
+</style>
+</head>
+<body>
+
+<div class="rubric-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Rúbrica de Evaluación</h1>
+        <p class="sub-title">Criterios detallados para la calificación del Foro</p>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th style="border-top-left-radius: 10px;">Criterio</th>
+                    <th style="text-align:center;">Valor</th>
+                    <th style="background:#2e7d32;">Excelente</th>
+                    <th style="background:#f9a825;">Aceptable</th>
+                    <th style="background:#ef6c00;">Básico</th>
+                    <th style="background:#c62828; border-top-right-radius: 10px;">Deficiente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-criterio">1. Pertinencia y claridad del caso</td>
+                    <td class="col-valor">20%</td>
+                    <td class="level-excelente">Presenta un caso claro, contextualizado y directamente relacionado con tecnologías emergentes y datos personales. Se entiende quién usa la tecnología, cómo funciona y a quién afecta.</td>
+                    <td class="level-aceptable">El caso es claro y se relaciona con tecnologías emergentes, aunque faltan algunos detalles de contexto o actores.</td>
+                    <td class="level-basico">El caso es confuso o poco detallado, la relación con tecnologías emergentes o datos es débil.</td>
+                    <td class="level-deficiente">El caso no es pertinente, no se entiende o no se relaciona con tecnologías emergentes ni datos.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">2. Articulación marcos legales – principios éticos</td>
+                    <td class="col-valor">25%</td>
+                    <td class="level-excelente">Identifica y aplica correctamente al menos una norma nacional y RGPD/AI Act si aplica. Conecta claramente 2+ principios éticos explicando cómo se respetan o vulneran.</td>
+                    <td class="level-aceptable">Menciona normas y principios éticos de forma general, con algunas conexiones al caso, aunque no siempre bien desarrolladas.</td>
+                    <td class="level-basico">Hace referencia muy superficial a normas o principios éticos, sin explicar bien su relación con el caso.</td>
+                    <td class="level-deficiente">No menciona normas ni principios éticos, o lo hace de forma incorrecta.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">3. Profundidad del análisis y mejoras</td>
+                    <td class="col-valor">25%</td>
+                    <td class="level-excelente">Identifica riesgos concretos. Propone al menos dos medidas de mejora viables y bien argumentadas (técnicas, organizativas, etc.).</td>
+                    <td class="level-aceptable">Identifica algunos riesgos y propone al menos una medida de mejora, aunque con poco detalle o justificación.</td>
+                    <td class="level-basico">Menciona riesgos de forma muy general y las medidas de mejora son vagas o poco aplicables.</td>
+                    <td class="level-deficiente">No identifica riesgos claros ni propone medidas de mejora.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">4. Interacción en el foro</td>
+                    <td class="col-valor">15%</td>
+                    <td class="level-excelente">Realiza al menos dos respuestas que aportan ideas o preguntas adicionales, con argumentación respetuosa.</td>
+                    <td class="level-aceptable">Responde a dos compañeros, pero las respuestas son breves o poco argumentadas.</td>
+                    <td class="level-basico">Responde solo a una persona o las respuestas son muy superficiales (ej. solo expresar acuerdo).</td>
+                    <td class="level-deficiente">No responde a compañeros o las respuestas son irrespetuosas.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">5. Claridad y redacción</td>
+                    <td class="col-valor">15%</td>
+                    <td class="level-excelente">Texto bien organizado, ideas claras y coherentes. Lenguaje académico adecuado sin errores que afecten la comprensión.</td>
+                    <td class="level-aceptable">Texto comprensible y medianamente organizado. Algunos errores de redacción que no impiden entender.</td>
+                    <td class="level-basico">Texto poco organizado, con repeticiones o confusiones. Errores frecuentes que dificultan la lectura.</td>
+                    <td class="level-deficiente">Texto muy desordenado o casi inentendible.</td>
+                </tr>
+
+                <tr class="row-total">
+                    <td colspan="2">TOTAL</td>
+                    <td colspan="4" style="text-align: center; background-color: #1a237e; color: #fff;">100%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <strong>💡 Nota para el estudiante:</strong> Revisa tu participación antes de enviarla para asegurar que cumples con la columna de "Excelente". ¡Mucho éxito!
+    </div>
+
+</div>
+
+</body>
+</html>

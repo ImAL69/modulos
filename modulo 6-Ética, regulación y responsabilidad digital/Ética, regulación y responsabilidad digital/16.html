@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .resources-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 30px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #006064; /* Cyan oscuro elegante */
+    }
+
+    /* --- LOGO UNIVERSIDAD --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, #006064 0%, #0097a7 100%);
+        border-radius: 15px;
+        color: white;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
+        margin: 0;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        animation: fadeInDown 1s ease both;
+    }
+
+    .sub-title {
+        font-size: 1.1rem;
+        margin-top: 15px;
+        opacity: 0.9;
+        font-weight: 400;
+    }
+
+    /* --- INTRODUCCIÓN --- */
+    .intro-box {
+        background: #e0f7fa;
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 5px solid #00bcd4;
+        margin-bottom: 50px;
+    }
+
+    .intro-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .intro-list li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+        font-size: 1rem;
+        color: #006064;
+    }
+
+    .intro-list li::before {
+        content: '📚';
+        position: absolute;
+        left: 0;
+        top: -2px;
+    }
+
+    /* --- SECCIONES Y TARJETAS --- */
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #006064;
+        border-bottom: 2px solid #b2ebf2;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .section-icon {
+        background: #00bcd4;
+        color: white;
+        width: 35px; height: 35px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem;
+    }
+
+    .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .resource-card {
+        background: white;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        padding: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .resource-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        border-color: #00bcd4;
+    }
+
+    /* Bordes de color por tipo */
+    .type-read { border-left: 5px solid #1e88e5; }
+    .type-case { border-left: 5px solid #fb8c00; }
+    .type-video { border-left: 5px solid #e53935; }
+
+    .res-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .res-icon { font-size: 2rem; flex-shrink: 0; }
+
+    /* ESTILO DEL ENLACE EN EL TÍTULO */
+    .res-link {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #006064; /* Color visible */
+        text-decoration: none; /* Sin subrayado por defecto */
+        line-height: 1.4;
+        transition: color 0.2s;
+        border-bottom: 1px solid transparent;
+    }
+
+    .res-link:hover {
+        color: #0097a7;
+        border-bottom: 1px solid #0097a7; /* Subrayado al pasar el mouse */
+    }
+
+    .res-desc {
+        font-size: 0.95rem;
+        color: #666;
+        line-height: 1.6;
+        flex-grow: 1;
+    }
+
+    .badge-container { margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .badge { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; font-weight: bold; text-transform: uppercase; }
+    .bg-pdf { background: #ffebee; color: #c62828; }
+    .bg-web { background: #e3f2fd; color: #1565c0; }
+    .bg-video { background: #fce4ec; color: #ad1457; }
+    .bg-lang { background: #f5f5f5; color: #616161; border: 1px solid #ddd; }
+
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 2rem; }
+        .resource-grid { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+<body>
+
+<div class="resources-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Recursos de Estudio</h1>
+        <p class="sub-title">Unidad 1: Principios Éticos y Marcos Legales</p>
+    </div>
+
+    <div class="intro-box">
+        <p style="margin-top:0; font-weight:bold; margin-bottom:10px;">En esta carpeta encontrarás los materiales base:</p>
+        <ul class="intro-list">
+            <li>Principios éticos de la IA.</li>
+            <li>Marcos ético-legales nacionales e internacionales.</li>
+            <li>Casos breves de riesgos reales.</li>
+        </ul>
+    </div>
+
+    <h2 class="section-title"><span class="section-icon">📄</span> 1. Lecturas Obligatorias (Principios)</h2>
+    
+    <div class="resource-grid">
+        
+        <div class="resource-card type-read">
+            <div class="res-header">
+                <span class="res-icon">🇺🇳</span>
+                <a href="https://unesdoc.unesco.org/ark:/48223/pf0000381137_spa" target="_blank" class="res-link">Recomendación sobre la Ética de la IA – UNESCO</a>
+            </div>
+            <div class="res-desc">Documento normativo internacional que define principios para una IA centrada en derechos humanos.</div>
+            <div class="badge-container">
+                <span class="badge bg-pdf">PDF</span>
+            </div>
+        </div>
+
+        <div class="resource-card type-read">
+            <div class="res-header">
+                <span class="res-icon">🌐</span>
+                <a href="https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0449" target="_blank" class="res-link">Recomendación del Consejo de la OCDE sobre IA</a>
+            </div>
+            <div class="res-desc">Establece principios para una IA innovadora y confiable: transparencia, seguridad y responsabilidad.</div>
+            <div class="badge-container">
+                <span class="badge bg-web">Web Oficial</span>
+            </div>
+        </div>
+
+        <div class="resource-card type-read">
+            <div class="res-header">
+                <span class="res-icon">📖</span>
+                <a href="https://www.redalyc.org/journal/880/88076016001/html/?utm_source=chatgpt.com" target="_blank" class="res-link">Ética de la IA. Recomendación UNESCO: génesis y contribución</a>
+            </div>
+            <div class="res-desc">Artículo académico que explica el contexto y contenido de la recomendación.</div>
+            <div class="badge-container">
+                <span class="badge bg-web">Artículo</span>
+            </div>
+        </div>
+
+        <div class="resource-card type-read">
+            <div class="res-header">
+                <span class="res-icon">🇨🇴</span>
+                <a href="https://minciencias.gov.co/sites/default/files/marco-etico-ia-colombia-2021.pdf?utm_source=chatgpt.com" target="_blank" class="res-link">Marco ético para la IA en Colombia – MinCiencias</a>
+            </div>
+            <div class="res-desc">Documento nacional que adapta los principios globales al contexto colombiano.</div>
+            <div class="badge-container">
+                <span class="badge bg-pdf">PDF</span>
+            </div>
+        </div>
+
+        <div class="resource-card type-read">
+            <div class="res-header">
+                <span class="res-icon">🎓</span>
+                <a href="https://www.unesco.org/es/articles/guia-para-el-uso-de-ia-generativa-en-educacion-e-investigacion?utm_source=chatgpt.com" target="_blank" class="res-link">Guía para el uso de IA generativa en educación – UNESCO</a>
+            </div>
+            <div class="res-desc">Orientaciones para usar IA generativa protegiendo derechos y promoviendo usos responsables.</div>
+            <div class="badge-container">
+                <span class="badge bg-web">Artículo</span>
+            </div>
+        </div>
+
+    </div>
+
+    <h2 class="section-title"><span class="section-icon">⚠️</span> 2. Casos Breves y Riesgos</h2>
+
+    <div class="resource-grid">
+        
+        <div class="resource-card type-case">
+            <div class="res-header">
+                <span class="res-icon">⚖️</span>
+                <a href="https://e-revistas.uc3m.es/index.php/LABOS/article/download/9035/6898/?utm_source=chatgpt.com" target="_blank" class="res-link">Selección algorítmica y discriminación en el empleo</a>
+            </div>
+            <div class="res-desc">Análisis de cómo los algoritmos de reclutamiento reproducen sesgos (ej. caso Amazon).</div>
+            <div class="badge-container">
+                <span class="badge bg-pdf">PDF</span>
+            </div>
+        </div>
+
+        <div class="resource-card type-case">
+            <div class="res-header">
+                <span class="res-icon">👩‍💼</span>
+                <a href="https://elpais.com/economia/2025-03-27/ugt-denuncia-un-fuerte-sesgo-machista-en-las-herramientas-de-ia-que-usan-las-empresas.html?utm_source=chatgpt.com" target="_blank" class="res-link">Sesgos de género en herramientas de IA (UGT)</a>
+            </div>
+            <div class="res-desc">Noticia sobre cómo la IA generativa puede reforzar estereotipos de género en el trabajo.</div>
+            <div class="badge-container">
+                <span class="badge bg-web">Noticia</span>
+            </div>
+        </div>
+
+        <div class="resource-card type-case">
+            <div class="res-header">
+                <span class="res-icon">🧩</span>
+                <a href="https://www.unesco.org/en/artificial-intelligence/recommendation-ethics/cases?utm_source=chatgpt.com" target="_blank" class="res-link">Ejemplos de dilemas éticos en IA – UNESCO</a>
+            </div>
+            <div class="res-desc">Colección de casos breves sobre sesgos, justicia, arte y vehículos autónomos.</div>
+            <div class="badge-container">
+                <span class="badge bg-web">Casos</span>
+                <span class="badge bg-lang">Inglés</span>
+            </div>
+        </div>
+
+    </div>
+
+    <h2 class="section-title"><span class="section-icon">🎬</span> 3. Videos Obligatorios</h2>
+
+    <div class="resource-grid">
+        
+        <div class="resource-card type-video">
+            <div class="res-header">
+                <span class="res-icon">▶️</span>
+                <a href="https://www.unesco.org/archives/multimedia/document-1881?utm_source=chatgpt.com" target="_blank" class="res-link">Thinking Ethics of AI: “Do you know AI?”</a>
+            </div>
+            <div class="res-desc">Expertos discuten preguntas éticas: uso de datos, sesgos y poder de plataformas.</div>
+            <div class="badge-container">
+                <span class="badge bg-video">Video</span>
+                <span class="badge bg-lang">Inglés</span>
+            </div>
+        </div>
+
+        <div class="resource-card type-video">
+            <div class="res-header">
+                <span class="res-icon">🏫</span>
+                <a href="https://www.unesco.org/es/articles/el-uso-de-la-ia-en-la-educacion-decidir-el-futuro-que-queremos?utm_source=chatgpt.com" target="_blank" class="res-link">Inteligencia artificial: ¿cómo usarla en educación?</a>
+            </div>
+            <div class="res-desc">Página con materiales audiovisuales sobre riesgos y oportunidades de la IA en contextos educativos.</div>
+            <div class="badge-container">
+                <span class="badge bg-web">Recursos</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

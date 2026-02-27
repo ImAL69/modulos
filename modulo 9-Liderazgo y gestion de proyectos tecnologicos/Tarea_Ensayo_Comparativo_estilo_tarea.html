@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tarea – Ensayo comparativo (Momento 2)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+  body {
+    margin: 0;
+    padding: 40px 10px;
+    background: radial-gradient(circle at top left, #e0f2fe 0, #f8fafc 45%, #eef2ff 100%);
+    font-family: 'Roboto', sans-serif;
+    color: #1f2933;
+  }
+
+  .tarea-container {
+    max-width: 1050px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    padding: 32px 32px 36px 32px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+  }
+
+  /* Cinta superior decorativa */
+  .tarea-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #0f766e, #22c55e);
+    opacity: 0.09;
+    pointer-events: none;
+  }
+
+  .tarea-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Encabezado con imagen */
+  .tarea-header {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+
+  .tarea-heading-block {
+    position: relative;
+  }
+
+  .tarea-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: #0f766e;
+    background: rgba(16, 185, 129, 0.08);
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+
+  .tarea-label span.badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #22c55e;
+  }
+
+  .tarea-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.9rem;
+    line-height: 1.3;
+    font-weight: 900;
+    color: #022c22;
+    margin: 0 0 10px 0;
+  }
+
+  .tarea-subtitle {
+    font-size: 0.98rem;
+    color: #4b5563;
+    margin: 0;
+  }
+
+  .tarea-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 14px;
+    font-size: 0.82rem;
+    color: #6b7280;
+  }
+
+  .tarea-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: rgba(15, 118, 110, 0.06);
+  }
+
+  .tarea-hero-img-wrapper {
+    border-radius: 20px;
+    overflow: hidden;
+    background: radial-gradient(circle at top, #bbf7d0, #ecfdf5);
+    border: 1px solid #d1fae5;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.25);
+  }
+
+  .tarea-hero-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* Texto general */
+  .tarea-text {
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: #374151;
+    margin-bottom: 16px;
+    text-align: justify;
+  }
+
+  /* Bloques de secciones */
+  .tarea-section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    color: #0f766e;
+    margin: 26px 0 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tarea-section-title::before {
+    content: "";
+    width: 18px;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #0f766e, #22c55e);
+  }
+
+  .pill-box {
+    background: #ecfdf5;
+    border-radius: 16px;
+    padding: 14px 16px;
+    border: 1px solid #bbf7d0;
+    margin-bottom: 18px;
+  }
+
+  .pill-box p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .pill-box strong {
+    color: #047857;
+  }
+
+  /* Cards de preguntas / estructura / plantilla */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 10px;
+    margin-bottom: 14px;
+  }
+
+  .tarea-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px 16px 14px 16px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+    border: 1px solid #e5e7eb;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tarea-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, #0f766e, #22c55e);
+  }
+
+  .tarea-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .tarea-card-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: #ecfdf5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .tarea-card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #022c22;
+    margin: 0;
+  }
+
+  .tarea-card p {
+    margin: 4px 0 6px 0;
+    font-size: 0.93rem;
+  }
+
+  .tarea-card ul {
+    margin: 4px 0 0 18px;
+    padding: 0;
+    font-size: 0.9rem;
+  }
+
+  .tarea-card li {
+    margin-bottom: 4px;
+  }
+
+  /* Listas de requisitos / plantilla */
+  .tarea-list {
+    margin: 8px 0 4px 18px;
+    padding: 0;
+    font-size: 0.94rem;
+  }
+
+  .tarea-list li {
+    margin-bottom: 6px;
+  }
+
+  /* Footer institucional */
+  .tarea-footer {
+    margin-top: 26px;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    body {
+      padding: 20px 8px;
+    }
+    .tarea-container {
+      padding: 22px 18px 26px 18px;
+      border-radius: 18px;
+    }
+    .tarea-header {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .tarea-hero-img-wrapper {
+      max-width: 360px;
+      margin: 0 auto;
+    }
+    .cards-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="tarea-container">
+  <div class="tarea-inner">
+
+    <!-- Encabezado con imagen y meta -->
+    <div class="tarea-header">
+      <div class="tarea-heading-block">
+        <div class="tarea-label">
+          <span class="badge-dot"></span>
+          Tarea · Momento 2 · RAP1
+        </div>
+        <h1 class="tarea-title">
+          ✍️ Ensayo comparativo: enfoque tradicional vs ágil
+        </h1>
+        <p class="tarea-subtitle">
+          Contrasta dos enfoques de gestión aplicados a un mismo proyecto tecnológico y sustenta, con argumentos,
+          cuál resulta más pertinente en tu contexto (tradicional, ágil o híbrido).
+        </p>
+        <div class="tarea-meta">
+          <span>🎯 Evidencia del RA1</span>
+          <span>⏱️ Trabajo individual</span>
+          <span>📄 Producto: ensayo escrito</span>
+        </div>
+      </div>
+
+      <div class="tarea-hero-img-wrapper">
+        <img
+          src="https://www.dropbox.com/scl/fi/mnpj09dr672h48njbxo24/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.36_bc4c6845.jpg?rlkey=zf518a4mz2d9f83l4i52zhkoa&st=jk6u5kcy&raw=1"
+          alt="Ilustración sobre gestión de proyectos tecnológicos"
+          class="tarea-hero-img">
+      </div>
+    </div>
+
+    <!-- Introducción -->
+    <p class="tarea-text">
+      En esta tarea elaborarás un <strong>ensayo comparativo</strong> donde contrastarás un enfoque tradicional
+      y un enfoque ágil aplicados al <strong>mismo proyecto tecnológico</strong> que elegiste en el foro (Momento 1).
+      El propósito es que no solo describas metodologías, sino que <strong>argumentes</strong> cuál enfoque es más conveniente
+      (tradicional, ágil o híbrido) según el contexto, el nivel de incertidumbre, los riesgos y las restricciones del proyecto.
+    </p>
+
+    <!-- Objetivo de aprendizaje -->
+    <h2 class="tarea-section-title">🎯 Objetivo de aprendizaje</h2>
+    <div class="pill-box">
+      <p>
+        Demostrar que puedes <strong>seleccionar y justificar</strong> un enfoque de gestión (tradicional, ágil o híbrido),
+        considerando la estrategia institucional, el alcance, los entregables, los stakeholders y los riesgos
+        (incluyendo seguridad/datos si aplica).
+      </p>
+    </div>
+
+    <!-- Preguntas orientadoras -->
+    <h2 class="tarea-section-title">🧩 Preguntas orientadoras (debes responderlas todas)</h2>
+
+    <div class="cards-grid">
+      <!-- Card 1 -->
+      <div class="tarea-card">
+        <div class="tarea-card-header">
+          <div class="tarea-card-icon">1</div>
+          <h3 class="tarea-card-title">¿Qué enfoque tradicional se toma como referencia?</h3>
+        </div>
+        <p>
+          Selecciona el marco tradicional que usarás como base y justifica por qué es pertinente para tu proyecto.
+        </p>
+        <ul>
+          <li>Elige <strong>uno</strong>: <strong>PMBOK/PMI</strong>, <strong>PRINCE2</strong> u otro enfoque tradicional validado.</li>
+          <li>Explica por qué ese enfoque es un buen marco de referencia (gobernanza, control, documentación, riesgos, regulación).</li>
+        </ul>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="tarea-card">
+        <div class="tarea-card-header">
+          <div class="tarea-card-icon">2</div>
+          <h3 class="tarea-card-title">¿Qué enfoque ágil se analiza?</h3>
+        </div>
+        <p>
+          Define el enfoque ágil a partir del cual analizarás la otra cara del proyecto y su gestión.
+        </p>
+        <ul>
+          <li>Selecciona <strong>uno</strong>: <strong>Scrum</strong>, <strong>Kanban</strong> u otro enfoque ágil.</li>
+          <li>Explica por qué encaja con tu proyecto (iteración, feedback, incertidumbre, entrega incremental, priorización).</li>
+        </ul>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="tarea-card">
+        <div class="tarea-card-header">
+          <div class="tarea-card-icon">3</div>
+          <h3 class="tarea-card-title">Ventajas y limitaciones para este proyecto</h3>
+        </div>
+        <p>
+          Contrasta, desde tu contexto, qué aporta y qué limita cada enfoque si se aplicara al proyecto elegido.
+        </p>
+        <ul>
+          <li>Analiza ventajas y limitaciones aterrizadas a tu realidad (no generalidades).</li>
+          <li>Incluye criterios mínimos: <strong>incertidumbre</strong>, <strong>restricciones</strong>, <strong>riesgo</strong>,
+              <strong>stakeholders</strong>, <strong>entregables</strong> y <strong>control</strong>.</li>
+        </ul>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="tarea-card">
+        <div class="tarea-card-header">
+          <div class="tarea-card-icon">4</div>
+          <h3 class="tarea-card-title">Enfoque recomendado y justificación</h3>
+        </div>
+        <p>
+          Cierra con una recomendación clara y defendible sobre el enfoque más adecuado para el proyecto.
+        </p>
+        <ul>
+          <li>Concluye con una recomendación: <strong>tradicional, ágil o híbrida</strong>.</li>
+          <li>Basar la justificación en evidencias del proyecto: tipo de entregables, dependencia de terceros, madurez del equipo,
+              regulación, seguridad, plazo y necesidad de adaptación.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Estructura sugerida del ensayo -->
+    <h2 class="tarea-section-title">🧱 Estructura sugerida del ensayo</h2>
+    <ul class="tarea-list">
+      <li><strong>1. Introducción (1 párrafo):</strong> presenta el proyecto y el objetivo del ensayo.</li>
+      <li><strong>2. Enfoque tradicional seleccionado (1–2 párrafos):</strong> marco, elementos clave y aplicabilidad al proyecto.</li>
+      <li><strong>3. Enfoque ágil seleccionado (1–2 párrafos):</strong> marco, elementos clave y aplicabilidad al proyecto.</li>
+      <li><strong>4. Comparación aplicada (2–3 párrafos):</strong> ventajas y limitaciones por criterios
+          (incertidumbre, control, riesgo, stakeholders, entregables).</li>
+      <li><strong>5. Recomendación final (1–2 párrafos):</strong> enfoque recomendado (tradicional, ágil o híbrido) + razones.</li>
+      <li><strong>6. Referencias (si aplica):</strong> lecturas del curso o fuentes consultadas (APA/IEEE).</li>
+    </ul>
+
+    <!-- Requisitos de entrega -->
+    <h2 class="tarea-section-title">📌 Requisitos de entrega</h2>
+    <div class="pill-box">
+      <ul class="tarea-list">
+        <li><strong>Extensión:</strong> 1.200 a 1.500 palabras.</li>
+        <li><strong>Formato:</strong> título, secciones, redacción formal, coherencia y ortografía.</li>
+        <li><strong>Enfoque:</strong> aplicado al proyecto (evita copiar definiciones sin análisis).</li>
+        <li><strong>Criterio de calidad:</strong> argumentación, comparaciones por criterios y conclusión justificada.</li>
+      </ul>
+    </div>
+
+    <!-- Plantilla rápida -->
+    <h2 class="tarea-section-title">✅ Plantilla rápida (opcional para bosquejar tu ensayo)</h2>
+    <ul class="tarea-list">
+      <li><strong>Proyecto:</strong> [Nombre/idea del proyecto y contexto].</li>
+      <li><strong>Enfoque tradicional elegido:</strong> [PMBOK/PRINCE2] – justificación.</li>
+      <li><strong>Enfoque ágil elegido:</strong> [Scrum/Kanban] – justificación.</li>
+      <li><strong>Ventajas tradicional en este proyecto:</strong> [3 ideas].</li>
+      <li><strong>Limitaciones tradicional en este proyecto:</strong> [3 ideas].</li>
+      <li><strong>Ventajas ágil en este proyecto:</strong> [3 ideas].</li>
+      <li><strong>Limitaciones ágil en este proyecto:</strong> [3 ideas].</li>
+      <li><strong>Recomendación final:</strong> [Tradicional/Ágil/Híbrido] – razones concretas.</li>
+    </ul>
+
+    <!-- Footer institucional -->
+    <div class="tarea-footer">
+      Fundación Escuela Tecnológica de Neiva – FET · Comprometidos con la excelencia educativa
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

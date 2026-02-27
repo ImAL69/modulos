@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .ai-act-container {
+        font-family: 'Roboto', sans-serif;
+        color: #333;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 10px solid #003399; /* Azul UE */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO TIPOGRÁFICO (Sin Imagen) --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, #003399 0%, #0055cc 100%);
+        border-radius: 12px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Estrellas decorativas de fondo (simulando UE) */
+    .header-box::before {
+        content: '★ ★ ★ ★ ★';
+        position: absolute;
+        top: -10px; right: -10px;
+        font-size: 4rem;
+        color: rgba(255, 204, 0, 0.1);
+        transform: rotate(15deg);
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 3.5rem;
+        font-weight: 900;
+        margin: 0;
+        letter-spacing: 2px;
+        color: #ffcc00; /* Amarillo UE */
+        text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+        animation: fadeInDown 1s ease both;
+    }
+
+    .sub-title {
+        font-size: 1.2rem;
+        font-weight: 300;
+        margin-top: 10px;
+        opacity: 0.9;
+    }
+
+    /* --- INTRODUCCIÓN --- */
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 40px;
+        padding: 0 10px;
+        color: #555;
+    }
+
+    /* --- PIRÁMIDE DE RIESGO (GRID) --- */
+    .risk-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-bottom: 50px;
+    }
+
+    .risk-card {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+        transition: transform 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .risk-card:hover { transform: translateY(-5px); }
+
+    /* Modificadores de Color por Nivel */
+    .risk-red { border-left: 8px solid #d32f2f; }
+    .risk-orange { border-left: 8px solid #f57c00; }
+    .risk-blue { border-left: 8px solid #0288d1; }
+    .risk-green { border-left: 8px solid #388e3c; }
+
+    .risk-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 10px;
+    }
+
+    .risk-icon { font-size: 2rem; }
+    
+    .risk-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .risk-red .risk-title { color: #d32f2f; }
+    .risk-orange .risk-title { color: #f57c00; }
+    .risk-blue .risk-title { color: #0288d1; }
+    .risk-green .risk-title { color: #388e3c; }
+
+    .risk-content ul {
+        padding-left: 20px;
+        margin-top: 10px;
+        font-size: 0.95rem;
+        color: #444;
+    }
+    
+    .risk-content li { margin-bottom: 8px; }
+
+    .obligations-box {
+        background: #fafafa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+        font-size: 0.9rem;
+        border-top: 2px solid #ddd;
+    }
+    .obligations-title { font-weight: bold; text-transform: uppercase; font-size: 0.8rem; color: #666; display: block; margin-bottom: 5px;}
+
+    /* --- GPAI (CAJA ESPECIAL) --- */
+    .gpai-section {
+        background: #f3e5f5; /* Lila suave */
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 50px;
+        border: 2px dashed #ab47bc;
+    }
+
+    .gpai-title {
+        color: #7b1fa2;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.5rem;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* --- IMPORTANCIA (GRID FINAL) --- */
+    .importance-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .imp-card {
+        background: #e3f2fd;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        color: #0d47a1;
+        font-weight: 500;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 2.5rem; }
+        .risk-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="ai-act-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">AI ACT</h1>
+        <div class="sub-title">La Regulación Europea de Inteligencia Artificial</div>
+    </div>
+
+    <div class="intro-text">
+        <p>El <strong>AI Act</strong> es la nueva ley de la Unión Europea. Su objetivo es claro: que la IA se use de forma segura y transparente sin frenar la innovación. La ley organiza la IA según un <strong>Enfoque Basado en Riesgos</strong>: a mayor riesgo, mayores obligaciones.</p>
+    </div>
+
+    <h2 style="text-align:center; font-family:'Montserrat', sans-serif; color:#003399; margin-bottom:30px;">Los 4 Niveles de Riesgo</h2>
+    
+    <div class="risk-grid">
+
+        <div class="risk-card risk-red">
+            <div class="risk-header">
+                <span class="risk-icon">🚫</span>
+                <h3 class="risk-title">1. Riesgo Inaceptable</h3>
+            </div>
+            <div class="risk-content">
+                <p><strong>Estado: PROHIBIDOS</strong></p>
+                <p>Son incompatibles con los derechos fundamentales.</p>
+                <ul>
+                    <li>Manipulación del comportamiento (subliminal).</li>
+                    <li>Social Scoring (puntaje social por gobiernos).</li>
+                    <li>Reconocimiento biométrico masivo en tiempo real en espacios públicos (salvo excepciones policiales graves).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="risk-card risk-orange">
+            <div class="risk-header">
+                <span class="risk-icon">⚠️</span>
+                <h3 class="risk-title">2. Alto Riesgo</h3>
+            </div>
+            <div class="risk-content">
+                <p><strong>Estado: FUERTEMENTE REGULADOS</strong></p>
+                <p>Impacto serio en salud, seguridad o derechos.</p>
+                <ul>
+                    <li>Infraestructuras críticas (transporte, energía).</li>
+                    <li>Selección de personal y educación.</li>
+                    <li>Diagnóstico médico y justicia.</li>
+                </ul>
+                <div class="obligations-box">
+                    <span class="obligations-title">Obligaciones Clave:</span>
+                    Evaluación de riesgos, calidad de datos, documentación técnica y <strong>supervisión humana</strong>.
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-card risk-blue">
+            <div class="risk-header">
+                <span class="risk-icon">🤖</span>
+                <h3 class="risk-title">3. Riesgo Limitado</h3>
+            </div>
+            <div class="risk-content">
+                <p><strong>Estado: OBLIGACIÓN DE TRANSPARENCIA</strong></p>
+                <p>Riesgos moderados, el usuario debe saber que interactúa con una máquina.</p>
+                <ul>
+                    <li>Chatbots y asistentes virtuales.</li>
+                    <li>Deepfakes (videos/audios manipulados).</li>
+                </ul>
+                <div class="obligations-box">
+                    <span class="obligations-title">Obligaciones Clave:</span>
+                    Informar que es una IA y etiquetar el contenido generado artificialmente.
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-card risk-green">
+            <div class="risk-header">
+                <span class="risk-icon">✅</span>
+                <h3 class="risk-title">4. Riesgo Mínimo</h3>
+            </div>
+            <div class="risk-content">
+                <p><strong>Estado: SIN REGLAS ESPECÍFICAS</strong></p>
+                <p>La gran mayoría de aplicaciones actuales.</p>
+                <ul>
+                    <li>Filtros de spam.</li>
+                    <li>Videojuegos con IA.</li>
+                </ul>
+                <div class="obligations-box">
+                    Se recomienda seguir buenas prácticas voluntarias (códigos de conducta).
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="gpai-section">
+        <h3 class="gpai-title"><span style="font-size:2rem;">🧠</span> IA de Propósito General (GPAI)</h3>
+        <p>Modelos potentes como GPT o Gemini que sirven para muchas cosas. Tienen reglas especiales:</p>
+        <ul style="margin-top:10px;">
+            <li>Documentar capacidades y riesgos.</li>
+            <li>Respetar derechos de autor en el entrenamiento.</li>
+            <li>Gobernanza de datos responsable.</li>
+        </ul>
+    </div>
+
+    <h2 style="text-align:center; font-family:'Montserrat', sans-serif; color:#003399; margin-bottom:30px;">¿Por qué es importante?</h2>
+    <div class="importance-grid">
+        <div class="imp-card">Protege Derechos Fundamentales</div>
+        <div class="imp-card">Aumenta la Confianza</div>
+        <div class="imp-card">Da Seguridad Jurídica</div>
+        <div class="imp-card">Referente Global</div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .data-protection-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #2e7d32; /* Verde Seguridad */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #1b5e20;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(46, 125, 50, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #c8e6c9;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '🔒';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Listas anidadas */
+    .sub-list {
+        margin-top: 5px;
+        padding-left: 20px;
+        list-style: circle;
+        color: #546e7a;
+    }
+    .sub-list li::before { content: none; }
+    .sub-list li { padding-left: 0; list-style-type: circle; }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #2e7d32;
+        border-bottom: 2px solid #a5d6a7;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* Subtítulos */
+    .sub-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        color: #1b5e20;
+        font-weight: 700;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #e8f5e9;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #2e7d32;
+    }
+
+    /* --- DEFINICIÓN ESTADOS (GRID) --- */
+    .states-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    @media (min-width: 768px) {
+        .states-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .state-card {
+        background: #fff;
+        border: 1px solid #c8e6c9;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+    }
+
+    .state-card:hover { transform: translateY(-5px); border-color: #2e7d32; }
+
+    .state-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #1b5e20;
+        margin-bottom: 10px;
+        display: block;
+        text-transform: uppercase;
+    }
+
+    /* --- TARJETAS DE CONTROLES TRÁNSITO (GRID) --- */
+    .transit-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .transit-card {
+        background: #f1f8e9;
+        padding: 20px;
+        border-radius: 10px;
+        border-top: 4px solid #43a047;
+    }
+
+    .transit-card strong { color: #2e7d32; font-size: 1.1rem; display: block; margin-bottom: 8px; }
+
+    /* --- ALERTA (CAJA) --- */
+    .alert-box {
+        background: #ffebee;
+        border: 1px solid #ef9a9a;
+        border-radius: 10px;
+        padding: 20px;
+        color: #c62828;
+        margin-top: 20px;
+    }
+    .alert-title { font-weight: 700; display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 0.9rem; }
+
+    /* --- ACORDEONES (CIFRADO REPOSO) --- */
+    details.crypto-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #c8e6c9;
+        overflow: hidden;
+    }
+
+    summary.crypto-summary {
+        padding: 15px 20px;
+        background: #f1f8e9;
+        cursor: pointer;
+        font-weight: 700;
+        color: #33691e;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    summary.crypto-summary:hover { background: #dcedc8; }
+    summary.crypto-summary::-webkit-details-marker { display: none; }
+    
+    summary.crypto-summary::after { content: '+'; font-size: 1.5rem; color: #2e7d32; }
+    details[open] summary.crypto-summary::after { content: '-'; }
+
+    .crypto-content {
+        padding: 20px;
+        border-top: 1px solid #c8e6c9;
+        color: #424242;
+    }
+
+    /* --- CONTROLES ACCESO (GRID) --- */
+    .access-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .access-card {
+        background: #fff;
+        border: 1px solid #cfd8dc;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    .access-title {
+        font-weight: 700;
+        color: #455a64;
+        font-size: 1.1rem;
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* --- RELACIÓN (CAJA OSCURA) --- */
+    .relation-box {
+        background: #263238;
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        margin-top: 40px;
+    }
+    
+    .relation-title { color: #a5d6a7; font-weight: 700; margin-bottom: 10px; display: block; }
+    .relation-box ul { padding-left: 20px; margin-bottom: 20px; }
+    .relation-box li::before { color: #a5d6a7; }
+
+    /* --- PREGUNTAS GUÍA (CHECKLIST) --- */
+    .checklist-box {
+        background: #e0f2f1;
+        padding: 30px;
+        border-radius: 15px;
+        border: 2px dashed #009688;
+    }
+
+    .check-category {
+        font-weight: 800;
+        color: #00695c;
+        display: block;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+    }
+    .check-category:first-child { margin-top: 0; }
+
+    .check-q { margin-bottom: 10px; display: block; font-weight: 500; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="data-protection-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">3.2 Controles de protección de datos en tránsito y en reposo</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/0qcn7pwwep31cxgv6tjgv/Gemini_Generated_Image_nh3ejxnh3ejxnh3e.png?rlkey=w31uipmpyjgn6g4gten38rrdf&st=jae1s4ep&raw=1" alt="Protección de Datos" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>En las secciones anteriores hablamos de: Zonas de seguridad y segmentación macro (quién puede hablar con quién) y Protección de datos desde la arquitectura (dominios, zonas, riesgos).</p>
+        <p>Ahora vamos a entrar en algo muy concreto: Cuando los datos viajan por la red o se guardan en algún sitio… <strong>¿Qué hacemos para que no puedan ser leídos, modificados o robados fácilmente?</strong></p>
+        <p>Aquí aparecen dos conceptos clave:</p>
+        
+        <div class="states-grid">
+            <div class="state-card">
+                <span class="state-title">Datos en tránsito</span>
+                Se están moviendo (entre equipos, entre sedes, entre nube y on-prem).
+            </div>
+            <div class="state-card">
+                <span class="state-title">Datos en reposo</span>
+                Están almacenados (en discos, bases de datos, backups, nubes, dispositivos).
+            </div>
+        </div>
+
+        <p>Protegerlos implica aplicar controles técnicos y de diseño que reduzcan la posibilidad de: Espionaje o robo (confidencialidad), Modificación no autorizada (integridad), Pérdida o indisponibilidad (disponibilidad).</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1. Datos en tránsito: proteger lo que viaja por la red</h2>
+        <p>Los datos en tránsito son todos aquellos que pasan por: Redes internas (LAN, Wi-Fi, campus), Redes entre sedes (WAN, VPN, enlaces dedicados), Internet (acceso a servicios en nube, SaaS, APIs, etc.).</p>
+        <p><strong>Ejemplos:</strong> Usuario autenticándose en una plataforma institucional. Consulta a una base de datos desde una aplicación web. Envío de notas, reportes o expedientes a otra sede. Sensores IoT enviando información a un servidor o a la nube. Llamadas a un modelo de IA desplegado en otro entorno.</p>
+        <p><strong>Riesgos típicos:</strong> Interceptación (escucha o “sniffing” del tráfico). Manipulación (alterar paquetes en el camino). Suplantación (hacerse pasar por otro servicio).</p>
+        <p>Por eso, uno de los controles más importantes para datos en tránsito es el cifrado.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2. Cifrado de datos en tránsito: HTTPS, VPN, túneles seguros</h2>
+        <p>El cifrado en tránsito consiste en hacer que: Aunque alguien pueda ver el tráfico (porque está en la misma red, o controla un punto intermedio), No pueda entender su contenido porque está protegido criptográficamente.</p>
+        
+        <p><strong>Controles y tecnologías más comunes:</strong></p>
+        
+        <div class="transit-grid">
+            
+            <div class="transit-card">
+                <strong>2.1 HTTPS / TLS</strong>
+                <p>Usado para aplicaciones web, APIs, portales, etc. Reemplaza HTTP “en claro” por HTTPS, donde:</p>
+                <ul class="sub-list">
+                    <li>La comunicación entre cliente y servidor va cifrada.</li>
+                    <li>Se verifica la identidad del servidor mediante certificados.</li>
+                </ul>
+                <p><em>Buenas prácticas:</em> No exponer aplicaciones sensibles por HTTP sin cifrado. Usar versiones actuales de TLS. Gestionar bien los certificados.</p>
+            </div>
+
+            <div class="transit-card">
+                <strong>2.2 VPN (Redes Privadas Virtuales)</strong>
+                <p>Crean túneles cifrados sobre Internet u otros enlaces. Tipos comunes:</p>
+                <ul class="sub-list">
+                    <li>VPN sitio a sitio (entre sedes).</li>
+                    <li>VPN de acceso remoto (para usuarios que se conectan desde fuera).</li>
+                </ul>
+                <p><em>Ejemplo:</em> Una sede remota se conecta a la sede principal por Internet, pero todo el tráfico viaja cifrado.</p>
+            </div>
+
+            <div class="transit-card">
+                <strong>2.3 Túneles hacia la nube</strong>
+                <p>Conexiones cifradas entre Data center on-prem ↔ nube o Sedes ↔ servicios cloud. Pueden ser: VPN IPSec, Túneles SD-WAN, Conexiones privadas.</p>
+                <p><em>Objetivo:</em> Que los datos que van y vienen entre tu infraestructura y la nube no viajen en claro.</p>
+            </div>
+
+            <div class="transit-card">
+                <strong>2.4 Cifrado entre servicios internos</strong>
+                <p>A veces es necesario cifrar también dentro de la red interna: Servicios que manejan datos sensibles, Microservicios que se comunican entre sí (mTLS).</p>
+            </div>
+
+        </div>
+
+        <div class="alert-box">
+            <span class="alert-title">Error clásico:</span>
+            “Como es red interna, no hace falta cifrar”. En arquitecturas modernas, especialmente con IA y datos sensibles, se asume que la red interna no es 100 % confiable, y el cifrado interno cobra importancia.
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3. Integridad y autenticación en tránsito</h2>
+        <p>El cifrado no solo protege confidencialidad, también ayuda con: Integridad (detectar si los datos fueron alterados en el camino) y Autenticación (saber con quién estás hablando realmente).</p>
+        <p><strong>Mecanismos:</strong> Certificados digitales y firmas. Tokens firmados para autenticación entre servicios. Protocolos que incluyen verificación de integridad (TLS, SSH, etc.).</p>
+        <p>En arquitecturas con IA, por ejemplo: Un modelo de IA en la nube no debería aceptar peticiones de cualquier origen sin autenticar. Las peticiones deberían incluir tokens o credenciales robustas, además de viajar cifradas.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4. Datos en reposo: proteger lo que queda almacenado</h2>
+        <p>Los datos en reposo son aquellos que se guardan en: Discos de servidores físicos o virtuales, Bases de datos (on-prem o en nube), Almacenamiento en la nube (buckets, blobs, volúmenes), Dispositivos de usuarios (laptops, celulares, tablets), Backups y medios de archivo.</p>
+        <p><strong>Riesgos:</strong> Robo físico de un dispositivo, Acceso no autorizado a un servidor, Exposición de backups sin cifrar, Descarga masiva de información.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5. Cifrado de datos en reposo</h2>
+        <p>El cifrado en reposo consiste en guardar la información de tal forma que: Si alguien obtiene el medio físico (disco, archivo, backup), No pueda leer los datos sin las llaves de cifrado.</p>
+        
+        <details class="crypto-item">
+            <summary class="crypto-summary">5.1 Cifrado de disco o volumen</summary>
+            <div class="crypto-content">
+                <p>En servidores, estaciones de trabajo y portátiles. Si el equipo es robado o el disco extraído, los datos siguen protegidos.</p>
+            </div>
+        </details>
+
+        <details class="crypto-item">
+            <summary class="crypto-summary">5.2 Cifrado en bases de datos</summary>
+            <div class="crypto-content">
+                <p>Cifrado a nivel de: Tabla / columna, Base completa, Campos sensibles. Puede combinarse con Controles de acceso estrictos y Registros de auditoría.</p>
+            </div>
+        </details>
+
+        <details class="crypto-item">
+            <summary class="crypto-summary">5.3 Cifrado en la nube</summary>
+            <div class="crypto-content">
+                <p>La mayoría de servicios en nube permiten: Cifrado de discos de máquinas virtuales, Cifrado de buckets/almacenamiento, Cifrado de bases de datos gestionadas.</p>
+                <p><em>Claves:</em> Usar las opciones de cifrado disponibles. Entender cómo se gestionan las llaves.</p>
+            </div>
+        </details>
+
+        <details class="crypto-item">
+            <summary class="crypto-summary">5.4 Cifrado de backups</summary>
+            <div class="crypto-content">
+                <p>Los respaldos también pueden contener datos muy sensibles. Si se guardan sin cifrar: Un robo o envío erróneo puede exponer una gran parte del histórico institucional. <em>Buena práctica:</em> Cifrar los backups, especialmente si salen de la red principal.</p>
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">6. Más allá del cifrado: controles de acceso y minimización</h2>
+        <p>Cifrar es clave, pero no suficiente. Otros controles importantes para datos en reposo:</p>
+        
+        <div class="access-grid">
+            <div class="access-card">
+                <span class="access-title">6.1 Control de acceso</span>
+                <p>Definir quién puede ver o modificar qué datos (Roles, perfiles). Aplicar el principio de mínimo privilegio.</p>
+            </div>
+            <div class="access-card">
+                <span class="access-title">6.2 Minimización y retención</span>
+                <p>Guardar solo los datos necesarios, durante el tiempo necesario. Borrar o anonimizar datos que ya no se requieren.</p>
+            </div>
+            <div class="access-card">
+                <span class="access-title">6.3 Auditoría y trazabilidad</span>
+                <p>Registrar quién accede a datos sensibles. Generar alertas ante accesos inusuales.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">7. Relación entre controles en tránsito y en reposo</h2>
+        <div class="relation-box">
+            <span class="relation-title">Un diseño completo de protección de datos combina:</span>
+            <ul>
+                <li><strong>En tránsito:</strong> Cifrado (TLS, VPN), Autenticación, integridad, control de rutas.</li>
+                <li><strong>En reposo:</strong> Cifrado de discos, bases y backups, Control de acceso, minimización.</li>
+            </ul>
+            <p><em>Errores frecuentes:</em> Cifrar fuerte en tránsito pero guardar todo en texto claro. Cifrar en reposo pero exponer aplicaciones por HTTP. Confiar solo en la red y no cuidar el cifrado.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">8. Impacto en rendimiento, operación y diseño</h2>
+        <p>Proteger datos tiene impacto en otros atributos de calidad:</p>
+        <ul>
+            <li><strong>Rendimiento:</strong> El cifrado/descifrado consume CPU. Inspeccionar tráfico cifrado cuesta recursos.</li>
+            <li><strong>Disponibilidad:</strong> La gestión de llaves es crítica: si se pierden, los datos pueden quedar inaccesibles.</li>
+            <li><strong>Operación:</strong> Hay que administrar certificados, llaves, permisos. Requiere procesos y herramientas.</li>
+        </ul>
+        <p>Por eso, el diseño debe: Dimensionar correctamente equipos, Planear la gestión de llaves y Definir políticas claras.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">9. Preguntas guía para analizar controles de protección de datos</h2>
+        <p>Cuando analices o diseñes un caso, pregúntate:</p>
+
+        <div class="checklist-box">
+            
+            <span class="check-category">Sobre datos en tránsito:</span>
+            <span class="check-q">¿Los servicios web críticos usan HTTPS/TLS?</span>
+            <span class="check-q">¿Las conexiones entre sedes y hacia la nube viajan por VPN o túneles cifrados?</span>
+            <span class="check-q">¿Se cifran también comunicaciones internas donde viajan datos sensibles?</span>
+            <span class="check-q">¿Cómo se autentican los servicios entre sí?</span>
+
+            <span class="check-category">Sobre datos en reposo:</span>
+            <span class="check-q">¿Qué bases de datos o sistemas almacenan información sensible?</span>
+            <span class="check-q">¿Están cifrados? ¿Quién puede acceder a ellos?</span>
+            <span class="check-q">¿Los discos de servidores críticos y equipos portátiles están cifrados?</span>
+            <span class="check-q">¿Los backups están cifrados y bien protegidos?</span>
+
+            <span class="check-category">Sobre acceso y auditoría:</span>
+            <span class="check-q">¿Quién tiene permisos de lectura/escritura sobre datos críticos?</span>
+            <span class="check-q">¿Se registra quién consulta o extrae grandes volúmenes de datos?</span>
+            <span class="check-q">¿Existen alertas ante accesos inusuales?</span>
+
+            <span class="check-category">Sobre impacto y equilibrio:</span>
+            <span class="check-q">¿Se ha evaluado el impacto del cifrado en rendimiento y capacidad?</span>
+            <span class="check-q">¿La organización tiene procesos para renovar certificados y gestionar llaves?</span>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

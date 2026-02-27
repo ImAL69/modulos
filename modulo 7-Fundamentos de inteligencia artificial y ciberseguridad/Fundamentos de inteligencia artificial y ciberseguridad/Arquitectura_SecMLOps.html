@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Arquitectura y SecMLOps (Secure MLOps)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    body { background:#f5f5f5; margin:0; padding:0; }
+
+    .unit-container {
+        font-family:'Open Sans',sans-serif;
+        color:#444;
+        max-width:1100px;
+        margin:40px auto;
+        padding:60px 30px;
+        background:#fff;
+        border-radius:20px;
+        box-shadow:0 10px 40px rgba(0,0,0,0.08);
+        position:relative;
+        border-top:8px solid #0277bd;
+    }
+
+    .uni-logo{
+        position:absolute; top:30px; right:30px; width:120px;
+        background:rgba(255,255,255,0.9); padding:5px;
+        border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .header-box{ text-align:center; margin-bottom:30px; }
+    .unit-title{
+        font-family:'Montserrat',sans-serif; font-size:2.2rem;
+        font-weight:800; text-transform:uppercase; color:#01579b;
+        margin:0 0 8px 0;
+    }
+    .unit-subtitle{
+        font-size:1rem; color:#0288d1; font-weight:600; margin-bottom:20px;
+    }
+
+    .hero-img{
+        width:100%; max-width:820px; border-radius:15px;
+        margin:0 auto 25px auto; display:block;
+        box-shadow:0 20px 40px rgba(1,87,155,0.15);
+    }
+
+    .section{ margin-bottom:32px; font-size:0.98rem; line-height:1.7; text-align:justify; }
+    .section h2{
+        font-family:'Montserrat',sans-serif; color:#01579b; font-size:1.5rem;
+        margin-bottom:10px;
+    }
+    .section h3{
+        font-family:'Montserrat',sans-serif; color:#0277bd; font-size:1.1rem;
+        margin-bottom:6px; margin-top:14px;
+    }
+
+    .highlight-box{
+        background:#e1f5fe; border-left:5px solid #0288d1;
+        border-radius:10px; padding:14px 16px; margin-bottom:20px;
+    }
+
+    ul{ padding-left:22px; margin-top:6px; }
+    li{ margin-bottom:6px; }
+
+    .resources-box{
+        border-radius:14px; padding:18px 20px; margin-bottom:10px;
+        background:#f1f8e9; border-left:5px solid #7cb342;
+    }
+
+    @media (max-width:768px){
+        .unit-container{ padding:30px 15px; margin:20px 10px; }
+        .uni-logo{ position:static; margin:0 auto 15px auto; display:block; }
+    }
+</style>
+</head>
+<body>
+
+<div class="unit-container">
+
+<img class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&raw=1" alt="Logo institucional">
+
+<div class="header-box">
+    <span class="unit-subtitle">Unidad 3 – Arquitectura y SecMLOps</span>
+    <h1 class="unit-title">Arquitectura y SecMLOps (Secure MLOps)</h1>
+    <img class="hero-img"
+         src="https://www.dropbox.com/scl/fi/9nhpej7ek7kb4tfdqd4fe/Gemini_Generated_Image_tpvd3jtpvd3jtpvd.png?rlkey=2p1xbhcuv3ppq22ugvuh875ws&raw=1"
+         alt="Arquitectura y SecMLOps">
+</div>
+
+<div class="section">
+    <h2>Introducción</h2>
+    <div class="highlight-box">
+        <p>
+            <strong>Arquitectura y SecMLOps (Secure MLOps)</strong> integran la ingeniería de modelos de IA/ML con
+            prácticas de seguridad, gobernanza y operaciones para garantizar que los modelos sean robustos,
+            auditablemente seguros y operen con riesgo controlado en producción.
+        </p>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Arquitectura propuesta (componentes clave)</h2>
+
+    <h3>Ingesta de datos</h3>
+    <ul>
+        <li>Pipelines ETL/ELT.</li>
+        <li>Validación de esquema y limpieza.</li>
+        <li>Anonimización y enmascaramiento cuando aplique.</li>
+    </ul>
+
+    <h3>Data Lake / Feature Store</h3>
+    <ul>
+        <li>Almacenamiento versionado de datos y <em>features</em>.</li>
+        <li>Control de accesos y <em>data lineage</em>.</li>
+    </ul>
+
+    <h3>Entrenamiento</h3>
+    <ul>
+        <li>Entornos aislados (<em>sandbox</em>).</li>
+        <li>Versiones reproducibles (contenedores + <em>seed</em>).</li>
+        <li><em>Tracking</em> de experimentos.</li>
+    </ul>
+
+    <h3>Registro de modelos (Model Registry)</h3>
+    <ul>
+        <li>Metadatos, artefactos y métricas.</li>
+        <li>Firmas y políticas de promoción a <em>staging</em>/producción.</li>
+    </ul>
+
+    <h3>CI/CD / CI/CD-ML</h3>
+    <ul>
+        <li>Pipelines automatizados para pruebas (<em>unit</em>, integración, rendimiento, pruebas adversarias).</li>
+        <li>Despliegues tipo <em>canary</em> y <em>shadow</em>.</li>
+    </ul>
+
+    <h3>Serving / Inference</h3>
+    <ul>
+        <li><em>Gateways</em>, autenticación/autorización.</li>
+        <li><em>Rate limiting</em>.</li>
+        <li><em>Explainability hooks</em> para auditoría.</li>
+    </ul>
+
+    <h3>Monitorización y observabilidad</h3>
+    <ul>
+        <li>Logs y métricas (rendimiento, latencia).</li>
+        <li>Métricas ML (drift, performance de datos/features/modelo).</li>
+        <li>Sistema de alertas.</li>
+    </ul>
+
+    <h3>Respuesta e integración SOAR</h3>
+    <ul>
+        <li><em>Playbooks</em> de respuesta.</li>
+        <li>Automatización de contención y <em>rollback</em>.</li>
+    </ul>
+
+    <h3>Gobernanza y cumplimiento</h3>
+    <ul>
+        <li>Registro de decisiones y trazabilidad.</li>
+        <li>Evaluaciones DPIA / AIA.</li>
+        <li>Control de acceso basado en roles (RBAC).</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>SecMLOps: ciclo seguro y controles por etapa</h2>
+
+    <h3>1) Diseño y recolección de datos</h3>
+    <ul>
+        <li><strong>Control:</strong> minimización de datos, consentimiento, catalogación de datos sensibles.</li>
+        <li><strong>Mitigación:</strong> anonimización, enmascaramiento, DPIA cuando aplique.</li>
+    </ul>
+
+    <h3>2) Preparación y <em>feature engineering</em></h3>
+    <ul>
+        <li><strong>Control:</strong> validación de calidad y <em>lineage</em>, tests de integridad, versionado de <em>features</em>.</li>
+        <li><strong>Mitigación:</strong> pipelines reproducibles, aprobaciones automáticas.</li>
+    </ul>
+
+    <h3>3) Entrenamiento</h3>
+    <ul>
+        <li><strong>Control:</strong> entornos aislados, control de dependencias, almacenamiento seguro de <em>datasets</em>.</li>
+        <li><strong>Mitigación:</strong> pruebas adversarias (evasión/poisoning), reproducibilidad (<em>seed</em>, <em>snapshot</em>).</li>
+    </ul>
+
+    <h3>4) Evaluación y pruebas</h3>
+    <ul>
+        <li><strong>Control:</strong> pruebas unitarias, regresión, <em>robustness</em> (adversarial), <em>fairness tests</em>.</li>
+        <li><strong>Mitigación:</strong> métricas definidas (AUC, TPR/FPR, <em>precision</em>, <em>recall</em>, PPV por prevalencia).</li>
+    </ul>
+
+    <h3>5) Registro y aprobación</h3>
+    <ul>
+        <li><strong>Control:</strong> Model Registry con metadata, evidencias de pruebas, aprobaciones multinivel (legal, seguridad, negocio).</li>
+        <li><strong>Mitigación:</strong> bloqueo de promoción si no cumple SLAs o requisitos de privacidad.</li>
+    </ul>
+
+    <h3>6) Despliegue (staging → canary → producción)</h3>
+    <ul>
+        <li><strong>Control:</strong> <em>shadow-mode</em>, <em>canary releases</em>, <em>rollback</em> automático, limitación de tasa y <em>quotas</em>.</li>
+        <li><strong>Mitigación:</strong> <em>human-in-the-loop</em> en decisiones sensibles.</li>
+    </ul>
+
+    <h3>7) Monitorización en producción</h3>
+    <ul>
+        <li><strong>Control:</strong> detección de <em>drift</em> (dato/modelo), métricas operativas (MTTD/MTTR), alertas.</li>
+        <li><strong>Mitigación:</strong> reentrenamiento programado, disparadores de <em>retraining</em>, <em>playbooks</em> SOAR.</li>
+    </ul>
+
+    <h3>8) Incidentes y ciclo de mejora</h3>
+    <ul>
+        <li><strong>Control:</strong> <em>logging forensics</em>, trazabilidad (<em>lineage</em>), <em>playbooks</em> de respuesta, notificación a <em>stakeholders</em>.</li>
+        <li><strong>Mitigación:</strong> <em>post-mortem</em>, actualización de controles, registro de cambios.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Controles específicos de seguridad y privacidad</h2>
+    <ul>
+        <li>Autenticación y autorización fuertes (MFA, RBAC).</li>
+        <li>Encriptación en tránsito y en reposo; gestión de claves (KMS).</li>
+        <li><em>Hardening</em> de contenedores y <em>runtimes</em> (CIS, SLSA).</li>
+        <li>Escaneo de dependencias y políticas SBOM.</li>
+        <li>Pruebas adversarias continuas (<em>adversarial training</em>, <em>fuzzing</em>).</li>
+        <li>Integración de DLP y Data Governance para evitar exfiltración.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Gobernanza, auditoría y cumplimiento</h2>
+    <ul>
+        <li>Registro de decisiones de modelos (who/what/when/why).</li>
+        <li>Evidencias para DPIA / AIA y cumplimiento GDPR/AI Act.</li>
+        <li>Uso de marcos como NIST AI RMF, controles OWASP y guías ENISA.</li>
+        <li>Políticas de retención, acceso y minimización de datos.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Métricas y KPIs operativos sugeridos</h2>
+    <h3>Métricas de ML</h3>
+    <ul>
+        <li>AUC, Precision@k, Recall.</li>
+        <li>FPR (tasa de falsos positivos) y PPV (valor predictivo positivo) por prevalencia.</li>
+    </ul>
+
+    <h3>Métricas operacionales</h3>
+    <ul>
+        <li>Volumen de alertas.</li>
+        <li>Tiempo promedio por alerta.</li>
+        <li>MTTD (Mean Time To Detect) y MTTR (Mean Time To Respond).</li>
+    </ul>
+
+    <h3>Métricas de seguridad</h3>
+    <ul>
+        <li>Número de vulnerabilidades críticas.</li>
+        <li>Tiempo medio de parcheo.</li>
+        <li>Cobertura de pruebas adversarias.</li>
+    </ul>
+
+    <h3>Métricas de calidad empresarial</h3>
+    <ul>
+        <li>Coste por falso positivo.</li>
+        <li>Coste de fraude por falso negativo.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Roles y responsabilidades</h2>
+    <ul>
+        <li><strong>Data Scientist:</strong> modelado, pruebas adversarias, <em>fairness</em>.</li>
+        <li><strong>MLOps/DevOps:</strong> pipelines, despliegue, CI/CD.</li>
+        <li><strong>SecOps:</strong> <em>hardening</em>, detección y respuesta, <em>forensics</em>.</li>
+        <li><strong>Privacy / Legal:</strong> DPIA, políticas de datos y cumplimiento regulatorio.</li>
+        <li><strong>SOC / Analistas:</strong> gestión de alertas, ejecución de <em>playbooks</em>.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Herramientas útiles (ejemplos)</h2>
+    <div class="resources-box">
+        <ul>
+            <li><strong>Orquestación:</strong> Kubeflow, MLflow, Metaflow.</li>
+            <li><strong>Registry / Tracking:</strong> MLflow, DVC, Feast (feature store).</li>
+            <li><strong>CI/CD:</strong> GitHub Actions, Jenkins, ArgoCD.</li>
+            <li><strong>Seguridad:</strong> Clair/Trivy (scans), Snyk, Aqua, HashiCorp Vault.</li>
+            <li><strong>Adversarial:</strong> IBM ART, CleverHans, Foolbox.</li>
+            <li><strong>Observabilidad:</strong> Prometheus, Grafana, ELK / OpenSearch.</li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>

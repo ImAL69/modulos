@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Actividad — Blueprint de Arquitectura SecMLOps Segura</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap');
+
+    .ethics-foundations-container {
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 40px;
+        background: #fdfcfb;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        border-top: 6px solid #c0922e;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.8);
+        border-radius: 8px;
+        padding: 5px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    .header-section {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.7rem;
+        font-weight: 900;
+        color: #2c3e50;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        position: relative;
+        display: inline-block;
+        animation: fadeUp 1s ease both;
+    }
+
+    .main-title::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: #c0922e;
+        margin: 15px auto 0 auto;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 40px;
+        color: #555;
+    }
+
+    .section-heading {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+
+    .definitions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    .def-card {
+        background: white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border-top: 5px solid #ccc;
+        transition: transform 0.3s;
+    }
+
+    .def-card:hover { transform: translateY(-5px); }
+
+    .def-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .card-moral { border-color: #78909c; }
+    .card-moral h3 { color: #546e7a; }
+
+    .card-etica { border-color: #c0922e; }
+    .card-etica h3 { color: #c0922e; }
+
+    .card-ley { border-color: #2c3e50; }
+    .card-ley h3 { color: #2c3e50; }
+
+    .compass-section {
+        background: #f4f4f4;
+        padding: 35px;
+        border-radius: 15px;
+        margin-bottom: 45px;
+    }
+
+    .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+    }
+
+    .principle-item {
+        background: white;
+        padding: 20px 22px;
+        border-radius: 10px;
+        border-left: 4px solid #c0922e;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+
+    .principle-item h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.25rem;
+        color: #2c3e50;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .principle-icon { font-size: 1.5rem; }
+
+    .other-principles-box {
+        margin-bottom: 40px;
+        padding: 0 5px;
+    }
+
+    .elegant-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .elegant-list li {
+        margin-bottom: 18px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .elegant-list li:last-child {
+        border-bottom: none;
+    }
+
+    .elegant-list strong {
+        color: #c0922e;
+        font-size: 1.05rem;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    details.warning-box {
+        background: #fff3e0;
+        border: 1px solid #ffe0b2;
+        border-radius: 8px;
+        padding: 15px 18px;
+        margin-bottom: 35px;
+        cursor: pointer;
+    }
+
+    summary.warning-title {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 1.1rem;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    summary.warning-title::after { content: '▼'; margin-left: auto; font-size: 0.8rem; }
+    details[open] summary.warning-title::after { content: '▲'; }
+
+    .warning-content {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #ffcc80;
+        color: #5d4037;
+        font-size: 0.98rem;
+    }
+
+    .reflection-box {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 35px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .reflection-box h3 {
+        font-family: 'Playfair Display', serif;
+        color: #c0922e;
+        margin-top: 0;
+        font-size: 1.7rem;
+    }
+
+    .reflection-questions {
+        text-align: left;
+        display: inline-block;
+        max-width: 800px;
+        font-size: 1.02rem;
+    }
+
+    .reflection-questions li {
+        margin-bottom: 10px;
+    }
+
+    .code-block {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 16px 18px;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        overflow-x: auto;
+        margin: 18px 0;
+        border-left: 4px solid #c0922e;
+    }
+
+    .code-block code {
+        color: #ecf0f1;
+    }
+
+    .highlight {
+        background: #c0922e;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+
+    .info-box {
+        background: #e3f2fd;
+        border: 1px solid #90caf9;
+        border-left: 4px solid #2196f3;
+        border-radius: 8px;
+        padding: 20px 22px;
+        margin: 20px 0 35px 0;
+    }
+
+    .info-box h4 {
+        color: #1565c0;
+        margin-top: 0;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .step-number {
+        display: inline-block;
+        background: #c0922e;
+        color: white;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        border-radius: 50%;
+        font-weight: bold;
+        margin-right: 10px;
+        font-size: 0.95rem;
+    }
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 2.1rem; max-width: 100%; }
+        .principles-grid { grid-template-columns: 1fr; }
+        .definitions-grid { grid-template-columns: 1fr; }
+        .ethics-foundations-container { padding: 30px 20px; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="ethics-foundations-container">
+
+    <div class="header-section">
+        <h1 class="main-title">🧩 Actividad — Blueprint de Arquitectura SecMLOps Segura</h1>
+        <p class="intro-text">
+            En esta actividad diseñarás un <strong>blueprint completo de arquitectura SecMLOps</strong> para una institución
+            realista (educativa, gubernamental o empresa). El foco está en integrar <strong>ciberseguridad</strong> y
+            <strong>gestión de riesgo de IA</strong> basados en <span class="highlight">NIST AI RMF</span> e 
+            <span class="highlight">ISO/IEC 23894</span>, mapeando cada control a los principios de 
+            <strong>Confidencialidad, Integridad y Disponibilidad (CIA)</strong> y a las funciones clave de los marcos
+            de referencia.
+        </p>
+    </div>
+
+    <h2 class="section-heading">🎯 Objetivo de la actividad</h2>
+    <div class="other-principles-box" style="margin-top: 0;">
+        <p style="font-size: 1.05rem; line-height: 1.8; text-align: justify;">
+            Diseñar un <strong>blueprint (diagrama + memoria)</strong> de una arquitectura SecMLOps para una institución
+            (educativa, gubernamental o empresa) que integre controles de ciberseguridad y de gestión de riesgo de IA
+            (<strong>NIST AI RMF, ISO/IEC 23894</strong>). Debes explicar cada punto de control y mapearlo a 
+            <span class="highlight">CIA / NIST / ISO</span>, mostrando cómo la arquitectura protege los datos y los
+            modelos a lo largo de todo el ciclo de vida.
+        </p>
+    </div>
+
+    <h2 class="section-heading">📦 Formato de entrega</h2>
+    <div class="info-box">
+        <h4>Opciones de entrega</h4>
+        <ul>
+            <li><strong>Opción A:</strong> Informe técnico en <span class="highlight">PDF</span> (3–5 páginas).</li>
+            <li><strong>Opción B:</strong> <strong>Infografía</strong> (1 página) + <strong>memoria explicativa</strong> (1–2 páginas).</li>
+        </ul>
+        <p style="margin-top: 10px;">
+            📌 <strong>Cita obligatoria de normas en APA o IEEE</strong>:
+        </p>
+        <ul>
+            <li>NIST AI RMF.</li>
+            <li>ISO/IEC 23894 (y otras normas que consideres pertinentes).</li>
+        </ul>
+    </div>
+
+    <h2 class="section-heading">🧭 Instrucciones paso a paso</h2>
+
+    <div class="definitions-grid">
+        <div class="def-card card-etica">
+            <h3><span class="step-number">1</span> Elección del contexto</h3>
+            <ul style="margin-left: 18px;">
+                <li>Elige el tipo de institución: <strong>educativa, gubernamental o empresa</strong>.</li>
+                <li>Redacta en 1–2 párrafos el <strong>caso de uso principal</strong>:
+                    <ul style="margin-left: 18px; margin-top: 5px;">
+                        <li>Ejemplo 1: Detección de fraude en pagos.</li>
+                        <li>Ejemplo 2: Autenticación adaptativa con IA.</li>
+                        <li>Ejemplo 3: Análisis de logs para un SOC aumentado por IA.</li>
+                    </ul>
+                </li>
+                <li>Indica por qué el caso de uso es <strong>crítico</strong> para la institución.</li>
+            </ul>
+        </div>
+
+        <div class="def-card card-moral">
+            <h3><span class="step-number">2</span> Esquema inicial y alcance</h3>
+            <ul style="margin-left: 18px;">
+                <li>Define el <strong>alcance de la solución</strong>:
+                    <ul style="margin-left: 18px;">
+                        <li>Tipos de datos que se usan (personales, financieros, logs, biométricos, etc.).</li>
+                        <li>Activos críticos: bases de datos, modelos, claves, infraestructura.</li>
+                        <li>Límites del sistema: qué entra, qué sale, qué queda fuera.</li>
+                    </ul>
+                </li>
+                <li>Enumera <strong>supuestos</strong>:
+                    <ul style="margin-left: 18px;">
+                        <li>Volumen aproximado de datos y frecuencia de ingesta.</li>
+                        <li>Equipo disponible (DS, MLOps, SecOps, SOC, legal, etc.).</li>
+                        <li>Requisitos regulatorios locales (protección de datos, sectorial, etc.).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="compass-section">
+        <h3 class="section-heading" style="font-size: 1.6rem;">🗺️ <span class="step-number">3</span> Diagrama de arquitectura SecMLOps</h3>
+        <p style="margin-bottom: 20px; text-align: justify;">
+            Crea un <strong>diagrama claro</strong> que represente los componentes mínimos del pipeline SecMLOps y sus flujos
+            de datos y control. El diagrama debe ser lo suficientemente detallado como para que un equipo técnico pueda
+            implementarlo.
+        </p>
+        <div class="principles-grid">
+            <div class="principle-item">
+                <h4><span class="principle-icon">📥</span> Ingesta y calidad de datos</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Fuentes de datos (apps, sensores, logs, APIs).</li>
+                    <li>Validación de esquemas y calidad.</li>
+                    <li>Anonymización / pseudonimización cuando aplique.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🧊</span> Data Lake / Feature Store</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Almacenamiento centralizado (raw / curated).</li>
+                    <li>Feature Store para servir atributos reusables.</li>
+                    <li>Controles de acceso y registro de versiones.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🧪</span> Entrenamiento y registro de modelos</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Entornos de entrenamiento <strong>aislados</strong>.</li>
+                    <li><strong>Model Registry</strong> con versionamiento y firma.</li>
+                    <li>Validaciones, pruebas adversarias y evaluación de riesgo.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🚀</span> CI/CD-ML y despliegue</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Pipeline CI/CD-ML con <strong>tests automatizados</strong>.</li>
+                    <li>Despliegue <strong>canary/shadow</strong>.</li>
+                    <li>Rollbacks controlados y aprobación formal.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🤖</span> Serving / inference</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Endpoints para aplicaciones internas/externas.</li>
+                    <li>Autenticación, autorización y rate limiting.</li>
+                    <li>Registro de peticiones y respuestas relevantes.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">📡</span> Monitorización y respuesta</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Monitorización de <strong>drift</strong> y métricas de desempeño.</li>
+                    <li>Logging forense y correlación con SIEM/SOC.</li>
+                    <li><strong>SOAR / playbooks</strong> para respuesta automatizada.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🔑</span> Gestión de claves y secretos</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Uso de <strong>HSM / Vault</strong> para claves y secretos.</li>
+                    <li>Rotación, segregación y registro de uso.</li>
+                    <li>Integración con identidades técnicas y RBAC.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="info-box" style="margin-top: 25px;">
+            <h4>Herramientas sugeridas para el diagrama</h4>
+            <p>Puedes usar <strong>diagrams.net (draw.io)</strong>, <strong>Lucidchart</strong>, <strong>Miro</strong>,
+            <strong>PowerPoint</strong>, <strong>Inkscape</strong> u otra herramienta que permita exportar el diagrama en
+            <span class="highlight">PNG/SVG</span> para incrustarlo en tu PDF o infografía.</p>
+        </div>
+    </div>
+
+    <div class="compass-section">
+        <h3 class="section-heading" style="font-size: 1.6rem;">🛡️ <span class="step-number">4</span> Controles “Secure AI by Design”</h3>
+        <p style="margin-bottom: 15px; text-align: justify;">
+            Para cada etapa del pipeline, describe <strong>controles técnicos y organizacionales</strong>. Cada control debe
+            explicar brevemente <em>qué hace</em> y <em>cómo se implementa</em> (1–3 líneas).
+        </p>
+        <div class="principles-grid">
+            <div class="principle-item">
+                <h4><span class="principle-icon">📥</span> Ingesta de datos</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Anonymización / seudonimización al ingreso.</li>
+                    <li>Validación de esquemas, tipos y rangos.</li>
+                    <li>Controles de DLP y clasificación de datos.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🧊</span> Almacenamiento y Feature Store</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Cifrado en reposo y en tránsito.</li>
+                    <li>RBAC y separación de entornos (dev/test/prod).</li>
+                    <li>Registro de linaje de datos (data lineage).</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🧪</span> Entrenamiento y validación</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Pruebas adversarias (ataques de evasión/poisoning).</li>
+                    <li>Revisión de sesgos y fairness cuando aplique.</li>
+                    <li>Registro de datasets, parámetros y versiones.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">📦</span> Registry y supply chain</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Firma de modelos y verificación de integridad.</li>
+                    <li>SBOM para dependencias de ML (librerías, contenedores).</li>
+                    <li>Control de cambios y aprobación formal.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🚀</span> CI/CD-ML y despliegue</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Tests de seguridad en pipeline (SAST/DAST/IAST).</li>
+                    <li>Despliegues canary/shadow con métricas de riesgo.</li>
+                    <li>Revisión de configuraciones y secretos antes de producción.</li>
+                </ul>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">📡</span> Serving, monitoreo y SOC</h4>
+                <ul style="margin-left: 18px;">
+                    <li>Alertas por drift, anomalías y abuso del modelo.</li>
+                    <li>Integración con SOC, SIEM y SOAR (playbooks).</li>
+                    <li>MFA, controles de reputación y sandboxing de entradas de alto riesgo.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="compass-section">
+        <h3 class="section-heading" style="font-size: 1.6rem;">📑 <span class="step-number">5</span> Mapeo a CIA / NIST / ISO</h3>
+        <p style="text-align: justify;">
+            Construye una <strong>tabla de mapeo</strong> donde cada fila corresponda a un control definido y columnas que
+            indiquen su relación con:
+        </p>
+        <ul style="margin-left: 20px;">
+            <li><strong>CIA:</strong> Confidencialidad (C), Integridad (I), Disponibilidad (A).</li>
+            <li><strong>NIST AI RMF:</strong> Área/función (Govern, Map, Measure, Manage).</li>
+            <li><strong>ISO/IEC 23894:</strong> Cláusula, principio o actividad donde el control encaja mejor.</li>
+        </ul>
+        <div class="code-block">
+<code>Control | Etapa | CIA (C/I/A) | NIST AI RMF (función) | ISO/IEC 23894 (cláusula/principio)
+---------|-------|-------------|------------------------|------------------------------------
+Cifrado en reposo | Data Lake | C | Manage | Cláusula X: Protección de activos de información
+Pruebas adversarias | Entrenamiento | I | Measure | Cláusula Y: Evaluación de riesgos de modelo
+...</code>
+        </div>
+        <p style="margin-top: 10px; font-size: 0.95rem;">
+            Si alguna norma no tiene un ítem exacto, indica la <strong>referencia más cercana</strong> y justifica brevemente
+            tu elección dentro de la memoria.
+        </p>
+    </div>
+
+    <div class="compass-section">
+        <h3 class="section-heading" style="font-size: 1.6rem;">👥 <span class="step-number">6</span> Roles y matriz RACI</h3>
+        <p style="text-align: justify;">
+            Define los <strong>roles mínimos</strong> involucrados en la operación de la arquitectura SecMLOps y construye una
+            <strong>matriz RACI</strong> para las actividades clave.
+        </p>
+        <div class="definitions-grid">
+            <div class="def-card card-etica">
+                <h3>Roles mínimos</h3>
+                <ul style="margin-left: 18px;">
+                    <li>Data Scientist (DS).</li>
+                    <li>MLOps / Ingeniero de ML.</li>
+                    <li>SecOps / Equipo de ciberseguridad.</li>
+                    <li>Privacy / Legal.</li>
+                    <li>Product Owner / Líder de producto.</li>
+                    <li>SOC / Analista de monitoreo.</li>
+                </ul>
+            </div>
+            <div class="def-card card-ley">
+                <h3>Actividades clave para la RACI</h3>
+                <ul style="margin-left: 18px;">
+                    <li>Recolección y preparación de datos.</li>
+                    <li>Entrenamiento y evaluación de modelos.</li>
+                    <li>Pruebas adversarias y revisión de seguridad.</li>
+                    <li>Aprobación de modelo para producción.</li>
+                    <li>Despliegue y operación del modelo.</li>
+                    <li>Monitorización continua.</li>
+                    <li>Gestión y respuesta a incidentes.</li>
+                </ul>
+                <p style="margin-top: 10px; font-size: 0.95rem;">
+                    Marca quién es <strong>Responsable (R)</strong>, <strong>Aprobador (A)</strong>, 
+                    <strong>Consultado (C)</strong> e <strong>Informado (I)</strong> en cada actividad.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="reflection-box">
+        <h3><span class="step-number">7</span> Riesgos residuales y fases de madurez</h3>
+        <div class="reflection-questions">
+            <p style="margin-bottom: 10px;">
+                En esta sección, identifica los <strong>riesgos residuales</strong> que permanecen aun después de aplicar los
+                controles y describe cómo evolucionan los controles a medida que la solución madura:
+            </p>
+            <ul>
+                <li>💥 <strong>Riesgos residuales:</strong> drift no detectado, ataques de poisoning en supply chain de datos,
+                    exposición de features sensibles, abuso del modelo, etc.</li>
+                <li>🧯 <strong>Mitigaciones adicionales:</strong> qué controles extra propones y qué riesgo queda como residual
+                    (aceptable / monitorizado).</li>
+                <li>📈 <strong>Fases de madurez:</strong> describe al menos:
+                    <ul style="margin-left: 18px; margin-top: 5px;">
+                        <li><strong>Piloto:</strong> PoC controlada, métricas básicas, evidencias mínimas.</li>
+                        <li><strong>Plataforma:</strong> Integración con SOC/SIEM, automatización parcial, métricas robustas.</li>
+                        <li><strong>Gobierno central:</strong> procesos formalizados, auditoría periódica, tablero ejecutivo,
+                            riesgo de IA integrado al ERM corporativo.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <details class="warning-box">
+        <summary class="warning-title">📚 Referencias normativas clave (clic para ver)</summary>
+        <div class="warning-content">
+            <ul>
+                <li><strong>NIST AI RMF:</strong> Marco para gestionar el riesgo de sistemas de IA a lo largo de su ciclo de vida
+                    (funciones: Govern, Map, Measure, Manage).</li>
+                <li><strong>ISO/IEC 23894:</strong> Gestión del riesgo de IA, alineada con ISO 31000; ofrece actividades y
+                    principios para integrar el riesgo de IA al riesgo corporativo.</li>
+                <li><strong>Otras normas útiles:</strong> ISO/IEC 27001 (SGSI), ISO/IEC 27005 (gestión del riesgo), normas
+                    sectoriales según tu contexto (financiero, educativo, salud, etc.).</li>
+            </ul>
+            <p style="margin-top: 10px;">
+                Recuerda <strong>citar las normas en APA o IEEE</strong> en tu informe o memoria.
+            </p>
+        </div>
+    </details>
+
+    <details class="warning-box">
+        <summary class="warning-title">💡 Recomendaciones para la memoria escrita (clic para ver)</summary>
+        <div class="warning-content">
+            <ul>
+                <li>Redacta una <strong>memoria clara y ejecutiva</strong> (3–5 páginas o 1–2 si eliges infografía).</li>
+                <li>Incluye al menos:
+                    <ul style="margin-left: 18px; margin-top: 5px;">
+                        <li>Resumen del contexto y caso de uso.</li>
+                        <li>Descripción de los componentes del diagrama.</li>
+                        <li>Controles “Secure AI by Design” por etapa.</li>
+                        <li>Tabla de mapeo CIA / NIST / ISO.</li>
+                        <li>Roles y matriz RACI.</li>
+                        <li>Riesgos residuales y plan de madurez.</li>
+                    </ul>
+                </li>
+                <li>Usa un lenguaje entendible para <strong>equipo técnico</strong> pero también para 
+                    <strong>stakeholders de negocio</strong>.</li>
+                <li>Añade figuras, tablas y bullets para hacer el documento más legible.</li>
+            </ul>
+        </div>
+    </details>
+
+    <div class="other-principles-box">
+        <h2 class="section-heading" style="font-size:1.5rem; text-align:left;">✅ Checklist final antes de entregar</h2>
+        <ul class="elegant-list">
+            <li>
+                <strong>✓ Contexto definido</strong>
+                Tipo de institución y caso de uso descritos claramente.
+            </li>
+            <li>
+                <strong>✓ Alcance y supuestos documentados</strong>
+                Datos, activos críticos, límites del sistema y requisitos regulatorios.
+            </li>
+            <li>
+                <strong>✓ Diagrama de arquitectura SecMLOps</strong>
+                Incluye todas las etapas: ingesta, Data Lake/Feature Store, entrenamiento, Registry, CI/CD-ML, serving,
+                monitorización, logging/forensics, SOAR/playbooks, gestión de claves.
+            </li>
+            <li>
+                <strong>✓ Controles “Secure AI by Design” por etapa</strong>
+                Controles técnicos y organizacionales explicados (1–3 líneas cada uno).
+            </li>
+            <li>
+                <strong>✓ Tabla de mapeo CIA / NIST / ISO</strong>
+                Cada control mapeado a C/I/A, función NIST AI RMF y cláusula/principio ISO/IEC 23894.
+            </li>
+            <li>
+                <strong>✓ Roles y matriz RACI</strong>
+                Roles mínimos definidos y responsabilidades claras en el ciclo de vida del modelo.
+            </li>
+            <li>
+                <strong>✓ Riesgos residuales y fases de madurez</strong>
+                Riesgos identificados, mitigaciones y plan de evolución Piloto → Plataforma → Gobierno central.
+            </li>
+            <li>
+                <strong>✓ Citas normativas en APA o IEEE</strong>
+                Referencias a NIST AI RMF, ISO/IEC 23894 y otras normas que utilices.
+            </li>
+        </ul>
+    </div>
+
+    <p style="margin-bottom:25px; text-align:center; font-size: 13px; color:#666;">
+        Fundación Escuela Tecnológica de Neiva – FET | Arquitecturas de IA seguras y responsables
+    </p>
+
+</div>
+
+</body>
+</html>

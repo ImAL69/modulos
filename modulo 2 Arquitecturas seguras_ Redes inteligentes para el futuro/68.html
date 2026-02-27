@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .remote-access-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #7b1fa2; /* Morado Cripto */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #4a148c;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(123, 31, 162, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #e1bee7;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '🌐';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #6a1b9a;
+        border-bottom: 2px solid #e1bee7;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* Subtítulos */
+    .sub-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        color: #7b1fa2;
+        font-weight: 700;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #f3e5f5;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #8e24aa;
+    }
+
+    /* --- PREGUNTA CLAVE (CAJA DESTACADA) --- */
+    .key-question-box {
+        background: #ffffff;
+        border: 2px solid #d1c4e9;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+    }
+
+    .key-q-title {
+        font-weight: 700;
+        color: #512da8;
+        display: block;
+        margin-bottom: 5px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* --- TARJETAS VPN / ZTNA (GRID) --- */
+    .tech-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    @media (min-width: 768px) {
+        .tech-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .tech-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 25px;
+        transition: transform 0.3s;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+    
+    .tech-card:hover { transform: translateY(-5px); }
+
+    /* VPN */
+    .card-vpn { border-top: 5px solid #7e57c2; }
+    .card-vpn .tech-title { color: #5e35b1; }
+
+    /* ZTNA */
+    .card-ztna { border-top: 5px solid #00bcd4; }
+    .card-ztna .tech-title { color: #00838f; }
+
+    .tech-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    /* --- COMPARACIÓN (TABLA VISUAL) --- */
+    .comparison-box {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .comp-row {
+        background: #f5f5f5;
+        padding: 15px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        border-left: 4px solid #90caf9;
+    }
+    
+    .comp-q { font-weight: 700; color: #1565c0; margin-bottom: 5px; display: block; }
+    .comp-a { font-size: 0.95rem; color: #455a64; }
+
+    /* --- CONTROLES (LISTA VERDE) --- */
+    .controls-box {
+        background: #e8f5e9;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #c5e1a5;
+        margin-bottom: 40px;
+    }
+    .controls-box li::before { content: '✔'; color: #2e7d32; }
+
+    /* --- MODELO RECOMENDADO (CAJA AZUL) --- */
+    .rec-box {
+        background: #e3f2fd;
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 5px solid #1976d2;
+    }
+    .rec-title { color: #0d47a1; font-weight: 700; margin-bottom: 10px; display: block; }
+
+    /* --- EVIDENCIAS (LISTA GRIS) --- */
+    .evidence-box {
+        background: #eceff1;
+        padding: 25px;
+        border-radius: 12px;
+        margin-top: 40px;
+    }
+    .evidence-box li::before { content: '🔎'; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .tech-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="remote-access-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">2.2 Acceso remoto, VPN y ZTNA</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/xlfjbq1871qmgvlypjgfu/Gemini_Generated_Image_xs21wtxs21wtxs21.png?rlkey=2n31keev1rf68y5iem4yv66cm&st=726z1jfv&raw=1" alt="Acceso Remoto Seguro" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>El acceso remoto permite que usuarios fuera del campus/empresa (casa, viajes, sedes pequeñas, campo) accedan a recursos institucionales: aplicaciones, archivos, sistemas administrativos, herramientas de soporte, etc. En la Unidad 2, este tema se centra en cómo habilitar ese acceso sin “abrir” la red y sin aumentar el riesgo de intrusiones o fugas de información.</p>
+        <p>Hoy las dos opciones más comunes son:</p>
+        <ul>
+            <li><strong>VPN (Virtual Private Network):</strong> acceso remoto a la red (o a una parte) mediante un túnel cifrado.</li>
+            <li><strong>ZTNA (Zero Trust Network Access):</strong> acceso remoto por aplicación, basado en identidad y contexto (sin exponer la red completa).</li>
+        </ul>
+        <p>La clave no es memorizar siglas, sino responder: ¿quién necesita acceder a qué, desde dónde y bajo qué condiciones?</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1) ¿Qué se busca con el acceso remoto “seguro”?</h2>
+        <p>Un diseño correcto de acceso remoto debe garantizar:</p>
+        <ul>
+            <li><strong>Confidencialidad:</strong> el tráfico viaja cifrado.</li>
+            <li><strong>Autenticación fuerte:</strong> el usuario realmente es quien dice ser (idealmente MFA).</li>
+            <li><strong>Mínimo privilegio:</strong> acceso solo a lo necesario (no “toda la red”).</li>
+            <li><strong>Control del dispositivo:</strong> saber si es un equipo institucional o personal, y si cumple requisitos.</li>
+            <li><strong>Trazabilidad:</strong> registros claros de quién accedió, a qué, cuándo y desde dónde.</li>
+            <li><strong>Continuidad:</strong> que el acceso no sea un cuello de botella ni un punto único de falla.</li>
+        </ul>
+        <div class="key-question-box">
+            <span class="key-q-title">Pregunta clave: ¿Por qué el acceso remoto suele ser un punto de ataque?</span>
+            <p>Porque expone una “puerta” hacia recursos internos. Si se roba una credencial o el equipo del usuario está comprometido, el atacante intenta usar el acceso remoto para entrar como si fuera un usuario legítimo.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2) VPN: cómo funciona y qué implica</h2>
+        
+        <div class="tech-card card-vpn">
+            <span class="tech-title">2.1 ¿Qué es una VPN?</span>
+            <p>Una VPN crea un túnel cifrado entre el dispositivo del usuario y la red institucional (o un gateway). Ese túnel hace que el equipo remoto “parezca” interno o semi-interno, dependiendo de la configuración.</p>
+            <p><strong>Tipos comunes:</strong> VPN sitio a sitio (entre sedes), VPN de acceso remoto (cliente), VPN SSL (portal o cliente).</p>
+            <p><strong>Respuesta clara:</strong> una VPN extiende la red hacia el usuario remoto mediante un túnel cifrado.</p>
+        </div>
+
+        <span class="sub-title">2.2 ¿Qué ventajas tiene una VPN?</span>
+        <p>Tecnología madura y ampliamente soportada. Funciona con aplicaciones que “esperan” estar en red interna. Útil para administración y soporte técnico. Relativamente rápida de implementar en muchos entornos.</p>
+        <div class="key-question-box">
+            <span class="key-q-title">Pregunta clave: ¿Cuándo una VPN es una buena decisión?</span>
+            <p>Cuando necesitas acceso a recursos internos “legados” (archivos, sistemas antiguos), administración remota controlada, o integración con sedes, y puedes segmentar y auditar bien.</p>
+        </div>
+
+        <span class="sub-title">2.3 ¿Cuáles son los riesgos típicos de la VPN?</span>
+        <p>Acceso demasiado amplio (el usuario entra a la red), Movimiento lateral, Cuello de botella, Gestión compleja a escala, Exposición del gateway VPN.</p>
+        <div class="key-question-box">
+            <span class="key-q-title">Pregunta clave: ¿Qué error convierte una VPN en un alto riesgo?</span>
+            <p>Configurarla como “acceso total” a la LAN, sin MFA, sin segmentación y sin monitoreo. Eso transforma la VPN en una autopista hacia activos internos.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3) ZTNA: acceso por aplicación con enfoque Zero Trust</h2>
+        
+        <div class="tech-card card-ztna">
+            <span class="tech-title">3.1 ¿Qué es ZTNA?</span>
+            <p>ZTNA (Zero Trust Network Access) es un modelo de acceso remoto donde: no se “extiende la red” al usuario, se da acceso solo a aplicaciones o servicios específicos, la decisión se basa en identidad + contexto, y se registra todo.</p>
+            <p>En ZTNA, el usuario no ve “la red interna”: ve únicamente las apps a las que tiene permiso.</p>
+            <p><strong>Respuesta clara:</strong> ZTNA es acceso remoto granular por servicio, no por red.</p>
+        </div>
+
+        <span class="sub-title">3.2 ¿Qué ventajas tiene ZTNA?</span>
+        <p>Mínimo privilegio natural. Reduce movimiento lateral y exposición de red. Mejor para entornos híbridos. Simplifica experiencia del usuario. Mayor trazabilidad por aplicación.</p>
+        <div class="key-question-box">
+            <span class="key-q-title">Pregunta clave: ¿Por qué ZTNA se considera más moderno que VPN?</span>
+            <p>Porque responde a movilidad y nube: usuarios y servicios están distribuidos, y la seguridad se basa en identidad y políticas, no en estar “dentro de la red”.</p>
+        </div>
+
+        <span class="sub-title">3.3 ¿Qué retos o limitaciones trae ZTNA?</span>
+        <p>Requiere buena gestión de identidades y roles (RBAC, MFA). Puede necesitar integración con aplicaciones internas. No siempre aplica igual para administración de red muy profunda. Exige madurez en inventario de apps.</p>
+        <div class="key-question-box">
+            <span class="key-q-title">Pregunta clave: ¿Cuándo ZTNA no reemplaza totalmente a VPN?</span>
+            <p>Cuando hay tareas de administración avanzada o acceso a múltiples recursos a nivel de red que requieren alcance más amplio, aunque idealmente muy segmentado y temporal.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4) Comparación directa: VPN vs ZTNA (en decisiones reales)</h2>
+        
+        <div class="comparison-box">
+            <div class="comp-row">
+                <span class="comp-q">Pregunta clave: ¿Qué permite cada una?</span>
+                <span class="comp-a">VPN: acceso a red (más amplio). ZTNA: acceso a aplicaciones específicas.</span>
+            </div>
+            <div class="comp-row">
+                <span class="comp-q">Pregunta clave: ¿Cuál reduce más la exposición?</span>
+                <span class="comp-a">ZTNA, porque no publica la red; solo expone servicios autorizados.</span>
+            </div>
+            <div class="comp-row">
+                <span class="comp-q">Pregunta clave: ¿Cuál suele ser más fácil para “legacy”?</span>
+                <span class="comp-a">VPN, porque muchas aplicaciones antiguas dependen de estar en la red interna.</span>
+            </div>
+            <div class="comp-row">
+                <span class="comp-q">Pregunta clave: ¿Cuál escala mejor para acceso por roles y apps?</span>
+                <span class="comp-a">ZTNA, porque se diseña desde políticas de mínimo privilegio.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5) Controles mínimos obligatorios en acceso remoto</h2>
+        <div class="controls-box">
+            <p>Sin estos controles, cualquiera de las dos opciones queda frágil:</p>
+            <ul>
+                <li>MFA obligatorio.</li>
+                <li>RBAC: permisos por rol.</li>
+                <li>Segmentación: usuarios remotos no deben entrar “a todo”.</li>
+                <li>Control de dispositivo.</li>
+                <li>Registro y monitoreo.</li>
+                <li>Gestión de sesiones.</li>
+                <li>Principio de mínimo privilegio.</li>
+            </ul>
+        </div>
+        <div class="key-question-box">
+            <span class="key-q-title">Pregunta clave: ¿Qué pasa si tengo MFA pero dejo acceso amplio a la red?</span>
+            <p>Disminuyes el riesgo de robo de credenciales, pero no eliminas el riesgo de que un equipo comprometido o un usuario con permisos excesivos cause daños. MFA es esencial, pero no reemplaza segmentación ni mínimo privilegio.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">6) Modelo recomendado en organizaciones tipo campus</h2>
+        <div class="rec-box">
+            <p>En muchos escenarios institucionales, lo más sensato es un <strong>modelo mixto</strong>:</p>
+            <ul>
+                <li><strong>ZTNA para:</strong> acceso a aplicaciones (sistemas académicos, administrativos, portales), acceso a servicios en nube y aplicaciones internas publicadas de forma segura.</li>
+                <li><strong>VPN restringida para:</strong> administración técnica (solo personal autorizado), acceso a recursos legacy específicos, casos especiales y temporales.</li>
+            </ul>
+        </div>
+        <div class="key-question-box">
+            <span class="key-q-title">Pregunta clave: ¿Por qué el modelo mixto suele ser el más realista?</span>
+            <p>Porque combina seguridad moderna (ZTNA) con compatibilidad operativa (VPN) sin forzar un cambio radical que rompa procesos o aplicaciones.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">7) Evidencias de que el acceso remoto está bien implementado</h2>
+        <div class="evidence-box">
+            <p>Un diseño no se valida “por intuición”, sino por evidencia:</p>
+            <ul>
+                <li>MFA activo y obligatorio en accesos remotos.</li>
+                <li>Logs por usuario y por aplicación (quién accede a qué).</li>
+                <li>Segmentación aplicada (no todo remoto llega a servidores/IoT/OT).</li>
+                <li>Alertas por comportamiento anómalo.</li>
+                <li>Pruebas de acceso.</li>
+                <li>Reporte de capacidad.</li>
+            </ul>
+        </div>
+        <div class="key-question-box">
+            <span class="key-q-title">Pregunta clave: ¿Cómo sé que el acceso remoto no se convirtió en un punto único de falla?</span>
+            <p>Porque hay redundancia/alta disponibilidad del servicio (o alternativa), monitoreo de capacidad, y el tráfico crítico no depende de un único equipo sin respaldo.</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

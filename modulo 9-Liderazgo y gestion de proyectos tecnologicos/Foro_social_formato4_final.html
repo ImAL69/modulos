@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Foro Social (No Evaluativo): Presentémonos y Compartamos Expectativas</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .forum-container {
+        font-family: 'Roboto', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 30px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        border-top: 6px solid #6a11cb; /* Borde superior índigo */
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* --- LOGO UNIVERSIDAD --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 110px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 10px;
+    }
+
+    .welcome-title {
+        font-family: 'Nunito', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: #333;
+        margin: 0 auto 25px auto;
+        max-width: 90%;
+        line-height: 1.2;
+        background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .forum-image {
+        width: 100%;
+        max-width: 750px;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(37, 117, 252, 0.2);
+        margin: 0 auto 30px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1s ease 0.5s forwards;
+    }
+
+    /* --- CONTENIDO GENERAL --- */
+    .content {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    .content h2 {
+        font-family: 'Nunito', sans-serif;
+        color: #2c3e50;
+        font-size: 1.6rem;
+        margin-top: 25px;
+        margin-bottom: 12px;
+        font-weight: 800;
+    }
+
+    .content h3 {
+        font-family: 'Nunito', sans-serif;
+        color: #3957ff;
+        font-size: 1.25rem;
+        margin-top: 18px;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
+
+    .content p {
+        margin-bottom: 12px;
+        text-align: justify;
+    }
+
+    .content ul {
+        margin: 8px 0 15px 22px;
+        padding: 0;
+    }
+
+    .content li {
+        margin-bottom: 6px;
+    }
+
+    /* --- CAJAS ESPECIALES --- */
+    .info-box {
+        background: #fff7e6;
+        border-left: 5px solid #f59e0b;
+        padding: 18px 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    }
+
+    .info-box-title {
+        font-weight: 700;
+        color: #b45309;
+        margin-bottom: 6px;
+    }
+
+    .highlight-box {
+        background: #f3f4ff;
+        border-left: 5px solid #6366f1;
+        padding: 15px 18px;
+        border-radius: 12px;
+        margin: 18px 0;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+    }
+
+    .highlight-box strong {
+        color: #3730a3;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .example-box {
+        background-color: #f0f9ff;
+        border: 2px dashed #3b82f6;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 12px;
+        font-style: italic;
+    }
+
+    .example-box p {
+        margin: 5px 0;
+        color: #1e3a8a;
+    }
+
+    .example-box img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 10px;
+        margin: 0 auto 15px auto;
+        display: block;
+    }
+
+    /* --- RECOMENDACIONES --- */
+    .recommendations-box {
+        background: #fff8e1;
+        border: 2px dashed #ffd54f;
+        padding: 25px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        margin-top: 10px;
+    }
+
+    .rec-title {
+        font-family: 'Nunito', sans-serif;
+        color: #f57f17;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .rec-title span.icon { font-size: 1.5rem; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .welcome-title { font-size: 1.9rem; max-width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="forum-container">
+
+    <!-- Logo institucional -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1"
+         alt="Logo Universidad" class="uni-logo">
+
+    <!-- Encabezado con imagen principal -->
+    <div class="header-box">
+        <h1 class="welcome-title">Foro Social (No Evaluativo): Presentémonos y Compartamos Expectativas</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/xj0z1x3yw7pimgk7bk4il/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.38_2eca0b62.jpg?rlkey=f21srwrp8dvpet04ew0eyu6cd&st=vjtlqtho&raw=1"
+             alt="Foro social de presentación" class="forum-image">
+    </div>
+
+    <div class="content">
+        <!-- Importante -->
+        <div class="info-box">
+            <p class="info-box-title">ℹ️ Importante</p>
+            <p>
+                Este primer foro es un espacio social y de bienvenida, pensado para que nos conozcamos mejor como grupo,
+                entendamos desde dónde llegamos a este módulo y qué esperamos aprender juntos.
+            </p>
+            <p style="font-weight: bold; margin-top: 10px;">
+                Este foro no es evaluativo, no suma nota, pero sí es muy importante para crear un buen ambiente de aprendizaje
+                y sentirnos parte de una misma comunidad.
+            </p>
+        </div>
+
+        <!-- Propósito del foro -->
+        <h2>2. Propósito del foro</h2>
+        <p>Con este foro buscamos:</p>
+        <ul>
+            <li>Romper el hielo y conocernos como personas y profesionales.</li>
+            <li>Compartir nuestras expectativas frente al módulo y a la especialización.</li>
+            <li>Identificar experiencias previas en proyectos tecnológicos, IA o ciberseguridad que puedan enriquecer el trabajo colaborativo.</li>
+            <li>Empezar a construir un clima de respeto, confianza y colaboración en el aula virtual.</li>
+        </ul>
+
+        <!-- Orientaciones -->
+        <h2>3. Orientaciones para tu participación</h2>
+        <p>En tu intervención inicial, comparte de forma clara y cercana:</p>
+        
+        <div class="highlight-box">
+            <p><strong>1. ¿Quién eres?</strong></p>
+            <ul>
+                <li>Nombre y apellido(s).</li>
+                <li>Ciudad y/o institución/empresa donde trabajas (si lo deseas).</li>
+                <li>Rol o área en la que te desempeñas actualmente.</li>
+            </ul>
+        </div>
+        
+        <div class="highlight-box">
+            <p><strong>2. Tu relación con los proyectos tecnológicos</strong></p>
+            <ul>
+                <li>¿Has participado o liderado proyectos tecnológicos, de transformación digital, IA o ciberseguridad?</li>
+                <li>Menciona brevemente un proyecto o experiencia que haya sido significativa (no es necesario dar datos sensibles ni confidenciales).</li>
+            </ul>
+        </div>
+        
+        <div class="highlight-box">
+            <p><strong>3. Tus expectativas frente al módulo</strong></p>
+            <ul>
+                <li>¿Qué esperas aprender en "Liderazgo y gestión de proyectos tecnológicos"?</li>
+                <li>¿Qué competencias te interesa fortalecer (liderazgo, gestión de riesgos, trabajo con equipos, indicadores, etc.)?</li>
+            </ul>
+        </div>
+        
+        <div class="highlight-box">
+            <p><strong>4. Un dato humano o personal</strong></p>
+            <ul>
+                <li>Puede ser un hobby, algo que te gusta hacer en tu tiempo libre, una curiosidad sobre ti, una meta personal o profesional, etc.</li>
+                <li>Esto ayuda a vernos como personas, no solo como estudiantes.</li>
+            </ul>
+        </div>
+
+        <!-- Cómo participar en Q10 -->
+        <h2>4. Cómo participar en la plataforma (Q10)</h2>
+        <p>Sigue estos pasos para intervenir correctamente en el foro:</p>
+        
+        <h3>1. Ingresa al aula virtual en Q10</h3>
+        <ul>
+            <li>Ve al módulo "Liderazgo y gestión de proyectos tecnológicos".</li>
+            <li>Busca la actividad llamada:<br>
+                <strong>Foro social (no evaluativo): Presentémonos y compartamos expectativas sobre el módulo</strong>
+            </li>
+        </ul>
+        
+        <h3>2. Publica tu presentación</h3>
+        <ul>
+            <li>Haz clic en "Responder".</li>
+            <li>En el asunto o título de tu mensaje, escribe:<br>
+                <strong>Presentación – [Tu nombre y apellido]</strong><br>
+                Ejemplo: Presentación – Ana Pérez
+            </li>
+            <li>Escribe tu mensaje siguiendo las orientaciones del punto 3 (quién eres, experiencia, expectativas, dato personal).</li>
+            <li>Revisa ortografía y claridad, y luego haz clic en "Guardar" o "Enviar".</li>
+        </ul>
+        
+        <h3>3. Responde a tus compañeros/as</h3>
+        <ul>
+            <li>Lee las presentaciones de al menos 3 compañeros/as.</li>
+            <li>En cada una, haz clic en "Responder" y escribe un breve mensaje donde:
+                <ul>
+                    <li>Saludes de forma respetuosa.</li>
+                    <li>Destaques algo que te llamó la atención de su presentación.</li>
+                    <li>Si quieres, menciones algún punto en común (experiencia, intereses, ciudad, área profesional, etc.).</li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Ejemplo con imagen -->
+        <div class="example-box">
+            <img alt="Ejemplo foro social" src="https://www.dropbox.com/scl/fi/5zndfdd1vs81l1fnqumne/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.37_c326823b.jpg?rlkey=yjl3fkup194d9cv8ju01sn1ht&st=zjipz5tr&raw=1">
+            <p style="font-weight: bold; color: #1e40af; margin-bottom: 10px;">
+                📝 Ejemplo de respuesta breve:
+            </p>
+            <p>
+                "Hola Juan, gusto en saludarte. Me pareció muy interesante tu experiencia en proyectos de ciberseguridad en el sector salud.
+                Creo que lo que comentas sobre la gestión de riesgos se conecta mucho con lo que veremos en el módulo.
+                ¡Ojalá podamos seguir conversando sobre ese tema!"
+            </p>
+        </div>
+
+        <!-- Recomendaciones de convivencia -->
+        <h2>5. Recomendaciones de convivencia</h2>
+        <div class="recommendations-box">
+            <p class="rec-title"><span class="icon">🤝</span>Recomendaciones para participar</p>
+            <ul>
+                <li>Mantén siempre un tono respetuoso y cordial.</li>
+                <li>Evita escribir solo en MAYÚSCULAS (se interpreta como gritar).</li>
+                <li>No compartas información sensible o confidencial de tu organización.</li>
+                <li>Sé breve, pero claro y auténtico: no es un examen, es un espacio para ser tú mismo/a.</li>
+                <li>Recuerda que estamos construyendo una comunidad de aprendizaje profesional: lo que compartas puede enriquecer mucho a tus compañeros.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer" style="margin-top: 30px; text-align:center; font-size:0.85rem; color:#555; font-family:'Nunito',sans-serif; font-weight:600;">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+    </div>
+
+</div>
+
+</body>
+</html>

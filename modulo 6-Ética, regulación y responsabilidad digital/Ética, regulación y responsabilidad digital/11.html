@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .eval-forum-container {
+        font-family: 'Roboto', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1a237e; /* Azul Real */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-wrapper {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    /* Badge de Evaluativo */
+    .eval-badge {
+        display: inline-block;
+        background: #d81b60; /* Magenta */
+        color: white;
+        padding: 5px 15px;
+        border-radius: 50px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #1a237e;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(26, 35, 126, 0.2);
+        margin: 0 auto;
+        display: block;
+        transition: transform 0.4s ease;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        opacity: 0;
+        border: 1px solid #e8eaf6;
+    }
+
+    /* --- INTRODUCCIÓN (Objetivos) --- */
+    .objectives-box {
+        background: #e8eaf6; /* Azul muy pálido */
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 50px;
+        border-left: 5px solid #3949ab;
+    }
+
+    .obj-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .obj-list li {
+        margin-bottom: 12px;
+        padding-left: 30px;
+        position: relative;
+        font-size: 1.05rem;
+    }
+
+    .obj-list li::before {
+        content: '🎯';
+        position: absolute;
+        left: 0;
+        top: -2px;
+    }
+
+    /* --- MOMENTOS DE PARTICIPACIÓN --- */
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.8rem;
+        color: #1a237e;
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: 800;
+    }
+
+    /* MOMENTO 1: APORTE INICIAL */
+    .moment-card {
+        background: white;
+        border: 1px solid #eee;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        margin-bottom: 40px;
+        overflow: hidden;
+    }
+
+    .moment-header {
+        background: linear-gradient(135deg, #1a237e, #3949ab);
+        color: white;
+        padding: 15px 30px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .moment-body {
+        padding: 30px;
+    }
+
+    /* Lista de Pasos del Aporte Inicial */
+    .step-list {
+        display: grid;
+        gap: 20px;
+    }
+
+    .step-item {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        padding-bottom: 20px;
+        border-bottom: 1px dashed #e0e0e0;
+    }
+
+    .step-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .step-icon {
+        background: #e8eaf6;
+        color: #1a237e;
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        font-weight: bold;
+    }
+
+    .step-content h4 {
+        margin: 0 0 5px 0;
+        color: #283593;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .step-content p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #555;
+    }
+
+    .word-count {
+        display: inline-block;
+        background: #fff3e0;
+        color: #e65100;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    /* MOMENTO 2: RESPUESTAS */
+    .replies-card {
+        background: white;
+        border: 2px dashed #d81b60; /* Borde punteado magenta */
+        border-radius: 15px;
+        margin-bottom: 40px;
+        overflow: hidden;
+    }
+
+    .replies-header {
+        background: #fce4ec; /* Rosa muy pálido */
+        color: #d81b60;
+        padding: 15px 30px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+
+    .replies-body {
+        padding: 30px;
+    }
+
+    .replies-list li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+    
+    .replies-list li::before {
+        content: '💬';
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 0.9rem;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 2rem; max-width: 100%; }
+        .moment-header { flex-direction: column; text-align: center; gap: 10px; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="eval-forum-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-wrapper">
+        <span class="eval-badge">★ Actividad Evaluativa ★</span>
+        <h1 class="main-title">Marcos Legales y Principios Éticos</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/582qlncvz5yipv61v5bix/Gemini_Generated_Image_7g1vra7g1vra7g1v.png?rlkey=6rqojgctn63s9qzddvvxcq9mv&st=yh6ujaz6&raw=1" alt="Foro de Debate" class="hero-image">
+    </div>
+
+    <div class="objectives-box">
+        <h3 style="margin-top:0; color:#283593; font-family:'Montserrat', sans-serif;">En este foro vas a:</h3>
+        <ul class="obj-list">
+            <li>Analizar un <strong>caso real</strong> de tecnología emergente.</li>
+            <li>Identificar los <strong>marcos legales</strong> aplicables (Constitución, Habeas Data, GDPR).</li>
+            <li>Conectar el caso con <strong>principios éticos</strong> (Dignidad, Justicia, Transparencia).</li>
+        </ul>
+    </div>
+
+    <h2 class="section-title">Instrucciones de Participación</h2>
+
+    <div class="moment-card">
+        <div class="moment-header">
+            <span>1. Tu Aporte Inicial (Obligatorio)</span>
+            <span style="font-size:0.9rem; opacity:0.8;">Publicación Principal</span>
+        </div>
+        <div class="moment-body">
+            <p style="margin-bottom:20px;">En un solo mensaje, desarrolla los siguientes 5 puntos:</p>
+            
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-icon">1</div>
+                    <div class="step-content">
+                        <h4>Describe el Caso</h4>
+                        <p>Elige un ejemplo de tu contexto (laboral, educativo, social). ¿Qué hace la tecnología y a quién afecta?</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-icon">2</div>
+                    <div class="step-content">
+                        <h4>Identifica Datos y Riesgos</h4>
+                        <p>¿Qué datos usa? (Sensibles, comportamiento). ¿Qué riesgos ves para la privacidad o dignidad?</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-icon">3</div>
+                    <div class="step-content">
+                        <h4>Relaciona con la Ley</h4>
+                        <p>Menciona al menos <strong>una norma nacional</strong> (Constitución, Ley de datos) y si aplica, un referente internacional (GDPR/AI Act).</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-icon">4</div>
+                    <div class="step-content">
+                        <h4>Análisis Ético</h4>
+                        <p>Elige <strong>2 principios éticos</strong> (Justicia, Autonomía, etc.) y explica si se respetan o vulneran.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-icon">5</div>
+                    <div class="step-content">
+                        <h4>Propón Mejoras</h4>
+                        <p>Sugiere al menos 2 medidas (técnicas u organizativas) para un uso más ético.</p>
+                    </div>
+                </div>
+            </div>
+
+            <span class="word-count">📝 Extensión sugerida: 300 - 400 palabras</span>
+        </div>
+    </div>
+
+    <div class="replies-card">
+        <div class="replies-header">
+            2. Debate con Compañeros (Obligatorio)
+        </div>
+        <div class="replies-body">
+            <p>Lee a tus compañeros y elige <strong>al menos a dos (2)</strong> para responder:</p>
+            <ul class="replies-list" style="list-style:none; padding:0;">
+                <li><strong>Complementa:</strong> Aporta otro principio o norma que aplique a su caso.</li>
+                <li><strong>Señala Riesgos:</strong> Identifica algo que no se mencionó.</li>
+                <li><strong>Pregunta:</strong> Fomenta la profundización del análisis.</li>
+            </ul>
+            <span class="word-count" style="background:#fce4ec; color:#d81b60;">💬 Extensión sugerida: Mínimo 120 palabras c/u</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

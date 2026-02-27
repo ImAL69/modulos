@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .nfr-template-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #263238; /* Gris Oscuro */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Roboto', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #263238;
+        margin: 0 auto 15px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* --- SECCIÓN 1: ¿PARA QUÉ SIRVE? --- */
+    .intro-box {
+        background: #eceff1;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #546e7a;
+    }
+
+    .section-title {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #37474f;
+        margin-top: 0;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #cfd8dc;
+        padding-bottom: 10px;
+    }
+
+    .std-list {
+        padding-left: 20px;
+        margin: 0;
+        list-style-type: disc;
+    }
+
+    .std-list li {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    /* --- SECCIÓN 2: CÓMO USAR (PASOS) --- */
+    .steps-container {
+        margin-bottom: 50px;
+    }
+
+    .step-item {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 15px;
+        position: relative;
+        padding-left: 50px; /* Espacio para número */
+    }
+
+    .step-item::before {
+        content: counter(step-counter);
+        counter-increment: step-counter;
+        position: absolute;
+        left: 15px;
+        top: 20px;
+        background: #455a64;
+        color: white;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 25px;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    .steps-wrapper {
+        counter-reset: step-counter;
+    }
+
+    .step-title {
+        font-weight: 700;
+        color: #263238;
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+
+    /* Sub-listas */
+    .sub-list {
+        margin-top: 5px;
+        padding-left: 20px;
+        list-style: circle;
+        color: #546e7a;
+        font-size: 0.95rem;
+    }
+
+    /* --- TABLA NFR (RESPONSIVA) --- */
+    .table-wrapper {
+        overflow-x: auto;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 40px;
+        border: 1px solid #cfd8dc;
+    }
+
+    .nfr-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1100px; /* Asegura ancho suficiente */
+        font-size: 0.9rem;
+    }
+
+    .nfr-table th {
+        background-color: #263238;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        border: 1px solid #37474f;
+        vertical-align: middle;
+    }
+
+    .nfr-table td {
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        vertical-align: top;
+        line-height: 1.5;
+    }
+
+    /* Columna ID */
+    .col-id { font-family: 'Roboto Mono', monospace; font-weight: 700; background: #f5f5f5; width: 80px; text-align: center; }
+    
+    /* Columna Categoría */
+    .col-cat { font-weight: 700; color: #006064; width: 120px; }
+
+    /* Filas Alternas */
+    .nfr-table tbody tr:nth-child(even) { background-color: #f9f9f9; }
+    
+    .nfr-table tbody tr:hover { background-color: #e0f7fa; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="nfr-template-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Plantilla para arquitecturas seguras e inteligentes</h1>
+    </div>
+
+    <div class="intro-box">
+        <h2 class="section-title">1. ¿Para qué sirve esta guía?</h2>
+        <p>Esta guía te ayuda a documentar requisitos no funcionales (NFR) de una solución o arquitectura tecnológica.</p>
+        <p>No describe qué hace el sistema (funcionalidades), sino cómo debe comportarse, por ejemplo:</p>
+        <ul class="std-list">
+            <li>Rendimiento y tiempos de respuesta.</li>
+            <li>Disponibilidad y resiliencia.</li>
+            <li>Seguridad de datos y accesos.</li>
+            <li>Escalabilidad y capacidad de crecimiento.</li>
+            <li>Mantenibilidad, monitoreo y usabilidad técnica.</li>
+        </ul>
+        <p style="margin-top:15px;"><strong>En el contexto del módulo, esta plantilla te servirá para:</strong></p>
+        <ul class="std-list">
+            <li>Aterrizar los atributos de calidad vistos en la Unidad 1 (1.1–1.3).</li>
+            <li>Alinear el diseño de la arquitectura con necesidades reales del negocio.</li>
+            <li>Justificar decisiones de diseño (segmentación, redundancia, tecnologías, controles de seguridad, etc.).</li>
+        </ul>
+    </div>
+
+    <div class="steps-container">
+        <h2 class="section-title">2. Cómo usar la plantilla (paso a paso)</h2>
+        
+        <div class="steps-wrapper">
+            
+            <div class="step-item">
+                <span class="step-title">Define el contexto o caso</span>
+                <ul class="sub-list">
+                    <li>¿Para qué organización / sistema estás definiendo NFR?</li>
+                    <li>¿Qué servicios son críticos?</li>
+                </ul>
+            </div>
+
+            <div class="step-item">
+                <span class="step-title">Identifica categorías de NFR relevantes, por ejemplo:</span>
+                <ul class="sub-list">
+                    <li>Disponibilidad y resiliencia.</li>
+                    <li>Rendimiento.</li>
+                    <li>Seguridad.</li>
+                    <li>Escalabilidad.</li>
+                    <li>Observabilidad / monitoreo.</li>
+                    <li>Mantenibilidad / operabilidad.</li>
+                </ul>
+            </div>
+
+            <div class="step-item">
+                <span class="step-title">Llena la tabla para cada requisito no funcional:</span>
+                <ul class="sub-list">
+                    <li>Un requisito por fila.</li>
+                    <li>Sé lo más concreto posible (evita “debe ser rápido”; usa métricas, porcentajes, tiempos).</li>
+                </ul>
+            </div>
+
+            <div class="step-item">
+                <span class="step-title">Valida los NFR con el caso y el negocio</span>
+                <p style="font-size:0.9rem; color:#546e7a; margin-top:5px; margin-bottom:5px;">Pregúntate:</p>
+                <ul class="sub-list">
+                    <li>¿Este requisito es medible?</li>
+                    <li>¿Es realista?</li>
+                    <li>¿Qué pasa si no se cumple?</li>
+                </ul>
+            </div>
+
+            <div class="step-item">
+                <span class="step-title">Usa los NFR como base para el diseño de tu arquitectura:</span>
+                <ul class="sub-list">
+                    <li>Decide segmentación, redundancia, tecnologías y controles en función de estos requisitos.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="nfr-table">
+            <thead>
+                <tr>
+                    <th>ID NFR</th>
+                    <th>Categoría (NFR)</th>
+                    <th>Nombre breve del requisito</th>
+                    <th>Descripción detallada</th>
+                    <th>Criterio(s) de aceptación / Métrica(s)</th>
+                    <th>Prioridad</th>
+                    <th>Impacto en seguridad / riesgo</th>
+                    <th>Impacto en arquitectura (diseño de red, servicios, infra)</th>
+                    <th>Notas / Comentarios</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td class="col-id">NFR-01</td>
+                    <td class="col-cat">Disponibilidad / Resiliencia</td>
+                    <td>Disponibilidad del servicio crítico</td>
+                    <td>El servicio de autenticación de usuarios debe estar disponible para los usuarios internos y remotos durante la mayor parte del tiempo laboral.</td>
+                    <td>≥ 99,5 % de disponibilidad mensual en horario laboral. Tiempo máximo de caída continua: 30 minutos.</td>
+                    <td>Alta</td>
+                    <td>Una caída impide el acceso al resto de servicios, aumenta riesgo operativo.</td>
+                    <td>Requiere alta disponibilidad en servidores y enlaces, redundancia de componentes clave.</td>
+                    <td>Definir cómo se medirá (herramienta de monitoreo).</td>
+                </tr>
+
+                <tr>
+                    <td class="col-id">NFR-02</td>
+                    <td class="col-cat">Rendimiento</td>
+                    <td>Tiempo de respuesta de aplicación principal</td>
+                    <td>Las peticiones a la aplicación principal (portal web / sistema de gestión) deben responder de forma ágil bajo carga normal.</td>
+                    <td>Tiempo de respuesta < 2 segundos para el 95 % de las solicitudes en horario laboral.</td>
+                    <td>Alta</td>
+                    <td>Bajo rendimiento puede llevar a desvíos a canales no controlados (uso de servicios externos inseguros).</td>
+                    <td>Puede requerir balanceador de carga, optimización de rutas y control de tráfico.</td>
+                    <td>Ajustar valores según el tipo de aplicación.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-id">NFR-03</td>
+                    <td class="col-cat">Seguridad</td>
+                    <td>Protección de datos sensibles</td>
+                    <td>Los datos personales y sensibles deben transmitirse y almacenarse de forma protegida.</td>
+                    <td>100 % del tráfico que involucre datos sensibles viaja cifrado (TLS/HTTPS, VPN). Almacenamiento cifrado para bases de datos con datos sensibles.</td>
+                    <td>Alta</td>
+                    <td>Incumplimiento puede generar brechas de datos, sanciones legales y pérdida de confianza.</td>
+                    <td>Impacta diseño de segmentos, ubicación de servidores, uso de VPN, certificados, firewalls y controles de acceso.</td>
+                    <td>Alinear con normativa de protección de datos aplicable.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-id">NFR-04</td>
+                    <td class="col-cat">Escalabilidad</td>
+                    <td>Crecimiento de usuarios y sedes</td>
+                    <td>La arquitectura debe soportar el crecimiento previsto de usuarios y sedes sin rediseño completo.</td>
+                    <td>Poder duplicar el número actual de usuarios y añadir al menos 2 sedes más manteniendo niveles de rendimiento y disponibilidad definidos.</td>
+                    <td>Media/Alta</td>
+                    <td>Si la red no escala, se improvisan soluciones inseguras o desordenadas.</td>
+                    <td>Influye en elección de topología (jerárquica, SD-WAN), capacidad de core, planificación de IP y VLAN.</td>
+                    <td>Especificar horizonte temporal (1, 3, 5 años).</td>
+                </tr>
+
+                <tr>
+                    <td class="col-id">NFR-05</td>
+                    <td class="col-cat">Observabilidad / Monitoreo</td>
+                    <td>Visibilidad de la red y servicios</td>
+                    <td>Deben existir mecanismos de monitoreo y registro que permitan detectar problemas y posibles incidentes de seguridad.</td>
+                    <td>Sistemas de monitoreo activos sobre enlaces, equipos críticos y servicios; retención de logs mínimo 6–12 meses. Alertas configuradas para eventos relevantes.</td>
+                    <td>Alta</td>
+                    <td>Sin visibilidad, es difícil detectar ataques, fallos o degradaciones a tiempo.</td>
+                    <td>Requiere incluir herramientas de monitoreo, exportación de logs, integración con SIEM (si aplica).</td>
+                    <td>Definir quién revisa alertas y con qué frecuencia.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-id">NFR-06</td>
+                    <td class="col-cat">Mantenibilidad / Operabilidad</td>
+                    <td>Facilidad de administración</td>
+                    <td>La arquitectura debe ser administrable por el equipo disponible, con procesos claros de cambio y mantenimiento.</td>
+                    <td>Documentación básica actualizada; cambios planificados y registrados; tiempo medio de aplicación de cambios dentro de ventanas definidas.</td>
+                    <td>Media</td>
+                    <td>Mala administración aumenta riesgo de errores de configuración y brechas de seguridad.</td>
+                    <td>Afecta elección de tecnologías, complejidad de segmentación y cantidad de reglas/políticas distintas.</td>
+                    <td>Considerar capacitación del equipo y estándar de configuración.</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

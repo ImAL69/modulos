@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Foro (Unidad 2): Reto de liderazgo en un proyecto de IA/ciberseguridad (RAP2)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL (mismo estilo base, más dinámico) --- */
+    body {
+        margin: 0;
+        padding: 0;
+        background: radial-gradient(circle at top left, #eef2ff 0, #ffffff 40%, #e0f2fe 100%);
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .forum-container {
+        color: #444;
+        max-width: 1080px;
+        margin: 40px auto;
+        padding: 40px 30px 32px;
+        background: #ffffff;
+        border-radius: 24px;
+        box-shadow: 0 14px 40px rgba(15, 23, 42, 0.14);
+        border-top: 6px solid #6a11cb;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Franja superior animada */
+    .animated-bar {
+        position: absolute;
+        inset: 0;
+        height: 160px;
+        background: linear-gradient(120deg, rgba(106,17,203,0.14), rgba(37,117,252,0.10));
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .animated-pill {
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(129,140,248,0.35), transparent 70%);
+        filter: blur(2px);
+        animation: float-pill 14s ease-in-out infinite alternate;
+    }
+
+    .animated-pill.pill-left { top: -60px; left: -40px; }
+    .animated-pill.pill-right { top: -80px; right: -40px; animation-delay: 2s; }
+
+    @keyframes float-pill {
+        from { transform: translate3d(0, 0, 0); opacity: 0.7; }
+        to { transform: translate3d(20px, 18px, 0); opacity: 1; }
+    }
+
+    /* --- LOGO UNIVERSIDAD --- */
+    .uni-logo {
+        position: absolute;
+        top: 22px;
+        right: 24px;
+        width: 110px;
+        height: auto;
+        z-index: 10;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: rgba(255,255,255,0.96);
+        padding: 6px 8px;
+        border-radius: 14px;
+        box-shadow: 0 8px 18px rgba(15,23,42,0.13);
+    }
+    .uni-logo:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 12px 26px rgba(15,23,42,0.20);
+    }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.2fr);
+        gap: 24px;
+        align-items: center;
+        margin-bottom: 28px;
+        padding-top: 6px;
+    }
+
+    .welcome-header {
+        z-index: 1;
+    }
+
+    .welcome-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 12px;
+        border-radius: 999px;
+        background: rgba(37, 117, 252, 0.08);
+        color: #1d4ed8;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+        animation: fadeInDown 0.8s ease both;
+    }
+
+    .welcome-badge span.icon {
+        font-size: 1rem;
+    }
+
+    .welcome-title {
+        font-family: 'Nunito', sans-serif;
+        font-size: 2.1rem;
+        font-weight: 800;
+        margin: 0 0 10px 0;
+        line-height: 1.25;
+        background: linear-gradient(120deg, #6a11cb 0%, #2575fc 60%, #22c55e 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeInDown 0.95s ease 0.05s both;
+    }
+
+    .welcome-subtitle {
+        font-size: 0.98rem;
+        color: #111827;
+        margin: 4px 0 12px;
+        max-width: 95%;
+    }
+
+    .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 4px;
+    }
+
+    .tag-chip {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(148,163,184,0.7);
+        background: rgba(248,250,252,0.9);
+        color: #0f172a;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .tag-chip i {
+        font-style: normal;
+        font-size: 0.9rem;
+    }
+
+    .forum-image-wrapper {
+        position: relative;
+        z-index: 1;
+    }
+
+    .forum-image {
+        width: 100%;
+        max-width: 520px;
+        height: auto;
+        border-radius: 24px;
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25);
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1s ease 0.4s forwards;
+    }
+
+    .image-glow {
+        position: absolute;
+        inset: auto 5% -18px 5%;
+        height: 26px;
+        background: radial-gradient(circle, rgba(37,99,235,0.28), transparent 65%);
+        filter: blur(4px);
+        opacity: 0;
+        animation: glowIn 1.2s ease 0.55s forwards;
+    }
+
+    @keyframes glowIn {
+        from { opacity: 0; transform: scaleX(0.85); }
+        to { opacity: 1; transform: scaleX(1); }
+    }
+
+    /* --- CONTENIDO GENERAL --- */
+    .content {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    .section {
+        background: #f9fafb;
+        border-radius: 18px;
+        padding: 18px 18px 14px;
+        margin-bottom: 18px;
+        border: 1px solid #e5e7eb;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .section:nth-of-type(odd) {
+        background: #f5f7ff;
+        border-color: #e0e7ff;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 6px;
+    }
+
+    .section-pill {
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #6366f1, #22c55e);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 800;
+        font-size: 0.92rem;
+        box-shadow: 0 4px 12px rgba(55,65,81,0.4);
+        flex-shrink: 0;
+    }
+
+    .section-title {
+        font-family: 'Nunito', sans-serif;
+        color: #111827;
+        font-size: 1.25rem;
+        font-weight: 800;
+    }
+
+    .section-subtitle {
+        font-size: 0.86rem;
+        color: #6b7280;
+        margin-left: 40px;
+        margin-top: -4px;
+        margin-bottom: 6px;
+    }
+
+    .section p {
+        margin-bottom: 10px;
+        text-align: justify;
+    }
+
+    .section ul {
+        margin: 6px 0 12px 22px;
+        padding: 0;
+    }
+
+    .section li {
+        margin-bottom: 6px;
+    }
+
+    /* --- CAJAS ESPECIALES --- */
+    .info-box {
+        background: linear-gradient(135deg, #4f46e5 0%, #0ea5e9 100%);
+        border-left: 5px solid #4338ca;
+        padding: 16px 18px 14px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        box-shadow: 0 6px 18px rgba(15,23,42,0.35);
+        color: #f9fafb;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .info-box::after {
+        content: "";
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.22);
+        top: -40px;
+        right: -20px;
+        filter: blur(4px);
+        opacity: 0.8;
+    }
+
+    .info-label {
+        font-weight: 800;
+        color: #e0f2fe;
+        margin-bottom: 4px;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .highlight-box {
+        background: #eef2ff;
+        border-left: 4px solid #6366f1;
+        padding: 12px 14px 10px;
+        border-radius: 14px;
+        margin: 12px 0;
+        box-shadow: 0 3px 10px rgba(15,23,42,0.08);
+    }
+
+    .highlight-box strong {
+        color: #312e81;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .example-box {
+        background-color: #f0f9ff;
+        border: 1px dashed #3b82f6;
+        padding: 14px 15px 10px;
+        margin: 14px 0 8px;
+        border-radius: 14px;
+        font-style: italic;
+    }
+
+    .example-box p {
+        margin: 5px 0;
+        color: #1e3a8a;
+    }
+
+    /* --- LAYOUT DOS COLUMNAS PARA CONTENIDO CLAVE --- */
+    .two-column {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+        gap: 16px;
+        margin-top: 8px;
+    }
+
+    .card-soft {
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 12px 14px 10px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 4px 10px rgba(148,163,184,0.18);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-soft::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(129,140,248,0.12), transparent 60%);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        pointer-events: none;
+    }
+
+    .card-soft:hover::before {
+        opacity: 1;
+    }
+
+    .card-soft-title {
+        font-family: 'Nunito', sans-serif;
+        font-weight: 700;
+        font-size: 0.98rem;
+        margin-bottom: 4px;
+        color: #111827;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .card-soft-title span.icon {
+        font-size: 1.1rem;
+    }
+
+    .card-soft p {
+        font-size: 0.94rem;
+        margin-bottom: 6px;
+    }
+
+    .card-soft ul {
+        margin-left: 18px;
+        margin-top: 2px;
+    }
+
+    /* --- TIMELINE PARA PARTICIPACIÓN --- */
+    .timeline {
+        margin-top: 4px;
+        padding-left: 12px;
+        border-left: 2px dashed #c4b5fd;
+    }
+
+    .timeline-step {
+        position: relative;
+        padding-left: 16px;
+        margin-bottom: 12px;
+    }
+
+    .timeline-step::before {
+        content: "";
+        position: absolute;
+        left: -7px;
+        top: 3px;
+        width: 11px;
+        height: 11px;
+        border-radius: 999px;
+        background: #4f46e5;
+        box-shadow: 0 0 0 4px rgba(129,140,248,0.35);
+    }
+
+    .timeline-title {
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 2px;
+    }
+
+    .timeline-text {
+        font-size: 0.92rem;
+        color: #374151;
+    }
+
+    /* --- ETIQUETA RAP2 --- */
+    .rap-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 3px 9px;
+        border-radius: 999px;
+        background: rgba(22,163,74,0.08);
+        color: #166534;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        margin-left: 6px;
+    }
+
+    .rap-badge span {
+        font-size: 0.95rem;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+        margin-top: 18px;
+        text-align: center;
+        font-size: 0.84rem;
+        color: #6b7280;
+        padding-top: 10px;
+        border-top: 1px solid #e5e7eb;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 600;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.94); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 880px) {
+        .forum-container {
+            margin: 18px 12px;
+            padding: 30px 18px 22px;
+        }
+
+        .header-box {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .welcome-title {
+            font-size: 1.7rem;
+        }
+
+        .welcome-subtitle {
+            max-width: 100%;
+        }
+
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 0 12px auto;
+        }
+
+        .two-column {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    @media (max-width: 520px) {
+        .forum-container {
+            border-radius: 18px;
+        }
+        .welcome-title {
+            font-size: 1.5rem;
+        }
+        .section {
+            padding: 14px 12px 10px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="forum-container">
+    <div class="animated-bar"></div>
+    <div class="animated-pill pill-left"></div>
+    <div class="animated-pill pill-right"></div>
+
+    <!-- Logo institucional -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1"
+         alt="Logo Universidad" class="uni-logo">
+
+    <!-- Encabezado -->
+    <div class="header-box">
+        <div class="welcome-header">
+            <div class="welcome-badge">
+                <span class="icon">💬</span>
+                Foro Unidad 2 · Liderazgo en proyectos de IA y ciberseguridad
+            </div>
+            <h1 class="welcome-title">
+                Reto de liderazgo en un proyecto de IA/ciberseguridad
+            </h1>
+            <p class="welcome-subtitle">
+                En este foro analizarás cómo liderar proyectos donde la tecnología es crítica, pero las decisiones
+                humanas, la gestión del cambio y el control del riesgo marcan la diferencia.
+            </p>
+            <div class="tag-row">
+                <div class="tag-chip"><i>🎯</i> Liderazgo aplicado</div>
+                <div class="tag-chip"><i>🤖</i> Inteligencia Artificial</div>
+                <div class="tag-chip"><i>🛡️</i> Ciberseguridad</div>
+                <div class="tag-chip"><i>🧩</i> Gestión del cambio</div>
+            </div>
+        </div>
+
+        <div class="forum-image-wrapper">
+            <img src="https://www.dropbox.com/scl/fi/i7gjiwsn5khxz789ez2ec/Gemini_Generated_Image_la7jo7la7jo7la7j.png?rlkey=upaz7suxrsbsuosymrk71x4ho&st=5il249j8&raw=1"
+                 alt="Foro liderazgo en proyectos de IA y ciberseguridad" class="forum-image">
+            <div class="image-glow"></div>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Contexto y propósito -->
+        <div class="info-box">
+            <p class="info-label">ℹ️ Contexto del foro – Unidad 2</p>
+            <p>
+                Este foro se conecta directamente con el <strong>Resultado de Aprendizaje RAP2</strong> de la Unidad 2,
+                donde se espera que puedas <strong>analizar y liderar</strong> proyectos de <strong>Inteligencia Artificial</strong>
+                y/o <strong>ciberseguridad</strong> considerando factores técnicos, humanos, organizacionales y éticos.
+            </p>
+            <p style="font-weight: 600; margin-top: 6px;">
+                Tu participación debe ir más allá de describir la tecnología: se espera que reflexiones sobre el
+                <strong>liderazgo, la gestión del cambio, la comunicación con los actores y el control del riesgo</strong>.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-pill">1</div>
+                <div>
+                    <div class="section-title">
+                        Propósito del foro
+                        <span class="rap-badge"><span>📌</span>RAP2</span>
+                    </div>
+                    <div class="section-subtitle">
+                        ¿Qué buscamos que logres con tu participación?
+                    </div>
+                </div>
+            </div>
+            <div class="two-column">
+                <div class="card-soft">
+                    <div class="card-soft-title">
+                        <span class="icon">🎯</span>
+                        Objetivo central
+                    </div>
+                    <p>
+                        Que identifiques y analices un <strong>reto de liderazgo</strong> vinculado a un proyecto real o
+                        verosímil de IA y/o ciberseguridad, argumentando decisiones y estrategias para gestionarlo.
+                    </p>
+                </div>
+                <div class="card-soft">
+                    <div class="card-soft-title">
+                        <span class="icon">📌</span>
+                        Resultados esperados
+                    </div>
+                    <ul>
+                        <li>Conectar teoría y práctica en un caso de liderazgo tecnológico.</li>
+                        <li>Reconocer la importancia de la comunicación y la gestión del cambio.</li>
+                        <li>Visibilizar riesgos y decisiones críticas del líder del proyecto.</li>
+                        <li>Dialogar con otros profesionales desde una mirada crítica y respetuosa.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Situación y reto -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-pill">2</div>
+                <div>
+                    <div class="section-title">Situación de referencia y selección del reto</div>
+                    <div class="section-subtitle">
+                        Punto de partida para tu intervención inicial.
+                    </div>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div class="card-soft">
+                    <div class="card-soft-title">
+                        <span class="icon">🧪</span>
+                        Escoge un proyecto
+                    </div>
+                    <p>Parte de un proyecto real o hipotético donde tú asumes un rol de liderazgo, por ejemplo:</p>
+                    <ul>
+                        <li>Sistema de analítica con IA para apoyar decisiones institucionales.</li>
+                        <li>Fortalecimiento de la ciberseguridad (monitoreo, firewalls, gestión de incidentes).</li>
+                        <li>Automatización de procesos críticos con IA (chatbots, clasificación inteligente, etc.).</li>
+                    </ul>
+                </div>
+
+                <div class="card-soft">
+                    <div class="card-soft-title">
+                        <span class="icon">⚠️</span>
+                        Define un reto crítico de liderazgo
+                    </div>
+                    <p>
+                        Selecciona <strong>un solo reto central</strong> para analizar, por ejemplo:
+                    </p>
+                    <ul>
+                        <li>Resistencia al cambio en usuarios o equipos.</li>
+                        <li>Falta de alineación entre el proyecto y la estrategia institucional.</li>
+                        <li>Dificultades para comunicar riesgos y alcances a directivos.</li>
+                        <li>Presiones de tiempo o recursos que afectan la seguridad y la calidad.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estructura de la intervención inicial -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-pill">3</div>
+                <div>
+                    <div class="section-title">Estructura sugerida para tu intervención inicial</div>
+                    <div class="section-subtitle">
+                        Usa estos bloques como guía para organizar tu aporte.
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>Bloque 1. Descripción breve del proyecto</strong></p>
+                <ul>
+                    <li>Tipo de proyecto (IA, ciberseguridad o mixto).</li>
+                    <li>Contexto (educación, salud, gobierno, sector privado, etc.).</li>
+                    <li>Actores clave (equipo técnico, directivos, usuarios finales, proveedores).</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>Bloque 2. Reto de liderazgo identificado</strong></p>
+                <ul>
+                    <li>Describe el reto de forma concreta.&nbsp;
+                        <em>¿Dónde se manifiesta? ¿Con quiénes?</em></li>
+                    <li>Justifica por qué lo consideras crítico para el éxito del proyecto.</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>Bloque 3. Análisis del reto desde tu rol como líder</strong></p>
+                <ul>
+                    <li>Decisiones que tomarías para gestionar el reto.</li>
+                    <li>Estrategias de liderazgo que aplicarías
+                        (participativo, transformacional, coaching, etc.).</li>
+                    <li>Riesgos que podrías mitigar si el reto se gestiona adecuadamente
+                        (retrabajo, brechas de seguridad, rechazo de usuarios, sanciones, etc.).</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>Bloque 4. Cierre reflexivo</strong></p>
+                <ul>
+                    <li>Aprendizaje clave sobre el liderazgo en proyectos de IA/ciberseguridad.</li>
+                    <li>Competencias que consideras necesario seguir fortaleciendo.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Interacción con compañeros -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-pill">4</div>
+                <div>
+                    <div class="section-title">Interacción con tus compañeros/as</div>
+                    <div class="section-subtitle">
+                        Construimos conocimiento cuando dialogamos con otros.
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                Después de publicar tu aporte inicial, realiza al menos <strong>dos (2) réplicas</strong>
+                a intervenciones de tus compañeros/as. Ten en cuenta:
+            </p>
+            <ul>
+                <li>Elige aportes que planteen retos cercanos a tu realidad o que te resulten interesantes.</li>
+                <li>Evita respuestas superficiales. Procura <strong>argumentar, preguntar y sugerir</strong>.</li>
+                <li>Vincula tus comentarios con ideas de la Unidad 2 o con experiencias propias.</li>
+                <li>Mantén un tono siempre respetuoso, profesional y orientado a construir.</li>
+            </ul>
+
+            <div class="example-box">
+                <p style="font-weight: bold; color: #1e40af; margin-bottom: 8px;">
+                    📝 Ejemplo de respuesta a un compañero/a:
+                </p>
+                <p>
+                    "Hola Carolina, gracias por compartir tu experiencia con el proyecto de monitoreo de seguridad.
+                    Me parece muy relevante el reto que mencionas sobre la resistencia al cambio del personal operativo.
+                    En un proyecto similar, nos funcionó involucrar a esos actores en el diseño de los casos de uso y
+                    realizar pilotos antes del despliegue general. ¿Has considerado alguna estrategia de participación
+                    temprana con ese equipo?"
+                </p>
+            </div>
+        </div>
+
+        <!-- Cómo participar en la plataforma -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-pill">5</div>
+                <div>
+                    <div class="section-title">Cómo participar en la plataforma (Q10)</div>
+                    <div class="section-subtitle">
+                        Pasos prácticos para ubicar y completar el foro.
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-step">
+                    <div class="timeline-title">Paso 1. Ubica el foro</div>
+                    <div class="timeline-text">
+                        Ingresa al módulo <strong>"Liderazgo y gestión de proyectos tecnológicos"</strong> y, dentro
+                        de la Unidad 2, selecciona el foro:
+                        <em>"Foro (Unidad 2): Reto de liderazgo en un proyecto de IA/ciberseguridad (RAP2)"</em>.
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="timeline-title">Paso 2. Publica tu intervención inicial</div>
+                    <div class="timeline-text">
+                        Haz clic en <strong>"Responder"</strong> o <strong>"Crear nuevo tema"</strong>.
+                        En el asunto escribe:
+                        <strong>Reto de liderazgo – [Tu nombre y apellido]</strong>.
+                        Redacta tu aporte siguiendo los cuatro bloques sugeridos y luego pulsa
+                        <strong>"Guardar/Enviar"</strong>.
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="timeline-title">Paso 3. Realiza tus réplicas</div>
+                    <div class="timeline-text">
+                        Revisa las participaciones publicadas y responde al menos a
+                        <strong>dos compañeros/as</strong>, aportando ideas, preguntas o estrategias desde tu
+                        experiencia o desde los contenidos del módulo.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Criterios generales de valoración -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-pill">6</div>
+                <div>
+                    <div class="section-title">Criterios generales de valoración</div>
+                    <div class="section-subtitle">
+                        Revisa también la rúbrica detallada publicada en el aula.
+                    </div>
+                </div>
+            </div>
+
+            <p>En términos generales, se tendrá en cuenta:</p>
+            <ul>
+                <li><strong>Pertinencia</strong> del caso y del reto de liderazgo seleccionado.</li>
+                <li><strong>Profundidad del análisis</strong> y su relación con la Unidad 2 y el RAP2.</li>
+                <li><strong>Claridad y coherencia</strong> en la escritura y la argumentación.</li>
+                <li><strong>Calidad de las réplicas</strong> y aportes a los compañeros/as.</li>
+                <li><strong>Actitud ética y profesional</strong> en todas tus intervenciones.</li>
+            </ul>
+
+            <p style="margin-top: 6px;">
+                Te invito a asumir este foro como un laboratorio de reflexión sobre tu propio estilo de liderazgo
+                en proyectos donde la IA y la ciberseguridad son protagonistas.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        Fundación Escuela Tecnológica de Neiva – FET | Liderazgo, innovación y transformación digital
+    </div>
+
+</div>
+
+</body>
+</html>

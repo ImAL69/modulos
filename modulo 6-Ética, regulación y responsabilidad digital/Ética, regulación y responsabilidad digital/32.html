@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .frameworks-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1; /* Azul Institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #0d47a1;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(13, 71, 161, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #e3f2fd;
+    }
+
+    /* --- TEXTO INTRODUCTORIO --- */
+    .intro-block {
+        background: #e3f2fd;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        border-left: 5px solid #1565c0;
+        text-align: justify;
+    }
+
+    /* --- TARJETAS DE MARCOS (ESTILO FICHA) --- */
+    .framework-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 40px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Barra lateral de color para distinguir organizaciones */
+    .card-oecd { border-left: 6px solid #0277bd; } /* Azul Claro */
+    .card-unesco { border-left: 6px solid #283593; } /* Azul Oscuro */
+    .card-auth { border-left: 6px solid #00695c; } /* Teal */
+
+    .card-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #37474f;
+        margin-top: 0;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .card-icon { font-size: 1.8rem; }
+
+    .card-content {
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .card-content p { margin-bottom: 15px; }
+
+    .card-content ul {
+        padding-left: 20px;
+        margin-bottom: 20px;
+        list-style-type: none;
+    }
+
+    .card-content li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .card-content li::before {
+        content: '▸';
+        color: #0d47a1;
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+    }
+
+    /* Caja destacada dentro de la tarjeta */
+    .highlight-box {
+        background: #f5f5f5;
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 0.95rem;
+        border: 1px dashed #bdbdbd;
+    }
+    
+    .highlight-title { font-weight: bold; color: #455a64; display: block; margin-bottom: 5px; }
+
+    /* --- SUBSECCIONES PARA AUTORIDADES (a, b, c) --- */
+    .sub-section {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+
+    .sub-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.3rem;
+        color: #00695c;
+        font-weight: 700;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="frameworks-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Marcos y guías de IA responsable (OCDE, UNESCO, autoridades de datos)</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/gh0neptjll8i0ug7kew6k/Gemini_Generated_Image_ocu69cocu69cocu6.png?rlkey=oryhbeten9yz4epzi105t800e&st=wsiupv81&raw=1" alt="Marcos Globales de IA" class="hero-image">
+    </div>
+
+    <div class="intro-block">
+        <p>En esta unidad vamos a pasar de “hablar de ética” en abstracto a apoyarnos en marcos y guías concretas que ya existen a nivel internacional.</p>
+        <p>Estos documentos no son teoría suelta: son puntos de referencia para diseñar políticas internas, lineamientos y buenas prácticas en organizaciones reales.</p>
+        <p>A continuación encontrarás algunos de los marcos más relevantes, con los títulos enlazados para que puedas consultarlos directamente.</p>
+    </div>
+
+    <div class="framework-card card-oecd">
+        <h2 class="card-title"><span class="card-icon">🌐</span> 1. Principios de IA de la OCDE</h2>
+        <div class="card-content">
+            <p>La OCDE (Organización para la Cooperación y el Desarrollo Económicos) aprobó en 2019 una Recomendación sobre Inteligencia Artificial, donde se formulan los conocidos “Principios de IA de la OCDE”. Estos principios buscan una IA:</p>
+            <ul>
+                <li>Innovadora y confiable.</li>
+                <li>Que respete los derechos humanos y los valores democráticos.</li>
+                <li>Que impulse un desarrollo inclusivo y sostenible.</li>
+            </ul>
+            <p><strong>Entre sus ideas clave están:</strong></p>
+            <ul>
+                <li>La IA debe beneficiar a las personas y al planeta, no solo a los negocios.</li>
+                <li>Debe respetar el Estado de derecho, los derechos humanos y la diversidad, e incluir mecanismos de supervisión humana.</li>
+                <li>Se enfatiza la transparencia, la robustez técnica y la rendición de cuentas (accountability) a lo largo del ciclo de vida de los sistemas de IA.</li>
+            </ul>
+            <div class="highlight-box">
+                <span class="highlight-title">Aplicación Práctica:</span>
+                En esta unidad, estos principios te sirven como “brújula internacional” para pensar si tus lineamientos organizacionales están alineados con estándares globales.
+            </div>
+        </div>
+    </div>
+
+    <div class="framework-card card-unesco">
+        <h2 class="card-title"><span class="card-icon">🏛️</span> 2. Recomendación de la UNESCO sobre la ética de la IA</h2>
+        <div class="card-content">
+            <p>La UNESCO adoptó en 2021 la primera norma mundial sobre la ética de la IA: la Recomendación sobre la Ética de la Inteligencia Artificial, aplicable a los 194 Estados Miembros.</p>
+            <p><strong>Esta Recomendación:</strong></p>
+            <ul>
+                <li>Define valores y principios (dignidad humana, justicia, no discriminación, diversidad, sostenibilidad, paz, etc.).</li>
+                <li>Propone áreas de acción política, como gobernanza de datos, educación y alfabetización digital, medio ambiente, género, trabajo, salud, etc.</li>
+                <li>Invita a los países a crear mecanismos de evaluación de impacto ético de la IA.</li>
+            </ul>
+            <div class="highlight-box">
+                <span class="highlight-title">Para tu trabajo:</span>
+                La Recomendación de la UNESCO te ayuda a enmarcar tus propuestas no solo en “cumplir la ley”, sino en promover justicia social, inclusión y sostenibilidad. También te ayuda a traducir grandes valores (dignidad, equidad, diversidad) en acciones concretas dentro de tu institución o proyecto.
+            </div>
+        </div>
+    </div>
+
+    <div class="framework-card card-auth">
+        <h2 class="card-title"><span class="card-icon">⚖️</span> 3. Guías de autoridades de protección de datos sobre IA responsable</h2>
+        <div class="card-content">
+            <p>Las autoridades de protección de datos (APD) de distintos países están publicando guías específicas sobre IA, porque muchos sistemas de IA se alimentan de datos personales y pueden afectar directamente derechos fundamentales.</p>
+            <p>Algunos ejemplos clave que puedes consultar:</p>
+
+            <div class="sub-section">
+                <span class="sub-title">a) AEPD (España) – Uso de IA y RGPD</span>
+                <p><strong>Guía “Adecuación al RGPD de tratamientos que incorporan Inteligencia Artificial. Una introducción”</strong></p>
+                <p>Disponible en la web de la Agencia Española de Protección de Datos (AEPD), esta guía explica cómo adaptar proyectos de IA a los principios del RGPD (minimización, licitud, evaluación de impacto, seguridad, etc.).</p>
+                <p><strong>Sección “Innovación y Tecnología” de la AEPD</strong></p>
+                <p>Reúne herramientas y materiales de apoyo (plantillas de EIPD, kits de cumplimiento, notas técnicas) pensadas para tecnologías emergentes, incluida la IA.</p>
+                <p>Para tu trabajo en RA3, estas guías te muestran cómo bajar la ética a procedimientos concretos: evaluaciones de impacto, cláusulas informativas, medidas de seguridad, etc.</p>
+            </div>
+
+            <div class="sub-section">
+                <span class="sub-title">b) ICO (Reino Unido) – Guidance on AI and data protection</span>
+                <p>La Information Commissioner’s Office (ICO), autoridad de datos del Reino Unido, ha elaborado una guía extensa sobre IA y protección de datos.</p>
+                <p><strong>Esta guía:</strong></p>
+                <ul>
+                    <li>Explica cómo aplicar los principios del UK GDPR a sistemas de IA (licitud, transparencia, minimización, exactitud, limitación de finalidad, seguridad, responsabilidad).</li>
+                    <li>Incluye capítulos específicos sobre: Gobernanza y accountability en IA, Transparencia y explicabilidad, Exactitud y equidad (fairness) en modelos.</li>
+                    <li>Se complementa con un <em>AI and data protection risk toolkit</em>, que ayuda a identificar y gestionar riesgos éticos y legales de proyectos de IA.</li>
+                </ul>
+                <p>Aunque está en inglés, es una referencia muy útil para inspirar checklists y matrices de riesgo en tu contexto.</p>
+            </div>
+
+            <div class="sub-section">
+                <span class="sub-title">c) Otras autoridades y marcos nacionales</span>
+                <p>Varios países y autoridades de datos están generando sus propias guías de IA responsable. Por ejemplo:</p>
+                <ul>
+                    <li><strong>Argentina – Agencia de Acceso a la Información Pública (AAIP):</strong> Guía para usar la IA de manera responsable, orientada a entidades públicas y privadas, con énfasis en transparencia y protección de datos personales en el uso de IA.</li>
+                    <li><strong>Colombia – Marco ético de IA (no es APD, pero sí referencia nacional):</strong> Documento de MinCiencias que plantea un marco ético para la IA en Colombia, con principios y recomendaciones para proyectos que traten datos personales.</li>
+                </ul>
+                <p>Estas guías muestran cómo se están adaptando los grandes marcos (OCDE, UNESCO, RGPD) a realidades locales, algo muy útil para que tú puedas hacer el mismo ejercicio en tu institución o sector.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .module-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* --- LOGO UNIVERSIDAD (Esquina) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 10;
+        transition: transform 0.3s ease;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- HERO SECTION --- */
+    .hero-section {
+        text-align: center;
+        margin-bottom: 60px;
+        position: relative;
+        z-index: 1;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 15px;
+        letter-spacing: -1px;
+        animation: slideInDown 1s ease-out both;
+    }
+
+    /* --- NUEVA IMAGEN DESTACADA --- */
+    .hero-image {
+        width: 100%;
+        max-width: 850px; /* Tamaño grande pero contenido */
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15); /* Sombra elegante */
+        margin: 30px auto; /* Espacio arriba y abajo */
+        display: block;
+        opacity: 0;
+        animation: fadeIn 1.5s ease 0.5s forwards; /* Aparece suavemente después del título */
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto;
+        color: #555;
+    }
+
+    .highlight-box {
+        background: #eef2f3;
+        border-left: 5px solid #2c5364;
+        padding: 20px;
+        margin: 30px auto;
+        max-width: 850px;
+        text-align: left;
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+    }
+
+    /* --- GRID --- */
+    .content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 25px;
+        margin-bottom: 60px;
+    }
+
+    /* --- TARJETAS --- */
+    .card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        border: 1px solid rgba(0,0,0,0.05);
+        cursor: pointer;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15);
+        border-color: #2c5364;
+    }
+
+    .card-header {
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: linear-gradient(to right, #ffffff, #f9f9f9);
+    }
+
+    .card-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+        flex-shrink: 0;
+        background: linear-gradient(135deg, #2c5364 0%, #203a43 100%);
+        box-shadow: 0 4px 10px rgba(44, 83, 100, 0.3);
+    }
+
+    .card-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    .expand-icon {
+        margin-left: auto;
+        color: #aaa;
+        font-weight: bold;
+        transition: transform 0.3s ease;
+    }
+
+    .card.active .expand-icon { transform: rotate(180deg); color: #2c5364; }
+
+    /* Contenido Oculto */
+    .card-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.6s ease-in-out;
+        background: #fff;
+    }
+
+    .card-content-inner {
+        padding: 0 25px 25px 25px;
+        border-top: 1px dashed #e0e0e0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #666;
+    }
+
+    .card-content-inner ul { padding-left: 20px; margin-top: 10px; }
+    .card-content-inner li { margin-bottom: 8px; }
+    
+    .card.active .card-content { max-height: 1000px; }
+
+    /* Animaciones */
+    @keyframes slideInDown {
+        from { opacity: 0; transform: translateY(-30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .main-title { font-size: 2rem; }
+        .uni-logo { width: 80px; top: 10px; right: 10px; }
+        .content-grid { grid-template-columns: 1fr; }
+        .highlight-box { margin: 20px 0; }
+        .module-container { padding: 30px 15px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="module-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="hero-section">
+        <h1 class="main-title">Ética, Regulación y Responsabilidad Digital</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/prd00c2ywqjx4bp03sr60/ChatGPT-Image-17-nov-2025-01_01_00-p.m..png?rlkey=bmhfetxvqqbxw3p6uou1lqbkb&st=dww26e49&raw=1" alt="Ilustración Ética Digital" class="hero-image">
+
+        <p class="intro-text">
+            ¡Hola! Te doy la bienvenida a este espacio diseñado para reflexionar, cuestionar y tomar postura frente al uso de la tecnología en tu vida personal y profesional.
+        </p>
+        
+        <div class="highlight-box">
+            <strong>Pregúntate:</strong><br>
+            ¿Todo lo que es técnicamente posible es también éticamente aceptable?<br>
+            ¿Qué responsabilidades tengo cuando uso o diseño tecnología?<br>
+            ¿Cómo puedo protegerme a mí y a otros en un mundo hiperconectado?
+        </div>
+    </div>
+
+    <div class="content-grid">
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">📂</div>
+                <h3 class="card-title">1. ¿Qué vas a encontrar aquí?</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>En esta sección de "Bienvenida y Guía de Aprendizaje" encontrarás:</p>
+                    <ul>
+                        <li>Mensaje de bienvenida y propósito.</li>
+                        <li>Resultados de aprendizaje esperados.</li>
+                        <li>Metodología de trabajo en Q10.</li>
+                        <li>Criterios de evaluación y Netiqueta.</li>
+                        <li>Actividades previas a la Semana 1.</li>
+                    </ul>
+                    <p>La idea es que tengas claro <strong>cómo vamos a trabajar</strong> para aprovechar al máximo la experiencia.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">2. Propósito del Módulo</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>No basta con saber usar la tecnología; necesitamos entender sus impactos. El propósito es que puedas:</p>
+                    <ul>
+                        <li><strong>Reconocer dilemas éticos:</strong> Privacidad, sesgos, desinformación, ciberacoso.</li>
+                        <li><strong>Comprender normas:</strong> Principios que regulan el uso de la información.</li>
+                        <li><strong>Asumir una postura crítica:</strong> Construir criterio para tomar mejores decisiones tecnológicas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🧠</div>
+                <h3 class="card-title">3. ¿Qué aprenderás?</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>Al finalizar, serás capaz de:</p>
+                    <ul>
+                        <li>Identificar riesgos éticos (IA, redes sociales, datos).</li>
+                        <li>Reconocer marcos de regulación y protección de datos.</li>
+                        <li>Analizar casos reales de responsabilidad digital.</li>
+                        <li>Proponer buenas prácticas para un uso más humano de la tecnología.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">💻</div>
+                <h3 class="card-title">4. ¿Cómo trabajaremos en Q10?</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>Tendrás acceso organizado por semanas a:</p>
+                    <ul>
+                        <li><strong>Recursos Teóricos:</strong> Textos, infografías y videos.</li>
+                        <li><strong>Actividades Prácticas:</strong> Análisis de casos y ejercicios de reflexión.</li>
+                        <li><strong>Foros de Discusión:</strong> Debates sobre temas actuales.</li>
+                        <li><strong>Evaluaciones:</strong> Cuestionarios para verificar comprensión.</li>
+                        <li><strong>Evidencias:</strong> Ensayos, propuestas o análisis de casos.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">📊</div>
+                <h3 class="card-title">5. Evaluación</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>Se valorará tanto lo que sabes como tu participación:</p>
+                    <ul>
+                        <li>Participación activa en foros y colaboraciones.</li>
+                        <li>Calidad y cumplimiento de actividades individuales.</li>
+                        <li>Responsabilidad con las fechas.</li>
+                        <li><strong>Coherencia ética</strong> en tus propuestas y opiniones.</li>
+                    </ul>
+                    <p><em>Revisa la sección "Evaluación" en Q10 para ver los porcentajes detallados.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🤝</div>
+                <h3 class="card-title">6. Reglas de Convivencia</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>Este módulo es una práctica de ciudadanía digital. Te pedimos:</p>
+                    <ul>
+                        <li><strong>Respeto total:</strong> Cero lenguaje ofensivo o discriminación.</li>
+                        <li><strong>Escucha activa:</strong> Valorar opiniones diferentes.</li>
+                        <li><strong>Buena escritura:</strong> Claridad y evitar mayúsculas sostenidas.</li>
+                        <li><strong>Citar fuentes:</strong> Respetar la propiedad intelectual.</li>
+                        <li><strong>Privacidad:</strong> No compartir datos sensibles de terceros.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">📝</div>
+                <h3 class="card-title">7. Antes de la Semana 1</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <ul>
+                        <li>Leer completa esta Guía de Bienvenida.</li>
+                        <li>Revisar el programa o sílabo del módulo.</li>
+                        <li>Participar en el <strong>Foro de Presentación</strong> (si está habilitado).</li>
+                        <li>Verificar tu acceso y notificaciones en Q10.</li>
+                        <li>Organizar tu tiempo de estudio semanal.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div class="card-icon">🚀</div>
+                <h3 class="card-title">8. ¡Bienvenid@!</h3>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner">
+                    <p>Este módulo no da respuestas cerradas, sino que invita a construir criterio propio.</p>
+                    <p>Te invito a vivir este curso con:</p>
+                    <ul>
+                        <li><strong>Curiosidad</strong> para explorar.</li>
+                        <li><strong>Honestidad</strong> en tus trabajos.</li>
+                        <li><strong>Respeto</strong> hacia la comunidad.</li>
+                        <li><strong>Compromiso</strong> con tu formación.</li>
+                    </ul>
+                    <p style="text-align: center; font-weight: bold; margin-top: 15px; color: #2c5364;">¡Tu experiencia y contexto harán diferente este curso!</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function toggleCard(card) {
+        card.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL (TEMA CLARO) --- */
+    .arch-module-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f; /* Texto oscuro para fondo claro */
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff; /* Fondo blanco limpio */
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd; /* Borde superior Azul Tech */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        /* Fondo blanco semi-transparente para asegurar legibilidad del logo */
+        background: rgba(255,255,255,0.9); 
+        padding: 5px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        /* AUMENTADO EL PADDING SUPERIOR para que el título baje y no choque con el logo */
+        padding-top: 80px; 
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 30px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #0277bd; /* Azul fuerte */
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(2, 119, 189, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #b3e5fc;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '>';
+        color: #00acc1; /* Cian para viñetas */
+        font-weight: bold;
+        font-family: 'Orbitron', sans-serif;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #0277bd;
+        border-left: 5px solid #0277bd;
+        padding-left: 15px;
+        margin-bottom: 25px;
+        font-weight: 700;
+        margin-top: 40px;
+        background: #e1f5fe; /* Fondo azul muy claro */
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 0 8px 8px 0;
+    }
+
+    /* --- RA CARDS (GRID CLARO) --- */
+    .ra-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    .ra-card {
+        background: #f5f7fa; /* Gris muy claro */
+        border: 1px solid #cfd8dc;
+        border-radius: 12px;
+        padding: 25px;
+        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .ra-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        border-color: #0277bd;
+        background: #fff;
+    }
+
+    .ra-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.1rem;
+        color: #0277bd;
+        margin-bottom: 15px;
+        font-weight: 700;
+        border-bottom: 2px solid #b0bec5;
+        padding-bottom: 10px;
+    }
+
+    /* --- UNIDADES (ACORDEÓN CLARO) --- */
+    details.unit-item {
+        background: #fff;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        border: 1px solid #b0bec5;
+        overflow: hidden;
+    }
+
+    summary.unit-summary {
+        padding: 20px;
+        background: #eceff1; /* Gris claro para el encabezado cerrado */
+        cursor: pointer;
+        font-weight: 700;
+        color: #37474f;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+        border-bottom: 1px solid #cfd8dc;
+    }
+
+    summary.unit-summary:hover { background: #cfd8dc; }
+    summary.unit-summary::-webkit-details-marker { display: none; }
+    
+    summary.unit-summary::after {
+        content: '+'; font-size: 1.5rem; color: #0277bd;
+    }
+    details[open] summary.unit-summary::after {
+        content: '-';
+    }
+    
+    details[open] summary.unit-summary {
+        background: #e1f5fe; /* Color diferente cuando está abierto */
+        color: #0277bd;
+        border-bottom: 2px solid #0277bd;
+    }
+
+    .unit-content {
+        padding: 25px;
+        background: #fff;
+        color: #37474f;
+    }
+
+    .unit-objective {
+        background: #e0f7fa; /* Fondo cian muy claro */
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-style: italic;
+        border: 1px dashed #00acc1;
+        color: #006064;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        /* En móviles, el logo se centra arriba y el título baja más */
+        .uni-logo { 
+            position: static; 
+            display: block; 
+            margin: 0 auto 20px auto; 
+        }
+        .header-box {
+            padding-top: 20px; /* Restaurar padding normal si el logo ya no es absoluto */
+        }
+        .main-title { font-size: 1.8rem; }
+        .ra-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="arch-module-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Arquitecturas seguras: Redes inteligentes para el futuro (versión ampliada)</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/4cb9rkzn5aohr8tpbuirj/Gemini_Generated_Image_ciuxg9ciuxg9ciux.png?rlkey=fydjdi8wk29egd59v3yqr7i87&st=k4p9vo19&raw=1" alt="Arquitectura de Red" class="hero-image">
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1. Propósito del módulo</h2>
+        <p>Este módulo está diseñado para que desarrolles la capacidad de pensar y actuar como diseñador/a de arquitectura: no solo entender tecnologías por separado, sino integrarlas de manera coherente para que una organización pueda operar de forma segura, estable y escalable.</p>
+        <p>Cuando hablamos de arquitecturas seguras e inteligentes, nos referimos a soluciones donde la red y la infraestructura dejan de ser “tuberías” y se convierten en una plataforma estratégica que:</p>
+        <ul>
+            <li>Conecta personas, aplicaciones, datos y dispositivos (dentro y fuera de la organización).</li>
+            <li>Protege activos críticos (datos, servicios, identidades) desde el diseño, no como “parche”.</li>
+            <li>Se adapta al crecimiento y al cambio (más sedes, más usuarios, más servicios en nube, más IoT).</li>
+            <li>Se observa y se gestiona con monitoreo y analítica, permitiendo anticipar fallas y responder a incidentes.</li>
+        </ul>
+        
+        <p><strong>En el contexto actual, las organizaciones se enfrentan a entornos cada vez más complejos:</strong></p>
+        <ul>
+            <li>Redes de campus con alta densidad de usuarios (BYOD, invitados, movilidad).</li>
+            <li>Infraestructura de centro de datos con virtualización, servicios internos y alta disponibilidad.</li>
+            <li>Servicios en nube (SaaS, PaaS, IaaS) y modelos híbridos (on-prem + cloud).</li>
+            <li>Dispositivos IoT y entornos OT (industria, control físico, sensores) con riesgos particulares.</li>
+            <li>Cargas de trabajo basadas en IA (analítica, automatización, modelos que consumen datos y exponen APIs).</li>
+        </ul>
+
+        <p>Por eso, el objetivo central no es solo “conocer tecnologías”, sino aprender a tomar decisiones de diseño informadas, respondiendo preguntas como:</p>
+        <ul>
+            <li>¿Qué arquitectura conviene según el entorno (campus, multi-sede, híbrido, IoT/OT)?</li>
+            <li>¿Cómo segmento para reducir superficie de ataque y movimiento lateral?</li>
+            <li>¿Qué mecanismos de seguridad debo colocar en qué puntos (perímetro, acceso, identidad, APIs)?</li>
+            <li>¿Cómo garantizo disponibilidad y resiliencia sin disparar costos?</li>
+            <li>¿Qué debo monitorear para detectar fallos y ataques a tiempo?</li>
+            <li>¿Cómo integro IA y sistemas distribuidos sin exponer datos ni servicios?</li>
+        </ul>
+
+        <p>El módulo enfatiza el equilibrio entre desempeño, costo, escalabilidad y protección, porque en la vida real estas variables compiten:</p>
+        <ul>
+            <li>Más inspección de seguridad puede aumentar latencia.</li>
+            <li>Más disponibilidad puede requerir redundancia e inversión.</li>
+            <li>Más escalabilidad implica automatización y control centralizado.</li>
+            <li>Más integración con nube e IA aumenta la superficie de ataque y la necesidad de gobernanza.</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2. Resultados de Aprendizaje (RA) del módulo (explicados)</h2>
+        <p>Al finalizar el módulo, se espera que puedas demostrar competencias aplicables a escenarios reales:</p>
+        
+        <div class="ra-grid">
+            
+            <div class="ra-card">
+                <div class="ra-title">RA1. Diseñar arquitecturas tecnológicas seguras e inteligentes</div>
+                <p>Esto significa que podrás construir una propuesta arquitectónica que combine:</p>
+                <ul>
+                    <li>Conectividad intencional: quién se conecta con quién y bajo qué reglas.</li>
+                    <li>Escalabilidad: cómo crecer sin romper el diseño ni volverlo inmanejable.</li>
+                    <li>Protección de datos: controles y políticas para que la información circule de forma segura.</li>
+                    <li>Atributos de calidad: disponibilidad, resiliencia, rendimiento, mantenibilidad y observabilidad.</li>
+                </ul>
+                <p><em>En otras palabras: no solo “hacer un diagrama”, sino diseñar una arquitectura defendible, con justificación.</em></p>
+            </div>
+
+            <div class="ra-card">
+                <div class="ra-title">RA2. Comparar tecnologías de red y mecanismos de seguridad</div>
+                <p>Aquí el foco es la habilidad para evaluar opciones con criterios:</p>
+                <ul>
+                    <li>¿Qué tecnología encaja mejor en campus vs sedes remotas?</li>
+                    <li>¿Cuándo usar VPN, cuándo ZTNA?</li>
+                    <li>¿Qué aporta un NGFW frente a un firewall clásico?</li>
+                    <li>¿Cuándo tiene sentido NAC/802.1X y qué problemas resuelve?</li>
+                    <li>¿Qué combinación de controles reduce riesgos según el caso?</li>
+                </ul>
+                <p><em>Esto te entrena para no decidir “por moda”, sino por adecuación al entorno, riesgo y operación.</em></p>
+            </div>
+
+            <div class="ra-card">
+                <div class="ra-title">RA3. Integrar medidas de seguridad para IA y tecnologías distribuidas</div>
+                <p>Este resultado aborda los retos actuales donde IA y sistemas distribuidos cambian el enfoque:</p>
+                <ul>
+                    <li>Modelos expuestos como APIs (riesgo de abuso, fuga, DoS).</li>
+                    <li>Microservicios y tráfico este-oeste (movimiento lateral).</li>
+                    <li>Contenedores y la cadena de suministro de software.</li>
+                    <li>Datos sensibles en pipelines.</li>
+                    <li>Operación segura del ciclo de vida del modelo (SecMLOps).</li>
+                </ul>
+                <p><em>En síntesis: podrás diseñar infraestructura para IA sin perder control, con seguridad, monitoreo y evidencia.</em></p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3. Unidades de aprendizaje del módulo (ampliadas)</h2>
+        
+        <details class="unit-item">
+            <summary class="unit-summary">Unidad 1. Arquitecturas tecnológicas seguras e inteligentes (RA1)</summary>
+            <div class="unit-content">
+                <p>En esta unidad construirás la base conceptual para mirar una infraestructura como una arquitectura completa (no como equipos sueltos).</p>
+                <p><strong>Trabajarás:</strong></p>
+                <ul>
+                    <li>Fundamentos de arquitectura tecnológica y de red: entender componentes, capas y roles (negocio, apps, datos, infraestructura, seguridad).</li>
+                    <li>Capas y patrones arquitectónicos: jerarquía de red (acceso–distribución–core), DMZ, topologías, segmentación, modelos híbridos.</li>
+                    <li>Atributos de calidad: disponibilidad, resiliencia, seguridad, rendimiento y escalabilidad.</li>
+                    <li>Conectividad y segmentación: zonas de confianza, mínimo privilegio, control de comunicación entre segmentos.</li>
+                    <li>Monitoreo y operación: por qué una red “inteligente” debe ser observable y medible.</li>
+                </ul>
+                <div class="unit-objective">Lo que deberías poder hacer al cerrar la unidad: proponer un diseño de arquitectura con zonas, reglas de conectividad y justificación basada en atributos de calidad.</div>
+            </div>
+        </details>
+
+        <details class="unit-item">
+            <summary class="unit-summary">Unidad 2. Tecnologías de red y mecanismos de seguridad (RA2)</summary>
+            <div class="unit-content">
+                <p>Aquí pasas del concepto a la selección de herramientas reales y criterios comparativos.</p>
+                <p><strong>Estudiarás:</strong></p>
+                <ul>
+                    <li>LAN, WLAN y campus: alta densidad, movilidad, acceso por rol, segmentación, control de invitados.</li>
+                    <li>WAN y SD-WAN: conectividad entre sedes, priorización por aplicación, resiliencia de enlaces, administración central.</li>
+                    <li>IoT/OT e integración con TI: dispositivos con riesgos distintos, segmentación estricta, gateways, controles compensatorios.</li>
+                    <li><strong>Mecanismos de seguridad:</strong>
+                        <ul style="padding-left:15px; list-style-type:circle; margin-top:5px;">
+                            <li>Perímetro: firewalls clásicos vs NGFW, IDS/IPS, WAF.</li>
+                            <li>Acceso: VPN, ZTNA, MFA, control por identidad.</li>
+                            <li>Red interna: NAC, 802.1X, segmentación avanzada.</li>
+                        </ul>
+                    </li>
+                    <li>Criterios de selección: adecuación, seguridad, costo total, operación, compatibilidad, escalabilidad, evidencia.</li>
+                </ul>
+                <div class="unit-objective">Lo que deberías poder hacer al cerrar la unidad: construir una matriz de selección y justificar decisiones según el entorno.</div>
+            </div>
+        </details>
+
+        <details class="unit-item">
+            <summary class="unit-summary">Unidad 3. Infraestructuras seguras para IA y sistemas distribuidos (RA3)</summary>
+            <div class="unit-content">
+                <p>Esta unidad está enfocada en el “futuro presente”: IA y sistemas distribuidos ya están en organizaciones educativas, empresas y gobiernos.</p>
+                <p><strong>Verás:</strong></p>
+                <ul>
+                    <li>Plataformas de IA y analítica: fuentes, ingesta, almacenamiento (lake/warehouse), transformación, gobierno, MLOps.</li>
+                    <li>Contenedores, Kubernetes y microservicios: despliegue moderno, tráfico este-oeste, escalabilidad, observabilidad.</li>
+                    <li>Edge computing y despliegues distribuidos: IA cerca de los datos, continuidad operativa, control central de múltiples nodos edge.</li>
+                    <li><strong>Seguridad específica para IA/Distribuido:</strong>
+                        <ul style="padding-left:15px; list-style-type:circle; margin-top:5px;">
+                            <li>Seguridad de APIs (gateway, WAF, rate limiting, autenticación por rol).</li>
+                            <li>Protección de datos (clasificación, cifrado, auditoría, minimización).</li>
+                            <li>Cadena de suministro (imágenes, dependencias, secretos).</li>
+                            <li>Observabilidad y respuesta a incidentes (logs, SIEM, alertas accionables).</li>
+                            <li>SecMLOps: seguridad aplicada al ciclo de vida del modelo (desde datos hasta despliegue y monitoreo).</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="unit-objective">Lo que deberías poder hacer al cerrar la unidad: diseñar una infraestructura segura para IA (cloud/on-prem/edge), justificar controles y proponer evidencias de validación.</div>
+            </div>
+        </details>
+
+    </div>
+
+</div>
+
+</body>
+</html>

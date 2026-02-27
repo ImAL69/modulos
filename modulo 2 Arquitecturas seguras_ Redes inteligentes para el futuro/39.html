@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .network-module-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0288d1; /* Azul Tech */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif; /* Fuente tecnológica para título */
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #01579b;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 25px rgba(2, 136, 209, 0.3); /* Resplandor azul */
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #b3e5fc;
+    }
+
+    /* --- BIENVENIDA --- */
+    .welcome-box {
+        background: #e1f5fe;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        border-left: 5px solid #0288d1;
+        text-align: justify;
+    }
+
+    /* --- SECCIÓN 1: QUÉ ENCONTRARÁS (GRID DE TARJETAS) --- */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #0277bd;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #b3e5fc;
+        padding-bottom: 10px;
+        font-weight: 700;
+        margin-top: 50px;
+    }
+
+    .ideas-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .idea-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 25px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .idea-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(2, 136, 209, 0.15);
+        border-color: #0288d1;
+    }
+
+    .idea-card h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        color: #01579b;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .card-list {
+        padding-left: 20px;
+        margin: 0;
+        list-style-type: none;
+    }
+
+    .card-list li {
+        margin-bottom: 8px;
+        position: relative;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .card-list li::before {
+        content: '▪';
+        color: #0288d1;
+        font-weight: bold;
+        font-size: 1.2rem;
+        position: absolute;
+        left: -15px;
+        top: -2px;
+    }
+
+    .idea-footer {
+        background: #f5f5f5;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-style: italic;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    /* --- SECCIÓN 2: PROPÓSITO (CAJA) --- */
+    .purpose-box {
+        background: #263238; /* Gris oscuro */
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+    }
+
+    .purpose-question {
+        background: rgba(255,255,255,0.1);
+        padding: 10px 15px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        border-left: 3px solid #4fc3f7;
+    }
+
+    /* --- SECCIÓN 3: LOGROS (LISTA DE CHEQUEO) --- */
+    .achievements-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .achievements-list li {
+        margin-bottom: 15px;
+        padding-left: 35px;
+        position: relative;
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+
+    .achievements-list li::before {
+        content: '✔';
+        position: absolute;
+        left: 0;
+        color: #00c853; /* Verde éxito */
+        font-weight: bold;
+        font-size: 1.2rem;
+        background: #e8f5e9;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+    }
+
+    /* --- SECCIÓN 4: CÓMO TRABAJAREMOS (ACORDEÓN) --- */
+    details.method-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #cfd8dc;
+        overflow: hidden;
+    }
+
+    summary.method-summary {
+        padding: 15px 20px;
+        background: #eceff1;
+        cursor: pointer;
+        font-weight: 700;
+        color: #455a64;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.2s;
+    }
+
+    summary.method-summary:hover { background: #cfd8dc; }
+    summary.method-summary::-webkit-details-marker { display: none; }
+    
+    summary.method-summary::after { content: '+'; font-weight: bold; color: #0277bd; font-size: 1.2rem; }
+    details[open] summary.method-summary::after { content: '-'; }
+
+    .method-content {
+        padding: 20px;
+        border-top: 1px solid #cfd8dc;
+        color: #546e7a;
+    }
+    
+    .reminder-box {
+        background: #e8f5e9;
+        color: #2e7d32;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    /* --- SECCIÓN 5: ROLES (BADGES) --- */
+    .roles-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    .role-badge {
+        background: #fff;
+        border: 2px solid #0288d1;
+        color: #0277bd;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .role-desc { margin-bottom: 15px; text-align: center; }
+
+    /* --- SECCIÓN 6: RECOMENDACIONES --- */
+    .tips-box {
+        background: #fff8e1;
+        border: 2px dashed #ffb300;
+        padding: 25px;
+        border-radius: 12px;
+    }
+
+    .tips-title {
+        font-weight: 700;
+        color: #f57f17;
+        margin-bottom: 15px;
+        display: block;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .ideas-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="network-module-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Arquitecturas seguras: Redes inteligentes para el futuro</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/lmjjmltl172vtv3kuma44/Gemini_Generated_Image_7s3ir77s3ir77s3i.png?rlkey=ia9j686ffyrwxbwneysz1qfbj&st=ljvnjun6&raw=1" alt="Redes Seguras" class="hero-image">
+    </div>
+
+    <div class="welcome-box">
+        <p><strong>¡Bienvenido(a) al módulo “Arquitecturas seguras: Redes inteligentes para el futuro”! 🌐🔒</strong></p>
+        <p>Este espacio está pensado para que puedas dar un salto desde la visión tradicional de redes hacia un enfoque moderno, inteligente y orientado a la seguridad desde el diseño. Más que aprender comandos o dibujar topologías, aquí vas a entender cómo se piensa, diseña y protege una red en entornos reales: organizaciones, nube, IoT, entornos híbridos, etc.</p>
+    </div>
+
+    <h2 class="section-title">1. ¿Qué vas a encontrar en este módulo?</h2>
+    <div class="intro-text" style="margin-bottom:20px;">En este módulo vamos a trabajar tres grandes ideas:</div>
+    
+    <div class="ideas-grid">
+        
+        <div class="idea-card">
+            <h3>Arquitecturas de red modernas</h3>
+            <ul class="card-list">
+                <li>Redes tradicionales vs redes definidas por software (SDN).</li>
+                <li>Segmentación, VLAN, redes híbridas, integración con la nube.</li>
+                <li>Redes preparadas para IoT, movilidad, trabajo remoto y servicios en tiempo real.</li>
+            </ul>
+        </div>
+
+        <div class="idea-card">
+            <h3>Seguridad como parte de la arquitectura</h3>
+            <ul class="card-list">
+                <li>Diseño de arquitecturas seguras “by design”.</li>
+                <li>Zonas, perímetros, DMZ, microsegmentación, Zero Trust.</li>
+                <li>Controles de acceso, monitoreo y detección de amenazas dentro de la red.</li>
+            </ul>
+        </div>
+
+        <div class="idea-card">
+            <h3>Redes inteligentes para el futuro</h3>
+            <ul class="card-list">
+                <li>Uso de automatización, orquestación y analítica para gestionar redes.</li>
+                <li>Integración con servicios en la nube, 5G, IoT y otros escenarios emergentes.</li>
+                <li>Cómo tomar decisiones de arquitectura pensando en escalabilidad, resiliencia y seguridad.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="idea-footer">
+        La idea es que, al final del módulo, puedas analizar, proponer y justificar una arquitectura de red segura para un escenario concreto.
+    </div>
+
+    <h2 class="section-title">2. ¿Cuál es el propósito del módulo?</h2>
+    <div class="purpose-box">
+        <p>Este módulo busca que desarrolles una mirada <strong>estratégica y técnica</strong> al mismo tiempo. No queremos que solo sepas “conectar equipos”, sino que seas capaz de responder preguntas como:</p>
+        
+        <div class="purpose-question">¿Qué tipo de arquitectura de red necesita esta organización y por qué?</div>
+        <div class="purpose-question">¿Dónde están los puntos más críticos desde el punto de vista de seguridad?</div>
+        <div class="purpose-question">¿Cómo se puede crecer (más usuarios, más servicios, más sucursales) sin perder control ni seguridad?</div>
+        <div class="purpose-question">¿Qué decisiones de diseño hoy pueden evitar incidentes graves mañana?</div>
+    </div>
+
+    <h2 class="section-title">3. ¿Qué se espera que logres como estudiante?</h2>
+    <p style="margin-bottom:20px;">Al finalizar el módulo deberías poder:</p>
+    <ul class="achievements-list">
+        <li><strong>Leer</strong> un escenario (empresa, institución educativa, centro de datos, entorno híbrido, etc.) y entender sus necesidades de conectividad y seguridad.</li>
+        <li><strong>Diseñar</strong> una propuesta de arquitectura de red que tenga sentido técnico y que integre controles de seguridad básicos y avanzados.</li>
+        <li><strong>Argumentar</strong> tus decisiones: por qué eliges cierta topología, ciertos segmentos, ciertas zonas seguras, ciertos dispositivos/controladores.</li>
+        <li><strong>Reconocer riesgos</strong> típicos en redes modernas (exposición de servicios, IoT sin control, accesos remotos, mala segmentación, etc.) y proponer mejoras.</li>
+    </ul>
+    <p style="text-align:center; font-weight:bold; margin-top:30px; color:#0277bd;">No se trata solo de “dibujar un diagrama bonito”, sino de pensar como alguien que diseña redes para que funcionen bien y sean defendibles.</p>
+
+    <h2 class="section-title">4. ¿Cómo trabajaremos en la plataforma?</h2>
+    <p>En la plataforma encontrarás, organizados por semanas:</p>
+    
+    <details class="method-item">
+        <summary class="method-summary">Páginas teóricas</summary>
+        <div class="method-content">Con explicaciones claras, esquemas y ejemplos sobre: Arquitecturas de red tradicionales vs modernas, Seguridad por capas y por zonas, Redes inteligentes y automatización.</div>
+    </details>
+
+    <details class="method-item">
+        <summary class="method-summary">Lecturas y recursos complementarios</summary>
+        <div class="method-content">Documentos, guías y esquemas que podrás descargar para apoyar tus diseños.</div>
+    </details>
+
+    <details class="method-item">
+        <summary class="method-summary">Actividades prácticas</summary>
+        <div class="method-content">Análisis de casos y escenarios. Diseño de topologías y arquitecturas seguras. Propuestas de mejora para redes “inseguras” o mal diseñadas.</div>
+    </details>
+
+    <details class="method-item">
+        <summary class="method-summary">Foros de discusión</summary>
+        <div class="method-content">Espacios para debatir sobre decisiones de diseño, riesgos y buenas prácticas.</div>
+    </details>
+
+    <details class="method-item">
+        <summary class="method-summary">✅ Tareas evaluativas</summary>
+        <div class="method-content">Donde deberás aplicar lo aprendido a casos concretos, como si fueras la persona encargada de plantear la arquitectura de red de una organización real.</div>
+    </details>
+
+    <div class="reminder-box">
+        Cada semana encontrarás un “Recordatorio y objetivos”, para que tengas claro qué verás, qué debes entregar y cómo se conecta todo con el propósito del módulo.
+    </div>
+
+    <h2 class="section-title">5. ¿Qué rol se espera de ti?</h2>
+    <p style="margin-bottom:20px;">En este módulo serás más que un lector de teoría:</p>
+    
+    <div class="roles-container">
+        <div class="role-badge">Analista</div>
+        <div class="role-badge">Diseñador(a)</div>
+        <div class="role-badge">Crítico(a)</div>
+        <div class="role-badge">Aprendiz activo</div>
+    </div>
+
+    <p class="role-desc">
+        <strong>Analista:</strong> observarás escenarios, detectarás necesidades y puntos débiles.<br>
+        <strong>Diseñador(a):</strong> propondrás arquitecturas y justificarás tus decisiones.<br>
+        <strong>Crítico(a):</strong> cuestionarás diseños inseguros o poco escalables y plantearás alternativas.<br>
+        <strong>Aprendiz activo:</strong> participarás en foros, revisarás recursos y trabajarás de forma autónoma con el material disponible.
+    </p>
+    <p style="text-align:center; font-style:italic; color:#546e7a;">Tu participación activa es clave: mientras más uses los casos y actividades para experimentar, más sentido te hará la parte técnica.</p>
+
+    <h2 class="section-title">6. Recomendaciones</h2>
+    <div class="tips-box">
+        <span class="tips-title">Para aprovechar el módulo:</span>
+        <ul style="padding-left:20px; margin:0;">
+            <li style="margin-bottom:10px;">Lee primero las páginas de contenido antes de ir directo a la tarea.</li>
+            <li style="margin-bottom:10px;">Ten a la mano papel, lápiz o una herramienta de diagramación para ir haciendo bocetos de redes.</li>
+            <li style="margin-bottom:10px;">Intenta pensar siempre en “capas”: Capa de usuarios, servicios, datos, seguridad, monitoreo.</li>
+            <li>Siempre pregúntate: “Si esta red falla o es atacada, ¿qué pasaría? ¿Cómo podría haberse diseñado mejor?”</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

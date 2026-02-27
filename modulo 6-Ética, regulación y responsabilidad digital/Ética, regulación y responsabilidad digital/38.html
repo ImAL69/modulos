@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .rubric-doc-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 50px 30px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #00695c; /* Teal Oscuro */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #004d40;
+        margin: 0 auto 10px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* --- TABLA RESPONSIVA --- */
+    .table-wrapper {
+        overflow-x: auto; /* Scroll horizontal en móviles */
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .rubric-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 950px; /* Ancho mínimo para legibilidad */
+        font-size: 0.9rem;
+    }
+
+    /* Encabezados */
+    .rubric-table th {
+        background-color: #00796b;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        border: 1px solid #004d40;
+        vertical-align: middle;
+    }
+
+    /* Celdas */
+    .rubric-table td {
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        vertical-align: top;
+        line-height: 1.5;
+    }
+
+    /* Columnas */
+    .col-criterio {
+        background-color: #e0f2f1;
+        font-weight: 700;
+        color: #004d40;
+        width: 20%;
+    }
+
+    .col-peso {
+        text-align: center;
+        font-weight: 900;
+        color: #d81b60; /* Magenta para destacar peso */
+        background-color: #fff;
+        width: 8%;
+    }
+
+    /* Niveles de Desempeño */
+    .level-excelente { background-color: #e8f5e9; color: #1b5e20; font-weight: 500; } /* Verde */
+    .level-bueno { background-color: #fffde7; color: #333; } /* Amarillo */
+    .level-basico { background-color: #fff3e0; color: #e65100; } /* Naranja */
+    .level-deficiente { background-color: #ffebee; color: #c62828; } /* Rojo */
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 2rem; max-width: 100%; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="rubric-doc-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Rúbrica Documento de lineamientos</h1>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th style="border-top-left-radius: 10px;">Criterio</th>
+                    <th style="text-align:center;">Peso</th>
+                    <th style="background:#2e7d32;">Nivel Excelente (4)</th>
+                    <th style="background:#fbc02d; color:#333;">Nivel Bueno (3)</th>
+                    <th style="background:#ef6c00;">Nivel Básico (2)</th>
+                    <th style="background:#c62828; border-top-right-radius: 10px;">Nivel Deficiente (1)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-criterio">1. Pertinencia y descripción del proyecto</td>
+                    <td class="col-peso">15 %</td>
+                    <td class="level-excelente">El proyecto está claramente definido, se entiende qué hace, a quién impacta y en qué contexto se aplica. La descripción es completa y coherente con los lineamientos éticos que se formulan.</td>
+                    <td class="level-bueno">El proyecto se describe de forma entendible, aunque con algunos vacíos de contexto o detalle. Aun así, se puede relacionar con los lineamientos éticos.</td>
+                    <td class="level-basico">El proyecto se describe de forma muy general o confusa; cuesta entender el contexto y el impacto. La relación con los lineamientos es débil.</td>
+                    <td class="level-deficiente">No se describe claramente el proyecto o la descripción no permite entender su relación con los lineamientos éticos.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">2. Justificación ética y análisis de riesgos</td>
+                    <td class="col-peso">25 %</td>
+                    <td class="level-excelente">La justificación ética es profunda y específica: identifica claramente por qué el proyecto requiere lineamientos (datos, IA, vigilancia, impacto en derechos) y describe riesgos concretos para personas y grupos vulnerables.</td>
+                    <td class="level-bueno">La justificación ética es pertinente pero algo general; se mencionan riesgos, aunque no siempre se desarrollan con detalle.</td>
+                    <td class="level-basico">La justificación es superficial: se enuncian frases genéricas (“por privacidad”, “por ética”) sin análisis claro de riesgos.</td>
+                    <td class="level-deficiente">No hay una justificación ética clara o los riesgos no se mencionan.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">3. Calidad y concreción de los lineamientos éticos (datos, algoritmos, derechos, gobernanza)</td>
+                    <td class="col-peso">30 %</td>
+                    <td class="level-excelente">Los lineamientos son claros, específicos y accionables: definen qué se hará y qué no se hará con datos, algoritmos/IA, derechos de las personas y gobernanza. Incluyen medidas concretas (ejemplos de controles, límites, canales, responsables, frecuencia de revisión).</td>
+                    <td class="level-bueno">Los lineamientos son adecuados y comprensibles, pero algunos son generales o poco concretos. Aun así, se ve intención de orientar la práctica.</td>
+                    <td class="level-basico">Los lineamientos se quedan en declaraciones muy generales (“proteger datos”, “no discriminar”) sin traducirse en acciones claras.</td>
+                    <td class="level-deficiente">No se formulan lineamientos claros o son incoherentes con el proyecto descrito.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">4. Aplicación de conceptos del módulo (principios, marcos, buenas prácticas)</td>
+                    <td class="col-peso">15 %</td>
+                    <td class="level-excelente">Integra de forma explícita y correcta conceptos del módulo (principios éticos, IA responsable, protección de datos, sesgos, DPIA/AIA, gobierno de datos/algoritmos, etc.) y los adapta al proyecto.</td>
+                    <td class="level-bueno">Usa algunos conceptos del módulo de forma correcta, aunque sin mucha elaboración o conexión explícita con marcos y buenas prácticas.</td>
+                    <td class="level-basico">Menciona uno o dos conceptos del módulo de forma vaga o imprecisa, con poca conexión al proyecto.</td>
+                    <td class="level-deficiente">No se evidencian conceptos del módulo o se usan de forma incorrecta.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">5. Uso de la herramienta y completitud del documento generado</td>
+                    <td class="col-peso">10 %</td>
+                    <td class="level-excelente">Todas las secciones principales del formulario .py se encuentran completas, adaptadas al proyecto y sin texto por defecto sin revisar. El documento Word generado muestra un uso adecuado de la estructura.</td>
+                    <td class="level-bueno">La mayoría de secciones están completas; solo hay pequeños vacíos o partes con texto genérico sin adaptar. El documento es utilizable.</td>
+                    <td class="level-basico">Varias secciones quedan muy incompletas o con textos por defecto, lo que afecta la calidad del documento final.</td>
+                    <td class="level-deficiente">Gran parte del documento está vacío o con textos por defecto; no se evidencia uso real de la herramienta.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">6. Claridad, redacción y presentación del documento</td>
+                    <td class="col-peso">15 %</td>
+                    <td class="level-excelente">El documento está bien redactado, con buena ortografía y estructura lógica. Los apartados se leen con fluidez y el estilo es adecuado al contexto académico/profesional.</td>
+                    <td class="level-bueno">El documento es claro en general, aunque presenta algunos errores de redacción u organización que no impiden la comprensión.</td>
+                    <td class="level-basico">La redacción presenta errores frecuentes o desorden que dificultan seguir las ideas, aunque se alcanza a comprender lo esencial.</td>
+                    <td class="level-deficiente">La redacción y organización impiden comprender el contenido; el documento parece poco trabajado o cuidado.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

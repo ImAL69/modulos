@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Material didáctico – Fundamentos IA y Ciberseguridad (Videos)</title>
+  <style>
+:root{
+  /* Paleta hero (azul–teal) */
+  --hero1:#0B3D91;
+  --hero2:#0B7285;
+  --hero3:#0EA5A4;
+
+  /* Basado en el formato de lectura (paleta verde + azul institucional) */
+  --g1:#006633;
+  --g2:#00aa55;
+  --g3:#004d26;
+
+  --b1:#0277bd;   /* azul institucional */
+  --b2:#0288d1;
+  --b3:#01579b;
+
+  --bg:#f3f8ff;
+  --paper:#ffffff;
+  --ink:#1b1f24;
+  --muted: rgba(27,31,36,.72);
+  --soft: rgba(0,0,0,.06);
+  --shadow: 0 18px 44px rgba(0,0,0,.10);
+  --shadow2: 0 14px 30px rgba(0,0,0,.06);
+  --r16:16px;
+  --r18:18px;
+  --r22:22px;
+}
+
+*{ box-sizing:border-box; }
+body[isolated]{
+  margin:0;
+  font-family: Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 650px at 15% 0%, rgba(0,170,85,.12), transparent 55%),
+    radial-gradient(1200px 650px at 85% 10%, rgba(2,119,189,.15), transparent 55%),
+    var(--bg);
+}
+
+.page[isolated]{
+  max-width:1120px;
+  margin:0 auto;
+  padding:18px 14px 30px 14px;
+}
+
+/* TOP HEADER */
+.top[isolated]{
+  border-radius: var(--r22);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  border:1px solid rgba(0,0,0,.06);
+  background: linear-gradient(120deg, var(--hero1), var(--hero2), var(--hero3));
+  position: relative;
+}
+.top::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(900px 320px at 18% 0%, rgba(255,255,255,.22), transparent 62%),
+    radial-gradient(900px 360px at 82% 10%, rgba(14,165,164,.22), transparent 64%),
+    radial-gradient(850px 360px at 70% 90%, rgba(11,61,145,.18), transparent 62%);
+  pointer-events:none;
+  mix-blend-mode: screen;
+}
+.top-inner[isolated]{
+  position:relative;
+  z-index:1;
+  padding: 18px 18px 16px 18px;
+}
+.kicker[isolated]{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:999px;
+  background: rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.22);
+  font-weight:900;
+  color:#fff;
+  font-size:.92rem;
+}
+.kicker .i{ width:18px;height:18px; fill:#fff; }
+
+.h1[isolated]{
+  margin:10px 0 8px 0;
+  font-size:1.5rem;
+  line-height:1.2;
+  color:#fff;
+  letter-spacing:.2px;
+}
+.sub[isolated]{
+  margin:0;
+  max-width: 78ch;
+  line-height:1.55;
+  color: rgba(255,255,255,.92);
+  font-size:1rem;
+}
+
+.top-strip[isolated]{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:12px;
+  padding: 0 18px 18px 18px;
+  position:relative;
+  z-index:1;
+}
+@media (max-width: 900px){
+  .top-strip[isolated]{ grid-template-columns: 1fr; }
+}
+
+.stat[isolated]{
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: var(--r18);
+  padding: 12px 12px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.stat-ico[isolated]{
+  width:38px;height:38px;
+  border-radius: 15px;
+  display:grid;
+  place-items:center;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.22);
+  flex:0 0 38px;
+}
+.stat-ico .i{ width:18px;height:18px; fill:#fff; }
+.stat b{ display:block; color:#fff; font-size:1.2rem; line-height:1; margin-top:2px; }
+.stat span{ display:block; color: rgba(255,255,255,.92); font-weight:800; margin-top:4px; font-size:.92rem; }
+
+/* TOOLBAR */
+.toolbar[isolated]{
+  margin-top: 14px;
+  display:flex;
+  gap:10px;
+  flex-wrap: wrap;
+  align-items:center;
+}
+.search[isolated]{
+  flex:1 1 340px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius: var(--r18);
+  background: rgba(255,255,255,.92);
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow: var(--shadow2);
+}
+.search .i{ width:18px;height:18px; fill: var(--b3); }
+.search input{
+  width:100%;
+  border:0;
+  outline:none;
+  font-size:1rem;
+  background: transparent;
+}
+.btn[isolated]{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius: var(--r18);
+  border:1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.96);
+  font-weight:900;
+  color: var(--b3);
+  cursor:pointer;
+  box-shadow: var(--shadow2);
+}
+.btn:hover{ transform: translateY(-1px); }
+.btn .i{ width:18px;height:18px; fill: var(--b3); }
+
+/* MAIN GRID */
+.grid[isolated]{
+  margin-top: 12px;
+  display:grid;
+  grid-template-columns: 1.35fr .65fr;
+  gap: 14px;
+}
+@media (max-width: 980px){
+  .grid[isolated]{ grid-template-columns: 1fr; }
+}
+
+.card[isolated]{
+  background: var(--paper);
+  border-radius: var(--r22);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow: var(--shadow2);
+  overflow:hidden;
+}
+.card-h[isolated]{
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid rgba(0,0,0,.06);
+  background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(255,255,255,1));
+}
+.card-h h2{
+  margin:0;
+  font-size:1.05rem;
+  color: var(--g1);
+}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+  font-size:.85rem;
+  color: rgba(0,77,38,.90);
+  background: rgba(14,165,164,.12);
+  border:1px solid rgba(14,165,164,.20);
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+/* ACCORDION */
+.acc{ margin: 12px 14px; border-radius: var(--r18); border:1px solid rgba(0,0,0,.08); box-shadow: 0 12px 26px rgba(0,0,0,.04); overflow:hidden; }
+.acc-sum{
+  list-style:none;
+  cursor:pointer;
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  font-weight:900;
+  background: linear-gradient(180deg, rgba(2,119,189,.08), rgba(255,255,255,1));
+}
+.acc-sum::-webkit-details-marker{ display:none; }
+.acc-left{ display:flex; align-items:center; gap:10px; min-width:0; }
+.acc-ico{ width:36px;height:36px;border-radius:15px; display:grid; place-items:center; background: rgba(2,119,189,.10); border:1px solid rgba(2,119,189,.18); }
+.acc-ico .i{ width:18px;height:18px; fill: var(--b3); }
+.acc-title{ white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
+.acc-right{ display:flex; align-items:center; gap:10px; }
+.chev{ width:34px;height:34px;border-radius:14px; display:grid; place-items:center; background: rgba(0,0,0,.03); border:1px solid rgba(0,0,0,.10); transition: transform .15s ease; }
+.chev .i{ width:18px;height:18px; fill: rgba(0,0,0,.55); }
+details[open] .chev{ transform: rotate(180deg); }
+
+.acc-panel{ padding: 12px 14px 14px 14px; border-top:1px solid rgba(0,0,0,.06); background: #fff; }
+
+.videos-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+}
+@media (max-width: 760px){
+  .videos-grid{ grid-template-columns: 1fr; }
+}
+
+.video-card{
+  border-radius: var(--r18);
+  border:1px solid rgba(0,0,0,.08);
+  overflow:hidden;
+  box-shadow: 0 12px 26px rgba(0,0,0,.04);
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+}
+.thumb{
+  position:relative;
+  border:0;
+  padding:0;
+  background:#000;
+  width:100%;
+  aspect-ratio: 16/9;
+  cursor:pointer;
+}
+.thumb img{ width:100%; height:100%; object-fit:cover; display:block; opacity:.92; }
+.thumb-cta{
+  position:absolute;
+  left: 12px;
+  bottom: 12px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border-radius:999px;
+  background: rgba(255,255,255,.94);
+  border:1px solid rgba(0,0,0,.10);
+  color: var(--b3);
+  font-weight:900;
+}
+.thumb-cta .i{ width:18px;height:18px; fill: var(--b3); }
+
+.video-body{ padding: 12px 12px 14px 12px; display:flex; flex-direction:column; gap:10px; }
+.video-title{ margin:0; font-size:1rem; color: var(--g1); line-height:1.25; }
+.video-claves{ margin:0; color: rgba(27,31,36,.78); line-height:1.35; font-size:.95rem; }
+.tag{
+  display:inline-flex;
+  align-items:center;
+  font-weight:900;
+  font-size:.78rem;
+  color: var(--b3);
+  background: rgba(2,119,189,.10);
+  border:1px solid rgba(2,119,189,.18);
+  padding:3px 8px;
+  border-radius:999px;
+  margin-right: 8px;
+}
+
+.row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+.seen{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius: var(--r16);
+  background: rgba(14,165,164,.10);
+  border:1px solid rgba(14,165,164,.18);
+  font-weight:900;
+  color: rgba(0,77,38,.92);
+}
+.seen input{ width:18px; height:18px; }
+.seen .i{ width:18px;height:18px; fill: rgba(0,77,38,.92); }
+
+.link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius: var(--r16);
+  text-decoration:none;
+  font-weight:900;
+  color: var(--b3);
+  background: rgba(2,119,189,.08);
+  border:1px solid rgba(2,119,189,.14);
+}
+.link .i{ width:18px;height:18px; fill: var(--b3); }
+
+.notes{ display:grid; gap:10px; }
+.field{ border-radius: var(--r16); border:1px solid rgba(0,0,0,.10); padding:10px 10px; background: rgba(255,255,255,1); }
+.field-h{ display:flex; align-items:center; gap:10px; font-weight:900; color: rgba(27,31,36,.86); margin-bottom:6px; font-size:.92rem; }
+.field-h .i{ width:18px;height:18px; fill: rgba(27,31,36,.70); }
+.field input{ width:100%; border:0; outline:none; font-size:.96rem; background: transparent; }
+.field:focus-within{ border-color: rgba(0,170,85,.45); box-shadow: 0 0 0 4px rgba(0,170,85,.12); }
+
+/* SIDEBAR */
+.side[isolated]{ position: sticky; top: 12px; align-self: start; }
+.side-pad[isolated]{ padding: 14px 14px; }
+.side h3{ margin:0 0 10px 0; color: var(--g1); font-size:1.02rem; }
+.side p{ margin:0 0 10px 0; color: rgba(27,31,36,.80); line-height:1.45; }
+.box{
+  border-radius: var(--r18);
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  padding:12px 12px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.04);
+}
+.progress{
+  height: 12px;
+  border-radius:999px;
+  background: rgba(0,0,0,.06);
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,.06);
+}
+.progress > div{
+  height:100%;
+  width:0%;
+  background: linear-gradient(90deg, var(--hero1), var(--hero2), var(--hero3));
+  border-radius:999px;
+}
+.small{ font-size:.9rem; color: rgba(27,31,36,.72); margin: 10px 0 0 0; }
+
+details.helper{ margin-top: 12px; border-radius: var(--r18); border:1px solid rgba(0,0,0,.08); box-shadow: 0 12px 26px rgba(0,0,0,.04); overflow:hidden; background:#fff; }
+details.helper summary{ cursor:pointer; list-style:none; padding:12px 14px; font-weight:900; background: linear-gradient(180deg, rgba(0,170,85,.10), rgba(255,255,255,1)); display:flex; justify-content:space-between; align-items:center; gap:12px; }
+details.helper summary::-webkit-details-marker{ display:none; }
+details.helper .panel{ padding: 10px 14px 14px 14px; border-top:1px solid rgba(0,0,0,.06); }
+details.helper ul{ margin: 10px 0 0 18px; padding:0; }
+details.helper li{ margin: 8px 0; line-height:1.42; }
+
+/* FOOTER */
+.footer[isolated]{
+  margin-top:14px;
+  background-color: #ccffcc;
+  color: #004d26;
+  text-align:center;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: var(--r18);
+  border: 1px solid rgba(0,170,85,.14);
+}
+  </style>
+</head>
+<body isolated>
+  <div class="page" isolated>
+
+    <!-- HEADER -->
+    <header class="top" isolated>
+      <div class="top-inner" isolated>
+        <div class="kicker" isolated>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 4h-1V2h-2v2H9V2H7v2H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H6V6h12v14Z"/>
+          </svg>
+          Material didáctico · Fundamentos IA y Ciberseguridad
+        </div>
+        <h1 class="h1" isolated>🎥 Videos de apoyo – Fundamentos de IA y Ciberseguridad</h1>
+        <p class="sub" isolated>
+          En esta página encuentras <strong>7 videos de apoyo</strong> para reforzar los conceptos
+          trabajados en el módulo. Puedes <strong>marcar “visto”</strong> cada recurso y completar tu
+          <strong>bitácora</strong> (idea, riesgo, acción) directamente aquí. La información se guarda
+          en tu navegador con <strong>almacenamiento local</strong>.
+        </p>
+      </div>
+
+      <div class="top-strip" isolated>
+        <div class="stat" isolated>
+          <div class="stat-ico" isolated>
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 4h-1V2h-2v2H9V2H7v2H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H6V6h12v14Z"/>
+            </svg>
+          </div>
+          <div><b>7</b><span>Videos obligatorios</span></div>
+        </div>
+        <div class="stat" isolated>
+          <div class="stat-ico" isolated>
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+            </svg>
+          </div>
+          <div><b>1</b><span>Bloque temático</span></div>
+        </div>
+        <div class="stat" isolated>
+          <div class="stat-ico" isolated>
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+            </svg>
+          </div>
+          <div><b>Bitácora</b><span>Idea · Riesgo · Acción</span></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar" isolated>
+      <div class="search" isolated>
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 1 0 4.9 14.3l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0 0 10 2Zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12Z"/>
+        </svg>
+        <input id="q" type="search" placeholder="Buscar por tema: fraude, malware, identidad, IA..." />
+      </div>
+      <button class="btn" id="btnReset" isolated>
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 6V3L8 7l4 4V8c2.76 0 5 2.24 5 5a5 5 0 0 1-8.66 3.54l-1.42 1.42A7 7 0 0 0 19 13c0-3.87-3.13-7-7-7Z"/>
+        </svg> Reiniciar
+      </button>
+      <button class="btn" id="btnExport" isolated>
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+        </svg> Exportar bitácora
+      </button>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="grid" isolated>
+      <!-- CONTENIDO PRINCIPAL -->
+      <main class="card" isolated>
+        <div class="card-h" isolated>
+          <h2>📚 Bloque único de videos</h2>
+          <span class="pill">Clic en la miniatura para vista previa</span>
+        </div>
+
+        <details class="acc" open>
+          <summary class="acc-sum">
+            <span class="acc-left">
+              <span class="acc-ico">
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                </svg>
+              </span>
+              <span class="acc-title">Videos de apoyo del módulo</span>
+            </span>
+            <span class="acc-right">
+              <span class="pill">7 videos</span>
+              <span class="chev" aria-hidden="true">
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m7 10 5 5 5-5z"/>
+                </svg>
+              </span>
+            </span>
+          </summary>
+
+          <div class="acc-panel">
+            <div class="videos-grid">
+
+              <!-- VIDEO 1 -->
+              <article class="video-card"
+                data-title="video 1"
+                data-claves="recurso audiovisual de apoyo en fundamentos ia y ciberseguridad"
+                data-sec="videos de apoyo del módulo">
+                <button class="thumb" type="button"
+                  data-embed="https://www.youtube.com/embed/Xfbc06hDWZI"
+                  data-loaded="0"
+                  aria-label="Abrir vista previa: Video 1">
+                  <img src="https://img.youtube.com/vi/Xfbc06hDWZI/hqdefault.jpg"
+                       alt="Miniatura video 1" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg> Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">Video 1 – Recurso de apoyo</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    Recurso audiovisual para reforzar conceptos del módulo.
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="v0">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg> Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://www.youtube.com/watch?v=Xfbc06hDWZI"
+                       target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg> YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg> Idea aplicable
+                      </div>
+                      <input type="text" data-note="v0_idea"
+                             placeholder="¿Qué idea te llevas de este video?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg> Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="v0_riesgo"
+                             placeholder="¿Qué riesgo o resistencia identificas?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg> Acción concreta
+                      </div>
+                      <input type="text" data-note="v0_accion"
+                             placeholder="¿Qué harás con esta información? (quién + cuándo)">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- VIDEO 2 -->
+              <article class="video-card"
+                data-title="video 2"
+                data-claves="video de apoyo para reforzar conceptos de seguridad e ia"
+                data-sec="videos de apoyo del módulo">
+                <button class="thumb" type="button"
+                  data-embed="https://www.youtube.com/embed/0J9NsCPM16o"
+                  data-loaded="0"
+                  aria-label="Abrir vista previa: Video 2">
+                  <img src="https://img.youtube.com/vi/0J9NsCPM16o/hqdefault.jpg"
+                       alt="Miniatura video 2" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg> Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">Video 2 – Recurso de apoyo</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    Profundiza en temas del módulo desde un enfoque práctico.
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="v1">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg> Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://www.youtube.com/watch?v=0J9NsCPM16o"
+                       target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg> YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg> Idea aplicable
+                      </div>
+                      <input type="text" data-note="v1_idea"
+                             placeholder="¿Qué idea te llevas de este video?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg> Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="v1_riesgo"
+                             placeholder="¿Qué riesgo o resistencia identificas?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg> Acción concreta
+                      </div>
+                      <input type="text" data-note="v1_accion"
+                             placeholder="¿Qué harás con esta información? (quién + cuándo)">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- VIDEO 3 -->
+              <article class="video-card"
+                data-title="video 3"
+                data-claves="video complementario sobre ia y ciberseguridad"
+                data-sec="videos de apoyo del módulo">
+                <button class="thumb" type="button"
+                  data-embed="https://www.youtube.com/embed/o01XVihRTc0"
+                  data-loaded="0"
+                  aria-label="Abrir vista previa: Video 3">
+                  <img src="https://img.youtube.com/vi/o01XVihRTc0/hqdefault.jpg"
+                       alt="Miniatura video 3" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg> Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">Video 3 – Recurso de apoyo</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    Apoya la comprensión de la relación entre IA y seguridad.
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="v2">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg> Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://youtu.be/o01XVihRTc0"
+                       target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg> YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg> Idea aplicable
+                      </div>
+                      <input type="text" data-note="v2_idea"
+                             placeholder="¿Qué idea te llevas de este video?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg> Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="v2_riesgo"
+                             placeholder="¿Qué riesgo o resistencia identificas?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg> Acción concreta
+                      </div>
+                      <input type="text" data-note="v2_accion"
+                             placeholder="¿Qué harás con esta información? (quién + cuándo)">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- VIDEO 4 -->
+              <article class="video-card"
+                data-title="video 4"
+                data-claves="recurso audiovisual complementario del módulo"
+                data-sec="videos de apoyo del módulo">
+                <button class="thumb" type="button"
+                  data-embed="https://www.youtube.com/embed/tAssSfcmQdE"
+                  data-loaded="0"
+                  aria-label="Abrir vista previa: Video 4">
+                  <img src="https://img.youtube.com/vi/tAssSfcmQdE/hqdefault.jpg"
+                       alt="Miniatura video 4" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg> Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">Video 4 – Recurso de apoyo</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    Complementa las explicaciones vistas en clase.
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="v3">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg> Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://www.youtube.com/watch?v=tAssSfcmQdE"
+                       target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg> YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg> Idea aplicable
+                      </div>
+                      <input type="text" data-note="v3_idea"
+                             placeholder="¿Qué idea te llevas de este video?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg> Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="v3_riesgo"
+                             placeholder="¿Qué riesgo o resistencia identificas?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg> Acción concreta
+                      </div>
+                      <input type="text" data-note="v3_accion"
+                             placeholder="¿Qué harás con esta información? (quién + cuándo)">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- VIDEO 5 -->
+              <article class="video-card"
+                data-title="video 5"
+                data-claves="video sobre temas transversales del módulo"
+                data-sec="videos de apoyo del módulo">
+                <button class="thumb" type="button"
+                  data-embed="https://www.youtube.com/embed/8tr9SQI2jXw"
+                  data-loaded="0"
+                  aria-label="Abrir vista previa: Video 5">
+                  <img src="https://img.youtube.com/vi/8tr9SQI2jXw/hqdefault.jpg"
+                       alt="Miniatura video 5" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg> Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">Video 5 – Recurso de apoyo</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    Profundiza en uno de los ejes del módulo.
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="v4">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg> Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://www.youtube.com/watch?v=8tr9SQI2jXw"
+                       target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg> YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg> Idea aplicable
+                      </div>
+                      <input type="text" data-note="v4_idea"
+                             placeholder="¿Qué idea te llevas de este video?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg> Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="v4_riesgo"
+                             placeholder="¿Qué riesgo o resistencia identificas?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg> Acción concreta
+                      </div>
+                      <input type="text" data-note="v4_accion"
+                             placeholder="¿Qué harás con esta información? (quién + cuándo)">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- VIDEO 6 -->
+              <article class="video-card"
+                data-title="video 6"
+                data-claves="video de profundización en temas del curso"
+                data-sec="videos de apoyo del módulo">
+                <button class="thumb" type="button"
+                  data-embed="https://www.youtube.com/embed/qb-M8VpMx2w"
+                  data-loaded="0"
+                  aria-label="Abrir vista previa: Video 6">
+                  <img src="https://img.youtube.com/vi/qb-M8VpMx2w/hqdefault.jpg"
+                       alt="Miniatura video 6" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg> Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">Video 6 – Recurso de apoyo</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    Permite conectar los conceptos con situaciones prácticas.
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="v5">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg> Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://youtu.be/qb-M8VpMx2w"
+                       target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg> YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg> Idea aplicable
+                      </div>
+                      <input type="text" data-note="v5_idea"
+                             placeholder="¿Qué idea te llevas de este video?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg> Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="v5_riesgo"
+                             placeholder="¿Qué riesgo o resistencia identificas?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg> Acción concreta
+                      </div>
+                      <input type="text" data-note="v5_accion"
+                             placeholder="¿Qué harás con esta información? (quién + cuándo)">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- VIDEO 7 -->
+              <article class="video-card"
+                data-title="video 7"
+                data-claves="último recurso audiovisual de apoyo del módulo"
+                data-sec="videos de apoyo del módulo">
+                <button class="thumb" type="button"
+                  data-embed="https://www.youtube.com/embed/_MJt0ugOc_E"
+                  data-loaded="0"
+                  aria-label="Abrir vista previa: Video 7">
+                  <img src="https://img.youtube.com/vi/_MJt0ugOc_E/hqdefault.jpg"
+                       alt="Miniatura video 7" loading="lazy">
+                  <span class="thumb-cta">
+                    <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg> Vista previa
+                  </span>
+                </button>
+
+                <div class="video-body">
+                  <h3 class="video-title">Video 7 – Recurso de apoyo</h3>
+                  <p class="video-claves">
+                    <span class="tag">Claves</span>
+                    Cierra el bloque de videos reforzando los conceptos clave.
+                  </p>
+
+                  <div class="row">
+                    <label class="seen">
+                      <input type="checkbox" data-seen="v6">
+                      <span>
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2l1.2 4.2L17 7l-3.8 1.1L12 12l-1.2-3.9L7 7l3.8-.8L12 2Zm8 9-1 3.5L16 15l3 1-1 3-1.7-2.2L14 19l.7-3.1L12 14l2.9-.6L16 11l1.2 2.6L20 11ZM6 14l.9 3.1L10 18l-3 1 .9 3L6 19.8 4.1 22 5 19l-3-1 3.1-.9L6 14Z"/>
+                        </svg> Visto
+                      </span>
+                    </label>
+                    <a class="link" href="https://youtu.be/_MJt0ugOc_E"
+                       target="_blank" rel="noopener noreferrer">
+                      <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                      </svg> YouTube
+                    </a>
+                  </div>
+
+                  <div class="notes">
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15ZM8 13h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h5v2H8V9Z"/>
+                        </svg> Idea aplicable
+                      </div>
+                      <input type="text" data-note="v6_idea"
+                             placeholder="¿Qué idea te llevas de este video?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm0 18c-3.4-1.3-6-4.8-6-9V6.3l6-2.2 6 2.2V11c0 4.2-2.6 7.7-6 9Z"/>
+                        </svg> Riesgo / resistencia
+                      </div>
+                      <input type="text" data-note="v6_riesgo"
+                             placeholder="¿Qué riesgo o resistencia identificas?">
+                    </div>
+                    <div class="field">
+                      <div class="field-h">
+                        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 6h2v2H4V6Zm0 5h2v2H4v-2Zm0 5h2v2H4v-2ZM8 6h12v2H8V6Zm0 5h12v2H8v-2Zm0 5h12v2H8v-2Z"/>
+                        </svg> Acción concreta
+                      </div>
+                      <input type="text" data-note="v6_accion"
+                             placeholder="¿Qué harás con esta información? (quién + cuándo)">
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </details>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="card side" isolated>
+        <div class="card-h side-pad" isolated>
+          <h2>✅ Progreso y bitácora</h2>
+        </div>
+        <div class="side-pad" isolated>
+          <div class="box">
+            <h3>Tu avance en los videos</h3>
+            <p>
+              Marca cada video como <strong>visto</strong> y registra una
+              <strong>idea</strong>, un <strong>riesgo</strong> y una
+              <strong>acción</strong>. Todo se guarda automáticamente
+              en este navegador.
+            </p>
+            <div class="progress">
+              <div id="progressBar"></div>
+            </div>
+            <p class="small" id="progressLabel">0 de 7 videos vistos (0%)</p>
+          </div>
+
+          <details class="helper" open>
+            <summary>
+              ¿Cómo usar este material?
+              <span class="chev">
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m7 10 5 5 5-5z"/>
+                </svg>
+              </span>
+            </summary>
+            <div class="panel">
+              <ul>
+                <li><strong>Paso 1:</strong> Da clic en la miniatura para ver una vista previa o abre el video en YouTube.</li>
+                <li><strong>Paso 2:</strong> Marca “visto” cuando hayas completado el video.</li>
+                <li><strong>Paso 3:</strong> Escribe una idea, un riesgo y una acción concreta en la bitácora.</li>
+                <li><strong>Paso 4:</strong> Usa el botón <strong>Exportar bitácora</strong> para generar un archivo de texto con tus notas.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </aside>
+    </div>
+
+    <div class="footer" isolated>
+      Recuerda: este material complementa las actividades evaluativas del módulo. Usa tu bitácora para alimentar foros, casos y proyectos.
+    </div>
+
+  </div>
+
+  <script>
+  (function(){
+    const STORAGE_KEY = "md_fia_ciber_videos_v1";
+
+    const searchInput = document.getElementById("q");
+    const btnReset    = document.getElementById("btnReset");
+    const btnExport   = document.getElementById("btnExport");
+    const cards       = Array.from(document.querySelectorAll(".video-card"));
+    const sections    = Array.from(document.querySelectorAll("details.acc"));
+    const seenInputs  = Array.from(document.querySelectorAll("input[data-seen]"));
+    const noteInputs  = Array.from(document.querySelectorAll("input[data-note]"));
+    const progressBar   = document.getElementById("progressBar");
+    const progressLabel = document.getElementById("progressLabel");
+    const thumbs        = Array.from(document.querySelectorAll(".thumb"));
+
+    let state = { seen:{}, notes:{} };
+
+    function loadState(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return;
+        const parsed = JSON.parse(raw);
+        if(parsed && typeof parsed === "object"){
+          if(parsed.seen)  state.seen  = parsed.seen;
+          if(parsed.notes) state.notes = parsed.notes;
+        }
+      }catch(e){
+        console.warn("No se pudo cargar el estado", e);
+      }
+    }
+
+    function saveState(){
+      try{
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }catch(e){
+        console.warn("No se pudo guardar el estado", e);
+      }
+    }
+
+    function applyState(){
+      seenInputs.forEach(cb=>{
+        const key = cb.dataset.seen;
+        if(state.seen && state.seen[key]) cb.checked = true;
+      });
+      noteInputs.forEach(inp=>{
+        const key = inp.dataset.note;
+        if(state.notes && typeof state.notes[key] === "string"){
+          inp.value = state.notes[key];
+        }
+      });
+      updateProgress();
+    }
+
+    function updateProgress(){
+      const total = seenInputs.length;
+      const done  = seenInputs.filter(cb => cb.checked).length;
+      const pct   = total ? Math.round(done*100/total) : 0;
+      if(progressBar) progressBar.style.width = pct + "%";
+      if(progressLabel) progressLabel.textContent = `${done} de ${total} videos vistos (${pct}%)`;
+    }
+
+    function filterCards(value){
+      const term = (value || "").trim().toLowerCase();
+      cards.forEach(card=>{
+        const text = (
+          (card.dataset.title || "") + " " +
+          (card.dataset.claves || "") + " " +
+          (card.dataset.sec || "")
+        ).toLowerCase();
+        card.style.display = !term || text.includes(term) ? "flex" : "none";
+      });
+
+      sections.forEach(sec=>{
+        const visibles = Array.from(sec.querySelectorAll(".video-card"))
+          .some(c => c.style.display !== "none");
+        sec.style.display = visibles ? "block" : "none";
+      });
+    }
+
+    function resetAll(){
+      localStorage.removeItem(STORAGE_KEY);
+      state = { seen:{}, notes:{} };
+      seenInputs.forEach(cb => { cb.checked = false; });
+      noteInputs.forEach(inp => { inp.value = ""; });
+      cards.forEach(card => { card.style.display = "flex"; });
+      sections.forEach(sec => { sec.style.display = "block"; });
+      if(searchInput) searchInput.value = "";
+      updateProgress();
+    }
+
+    function exportBitacora(){
+      let lines = [];
+      lines.push("Bitácora de videos – Fundamentos IA y Ciberseguridad");
+      lines.push("====================================================");
+      lines.push("");
+
+      cards.forEach((card, idx)=>{
+        const title = card.querySelector(".video-title")?.textContent?.trim() || `Video ${idx+1}`;
+        const sec   = card.dataset.sec || "";
+        const seenCb = card.querySelector("input[data-seen]");
+        const seenKey = seenCb ? seenCb.dataset.seen : "";
+        const visto = seenCb && seenCb.checked ? "Sí" : "No";
+
+        const ideaInp   = card.querySelector('input[data-note$="_idea"]');
+        const riesgoInp = card.querySelector('input[data-note$="_riesgo"]');
+        const accInp    = card.querySelector('input[data-note$="_accion"]');
+
+        const idea   = ideaInp?.value || "";
+        const riesgo = riesgoInp?.value || "";
+        const accion = accInp?.value || "";
+
+        lines.push(`Video ${idx+1}: ${title}`);
+        if(sec) lines.push(`Bloque / sección: ${sec}`);
+        lines.push(`Visto: ${visto}`);
+        lines.push(`- Idea aplicable: ${idea || "(sin registrar)"} `);
+        lines.push(`- Riesgo / resistencia: ${riesgo || "(sin registrar)"}`);
+        lines.push(`- Acción concreta: ${accion || "(sin registrar)"}`);
+        lines.push("");
+      });
+
+      const blob = new Blob([lines.join("\n")], {type:"text/plain;charset=utf-8"});
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement("a");
+      a.href = url;
+      a.download = "bitacora_videos_fundamentos_ia_ciberseguridad.txt";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function setupThumbs(){
+      thumbs.forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          if(btn.dataset.loaded === "1") return;
+          const embed = btn.dataset.embed;
+          if(!embed) return;
+          const iframe = document.createElement("iframe");
+          iframe.src = embed + "?autoplay=1";
+          iframe.width = "100%";
+          iframe.height = "100%";
+          iframe.setAttribute("frameborder","0");
+          iframe.setAttribute("allow","accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+          iframe.setAttribute("allowfullscreen","true");
+          btn.innerHTML = "";
+          btn.appendChild(iframe);
+          btn.dataset.loaded = "1";
+        });
+      });
+    }
+
+    // Listeners
+    seenInputs.forEach(cb=>{
+      cb.addEventListener("change", ()=>{
+        const key = cb.dataset.seen;
+        state.seen[key] = cb.checked;
+        saveState();
+        updateProgress();
+      });
+    });
+
+    noteInputs.forEach(inp=>{
+      inp.addEventListener("input", ()=>{
+        const key = inp.dataset.note;
+        if(!state.notes) state.notes = {};
+        state.notes[key] = inp.value;
+        saveState();
+      });
+    });
+
+    if(searchInput){
+      searchInput.addEventListener("input", e => filterCards(e.target.value));
+    }
+    if(btnReset){
+      btnReset.addEventListener("click", resetAll);
+    }
+    if(btnExport){
+      btnExport.addEventListener("click", exportBitacora);
+    }
+
+    // Init
+    loadState();
+    applyState();
+    filterCards("");
+    setupThumbs();
+  })();
+  </script>
+</body>
+</html>

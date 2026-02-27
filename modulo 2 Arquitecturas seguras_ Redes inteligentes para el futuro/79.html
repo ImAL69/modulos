@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .edge-ai-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #00acc1; /* Cian Oscuro */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #006064;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(0, 172, 193, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #b2ebf2;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '⚡';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Sub-listas */
+    .sub-list {
+        margin-top: 5px;
+        padding-left: 20px;
+        list-style: circle;
+        color: #546e7a;
+    }
+    .sub-list li::before { content: none; }
+    .sub-list li { padding-left: 0; list-style-type: circle; }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #00acc1;
+        border-bottom: 2px solid #80deea;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #e0f7fa;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #00838f;
+    }
+
+    .key-question {
+        font-weight: 700;
+        color: #006064;
+        font-style: italic;
+        text-align: center;
+        display: block;
+        margin: 20px 0;
+        font-size: 1.1rem;
+    }
+
+    /* --- DEFINICIONES (CAJA) --- */
+    .def-box {
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #cfd8dc;
+    }
+    .def-title { font-weight: 700; color: #455a64; margin-bottom: 10px; display: block; font-family: 'Montserrat', sans-serif; font-size: 1.1rem; }
+    
+    .def-example {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #b0bec5;
+        font-size: 0.95rem;
+        color: #006064;
+    }
+
+    /* --- CRITERIOS DE DECISIÓN (GRID) --- */
+    .criteria-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .criteria-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
+        border-top: 4px solid #00acc1;
+    }
+
+    .criteria-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 172, 193, 0.1); border-color: #00838f; }
+
+    .crit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #006064;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .crit-content { font-size: 0.95rem; color: #455a64; line-height: 1.6; }
+
+    .crit-example {
+        margin-top: auto;
+        padding: 10px;
+        background: #e0f2f1;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        color: #006064;
+        border-left: 3px solid #00acc1;
+    }
+    
+    .crit-example strong { display: block; margin-bottom: 5px; }
+
+    /* --- MODELOS DE DESPLIEGUE (ACORDEÓN) --- */
+    details.model-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #80deea;
+        overflow: hidden;
+    }
+
+    summary.model-summary {
+        padding: 15px 20px;
+        background: #e0f7fa;
+        cursor: pointer;
+        font-weight: 700;
+        color: #006064;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    summary.model-summary:hover { background: #b2ebf2; }
+    summary.model-summary::-webkit-details-marker { display: none; }
+    
+    summary.model-summary::after { content: '+'; font-size: 1.5rem; color: #00838f; }
+    details[open] summary.model-summary::after { content: '-'; }
+
+    .model-content {
+        padding: 20px;
+        border-top: 1px solid #80deea;
+        color: #37474f;
+    }
+
+    /* --- COMPONENTES (GRID) --- */
+    .components-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .comp-card {
+        background: #fff;
+        border: 1px solid #cfd8dc;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    .comp-title { font-weight: 700; color: #455a64; display: block; margin-bottom: 10px; font-family: 'Orbitron', sans-serif; font-size: 1rem;}
+
+    /* --- SEGURIDAD (CAJAS ALERTAS) --- */
+    .security-box {
+        background: #ffebee;
+        border-left: 5px solid #ef5350;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+    .security-title { font-weight: 700; color: #c62828; margin-bottom: 10px; display: block; }
+
+    .controls-box {
+        background: #e8f5e9;
+        border-left: 5px solid #66bb6a;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+    .controls-title { font-weight: 700; color: #2e7d32; margin-bottom: 10px; display: block; }
+
+    /* --- CASOS (GRID) --- */
+    .cases-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .case-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .case-title {
+        font-weight: 700;
+        color: #0277bd;
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* --- PREGUNTAS (ACORDEÓN SIMPLE) --- */
+    details.qa-item {
+        background: #fff;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    summary.qa-summary {
+        padding: 15px;
+        cursor: pointer;
+        color: #00838f;
+        font-weight: 600;
+        list-style: none;
+    }
+    
+    .qa-content {
+        padding: 10px 20px 20px 20px;
+        color: #455a64;
+        font-size: 0.95rem;
+        background: #e0f7fa;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .criteria-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="edge-ai-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">1.3 Edge computing y despliegues distribuidos de IA</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/wsu774t6wgs7hf1yci4eh/Gemini_Generated_Image_2nsxv52nsxv52nsx.png?rlkey=u544zct2ce2hudat09zz9lta1&st=1xcocxz5&raw=1" alt="Edge AI" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>En soluciones modernas de IA, no siempre conviene que todo ocurra en un data center o en la nube. En muchos casos, la mejor decisión es ejecutar parte del procesamiento cerca de donde nacen los datos o cerca del usuario final. A esto se le llama Edge Computing (computación en el borde). Cuando lo combinamos con IA, hablamos de Edge AI: modelos que se ejecutan en dispositivos o nodos locales para tomar decisiones rápidamente, incluso si la conectividad es limitada.</p>
+        <span class="key-question">La pregunta guía del tema es: ¿Cuándo conviene llevar la IA al borde (edge), cómo se despliega de forma distribuida y qué riesgos y controles deben considerarse?</span>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1) ¿Qué es Edge Computing (y qué NO es)?</h2>
+        <div class="def-box">
+            <p>Edge computing es un enfoque donde el procesamiento y análisis se realizan en ubicaciones cercanas a la fuente de datos:</p>
+            <ul>
+                <li>campus y sedes,</li>
+                <li>gateways IoT,</li>
+                <li>dispositivos industriales,</li>
+                <li>routers/switches con capacidad de cómputo,</li>
+                <li>mini-servidores locales,</li>
+                <li>cámaras inteligentes.</li>
+            </ul>
+        </div>
+        
+        <p><strong>No es lo mismo que:</strong></p>
+        <ul>
+            <li><strong>Nube:</strong> procesamiento central en centros de datos del proveedor.</li>
+            <li><strong>On-prem centralizado:</strong> un data center propio, pero igual “central”.</li>
+            <li><strong>Solo IoT:</strong> IoT son dispositivos; edge es dónde se procesa.</li>
+        </ul>
+
+        <div class="def-box">
+            <span class="def-title">Pregunta clave: ¿por qué edge existe si la nube es potente?</span>
+            <p>Respuesta: porque edge reduce latencia, disminuye tráfico a la nube, mejora continuidad operativa cuando no hay internet estable y permite decisiones inmediatas en tiempo real.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2) ¿Qué es “Edge AI”?</h2>
+        <div class="def-box">
+            <p>Edge AI es ejecutar modelos (inferencia) en el borde:</p>
+            <ul>
+                <li>en el dispositivo (cámara, móvil, sensor avanzado),</li>
+                <li>en un gateway cercano,</li>
+                <li>en un micro data center local.</li>
+            </ul>
+        </div>
+
+        <p><strong>Puede incluir:</strong></p>
+        <ul>
+            <li>inferencia en tiempo real,</li>
+            <li>filtrado y anonimización de datos antes de enviarlos,</li>
+            <li>detección de anomalías local,</li>
+            <li>acciones automáticas (alertas, bloqueo, apertura/cierre, etc.).</li>
+        </ul>
+
+        <div class="def-box">
+            <span class="def-title">Pregunta clave: ¿edge se usa para entrenar modelos?</span>
+            <p>Respuesta: lo más común es entrenar en nube o data center (por el cómputo), y hacer inferencia en edge. Entrenar en edge es posible en algunos casos (aprendizaje federado o actualizaciones locales), pero es menos común por limitaciones de recursos.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3) ¿Cuándo conviene Edge AI? (criterios de decisión)</h2>
+        
+        <div class="criteria-grid">
+            
+            <div class="criteria-card">
+                <span class="crit-title">3.1 Latencia crítica</span>
+                <div class="crit-content">Si la IA debe responder en milisegundos/segundos, edge es ideal.</div>
+                <div class="crit-example"><strong>✅ Ejemplo real:</strong> detección de intrusos en cámaras, análisis de seguridad en accesos.</div>
+            </div>
+
+            <div class="criteria-card">
+                <span class="crit-title">3.2 Conectividad limitada</span>
+                <div class="crit-content">Sedes rurales o ambientes industriales con internet inestable.</div>
+                <div class="crit-example"><strong>✅ Ejemplo real:</strong> una sede remota necesita monitoreo de redes y alertas aunque se caiga el enlace.</div>
+            </div>
+
+            <div class="criteria-card">
+                <span class="crit-title">3.3 Costos de ancho de banda</span>
+                <div class="crit-content">Enviar video 24/7 a la nube es carísimo; edge filtra y solo envía eventos.</div>
+                <div class="crit-example"><strong>✅ Ejemplo real:</strong> cámara detecta “evento” local y envía solo clip y metadatos.</div>
+            </div>
+
+            <div class="criteria-card">
+                <span class="crit-title">3.4 Privacidad y cumplimiento</span>
+                <div class="crit-content">Procesar localmente reduce exposición de datos sensibles fuera del entorno.</div>
+                <div class="crit-example"><strong>✅ Ejemplo real:</strong> analítica de video con desenfoque/anonimización en edge antes de subir.</div>
+            </div>
+
+            <div class="criteria-card">
+                <span class="crit-title">3.5 Resiliencia operativa</span>
+                <div class="crit-content">Si la nube cae, el sistema debe seguir operando localmente.</div>
+                <div class="crit-example"><strong>✅ Ejemplo real:</strong> control de acceso: no puede depender 100% de conectividad externa.</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4) Modelos de despliegue distribuido de IA (patrones reales)</h2>
+        
+        <details class="model-item">
+            <summary class="model-summary">Patrón A: Edge-only</summary>
+            <div class="model-content">
+                <p>Todo el análisis e inferencia sucede en edge. Se reportan resultados a un sistema central (cuando se puede).</p>
+                <p><strong>Uso real:</strong> control local industrial, cámaras con analítica local.</p>
+            </div>
+        </details>
+
+        <details class="model-item">
+            <summary class="model-summary">Patrón B: Edge + Cloud (el más común)</summary>
+            <div class="model-content">
+                <p>Edge hace inferencia rápida y filtrado. Nube hace analítica histórica, entrenamiento, dashboards y centralización.</p>
+                <p><strong>Uso real:</strong> IoT, mantenimiento predictivo, seguridad física.</p>
+            </div>
+        </details>
+
+        <details class="model-item">
+            <summary class="model-summary">Patrón C: Federado / multi-edge (muchas sedes)</summary>
+            <div class="model-content">
+                <p>Cada sede tiene edge local. Se sincronizan modelos desde un control central. Los datos se quedan en sede; se envían resúmenes o parámetros.</p>
+                <p><strong>Uso real:</strong> cadenas de tiendas, instituciones multi-sede, salud con sedes.</p>
+            </div>
+        </details>
+
+        <details class="model-item">
+            <summary class="model-summary">Patrón D: Cloud + Edge fallback</summary>
+            <div class="model-content">
+                <p>Normalmente usa nube. Edge se activa cuando se cae el enlace o para funciones críticas.</p>
+                <p><strong>Uso real:</strong> operaciones con internet variable.</p>
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5) Componentes típicos en una arquitectura Edge AI</h2>
+        
+        <div class="components-grid">
+            
+            <div class="comp-card">
+                <span class="comp-title">5.1 Dispositivos y sensores</span>
+                cámaras, lectores, sensores ambientales, PLCs (OT).
+            </div>
+            <div class="comp-card">
+                <span class="comp-title">5.2 Gateway / nodo edge</span>
+                equipo local con compute, almacenamiento y conectividad. filtra datos, corre modelos.
+            </div>
+            <div class="comp-card">
+                <span class="comp-title">5.3 Plataforma central</span>
+                registro de dispositivos, distribución de modelos, dashboards, analítica.
+            </div>
+            <div class="comp-card">
+                <span class="comp-title">5.4 Canal seguro</span>
+                VPN/Zero Trust, certificados, cifrado TLS, autenticación mutua.
+            </div>
+
+        </div>
+        <div class="def-box">
+            <span class="def-title">Pregunta clave: ¿qué se sincroniza entre edge y central?</span>
+            <p>Respuesta: normalmente se sincronizan modelos y sus versiones, configuraciones/políticas, eventos/alertas y métricas, logs relevantes, dataset reducido o anonimizado (si aplica).</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">6) Seguridad en Edge AI: riesgos reales y controles necesarios</h2>
+        <p>Edge trae ventajas, pero también abre nuevos riesgos porque ahora tienes “infraestructura crítica” distribuida en muchos puntos.</p>
+        
+        <div class="security-box">
+            <span class="security-title">Riesgos típicos:</span>
+            <ul>
+                <li>Robo o manipulación física de equipos edge.</li>
+                <li>Credenciales expuestas en dispositivos.</li>
+                <li>Firmware/OS desactualizado.</li>
+                <li>Canales inseguros entre edge y central.</li>
+                <li>Movimiento lateral desde IoT/edge hacia TI.</li>
+                <li>Falta de monitoreo: incidentes “silenciosos” en sedes remotas.</li>
+            </ul>
+        </div>
+
+        <div class="controls-box">
+            <span class="controls-title">Controles recomendados (building blocks):</span>
+            <ul>
+                <li>Segmentación fuerte (IoT/OT/edge separado de TI).</li>
+                <li>Mínimo privilegio (edge solo accede a lo necesario).</li>
+                <li>Autenticación por certificados y rotación de llaves.</li>
+                <li>Cifrado en tránsito y reposo (disco cifrado si hay datos).</li>
+                <li>Hardening del OS y servicios mínimos.</li>
+                <li>Gestión central de parches y versiones.</li>
+                <li>Monitoreo remoto (logs, integridad, disponibilidad).</li>
+                <li>Bastión/acceso administrativo controlado (MFA + registro de sesión).</li>
+            </ul>
+        </div>
+
+        <div class="def-box">
+            <span class="def-title">✅ Ejemplo real (IoT/OT):</span>
+            <p>Cámaras inteligentes en red separada, sin acceso a servidores. Solo se comunican con el gateway edge, y el gateway se comunica con el centro por canal cifrado y autenticado.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">7) Operación y observabilidad: cómo no perder el control</h2>
+        <p>Cuando tienes 1 sede es fácil. Cuando tienes 10 o 50 sedes, necesitas gobierno operativo.</p>
+        <p><strong>Qué debes monitorear en edge:</strong></p>
+        <ul>
+            <li>Estado del dispositivo (online/offline)</li>
+            <li>CPU/memoria/temperatura</li>
+            <li>Almacenamiento</li>
+            <li>Latencia de inferencia</li>
+            <li>Tasa de errores del modelo</li>
+            <li>Pérdida de conectividad hacia central</li>
+            <li>Eventos de seguridad (intentos de acceso, cambios de config)</li>
+        </ul>
+        <div class="def-box">
+            <span class="def-title">✅ Ejemplo real (cadena de tiendas):</span>
+            <p>Cada tienda tiene un edge que detecta fraude en cajas. La central monitorea si un edge se queda sin actualizar o si su latencia sube, y despliega modelo nuevo de forma controlada (canary) a pocas tiendas antes de masificar.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">8) Ejemplos reales completos (3 casos)</h2>
+        
+        <div class="cases-grid">
+            
+            <div class="case-card">
+                <span class="case-title">Caso 1: Seguridad física con cámaras (Campus)</span>
+                <p><strong>Edge:</strong> cámara/gateway detecta intrusiones y solo envía eventos.</p>
+                <p><strong>Central:</strong> consolida alertas, reportes y evidencia.</p>
+                <p><strong>Beneficio:</strong> respuesta inmediata, menos ancho de banda.</p>
+                <p><strong>Controles:</strong> segmentación + cifrado + acceso administrativo con MFA.</p>
+            </div>
+
+            <div class="case-card">
+                <span class="case-title">Caso 2: Mantenimiento predictivo (Industria/OT)</span>
+                <p><strong>Edge:</strong> analiza vibración/temperatura de maquinaria.</p>
+                <p><strong>Central:</strong> entrena modelos con históricos y despliega mejoras.</p>
+                <p><strong>Beneficio:</strong> continuidad aunque falle internet.</p>
+                <p><strong>Controles:</strong> separación OT/TI + allowlist + bastión.</p>
+            </div>
+
+            <div class="case-card">
+                <span class="case-title">Caso 3: Analítica académica en sedes remotas (Educación)</span>
+                <p><strong>Edge:</strong> captura datos locales y hace preprocesamiento.</p>
+                <p><strong>Central:</strong> cruza datos institucionales, genera indicadores.</p>
+                <p><strong>Beneficio:</strong> funciona con conectividad intermitente.</p>
+                <p><strong>Controles:</strong> datos sensibles minimizados, cifrado y roles.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">Preguntas y Respuestas</h2>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Qué es Edge computing y qué problema resuelve?</summary>
+            <div class="qa-content">Es procesar datos cerca de la fuente (borde) para reducir latencia, consumo de ancho de banda y dependencia de conectividad, mejorando continuidad y respuesta.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Cuándo conviene Edge AI frente a nube?</summary>
+            <div class="qa-content">Cuando hay latencia crítica, conectividad inestable, costos altos de enviar datos, necesidad de privacidad o resiliencia operativa.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Qué se despliega normalmente en edge: entrenamiento o inferencia?</summary>
+            <div class="qa-content">Normalmente inferencia; el entrenamiento suele hacerse en nube o data center por demanda de cómputo, aunque existen casos especiales como federado.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Cuáles son los riesgos más comunes en despliegues distribuidos de IA?</summary>
+            <div class="qa-content">Manipulación física, credenciales expuestas, firmware desactualizado, canales inseguros, segmentación pobre y falta de monitoreo.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Qué controles mínimos debe tener un nodo edge en seguridad?</summary>
+            <div class="qa-content">Segmentación, autenticación fuerte (certificados/MFA para admin), cifrado, hardening, control de acceso mínimo, gestión de parches central y monitoreo/logs.</div>
+        </details>
+    </div>
+
+</div>
+
+</body>
+</html>

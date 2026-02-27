@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Fundamentos de IA y Ciberseguridad – Justificación del módulo</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .unit-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd;
+    }
+
+    /* --- LOGO UNIVERSIDAD --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .unit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: #01579b;
+        margin: 0 auto 10px auto;
+        max-width: 85%;
+        line-height: 1.2;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .unit-subtitle {
+        font-size: 1.1rem;
+        color: #0288d1;
+        font-weight: 600;
+        margin-bottom: 25px;
+        display: block;
+    }
+
+    /* IMAGEN HERO */
+    .hero-img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(1, 87, 155, 0.15);
+        margin: 0 auto 30px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        object-fit: cover;
+    }
+
+    /* CONTENIDO PRINCIPAL */
+    .section {
+        margin-bottom: 32px;
+        font-size: 1.02rem;
+        line-height: 1.8;
+        text-align: justify;
+    }
+
+    .section h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.5rem;
+        color: #01579b;
+        margin-bottom: 12px;
+    }
+
+    .section h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        color: #0277bd;
+        margin-bottom: 8px;
+        margin-top: 18px;
+    }
+
+    .section ul {
+        padding-left: 22px;
+        margin-top: 6px;
+    }
+
+    .section li {
+        margin-bottom: 8px;
+    }
+
+    .highlight-box {
+        background: #e1f5fe;
+        border-radius: 14px;
+        padding: 20px 22px;
+        margin-bottom: 26px;
+        border-left: 5px solid #0288d1;
+    }
+
+    .questions-box {
+        background: #f1f8e9;
+        border-radius: 14px;
+        padding: 20px 22px;
+        margin-bottom: 26px;
+        border-left: 5px solid #7cb342;
+    }
+
+    .context-box {
+        background: #fffde7;
+        border-radius: 14px;
+        padding: 20px 22px;
+        margin-bottom: 10px;
+        border-left: 5px solid #f9a825;
+    }
+
+    /* ANIMACIONES */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .unit-title { font-size: 2.1rem; max-width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="unit-container">
+
+    <!-- Logo institucional -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&raw=1"
+         alt="Logo Universidad" class="uni-logo">
+
+    <!-- Encabezado -->
+    <div class="header-box">
+        <span class="unit-subtitle">Módulo – Especialización en IA y Ciberseguridad</span>
+        <h1 class="unit-title">Fundamentos de Inteligencia Artificial y Ciberseguridad</h1>
+
+        <!-- Imagen principal proporcionada por el usuario -->
+        <img src="https://www.dropbox.com/scl/fi/mnpj09dr672h48njbxo24/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.36_bc4c6845.jpg?rlkey=zf518a4mz2d9f83l4i52zhkoa&raw=1"
+             alt="Imagen Fundamentos de IA y Ciberseguridad" class="hero-img">
+    </div>
+
+    <!-- Justificación del módulo -->
+    <div class="section">
+        <h2>Justificación del módulo</h2>
+        <div class="highlight-box">
+            <p>
+                En los últimos años, tecnologías como la <strong>inteligencia artificial</strong>, el
+                <strong>aprendizaje automático</strong>, la automatización y los sistemas de análisis masivo de datos
+                han empezado a transformar radicalmente la forma en que las organizaciones gestionan la seguridad de su
+                información y operaciones.
+            </p>
+            <p>
+                Desde la <strong>detección temprana de amenazas</strong>, la <strong>prevención de fraudes</strong>,
+                hasta la <strong>autenticación adaptativa</strong> y la <strong>respuesta automatizada a incidentes</strong>,
+                la IA y la ciberseguridad convergen para hacer que los sistemas sean más rápidos, inteligentes y eficientes.
+            </p>
+        </div>
+
+        <p>Sin embargo, esta integración también abre la puerta a desafíos complejos y riesgos significativos:</p>
+        <ul>
+            <li>Modelos de IA que pueden ser vulnerables a ataques adversarios o manipulaciones, poniendo en riesgo la integridad y disponibilidad de los sistemas.</li>
+            <li>La dificultad para interpretar y explicar decisiones automatizadas en contextos críticos de seguridad, lo que puede afectar la confianza y la capacidad de respuesta.</li>
+            <li>La exposición de datos sensibles y el aumento de la superficie de ataque debido a la dependencia de múltiples proveedores, APIs y entornos en la nube.</li>
+            <li>La necesidad de cumplir con normativas cada vez más estrictas que regulan la protección de datos, la auditoría de modelos y la gobernanza de la IA.</li>
+        </ul>
+
+        <p>
+            En este contexto, ya no basta con tener habilidades técnicas en IA o en ciberseguridad por separado. Se
+            requieren profesionales capaces de entender cómo estas disciplinas se intersectan, evaluar riesgos desde una
+            perspectiva integral y diseñar arquitecturas y controles que garanticen la <strong>seguridad, privacidad y
+            confiabilidad</strong> de las soluciones basadas en IA.
+        </p>
+    </div>
+
+    <!-- Por qué este módulo es fundamental -->
+    <div class="section">
+        <h2>¿Por qué este módulo es fundamental en la especialización?</h2>
+        <p>
+            Por eso este módulo es fundamental en la especialización:
+        </p>
+        <ul>
+            <li>Proporciona los <strong>fundamentos técnicos y estratégicos</strong> para comprender los límites y alcances de la IA y la ciberseguridad en la transformación digital.</li>
+            <li>Permite analizar <strong>casos reales</strong> donde la IA potencia la seguridad, pero también introduce nuevos riesgos y vulnerabilidades.</li>
+            <li>Entrena para diseñar y aplicar <strong>controles, políticas y arquitecturas seguras</strong> (como SecMLOps) que permitan operar modelos de IA de forma confiable, auditable y responsable.</li>
+        </ul>
+
+        <div class="questions-box">
+            <h3>De preguntas técnicas a preguntas estratégicas</h3>
+            <p>En otras palabras, este módulo busca que puedas pasar de preguntas como:</p>
+            <ul>
+                <li>“¿Cómo funciona este modelo de IA?”</li>
+            </ul>
+            <p>a preguntas mucho más críticas y estratégicas, como:</p>
+            <ul>
+                <li>“¿Cuáles son los riesgos de seguridad asociados a este modelo?”</li>
+                <li>“¿Cómo podemos proteger los datos y garantizar la integridad y disponibilidad del sistema?”</li>
+                <li>“¿Qué controles y arquitecturas debemos implementar para operar IA segura?”</li>
+                <li>“¿Cómo evaluamos y mitigamos los riesgos técnicos y organizacionales en el ciclo de vida de los modelos?”</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Importancia en el contexto profesional -->
+    <div class="section">
+        <h2>¿Por qué es importante en tu contexto profesional?</h2>
+        <div class="context-box">
+            <p>Vivimos en un mundo donde:</p>
+            <ul>
+                <li>Las organizaciones dependen cada vez más de sistemas inteligentes para proteger sus activos, detectar amenazas y responder a incidentes en tiempo real.</li>
+                <li>La superficie de ataque se amplía con la adopción de tecnologías emergentes, la integración de múltiples plataformas y la automatización de procesos críticos.</li>
+                <li>La regulación y las normativas exigen no solo innovación, sino también cumplimiento, transparencia y gobernanza efectiva de los sistemas de IA y seguridad.</li>
+            </ul>
+        </div>
+
+        <p>
+            En este escenario, los especialistas en IA y ciberseguridad necesitan algo más que conocimientos técnicos:
+            requieren una <strong>visión integrada</strong> que les permita diseñar soluciones seguras, resilientes y
+            alineadas con las mejores prácticas y estándares internacionales.
+        </p>
+
+        <p>
+            Por todo esto, el módulo <strong>“Fundamentos de Inteligencia Artificial y Ciberseguridad”</strong> no es un
+            complemento opcional, sino un <strong>pilar esencial</strong> que te preparará para enfrentar los retos actuales
+            y futuros, garantizando que las soluciones tecnológicas que desarrolles o implementes sean
+            <strong>confiables, responsables y seguras</strong>.
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

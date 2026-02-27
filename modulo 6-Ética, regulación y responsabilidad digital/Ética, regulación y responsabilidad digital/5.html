@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .unit-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd; /* Azul institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    /* Título */
+    .unit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 3rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: #01579b;
+        margin: 0 auto 25px auto;
+        max-width: 85%;
+        line-height: 1.2;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .unit-subtitle {
+        font-size: 1.3rem;
+        color: #0288d1;
+        font-weight: 600;
+        margin-bottom: 30px;
+        display: block;
+    }
+
+    /* IMAGEN HERO (Tu nuevo enlace) */
+    .hero-img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(1, 87, 155, 0.15); /* Sombra azul */
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+    }
+
+    /* --- TEXTO INTRODUCTORIO --- */
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 40px;
+        padding: 0 10px;
+    }
+
+    /* --- RESULTADO DE APRENDIZAJE (RA) --- */
+    .ra-box {
+        background: linear-gradient(135deg, #0277bd 0%, #00acc1 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 50px;
+        box-shadow: 0 10px 20px rgba(0, 172, 193, 0.3);
+    }
+
+    .ra-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        display: block;
+        text-transform: uppercase;
+        opacity: 0.9;
+    }
+
+    .ra-content {
+        font-size: 1.2rem;
+        font-weight: 600;
+        line-height: 1.5;
+    }
+
+    /* --- BLOQUES DE CONTENIDO (GRID) --- */
+    .content-title {
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        color: #01579b;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+
+    .topics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-bottom: 60px;
+    }
+
+    .topic-card {
+        background: white;
+        border: 1px solid #e1f5fe;
+        border-radius: 15px;
+        padding: 25px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: left;
+    }
+
+    .topic-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        border-color: #0288d1;
+    }
+
+    .topic-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        display: block;
+        color: #0277bd;
+    }
+
+    .topic-card h3 {
+        color: #01579b;
+        margin-top: 0;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        border-bottom: 2px solid #b3e5fc;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    .topic-card ul { padding-left: 20px; color: #555; }
+    .topic-card li { margin-bottom: 8px; font-size: 0.95rem; }
+
+    /* --- ACTIVIDADES (ACORDEÓN SIMPLE O TARJETAS HORIZONTALES) --- */
+    .activities-section {
+        background: #f1f8e9; /* Fondo muy suave */
+        padding: 40px;
+        border-radius: 20px;
+        margin-bottom: 50px;
+        border: 1px dashed #aed581;
+    }
+
+    .activity-card {
+        background: white;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        border-left: 6px solid #558b2f; /* Verde oliva */
+    }
+
+    .activity-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .act-badge {
+        background: #558b2f;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+    }
+
+    .act-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: #33691e;
+        font-size: 1.1rem;
+    }
+
+    /* --- EXPECTATIVAS (CHECKLIST) --- */
+    .expectations-box {
+        background: #e1f5fe;
+        padding: 30px;
+        border-radius: 15px;
+        color: #01579b;
+    }
+
+    .check-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .check-list li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 12px;
+        font-size: 1rem;
+    }
+
+    .check-list li::before {
+        content: '✔';
+        position: absolute;
+        left: 0;
+        color: #0288d1;
+        font-weight: bold;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE (Móvil) --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .unit-title { font-size: 2.2rem; max-width: 100%; }
+        .hero-img { margin-bottom: 20px; }
+        .activities-section { padding: 20px; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="unit-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <span class="unit-subtitle">Módulo: Ética, Regulación y Responsabilidad Digital</span>
+        <h1 class="unit-title">Unidad 1</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/g92avsdjmnb6ggg82avdw/Gemini_Generated_Image_xbj5bwxbj5bwxbj5.png?rlkey=x40x9k6pa1p3g22coy1vikjmn&st=ncmqd580&raw=1" alt="Ética y Leyes Digitales" class="hero-img">
+    </div>
+
+    <div class="intro-text">
+        <p>Pasamos de las preguntas generales a un terreno concreto: <strong>¿Qué normas y principios éticos deben guiar el uso de la IA y los datos?</strong></p>
+        <p>Vivimos en un contexto donde las tecnologías toman decisiones por nosotros. No basta con que la tecnología "funcione"; debe funcionar de forma justa, transparente y respetuosa. Esta unidad te dará las bases para comprender el <strong>marco ético-legal</strong> que rodea estas tecnologías.</p>
+    </div>
+
+    <div class="ra-box">
+        <span class="ra-title">Resultado de Aprendizaje (RA1)</span>
+        <div class="ra-content">
+            "Interpretar marcos legales y principios éticos que regulan el uso de tecnologías emergentes, con énfasis en IA y protección de datos personales."
+        </div>
+    </div>
+
+    <h2 class="content-title">Bloques Temáticos</h2>
+    <div class="topics-grid">
+        
+        <div class="topic-card">
+            <span class="topic-icon">⚖️</span>
+            <h3>Fundamentos de Ética</h3>
+            <ul>
+                <li>Dignidad humana.</li>
+                <li>Autonomía y libertad.</li>
+                <li>Justicia y equidad.</li>
+                <li>Responsabilidad moral.</li>
+            </ul>
+        </div>
+
+        <div class="topic-card">
+            <span class="topic-icon">📜</span>
+            <h3>Marcos Legales</h3>
+            <ul>
+                <li>Leyes de Habeas Data (Nacionales).</li>
+                <li>Reglamento Europeo (GDPR).</li>
+                <li>Ley de IA (AI Act).</li>
+                <li>Normas sectoriales específicas.</li>
+            </ul>
+        </div>
+
+        <div class="topic-card">
+            <span class="topic-icon">🛡️</span>
+            <h3>Principios Éticos IA</h3>
+            <ul>
+                <li>Privacidad y confidencialidad.</li>
+                <li>Transparencia y explicabilidad.</li>
+                <li>No discriminación.</li>
+                <li>Rendición de cuentas.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="activities-section">
+        <h2 class="content-title" style="color:#33691e; margin-bottom:25px;">¿Cómo vamos a trabajar?</h2>
+        
+        <div class="activity-card">
+            <div class="activity-header">
+                <span class="act-badge">Actividad 1</span>
+                <span class="act-title">Foro: Marcos Legales y Principios</span>
+            </div>
+            <p>Analizarás un caso de uso de IA conectándolo con <strong>una ley o marco regulatorio</strong> y con <strong>2-3 principios éticos</strong>. Compartirás tu análisis y debatirás con compañeros.</p>
+        </div>
+
+        <div class="activity-card">
+            <div class="activity-header">
+                <span class="act-badge">Actividad 2</span>
+                <span class="act-title">Mapa Comparativo</span>
+            </div>
+            <p>Crearás un <strong>cuadro o infografía</strong> comparando al menos 3 marcos (ej. Ley local, GDPR, AI Act), identificando principios clave, derechos y obligaciones.</p>
+        </div>
+    </div>
+
+    <div class="expectations-box">
+        <h3 style="margin-top:0; font-family:'Montserrat', sans-serif;">¿Qué esperamos de ti?</h3>
+        <ul class="check-list">
+            <li><strong>Lectura activa:</strong> Revisa los materiales básicos sobre ética y leyes.</li>
+            <li><strong>Participación:</strong> Conecta teoría con casos reales en el foro.</li>
+            <li><strong>Síntesis:</strong> Construye tu mapa con rigor, interpretando la norma, no solo copiándola.</li>
+            <li><strong>Pensamiento Crítico:</strong> Pregúntate siempre: "¿Qué derechos están en juego?", "¿Qué principios se vulneran?".</li>
+        </ul>
+        <p style="margin-bottom:0; margin-top:20px; font-weight:bold; font-style:italic;">Esta unidad es la columna vertebral normativa del módulo.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

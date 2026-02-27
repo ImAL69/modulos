@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .capacity-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #2962ff; /* Azul Intenso */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #0d47a1;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(41, 98, 255, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #bbdefb;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '📊';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Listas anidadas */
+    .sub-list {
+        margin-top: 5px;
+        padding-left: 20px;
+        list-style: circle;
+        color: #546e7a;
+    }
+    .sub-list li::before { content: none; }
+    .sub-list li { padding-left: 0; list-style-type: circle; }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #2962ff;
+        border-bottom: 2px solid #e3f2fd;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* Subtítulos dentro de acordeones */
+    .sub-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        color: #0d47a1;
+        font-weight: 700;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #e3f2fd;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #1565c0;
+    }
+
+    /* --- COMPARACIÓN (GRID) --- */
+    .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    @media (min-width: 768px) {
+        .comparison-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .comp-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+    }
+
+    .comp-card:hover { transform: translateY(-5px); border-color: #2962ff; }
+
+    .comp-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #0d47a1;
+        margin-bottom: 15px;
+        display: block;
+        text-align: center;
+        border-bottom: 1px solid #bbdefb;
+        padding-bottom: 10px;
+    }
+
+    .comp-summary {
+        background: #f5f5f5;
+        padding: 10px;
+        text-align: center;
+        font-style: italic;
+        font-weight: bold;
+        color: #1565c0;
+        margin-top: 15px;
+        border-radius: 6px;
+    }
+
+    /* --- ACORDEONES (CAPACIDADES / ESCALAMIENTO) --- */
+    details.capacity-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #bbdefb;
+        overflow: hidden;
+    }
+
+    summary.capacity-summary {
+        padding: 15px 20px;
+        background: #e3f2fd;
+        cursor: pointer;
+        font-weight: 700;
+        color: #0d47a1;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    summary.capacity-summary:hover { background: #bbdefb; }
+    summary.capacity-summary::-webkit-details-marker { display: none; }
+    
+    summary.capacity-summary::after { content: '+'; font-size: 1.5rem; color: #2962ff; }
+    details[open] summary.capacity-summary::after { content: '-'; }
+
+    .capacity-content {
+        padding: 20px;
+        border-top: 1px solid #bbdefb;
+        color: #37474f;
+    }
+
+    /* --- FUENTES DE INFO (GRID) --- */
+    .sources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .source-card {
+        background: #f1f8e9; /* Verde muy suave */
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #c5e1a5;
+    }
+    
+    .source-title { font-weight: 700; color: #33691e; margin-bottom: 5px; display: block; }
+
+    /* --- PICOS DE CARGA (CAJA ALERTA) --- */
+    .peaks-box {
+        background: #fff3e0; /* Naranja suave */
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 5px solid #ff9800;
+        margin-bottom: 40px;
+    }
+    .peaks-title { font-weight: 700; color: #ef6c00; display: block; margin-bottom: 10px; font-size: 1.1rem; }
+
+    /* --- SEGURIDAD (CAJA ROJA) --- */
+    .security-box {
+        background: #ffebee;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #ffcdd2;
+        margin-bottom: 40px;
+    }
+    .security-highlight { font-weight: 700; color: #b71c1c; text-align: center; display: block; margin-top: 15px; font-size: 1.1rem; }
+
+    /* --- CICLO ITERATIVO (TIMELINE) --- */
+    .cycle-container {
+        position: relative;
+        padding-left: 20px;
+    }
+    .cycle-container::before {
+        content: ''; position: absolute; left: 29px; top: 0; bottom: 0; width: 2px; background: #bdbdbd; z-index: 0;
+    }
+
+    .cycle-step {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .cycle-header {
+        display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    }
+
+    .cycle-num {
+        background: #455a64; color: white; width: 30px; height: 30px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center; font-weight: bold;
+    }
+
+    .cycle-name { font-weight: 700; color: #37474f; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .comparison-grid { grid-template-columns: 1fr; }
+        .types-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="capacity-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">2.3 Dimensionamiento y planificación de capacidad</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/q9o2u7eq6shpzd29qv148/Gemini_Generated_Image_ctm7a0ctm7a0ctm7.png?rlkey=0czqtqa5b80lcw2jkxulgow1b&st=76jx0aym&raw=1" alt="Planificación de Capacidad" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>En la Unidad 2 ya vimos cómo se conectan los distintos entornos (on-premise, nube, edge, IA) mediante topologías y esquemas híbridos.</p>
+        <p>Ahora toca responder otra pregunta clave: <strong>¿Con lo que tenemos… realmente alcanza?</strong></p>
+        <p>¿Y qué va a pasar cuando todo esto crezca? Ahí entra el tema de dimensionamiento y planificación de capacidad: no es solo “comprar más ancho de banda” o “poner un equipo más potente”, sino anticipar:</p>
+        <ul>
+            <li>Cuánta carga de usuarios, datos, tráfico y procesos puede soportar la arquitectura.</li>
+            <li>Qué recursos son críticos (enlaces, CPU, memoria, almacenamiento, licencias, servicios de IA).</li>
+            <li>Cuándo será necesario crecer y de qué manera (vertical, horizontal, nube, on-prem…).</li>
+        </ul>
+        <p><strong>Si no se planifica la capacidad:</strong></p>
+        <ul>
+            <li>La red funciona bien… hasta que un día explota (se satura todo a la vez).</li>
+            <li>Los proyectos de IA se vuelven lentos e imprácticos.</li>
+            <li>La organización termina reaccionando siempre tarde: comprando “a las carreras” y parchando.</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1. ¿Qué es dimensionamiento y planificación de capacidad?</h2>
+        <p>Podemos separar los conceptos:</p>
+        
+        <div class="comparison-grid">
+            
+            <div class="comp-card">
+                <span class="comp-title">Dimensionamiento</span>
+                <p>Es el ejercicio de calcular y definir cuánto recurso necesitas para que la arquitectura funcione bien bajo una carga dada.</p>
+                <p><strong>Por ejemplo:</strong></p>
+                <ul class="sub-list">
+                    <li>¿Qué ancho de banda mínimo debe tener el enlace a Internet para 800 usuarios concurrentes?</li>
+                    <li>¿Qué potencia requieren los firewalls para inspeccionar todo el tráfico con IDS/IPS?</li>
+                    <li>¿Cuántos servidores o nodos necesita un cluster de IA para entrenar un modelo en un tiempo razonable?</li>
+                </ul>
+                <div class="comp-summary">Dimensionamiento = “¿Me alcanza hoy?”</div>
+            </div>
+
+            <div class="comp-card">
+                <span class="comp-title">Planificación de capacidad</span>
+                <p>Es el proceso continuo de prever cómo va a crecer la demanda y definir:</p>
+                <ul class="sub-list">
+                    <li>Cuándo un recurso empezará a quedarse corto.</li>
+                    <li>Cómo se va a escalar (más enlaces, más nodos, pasar cargas a la nube, etc.).</li>
+                    <li>Qué inversiones se deben priorizar y en qué momento.</li>
+                </ul>
+                <div class="comp-summary">Planificación = “¿Me va a seguir alcanzando mañana?”</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2. ¿Qué capacidades se deben considerar?</h2>
+        <p>En arquitecturas seguras e inteligentes, la capacidad no es solo “megabits de Internet”. Debes mirar varios ejes:</p>
+        
+        <details class="capacity-item">
+            <summary class="capacity-summary">2.1 Capacidad de red</summary>
+            <div class="capacity-content">
+                <p><strong>Ancho de banda en:</strong> LAN (backbone, enlaces de acceso, Wi-Fi), WAN (enlaces entre sedes), Internet y conexiones a la nube.</p>
+                <p><strong>Capacidad de procesamiento en equipos de red:</strong> Switches de core y distribución, Routers y SD-WAN, Firewalls, balanceadores, VPN concentrators.</p>
+            </div>
+        </details>
+
+        <details class="capacity-item">
+            <summary class="capacity-summary">2.2 Capacidad de cómputo</summary>
+            <div class="capacity-content">
+                <p>CPU y memoria de: Servidores físicos y virtuales, Clusters de contenedores (Kubernetes, etc.), Nodos de IA (GPUs, TPUs, etc.).</p>
+            </div>
+        </details>
+
+        <details class="capacity-item">
+            <summary class="capacity-summary">2.3 Capacidad de almacenamiento</summary>
+            <div class="capacity-content">
+                <p>Espacio para: Bases de datos operacionales, Repositorios de logs y auditoría, Data lakes y datasets de entrenamiento de IA, Backups y archivos históricos.</p>
+            </div>
+        </details>
+
+        <details class="capacity-item">
+            <summary class="capacity-summary">2.4 Capacidad de servicios críticos</summary>
+            <div class="capacity-content">
+                <p>Servidores de autenticación, DNS, correo, proxies, gateways de API, plataformas académicas, aplicativos core, etc.</p>
+                <p>No solo cuánto consumen, sino cuántas peticiones por segundo pueden manejar.</p>
+            </div>
+        </details>
+
+        <details class="capacity-item">
+            <summary class="capacity-summary">2.5 Capacidad del equipo humano y operativo</summary>
+            <div class="capacity-content">
+                <p>¿Cuántos cambios puede gestionar el equipo de TI sin aumentar errores? ¿Cuánto esfuerzo requieren las tareas de monitoreo, actualización, documentación? ¿Es necesario automatizar porque “la capacidad humana” ya está al límite?</p>
+                <p><em>En muchos fallos de capacidad, el cuello de botella no es solo tecnológico, también es operativo.</em></p>
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3. Fuentes de información para dimensionar</h2>
+        <p>Antes de decidir “necesito más de X”, hay que observar:</p>
+        
+        <div class="sources-grid">
+            <div class="source-card">
+                <span class="source-title">Métricas históricas</span>
+                Gráficas de uso de CPU, RAM, enlaces. Tendencias de tráfico. Picos horarios, diarios, mensuales.
+            </div>
+            <div class="source-card">
+                <span class="source-title">Patrones de uso</span>
+                ¿Cuándo se conecta más gente? ¿Cuándo se usan más los sistemas de IA?
+            </div>
+            <div class="source-card">
+                <span class="source-title">Eventos previsibles</span>
+                Nuevos programas, más sedes, nuevas aplicaciones críticas, proyectos de IA.
+            </div>
+            <div class="source-card">
+                <span class="source-title">Requisitos de negocio</span>
+                Tiempos máximos de respuesta, ventanas de indisponibilidad, crecimiento esperado.
+            </div>
+        </div>
+        <p>Sin estos datos, el dimensionamiento se convierte en “salto de fe” basado solo en intuición.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4. Diseñar para el día a día… y para los picos</h2>
+        <div class="peaks-box">
+            <span class="peaks-title">Un error común es dimensionar pensando solo en un uso promedio.</span>
+            <p>En la práctica, la capacidad debe considerar picos de carga: Inicio o fin de semestre, Jornadas de matrícula, pagos o inscripciones, Días de pruebas masivas en línea, Cierres de mes o año, Entrenamientos intensivos de modelos de IA.</p>
+            <p>En esas ventanas, el sistema no puede “morir”: Si solo dimensionas para promedio, en el pico habrá lentitud, caídas y colas interminables. Si dimensionas solo para pico con infraestructura fija, puedes terminar con recursos muy sobredimensionados el resto del tiempo (y caros).</p>
+        </div>
+        <p>Por eso muchos diseños combinan: Infraestructura base on-prem dimensionada para lo normal + picos moderados, y Escalamiento en nube (auto-scaling) para absorber picos fuertes en cargas de IA o servicios web.</p>
+        <p>La clave es identificar: Cuáles servicios pueden “rebotar” momentáneamente a la nube y cuáles necesariamente deben permanecer on-prem por cumplimiento, latencia o integración.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5. Estrategias de escalamiento: vertical, horizontal e híbrido</h2>
+        <p>Cuando la capacidad se queda corta, ¿cómo se crece?</p>
+
+        <details class="capacity-item">
+            <summary class="capacity-summary">5.1 Escalamiento vertical (“scale up”)</summary>
+            <div class="capacity-content">
+                <p>Hacer más grande un recurso: Servidor con más CPU/RAM, Enlace con más ancho de banda, Firewall con más capacidad de throughput.</p>
+                <p><strong>Ventajas:</strong> Suele ser más simple de gestionar (menos equipos, menos rutas).</p>
+                <p><strong>Desventajas:</strong> Llega un punto en que ya no puedes crecer más. Genera puntos únicos de fallo muy grandes: si ese “super equipo” cae, impacta a todo.</p>
+            </div>
+        </details>
+
+        <details class="capacity-item">
+            <summary class="capacity-summary">5.2 Escalamiento horizontal (“scale out”)</summary>
+            <div class="capacity-content">
+                <p>Añadir más instancias en paralelo: Más servidores detrás de un balanceador, Más nodos en un cluster de IA, Más enlaces paralelos manejados por SD-WAN.</p>
+                <p><strong>Ventajas:</strong> Mejor resiliencia (si un nodo falla, los otros siguen). Suele escalar mejor a largo plazo.</p>
+                <p><strong>Desventajas:</strong> Mayor complejidad: balanceo, sincronización, monitoreo de muchos elementos.</p>
+            </div>
+        </details>
+
+        <details class="capacity-item">
+            <summary class="capacity-summary">5.3 Estrategias híbridas</summary>
+            <div class="capacity-content">
+                <p>En la práctica se combinan ambas: Se dimensiona verticalmente cierto mínimo razonable, Se diseña para poder escalar horizontalmente cuando se alcancen ciertos umbrales.</p>
+                <p>En entornos de IA y nube, el escalamiento horizontal (más pods, más nodos, más réplicas de servicio) suele ser la norma, pero siempre sustentado por una red y una topología que aguanten ese crecimiento.</p>
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">6. Capacidad y seguridad: dimensionar controles, no solo tránsito</h2>
+        <div class="security-box">
+            <p>La seguridad también consume capacidad:</p>
+            <ul>
+                <li>Cifrado (VPN, TLS, IPSec) genera carga en CPU y en algunos casos afecta throughput.</li>
+                <li>Inspección profunda (IDS/IPS, WAF, proxy de contenidos) necesita procesar paquetes y sesiones.</li>
+                <li>Registro de logs consume espacio de almacenamiento y ancho de banda hacia servidores de logging o SIEM.</li>
+            </ul>
+            <p><strong>Errores típicos:</strong> Comprar un firewall solo mirando el “throughput sin inspección”, y luego activas todas las funciones y el rendimiento real cae a la mitad o menos. Habilitar logging muy detallado sin dimensionar el almacenamiento ni los canales de envío.</p>
+            <p><strong>Dimensionamiento correcto:</strong> Revisar las fichas técnicas con funciones de seguridad activas (AV, IPS, SSL inspection, etc.). Calcular volúmenes de logs esperados y su retención (días / meses). Considerar el impacto de cifrado extremo a extremo sobre CPU y latencia.</p>
+            <span class="security-highlight">En arquitecturas seguras e inteligentes: No basta con que la red soporte el tráfico. Los controles de seguridad también deben tener capacidad para trabajar sin convertirse en cuellos de botella.</span>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">7. Planificación de capacidad en entornos de IA</h2>
+        <p>Los proyectos de IA introducen desafíos particulares en capacidad:</p>
+        <ul>
+            <li><strong>Entrenamiento intensivo:</strong> Consumo alto de GPU, CPU y almacenamiento. Ventanas largas de procesamiento (horas o días). Transferencia masiva de datasets (desde sedes, sensores, sistemas externos).</li>
+            <li><strong>Inferencia en tiempo real:</strong> Carga variable dependiendo de número de usuarios y casos de uso. Requisitos de baja latencia (segundos o milisegundos). A veces, necesidad de distribuir modelos en edge para reducir latencias.</li>
+        </ul>
+        <p>Al planificar capacidad para IA debes preguntarte: ¿El entrenamiento será esporádico o continuo? ¿Puedo usar la nube para entrenar y mantener on-prem solo la inferencia? ¿Cuántas llamadas por segundo esperará el API de IA en hora pico? ¿Cómo afectará eso a enlaces, firewalls, balanceadores y almacenamiento?</p>
+        <p>Una mala planificación puede llevar a: Proyectos de IA que técnicamente existen, pero no se pueden usar en producción porque son muy lentos. Costos de nube inesperadamente altos por tráfico y almacenamiento no calculados.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">8. Proceso iterativo: medir, analizar, ajustar</h2>
+        <p>La planificación de capacidad no es algo que se hace una vez y se olvida. Debería ser un ciclo:</p>
+        
+        <div class="cycle-container">
+            <div class="cycle-step">
+                <div class="cycle-header">
+                    <div class="cycle-num">1</div>
+                    <span class="cycle-name">Medir</span>
+                </div>
+                <p>Uso de recursos clave (CPU, RAM, disco, enlaces, latencia, errores). A la vez, medir demanda de negocio (usuarios, transacciones, flujos de IA).</p>
+            </div>
+
+            <div class="cycle-step">
+                <div class="cycle-header">
+                    <div class="cycle-num">2</div>
+                    <span class="cycle-name">Analizar tendencias</span>
+                </div>
+                <p>¿Qué crece más rápido? ¿Usuarios? ¿Tráfico de video? ¿Llamadas a APIs de IA? ¿En qué momentos se acercan los recursos a límites peligrosos (80–90 %)?</p>
+            </div>
+
+            <div class="cycle-step">
+                <div class="cycle-header">
+                    <div class="cycle-num">3</div>
+                    <span class="cycle-name">Definir umbrales y acciones</span>
+                </div>
+                <p>Por ejemplo: Si un enlace está por encima del 75 % sostenido en horario pico, planear ampliación. Si la CPU de un cluster de IA supera el 70 % constante, aumentar nodos.</p>
+            </div>
+
+            <div class="cycle-step">
+                <div class="cycle-header">
+                    <div class="cycle-num">4</div>
+                    <span class="cycle-name">Ejecutar cambios</span>
+                </div>
+                <p>Ampliar enlaces. Añadir nodos. Mover ciertas cargas a la nube. Optimizar aplicaciones o rutas.</p>
+            </div>
+
+            <div class="cycle-step">
+                <div class="cycle-header">
+                    <div class="cycle-num">5</div>
+                    <span class="cycle-name">Volver a medir</span>
+                </div>
+                <p>Comprobar si las acciones realmente alivian el problema.</p>
+            </div>
+        </div>
+
+        <p style="text-align:center; margin-top:20px; font-weight:bold; color:#0d47a1;">Así, la capacidad se gestiona como un proceso vivo, no como una decisión aislada de compra de hardware.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

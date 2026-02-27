@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .reco-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #283593; /* Azul Profundo */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #1a237e;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(40, 53, 147, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #c5cae9;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 40px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+    
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '▹';
+        color: #3949ab;
+        font-weight: bold;
+        font-size: 1.2rem;
+        position: absolute;
+        left: 0;
+        top: -2px;
+    }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #283593; /* Azul Indigo */
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e8eaf6;
+        padding-bottom: 10px;
+        font-weight: 700;
+        margin-top: 40px;
+    }
+
+    /* Cajas de Definición */
+    .definition-box {
+        background: #e8eaf6;
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 5px solid #3949ab;
+        margin-bottom: 25px;
+    }
+
+    /* --- SECCIÓN 3: GRID DE ICONOS --- */
+    .sectors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .sector-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        transition: transform 0.3s;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+
+    .sector-card:hover {
+        transform: translateY(-5px);
+        border-color: #3949ab;
+    }
+
+    .sector-title {
+        font-weight: 700;
+        color: #1a237e;
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* --- SECCIÓN 4: VENTAJAS (VERDE) --- */
+    .advantages-box {
+        background: #e8f5e9;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #c8e6c9;
+    }
+    .advantages-box li::before { color: #2e7d32; content: '✔'; }
+
+    /* --- SECCIÓN 5: RIESGOS (ACORDEÓN) --- */
+    details.risk-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #ffccbc; /* Naranja suave */
+        overflow: hidden;
+    }
+
+    summary.risk-summary {
+        padding: 15px 20px;
+        background: #fff3e0;
+        cursor: pointer;
+        font-weight: 700;
+        color: #e65100; /* Naranja fuerte */
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    summary.risk-summary:hover { background: #ffe0b2; }
+    summary.risk-summary::-webkit-details-marker { display: none; }
+    
+    summary.risk-summary::after { content: '+'; font-size: 1.5rem; }
+    details[open] summary.risk-summary::after { content: '-'; }
+
+    .risk-content {
+        padding: 20px;
+        border-top: 1px solid #ffccbc;
+        color: #4e342e;
+    }
+
+    /* --- SECCIÓN 7: PREGUNTAS (CHECKLIST) --- */
+    .checklist-box {
+        background: #e3f2fd;
+        padding: 30px;
+        border-radius: 15px;
+        border: 2px dashed #2196f3;
+    }
+
+    .check-item {
+        margin-bottom: 20px;
+    }
+    
+    .check-q {
+        font-weight: 800;
+        color: #0d47a1;
+        display: block;
+        margin-bottom: 5px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 2rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="reco-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Sistemas de recomendación y perfilamiento algorítmico</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/2uusrvzbv9m9c866evwe8/Gemini_Generated_Image_65n72u65n72u65n7.png?rlkey=p7p9itp9okzr661h3ughuiu23&st=l320ioxm&raw=1" alt="Perfilamiento Algorítmico" class="hero-image">
+    </div>
+
+    <div class="content-block">
+        <p>Hoy casi todo lo que vemos en internet está “ordenado” por algoritmos:</p>
+        <ul>
+            <li>Las series que te sugiere una plataforma de streaming.</li>
+            <li>Los vídeos que aparecen en tu feed.</li>
+            <li>Los productos que “quizás te gusten”.</li>
+            <li>Las personas que “podrías conocer”.</li>
+            <li>Las noticias que te muestran primero.</li>
+        </ul>
+        <p>Detrás de todo esto están los <strong>sistemas de recomendación</strong> y el <strong>perfilamiento algorítmico</strong>. No solo ayudan a encontrar contenido relevante: también influyen en lo que pensamos, compramos, votamos, cómo usamos nuestro tiempo… y en qué oportunidades vemos o dejamos de ver.</p>
+        
+        <p><strong>En esta página veremos:</strong></p>
+        <ul>
+            <li>Qué son los sistemas de recomendación.</li>
+            <li>Qué es el perfilamiento algorítmico y cómo se construyen perfiles.</li>
+            <li>Dónde los encontramos en la vida cotidiana.</li>
+            <li>Sus ventajas y riesgos éticos.</li>
+            <li>La relación con datos personales, privacidad y derechos de las personas.</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1. ¿Qué es un sistema de recomendación?</h2>
+        <div class="definition-box">
+            <p>Un sistema de recomendación es un conjunto de algoritmos que decide <strong>qué mostrar primero</strong> a cada persona entre miles o millones de opciones posibles.</p>
+        </div>
+        <p><strong>Ejemplos:</strong></p>
+        <ul>
+            <li>En una plataforma de vídeo: qué vídeos se reproducen en “recomendados” o “autoplay”.</li>
+            <li>En una tienda en línea: qué productos aparecen como “te puede interesar” o “otros usuarios también compraron…”.</li>
+            <li>En una red social: qué publicaciones ves arriba, de quién, en qué orden.</li>
+        </ul>
+        <p>En lugar de mostrar lo mismo a todo el mundo, el sistema intenta <strong>personalizar</strong> el contenido según:</p>
+        <ul>
+            <li>Lo que has visto, buscado o comprado antes.</li>
+            <li>Lo que han hecho personas “parecidas” a ti.</li>
+            <li>Lo que el sistema quiere optimizar (por ejemplo, tiempo de uso o probabilidad de compra).</li>
+        </ul>
+        <p>En palabras simples: un sistema de recomendación intenta adivinar “qué es lo siguiente que más probablemente te va a interesar… o a enganchar”.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2. ¿Qué es el perfilamiento algorítmico?</h2>
+        <div class="definition-box">
+            <p>El perfilamiento algorítmico consiste en construir, a partir de datos, una especie de “ficha digital” de cada persona para <strong>clasificarla, predecir su comportamiento y tomar decisiones</strong> sobre ella.</p>
+        </div>
+        
+        <p><strong>¿De dónde salen los datos?</strong></p>
+        <p>De casi todo lo que hacemos en línea y, a veces, fuera de línea:</p>
+        <ul>
+            <li>Historial de navegación, búsquedas, clics, tiempo de lectura o visualización.</li>
+            <li>Compras, carrito de productos, métodos de pago.</li>
+            <li>Ubicación, dispositivo, horarios de conexión.</li>
+            <li>“Me gusta”, comentarios, compartidos, seguidores, lista de contactos.</li>
+            <li>En algunos casos, datos sensibles: patrones de salud, comportamiento financiero, etc.</li>
+        </ul>
+
+        <p><strong>¿Qué se construye con esos datos?</strong></p>
+        <p>El sistema aprende patrones y crea:</p>
+        <ul>
+            <li><strong>Perfiles o segmentos:</strong> “amantes de videojuegos”, “padres jóvenes”, “usuarios de alto riesgo crediticio”, “personas interesadas en política X”, etc.</li>
+            <li><strong>Puntajes o scores:</strong> probabilidad de que hagas clic, de que compres, de que abandones una suscripción, de que pagues un crédito, etc.</li>
+        </ul>
+
+        <p><strong>Con estos perfiles se pueden:</strong></p>
+        <ul>
+            <li>Personalizar recomendaciones.</li>
+            <li>Fijar precios dinámicos.</li>
+            <li>Filtrar a quién se le ofrece algo… o a quién no.</li>
+            <li>Priorizar o descartar personas en campañas, ofertas o procesos.</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3. ¿Dónde vemos sistemas de recomendación y perfilamiento?</h2>
+        <p>Prácticamente en todas partes:</p>
+        
+        <div class="sectors-grid">
+            <div class="sector-card">
+                <span class="sector-title">🎬 Entretenimiento</span>
+                Plataformas de streaming (series, películas, música). Recomendaciones de listas, artistas o canales.
+            </div>
+            <div class="sector-card">
+                <span class="sector-title">📱 Redes Sociales</span>
+                Feeds personalizados. Sugerencias de amistades. Contenido viral según comportamiento previo.
+            </div>
+            <div class="sector-card">
+                <span class="sector-title">🛒 Comercio Electrónico</span>
+                Productos recomendados, combinaciones. Ofertas y cupones personalizados.
+            </div>
+            <div class="sector-card">
+                <span class="sector-title">📰 Noticias</span>
+                Artículos sugeridos según historial. Prioridad de ciertos temas en tu página de inicio.
+            </div>
+            <div class="sector-card">
+                <span class="sector-title">🎓 Educación</span>
+                Recomendación de cursos y rutas de aprendizaje “personalizadas” según progreso.
+            </div>
+            <div class="sector-card">
+                <span class="sector-title">💳 Servicios Financieros</span>
+                Anuncios segmentados. Ofertas de créditos o seguros diferentes según tu “score”.
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4. Ventajas y oportunidades</h2>
+        <div class="advantages-box">
+            <p>Los sistemas de recomendación y el perfilamiento algorítmico tienen beneficios reales:</p>
+            <ul>
+                <li>Ayudan a encontrar lo relevante en medio de una cantidad inmensa de información.</li>
+                <li>Pueden mejorar la experiencia del usuario, mostrando contenido cercano a sus intereses.</li>
+                <li>En educación, pueden apoyar la personalización del aprendizaje (recomendando ejercicios según nivel).</li>
+                <li>En servicios, pueden mejorar la eficiencia (por ejemplo, sugerir el producto o contenido más adecuado).</li>
+                <li>Permiten que proyectos pequeños o nichos encuentren su público específico.</li>
+            </ul>
+            <p style="margin-top:15px; font-style:italic;">El problema no es la recomendación en sí, sino cómo se hace, con qué nivel de transparencia y qué límites se respetan.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5. Riesgos y dilemas éticos</h2>
+        <p>A la vez que aportan valor, estos sistemas plantean dilemas importantes.</p>
+
+        <details class="risk-item">
+            <summary class="risk-summary">a) Burbujas de filtro y cámaras de eco</summary>
+            <div class="risk-content">
+                <p>Cuando el sistema solo te muestra lo que “te gusta” o lo que confirma tus ideas:</p>
+                <ul>
+                    <li>Refuerza tus creencias y reduce el contacto con opiniones distintas.</li>
+                    <li>Puede aumentar la polarización (por ejemplo, en temas políticos o sociales).</li>
+                    <li>Limita la diversidad de contenidos, personas y perspectivas que ves.</li>
+                </ul>
+                <p><strong>Ejemplo:</strong> solo te muestran noticias alineadas con tu postura política, o vídeos que refuerzan una teoría concreta; empiezas a creer que “todo el mundo piensa como yo”.</p>
+            </div>
+        </details>
+
+        <details class="risk-item">
+            <summary class="risk-summary">b) Manipulación y diseño para enganchar</summary>
+            <div class="risk-content">
+                <p>Muchos sistemas no optimizan por “ayudarte a aprender” o “informarte mejor”, sino por:</p>
+                <ul>
+                    <li>Maximizar el tiempo de pantalla.</li>
+                    <li>Aumentar la probabilidad de clic o de compra.</li>
+                </ul>
+                <p>Eso puede fomentar contenidos que generen reacciones fuertes (rabia, miedo), diseños que dificultan salir de la plataforma y estrategias de “empujones” (nudges) que influyen en tus decisiones.</p>
+            </div>
+        </details>
+
+        <details class="risk-item">
+            <summary class="risk-summary">c) Discriminación y exclusión algorítmica</summary>
+            <div class="risk-content">
+                <p>Cuando los perfiles se usan para decidir quién ve una oferta de empleo, crédito o beca, pueden aparecer discriminaciones indirectas. Algunos grupos nunca ven ciertas oportunidades o son considerados "de alto riesgo".</p>
+                <p>Esto es grave cuando se basa en variables "proxies" (barrio, colegio) o datos históricos que reflejan desigualdades previas.</p>
+            </div>
+        </details>
+
+        <details class="risk-item">
+            <summary class="risk-summary">d) Opacidad y falta de explicaciones</summary>
+            <div class="risk-content">
+                <p>En la mayoría de los casos no sabes por qué se te muestra una cosa y no otra, ni qué información usó el sistema. Esto dificulta ejercer derechos y confiar en el sistema.</p>
+            </div>
+        </details>
+
+        <details class="risk-item">
+            <summary class="risk-summary">e) Uso excesivo de datos y privacidad</summary>
+            <div class="risk-content">
+                <p>Para perfilar, se acumulan enormes cantidades de datos de comportamiento y se combinan fuentes. Esto choca con principios de minimización, finalidad y tiempo de conservación.</p>
+            </div>
+        </details>
+
+        <details class="risk-item">
+            <summary class="risk-summary">f) Impacto en niñas, niños y adolescentes</summary>
+            <div class="risk-content">
+                <p>Pueden promover contenidos no adecuados, fomentar adicciones tempranas y afectar la salud mental. Se requieren estándares éticos más exigentes.</p>
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">6. Relación con datos personales y derechos</h2>
+        <p>El perfilamiento algorítmico y los sistemas de recomendación se conectan con:</p>
+        <ul>
+            <li><strong>Protección de datos personales:</strong> Se tratan datos identificables. La persona debe saber qué se hace.</li>
+            <li><strong>Derecho a la información y transparencia:</strong> Saber que está siendo perfilada y con qué finalidad.</li>
+            <li><strong>Derecho de oposición:</strong> Poder oponerse al uso de datos para marketing o perfilamiento.</li>
+            <li><strong>Derechos frente a decisiones automatizadas:</strong> Exigir explicación y revisión humana en decisiones significativas (créditos, empleo).</li>
+        </ul>
+        <p>Como profesional, no basta con decir “así funciona el algoritmo”: es necesario preguntarse también qué derechos están en juego y qué salvaguardas se requieren.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">7. Preguntas guía para el análisis</h2>
+        <p>Estas preguntas te servirán como “checklist” al evaluar un sistema concreto:</p>
+        
+        <div class="checklist-box">
+            <div class="check-item">
+                <span class="check-q">1. ¿Qué datos se usan para el perfil y con qué finalidad?</span>
+                Piensa si realmente son necesarios (búsquedas, ubicación, compras) o si se recoge más de lo justificado.
+            </div>
+            <div class="check-item">
+                <span class="check-q">2. ¿Qué está optimizando realmente el sistema?</span>
+                ¿Busca mejorar el aprendizaje/información o solo maximizar tiempo de pantalla y ventas?
+            </div>
+            <div class="check-item">
+                <span class="check-q">3. ¿Quién podría quedar excluido o desfavorecido?</span>
+                Considera género, edad, nivel socioeconómico, ubicación, discapacidad.
+            </div>
+            <div class="check-item">
+                <span class="check-q">4. ¿La persona sabe que está siendo perfilada?</span>
+                Valora si hay información clara y accesible sobre el uso de datos y la personalización.
+            </div>
+            <div class="check-item">
+                <span class="check-q">5. ¿Qué controles o salvaguardas se podrían aplicar?</span>
+                Limitar perfilamiento, opción de desactivar, auditar sesgos, diversidad en recomendaciones, supervisión humana.
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

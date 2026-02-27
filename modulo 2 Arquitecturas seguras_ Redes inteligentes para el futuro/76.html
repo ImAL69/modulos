@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .ai-infra-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #6200ea; /* Morado IA */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #4a148c;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(124, 77, 255, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #d1c4e9;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '⚡';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Sub-listas */
+    .sub-list {
+        margin-top: 5px;
+        padding-left: 20px;
+        list-style: circle;
+        color: #546e7a;
+    }
+    .sub-list li::before { content: none; }
+    .sub-list li { padding-left: 0; list-style-type: circle; }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #6200ea;
+        border-bottom: 2px solid #b388ff;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #ede7f6;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #673ab7;
+    }
+
+    .key-question {
+        font-weight: 700;
+        color: #4a148c;
+        font-style: italic;
+        text-align: center;
+        display: block;
+        margin: 20px 0;
+        font-size: 1.1rem;
+    }
+
+    /* --- DEFINICIONES (CAJA) --- */
+    .def-box {
+        background: #f3e5f5;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #e1bee7;
+    }
+    .def-title { font-weight: 700; color: #7b1fa2; margin-bottom: 10px; display: block; font-family: 'Montserrat', sans-serif; font-size: 1.1rem; }
+    .def-example {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #ce93d8;
+        font-size: 0.95rem;
+        color: #4527a0;
+    }
+
+    /* --- BLOQUES ESENCIALES (GRID) --- */
+    .blocks-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .block-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .block-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(98, 0, 234, 0.1); border-color: #651fff; }
+
+    /* Bordes superiores por tipo */
+    .bc-data { border-top: 4px solid #00bcd4; } /* Cian */
+    .bc-compute { border-top: 4px solid #ff9100; } /* Naranja */
+    .bc-serving { border-top: 4px solid #d500f9; } /* Magenta */
+    .bc-net { border-top: 4px solid #2962ff; } /* Azul */
+    .bc-sec { border-top: 4px solid #d50000; } /* Rojo */
+    .bc-ops { border-top: 4px solid #00c853; } /* Verde */
+
+    .block-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #37474f;
+    }
+    
+    .bc-data .block-title { color: #00838f; }
+    .bc-compute .block-title { color: #e65100; }
+    .bc-serving .block-title { color: #aa00ff; }
+    .bc-net .block-title { color: #0d47a1; }
+    .bc-sec .block-title { color: #b71c1c; }
+    .bc-ops .block-title { color: #1b5e20; }
+
+    .block-example {
+        margin-top: auto;
+        padding: 10px;
+        background: #f5f5f5;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        color: #546e7a;
+    }
+
+    /* --- PATRONES (ACORDEÓN) --- */
+    details.pattern-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #b388ff;
+        overflow: hidden;
+    }
+
+    summary.pattern-summary {
+        padding: 15px 20px;
+        background: #ede7f6;
+        cursor: pointer;
+        font-weight: 700;
+        color: #512da8;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    summary.pattern-summary:hover { background: #d1c4e9; }
+    summary.pattern-summary::-webkit-details-marker { display: none; }
+    
+    summary.pattern-summary::after { content: '+'; font-size: 1.5rem; color: #651fff; }
+    details[open] summary.pattern-summary::after { content: '-'; }
+
+    .pattern-content {
+        padding: 20px;
+        border-top: 1px solid #b388ff;
+        color: #4527a0;
+    }
+
+    /* --- RIESGOS (LISTA ALERTA) --- */
+    .risks-box {
+        background: #ffebee;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #ef9a9a;
+        margin-bottom: 40px;
+    }
+    .risks-box li::before { content: '⚠️'; }
+
+    /* --- CASOS (GRID) --- */
+    .cases-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .case-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .case-title {
+        font-weight: 700;
+        color: #1565c0;
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .case-success {
+        margin-top: 10px;
+        font-weight: 600;
+        color: #2e7d32;
+        display: block;
+    }
+
+    /* --- PREGUNTAS (ACORDEÓN SIMPLE) --- */
+    details.qa-item {
+        background: #fff;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    summary.qa-summary {
+        padding: 15px;
+        cursor: pointer;
+        color: #311b92;
+        font-weight: 600;
+        list-style: none;
+    }
+    
+    .qa-content {
+        padding: 10px 20px 20px 20px;
+        color: #455a64;
+        font-size: 0.95rem;
+        background: #f3e5f5;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .blocks-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="ai-infra-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">1. Infraestructuras para IA y sistemas distribuidos</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/bqpjssefqp50bb08p0gj2/Gemini_Generated_Image_48d6qj48d6qj48d6.png?rlkey=0b88y2gqq34vd4zn6mp34p1kh&st=czl7x992&raw=1" alt="Infraestructura IA" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>En IA y en sistemas distribuidos, “la infraestructura” no es solo servidores o nube. Es el conjunto de componentes (datos, cómputo, red, seguridad y operación) que permite que un modelo pase de “idea” a servicio real en producción, con calidad, continuidad y control.</p>
+        <p>En estos entornos, la dificultad no está solo en construir el modelo, sino en mover datos de forma segura, servir inferencias con baja latencia, escalar cuando crece la demanda y monitorear lo técnico y lo funcional (incluido el desempeño del modelo).</p>
+        <span class="key-question">La pregunta guía es: ¿Qué componentes necesita una infraestructura para IA y cómo se conectan en un sistema distribuido sin perder seguridad, rendimiento y gobernanza?</span>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1) ¿Qué es una infraestructura para IA (en la vida real)?</h2>
+        <div class="def-box">
+            <p>Una infraestructura para IA soporta todo el ciclo:</p>
+            <ul>
+                <li><strong>Datos:</strong> recolección, calidad, almacenamiento, versionado y gobierno.</li>
+                <li><strong>Entrenamiento:</strong> cómputo intensivo (CPU/GPU), acceso a datasets, experimentación.</li>
+                <li><strong>Despliegue:</strong> empaquetar el modelo como servicio (API, microservicio, edge).</li>
+                <li><strong>Operación:</strong> monitoreo, logs, seguridad, costos, disponibilidad.</li>
+                <li><strong>Evolución:</strong> retraining, actualización de modelo, trazabilidad de cambios.</li>
+            </ul>
+            <div class="def-example">
+                <strong>Ejemplo real (Educación):</strong> Una institución quiere un modelo que prediga riesgo de deserción y otro que clasifique tickets de soporte. El modelo usa datos del LMS, CRM, notas, asistencia, y registros de soporte. La infraestructura debe asegurar privacidad, control de accesos y auditoría, porque estos datos son sensibles. Se requiere un entorno de entrenamiento (tal vez nube por elasticidad), y un entorno de inferencia (API que consulta sistemas internos).
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2) ¿Qué es un sistema distribuido y por qué cambia todo?</h2>
+        <p>Un sistema distribuido es aquel donde los componentes viven en distintos lugares y se comunican por red:</p>
+        <ul>
+            <li>campus/sedes ↔ nube</li>
+            <li>microservicios ↔ bases de datos ↔ colas de mensajes</li>
+            <li>edge (dispositivos) ↔ plataforma central</li>
+            <li>multi-nube o híbrido</li>
+        </ul>
+        <p>Lo distribuido introduce realidades nuevas: latencia, pérdida de paquetes, fallas parciales (“una parte cae y otra sigue”), dependencias ocultas entre servicios, muchos puntos de integración (más superficie de ataque), necesidad de observabilidad (si no, no sabes dónde está el problema).</p>
+        <div class="def-box">
+            <div class="def-example" style="margin-top:0; border:none; padding-top:0;">
+                <strong>Ejemplo real (E-commerce):</strong> Un comercio tiene frontend web en nube, microservicios de catálogo y pagos, base de datos en servicio administrado, motor de recomendación con IA, analítica de eventos en streaming (clicks). Si hay latencia entre servicios, el carrito se vuelve lento. Si el motor de IA cae, la tienda “funciona” pero con menos conversión. Eso obliga a diseñar con degradación controlada y monitoreo por componente.
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3) Bloques esenciales de una infraestructura IA distribuida</h2>
+        
+        <div class="blocks-grid">
+            
+            <div class="block-card bc-data">
+                <span class="block-title">3.1 Bloque de Datos (Data Layer)</span>
+                <div class="block-content">
+                    Aquí se decide dónde viven los datos y cómo se mueven. Incluye: Fuentes, Ingesta (ETL/APIs), Almacenamiento (transaccional, warehouse, data lake), Gobierno y Versionado.
+                </div>
+                <div class="block-example">
+                    <strong>Ejemplo (Salud):</strong> Datos de historias clínicas + imágenes. Reglas estrictas de acceso, auditoría, cifrado y separación de datos identificables.
+                </div>
+            </div>
+
+            <div class="block-card bc-compute">
+                <span class="block-title">3.2 Bloque de Cómputo (Compute Layer)</span>
+                <div class="block-content">
+                    No solo es “tener GPU”; es poder ejecutar cargas de forma eficiente. Incluye: CPU/GPU, servidores/cloud, contenedores/VM, orquestación, colas de trabajos, autoscaling.
+                </div>
+                <div class="block-example">
+                    <strong>Ejemplo (Fintech):</strong> Entrenamiento nocturno (batch) y inferencia en tiempo real al autorizar transacciones.
+                </div>
+            </div>
+
+            <div class="block-card bc-serving">
+                <span class="block-title">3.3 Bloque de Serving / Inferencia</span>
+                <div class="block-content">
+                    Es donde el modelo se expone como servicio. Incluye: API de inferencia, gateway, control de acceso, rate limiting, versionado, fallback.
+                </div>
+                <div class="block-example">
+                    <strong>Ejemplo (Call Center):</strong> Asistente IA resume llamadas. Si cae, debe haber fallback. Endpoint protegido y trazable.
+                </div>
+            </div>
+
+            <div class="block-card bc-net">
+                <span class="block-title">3.4 Bloque de Red y Conectividad</span>
+                <div class="block-content">
+                    En IA distribuida, la conectividad define si el sistema es viable. Incluye: LAN/WAN, conectividad a nube, segmentación, DMZ, edge.
+                </div>
+                <div class="block-example">
+                    <strong>Ejemplo (Universidad):</strong> Sistemas on-prem ↔ nube. Si el enlace es intermitente, los procesos batch deben tolerar reintentos.
+                </div>
+            </div>
+
+            <div class="block-card bc-sec">
+                <span class="block-title">3.5 Bloque de Seguridad transversal</span>
+                <div class="block-content">
+                    Riesgos típicos: fuga, acceso excesivo. Incluye: identidad, segmentación, NGFW/WAF, cifrado, gestión de secretos, hardening, NAC.
+                </div>
+                <div class="block-example">
+                    <strong>Ejemplo (IoT/OT):</strong> Sensores envían telemetría a IA. OT segmentada de TI con allowlist. Administración por bastión.
+                </div>
+            </div>
+
+            <div class="block-card bc-ops">
+                <span class="block-title">3.6 Bloque de Observabilidad</span>
+                <div class="block-content">
+                    Sin observabilidad, no sabes dónde está el problema. Incluye: métricas, logs centralizados, trazas, alertas, runbooks.
+                </div>
+                <div class="block-example">
+                    <strong>Ejemplo (Retail):</strong> Monitoreo de latencia, tasa de error, saturación y métricas del modelo (drift). Alertas proactivas.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4) Patrones reales de arquitectura para IA distribuida</h2>
+        
+        <details class="pattern-item">
+            <summary class="pattern-summary">Patrón 1: Batch IA + Integración por reportes</summary>
+            <div class="pattern-content">
+                <p>Datasets se procesan por lotes, el resultado alimenta dashboards o reportes.</p>
+                <p><strong>Uso real:</strong> predicción de deserción semanal, reportes de riesgo, segmentación de estudiantes.</p>
+            </div>
+        </details>
+
+        <details class="pattern-item">
+            <summary class="pattern-summary">Patrón 2: IA en tiempo real (API)</summary>
+            <div class="pattern-content">
+                <p>Cada solicitud pide predicción al modelo, latencia crítica.</p>
+                <p><strong>Uso real:</strong> antifraude, recomendación, clasificación de tickets al instante.</p>
+            </div>
+        </details>
+
+        <details class="pattern-item">
+            <summary class="pattern-summary">Patrón 3: Híbrido (on-prem + nube)</summary>
+            <div class="pattern-content">
+                <p>Datos sensibles on-prem, cómputo elástico en nube para entrenamiento, inferencia en on-prem o en nube según necesidad.</p>
+                <p><strong>Uso real:</strong> instituciones con restricciones de datos pero necesidad de cómputo.</p>
+            </div>
+        </details>
+
+        <details class="pattern-item">
+            <summary class="pattern-summary">Patrón 4: Edge AI</summary>
+            <div class="pattern-content">
+                <p>Inferencia cerca del dispositivo, sincronización central cuando hay conectividad.</p>
+                <p><strong>Uso real:</strong> cámaras inteligentes, detección de defectos en línea de producción, analítica en sedes con mala conectividad.</p>
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5) Riesgos típicos (y por qué aparecen)</h2>
+        <div class="risks-box">
+            <ul>
+                <li><strong>Fuga de datos:</strong> datasets/logs/backups expuestos o compartidos sin control.</li>
+                <li><strong>Accesos excesivos:</strong> credenciales muy amplias “para que funcione rápido”.</li>
+                <li><strong>Exposición de endpoints:</strong> APIs de IA sin WAF/rate limit/roles.</li>
+                <li><strong>Movimiento lateral:</strong> redes planas sin segmentación.</li>
+                <li><strong>Configuración insegura en nube:</strong> permisos públicos o mal definidos.</li>
+                <li><strong>Costo descontrolado:</strong> entrenamiento sin límites o inferencia sin autoscaling.</li>
+                <li><strong>Drift del modelo:</strong> el modelo empeora con el tiempo si cambian los datos.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="section-title" style="border:none; margin-top:20px;">Ejemplos rápidos (3 mini-casos)</h2>
+    <div class="cases-grid">
+        
+        <div class="case-card">
+            <span class="case-title">Caso A: Campus educativo (IA riesgo)</span>
+            <p>Datos: notas, asistencia. Entrenamiento: batch semanal. Inferencia: API. Seguridad: acceso por rol, MFA.</p>
+            <span class="case-success">Éxito: reducción de deserción.</span>
+        </div>
+
+        <div class="case-card">
+            <span class="case-title">Caso B: Multi-sede (Mesa ayuda)</span>
+            <p>Datos: tickets. Inferencia: clasificador prioridad. Conectividad: SD-WAN. Seguridad: ZTNA, logs.</p>
+            <span class="case-success">Éxito: mejor tiempo de respuesta.</span>
+        </div>
+
+        <div class="case-card">
+            <span class="case-title">Caso C: IoT/OT (Anomalías)</span>
+            <p>Datos: telemetría. Inferencia: edge + central. Seguridad: segmentación OT/TI, bastión.</p>
+            <span class="case-success">Éxito: detección temprana de fallas.</span>
+        </div>
+
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">Preguntas Clave</h2>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Qué componentes no pueden faltar en una infraestructura de IA?</summary>
+            <div class="qa-content">Datos (gobierno/almacenamiento), cómputo, serving (API), seguridad (identidad/segmentación) y observabilidad.</div>
+        </details>
+        
+        <details class="qa-item">
+            <summary class="qa-summary">¿Qué diferencia un sistema distribuido de uno monolítico?</summary>
+            <div class="qa-content">En distribuido, componentes viven en distintos lugares y dependen de red; hay latencia, fallas parciales y más superficie de ataque.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Cuándo conviene IA batch vs tiempo real?</summary>
+            <div class="qa-content">Batch para reportes/predicciones periódicas. Tiempo real para interacciones inmediatas (antifraude, chatbots).</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Por qué “perímetro” no basta en distribuido?</summary>
+            <div class="qa-content">Hay muchos flujos internos. Si alguien entra, sin segmentación interna puede moverse por toda la red.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Qué controles mínimos debe tener una API de inferencia?</summary>
+            <div class="qa-content">Autenticación, MFA, rate limiting, WAF, logs, cifrado TLS y segmentación.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Qué es drift?</summary>
+            <div class="qa-content">Cuando cambian los datos y el modelo pierde calidad. Exige monitoreo y retraining.</div>
+        </details>
+
+    </div>
+
+</div>
+
+</body>
+</html>

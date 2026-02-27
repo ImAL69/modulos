@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lectura 2.x – Gestión de recursos y riesgos (RAP2)</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .unit-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd;
+    }
+
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .unit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.3rem;
+        font-weight: 800;
+        color: #01579b;
+        margin: 0 auto 10px auto;
+        max-width: 90%;
+        line-height: 1.2;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .unit-subtitle {
+        font-size: 1.1rem;
+        color: #0288d1;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .hero-img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(1, 87, 155, 0.15);
+        margin: 0 auto 30px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        object-fit: cover;
+    }
+
+    .content {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .content h2 {
+        font-family: 'Montserrat', sans-serif;
+        color: #01579b;
+        font-size: 1.6rem;
+        margin-top: 28px;
+        margin-bottom: 12px;
+    }
+
+    .content p {
+        margin-bottom: 14px;
+        text-align: justify;
+    }
+
+    .content ul {
+        margin: 8px 0 15px 22px;
+        padding: 0;
+    }
+
+    .content li {
+        margin-bottom: 6px;
+    }
+
+    .axis-box {
+        background-color: #e3f2fd;
+        border-left: 5px solid #1e88e5;
+        padding: 15px 18px;
+        margin: 15px 0;
+        border-radius: 10px;
+    }
+    .axis-box h4 {
+        color: #0d47a1;
+        margin: 0 0 8px 0;
+        font-size: 1.1rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .axis-box ul {
+        margin: 5px 0 5px 20px;
+    }
+
+    .highlight-box {
+        background-color: #e8f5e9;
+        border-left: 5px solid #43a047;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .highlight-box p {
+        margin: 6px 0;
+    }
+
+    .activity-box {
+        background-color: #fff8e1;
+        border-left: 5px solid #ffb300;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .activity-box p {
+        margin: 6px 0;
+    }
+
+    .toc-box{
+      background:#f3f8ff;
+      border:1px solid rgba(2,136,209,.18);
+      border-left:5px solid #0288d1;
+      border-radius:12px;
+      padding:14px 18px;
+      margin:16px 0 10px 0;
+    }
+    .toc-box h3{
+      margin:0 0 10px 0;
+      font-family:'Montserrat',sans-serif;
+      color:#01579b;
+      font-size:1.1rem;
+    }
+    .toc-box ol{ margin:0 0 0 18px; }
+    .toc-box li{ margin:6px 0; }
+
+    details.style-details{
+      border-radius:12px;
+      border:1px solid rgba(13,71,161,.12);
+      background:#ffffff;
+      margin:14px 0;
+      overflow:hidden;
+    }
+    details.style-details summary{
+      cursor:pointer;
+      padding:14px 16px;
+      font-family:'Montserrat',sans-serif;
+      font-weight:800;
+      color:#0d47a1;
+      list-style:none;
+    }
+    details.style-details summary::-webkit-details-marker{ display:none; }
+    details.style-details .inner{
+      padding:0 16px 14px 16px;
+    }
+
+    a {
+        color: #1565c0;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #555;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    }
+
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ----- NAV LATERAL / FORMATO LECTURA ----- */
+    :root{
+      --nav-bg: rgba(255,255,255,.86);
+      --nav-border: rgba(0,0,0,.08);
+      --nav-shadow: 0 16px 40px rgba(0,0,0,.08);
+      --nav-accent: rgba(0,170,85,1);
+      --nav-accent-2: rgba(47,128,237,1);
+      --nav-text: #0d47a1;
+      --nav-muted: rgba(13,71,161,.72);
+    }
+
+    .page-shell{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 14px 80px 14px;
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .side-nav{
+      position: sticky;
+      top: 14px;
+      align-self: start;
+      border-radius: 18px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--nav-border);
+      box-shadow: var(--nav-shadow);
+      padding: 12px;
+      overflow: hidden;
+    }
+
+    .side-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 6px 8px 10px 8px;
+    }
+
+    .side-title{
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: .98rem;
+      color: #004d26;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .side-sub{
+      display:block;
+      margin-top: 2px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: .78rem;
+      color: rgba(0,77,38,.72);
+    }
+
+    .side-meter{
+      width: 78px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.06);
+      overflow: hidden;
+    }
+    .side-meter > div{
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--nav-accent), var(--nav-accent-2));
+    }
+
+    .side-list{
+      list-style: none;
+      margin: 6px 0 0 0;
+      padding: 0;
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+
+    .side-link{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-decoration: none;
+      border-radius: 14px;
+      padding: 10px 10px;
+      border: 1px solid rgba(13,71,161,.12);
+      background: #ffffff;
+      box-shadow: 0 10px 22px rgba(0,0,0,.03);
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .side-link:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(0,0,0,.05);
+      border-color: rgba(13,71,161,.20);
+    }
+
+    .side-ico{
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      background: #eef6ff;
+      border: 1px solid rgba(13,71,161,.14);
+      flex: 0 0 28px;
+    }
+    .side-ico svg{ width: 16px; height: 16px; fill: var(--nav-text); }
+
+    .side-text{ min-width: 0; }
+    .side-text b{
+      display:block;
+      font-family:'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: .90rem;
+      color: var(--nav-text);
+      line-height: 1.15;
+    }
+    .side-text span{
+      display:block;
+      font-family:'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .76rem;
+      color: var(--nav-muted);
+      margin-top: 2px;
+      line-height: 1.15;
+    }
+
+    .side-link.active{
+      border-color: rgba(0,170,85,.28);
+      background: linear-gradient(180deg, rgba(245,255,249,1), rgba(255,255,255,1));
+      box-shadow: 0 16px 34px rgba(0,170,85,.10);
+    }
+    .side-link.active .side-ico{
+      background: rgba(0,170,85,.12);
+      border-color: rgba(0,170,85,.25);
+    }
+    .side-link.active .side-ico svg{ fill: #0b6b3a; }
+    .side-link.active .side-text b{ color: #0b6b3a; }
+
+    .main-col .unit-container{ margin: 0; }
+
+    .fab-top{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(90deg, rgba(0,102,51,1), rgba(0,170,85,1));
+      color: #fff;
+      border: 1px solid rgba(0,102,51,.25);
+      box-shadow: 0 18px 36px rgba(0,102,51,.18);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .15s ease, transform .15s ease;
+      z-index: 1000;
+    }
+    .fab-top.show{ opacity: 1; transform: translateY(0); }
+    .fab-top svg{ width: 18px; height: 18px; fill: #fff; }
+
+    .dock{
+      display:none;
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 1200;
+      border-radius: 18px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--nav-border);
+      box-shadow: var(--nav-shadow);
+      padding: 10px 10px;
+    }
+    .dock-row{
+      display:flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    .dock a{
+      flex: 1 1 0;
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid rgba(13,71,161,.12);
+      box-shadow: 0 10px 22px rgba(0,0,0,.03);
+      font-family:'Montserrat',sans-serif;
+      font-weight: 900;
+      font-size: .86rem;
+      color: var(--nav-text);
+    }
+    .dock a svg{ width: 16px; height: 16px; fill: var(--nav-text); }
+
+    @media (max-width: 980px){
+      .page-shell{ grid-template-columns: 1fr; padding-bottom: 110px; }
+      .side-nav{ display:none; }
+      .dock{ display:block; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-shell" id="top">
+  <!-- Sidebar -->
+  <aside class="side-nav" aria-label="Navegación de lectura">
+    <div class="side-head">
+      <div>
+        <p class="side-title">Lectura 2.x<span class="side-sub">Recursos y riesgos (RAP2)</span></p>
+      </div>
+      <div class="side-meter" aria-hidden="true"><div id="meterFill"></div></div>
+    </div>
+
+    <ul class="side-list" role="list">
+      <li><a class="side-link" data-sec href="#s0">
+        <span class="side-ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v2H4V5Zm0 6h16v2H4v-2Zm0 6h10v2H4v-2Z"></path></svg></span>
+        <span class="side-text"><b>Contexto general</b><span>Por qué importa en IA/ciberseguridad</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s1">
+        <span class="side-ico"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4V4Zm9 0h7v7h-7V4ZM4 13h7v7H4v-7Zm9 0h7v7h-7v-7Z"></path></svg></span>
+        <span class="side-text"><b>Recursos críticos</b><span>Checklist por categorías</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s2">
+        <span class="side-ico"><svg viewBox="0 0 24 24"><path d="M3 3h18v6H3V3Zm0 8h18v10H3V11Zm5 2v6h2v-6H8Zm6 0v6h2v-6h-2Z"></path></svg></span>
+        <span class="side-text"><b>Estimación realista</b><span>Capacidad y dependencias</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s3">
+        <span class="side-ico"><svg viewBox="0 0 24 24"><path d="M5 4h14v2H5V4Zm0 5h14v2H5V9Zm0 5h9v2H5v-2Z"></path></svg></span>
+        <span class="side-text"><b>Gestión de riesgos</b><span>Ciclo mínimo</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s4">
+        <span class="side-ico"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4V4Zm9 0h7v7h-7V4Zm0 9h7v7h-7v-7ZM4 13h7v7H4v-7Z"></path></svg></span>
+        <span class="side-text"><b>Tipología de riesgos</b><span>Técnicos, seguridad, datos, norma, cultura</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s5">
+        <span class="side-ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v3H4V5Zm0 5h16v3H4v-3Zm0 5h16v3H4v-3Z"></path></svg></span>
+        <span class="side-text"><b>Matriz de riesgos</b><span>Campos mínimos</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s6">
+        <span class="side-ico"><svg viewBox="0 0 24 24"><path d="M5 18h14v2H5v-2Zm2-2V7h3v9H7Zm5 0V4h3v12h-3Zm5 0v-6h3v6h-3Z"></path></svg></span>
+        <span class="side-text"><b>Cierre práctico</b><span>Liderar con base en riesgo</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#links">
+        <span class="side-ico"><svg viewBox="0 0 24 24"><path d="M3.9 12a5 5 0 0 1 5-5h3v2h-3a3 3 0 0 0 0 6h3v2h-3a5 5 0 0 1-5-5Zm7-1h2v2h-2v-2Zm4.1-4h3a5 5 0 0 1 0 10h-3v-2h3a3 3 0 0 0 0-6h-3V7Z"></path></svg></span>
+        <span class="side-text"><b>Enlaces</b><span>Normas y buenas prácticas</span></span>
+      </a></li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-col">
+    <div class="unit-container">
+      <div class="header-box">
+        <span class="unit-subtitle">📘 Formato Lectura · RAP2</span>
+        <h1 class="unit-title">
+          Gestión de recursos y riesgos en proyectos de IA/ciberseguridad
+        </h1>
+        <img src="https://www.dropbox.com/scl/fi/5e6v1qy29yh54etcdpn1j/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.39_f1b1242f.jpg?rlkey=1z8a7oucdkbqamhyyn064ez2c&st=z48o5u90&raw=1"
+             alt="Gestión de recursos y riesgos" class="hero-img">
+      </div>
+
+      <div class="content">
+        <section id="s0">
+          <p>
+            En proyectos de <strong>IA</strong> y <strong>ciberseguridad</strong>, planear no es “llenar formatos”:
+            es anticipar <strong>cuellos de botella</strong>, <strong>costos ocultos</strong> y <strong>riesgos</strong>
+            que pueden detener la implementación. A diferencia de proyectos tecnológicos tradicionales, aquí el riesgo no
+            solo es “entregar tarde”, también implica <strong>incidentes de seguridad</strong>,
+            <strong>uso indebido de datos</strong>, <strong>incumplimiento normativo</strong> y
+            <strong>rechazo organizacional</strong>. Por eso, el líder debe gestionar dos frentes de forma integrada:
+            <strong>recursos críticos</strong> (personas, tecnología y dinero) y <strong>riesgos</strong> (amenazas y oportunidades).
+          </p>
+
+          <div class="highlight-box">
+            <p style="font-weight:bold;">✅ Lectura express (si tienes poco tiempo)</p>
+            <ul>
+              <li>Los proyectos de IA/ciberseguridad fallan más por <strong>recursos mal gestionados</strong> y <strong>riesgos ignorados</strong> que por la tecnología en sí.</li>
+              <li>Identificar <strong>recursos críticos</strong> evita bloqueos y retrabajo masivo.</li>
+              <li>Gestionar <strong>riesgos</strong> no es burocracia: es tomar decisiones conscientes sobre qué aceptar, mitigar o evitar.</li>
+            </ul>
+          </div>
+
+          <div class="toc-box">
+            <h3>Mapa de la lectura</h3>
+            <ol>
+              <li><a href="#s1">Recursos críticos: lo que realmente determina si el proyecto se puede ejecutar</a></li>
+              <li><a href="#s2">Estimación realista: el error común es contar horas y olvidar dependencias</a></li>
+              <li><a href="#s3">¿Qué es riesgo y cómo se gestiona (sin burocracia)?</a></li>
+              <li><a href="#s4">Tipología de riesgos en proyectos de IA/ciberseguridad</a></li>
+              <li><a href="#s5">Registro de riesgos: el formato mínimo que debe existir</a></li>
+              <li><a href="#s6">Cierre práctico: liderazgo = decidir con base en riesgo y recursos</a></li>
+              <li><a href="#links">Enlaces de consulta y profundización</a></li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="s1">
+          <h2>1) Recursos críticos: lo que realmente determina si el proyecto se puede ejecutar</h2>
+          <div class="axis-box">
+            <p>
+              Un recurso crítico es aquel que, si falta, <strong>bloquea</strong> el avance o genera retrabajo masivo.
+              En IA/ciberseguridad, suele ser más crítico el <strong>conocimiento especializado</strong> y el
+              <strong>acceso controlado</strong> que la herramienta en sí.
+            </p>
+          </div>
+
+          <div class="highlight-box">
+            <p style="font-weight: bold;">Categorías de recursos (checklist)</p>
+            <ul>
+              <li>
+                <strong>Recursos humanos:</strong> líder del proyecto, tech lead, seguridad, datos, infraestructura, QA, usuario clave, compliance.
+              </li>
+              <li>
+                <strong>Recursos tecnológicos:</strong> ambientes (dev/test/prod), control de accesos (MFA), repositorio, logging, backups,
+                herramientas (EDR/SIEM/DLP o plataforma ML), monitoreo, gestión de secretos, control de versiones.
+              </li>
+              <li>
+                <strong>Recursos de datos (IA):</strong> fuentes, permisos, calidad, diccionario, anonimización, etiquetado, almacenamiento y gobernanza.
+              </li>
+              <li>
+                <strong>Recursos financieros:</strong> licencias, nube/servidores, consultoría, capacitación, pruebas, auditoría, contingencias.
+              </li>
+              <li>
+                <strong>Recursos de tiempo:</strong> disponibilidad real del equipo (no “ideal”), ventanas de despliegue, calendarización académica/operativa.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="s2">
+          <h2>2) Estimación realista: el error común es contar horas y olvidar dependencias</h2>
+          <div class="axis-box">
+            <h4>Buenas prácticas para estimar</h4>
+            <ul>
+              <li><strong>Capacidad real:</strong> define % de dedicación (ej.: 30%, 50%) y calcula con base en eso.</li>
+              <li><strong>Dependencias:</strong> compras, proveedores, accesos, aprobaciones, datos, comités de seguridad.</li>
+              <li><strong>Calidad y seguridad:</strong> incluye tiempo para pruebas, evidencias y hardening.</li>
+              <li><strong>Contingencia:</strong> reserva de gestión (10–20%) para incertidumbre y cambios.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="s3">
+          <h2>3) ¿Qué es riesgo y cómo se gestiona (sin burocracia)?</h2>
+          <p>
+            Un <strong>riesgo</strong> es un evento incierto que, si ocurre, afecta objetivos del proyecto
+            (alcance, tiempo, costo, calidad, seguridad). En IA/ciberseguridad, la gestión de riesgos debe ser
+            <strong>continua</strong> y estar conectada a decisiones: qué se acepta, qué se mitiga, qué se transfiere y qué se evita.
+          </p>
+
+          <div class="activity-box">
+            <p><strong>Ciclo mínimo de gestión de riesgos</strong></p>
+            <ul>
+              <li><strong>Identificar:</strong> ¿qué puede fallar y por qué?</li>
+              <li><strong>Analizar:</strong> probabilidad e impacto (alto/medio/bajo o 1–5).</li>
+              <li><strong>Planear respuesta:</strong> evitar, mitigar, transferir, aceptar (con plan B).</li>
+              <li><strong>Asignar dueño:</strong> cada riesgo debe tener responsable.</li>
+              <li><strong>Monitorear:</strong> revisar semanal/quincenalmente y registrar cambios.</li>
+            </ul>
+          </div>
+
+          <details class="style-details">
+            <summary>🧠 Mini-reto aplicado (para tu matriz de riesgos RAP2)</summary>
+            <div class="inner">
+              <ul>
+                <li>Enumera <strong>5 riesgos</strong> de tu proyecto (al menos uno técnico, uno de seguridad y uno organizacional).</li>
+                <li>Asigna probabilidad e impacto (alto/medio/bajo) y define una respuesta (evitar, mitigar, transferir, aceptar).</li>
+                <li>Define un <strong>dueño</strong> para cada riesgo y una evidencia mínima de seguimiento.</li>
+              </ul>
+            </div>
+          </details>
+        </section>
+
+        <section id="s4">
+          <h2>4) Tipología de riesgos en proyectos de IA/ciberseguridad</h2>
+
+          <div class="axis-box">
+            <h4>4.1 Riesgos técnicos (arquitectura, integración, calidad)</h4>
+            <ul>
+              <li><strong>Integración fallida:</strong> sistemas heredados no soportan APIs o no tienen calidad de datos.</li>
+              <li><strong>Deuda técnica:</strong> “avance rápido” sin estándares → retrabajo y fallas constantes.</li>
+              <li><strong>Ambientes incompletos:</strong> sin dev/test/prod separados → errores en despliegue.</li>
+              <li><strong>Dependencia del proveedor:</strong> lock-in, cambios de licencia, soporte limitado.</li>
+            </ul>
+            <p><strong>Respuestas típicas:</strong> arquitectura mínima definida, pruebas integrales, control de cambios, prototipado/pilotos, criterios de aceptación.</p>
+          </div>
+
+          <div class="axis-box">
+            <h4>4.2 Riesgos de seguridad (confidencialidad, integridad, disponibilidad)</h4>
+            <ul>
+              <li><strong>Accesos débiles:</strong> cuentas compartidas, sin MFA, privilegios excesivos.</li>
+              <li><strong>Filtración de datos:</strong> logs, backups o exportaciones sin protección.</li>
+              <li><strong>Ataques/amenazas:</strong> phishing, ransomware, explotación de vulnerabilidades.</li>
+              <li><strong>Falta de monitoreo:</strong> incidentes ocurren y nadie se entera a tiempo.</li>
+            </ul>
+            <p><strong>Respuestas típicas:</strong> mínimo privilegio, MFA, gestión de secretos, hardening, monitoreo/logging, backups probados, plan de respuesta a incidentes.</p>
+          </div>
+
+          <div class="axis-box">
+            <h4>4.3 Riesgos de datos e IA (calidad, sesgo, desempeño, explicabilidad)</h4>
+            <ul>
+              <li><strong>Datos insuficientes o sucios:</strong> falta de consistencia, campos vacíos, duplicados.</li>
+              <li><strong>Sesgos y discriminación:</strong> el modelo afecta injustamente a ciertos grupos.</li>
+              <li><strong>Falsos positivos/negativos:</strong> decisiones erradas (alertas, bloqueos, clasificación).</li>
+              <li><strong>Falta de explicabilidad:</strong> no se puede justificar por qué el modelo decide.</li>
+              <li><strong>Deriva del modelo:</strong> el entorno cambia y el rendimiento cae con el tiempo.</li>
+            </ul>
+            <p><strong>Respuestas típicas:</strong> gobernanza de datos, validación y métricas, pruebas de sesgo, umbrales de decisión, monitoreo de drift, documentación del modelo.</p>
+          </div>
+
+          <div class="axis-box">
+            <h4>4.4 Riesgos regulatorios y de cumplimiento (privacidad, auditoría, contratos)</h4>
+            <ul>
+              <li><strong>Uso indebido de datos personales:</strong> falta de base legal, consentimiento o finalidad clara.</li>
+              <li><strong>Transferencias a terceros:</strong> proveedor/nube sin cláusulas adecuadas.</li>
+              <li><strong>Falta de evidencia:</strong> no hay trazabilidad de decisiones, cambios y accesos.</li>
+              <li><strong>Incumplimiento de políticas internas:</strong> seguridad, retención, clasificación de la información.</li>
+            </ul>
+            <p><strong>Respuestas típicas:</strong> checklist de compliance, contratos y SLA, DPIA/AIA (cuando aplique), evidencias de control, auditoría interna.</p>
+          </div>
+
+          <div class="axis-box">
+            <h4>4.5 Riesgos organizacionales (adopción, cultura, resistencia, gobernanza)</h4>
+            <ul>
+              <li><strong>Resistencia al cambio:</strong> usuarios no adoptan o “evitan” el nuevo proceso.</li>
+              <li><strong>Falta de sponsor:</strong> decisiones tardías y bloqueos entre áreas.</li>
+              <li><strong>Expectativas irreales:</strong> “IA lo resuelve todo” o “seguridad sin fricción”.</li>
+              <li><strong>Capacitación insuficiente:</strong> errores operativos y mala percepción del proyecto.</li>
+            </ul>
+            <p><strong>Respuestas típicas:</strong> gestión del cambio, comunicación por audiencias, pilotos, quick wins, capacitación por roles, mesa de ayuda.</p>
+          </div>
+        </section>
+
+        <section id="s5">
+          <h2>5) Registro de riesgos: el formato mínimo que debe existir</h2>
+          <div class="highlight-box">
+            <p style="font-weight: bold;">Campos recomendados (matriz de riesgos)</p>
+            <ul>
+              <li><strong>Riesgo:</strong> descripción concreta (qué puede pasar).</li>
+              <li><strong>Causa:</strong> por qué podría ocurrir.</li>
+              <li><strong>Impacto:</strong> en tiempo/costo/calidad/seguridad/cumplimiento.</li>
+              <li><strong>Probabilidad:</strong> alta/media/baja (o escala 1–5).</li>
+              <li><strong>Nivel:</strong> combinación probabilidad × impacto.</li>
+              <li><strong>Respuesta:</strong> evitar/mitigar/transferir/aceptar + plan B.</li>
+              <li><strong>Dueño:</strong> responsable del seguimiento.</li>
+              <li><strong>Evidencia:</strong> qué demuestra que se mitigó (tickets, pruebas, actas, controles).</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="s6">
+          <h2>6) Cierre práctico: liderazgo = decidir con base en riesgo y recursos</h2>
+          <div class="activity-box">
+            <p>
+              El líder de proyectos tecnológicos no solo coordina tareas: <strong>prioriza</strong> y
+              <strong>decide</strong> con base en recursos disponibles y riesgos reales. En IA/ciberseguridad, el éxito se logra cuando:
+              <strong>(1)</strong> hay roles y recursos críticos garantizados,
+              <strong>(2)</strong> el riesgo se gestiona con evidencia,
+              <strong>(3)</strong> la organización adopta el cambio con patrocinio y comunicación efectiva.
+            </p>
+          </div>
+        </section>
+
+        <section id="links">
+          <h2>🔗 Enlaces de consulta y profundización</h2>
+          <div class="axis-box">
+            <ul>
+              <li>
+                <strong>NIST Cybersecurity Framework (gestión del riesgo)</strong>:
+                <a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener noreferrer">https://www.nist.gov/cyberframework</a>
+              </li>
+              <li>
+                <strong>OWASP (riesgos y prácticas de seguridad aplicadas)</strong>:
+                <a href="https://owasp.org/" target="_blank" rel="noopener noreferrer">https://owasp.org/</a>
+              </li>
+              <li>
+                <strong>PMI – Risk Management (recursos y riesgo en proyectos)</strong>:
+                <a href="https://www.pmi.org/learning" target="_blank" rel="noopener noreferrer">https://www.pmi.org/learning</a>
+              </li>
+              <li>
+                <strong>Scrum Guide (gestión de incertidumbre y entrega incremental)</strong>:
+                <a href="https://scrumguides.org/" target="_blank" rel="noopener noreferrer">https://scrumguides.org/</a>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <div class="footer">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Dock móvil -->
+<nav class="dock" aria-label="Navegación móvil">
+  <div class="dock-row">
+    <a href="#s1" title="Recursos"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4V4Zm9 0h7v7h-7V4ZM4 13h7v7H4v-7Zm9 0h7v7h-7v-7Z"></path></svg>Rec.</a>
+    <a href="#s2" title="Estimación"><svg viewBox="0 0 24 24"><path d="M3 3h18v6H3V3Zm0 8h18v10H3V11Zm5 2v6h2v-6H8Zm6 0v6h2v-6h-2Z"></path></svg>Est.</a>
+    <a href="#s3" title="Riesgos"><svg viewBox="0 0 24 24"><path d="M5 4h14v2H5V4Zm0 5h14v2H5V9Zm0 5h9v2H5v-2Z"></path></svg>Riesgos</a>
+    <a href="#s4" title="Tipos"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4V4Zm9 0h7v7h-7V4Zm0 9h7v7h-7v-7ZM4 13h7v7H4v-7Z"></path></svg>Tipos</a>
+    <a href="#s5" title="Matriz"><svg viewBox="0 0 24 24"><path d="M4 5h16v3H4V5Zm0 5h16v3H4v-3Zm0 5h16v3H4v-3Z"></path></svg>Matriz</a>
+  </div>
+</nav>
+
+<!-- Botón Top -->
+<button class="fab-top" id="fabTop" aria-label="Volver arriba" title="Volver arriba">
+  <svg viewBox="0 0 24 24"><path d="M12 5 5 12h4v7h6v-7h4l-7-7Z"></path></svg>
+</button>
+
+<script>
+(function(){
+  const links = Array.from(document.querySelectorAll('.side-link[data-sec]'));
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const meter = document.getElementById('meterFill');
+  const fab = document.getElementById('fabTop');
+
+  function setActiveById(id){
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+  }
+
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if(!el) return;
+    e.preventDefault();
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    history.replaceState(null, '', '#' + id);
+  });
+
+  fab.addEventListener('click', function(){
+    document.getElementById('top').scrollIntoView({behavior:'smooth'});
+  });
+
+  function onScroll(){
+    const st = window.scrollY || document.documentElement.scrollTop;
+    const dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const pct = dh > 0 ? (st / dh) * 100 : 0;
+    if(meter) meter.style.width = Math.max(0, Math.min(100, pct)).toFixed(1) + '%';
+    if(fab) fab.classList.toggle('show', st > 600);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  const obs = new IntersectionObserver((entries)=>{
+    const visible = entries
+      .filter(en => en.isIntersecting)
+      .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+    if(visible && visible.target && visible.target.id){
+      setActiveById(visible.target.id);
+    }
+  }, {
+    root: null,
+    threshold: [0.12, 0.2, 0.35, 0.5, 0.7],
+    rootMargin: '-20% 0px -65% 0px'
+  });
+
+  sections.forEach(s => obs.observe(s));
+
+  const hash = (location.hash || '').replace('#','');
+  if(hash) setActiveById(hash);
+  else if(sections[0]) setActiveById(sections[0].id);
+})();
+</script>
+
+</body>
+</html>

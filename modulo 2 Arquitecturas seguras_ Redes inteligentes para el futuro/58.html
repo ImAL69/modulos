@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .ref-arch-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #3949ab; /* Azul Índigo */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #1a237e;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(57, 73, 171, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #c5cae9;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '💠';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.8rem;
+    }
+
+    /* Listas anidadas */
+    .sub-list {
+        margin-top: 5px;
+        padding-left: 20px;
+        list-style: circle;
+        color: #546e7a;
+    }
+    .sub-list li::before { content: none; }
+    .sub-list li { padding-left: 0; list-style-type: circle; }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #3949ab;
+        border-bottom: 2px solid #c5cae9;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #e8eaf6;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #3949ab;
+    }
+
+    .intro-highlight {
+        font-weight: 700;
+        color: #1a237e;
+        font-style: italic;
+        text-align: center;
+        display: block;
+        margin: 20px 0;
+        font-size: 1.1rem;
+    }
+
+    /* --- ARQUITECTURA CLÁSICA (GRID) --- */
+    .classic-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .classic-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+    }
+
+    .classic-card:hover { transform: translateY(-5px); border-color: #3949ab; }
+
+    .classic-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #283593;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    /* --- ZERO TRUST (CAJA OSCURA) --- */
+    .zt-box {
+        background: #263238;
+        color: #eceff1;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+    }
+
+    .zt-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.4rem;
+        color: #80cbc4;
+        margin-bottom: 15px;
+        display: block;
+        text-align: center;
+    }
+
+    .zt-box ul li::before { content: '🔐'; }
+    .zt-box .sub-list li { color: #b0bec5; }
+
+    /* --- SASE/SSE (NUBE) --- */
+    .cloud-box {
+        background: #f3e5f5;
+        padding: 25px;
+        border-radius: 12px;
+        border: 2px dashed #ab47bc;
+        margin-bottom: 40px;
+    }
+    .cloud-title { font-weight: 700; color: #7b1fa2; display: block; margin-bottom: 10px; font-size: 1.1rem; }
+
+    /* --- DATA CENTRIC (LISTA) --- */
+    .data-box {
+        background: #fff3e0;
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 5px solid #ff9800;
+        margin-bottom: 40px;
+    }
+
+    /* --- IAM (DESTACADO) --- */
+    .iam-card {
+        background: #e0f2f1;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #80cbc4;
+        margin-bottom: 40px;
+    }
+    .iam-title { font-weight: 700; color: #00695c; display: block; margin-bottom: 10px; font-size: 1.1rem; }
+
+    /* --- COMBINANDO (GRID FINAL) --- */
+    .combo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        margin-bottom: 40px;
+    }
+
+    .combo-card {
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        border-top: 4px solid #5c6bc0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        text-align: center;
+        font-weight: 600;
+        color: #3949ab;
+    }
+
+    /* --- PREGUNTAS (ACORDEÓN) --- */
+    details.q-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #cfd8dc;
+        overflow: hidden;
+    }
+
+    summary.q-summary {
+        padding: 15px 20px;
+        background: #eceff1;
+        cursor: pointer;
+        font-weight: 700;
+        color: #37474f;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    summary.q-summary:hover { background: #cfd8dc; }
+    summary.q-summary::-webkit-details-marker { display: none; }
+    
+    summary.q-summary::after { content: '+'; font-size: 1.5rem; color: #3949ab; }
+    details[open] summary.q-summary::after { content: '-'; }
+
+    .q-content {
+        padding: 20px;
+        border-top: 1px solid #cfd8dc;
+        color: #455a64;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .classic-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="ref-arch-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">3.3 Arquitecturas de referencia para protección de datos y acceso</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/v9s4pircwoprv304yyygo/Gemini_Generated_Image_oxvwgaoxvwgaoxvw.png?rlkey=83es5ycgbw6th29sqaeg3kkff&st=tnn8qai9&raw=1" alt="Arquitecturas de Referencia" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>En los apartados anteriores vimos:</p>
+        <ul>
+            <li>Cómo dividir la red en zonas de seguridad (segmentación macro).</li>
+            <li>Qué controles aplicar para proteger datos en tránsito y en reposo.</li>
+        </ul>
+        
+        <span class="intro-highlight">Ahora vamos a dar un paso más: ¿Cómo se ve todo eso junto en arquitecturas de referencia que ya se usan en el mundo real para proteger datos y controlar el acceso?</span>
+
+        <p>Una arquitectura de referencia no es un diagrama perfecto que todos copian, sino un modelo que: Resume buenas prácticas probadas, Sirve como “plantilla mental” para diseñar o evaluar soluciones, Se adapta a distintas realidades (tamaño, sector, nube, on-prem, IA, etc.).</p>
+
+        <p>En esta página veremos algunas arquitecturas de referencia muy usadas para protección de datos y acceso:</p>
+        <ul>
+            <li>Arquitectura con zonas + DMZ + control de acceso centralizado.</li>
+            <li>Enfoque Zero Trust (Confianza Cero).</li>
+            <li>SASE / SSE (seguridad desde la nube para acceso distribuido).</li>
+            <li>Arquitecturas centradas en datos (data-centric).</li>
+            <li>El rol de la gestión de identidades y accesos (IAM) como eje transversal.</li>
+        </ul>
+        <p>La idea no es memorizar etiquetas, sino que puedas reconocer patrones: Cómo fluyen los datos, Dónde se controla el acceso, Qué piezas se vuelven críticas en cada enfoque.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1. Arquitectura clásica con zonas, DMZ y control de acceso</h2>
+        <p>Es uno de los modelos más extendidos y sigue siendo base de muchas organizaciones.</p>
+        
+        <div class="classic-grid">
+            
+            <div class="classic-card">
+                <span class="classic-title">Elementos clave</span>
+                <ul>
+                    <li>Zona interna de usuarios (colaboradores, docentes, administrativos).</li>
+                    <li>Zona de servidores internos (aplicaciones core, bases de datos).</li>
+                    <li>Zona DMZ para servicios expuestos a Internet (portales, APIs públicas, VPN, correo perimetral).</li>
+                    <li>Zona de invitados separada, solo con salida a Internet.</li>
+                    <li>Zona de gestión muy restringida, para administrar equipos y servicios.</li>
+                    <li>Zona de IoT/OT, aislada y controlada.</li>
+                </ul>
+            </div>
+
+            <div class="classic-card">
+                <span class="classic-title">Entre estas zonas se ubican</span>
+                <ul>
+                    <li>Firewalls internos y perimetrales que definen qué tráfico se permite entre zonas.</li>
+                    <li>Balanceadores y WAF en la DMZ para proteger aplicaciones web.</li>
+                    <li>Servidores de autenticación y directorio (AD/LDAP, SSO) para controlar quién entra y a qué.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <p><strong>En términos de protección de datos y acceso:</strong> Los datos más sensibles están en la zona de servidores internos, no directamente expuestos. El acceso desde usuarios o desde la DMZ pasa por controles bien definidos. La DMZ actúa como “buffer” entre Internet y la red interna.</p>
+        <p>Este modelo es la base sobre la que se construyen enfoques más modernos (Zero Trust, SASE, etc.).</p>
+    </div>
+
+    <div class="content-block">
+        <div class="zt-box">
+            <h2 class="zt-title">2. Arquitectura Zero Trust: “nunca confíes por defecto”</h2>
+            <p>Zero Trust (“Confianza Cero”) no es un producto, sino una forma de pensar la arquitectura: No confiar en nada solo porque está “dentro” de la red. Verificar identidad, contexto y permisos en cada acceso importante.</p>
+            
+            <p><strong>Características de una arquitectura Zero Trust orientada a protección de datos:</strong></p>
+            <ul>
+                <li>El perímetro ya no es solo el firewall de salida a Internet:
+                    <ul class="sub-list">
+                        <li>Usuarios se conectan desde cualquier lugar (casa, móvil, otras redes).</li>
+                        <li>Aplicaciones se encuentran on-prem y en la nube.</li>
+                        <li>Los datos están distribuidos.</li>
+                    </ul>
+                </li>
+                <li>Los accesos se construyen alrededor de:
+                    <ul class="sub-list">
+                        <li>Identidad (usuario, servicio, dispositivo).</li>
+                        <li>Contexto (ubicación, tipo de dispositivo, hora, riesgo).</li>
+                        <li>Políticas (quién puede ver qué dato, desde dónde y bajo qué condiciones).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>Ejemplos de decisiones en Zero Trust:</strong></p>
+            <ul>
+                <li>Un usuario autenticado no tiene automáticamente acceso a toda la red interna, solo a las aplicaciones que necesita.</li>
+                <li>Incluso dentro del data center, los microservicios pueden autenticarse mutuamente (mTLS) antes de intercambiar datos.</li>
+                <li>Para acceder a datos sensibles, se exige autenticación fuerte (MFA) y se registra cada acceso.</li>
+            </ul>
+            <p>Zero Trust se apoya en: IAM sólido (identidades centrales, SSO, MFA), Segmentación (macro y, muchas veces, microsegmentación), Gateways de acceso a aplicaciones (on-prem y nube), Monitoreo continuo de actividad para detectar anomalías.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3. Arquitecturas SASE / SSE: seguridad desde la nube para accesos distribuidos</h2>
+        <div class="cloud-box">
+            <p>Con más usuarios trabajando desde cualquier lugar, más aplicaciones en la nube y más datos viajando fuera del campus, surge el enfoque: SASE (Secure Access Service Edge) y SSE (Security Service Edge).</p>
+            <p><span class="cloud-title">La idea central:</span> Mover muchos controles de acceso y seguridad desde el data center a la nube, para que el acceso seguro esté cerca del usuario, sin importar dónde esté.</p>
+            <p>En una arquitectura SASE/SSE: El usuario (en casa, en otra ciudad, en otra red) se conecta primero a una plataforma de seguridad en la nube. Desde allí, según su identidad y contexto, se le da acceso a: Aplicaciones en la nube (SaaS, IaaS, PaaS) y Servicios internos publicados de forma segura (ZTNA, VPN, túneles, etc.).</p>
+        </div>
+        
+        <p><strong>Ventajas para protección de datos y acceso:</strong></p>
+        <ul>
+            <li>Políticas centralizadas que se aplican a: Navegación web, Acceso a apps internas, Uso de aplicaciones en la nube.</li>
+            <li>Inspección y filtrado de tráfico en múltiples puntos cercanos al usuario.</li>
+            <li>Mejor experiencia que obligar a todo el mundo a “entrar a la sede” para luego salir a la nube.</li>
+        </ul>
+        <p><strong>Importante:</strong> SASE/SSE no reemplaza la necesidad de segmentación y buen diseño on-prem, pero complementa la protección cuando el acceso ya no se limita al campus.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4. Arquitecturas centradas en datos (data-centric)</h2>
+        <div class="data-box">
+            <p>En arquitecturas centradas en datos, la pregunta no es solo “¿quién entra a la red?”, sino: <strong>¿Qué datos se quieren proteger, dónde están y cómo se accede a ellos?</strong></p>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Se realiza un inventario de datos críticos: Datos personales/sensibles (salud, finanzas, académicos), Datos estratégicos (investigación, propiedad intelectual, modelos de IA).</li>
+                <li>Se mapean: Sistemas y repositorios que los almacenan, Aplicaciones y procesos que los usan, Personas y roles que los consultan o modifican.</li>
+            </ul>
+            <p>A partir de ahí, la arquitectura define zonas y controles específicos alrededor de esos datos: Segmentos de red restringidos, Cifrado fuerte en reposo y en tránsito, Controles de acceso de alta granularidad, Registro detallado (logs) de accesos y movimientos.</p>
+            
+            <p><strong>Esto es especialmente importante en contextos de IA:</strong> No solo hay que cuidar las bases de datos, sino también: Datasets de entrenamiento (qué contienen, quién puede copiarlos), Modelos entrenados (que pueden incorporar información sensible), Pipelines de datos (por dónde se mueven y cómo se transforman).</p>
+            <p>En una arquitectura data-centric, las decisiones de diseño siempre vuelven a: ¿Qué impacto tendría que estos datos se filtraran, cambiaran o quedaran indisponibles? ¿Qué controles concretos protegen esos datos en cada estado (en tránsito, en reposo, en uso)?</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5. Gestión de identidades y accesos (IAM) como eje de la arquitectura</h2>
+        <div class="iam-card">
+            <p>En todas estas arquitecturas (zonas + DMZ, Zero Trust, SASE, data-centric) aparece un componente transversal: <strong>La gestión de identidades y accesos (IAM).</strong></p>
+            <span class="iam-title">IAM incluye:</span>
+            <ul>
+                <li>Identidades de usuarios: Estudiantes, docentes, administrativos, invitados, proveedores.</li>
+                <li>Identidades de servicios: Aplicaciones backend, microservicios, contenedores, servicios de IA.</li>
+                <li>Mecanismos de autenticación y autorización: SSO, MFA, tokens, roles, grupos, políticas.</li>
+            </ul>
+            <p>En una arquitectura moderna centrada en protección de datos, IAM responde a: ¿Quién eres? ¿Desde dónde te conectas? ¿Qué dispositivo usas? ¿Qué rol tienes y qué necesitas ver/hacer? Y se integra con: Aplicaciones on-prem y en la nube, Gateways de acceso (ZTNA, VPN, SASE), Servicios de IA que exponen APIs a otros sistemas.</p>
+            <p>Sin un IAM consistente: Es difícil aplicar Zero Trust de forma real. Se multiplica el número de cuentas, permisos y “excepciones”. El riesgo de accesos indebidos a datos aumenta mucho.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">6. Combinando arquitecturas de referencia en un entorno real</h2>
+        <p>En la práctica, la mayoría de organizaciones terminan con una combinación de estas arquitecturas de referencia:</p>
+        
+        <div class="combo-grid">
+            <div class="combo-card">A nivel de campus/data center: Zonas + DMZ + segmentación macro.</div>
+            <div class="combo-card">A nivel de acceso remoto y nube: Elementos de Zero Trust y SASE/SSE.</div>
+            <div class="combo-card">A nivel de datos: Enfoque data-centric.</div>
+            <div class="combo-card">A nivel transversal: IAM como núcleo.</div>
+        </div>
+
+        <p>Lo importante para el módulo es que puedas: Reconocer qué patrón se está usando en un caso. Argumentar por qué una decisión (por ejemplo, ubicar un sistema en DMZ, usar ZTNA o segmentar mejor IoT) ayuda a proteger datos y controlar acceso. Identificar faltantes (por ejemplo, hay zonas pero IAM es débil; o hay cifrado pero sin segmentación; o hay SASE pero el data center sigue siendo plano).</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">7. Preguntas guía para analizar arquitecturas de referencia</h2>
+        <p>Cuando te presenten un diagrama o un caso, puedes usar estas preguntas:</p>
+
+        <details class="q-item">
+            <summary class="q-summary">Sobre zonas y DMZ</summary>
+            <div class="q-content">
+                ¿La arquitectura separa claramente usuarios, servidores internos, DMZ, invitados, IoT y gestión? ¿Qué datos viven en cada zona y qué controles existen entre ellas?
+            </div>
+        </details>
+
+        <details class="q-item">
+            <summary class="q-summary">Sobre Zero Trust / acceso basado en identidad</summary>
+            <div class="q-content">
+                ¿El acceso a sistemas se basa principalmente en “estar dentro de la red” o en identidad y rol? ¿Se usan mecanismos como SSO, MFA y políticas por aplicación/dato?
+            </div>
+        </details>
+
+        <details class="q-item">
+            <summary class="q-summary">Sobre nube y acceso distribuido</summary>
+            <div class="q-content">
+                ¿Los usuarios remotos acceden de forma segura a aplicaciones internas y en la nube? ¿Existen componentes tipo SASE/SSE o ZTNA que centralicen seguridad de acceso?
+            </div>
+        </details>
+
+        <details class="q-item">
+            <summary class="q-summary">Sobre enfoque centrado en datos</summary>
+            <div class="q-content">
+                ¿La arquitectura identifica y protege específicamente los datos más sensibles? ¿Los flujos que mueven esos datos están analizados y controlados?
+            </div>
+        </details>
+
+        <details class="q-item">
+            <summary class="q-summary">Sobre IAM</summary>
+            <div class="q-content">
+                ¿Hay una plataforma o servicio central de identidades (IAM) bien integrado? ¿Los roles y permisos están alineados con lo que cada perfil realmente necesita?
+            </div>
+        </details>
+    </div>
+
+</div>
+
+</body>
+</html>

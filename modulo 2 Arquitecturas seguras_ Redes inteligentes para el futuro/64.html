@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .rubric-case-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #00695c; /* Verde Petróleo */
+    }
+
+    /* --- LOGO UNIVERSIDAD (POSICIÓN FIJA ARRIBA DERECHA) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO (CORREGIDO PARA NO PISAR EL LOGO) --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        /* Aumentamos el padding superior para bajar el título y que no toque el logo */
+        padding-top: 80px; 
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #004d40;
+        margin: 0 auto 10px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* --- TABLA RESPONSIVA --- */
+    .table-wrapper {
+        overflow-x: auto; /* Scroll horizontal en móviles */
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+        border: 1px solid #b2dfdb;
+    }
+
+    .rubric-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1100px; /* Ancho mínimo para leer bien */
+        font-size: 0.9rem;
+    }
+
+    /* Encabezados */
+    .rubric-table th {
+        background-color: #00695c;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        border: 1px solid #004d40;
+        vertical-align: middle;
+    }
+
+    /* Celdas */
+    .rubric-table td {
+        padding: 15px;
+        border: 1px solid #e0f2f1;
+        vertical-align: top;
+        line-height: 1.5;
+    }
+
+    /* Columnas */
+    .col-criterio {
+        background-color: #f1f8e9;
+        font-weight: 700;
+        color: #004d40;
+        width: 18%;
+    }
+
+    .col-peso {
+        text-align: center;
+        font-weight: 900;
+        color: #e65100; /* Naranja para destacar peso */
+        background-color: #fff;
+        width: 7%;
+    }
+
+    /* Niveles de Desempeño */
+    .level-excelente { background-color: #e8f5e9; color: #1b5e20; border-left: 3px solid #2e7d32; }
+    .level-bueno { background-color: #fffde7; color: #333; border-left: 3px solid #fbc02d; }
+    .level-basico { background-color: #fff3e0; color: #e65100; border-left: 3px solid #ef6c00; }
+    .level-deficiente { background-color: #ffebee; color: #c62828; border-left: 3px solid #c62828; }
+
+    /* Fila Total */
+    .row-total td {
+        background-color: #004d40;
+        color: white;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-align: right;
+        font-size: 1.1rem;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .main-title { font-size: 2rem; max-width: 100%; }
+        /* En móvil aumentamos un poco más el padding por si el título se hace más alto */
+        .header-box { padding-top: 90px; } 
+    }
+
+</style>
+</head>
+<body>
+
+<div class="rubric-case-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Rúbrica de Evaluación: Estudio de Caso</h1>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th style="border-top-left-radius: 10px;">Criterio</th>
+                    <th style="text-align:center;">Peso</th>
+                    <th style="background:#2e7d32;">Nivel Excelente</th>
+                    <th style="background:#f9a825;">Nivel Bueno</th>
+                    <th style="background:#ef6c00;">Nivel Básico</th>
+                    <th style="background:#c62828; border-top-right-radius: 10px;">Nivel Deficiente</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td class="col-criterio">1. Comprensión del caso y diagnóstico del entorno</td>
+                    <td class="col-peso">15%</td>
+                    <td class="level-excelente">Describe con claridad necesidades por entorno (campus, WAN, remoto, IoT/OT) y prioriza servicios críticos y restricciones con análisis coherente.</td>
+                    <td class="level-bueno">Identifica necesidades principales, pero con algunos vacíos o poca priorización de criticidad/restricciones.</td>
+                    <td class="level-basico">Diagnóstico general y superficial; confunde entornos o no prioriza necesidades/riesgos.</td>
+                    <td class="level-deficiente">No presenta diagnóstico o es irrelevante/incoherente.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">2. Selección de tecnologías de red (Tabla 1)</td>
+                    <td class="col-peso">20%</td>
+                    <td class="level-excelente">Propone tecnologías adecuadas para LAN/WLAN/campus, WAN/SD-WAN y remoto, e IoT/OT; compara alternativas y la selección es consistente con el caso.</td>
+                    <td class="level-bueno">Selección en general adecuada, pero con justificaciones parciales o comparación limitada de alternativas.</td>
+                    <td class="level-basico">Selección incompleta o poco alineada; faltan entornos o hay decisiones genéricas sin sustento.</td>
+                    <td class="level-deficiente">No cumple la tabla o las elecciones no corresponden al caso.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">3. Selección de mecanismos de seguridad (Tabla 2)</td>
+                    <td class="col-peso">20%</td>
+                    <td class="level-excelente">Define controles pertinentes (perímetro, segmentación, acceso, monitoreo, IoT/OT) y relaciona cada uno con riesgos mitigados, requisitos mínimos y evidencias verificables.</td>
+                    <td class="level-bueno">Controles adecuados, pero algunos riesgos/requisitos/evidencias están poco claros o incompletos.</td>
+                    <td class="level-basico">Controles listados sin relación clara con riesgos; requisitos/evidencias débiles o ausentes.</td>
+                    <td class="level-deficiente">Controles ausentes o incorrectos; no hay trazabilidad riesgo–control.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">4. Segmentación y modelo de acceso (usuarios, invitados, servidores, IoT/OT, remoto)</td>
+                    <td class="col-peso">15%</td>
+                    <td class="level-excelente">Propone segmentación por zonas coherente y principio de mínimo privilegio; define comunicaciones necesarias y evita “todo con todo”.</td>
+                    <td class="level-bueno">Segmentación lógica, aunque con algunos permisos amplios o detalles faltantes.</td>
+                    <td class="level-basico">Segmentación básica (pocas zonas) o poco justificada; deja riesgos de movimiento lateral.</td>
+                    <td class="level-deficiente">No hay segmentación o es una red plana sin control.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">5. Continuidad y desempeño (redundancia, capacidad, experiencia)</td>
+                    <td class="col-peso">10%</td>
+                    <td class="level-excelente">Incluye medidas de continuidad (enlaces/elementos críticos), considera capacidad y rendimiento (densidad Wi-Fi, priorización, cuellos de botella) con propuestas realistas.</td>
+                    <td class="level-bueno">Considera continuidad o desempeño, pero con detalle limitado o sin conexión clara al caso.</td>
+                    <td class="level-basico">Menciona continuidad/desempeño de forma superficial sin medidas concretas.</td>
+                    <td class="level-deficiente">No contempla continuidad ni desempeño.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">6. Diagrama de arquitectura y explicación</td>
+                    <td class="col-peso">15%</td>
+                    <td class="level-excelente">Diagrama claro y completo (campus, sedes, WAN, perímetro/DMZ, zonas IoT/OT, remoto y nube) + explicación coherente de decisiones y trade-offs.</td>
+                    <td class="level-bueno">Diagrama entendible pero con algunos elementos faltantes o explicación parcial.</td>
+                    <td class="level-basico">Diagrama confuso o incompleto; explicación débil.</td>
+                    <td class="level-deficiente">Sin diagrama o no representa la propuesta.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">7. Claridad, estructura y redacción técnica</td>
+                    <td class="col-peso">5%</td>
+                    <td class="level-excelente">Presentación ordenada, lenguaje técnico adecuado, tablas completas, sin ambigüedades; fácil de evaluar.</td>
+                    <td class="level-bueno">Presentación comprensible con algunos errores menores de organización/redacción.</td>
+                    <td class="level-basico">Errores frecuentes que dificultan comprender o evaluar; tablas incompletas.</td>
+                    <td class="level-deficiente">Inentendible o desordenado; no cumple formato.</td>
+                </tr>
+
+                <tr class="row-total">
+                    <td colspan="2">TOTAL</td>
+                    <td colspan="4" style="text-align: center; background-color: #004d40; color: #fff;">100%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

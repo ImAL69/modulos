@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .forum-net-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1; /* Azul Profundo */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #0d47a1;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(13, 71, 161, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #bbdefb;
+    }
+
+    /* --- PROPÓSITO --- */
+    .purpose-box {
+        background: #e3f2fd;
+        padding: 30px;
+        border-radius: 12px;
+        border-left: 5px solid #1976d2;
+        margin-bottom: 50px;
+    }
+
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #1565c0;
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .std-list {
+        padding-left: 20px;
+        margin: 0;
+        list-style-type: none;
+    }
+
+    .std-list li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+        font-size: 1.05rem;
+    }
+
+    .std-list li::before {
+        content: '🎯';
+        position: absolute;
+        left: 0;
+        top: 2px;
+    }
+
+    /* --- INSTRUCCIONES GENERALES --- */
+    .instruction-heading {
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.8rem;
+        color: #37474f;
+        margin-bottom: 30px;
+        font-weight: 800;
+    }
+
+    /* --- MOMENTO 1: PUBLICAR --- */
+    .moment-1-container {
+        margin-bottom: 50px;
+    }
+
+    .moment-header {
+        background: #1565c0;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px 10px 0 0;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .moment-body {
+        border: 2px solid #1565c0;
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        padding: 30px;
+        background: #fdfdfd;
+    }
+
+    /* GRID DE PREGUNTAS (a, b, c, d) */
+    .questions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 20px;
+    }
+
+    .q-card {
+        background: #fff;
+        border: 1px solid #cfd8dc;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+    }
+
+    .q-card:hover {
+        transform: translateY(-5px);
+        border-color: #29b6f6;
+        box-shadow: 0 5px 15px rgba(41, 182, 246, 0.1);
+    }
+
+    .q-title {
+        font-weight: 700;
+        color: #0277bd;
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #e1f5fe;
+        padding-bottom: 5px;
+    }
+
+    .q-content p { margin-bottom: 10px; font-size: 0.95rem; }
+    .q-example { font-style: italic; color: #546e7a; font-size: 0.9rem; background: #f5f5f5; padding: 8px; border-radius: 5px; }
+
+    /* --- MOMENTO 2: RESPONDER --- */
+    .moment-2-container {
+        margin-bottom: 30px;
+    }
+
+    .moment-2-header {
+        background: #546e7a; /* Gris azulado */
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px 10px 0 0;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .moment-2-body {
+        border: 2px solid #546e7a;
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        padding: 30px;
+        background: #eceff1;
+    }
+
+    .reply-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .reply-list li {
+        margin-bottom: 10px;
+        padding-left: 25px;
+        position: relative;
+    }
+
+    .reply-list li::before {
+        content: '💬';
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .questions-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="forum-net-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Propósito del foro</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/582qlncvz5yipv61v5bix/Gemini_Generated_Image_7g1vra7g1vra7g1v.png?rlkey=6rqojgctn63s9qzddvvxcq9mv&st=wl6hhcuf&raw=1" alt="Foro de Presentación" class="hero-image">
+    </div>
+
+    <div class="purpose-box">
+        <ul class="std-list">
+            <li>Conocer la experiencia previa que cada uno tiene en redes, infraestructura y seguridad.</li>
+            <li>Identificar las expectativas e intereses frente al módulo “Arquitecturas seguras: Redes inteligentes para el futuro”.</li>
+            <li>Detectar necesidades, dudas o temas clave que podamos retomar durante el módulo (por ejemplo: segmentación, nube, Zero Trust, monitoreo, etc.).</li>
+        </ul>
+    </div>
+
+    <h2 class="instruction-heading">¿Qué debes hacer?</h2>
+    <p style="text-align:center; margin-bottom:30px;">Tu participación tiene <strong>dos momentos</strong>:</p>
+
+    <div class="moment-1-container">
+        <div class="moment-header">1. Publicar tu mensaje en el foro</div>
+        <div class="moment-body">
+            <p style="margin-bottom:20px;">En una sola publicación, comparte de forma clara y concreta:</p>
+            
+            <div class="questions-grid">
+                
+                <div class="q-card">
+                    <span class="q-title">a) Tu experiencia en redes e infraestructura</span>
+                    <p>¿Qué has trabajado o estudiado en temas de redes?</p>
+                    <div class="q-example">(ejemplos: cableado, VLAN, routing, Wi-Fi, redes corporativas, nube, VPN, etc.).</div>
+                    <br>
+                    <p>¿Qué tanto contacto has tenido con temas de seguridad en redes?</p>
+                    <div class="q-example">(firewalls, segmentación, acceso remoto, incidentes, auditorías, etc.).</div>
+                    <br>
+                    <p>Si lo deseas, puedes decir si te sientes más en nivel básico, intermedio o avanzado en estos temas.</p>
+                </div>
+
+                <div class="q-card">
+                    <span class="q-title">b) Tu contexto de aplicación</span>
+                    <p>¿En qué tipo de entorno ves más útil este módulo?</p>
+                    <div class="q-example">(empresa, soporte técnico, centro de datos, educación, emprendimiento, servicios en la nube, ciberseguridad, etc.).</div>
+                    <br>
+                    <p>Si ya trabajas, ¿qué tipo de redes o infraestructuras ves en tu día a día?</p>
+                </div>
+
+                <div class="q-card">
+                    <span class="q-title">c) Tus expectativas sobre el módulo</span>
+                    <p>¿Qué te interesa aprender específicamente sobre arquitecturas seguras y redes inteligentes?</p>
+                    <p>¿Hay algún tema que te llame especialmente la atención o que sientas como necesidad urgente?</p>
+                    <div class="q-example">(por ejemplo: cómo diseñar una red segura desde cero, cómo segmentar mejor, cómo integrar nube, cómo monitorear y detectar problemas, etc.).</div>
+                </div>
+
+                <div class="q-card">
+                    <span class="q-title">d) Una experiencia, duda o reflexión inicial</span>
+                    <p><strong>Elige una de estas opciones:</strong></p>
+                    <p>O bien cuenta una situación real (personal, laboral o académica) relacionada con redes o seguridad en la que hayas pensado algo como:</p>
+                    <div class="q-example">“Esta red funciona… pero aquí podría haber un problema de seguridad o de diseño.”<br>“Una mala decisión en la arquitectura de red nos complicó todo el servicio.”</div>
+                    <br>
+                    <p>O formula una pregunta que te genere inquietud, por ejemplo:</p>
+                    <div class="q-example">“¿Hasta qué punto es viable confiar en una sola nube para todo?”<br>“¿Qué tan grave es realmente no segmentar una red interna?”<br>“¿Cómo se equilibra seguridad vs. rendimiento en una red moderna?”</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="moment-2-container">
+        <div class="moment-2-header">2. Responder a dos compañeros/as</div>
+        <div class="moment-2-body">
+            <p>Después de publicar tu mensaje:</p>
+            <ul>
+                <li>Lee las participaciones de tus compañeros/as.</li>
+                <li>Elige al menos <strong>dos (2)</strong> y responde de forma respetuosa y constructiva.</li>
+            </ul>
+            <p><strong>Puedes, por ejemplo:</strong></p>
+            <ul class="reply-list">
+                <li>Comentar una experiencia similar que tú hayas vivido.</li>
+                <li>Aportar una idea, recomendación o punto de vista diferente sobre el mismo problema.</li>
+                <li>Conectar lo que dice tu compañero/a con un tema del módulo, por ejemplo:</li>
+            </ul>
+            <div class="q-example" style="margin-top:10px; margin-left:25px;">
+                “Esto tiene que ver con segmentación y zonas de seguridad…”<br>
+                “Ese problema podría haberse mitigado con un buen diseño de arquitectura…”<br>
+                “Aquí entran los conceptos de redes inteligentes y monitoreo…”
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .rubric-cmap-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 50px 30px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #00acc1; /* Cian */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #006064;
+        margin: 0 auto 10px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .sub-title {
+        font-size: 1.2rem;
+        color: #00838f;
+        font-weight: 600;
+    }
+
+    /* --- TABLA RESPONSIVA --- */
+    .table-wrapper {
+        overflow-x: auto; /* Permite scroll lateral en móviles */
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .rubric-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 900px; /* Ancho mínimo para mantener legibilidad */
+        font-size: 0.95rem;
+    }
+
+    /* Encabezados */
+    .rubric-table th {
+        background-color: #00838f;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        border: 1px solid #006064;
+    }
+
+    /* Celdas */
+    .rubric-table td {
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        vertical-align: top;
+        line-height: 1.5;
+    }
+
+    /* Estilos de Columnas */
+    .col-criterio {
+        background-color: #e0f7fa;
+        font-weight: 700;
+        color: #006064;
+        width: 20%;
+    }
+
+    .col-peso {
+        text-align: center;
+        font-weight: 900;
+        color: #f57f17; /* Naranja para resaltar el peso */
+        background-color: #fff;
+        width: 8%;
+    }
+
+    /* Niveles de Desempeño (Colores semánticos) */
+    .level-excelente { background-color: #e8f5e9; color: #1b5e20; font-weight: 500; } /* Verde suave */
+    .level-aceptable { background-color: #fffde7; color: #333; } /* Amarillo muy suave */
+    .level-basico { background-color: #fff3e0; color: #e65100; } /* Naranja suave */
+    .level-deficiente { background-color: #ffebee; color: #c62828; } /* Rojo suave */
+
+    /* Fila de Totales */
+    .row-total td {
+        background-color: #006064;
+        color: white;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-align: right;
+        font-size: 1.1rem;
+    }
+
+    /* --- NOTA INFORMATIVA --- */
+    .info-box {
+        background: #f5f5f5;
+        border-left: 5px solid #546e7a;
+        padding: 20px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        margin-top: 30px;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 2rem; max-width: 100%; }
+        /* La tabla tiene su propio scroll */
+    }
+
+</style>
+</head>
+<body>
+
+<div class="rubric-cmap-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Rúbrica de Evaluación</h1>
+        <p class="sub-title">Actividad: Mapa Comparativo de Marcos Ético-Legales</p>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th style="border-top-left-radius: 10px;">Criterio</th>
+                    <th style="text-align:center;">Peso (%)</th>
+                    <th style="background:#2e7d32;">Excelente</th>
+                    <th style="background:#f9a825;">Aceptable</th>
+                    <th style="background:#ef6c00;">Básico</th>
+                    <th style="background:#c62828; border-top-right-radius: 10px;">Deficiente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-criterio">1. Contenido y cobertura</td>
+                    <td class="col-peso">40%</td>
+                    <td class="level-excelente">Incluye al menos 4 marcos (1 nacional y 3 internacionales), varios principios éticos, derechos, riesgos y casos concretos. Los conceptos son correctos y pertinentes al tema IA y datos personales.</td>
+                    <td class="level-aceptable">Incluye la mayoría de los elementos requeridos, pero falta uno (algún derecho, riesgo o caso) o hay 1–2 conceptos poco claros. En general es pertinente.</td>
+                    <td class="level-basico">Incluye pocos marcos o casi no muestra derechos, riesgos o casos. Se nota que el contenido está incompleto o poco trabajado.</td>
+                    <td class="level-deficiente">Falta la mayoría de elementos clave (marcos, principios, derechos, riesgos) o el contenido no guarda relación clara con el tema del módulo.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">2. Calidad de las relaciones (enlaces)</td>
+                    <td class="col-peso">30%</td>
+                    <td class="level-excelente">Las frases de enlace son claras y completas. Se entiende bien cómo se relacionan marcos, principios, derechos, riesgos y casos. No hay enlaces confusos o contradictorios.</td>
+                    <td class="level-aceptable">La mayoría de los enlaces son comprensibles, aunque algunos son genéricos o poco precisos. Las relaciones principales se entienden.</td>
+                    <td class="level-basico">Varias relaciones son vagas (“relacionado con”, “tiene que ver”) o poco explicadas; cuesta entender cómo se conectan los conceptos.</td>
+                    <td class="level-deficiente">Los enlaces son casi inexistentes o muy confusos; el mapa parece más una lista de palabras que un mapa conceptual.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">3. Profundidad del análisis</td>
+                    <td class="col-peso">20%</td>
+                    <td class="level-excelente">El mapa muestra conexiones reflexionadas: vincula marcos con principios, derechos, riesgos y casos de forma crítica. Se percibe comprensión de los dilemas éticos y de cómo los marcos ayudan a mitigarlos.</td>
+                    <td class="level-aceptable">Hay conexiones entre marcos, principios y casos, pero el análisis es más descriptivo que crítico. Se ve cierta comprensión, aunque limitada.</td>
+                    <td class="level-basico">El mapa se limita casi a nombrar conceptos sin mostrar bien las implicaciones o los dilemas. El análisis es muy superficial.</td>
+                    <td class="level-deficiente">No se aprecia análisis; solo hay palabras sueltas o conexiones sin sentido. No se ve relación con los dilemas éticos trabajados en la unidad.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">4. Presentación y organización visual</td>
+                    <td class="col-peso">10%</td>
+                    <td class="level-excelente">El mapa es legible, ordenado y bien distribuido. Se entiende de un vistazo, sin cruces excesivos. Si se usan colores o grupos, tienen un sentido claro.</td>
+                    <td class="level-aceptable">El mapa es entendible, aunque algo cargado o con algunos cruces de líneas. La organización visual podría mejorar, pero no impide la lectura.</td>
+                    <td class="level-basico">El mapa se ve desordenado, con muchos cruces y poca jerarquía visual. Se puede leer, pero cuesta seguirlo.</td>
+                    <td class="level-deficiente">La presentación dificulta seriamente la comprensión: desorden extremo, nodos amontonados o ilegibles.</td>
+                </tr>
+
+                <tr class="row-total">
+                    <td colspan="2">TOTAL</td>
+                    <td colspan="4" style="text-align: center; background-color: #006064; color: #fff;">100%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <strong>💡 Recuerda:</strong> Un buen mapa conceptual no es solo un resumen de términos, es una demostración de cómo entiendes la relación entre ellos. ¡Prioriza las conexiones claras!
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Simulador RA2 – Análisis de Umbrales, Prevalencia y AUC</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap');
+
+    .ethics-foundations-container {
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 40px;
+        background: #fdfcfb;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        border-top: 6px solid #c0922e;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header-section {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        font-weight: 900;
+        color: #2c3e50;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 85%;
+        position: relative;
+        display: inline-block;
+        animation: fadeUp 1s ease both;
+    }
+
+    .main-title::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: #c0922e;
+        margin: 15px auto 0 auto;
+    }
+
+    .intro-text {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 50px;
+        color: #555;
+    }
+
+    .section-heading {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: #2c3e50;
+        margin-bottom: 40px;
+        margin-top: 60px;
+    }
+
+    .subsection-heading {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        color: #2c3e50;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        border-left: 4px solid #c0922e;
+        padding-left: 15px;
+    }
+
+    .content-box {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+        border-left: 4px solid #c0922e;
+    }
+
+    .highlight {
+        background: #c0922e;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+
+    .elegant-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .elegant-list li {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-left: 30px;
+        position: relative;
+    }
+
+    .elegant-list li:last-child {
+        border-bottom: none;
+    }
+
+    .elegant-list li::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: #c0922e;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .elegant-list strong {
+        color: #c0922e;
+        font-size: 1.1rem;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .info-box {
+        background: #e3f2fd;
+        border: 1px solid #90caf9;
+        border-left: 4px solid #2196f3;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .info-box h4 {
+        color: #1565c0;
+        margin-top: 0;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .warning-box {
+        background: #fff3e0;
+        border: 1px solid #ffe0b2;
+        border-left: 4px solid #f57c00;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .warning-box h4 {
+        color: #e65100;
+        margin-top: 0;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+
+    .principle-item {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 4px solid #c0922e;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+    }
+
+    .principle-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .principle-item h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+        color: #2c3e50;
+        margin-top: 0;
+    }
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .main-title { font-size: 2.2rem; max-width: 100%; }
+        .principles-grid { grid-template-columns: 1fr; }
+        .ethics-foundations-container { padding: 30px 20px; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="ethics-foundations-container">
+
+    <div class="header-section">
+        <h1 class="main-title">🎯 Simulador RA2 – Análisis de Umbrales, Prevalencia y AUC</h1>
+
+        <p class="intro-text">
+            Esta actividad tiene como objetivo aplicar un <strong>simulador interactivo</strong> para explorar 
+            cómo cambian los resultados de detección (fraude/phishing o autenticación adaptativa) al variar 
+            parámetros críticos como el umbral de decisión, la prevalencia del ataque y la calidad del modelo (AUC). 
+            Evaluarás el impacto en métricas operacionales y propondrás configuraciones viables para la organización.
+        </p>
+    </div>
+
+    <h2 class="section-heading">🎯 Objetivo General</h2>
+    <div class="content-box">
+        <p>
+            Aplicar un simulador para explorar cómo cambian los resultados de detección (fraude/phishing o 
+            autenticación adaptativa) al variar: umbral de decisión, prevalencia del ataque y la calidad del 
+            modelo (AUC). Evaluar el impacto en métricas operacionales (falsos positivos/negativos) y en la 
+            carga del analista, y proponer configuraciones y controles complementarios viables para la organización.
+        </p>
+    </div>
+
+    <h2 class="section-heading">📋 Qué debes hacer</h2>
+
+    <h3 class="subsection-heading">1. Preparación</h3>
+    <div class="content-box">
+        <ul class="elegant-list">
+            <li>
+                <strong>Seleccionar el escenario</strong>
+                Detección de fraude/phishing o autenticación adaptativa.
+            </li>
+            <li>
+                <strong>Definir la unidad de análisis</strong>
+                ¿Alertas por transacción? ¿Por sesión de acceso? ¿Por usuario?
+            </li>
+            <li>
+                <strong>Asegurar comprensión de métricas básicas</strong>
+                TPR (recall), FPR, precision (PPV), FNR, AUC, tasa de alertas (workload).
+            </li>
+        </ul>
+    </div>
+
+    <h3 class="subsection-heading">2. Ejecutar la simulación</h3>
+    <div class="content-box">
+        <ul class="elegant-list">
+            <li>
+                <strong>Usar el simulador</strong>
+                Generar o tomar scores probabilísticos del modelo y etiquetas verdaderas.
+            </li>
+            <li>
+                <strong>Variar tres parámetros clave</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><span class="highlight">Umbral de decisión (threshold)</span> — varios valores entre 0 y 1</li>
+                    <li><span class="highlight">Prevalencia del evento</span> — por ejemplo 0.1%, 1%, 5%</li>
+                    <li><span class="highlight">Calidad del modelo (AUC)</span> — simular modelos con distintos AUC (0.6, 0.75, 0.9)</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Calcular para cada combinación</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Matriz de confusión (TP, FP, TN, FN)</li>
+                    <li>Métricas: TPR, FPR, Precision (PPV), FNR, F1, número absoluto de alertas</li>
+                    <li>Tasa de carga para analistas</li>
+                    <li>Métricas operativas: estimado MTTD o impacto de demora si aplica</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <h3 class="subsection-heading">3. Generar evidencia</h3>
+    <div class="content-box">
+        <ul class="elegant-list">
+            <li>
+                <strong>Tablas con resultados</strong>
+                Por combinación de parámetros.
+            </li>
+            <li>
+                <strong>Gráficas claras</strong>
+                Curvas de Precision-Recall y ROC; series que muestren alertas por umbral; heatmaps 
+                (umbral vs prevalencia) de tasa de FP o carga de analistas.
+            </li>
+            <li>
+                <strong>Capturas del simulador</strong>
+                Si aplica, y/o archivos CSV con datos.
+            </li>
+        </ul>
+    </div>
+
+    <h3 class="subsection-heading">4. Análisis escrito (1 página)</h3>
+    <div class="content-box">
+        <ul class="elegant-list">
+            <li>
+                <strong>Resumen ejecutivo</strong>
+                Cuál configuración (umbral + controles) sería viable y por qué.
+            </li>
+            <li>
+                <strong>Justificación basada en trade-offs</strong>
+                Por ejemplo, bajar umbral reduce FN pero aumenta FP y carga de analistas.
+            </li>
+            <li>
+                <strong>Propuesta de controles compensatorios</strong>
+                (Ver sección de controles más abajo)
+            </li>
+            <li>
+                <strong>Riesgos residuales y recomendaciones operativas</strong>
+                Monitoring, shadow-mode, re-entrenamiento.
+            </li>
+            <li>
+                <strong>Relación con privacidad y regulación</strong>
+                Breve mención a DPIA / AIA cuando haya datos personales.
+            </li>
+            <li>
+                <strong>Citar normas usadas</strong>
+                NIST SP 800-94, ENISA u otras indicadas.
+            </li>
+        </ul>
+    </div>
+
+    <h2 class="section-heading">📦 Qué debe incluir la entrega</h2>
+    
+    <div class="info-box">
+        <h4>Formato y extensión</h4>
+        <p><strong>PDF o presentación corta (1–2 páginas/diapositivas) con:</strong></p>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+            <li>Portada breve (nombre, fecha, escenario)</li>
+            <li>Tablas y gráficas principales (evidencia)</li>
+            <li>Análisis de 1 página con la recomendación y controles</li>
+            <li>Referencias citadas (NIST SP 800-94, ENISA, etc.)</li>
+        </ul>
+    </div>
+
+    <h2 class="section-heading">🔧 Aspectos técnicos importantes a demostrar</h2>
+
+    <div class="principles-grid">
+        <div class="principle-item">
+            <h4>📊 Comprensión del impacto</h4>
+            <p>Cómo la calidad del modelo (AUC) y la prevalencia afectan la utilidad práctica de un detector.</p>
+        </div>
+        <div class="principle-item">
+            <h4>💰 Interpretación operativa</h4>
+            <p>Capacidad para interpretar falsos positivos/negativos en términos operativos (coste por alerta, tiempo de análisis).</p>
+        </div>
+        <div class="principle-item">
+            <h4>⚖️ Justificación basada en riesgo</h4>
+            <p>Justificación de umbrales basada en riesgo, no solo en métricas aisladas.</p>
+        </div>
+        <div class="principle-item">
+            <h4>🔗 Conexión organizacional</h4>
+            <p>Conexión entre decisiones técnicas y controles organizacionales.</p>
+        </div>
+    </div>
+
+    <h2 class="section-heading">🛡️ Controles compensatorios</h2>
+    
+    <div class="content-box">
+        <p style="margin-bottom: 20px;">Controles que deberías considerar y justificar:</p>
+        <ul class="elegant-list">
+            <li>
+                <strong>Autenticación multifactor (MFA) y autenticación adaptativa</strong>
+                Añade capas adicionales de verificación según el nivel de riesgo detectado.
+            </li>
+            <li>
+                <strong>Reputación/score por entidad</strong>
+                IP, dispositivo, pago - análisis contextual del comportamiento histórico.
+            </li>
+            <li>
+                <strong>Filtrado en capas</strong>
+                Reglas heurísticas + ML (ensemble) para mayor robustez.
+            </li>
+            <li>
+                <strong>Sandboxing / detonado seguro</strong>
+                Para muestras sospechosas, análisis en entorno controlado.
+            </li>
+            <li>
+                <strong>Human-in-the-loop y colas de priorización</strong>
+                Score-based triage para optimizar recursos de analistas.
+            </li>
+            <li>
+                <strong>Shadow-mode / canary deployments</strong>
+                Antes de producción plena, validar en paralelo sin impactar usuarios.
+            </li>
+            <li>
+                <strong>Monitor de drift y métricas de rendimiento</strong>
+                En producción; re-entrenamiento planificado del modelo.
+            </li>
+            <li>
+                <strong>Registro, auditoría y playbooks SOAR</strong>
+                Para respuesta automatizada y trazabilidad.
+            </li>
+        </ul>
+    </div>
+
+    <h2 class="section-heading">🔐 Implicaciones éticas y normativas</h2>
+
+    <div class="warning-box">
+        <h4>DPIA / AIA</h4>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+            <li>
+                <strong>DPIA (Data Protection Impact Assessment):</strong> Si la detección usa datos personales, 
+                puede requerirse una Evaluación de Impacto en la Protección de Datos — documentar qué datos se usan, 
+                bases legales y medidas de mitigación.
+            </li>
+            <li>
+                <strong>AIA (AI Act Assessment):</strong> Según el contexto y el riesgo (ej. decisiones automatizadas 
+                con impacto significativo), podría ser aplicable un AIA o al menos el registro de riesgos según NIST AI RMF.
+            </li>
+            <li>
+                <strong>Principios clave:</strong> Documenta transparencia, minimización de datos y mecanismos de 
+                apelación/human oversight.
+            </li>
+        </ul>
+    </div>
+
+    <h2 class="section-heading">✅ Criterios de evaluación</h2>
+
+    <div class="content-box">
+        <p style="margin-bottom: 20px;"><strong>Qué revisará el docente:</strong></p>
+        <ul class="elegant-list">
+            <li>
+                <strong>Calidad y claridad de tablas y gráficas</strong>
+                Evidencia reproducible y bien presentada.
+            </li>
+            <li>
+                <strong>Rigor del análisis</strong>
+                Justificación del umbral escogido con argumentos sólidos.
+            </li>
+            <li>
+                <strong>Identificación de controles</strong>
+                Adecuada identificación de controles técnicos y organizacionales.
+            </li>
+            <li>
+                <strong>Consideración de riesgos éticos y regulatorios</strong>
+                DPIA/AIA apropiadamente abordados.
+            </li>
+            <li>
+                <strong>Citación correcta de normas</strong>
+                NIST SP 800-94, ENISA debidamente referenciados.
+            </li>
+            <li>
+                <strong>Presentación y cumplimiento</strong>
+                De formato y extensión especificados.
+            </li>
+        </ul>
+    </div>
+
+    <h2 class="section-heading">💻 Sugerencias prácticas</h2>
+
+    <div class="info-box">
+        <h4>Si necesitas implementarlo</h4>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+            <li>
+                <strong>Herramientas/entorno sugerido:</strong> Python (pandas, numpy, scikit-learn, 
+                matplotlib/seaborn) en un notebook.
+            </li>
+            <li>
+                <strong>Simulación de scores:</strong> Con distribuciones (ej.: scores positivos ~ Beta o Normal 
+                desplazado; negativos ~ otra distribución) controlando AUC.
+            </li>
+            <li>
+                <strong>Calcular PPV/NPV:</strong> Explícitamente para distintas prevalencias (importante: PPV 
+                depende fuertemente de prevalencia).
+            </li>
+            <li>
+                <strong>Generar heatmap:</strong> Umbral vs prevalencia para FP rate y alert volume.
+            </li>
+        </ul>
+    </div>
+
+    <div class="content-box" style="margin-top: 40px;">
+        <h4>📓 Sobre el notebook incluido</h4>
+        <p>
+            Se ha creado el notebook <span class="highlight">simulacion_RA2_notebook.ipynb</span> con la 
+            simulación lista para ejecutar. Contiene:
+        </p>
+        <ul style="margin-left: 20px; margin-top: 15px;">
+            <li>Instrucciones y objetivo de la actividad</li>
+            <li>Funciones para generar scores con AUC controlada</li>
+            <li>Ejecución de simulación variando umbral, prevalencia y AUC</li>
+            <li>Cálculo de métricas (TP, FP, TN, FN, TPR, FPR, precision, F1, alert_count, workload estimado)</li>
+            <li>Visualizaciones: alert_count vs threshold, heatmap de FPR, curva Precision-Recall</li>
+            <li>Guardado de resultados en CSV y figuras PNG</li>
+            <li>Notas finales sobre interpretación, controles compensatorios y referencias</li>
+        </ul>
+    </div>
+
+    <p style="margin-top:60px; margin-bottom:20px; text-align:center; font-size: 13px; color:#666;">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+    </p>
+
+</div>
+
+</body>
+</html>

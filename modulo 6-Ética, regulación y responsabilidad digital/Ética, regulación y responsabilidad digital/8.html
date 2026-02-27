@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .legal-framework-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #333;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        border-left: 8px solid #1a237e; /* Azul Marino */
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 4px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-section {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Merriweather', serif; /* Fuente con serifa para tono legal */
+        font-size: 2.8rem;
+        font-weight: 900;
+        color: #1a237e;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        border-bottom: 3px solid #c5cae9;
+        display: inline-block;
+        padding-bottom: 15px;
+        animation: slideInLeft 1s ease both;
+    }
+
+    /* IMAGEN HERO (Tu enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 4px;
+        box-shadow: 0 20px 40px rgba(26, 35, 126, 0.2);
+        border: 1px solid #e0e0e0;
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: fadeIn 1.5s ease 0.3s forwards;
+    }
+
+    /* --- TEXTO INTRODUCTORIO --- */
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 40px;
+        background: white;
+        padding: 25px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+    }
+
+    /* --- 1. CONSTITUCIÓN (BLOQUE DESTACADO) --- */
+    .constitution-box {
+        background: #e8eaf6; /* Azul muy pálido */
+        padding: 30px;
+        border-radius: 8px;
+        border-left: 5px solid #303f9f;
+        margin-bottom: 40px;
+    }
+
+    .section-title {
+        font-family: 'Merriweather', serif;
+        font-size: 1.6rem;
+        color: #283593;
+        margin-top: 0;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .section-icon {
+        background: #283593;
+        color: white;
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem;
+    }
+
+    /* --- 2. HABEAS DATA (TARJETAS DERECHOS) --- */
+    .rights-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-bottom: 50px;
+    }
+
+    .right-card {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 6px;
+        text-align: center;
+        transition: all 0.3s;
+    }
+
+    .right-card:hover {
+        background: #1a237e;
+        color: white;
+        transform: translateY(-5px);
+    }
+
+    .right-card strong { display: block; margin-bottom: 5px; font-size: 1.1rem; }
+
+    /* --- 3. LEYES (LISTA DESPLEGABLE) --- */
+    details.law-item {
+        background: white;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        overflow: hidden;
+    }
+
+    summary.law-summary {
+        padding: 15px 20px;
+        background: #f5f5f5;
+        cursor: pointer;
+        font-weight: 700;
+        color: #455a64;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    summary.law-summary:hover { background: #eeeeee; }
+    
+    .law-content {
+        padding: 20px;
+        border-top: 1px solid #e0e0e0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* --- 4. RGPD Y AI ACT (COLUMNAS) --- */
+    .international-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .int-box {
+        padding: 30px;
+        border-radius: 8px;
+        color: white;
+    }
+
+    .gdpr-box {
+        background: linear-gradient(135deg, #1565c0, #42a5f5);
+        box-shadow: 0 10px 20px rgba(21, 101, 192, 0.3);
+    }
+
+    .aiact-box {
+        background: linear-gradient(135deg, #2e7d32, #66bb6a);
+        box-shadow: 0 10px 20px rgba(46, 125, 50, 0.3);
+    }
+
+    .int-title {
+        font-family: 'Merriweather', serif;
+        font-size: 1.4rem;
+        margin-top: 0;
+        border-bottom: 2px solid rgba(255,255,255,0.3);
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    .int-list {
+        padding-left: 20px;
+        margin: 0;
+    }
+    .int-list li { margin-bottom: 8px; }
+
+    /* --- 6. CONEXIÓN PRÁCTICA (PREGUNTAS) --- */
+    .connection-box {
+        background: #fff3e0;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border: 2px dashed #ffb74d;
+    }
+
+    .connection-q {
+        font-weight: 700;
+        color: #e65100;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes slideInLeft {
+        from { opacity: 0; transform: translateX(-30px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; } to { opacity: 1; }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 2rem; max-width: 100%; }
+        .international-grid { grid-template-columns: 1fr; }
+        .rights-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="legal-framework-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-section">
+        <h1 class="main-title">Marcos Legales de Protección de Datos e IA</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/v9rtskldm8dno741xjcyu/Gemini_Generated_Image_fuycjvfuycjvfuyc.png?rlkey=aism3h5578omucz07de60r2o7&st=sqkyf6w8&raw=1" alt="Marco Legal" class="hero-image">
+    </div>
+
+    <div class="intro-text">
+        <p>Para hablar en serio de ética y responsabilidad digital, necesitamos entender la base jurídica. No buscamos que memorices artículos, sino que entiendas <strong>qué protegen y por qué existen</strong>.</p>
+    </div>
+
+    <div class="constitution-box">
+        <h2 class="section-title"><span class="section-icon">⚖️</span> 1. Constitución y Derechos Fundamentales</h2>
+        <p>Es el "piso" legal. Reconoce derechos como la <strong>dignidad, intimidad, buen nombre e igualdad</strong>. Recuerda que la innovación no puede pasar por encima de estos derechos.</p>
+    </div>
+
+    <h2 class="section-title"><span class="section-icon">🗂️</span> 2. Habeas Data: Tu Derecho al Control</h2>
+    <p style="margin-bottom:20px;">Es el derecho a no ser un "objeto de tratamiento". Tienes derecho a:</p>
+    
+    <div class="rights-grid">
+        <div class="right-card"><strong>Conocer</strong>qué se recolecta.</div>
+        <div class="right-card"><strong>Acceder</strong>a tu información.</div>
+        <div class="right-card"><strong>Actualizar</strong>si hay errores.</div>
+        <div class="right-card"><strong>Eliminar</strong>en ciertos casos.</div>
+    </div>
+
+    <h2 class="section-title"><span class="section-icon">📜</span> 3. Leyes de Protección de Datos</h2>
+    
+    <details class="law-item">
+        <summary class="law-summary">Principios del Tratamiento (Clic para ver)</summary>
+        <div class="law-content">
+            <ul>
+                <li><strong>Finalidad:</strong> Propósito legítimo y claro.</li>
+                <li><strong>Libertad:</strong> Consentimiento previo y expreso.</li>
+                <li><strong>Transparencia:</strong> Saber qué se hace con los datos.</li>
+                <li><strong>Seguridad:</strong> Proteger contra robo o acceso no autorizado.</li>
+            </ul>
+        </div>
+    </details>
+
+    <details class="law-item">
+        <summary class="law-summary">Obligaciones de las Organizaciones (Clic para ver)</summary>
+        <div class="law-content">
+            <ul>
+                <li>Informar el uso de los datos.</li>
+                <li>Implementar medidas de seguridad.</li>
+                <li>Responder a reclamos de los titulares.</li>
+                <li>Notificar incidentes de seguridad.</li>
+            </ul>
+        </div>
+    </details>
+
+    <div class="international-grid">
+        
+        <div class="int-box gdpr-box">
+            <h3 class="int-title">4. RGPD / GDPR (Europa)</h3>
+            <p>El estándar mundial más alto.</p>
+            <ul class="int-list">
+                <li>Derecho al olvido.</li>
+                <li>Portabilidad de datos.</li>
+                <li>Privacidad por diseño.</li>
+                <li>Delegado de Protección (DPO).</li>
+            </ul>
+        </div>
+
+        <div class="int-box aiact-box">
+            <h3 class="int-title">5. AI Act (Ley de IA)</h3>
+            <p>Regula la IA según el riesgo.</p>
+            <ul class="int-list">
+                <li><strong>Riesgo Inaceptable:</strong> Prohibidos (ej. manipulación).</li>
+                <li><strong>Alto Riesgo:</strong> Requisitos estrictos y supervisión.</li>
+                <li><strong>Riesgo Mínimo:</strong> Transparencia básica.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="connection-box">
+        <h2 class="section-title" style="color:#e65100; border:none; margin-bottom:10px;">6. En tu Práctica Profesional</h2>
+        
+        <p><span class="connection-q">¿Qué derechos respeto?</span> Dignidad, intimidad, no discriminación.</p>
+        <p><span class="connection-q">¿Qué hago con los datos?</span> Pedir consentimiento, protegerlos y usarlos solo para lo necesario.</p>
+        <p><span class="connection-q">¿Y con la IA?</span> Evaluar riesgos, evitar sesgos y garantizar supervisión humana.</p>
+    </div>
+
+    <div style="background:#1a237e; color:white; padding:20px; border-radius:8px; text-align:center;">
+        <strong>Idea Clave:</strong> No basta con conocer herramientas; necesitas entender estos marcos para diseñar tecnología responsable.
+    </div>
+
+</div>
+
+</body>
+</html>

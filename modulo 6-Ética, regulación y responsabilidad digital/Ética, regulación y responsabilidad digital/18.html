@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .rubric-tool-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 50px 30px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #00695c; /* Teal Oscuro */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #004d40;
+        margin: 0 auto 10px auto;
+        line-height: 1.2;
+        max-width: 90%;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .sub-title {
+        font-size: 1.2rem;
+        color: #00796b;
+        font-weight: 600;
+    }
+
+    /* --- TABLA RESPONSIVA --- */
+    .table-wrapper {
+        overflow-x: auto; /* Scroll horizontal en móviles */
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .rubric-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 900px; /* Ancho mínimo para evitar que el texto se aplaste */
+        font-size: 0.95rem;
+    }
+
+    /* Encabezados */
+    .rubric-table th {
+        background-color: #00695c;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        border: 1px solid #004d40;
+    }
+
+    /* Celdas */
+    .rubric-table td {
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        vertical-align: top;
+        line-height: 1.5;
+    }
+
+    /* Columnas */
+    .col-criterio {
+        background-color: #e0f2f1;
+        font-weight: 700;
+        color: #004d40;
+        width: 20%;
+    }
+
+    .col-peso {
+        text-align: center;
+        font-weight: 900;
+        color: #d81b60; /* Magenta para destacar el peso */
+        background-color: #fff;
+        width: 8%;
+    }
+
+    /* Niveles de Desempeño */
+    .level-excelente { background-color: #e8f5e9; color: #1b5e20; font-weight: 500; } /* Verde suave */
+    .level-aceptable { background-color: #ffffff; color: #444; }
+    .level-basico { background-color: #fff3e0; color: #e65100; } /* Naranja suave */
+    .level-deficiente { background-color: #ffebee; color: #c62828; } /* Rojo suave */
+
+    /* Fila Total */
+    .row-total td {
+        background-color: #004d40;
+        color: white;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-align: right;
+        font-size: 1.1rem;
+    }
+
+    /* --- NOTA INFORMATIVA --- */
+    .info-box {
+        background: #f1f8e9;
+        border-left: 5px solid #558b2f;
+        padding: 20px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        margin-top: 30px;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 2rem; max-width: 100%; }
+        /* La tabla tiene su propio scroll */
+    }
+
+</style>
+</head>
+<body>
+
+<div class="rubric-tool-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Rúbrica de Evaluación</h1>
+        <p class="sub-title">Tarea: Mapa Comparativo y Herramienta Python</p>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th style="border-top-left-radius: 10px;">Criterio</th>
+                    <th style="text-align:center;">Peso (%)</th>
+                    <th style="background:#2e7d32;">Excelente</th>
+                    <th style="background:#fbc02d; color:#333;">Aceptable</th>
+                    <th style="background:#ef6c00;">Básico</th>
+                    <th style="background:#c62828; border-top-right-radius: 10px;">Deficiente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-criterio">1. Cantidad y completitud de los cuadros</td>
+                    <td class="col-peso">40%</td>
+                    <td class="level-excelente">Entrega 5 casos simulados completos. Todos los campos clave (marco, ámbito, principios, riesgos, controles) están diligenciados con claridad.</td>
+                    <td class="level-aceptable">Entrega 5 casos, pero uno o dos tienen campos incompletos o muy superficiales, aunque respeta la estructura general.</td>
+                    <td class="level-basico">Entrega menos de 5 casos o varios tienen muchos campos vacíos o muy pobres; tarea parcial.</td>
+                    <td class="level-deficiente">No entrega el archivo, entrega uno vacío o con muy pocas celdas llenas.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">2. Calidad y realismo de los casos</td>
+                    <td class="col-peso">20%</td>
+                    <td class="level-excelente">Los 5 casos son verosímiles, bien descritos y relacionados con IA/datos. Se entiende el contexto, actores y uso de tecnología.</td>
+                    <td class="level-aceptable">La mayoría son razonables, pero algunos tienen descripciones breves o poco claras del contexto.</td>
+                    <td class="level-basico">Los casos son muy generales o confusos; relación débil con IA o datos personales.</td>
+                    <td class="level-deficiente">Casos no pertinentes o tan vagos que no se entiende qué se analiza.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">3. Cruce marcos – principios éticos</td>
+                    <td class="col-peso">25%</td>
+                    <td class="level-excelente">Registra al menos 2 principios por caso (≥10 filas). Relación bien explicada con ejemplos aplicados a tecnologías emergentes.</td>
+                    <td class="level-aceptable">Registra cruces para todos los casos, pero algunas explicaciones son breves o ejemplos poco desarrollados.</td>
+                    <td class="level-basico">Pocos cruces (menos de 2 por caso) o explicaciones muy superficiales y genéricas.</td>
+                    <td class="level-deficiente">No diligencia la hoja de cruces o el contenido no muestra vínculo ético.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-criterio">4. Uso de la herramienta y presentación</td>
+                    <td class="col-peso">15%</td>
+                    <td class="level-excelente">Usa adecuadamente la aplicación Python: respeta hojas/columnas, exportación correcta, ordenado y legible. Nombre de archivo correcto.</td>
+                    <td class="level-aceptable">Usa la herramienta correctamente en general, con pequeños desórdenes de formato o nombre de archivo incorrecto.</td>
+                    <td class="level-basico">Problemas de orden o formato en el Excel que dificultan la lectura, pero evaluable.</td>
+                    <td class="level-deficiente">No parece haber usado la herramienta (estructura alterada) o presentación impide evaluar.</td>
+                </tr>
+
+                <tr class="row-total">
+                    <td colspan="2">TOTAL</td>
+                    <td colspan="4" style="text-align: center; background-color: #004d40; color: #fff;">100%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <strong>💡 Consejo para el éxito:</strong> Asegúrate de generar los 5 casos completos y exportar el archivo final desde la herramienta Python antes de subirlo a la plataforma.
+    </div>
+
+</div>
+
+</body>
+</html>

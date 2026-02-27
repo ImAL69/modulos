@@ -1,0 +1,763 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lectura 2.x – Gestión de stakeholders y patrocinio (RAP2)</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .unit-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd; /* Azul institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .unit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        text-transform: none;
+        color: #01579b;
+        margin: 0 auto 10px auto;
+        max-width: 90%;
+        line-height: 1.2;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .unit-subtitle {
+        font-size: 1.1rem;
+        color: #0288d1;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    /* IMAGEN HERO */
+    .hero-img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(1, 87, 155, 0.15);
+        margin: 0 auto 30px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        object-fit: cover;
+    }
+
+    /* --- CONTENIDO GENERAL --- */
+    .content {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .content h2 {
+        font-family: 'Montserrat', sans-serif;
+        color: #01579b;
+        font-size: 1.6rem;
+        margin-top: 28px;
+        margin-bottom: 12px;
+    }
+
+    .content p {
+        margin-bottom: 14px;
+        text-align: justify;
+    }
+
+    .content ul {
+        margin: 8px 0 15px 22px;
+        padding: 0;
+    }
+
+    .content li {
+        margin-bottom: 6px;
+    }
+
+    /* --- CAJAS ESPECIALES (AZUL / VERDE / AMARILLO) --- */
+    .axis-box {
+        background-color: #e3f2fd;
+        border-left: 5px solid #1e88e5;
+        padding: 15px 18px;
+        margin: 15px 0;
+        border-radius: 10px;
+    }
+    .axis-box h4 {
+        color: #0d47a1;
+        margin: 0 0 8px 0;
+        font-size: 1.1rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .axis-box ul {
+        margin: 5px 0 5px 20px;
+    }
+
+    .highlight-box {
+        background-color: #e8f5e9;
+        border-left: 5px solid #43a047;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .highlight-box p {
+        margin: 6px 0;
+    }
+
+    .activity-box {
+        background-color: #fff8e1;
+        border-left: 5px solid #ffb300;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .activity-box p {
+        margin: 6px 0;
+    }
+
+    .emphasis {
+        font-weight: bold;
+        color: #00796b;
+    }
+
+    a {
+        color: #1565c0;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #555;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- TOC / DETALLES --- */
+    .toc-box{
+      background:#f3f8ff;
+      border:1px solid rgba(2,136,209,.18);
+      border-left:5px solid #0288d1;
+      border-radius:12px;
+      padding:14px 18px;
+      margin:16px 0 10px 0;
+    }
+    .toc-box h3{
+      margin:0 0 10px 0;
+      font-family:'Montserrat',sans-serif;
+      color:#01579b;
+      font-size:1.1rem;
+    }
+    .toc-box ol{ margin:0 0 0 18px; }
+    .toc-box li{ margin:6px 0; }
+
+    .badge{
+      display:inline-block;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:.85rem;
+      font-weight:700;
+      font-family:'Montserrat',sans-serif;
+      background:#e3f2fd;
+      color:#0d47a1;
+      border:1px solid rgba(13,71,161,.15);
+    }
+
+    .style-details{
+      border-radius:12px;
+      border:1px solid rgba(13,71,161,.12);
+      background:#ffffff;
+      margin:14px 0;
+      overflow:hidden;
+    }
+    .style-details summary{
+      cursor:pointer;
+      padding:14px 16px;
+      font-family:'Montserrat',sans-serif;
+      font-weight:800;
+      color:#0d47a1;
+      list-style:none;
+    }
+    .style-details summary::-webkit-details-marker{ display:none; }
+    .style-details .inner{
+      padding:0 16px 14px 16px;
+    }
+    hr.sep{
+      border:none;
+      height:1px;
+      background:linear-gradient(90deg, rgba(2,136,209,.0), rgba(2,136,209,.25), rgba(2,136,209,.0));
+      margin:24px 0;
+    }
+
+    /* ============================
+       FORMATO LECTURA 2 (SIDENAV)
+       ============================ */
+    :root{
+      --nav-bg: rgba(255,255,255,.86);
+      --nav-border: rgba(0,0,0,.08);
+      --nav-shadow: 0 16px 40px rgba(0,0,0,.08);
+      --nav-accent: rgba(0,170,85,1);
+      --nav-accent-2: rgba(47,128,237,1);
+      --nav-text: #0d47a1;
+      --nav-muted: rgba(13,71,161,.72);
+    }
+
+    .page-shell{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 14px 80px 14px;
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    /* Sidebar */
+    .side-nav{
+      position: sticky;
+      top: 14px;
+      align-self: start;
+      border-radius: 18px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--nav-border);
+      box-shadow: var(--nav-shadow);
+      padding: 12px;
+      overflow: hidden;
+    }
+
+    .side-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 6px 8px 10px 8px;
+    }
+
+    .side-title{
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: .98rem;
+      color: #004d26;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .side-sub{
+      display:block;
+      margin-top: 2px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: .78rem;
+      color: rgba(0,77,38,.72);
+    }
+
+    .side-meter{
+      width: 78px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.06);
+      overflow: hidden;
+    }
+    .side-meter > div{
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--nav-accent), var(--nav-accent-2));
+    }
+
+    .side-list{
+      list-style: none;
+      margin: 6px 0 0 0;
+      padding: 0;
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+
+    .side-link{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-decoration: none;
+      border-radius: 14px;
+      padding: 10px 10px;
+      border: 1px solid rgba(13,71,161,.12);
+      background: #ffffff;
+      box-shadow: 0 10px 22px rgba(0,0,0,.03);
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .side-link:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(0,0,0,.05);
+      border-color: rgba(13,71,161,.20);
+    }
+
+    .side-ico{
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      background: #eef6ff;
+      border: 1px solid rgba(13,71,161,.14);
+      flex: 0 0 28px;
+    }
+    .side-ico svg{ width: 16px; height: 16px; fill: var(--nav-text); }
+
+    .side-text{
+      min-width: 0;
+    }
+    .side-text b{
+      display:block;
+      font-family:'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: .90rem;
+      color: var(--nav-text);
+      line-height: 1.15;
+    }
+    .side-text span{
+      display:block;
+      font-family:'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .76rem;
+      color: var(--nav-muted);
+      margin-top: 2px;
+      line-height: 1.15;
+    }
+
+    /* Active */
+    .side-link.active{
+      border-color: rgba(0,170,85,.28);
+      background: linear-gradient(180deg, rgba(245,255,249,1), rgba(255,255,255,1));
+      box-shadow: 0 16px 34px rgba(0,170,85,.10);
+    }
+    .side-link.active .side-ico{
+      background: rgba(0,170,85,.12);
+      border-color: rgba(0,170,85,.25);
+    }
+    .side-link.active .side-ico svg{ fill: #0b6b3a; }
+    .side-link.active .side-text b{ color: #0b6b3a; }
+
+    /* Main content tweaks */
+    .main-col .unit-container{
+      margin: 0;
+    }
+
+    /* Floating "Top" button */
+    .fab-top{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(90deg, rgba(0,102,51,1), rgba(0,170,85,1));
+      color: #fff;
+      border: 1px solid rgba(0,102,51,.25);
+      box-shadow: 0 18px 36px rgba(0,102,51,.18);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .15s ease, transform .15s ease;
+      z-index: 1000;
+    }
+    .fab-top.show{ opacity: 1; transform: translateY(0); }
+    .fab-top svg{ width: 18px; height: 18px; fill: #fff; }
+
+    /* Mobile: hide sidebar, show bottom dock nav */
+    .dock{
+      display:none;
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 1200;
+      border-radius: 18px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--nav-border);
+      box-shadow: var(--nav-shadow);
+      padding: 10px 10px;
+    }
+    .dock-row{
+      display:flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    .dock a{
+      flex: 1 1 0;
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid rgba(13,71,161,.12);
+      box-shadow: 0 10px 22px rgba(0,0,0,.03);
+      font-family:'Montserrat',sans-serif;
+      font-weight: 900;
+      font-size: .86rem;
+      color: var(--nav-text);
+    }
+    .dock a svg{ width: 16px; height: 16px; fill: var(--nav-text); }
+
+    @media (max-width: 980px){
+      .page-shell{ grid-template-columns: 1fr; padding-bottom: 110px; }
+      .side-nav{ display:none; }
+      .dock{ display:block; }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-shell" id="top">
+  <!-- SIDEBAR (desktop) -->
+  <aside class="side-nav" aria-label="Navegación de lectura">
+    <div class="side-head">
+      <div>
+        <p class="side-title">Lectura 2.x<span class="side-sub">Stakeholders & patrocinio (RAP2)</span></p>
+      </div>
+      <div class="side-meter" aria-hidden="true"><div id="meterFill"></div></div>
+    </div>
+
+    <ul class="side-list" role="list">
+      <li><a class="side-link" data-sec href="#s1">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7Zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"></path></svg></span>
+        <span class="side-text"><b>Stakeholders</b><span>Quiénes son y por qué importan</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s2">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v6H3V3Zm0 8h18v10H3V11Zm5 2v6h2v-6H8Zm6 0v6h2v-6h-2Z"></path></svg></span>
+        <span class="side-text"><b>Mapa poder/interés</b><span>Cuadrantes y estrategias</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s3">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4V4Zm9 0h7v7h-7V4Zm0 9h7v7h-7v-7Zm-9 0h7v7H4v-7Z"></path></svg></span>
+        <span class="side-text"><b>Construcción del mapa</b><span>Paso a paso</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s4">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 7l9 5 9-5-9-5Zm0 9-9-5v11l9 5 9-5V6l-9 5Z"></path></svg></span>
+        <span class="side-text"><b>Patrocinio</b><span>Rol del sponsor</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s5">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v3H4V4Zm2 5h12v3H6V9Zm2 5h8v3H8v-3Z"></path></svg></span>
+        <span class="side-text"><b>Señales débiles</b><span>Riesgos de patrocinio</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#s6">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16v2H4v-2Zm2-2V7h3v10H6Zm5 0V4h3v13h-3Zm5 0v-8h3v8h-3Z"></path></svg></span>
+        <span class="side-text"><b>Plan mínimo</b><span>Gestión de stakeholders</span></span>
+      </a></li>
+      <li><a class="side-link" data-sec href="#links">
+        <span class="side-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h3v2h-3a3 3 0 0 0 0 6h3v2h-3a5 5 0 0 1-5-5Zm7-1h2v2h-2v-2Zm4.1-4h3a5 5 0 0 1 0 10h-3v-2h3a3 3 0 0 0 0-6h-3V7Z"></path></svg></span>
+        <span class="side-text"><b>Enlaces</b><span>Consulta y profundidad</span></span>
+      </a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-col">
+    <div class="unit-container">
+
+      <div class="header-box">
+        <span class="unit-subtitle">📘 Formato Lectura · RAP2</span>
+        <h1 class="unit-title">Gestión de stakeholders (mapa poder/interés) y patrocinio en proyectos de IA y ciberseguridad</h1>
+        <img src="https://www.dropbox.com/scl/fi/5e6v1qy29yh54etcdpn1j/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.39_f1b1242f.jpg?rlkey=1z8a7oucdkbqamhyyn064ez2c&st=z48o5u90&raw=1"
+             alt="Gestión de stakeholders y patrocinio" class="hero-img">
+      </div>
+
+      <div class="content">
+        <p>
+          En proyectos de <strong>IA</strong> y <strong>ciberseguridad</strong>, la tecnología no falla sola: fallan la
+          <strong>adopción</strong>, el <strong>apoyo político</strong>, las <strong>expectativas</strong> y la falta de
+          decisiones oportunas. Por eso, un líder de proyectos tecnológicos debe dominar la <strong>gestión de stakeholders</strong>:
+          identificar quién influye, quién decide, quién se resiste, quién usa la solución y quién puede bloquear o acelerar el proyecto.
+          En esta lectura aprenderás a usar el <strong>mapa poder/interés</strong> y a trabajar el <strong>patrocinio</strong> (sponsorship)
+          para asegurar gobernanza, recursos y legitimidad.
+        </p>
+
+        <div class="highlight-box">
+          <p style="font-weight:bold;">✅ Lectura express (si tienes poco tiempo)</p>
+          <ul>
+            <li>Los <strong>stakeholders</strong> son quienes pueden afectar o se ven afectados por el proyecto.</li>
+            <li>El <strong>mapa poder/interés</strong> te ayuda a priorizar a quién gestionar primero y cómo hacerlo.</li>
+            <li>Un <strong>patrocinio fuerte</strong> desbloquea recursos, decisiones y legitimidad frente a resistencias.</li>
+          </ul>
+        </div>
+
+        <div class="toc-box">
+          <h3>Mapa de la lectura</h3>
+          <ol>
+            <li><a href="#s1">¿Qué son los stakeholders y por qué son críticos?</a></li>
+            <li><a href="#s2">Mapa poder/interés: cuadrantes y estrategias</a></li>
+            <li><a href="#s3">Cómo construir el mapa paso a paso</a></li>
+            <li><a href="#s4">Patrocinio: funciones mínimas del sponsor</a></li>
+            <li><a href="#s5">Señales de patrocinio débil y mitigación</a></li>
+            <li><a href="#s6">Plan mínimo de gestión de stakeholders</a></li>
+            <li><a href="#links">Enlaces de consulta y profundización</a></li>
+          </ol>
+        </div>
+
+        <h2 id="s1">1) ¿Qué son los stakeholders y por qué son críticos?</h2>
+        <div class="axis-box">
+          <p>
+            Los <strong>stakeholders</strong> son todas las personas o áreas que se ven afectadas por el proyecto o pueden influir en él.
+            En IA/ciberseguridad suelen incluir: directivos, dueños de proceso, TI, seguridad, jurídico, compras, proveedores,
+            docentes/usuarios y, en algunos casos, entes reguladores.
+          </p>
+          <ul>
+            <li><strong>Riesgo típico:</strong> el “proyecto de TI” sin dueño de negocio → baja adopción y soluciones que no se usan.</li>
+            <li><strong>Riesgo típico:</strong> seguridad llega tarde → frena el despliegue o exige rehacer arquitectura.</li>
+            <li><strong>Riesgo típico:</strong> el proveedor gestiona la agenda → dependencia y sobrecostos por falta de gobernanza.</li>
+          </ul>
+        </div>
+
+        <h2 id="s2">2) Mapa poder/interés: herramienta para priorizar tu gestión</h2>
+        <p>
+          El <strong>mapa poder/interés</strong> clasifica stakeholders según dos dimensiones:
+          <strong>poder</strong> (capacidad de decidir o afectar recursos) e <strong>interés</strong>
+          (nivel de impacto o preocupación frente al proyecto). A partir de esta clasificación defines estrategias
+          diferentes para cada grupo, priorizando tu tiempo y tus mensajes.
+        </p>
+
+        <div class="highlight-box">
+          <p style="font-weight: bold;">Cuadrantes y estrategia recomendada</p>
+          <ul>
+            <li><strong>Alto poder / Alto interés (Gestionar de cerca):</strong> sponsor, dueño del proceso, líder de seguridad.</li>
+            <li><strong>Alto poder / Bajo interés (Mantener satisfecho):</strong> directivo que no usa la solución, pero decide presupuesto.</li>
+            <li><strong>Bajo poder / Alto interés (Mantener informado):</strong> usuarios clave, analistas, docentes/operadores.</li>
+            <li><strong>Bajo poder / Bajo interés (Monitorear):</strong> áreas con impacto marginal o indirecto.</li>
+          </ul>
+        </div>
+
+        <h2 id="s3">3) Cómo construir el mapa: paso a paso</h2>
+        <div class="activity-box">
+          <ul>
+            <li><strong>Paso 1:</strong> Lista stakeholders (personas/áreas). No uses sólo cargos: identifica “quién influye” realmente.</li>
+            <li><strong>Paso 2:</strong> Asigna <strong>poder</strong> (alto/medio/bajo) según capacidad real de decisión, no solo jerarquía.</li>
+            <li><strong>Paso 3:</strong> Asigna <strong>interés</strong> según el impacto del proyecto en su trabajo y su nivel de preocupación.</li>
+            <li><strong>Paso 4:</strong> Ubícalos en el cuadrante y define la estrategia (cerca/satisfecho/informado/monitoreo).</li>
+            <li><strong>Paso 5:</strong> Define mensajes clave por audiencia y evidencia mínima (actas, aprobaciones, comunicaciones).</li>
+          </ul>
+        </div>
+
+        <details class="style-details">
+          <summary>🧠 Mini-reto aplicado (para tu dossier RAP2)</summary>
+          <div class="inner">
+            <ul>
+              <li>Identifica <strong>5 stakeholders</strong> de tu proyecto (personas o áreas).</li>
+              <li>Ubica a cada uno en un cuadrante del mapa poder/interés.</li>
+              <li>Escribe <strong>un mensaje clave</strong> y <strong>un canal</strong> de comunicación para cada cuadrante.</li>
+            </ul>
+          </div>
+        </details>
+
+        <h2 id="s4">4) Patrocinio (Sponsor): qué es y por qué define el éxito</h2>
+        <p>
+          El <strong>patrocinador</strong> no es “alguien que firma”. Es quien <strong>respalda públicamente</strong> el proyecto,
+          habilita recursos, desbloquea conflictos y legitima las decisiones difíciles (alcance, controles de seguridad, cambios y prioridades).
+          En IA/ciberseguridad, el sponsor es clave para sostener el control del riesgo ante presiones de “hacerlo rápido”.
+        </p>
+
+        <div class="axis-box">
+          <h4>Funciones mínimas del sponsor (prácticas)</h4>
+          <ul>
+            <li><strong>Autorizar recursos:</strong> tiempo de equipo, presupuesto, compras, licencias, consultoría.</li>
+            <li><strong>Desbloquear barreras:</strong> conflictos entre áreas, resistencia, prioridades en conflicto.</li>
+            <li><strong>Aprobar decisiones críticas:</strong> cambios de alcance, riesgos aceptados, salida a producción.</li>
+            <li><strong>Dar visibilidad:</strong> comunicar el “por qué” del proyecto y su valor institucional.</li>
+          </ul>
+        </div>
+
+        <h2 id="s5">5) Señales de “patrocinio débil” (y cómo mitigarlo)</h2>
+        <div class="axis-box">
+          <ul>
+            <li><strong>Señal:</strong> el sponsor no asiste a hitos ni revisiones.
+              <strong>Mitigación:</strong> agenda fija mensual + resúmenes ejecutivos de 1 página.</li>
+            <li><strong>Señal:</strong> no hay decisiones ante bloqueos.
+              <strong>Mitigación:</strong> escalamiento con opciones A/B y evidencia de impacto.</li>
+            <li><strong>Señal:</strong> el proyecto cambia de prioridad sin explicación.
+              <strong>Mitigación:</strong> acordar criterios de priorización (KPI/OKR) y riesgo.</li>
+            <li><strong>Señal:</strong> presión por producir sin controles.
+              <strong>Mitigación:</strong> definir “puertas” de seguridad mínimas + pilotos controlados.</li>
+          </ul>
+        </div>
+
+        <h2 id="s6">6) Plan mínimo de gestión de stakeholders (lo que debes dejar escrito)</h2>
+        <div class="highlight-box">
+          <ul>
+            <li><strong>Mapa poder/interés</strong> con stakeholders clave.</li>
+            <li><strong>Estrategia por cuadrante</strong> (cerca/satisfecho/informado/monitoreo).</li>
+            <li><strong>Mensajes clave</strong> por audiencia (valor, impacto, cambios, controles, riesgos).</li>
+            <li><strong>Rutina de comunicación</strong> (frecuencia, canal, responsable, evidencia).</li>
+            <li><strong>Ruta de escalamiento</strong> para decisiones y conflictos.</li>
+          </ul>
+        </div>
+
+        <div class="activity-box">
+          <p><strong>Cierre práctico</strong></p>
+          <p>
+            El liderazgo no consiste sólo en planear tareas: consiste en <strong>mover decisiones</strong>.
+            El mapa poder/interés te dice <strong>a quién</strong> gestionar primero, y el patrocinio te asegura
+            <strong>cómo</strong> obtener apoyo para ejecutar con calidad y seguridad.
+          </p>
+        </div>
+
+        <h2 id="links">🔗 Enlaces de consulta y profundización</h2>
+        <div class="axis-box">
+          <ul>
+            <li>
+              <strong>PMI – Recursos de gestión de proyectos (stakeholders y liderazgo)</strong>:
+              <a target="_blank" rel="noopener noreferrer" href="https://www.pmi.org/learning">https://www.pmi.org/learning</a>
+            </li>
+            <li>
+              <strong>PRINCE2 (gobernanza, roles y patrocinio)</strong>:
+              <a target="_blank" rel="noopener noreferrer" href="https://www.axelos.com/best-practice-solutions/prince2">https://www.axelos.com/best-practice-solutions/prince2</a>
+            </li>
+            <li>
+              <strong>NIST Cybersecurity Framework (gobernanza y riesgo)</strong>:
+              <a target="_blank" rel="noopener noreferrer" href="https://www.nist.gov/cyberframework">https://www.nist.gov/cyberframework</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Mobile Dock -->
+<nav class="dock" aria-label="Navegación móvil">
+  <div class="dock-row">
+    <a href="#s1" title="Stakeholders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7Zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"></path></svg> 1</a>
+    <a href="#s2" title="Mapa poder/interés"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v6H3V3Zm0 8h18v10H3V11Zm5 2v6h2v-6H8Zm6 0v6h2v-6h-2Z"></path></svg> 2</a>
+    <a href="#s3" title="Construcción del mapa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4V4Zm9 0h7v7h-7V4Zm0 9h7v7h-7v-7Zm-9 0h7v7H4v-7Z"></path></svg> 3</a>
+    <a href="#s6" title="Plan mínimo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16v2H4v-2Zm2-2V7h3v10H6Zm5 0V4h3v13h-3Zm5 0v-8h3v8h-3Z"></path></svg> Plan</a>
+    <a href="#links" title="Enlaces"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h3v2h-3a3 3 0 0 0 0 6h3v2h-3a5 5 0 0 1-5-5Zm7-1h2v2h-2v-2Zm4.1-4h3a5 5 0 0 1 0 10h-3v-2h3a3 3 0 0 0 0-6h-3V7Z"></path></svg> Links</a>
+  </div>
+</nav>
+
+<!-- Floating Top -->
+<button class="fab-top" id="fabTop" aria-label="Volver arriba" title="Volver arriba">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5 5 12h4v7h6v-7h4l-7-7Z"></path></svg>
+</button>
+
+<script>
+(function(){
+  const links = Array.from(document.querySelectorAll('.side-link[data-sec]'));
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const meter = document.getElementById('meterFill');
+  const fab = document.getElementById('fabTop');
+
+  function setActiveById(id){
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+  }
+
+  // Smooth scrolling for in-page links
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if(!el) return;
+    e.preventDefault();
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    history.replaceState(null, '', '#' + id);
+  });
+
+  // Floating top
+  fab.addEventListener('click', function(){
+    document.getElementById('top').scrollIntoView({behavior:'smooth'});
+  });
+
+  // Progress + FAB visibility
+  function onScroll(){
+    const st = window.scrollY || document.documentElement.scrollTop;
+    const dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const pct = dh > 0 ? (st / dh) * 100 : 0;
+    if(meter) meter.style.width = Math.max(0, Math.min(100, pct)).toFixed(1) + '%';
+    if(fab) fab.classList.toggle('show', st > 600);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Active section via IntersectionObserver
+  const obs = new IntersectionObserver((entries)=>{
+    const visible = entries
+      .filter(en => en.isIntersecting)
+      .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+    if(visible && visible.target && visible.target.id){
+      setActiveById(visible.target.id);
+    }
+  }, {
+    root: null,
+    threshold: [0.12, 0.2, 0.35, 0.5, 0.7],
+    rootMargin: '-20% 0px -65% 0px'
+  });
+
+  sections.forEach(s => obs.observe(s));
+
+  // Activate on load (hash)
+  const hash = (location.hash || '').replace('#','');
+  if(hash) setActiveById(hash);
+  else if(sections[0]) setActiveById(sections[0].id);
+})();
+</script>
+
+</body>
+</html>

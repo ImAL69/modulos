@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .containers-module-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #ef6c00; /* Naranja Contenedor */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #e65100;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(239, 108, 0, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #ffe0b2;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '📦';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Sub-listas */
+    .sub-list {
+        margin-top: 5px;
+        padding-left: 20px;
+        list-style: circle;
+        color: #546e7a;
+    }
+    .sub-list li::before { content: none; }
+    .sub-list li { padding-left: 0; list-style-type: circle; }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #ef6c00;
+        border-bottom: 2px solid #ffcc80;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #fff3e0;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #ef6c00;
+    }
+
+    .key-question {
+        font-weight: 700;
+        color: #e65100;
+        font-style: italic;
+        text-align: center;
+        display: block;
+        margin: 20px 0;
+        font-size: 1.1rem;
+    }
+
+    /* --- DEFINICIONES (GRID) --- */
+    .def-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    @media (min-width: 768px) {
+        .def-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .def-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+    }
+
+    .def-card:hover { transform: translateY(-5px); border-color: #ff9800; }
+
+    .def-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #ef6c00;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .risks-title { color: #c62828; font-weight: 700; display: block; margin-top: 15px; margin-bottom: 5px; }
+    .example-title { color: #2e7d32; font-weight: 700; display: block; margin-top: 15px; margin-bottom: 5px; }
+
+    /* --- CONECTIVIDAD (CAJAS ESTE-OESTE) --- */
+    .connectivity-box {
+        background: #e3f2fd;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 5px solid #1565c0;
+        margin-bottom: 20px;
+    }
+    .connectivity-title { font-weight: 700; color: #0d47a1; display: block; margin-bottom: 5px; font-size: 1.1rem; }
+    
+    .connectivity-risk { color: #c62828; font-weight: 600; }
+    .connectivity-control { color: #2e7d32; font-weight: 600; }
+
+    /* --- BUILDING BLOCKS (GRID) --- */
+    .bb-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .bb-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        border-top: 4px solid #0277bd;
+    }
+
+    .bb-title { font-weight: 700; color: #01579b; display: block; margin-bottom: 10px; font-family: 'Orbitron', sans-serif; font-size: 1rem;}
+
+    /* --- CASOS (ACORDEONES) --- */
+    details.case-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #ffcc80;
+        overflow: hidden;
+    }
+
+    summary.case-summary {
+        padding: 15px 20px;
+        background: #fff3e0;
+        cursor: pointer;
+        font-weight: 700;
+        color: #e65100;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    summary.case-summary:hover { background: #ffe0b2; }
+    summary.case-summary::-webkit-details-marker { display: none; }
+    
+    summary.case-summary::after { content: '+'; font-size: 1.5rem; color: #ff6f00; }
+    details[open] summary.case-summary::after { content: '-'; }
+
+    .case-content {
+        padding: 20px;
+        border-top: 1px solid #ffcc80;
+        color: #4e342e;
+    }
+
+    /* --- PREGUNTAS (ACORDEÓN SIMPLE) --- */
+    details.qa-item {
+        background: #fff;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    summary.qa-summary {
+        padding: 15px;
+        cursor: pointer;
+        color: #1565c0;
+        font-weight: 600;
+        list-style: none;
+    }
+    
+    .qa-content {
+        padding: 10px 20px 20px 20px;
+        color: #455a64;
+        font-size: 0.95rem;
+        background: #f5f5f5;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .def-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="containers-module-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">1.2 Contenedores, orquestadores y microservicios</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/oe38dgy1sglw78b46etqv/Gemini_Generated_Image_u2upxmu2upxmu2up.png?rlkey=w9aoq7bqj41rj2v2rwwz2wksm&st=uk3hq6sc&raw=1" alt="Contenedores y Microservicios" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>En infraestructuras modernas (especialmente para IA y sistemas distribuidos), es muy común que las aplicaciones y servicios no se desplieguen como “un solo programa en un solo servidor”, sino como componentes pequeños que se ejecutan en contenedores, se coordinan con orquestadores y se organizan como microservicios.</p>
+        <p>Esto mejora la escalabilidad y la velocidad de despliegue, pero también aumenta los retos de red, seguridad, observabilidad y operación.</p>
+        <span class="key-question">La pregunta guía del tema es: ¿Cómo funcionan contenedores, orquestadores y microservicios, y qué decisiones de red y seguridad se vuelven críticas en estos entornos?</span>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1) Contenedores: qué son y por qué se usan</h2>
+        <p>Un contenedor es una forma ligera de empaquetar una aplicación con sus dependencias (librerías, runtime, configuración) para que se ejecute de manera consistente en diferentes entornos.</p>
+        
+        <div class="def-grid">
+            <div class="def-card">
+                <span class="def-title">Diferencia con VM</span>
+                <ul>
+                    <li><strong>VM:</strong> lleva un sistema operativo completo por cada máquina virtual.</li>
+                    <li><strong>Contenedor:</strong> comparte el kernel del host, por eso es más ligero y rápido de arrancar.</li>
+                </ul>
+            </div>
+
+            <div class="def-card">
+                <span class="def-title">Ventajas reales</span>
+                <ul>
+                    <li><strong>Portabilidad:</strong> “corre igual” en laptop, servidor o nube.</li>
+                    <li><strong>Despliegue rápido:</strong> iniciar/replicar servicios en segundos.</li>
+                    <li><strong>Aislamiento:</strong> separa procesos y dependencias.</li>
+                    <li><strong>Escalado fácil:</strong> se crean copias (réplicas) de un servicio.</li>
+                </ul>
+            </div>
+        </div>
+
+        <span class="risks-title">Riesgos típicos:</span>
+        <ul>
+            <li>Imágenes con vulnerabilidades (paquetes desactualizados).</li>
+            <li>Secretos (tokens/llaves) expuestos en variables de entorno o repositorios.</li>
+            <li>Exceso de permisos (contenedores corriendo como root).</li>
+            <li>Red interna “muy abierta” entre contenedores si no se segmenta.</li>
+        </ul>
+
+        <div class="def-card" style="margin-top:20px; border-top:4px solid #2e7d32;">
+            <span class="example-title" style="margin-top:0;">✅ Ejemplo real (IA):</span>
+            Un modelo de clasificación de tickets se empaqueta en un contenedor con su API. Si hay picos de solicitudes, se levantan varias réplicas del contenedor para atender la demanda.
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2) Orquestadores: por qué existen (Kubernetes)</h2>
+        <p>Un orquestador es la plataforma que administra contenedores “a escala”: decide dónde se ejecutan, los reinicia si fallan, los escala y mantiene el estado deseado del sistema.</p>
+        
+        <p><strong>¿Qué hace un orquestador en la práctica?</strong></p>
+        <ul>
+            <li><strong>Scheduling:</strong> asigna contenedores a nodos disponibles.</li>
+            <li><strong>Auto-recovery:</strong> si un contenedor se cae, lo reemplaza.</li>
+            <li><strong>Escalamiento:</strong> aumenta o reduce réplicas.</li>
+            <li><strong>Networking:</strong> conecta servicios entre sí con nombres (service discovery).</li>
+            <li><strong>Balanceo:</strong> reparte tráfico entre réplicas.</li>
+            <li><strong>Rollouts/rollback:</strong> despliega una nueva versión sin tumbar todo y puede revertir si falla.</li>
+            <li><strong>Gestión de configuración:</strong> variables, secretos, config maps.</li>
+        </ul>
+
+        <div class="def-card" style="margin-top:20px; border-top:4px solid #2e7d32;">
+            <span class="example-title" style="margin-top:0;">✅ Ejemplo real (operación):</span>
+            Una institución despliega el LMS, un API de autenticación y un servicio de analítica en contenedores. Kubernetes asegura que siempre haya “N réplicas” y que, si un nodo falla, los servicios se levanten en otro.
+        </div>
+
+        <span class="risks-title" style="margin-top:20px;">Riesgos típicos en orquestación:</span>
+        <ul>
+            <li>Exponer paneles o APIs de administración.</li>
+            <li>Permisos excesivos (RBAC mal configurado).</li>
+            <li>Falta de segmentación entre namespaces/entornos.</li>
+            <li>No controlar tráfico interno (movimiento lateral).</li>
+            <li>Logs dispersos sin centralizar.</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3) Microservicios: qué son y qué cambian</h2>
+        <p>Un microservicio es una parte pequeña y autónoma del sistema, que cumple una función específica y se comunica con otros servicios mediante APIs o mensajería.</p>
+        
+        <div class="def-grid">
+            <div class="def-card">
+                <span class="def-title">Diferencia con Monolito</span>
+                <ul>
+                    <li><strong>Monolito:</strong> todo en una sola app; simple al inicio pero difícil de escalar y actualizar sin afectar todo.</li>
+                    <li><strong>Microservicios:</strong> piezas independientes; permite evolucionar por partes, pero exige buena arquitectura y operación.</li>
+                </ul>
+            </div>
+
+            <div class="def-card">
+                <span class="def-title">Beneficios y Costos</span>
+                <p><strong>Beneficios:</strong> Escalado selectivo, Despliegue por componente, Aislamiento de fallos.</p>
+                <p><strong>Costos:</strong> Aumenta componentes, Multiplica integración y monitoreo, Exige control de APIs.</p>
+            </div>
+        </div>
+
+        <div class="def-card" style="margin-top:20px; border-top:4px solid #2e7d32;">
+            <span class="example-title" style="margin-top:0;">✅ Ejemplo real (IA distribuida):</span>
+            <ul>
+                <li>Microservicio 1: Ingesta de datos</li>
+                <li>Microservicio 2: Feature store (variables listas)</li>
+                <li>Microservicio 3: Inferencia (modelo)</li>
+                <li>Microservicio 4: Auditoría/registro</li>
+                <li>Microservicio 5: Dashboard de KPIs</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4) Cómo se conectan: red “dentro” y “hacia afuera”</h2>
+        <p>En ambientes con contenedores/microservicios, hay dos mundos de conectividad:</p>
+
+        <div class="connectivity-box">
+            <span class="connectivity-title">4.1 Tráfico interno (este-oeste)</span>
+            <p>Es el tráfico entre microservicios dentro del cluster (Servicio A llama a B, pipeline llama a datos, frontend llama a backend).</p>
+            <p><span class="connectivity-risk">🔒 Riesgo:</span> si todo puede hablar con todo, se facilita movimiento lateral.</p>
+            <p><span class="connectivity-control">✅ Control típico:</span> políticas de red (microsegmentación), mTLS, autenticación entre servicios.</p>
+        </div>
+
+        <div class="connectivity-box" style="border-left-color:#7b1fa2; background:#f3e5f5;">
+            <span class="connectivity-title" style="color:#4a148c;">4.2 Tráfico externo (norte-sur)</span>
+            <p>Es el tráfico que entra o sale del cluster (Usuarios a portal/API, Cluster consumiendo servicios externos).</p>
+            <p><span class="connectivity-risk">🔒 Riesgo:</span> endpoints expuestos sin protección.</p>
+            <p><span class="connectivity-control">✅ Control típico:</span> gateway/ingress, WAF, rate limiting, autenticación, DMZ lógica.</p>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5) “Building blocks” de seguridad</h2>
+        <p>Aquí están los bloques más importantes en este tipo de infraestructura:</p>
+        
+        <div class="bb-grid">
+            <div class="bb-card">
+                <span class="block-title">5.1 Registro y control de imágenes</span>
+                Usar repositorio privado, escaneo de vulnerabilidades, firmar imágenes, no usar desconocidas.
+            </div>
+            <div class="bb-card">
+                <span class="block-title">5.2 Seguridad de ejecución</span>
+                No correr como root, limitar capacidades, políticas de seguridad (hardening), control de recursos.
+            </div>
+            <div class="bb-card">
+                <span class="block-title">5.3 Secretos y configuración</span>
+                Secretos fuera del código, rotación de llaves/tokens, acceso mínimo a secretos.
+            </div>
+            <div class="bb-card">
+                <span class="block-title">5.4 Segmentación interna</span>
+                Separar entornos (dev/prod), separar dominios (IA, datos), restringir comunicación namespaces.
+            </div>
+            <div class="bb-card">
+                <span class="block-title">5.5 Protección de APIs y gateway</span>
+                Autenticación, rate limiting, validación de entradas, WAF.
+            </div>
+            <div class="bb-card">
+                <span class="block-title">5.6 Observabilidad completa</span>
+                Logs centralizados, métricas, trazas distribuidas, alertas.
+            </div>
+        </div>
+        
+        <div class="def-card" style="margin-top:20px; border-top:4px solid #2e7d32;">
+            <span class="example-title" style="margin-top:0;">✅ Ejemplo real (fallo típico):</span>
+            Un microservicio de inferencia empieza a tardar más. Sin trazas, parece “la red”. Con trazas, se ve que el cuello de botella es el servicio de features o una base de datos lenta.
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">6) Casos reales muy comunes en IA y analítica</h2>
+        
+        <details class="case-item">
+            <summary class="case-summary">Caso A: API de inferencia escalable</summary>
+            <div class="case-content">
+                Modelo en contenedor, Kubernetes escala réplicas, Gateway expone endpoint, Logs miden latencia. <strong>Controles:</strong> autenticación + rate limiting + segmentación.
+            </div>
+        </details>
+
+        <details class="case-item">
+            <summary class="case-summary">Caso B: Pipeline de entrenamiento</summary>
+            <div class="case-content">
+                Jobs programados, Acceso controlado a datasets, Entorno aislado, Registro de modelo. <strong>Controles:</strong> permisos mínimos + auditoría + secretos bien gestionados.
+            </div>
+        </details>
+
+        <details class="case-item">
+            <summary class="case-summary">Caso C: Plataforma multi-servicio</summary>
+            <div class="case-content">
+                Frontend + backend + BD + servicio IA, cada uno en contenedor. Comunicación controlada. Observabilidad para procesos.
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">Preguntas y Respuestas</h2>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Por qué contenedores son tan usados en IA?</summary>
+            <div class="qa-content">Porque permiten empaquetar modelos y servicios con dependencias de forma portable, replicable y fácil de escalar.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">¿Qué problema resuelve un orquestador como Kubernetes?</summary>
+            <div class="qa-content">Resuelve la administración a escala: ubicación, reinicio, balanceo, escalado, despliegues seguros y gestión de configuración.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">Cuál es el principal riesgo de microservicios en seguridad?</summary>
+            <div class="qa-content">La ampliación de superficie de ataque y movimiento lateral: si no se controla, comprometer uno puede abrir el acceso a otros.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">Qué diferencia hay entre tráfico este-oeste y norte-sur?</summary>
+            <div class="qa-content">Este-oeste es interno entre servicios; norte-sur es tráfico que entra/sale del cluster hacia usuarios o externos.</div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">Qué controles mínimos debe tener un endpoint de inferencia expuesto?</summary>
+            <div class="qa-content">Autenticación por rol, rate limiting, cifrado TLS, logs/auditoría, validación de entradas, segmentación y (si aplica) WAF.</div>
+        </details>
+    </div>
+
+</div>
+
+</body>
+</html>

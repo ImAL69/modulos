@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tecnologías de detección y respuesta – Cuadro comparativo</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    body { background:#f5f5f5; margin:0; padding:0; }
+
+    .unit-container {
+        font-family:'Open Sans',sans-serif;
+        color:#444;
+        max-width:1100px;
+        margin:40px auto;
+        padding:60px 30px;
+        background:#fff;
+        border-radius:20px;
+        box-shadow:0 10px 40px rgba(0,0,0,0.08);
+        position:relative;
+        border-top:8px solid #0277bd;
+    }
+
+    .uni-logo{
+        position:absolute; top:30px; right:30px; width:120px;
+        background:rgba(255,255,255,0.9); padding:5px;
+        border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .header-box{ text-align:center; margin-bottom:30px; }
+    .unit-title{
+        font-family:'Montserrat',sans-serif; font-size:2.2rem;
+        font-weight:800; text-transform:uppercase; color:#01579b;
+        margin:0 0 8px 0;
+    }
+    .unit-subtitle{
+        font-size:1rem; color:#0288d1; font-weight:600; margin-bottom:20px;
+    }
+
+    .hero-img{
+        width:100%; max-width:820px; border-radius:15px;
+        margin:0 auto 25px auto; display:block;
+        box-shadow:0 20px 40px rgba(1,87,155,0.15);
+    }
+
+    .section{ margin-bottom:32px; font-size:0.98rem; line-height:1.7; text-align:justify; }
+    .section h2{
+        font-family:'Montserrat',sans-serif; color:#01579b; font-size:1.5rem;
+        margin-bottom:10px;
+    }
+
+    .intro-note{
+        background:#e1f5fe; border-left:5px solid #0288d1;
+        border-radius:10px; padding:14px 16px; margin-bottom:20px;
+    }
+
+    table{
+        width:100%; border-collapse:collapse; font-size:0.9rem;
+        margin-bottom:25px;
+    }
+    thead{
+        background:#e3f2fd;
+    }
+    th,td{
+        border:1px solid #bbdefb;
+        padding:10px;
+        vertical-align:top;
+        text-align:left;
+    }
+    th{
+        font-family:'Montserrat',sans-serif;
+        font-weight:600;
+        color:#0d47a1;
+        font-size:0.9rem;
+    }
+    tbody tr:nth-child(even){
+        background:#f7fbff;
+    }
+
+    .highlight-box{
+        border-radius:14px; padding:18px 20px; margin-bottom:20px;
+        background:#f1f8e9; border-left:5px solid #7cb342;
+    }
+
+    ul{ padding-left:22px; margin-top:6px; }
+    li{ margin-bottom:6px; }
+
+    @media (max-width:768px){
+        .unit-container{ padding:30px 15px; margin:20px 10px; }
+        .uni-logo{ position:static; margin:0 auto 15px auto; display:block; }
+        table, thead, tbody, th, td, tr{ display:block; }
+        thead{ display:none; }
+        tr{ margin-bottom:15px; border:1px solid #bbdefb; border-radius:10px; overflow:hidden; }
+        td{ border:none; border-bottom:1px solid #e3f2fd; }
+        td:last-child{ border-bottom:none; }
+        td::before{
+            content:attr(data-label);
+            display:block;
+            font-weight:600;
+            color:#0d47a1;
+            margin-bottom:4px;
+            font-family:'Montserrat',sans-serif;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="unit-container">
+
+<img class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&raw=1" alt="Logo institucional">
+
+<div class="header-box">
+    <span class="unit-subtitle">Unidad 2 – Evaluación de casos de uso IA + Ciberseguridad</span>
+    <h1 class="unit-title">Tecnologías de detección y respuesta</h1>
+    <img class="hero-img"
+         src="https://www.dropbox.com/scl/fi/9nhpej7ek7kb4tfdqd4fe/Gemini_Generated_Image_tpvd3jtpvd3jtpvd.png?rlkey=2p1xbhcuv3ppq22ugvuh875ws&raw=1"
+         alt="Tecnologías de detección y respuesta">
+</div>
+
+<div class="section">
+    <div class="intro-note">
+        <p>
+            El siguiente cuadro compara diferentes <strong>tecnologías y enfoques de detección y respuesta</strong>
+            en entornos de seguridad, con foco en qué hacen, cómo detectan, qué tan bien responden y cuáles son sus
+            fortalezas, limitaciones y ejemplos típicos de uso.
+        </p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tecnología / Enfoque</th>
+                <th>¿Qué es?</th>
+                <th>Fuentes de datos típicas</th>
+                <th>Método de detección</th>
+                <th>Capacidad de respuesta</th>
+                <th>Fortalezas</th>
+                <th>Limitaciones</th>
+                <th>Ejemplos / referencias</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Tecnología / Enfoque">SIEM (Security Information & Event Management)</td>
+                <td data-label="¿Qué es?">
+                    Plataforma de ingestión, correlación y alerta de eventos.
+                </td>
+                <td data-label="Fuentes de datos típicas">
+                    Logs de red, syslog, Active Directory, aplicaciones, EDR, NDR.
+                </td>
+                <td data-label="Método de detección">
+                    Reglas, correlación, búsquedas (y ML/UEBA cuando aplica).
+                </td>
+                <td data-label="Capacidad de respuesta">
+                    Normalmente alerta; puede integrarse con SOAR para acciones.
+                </td>
+                <td data-label="Fortalezas">
+                    Visibilidad centralizada; cumplimiento y auditoría.
+                </td>
+                <td data-label="Limitaciones">
+                    Volumen de datos → ruido / <em>alert fatigue</em>; requiere <em>tuning</em>.
+                </td>
+                <td data-label="Ejemplos / referencias">
+                    Splunk, Elastic, IBM QRadar; guía MITRE para detecciones (ver ATT&amp;CK) — MITRE ATT&amp;CK.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tecnología / Enfoque">EDR / XDR (Endpoint / Extended Detection & Response)</td>
+                <td data-label="¿Qué es?">
+                    Monitoreo y respuesta en endpoints; XDR unifica varias fuentes.
+                </td>
+                <td data-label="Fuentes de datos típicas">
+                    Endpoints, procesos, conexiones de red, sensores.
+                </td>
+                <td data-label="Método de detección">
+                    Señales de comportamiento y firmas; ML en endpoints.
+                </td>
+                <td data-label="Capacidad de respuesta">
+                    Contención en endpoint (aislar, matar procesos); automatizable.
+                </td>
+                <td data-label="Fortalezas">
+                    Detección detallada en endpoints; respuesta rápida a compromisos.
+                </td>
+                <td data-label="Limitaciones">
+                    Cobertura limitada si no hay agentes en todos los hosts.
+                </td>
+                <td data-label="Ejemplos / referencias">
+                    CrowdStrike, Cortex XDR, Microsoft Defender for Endpoint; integración UEBA/SIEM — Microsoft Sentinel UEBA.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tecnología / Enfoque">NDR (Network Detection & Response)</td>
+                <td data-label="¿Qué es?">
+                    Detección basada en tráfico de red y <em>flows</em>.
+                </td>
+                <td data-label="Fuentes de datos típicas">
+                    Netflow, PCAP, <em>taps/mirroring</em>, DNS, proxy logs.
+                </td>
+                <td data-label="Método de detección">
+                    Análisis de tráfico y ML; detección de anomalías en flujo.
+                </td>
+                <td data-label="Capacidad de respuesta">
+                    Bloqueo/aislamiento de tráfico; alertas a SOC.
+                </td>
+                <td data-label="Fortalezas">
+                    Muy útil para movimiento lateral y exfiltración.
+                </td>
+                <td data-label="Limitaciones">
+                    Cifrado creciente del tráfico limita visibilidad; requiere integración.
+                </td>
+                <td data-label="Ejemplos / referencias">
+                    Darktrace, Corelight, Zeek/Suricata; complemento a SIEM/EDR.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tecnología / Enfoque">IDS/IPS (firma + reglas)</td>
+                <td data-label="¿Qué es?">
+                    Detección/prevención por firmas y reglas.
+                </td>
+                <td data-label="Fuentes de datos típicas">
+                    Tráfico en red, paquetes, firmas de amenazas.
+                </td>
+                <td data-label="Método de detección">
+                    Coincidencia de firmas / reglas (y algunas reglas heurísticas).
+                </td>
+                <td data-label="Capacidad de respuesta">
+                    IPS: bloqueo <em>inline</em>; IDS: alertas.
+                </td>
+                <td data-label="Fortalezas">
+                    Alta precisión para amenazas conocidas; baja latencia.
+                </td>
+                <td data-label="Limitaciones">
+                    Ineficaz ante amenazas desconocidas/polimórficas; evasiones.
+                </td>
+                <td data-label="Ejemplos / referencias">
+                    Snort, Suricata; guía práctica: NIST SP 800-94.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tecnología / Enfoque">UEBA (User & Entity Behavior Analytics)</td>
+                <td data-label="¿Qué es?">
+                    Modela comportamiento de usuarios/entidades para detectar anomalías.
+                </td>
+                <td data-label="Fuentes de datos típicas">
+                    Autenticaciones, accesos a archivos, actividad de apps, logs de SIEM.
+                </td>
+                <td data-label="Método de detección">
+                    <em>Baselines</em> de comportamiento + <em>scoring</em> (ML).
+                </td>
+                <td data-label="Capacidad de respuesta">
+                    Prioriza alertas; puede disparar acciones SOAR/EDR.
+                </td>
+                <td data-label="Fortalezas">
+                    Detecta <em>insiders</em>, cuentas comprometidas y ataques “low & slow”.
+                </td>
+                <td data-label="Limitaciones">
+                    Requiere datos históricos; riesgo de privacidad y falsos positivos.
+                </td>
+                <td data-label="Ejemplos / referencias">
+                    Splunk UEBA, Exabeam; referencia: Splunk — UEBA.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tecnología / Enfoque">Threat Intelligence (TI)</td>
+                <td data-label="¿Qué es?">
+                    Fuentes externas/internas de indicadores y contexto.
+                </td>
+                <td data-label="Fuentes de datos típicas">
+                    IOCs, TTPs, <em>feeds</em> (IP, hashes, URLs), campañas.
+                </td>
+                <td data-label="Método de detección">
+                    Enriquecimiento y correlación con eventos.
+                </td>
+                <td data-label="Capacidad de respuesta">
+                    Enriquecimiento de alertas; puede automatizar bloqueo.
+                </td>
+                <td data-label="Fortalezas">
+                    Mejora priorización y detección de campañas conocidas.
+                </td>
+                <td data-label="Limitaciones">
+                    Calidad variable de <em>feeds</em>; gestión de falsos positivos.
+                </td>
+                <td data-label="Ejemplos / referencias">
+                    MITRE ATT&amp;CK para TTPs; plataformas MISP/TheHive; MITRE ATT&amp;CK.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tecnología / Enfoque">SOAR (Orchestration, Automation & Response)</td>
+                <td data-label="¿Qué es?">
+                    Orquesta herramientas y automatiza <em>playbooks</em> de respuesta.
+                </td>
+                <td data-label="Fuentes de datos típicas">
+                    Integración con SIEM, EDR, TI, ticketing.
+                </td>
+                <td data-label="Método de detección">
+                    Ejecuta <em>playbooks</em> (scripts, remediaciones).
+                </td>
+                <td data-label="Capacidad de respuesta">
+                    Respuesta automática/semi-automática (aislar, bloquear, abrir tickets).
+                </td>
+                <td data-label="Fortalezas">
+                    Reduce MTTR; estandariza respuesta.
+                </td>
+                <td data-label="Limitaciones">
+                    Riesgo de automatizar mal (falsos positivos → impacto).
+                </td>
+                <td data-label="Ejemplos / referencias">
+                    Phantom, Demisto, SOAR nativo en SIEMs; usar <em>playbooks</em> basados en ATT&amp;CK.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tecnología / Enfoque">ML / Anomaly Detection (custom)</td>
+                <td data-label="¿Qué es?">
+                    Modelos ML para detectar patrones novedosos.
+                </td>
+                <td data-label="Fuentes de datos típicas">
+                    Logs, métricas, <em>telemetry</em>; datos etiquetados o no.
+                </td>
+                <td data-label="Método de detección">
+                    Supervisado / no supervisado / semi-supervisado.
+                </td>
+                <td data-label="Capacidad de respuesta">
+                    Generalmente alertas; puede integrarse con SOAR.
+                </td>
+                <td data-label="Fortalezas">
+                    Detecta amenazas nuevas; adaptable.
+                </td>
+                <td data-label="Limitaciones">
+                    Necesita datos de calidad, <em>labels</em> (si es supervisado) y gobernanza.
+                </td>
+                <td data-label="Ejemplos / referencias">
+                    Implementaciones con Scikit-learn, TensorFlow; validar con R&amp;D/Red Team.
+                </td>
+            </tr>
+
+            <tr>
+                <td data-label="Tecnología / Enfoque">Threat Hunting (proactivo)</td>
+                <td data-label="¿Qué es?">
+                    Búsqueda dirigida de amenazas no detectadas por sistemas.
+                </td>
+                <td data-label="Fuentes de datos típicas">
+                    SIEM, EDR, NDR, TI, <em>baselines</em>.
+                </td>
+                <td data-label="Método de detección">
+                    Hipótesis + <em>queries</em> (por ejemplo, MITRE ATT&amp;CK).
+                </td>
+                <td data-label="Capacidad de respuesta">
+                    Genera detecciones/IOC → acciones manuales o <em>playbooks</em>.
+                </td>
+                <td data-label="Fortalezas">
+                    Descubre ataques sofisticados y persistentes.
+                </td>
+                <td data-label="Limitaciones">
+                    Requiere analistas expertos y tiempo.
+                </td>
+                <td data-label="Ejemplos / referencias">
+                    Uso de ATT&amp;CK y herramientas de <em>hunting</em> (ATT&amp;CK Navigator) — ATT&amp;CK Navigator.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h2>Recomendaciones prácticas (breves)</h2>
+    <div class="highlight-box">
+        <ul>
+            <li>Combinar capas: <strong>SIEM + EDR/XDR + NDR + UEBA + TI + SOAR</strong> para lograr una cobertura amplia.</li>
+            <li>Usar <strong>MITRE ATT&amp;CK</strong> para mapear detecciones y crear <em>playbooks</em> (homogeneiza el lenguaje de TTPs).</li>
+            <li>Implementar <strong>playbooks SOAR</strong> con fases de validación humana para reducir el riesgo de automatizar falsos positivos.</li>
+            <li>Medir efectividad: <strong>MTTR, tasa de falsos positivos, cobertura de logs, tiempo de detección (TTD)</strong>.</li>
+            <li>Cuidar aspectos legales/privacidad: cumplimiento en registros de logs, UEBA y gobernanza de modelos ML
+                (apoyarse en <strong>NIST AI RMF</strong>).
+            </li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>

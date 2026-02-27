@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .sketch-task-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #7e57c2; /* Violeta Intenso */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #4527a0;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(103, 58, 183, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #d1c4e9;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '✏️';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Listas anidadas */
+    .sub-list {
+        margin-top: 5px;
+        padding-left: 20px;
+        list-style: circle;
+        color: #546e7a;
+    }
+    .sub-list li::before { content: none; }
+    .sub-list li { padding-left: 0; list-style-type: circle; }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #5e35b1;
+        border-bottom: 2px solid #d1c4e9;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* --- PROPÓSITO (CAJA) --- */
+    .purpose-box {
+        background: #ede7f6;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #673ab7;
+    }
+
+    /* --- ENTREGA (GRID) --- */
+    .delivery-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    @media (min-width: 768px) {
+        .delivery-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .delivery-card {
+        background: #fff;
+        border: 1px solid #b39ddb;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .delivery-title {
+        font-weight: 700;
+        color: #4527a0;
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+    }
+
+    /* --- ESCENARIOS (GRID DE 3) --- */
+    .scenario-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    @media (min-width: 768px) {
+        .scenario-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .scenario-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 25px;
+        transition: transform 0.3s;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .scenario-card:hover { transform: translateY(-5px); border-color: #5e35b1; }
+
+    .scenario-header {
+        font-family: 'Orbitron', sans-serif;
+        color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .scen-a { background: #ab47bc; }
+    .scen-b { background: #5c6bc0; }
+    .scen-c { background: #26a69a; }
+
+    .protect-title {
+        font-weight: 700;
+        color: #d81b60;
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+    }
+
+    /* --- REQUISITOS MAPA (LISTA CHEQUEO) --- */
+    .requirements-box {
+        background: #f3e5f5;
+        padding: 30px;
+        border-radius: 15px;
+        border: 2px dashed #ce93d8;
+    }
+
+    .req-item { margin-bottom: 20px; }
+    
+    .req-title {
+        font-weight: 700;
+        color: #4a148c;
+        display: block;
+        margin-bottom: 5px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+    }
+
+    /* --- DOCUMENTO (ESTILO HOJA) --- */
+    .doc-template {
+        background: #fff;
+        border: 1px solid #cfd8dc;
+        padding: 40px;
+        border-radius: 5px; /* Borde sutil hoja */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-top: 30px;
+    }
+
+    .doc-section {
+        margin-bottom: 25px;
+        border-left: 3px solid #b0bec5;
+        padding-left: 15px;
+    }
+
+    .doc-heading {
+        font-weight: 700;
+        color: #37474f;
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="sketch-task-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Boceto o mapa de arquitectura segura para un entorno específico</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/1iak453zwg8dkhq5wsgzc/Gemini_Generated_Image_zf6k63zf6k63zf6k.png?rlkey=c39bowf1i19xyh74cvx6jffax&st=4nu0h234&raw=1" alt="Boceto de Arquitectura" class="hero-image">
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1. Propósito de la actividad</h2>
+        <div class="purpose-box">
+            <p>Con esta tarea elaborarás un boceto o mapa de arquitectura segura para un entorno realista, integrando:</p>
+            <ul>
+                <li>Zonas de seguridad y segmentación macro.</li>
+                <li>Protección de datos en tránsito y en reposo.</li>
+                <li>Conectividad híbrida (on-prem, nube, posibles cargas de IA).</li>
+                <li>Controles de acceso y gobierno de la arquitectura.</li>
+            </ul>
+        </div>
+        <p>El objetivo es que pases de la teoría a un diseño visual y argumentado, donde puedas justificar por qué tu arquitectura: Protege los datos más sensibles, Limita el movimiento de un atacante, Permite operar, crecer y conectarse con servicios externos de forma segura.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2. Modalidad y entrega</h2>
+        <p><strong>Modalidad:</strong> Individual.</p>
+        
+        <div class="delivery-grid">
+            <div class="delivery-card">
+                <span class="delivery-title">Producto a entregar (2 archivos)</span>
+                <ul class="sub-list" style="text-align:left;">
+                    <li>Mapa/boceto de arquitectura segura (imagen o PDF del diagrama).</li>
+                    <li>Documento breve de explicación (máx. 2–3 páginas) en PDF donde justifiques tus decisiones.</li>
+                </ul>
+            </div>
+            <div class="delivery-card">
+                <span class="delivery-title">Formato y Lugar</span>
+                <p>Puedes usar la herramienta que prefieras (Draw.io, PowerPoint, Visio, CmapTools, Lucidchart, Figma, etc.), pero al final debes exportar el mapa como imagen (PNG/JPG) o PDF.</p>
+                <p><strong>Lugar de entrega en Q10:</strong> Actividad 2 – Tarea “Boceto o mapa de arquitectura segura”.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3. Escenario a elegir (elige uno de los siguientes)</h2>
+        <p>Debes escoger <strong>un (1)</strong> escenario y diseñar la arquitectura segura para ese caso:</p>
+        
+        <div class="scenario-grid">
+            
+            <div class="scenario-card">
+                <div class="scenario-header scen-a">Escenario A: Educativo</div>
+                <p><strong>Campus educativo híbrido con nube e IA:</strong> Una institución educativa mediana tiene: Varios bloques de aulas y oficinas interconectados (campus principal), Una sede pequeña en otra ciudad conectada por Internet, Plataforma académica principal alojada en la nube, Herramienta de analítica e IA en la nube que procesa datos académicos y de uso de la plataforma, Dispositivos IoT: cámaras, biométricos de acceso, algunos sensores ambientales, Wi-Fi para usuarios internos y Wi-Fi para invitados.</p>
+                <span class="protect-title">Tu arquitectura debe proteger especialmente:</span>
+                <ul class="sub-list">
+                    <li>Datos académicos de estudiantes y docentes.</li>
+                    <li>Credenciales de acceso.</li>
+                    <li>Registros de actividad de plataforma e IA.</li>
+                </ul>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-header scen-b">Escenario B: Salud</div>
+                <p><strong>Entorno de salud con servicios en la nube:</strong> Una clínica pequeña tiene: Sistema de historia clínica electrónica (HCE) en servidores internos, Módulo de agendamiento de citas y portal de pacientes en la nube, Sede única, con consultorios, oficinas administrativas y zona de archivo, Dispositivos conectados (equipos médicos que envían datos a la red), Personal médico que a veces consulta desde fuera (acceso remoto).</p>
+                <span class="protect-title">Tu arquitectura debe proteger especialmente:</span>
+                <ul class="sub-list">
+                    <li>Datos de salud (altamente sensibles).</li>
+                    <li>Acceso remoto seguro.</li>
+                    <li>Separación entre red de pacientes/invitados y red interna.</li>
+                </ul>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-header scen-c">Escenario C: Retail</div>
+                <p><strong>Empresa con sucursales, IoT y analítica en la nube:</strong> Una empresa de retail cuenta con: Sede principal con data center pequeño on-prem, Varias tiendas en diferentes ciudades, conectadas por Internet, Cámaras, cajas registradoras conectadas, sensores de inventario en tiendas (IoT), Plataforma de analítica en la nube para procesar ventas, inventarios y patrones de clientes.</p>
+                <span class="protect-title">Tu arquitectura debe proteger especialmente:</span>
+                <ul class="sub-list">
+                    <li>Datos de transacciones y medios de pago.</li>
+                    <li>Información de clientes.</li>
+                    <li>Integridad de los dispositivos IoT.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4. ¿Qué debe incluir el boceto o mapa de arquitectura?</h2>
+        <p>Tu diagrama debe ser claro, legible y con niveles (no “cables sueltos”), e incluir como mínimo:</p>
+        
+        <div class="requirements-box">
+            
+            <div class="req-item">
+                <span class="req-title">Zonas de seguridad (segmentación macro)</span>
+                <p>Identifica y dibuja explícitamente zonas como: Zona de usuarios internos, Zona de invitados (Wi-Fi público), Zona de servidores internos / aplicaciones core, Zona DMZ (servicios expuestos a Internet), Zona de IoT/OT (cámaras, sensores, biométricos, etc.), Zona de gestión/administración (acceso a consolas de switches, firewalls, servidores), Zonas de nube relevantes (apps, datos, IA, analítica).</p>
+                <p><em>Cada zona debe estar delimitada y nombrada.</em></p>
+            </div>
+
+            <div class="req-item">
+                <span class="req-title">Flujos principales de datos y acceso</span>
+                <p>Representa con flechas o líneas: Cómo se conectan los usuarios a las aplicaciones internas y en la nube, Cómo viajan los datos más sensibles (por ejemplo, HCE, datos académicos, transacciones), Cómo se conectan las sedes remotas (si aplica), Cómo se comunican los dispositivos IoT con servidores o la nube.</p>
+            </div>
+
+            <div class="req-item">
+                <span class="req-title">Controles de seguridad entre zonas</span>
+                <p>Dibuja y nombra elementos como: Firewalls perimetrales e internos, VPN (entre sedes o para acceso remoto), WAF / balanceadores en la DMZ, Gateways de API o proxies (si aplica), Control de acceso a la red (NAC, por ejemplo) si decides incluirlo.</p>
+            </div>
+
+            <div class="req-item">
+                <span class="req-title">Protección de datos en tránsito y en reposo (a alto nivel)</span>
+                <p>No dibujes el algoritmo de cifrado, pero sí representa o indica: Dónde se usa cifrado en tránsito (HTTPS, VPN, TLS interno, túneles a nube), Dónde se usa cifrado en reposo (bases de datos, discos de servidores, almacenamiento en la nube, backups), Qué repositorios almacenan datos sensibles y requieren mayor protección.</p>
+            </div>
+
+            <div class="req-item">
+                <span class="req-title">Componentes de gestión y monitoreo</span>
+                <p>Incluye, aunque sea en forma de bloques: Plataforma de monitoreo / logs / SIEM (si decides representarla), Quién administra la infraestructura (zona de gestión) y desde dónde.</p>
+            </div>
+
+            <div class="req-item">
+                <span class="req-title">Leyenda y nombres claros</span>
+                <p>Usa una pequeña leyenda si utilizas símbolos propios. Nombra claramente zonas, enlaces, controles y servicios importantes.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5. Documento de explicación (2–3 páginas)</h2>
+        <p>Junto con el mapa, debes entregar un documento breve que:</p>
+        
+        <div class="doc-template">
+            
+            <div class="doc-section">
+                <span class="doc-heading">Describa el escenario elegido</span>
+                <p>¿Qué entorno escogiste (A, B o C)? ¿Qué servicios y datos son más críticos?</p>
+            </div>
+
+            <div class="doc-section">
+                <span class="doc-heading">Explique tu diseño de zonas de seguridad</span>
+                <p>¿Qué zonas definiste y por qué? ¿Dónde están ubicados los sistemas que manejan datos sensibles? ¿Cómo proteges la zona de gestión/administración?</p>
+            </div>
+
+            <div class="doc-section">
+                <span class="doc-heading">Explique cómo proteges los datos en tránsito y reposo</span>
+                <p>¿En qué flujos usas cifrado en tránsito? (Ejemplos concretos). ¿Qué repositorios cifras en reposo y por qué? ¿Qué controles evitan que cualquiera acceda a datos críticos?</p>
+            </div>
+
+            <div class="doc-section">
+                <span class="doc-heading">Justifique los flujos y controles entre zonas</span>
+                <p>¿Por qué permites ciertos accesos zona–zona? ¿Qué tráfico NO permites y por qué (por ejemplo, invitados → servidores internos)?</p>
+            </div>
+
+            <div class="doc-section">
+                <span class="doc-heading">Analice brevemente riesgos y mejoras futuras</span>
+                <p>Menciona al menos 2 riesgos que seguirían existiendo en tu diseño. ¿Qué mejoras podrías implementar en una siguiente versión (ej: más microsegmentación, SASE, Zero Trust, etc.)?</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

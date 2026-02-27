@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Lectura 1 – Proyectos tecnológicos con enfoque estratégico (RA1 / Unidad 1)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .unit-container {
+        font-family: 'Open Sans', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 30px;
+        background: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0277bd; /* Azul institucional */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    .unit-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        text-transform: none;
+        color: #01579b;
+        margin: 0 auto 10px auto;
+        max-width: 90%;
+        line-height: 1.2;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .unit-subtitle {
+        font-size: 1.1rem;
+        color: #0288d1;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    /* IMAGEN HERO (nueva) */
+    .hero-img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(1, 87, 155, 0.15);
+        margin: 0 auto 30px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+    }
+
+    /* --- CONTENIDO GENERAL --- */
+    .content {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .content h2 {
+        font-family: 'Montserrat', sans-serif;
+        color: #01579b;
+        font-size: 1.6rem;
+        margin-top: 28px;
+        margin-bottom: 12px;
+    }
+
+    .content p {
+        margin-bottom: 14px;
+        text-align: justify;
+    }
+
+    .content ul {
+        margin: 8px 0 15px 22px;
+        padding: 0;
+    }
+
+    .content li {
+        margin-bottom: 6px;
+    }
+
+    /* --- CAJAS ESPECIALES (ADAPTADAS AL ESTILO AZUL) --- */
+    .axis-box {
+        background-color: #e3f2fd;
+        border-left: 5px solid #1e88e5;
+        padding: 15px 18px;
+        margin: 15px 0;
+        border-radius: 10px;
+    }
+    .axis-box h4 {
+        color: #0d47a1;
+        margin: 0 0 8px 0;
+        font-size: 1.1rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .axis-box ul {
+        margin: 5px 0 5px 20px;
+    }
+
+    .highlight-box {
+        background-color: #e8f5e9;
+        border-left: 5px solid #43a047;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .highlight-box p {
+        margin: 6px 0;
+    }
+
+    .activity-box {
+        background-color: #fff8e1;
+        border-left: 5px solid #ffb300;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 10px;
+    }
+    .activity-box p {
+        margin: 6px 0;
+    }
+
+    .emphasis {
+        font-weight: bold;
+        color: #00796b;
+    }
+
+    a {
+        color: #1565c0;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #555;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 15px auto;
+        }
+        .unit-title { font-size: 1.9rem; max-width: 100%; }
+        .hero-img { margin-bottom: 20px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="unit-container">
+
+    <!-- Logo institucional -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1"
+         alt="Logo Universidad" class="uni-logo">
+
+    <!-- Encabezado -->
+    <div class="header-box">
+        <span class="unit-subtitle">Unidad 1 · RA1 – Lectura guiada</span>
+        <h1 class="unit-title">📚 Lectura 1 – Proyectos tecnológicos con enfoque estratégico (RA1 / Unidad 1)</h1>
+
+        <!-- Imagen principal de la lectura -->
+        <img src="https://www.dropbox.com/scl/fi/5e6v1qy29yh54etcdpn1j/Imagen-de-WhatsApp-2025-11-28-a-las-17.01.39_f1b1242f.jpg?rlkey=1z8a7oucdkbqamhyyn064ez2c&st=hpmxphhw&raw=1"
+             alt="Lectura 1 - Proyectos tecnológicos con enfoque estratégico" class="hero-img">
+    </div>
+
+    <div class="content">
+        <p>
+            Antes de iniciar las actividades de la Unidad 1, es clave comprender que un proyecto tecnológico
+            en una organización <strong>no se justifica solo por “modernizar”</strong> o “comprar un sistema”.
+            Un proyecto se considera estratégicamente sólido cuando se puede responder con claridad:
+            <strong>¿qué problema resuelve?, ¿qué valor genera?, ¿cómo mejora un objetivo institucional?</strong>
+            y <strong>¿cómo se medirá el impacto?</strong>.
+        </p>
+
+        <p>
+            En el marco del <strong>RA1</strong>, elaborarás un plan (dossier) que conecte el proyecto con la estrategia,
+            defina un alcance verificable y proponga un camino de ejecución (WBS, cronograma, recursos y riesgos).
+            Para lograrlo, primero debes dominar tres ideas base: <strong>valor</strong>, <strong>alineación</strong> y <strong>gobernanza</strong>.
+        </p>
+
+        <h2>1) ¿Qué es un proyecto tecnológico (en sentido estratégico)?</h2>
+        <div class="axis-box">
+            <p>
+                Un proyecto tecnológico es una iniciativa temporal que crea un resultado único (producto, servicio o mejora),
+                apoyada en tecnología, pero guiada por una decisión organizacional: <strong>invertir para generar valor</strong>.
+                Por eso, lo tecnológico es el medio, no el fin.
+            </p>
+            <ul>
+                <li><strong>Medio:</strong> software, infraestructura, automatización, datos, seguridad, integración, plataformas.</li>
+                <li><strong>Fin:</strong> mejorar calidad, continuidad del negocio, eficiencia, satisfacción, cumplimiento, reducción de riesgos, crecimiento.</li>
+            </ul>
+        </div>
+
+        <h2>2) Alineación estratégica: la pregunta más importante</h2>
+        <p>
+            Un proyecto está alineado cuando contribuye de forma directa a objetivos institucionales.
+            Para evidenciarlo, se recomienda mapear el proyecto a <strong>objetivos</strong> y a <strong>indicadores</strong>.
+            Esta alineación evita proyectos “bonitos” que terminan siendo costosos, poco usados o imposibles de sostener.
+        </p>
+
+        <div class="highlight-box">
+            <p style="font-weight: bold;">Mapa simple de alineación (modelo recomendado)</p>
+            <ul>
+                <li><strong>Objetivo estratégico</strong> → ¿Qué meta institucional apoya?</li>
+                <li><strong>Beneficio esperado</strong> → ¿Qué mejora concreta se logra? (tiempo, costo, calidad, seguridad)</li>
+                <li><strong>Indicador (KPI/OKR)</strong> → ¿Cómo se medirá el resultado?</li>
+                <li><strong>Evidencia/entregable</strong> → ¿Qué se entregará para lograrlo?</li>
+            </ul>
+        </div>
+
+        <h2>3) Del problema al valor: cómo justificar un proyecto</h2>
+        <p>
+            Una justificación estratégica no se basa en “porque está de moda” o “porque otras instituciones lo tienen”.
+            Se construye desde una necesidad u oportunidad real, con impactos medibles.
+            Para formularlo, usa esta lógica:
+            <strong>situación actual → impacto → causa → solución propuesta → valor esperado</strong>.
+        </p>
+
+        <div class="axis-box">
+            <h4>Ejemplos de valor (en organizaciones educativas o institucionales)</h4>
+            <ul>
+                <li><strong>Eficiencia:</strong> reducir tiempos en trámites, reportes, matrículas o procesos administrativos.</li>
+                <li><strong>Calidad del servicio:</strong> mejorar experiencia del usuario, disminuir errores o retrabajos.</li>
+                <li><strong>Continuidad:</strong> asegurar disponibilidad, backups, recuperación ante incidentes.</li>
+                <li><strong>Seguridad y cumplimiento:</strong> reducir riesgo de fuga de datos, accesos no autorizados o incumplimientos.</li>
+                <li><strong>Transparencia:</strong> trazabilidad, auditorías, indicadores para toma de decisiones.</li>
+            </ul>
+        </div>
+
+        <h2>4) Riesgos de desalineación (lo que más falla en proyectos reales)</h2>
+        <p>
+            Los proyectos no suelen fallar por tecnología, sino por <strong>mala definición</strong>,
+            <strong>baja adopción</strong>, ausencia de patrocinio o expectativas mal gestionadas.
+            Es clave anticipar riesgos de desalineación desde el inicio para proteger el valor.
+        </p>
+
+        <div class="activity-box">
+            <p><strong>Riesgos típicos de desalineación</strong></p>
+            <ul>
+                <li><strong>Alcance inflado:</strong> se agregan funcionalidades sin control, el cronograma y costo explotan.</li>
+                <li><strong>Sin patrocinio real:</strong> no hay decisiones oportunas ni recursos; se estanca el proyecto.</li>
+                <li><strong>Baja adopción:</strong> usuarios no usan la solución, falta capacitación o gestión del cambio.</li>
+                <li><strong>Dependencia de proveedor:</strong> costos futuros altos o limitaciones técnicas no previstas.</li>
+                <li><strong>Riesgo de datos/seguridad:</strong> integración sin controles, accesos sin gobierno o incumplimientos.</li>
+            </ul>
+        </div>
+
+        <h2>5) Conclusión para iniciar la Unidad 1</h2>
+        <div class="highlight-box">
+            <p>
+                En esta unidad aprenderás a diseñar proyectos tecnológicos que tengan <strong>sentido institucional</strong>:
+                alineación estratégica + plan ejecutable + control del riesgo. Con esta lectura, ya tienes el marco para responder
+                el foro, el ensayo y el plan de proyecto con argumentos sólidos.
+            </p>
+        </div>
+
+        <h2>🔗 Lecturas y enlaces de profundización</h2>
+        <p>Consulta estos recursos para ampliar conceptos (son recomendados para sustentar tu foro y ensayo):</p>
+
+        <div class="axis-box">
+            <ul>
+                <li>
+                    <strong>PMI – ¿Qué es la gestión de proyectos?</strong>:
+                    <a href="https://www.pmi.org/about/learn-about-pmi/what-is-project-management" target="_blank" rel="noopener noreferrer">
+                        https://www.pmi.org/about/learn-about-pmi/what-is-project-management
+                    </a>
+                </li>
+                <li>
+                    <strong>PMI – PMBOK (visión general y estándares)</strong>:
+                    <a href="https://www.pmi.org/pmbok-guide-standards" target="_blank" rel="noopener noreferrer">
+                        https://www.pmi.org/pmbok-guide-standards
+                    </a>
+                </li>
+                <li>
+                    <strong>AXELOS – PRINCE2 (visión general)</strong>:
+                    <a href="https://www.axelos.com/best-practice-solutions/prince2" target="_blank" rel="noopener noreferrer">
+                        https://www.axelos.com/best-practice-solutions/prince2
+                    </a>
+                </li>
+                <li>
+                    <strong>Scrum Guide (guía oficial)</strong>:
+                    <a href="https://scrumguides.org/" target="_blank" rel="noopener noreferrer">
+                        https://scrumguides.org/
+                    </a>
+                </li>
+                <li>
+                    <strong>Kanban Guide (guía oficial)</strong>:
+                    <a href="https://kanbanguides.org/" target="_blank" rel="noopener noreferrer">
+                        https://kanbanguides.org/
+                    </a>
+                </li>
+                <li>
+                    <strong>Balanced Scorecard Institute – visión de alineación estratégica</strong>:
+                    <a href="https://balancedscorecard.org/" target="_blank" rel="noopener noreferrer">
+                        https://balancedscorecard.org/
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="activity-box">
+            <p><strong>Sugerencia práctica</strong></p>
+            <p>
+                Mientras lees, piensa en tu proyecto y escribe en una nota rápida: (1) objetivo estratégico que apoya,
+                (2) KPI/indicador para medir el éxito, (3) riesgo principal y cómo lo mitigarías. Eso te facilitará el foro y el plan.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+    </div>
+
+</div>
+
+</body>
+</html>

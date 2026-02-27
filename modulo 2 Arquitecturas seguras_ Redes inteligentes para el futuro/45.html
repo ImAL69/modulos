@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .patterns-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #2e7d32; /* Verde Tech */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #2e7d32;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(46, 125, 50, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #c8e6c9;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 40px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul { 
+        padding-left: 20px; 
+        margin-bottom: 20px; 
+        list-style-type: none; 
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '►';
+        color: #2e7d32;
+        font-size: 0.8rem;
+        position: absolute;
+        left: 0;
+        top: 4px;
+    }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #1b5e20; /* Verde Oscuro */
+        border-bottom: 2px solid #a5d6a7;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* Subtítulos dentro de acordeones */
+    .sub-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        color: #2e7d32;
+        font-weight: 700;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    /* Caja de Definición */
+    .definition-box {
+        background: #e8f5e9;
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 5px solid #2e7d32;
+        margin-bottom: 25px;
+    }
+
+    /* --- ACORDEONES DE PATRONES --- */
+    details.pattern-item {
+        background: #fff;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border: 1px solid #c8e6c9;
+        overflow: hidden;
+    }
+
+    summary.pattern-summary {
+        padding: 20px;
+        background: #f1f8e9;
+        cursor: pointer;
+        font-weight: 700;
+        color: #33691e;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    summary.pattern-summary:hover { background: #dcedc8; }
+    summary.pattern-summary::-webkit-details-marker { display: none; }
+    
+    summary.pattern-summary::after { content: '+'; font-weight: bold; font-size: 1.5rem; }
+    details[open] summary.pattern-summary::after { content: '-'; }
+
+    .pattern-content {
+        padding: 25px;
+        border-top: 1px solid #c8e6c9;
+        color: #424242;
+    }
+
+    /* --- CAJAS DE IMPACTO (SEGURIDAD / ESCALABILIDAD) --- */
+    .impact-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    @media (min-width: 768px) {
+        .impact-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .impact-card {
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+    }
+
+    .impact-security {
+        background: #fff3e0;
+        border-left: 4px solid #ff9800;
+    }
+    
+    .impact-scalability {
+        background: #e3f2fd;
+        border-left: 4px solid #2196f3;
+    }
+
+    .impact-title {
+        font-weight: 700;
+        display: block;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+    }
+
+    .impact-security .impact-title { color: #ef6c00; }
+    .impact-scalability .impact-title { color: #1565c0; }
+
+    /* --- EVALUACIÓN (GRID FINAL) --- */
+    .eval-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    @media (min-width: 768px) {
+        .eval-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .eval-box {
+        background: #263238;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .eval-header {
+        font-family: 'Orbitron', sans-serif;
+        color: #69f0ae; /* Verde neón suave */
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #546e7a;
+        padding-bottom: 5px;
+    }
+
+    .eval-box ul { padding-left: 20px; margin: 0; }
+    .eval-box li::before { color: #69f0ae; content: '✔'; font-size: 1rem; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="patterns-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">1.2 Patrones de arquitectura y su impacto en seguridad y escalabilidad</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/ta50e0an9d3igel0c2712/Gemini_Generated_Image_72zo1w72zo1w72zo.png?rlkey=hidikfgqtsii1pgl1w3y3wf6j&st=ow7lzwpq&raw=1" alt="Patrones de Arquitectura" class="hero-image">
+    </div>
+
+    <div class="content-block">
+        <p>En la sección anterior vimos la idea general de arquitectura en capas.</p>
+        <p>Ahora damos un paso más: veremos que, en la práctica, muchas organizaciones repiten ciertos <strong>“patrones de arquitectura”</strong>, es decir, formas típicas de organizar redes y servicios que se usan una y otra vez porque resuelven problemas comunes.</p>
+        <p>Conocer estos patrones te ayuda a:</p>
+        <ul>
+            <li>Reconocer rápidamente cómo está organizada una red.</li>
+            <li>Entender dónde están sus puntos fuertes y débiles en seguridad.</li>
+            <li>Evaluar qué tan bien puede escalar cuando crecen usuarios, sedes, servicios o datos.</li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">1. ¿Qué es un patrón de arquitectura?</h2>
+        <div class="definition-box">
+            <p>Un patrón de arquitectura es una solución de diseño recurrente a un problema frecuente en el diseño de sistemas o redes.</p>
+        </div>
+        <p>Por ejemplo:</p>
+        <ul>
+            <li>“Red jerárquica de acceso–distribución–núcleo”.</li>
+            <li>“Cliente–servidor en 3 capas”.</li>
+            <li>“Red WAN tipo hub-and-spoke”.</li>
+            <li>“Arquitectura híbrida (on-premise + nube)”.</li>
+        </ul>
+        <p>No son recetas rígidas, pero sí modelos de referencia: te ayudan a pensar la arquitectura y, sobre todo, a anticipar efectos en seguridad y escalabilidad.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">2. Patrones clásicos de arquitectura de red</h2>
+        
+        <details class="pattern-item">
+            <summary class="pattern-summary">2.1 Arquitectura jerárquica (acceso – distribución – núcleo)</summary>
+            <div class="pattern-content">
+                <p>Es uno de los patrones más comunes en redes de campus y organizaciones:</p>
+                <ul>
+                    <li><strong>Capa de acceso:</strong> Donde se conectan los usuarios y dispositivos finales (PC, teléfonos IP, impresoras, IoT).</li>
+                    <li><strong>Capa de distribución (o agregación):</strong> Agrupa varias redes de acceso, aplica políticas, enrutamiento interno, listas de control, etc.</li>
+                    <li><strong>Capa núcleo (core):</strong> Proporciona una conectividad rápida y muy disponible entre las distintas partes de la red.</li>
+                </ul>
+                
+                <div class="impact-grid">
+                    <div class="impact-card impact-security">
+                        <span class="impact-title">Impacto en seguridad</span>
+                        <p>Permite centralizar y organizar los controles: Políticas por VLAN en acceso. Filtrado más avanzado en distribución. Núcleo ligero, enfocado en rendimiento y redundancia.</p>
+                        <p>Si se diseña mal, el núcleo puede convertirse en un punto único de fallo crítico.</p>
+                    </div>
+                    <div class="impact-card impact-scalability">
+                        <span class="impact-title">Impacto en escalabilidad</span>
+                        <p>Facilita crecer por capas: puedes añadir nuevos switches de acceso, nuevas sedes o nuevas VLAN sin rediseñar tudo.</p>
+                        <p>Si no se planifican bien enlaces y capacidad del núcleo, la red puede congestionar a medida que crece.</p>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="pattern-item">
+            <summary class="pattern-summary">2.2 Topologías WAN: hub-and-spoke vs malla parcial</summary>
+            <div class="pattern-content">
+                <p>En redes entre sedes (WAN) también aparecen patrones recurrentes:</p>
+                <ul>
+                    <li><strong>Hub-and-spoke (estrella):</strong> Una sede central (hub) por donde pasa gran parte del tráfico. Las sedes remotas (spokes) se conectan al hub, no entre ellas.</li>
+                    <li><strong>Malla parcial:</strong> Algunas sedes se conectan entre sí además de al hub. Se crean caminos alternativos para tráfico crítico (por ejemplo, entre dos sedes regionales).</li>
+                </ul>
+
+                <div class="impact-grid">
+                    <div class="impact-card impact-security">
+                        <span class="impact-title">Seguridad</span>
+                        <p>Hub-and-spoke facilita centralizar controles de seguridad (firewalls, proxies, inspección profunda) en el hub. Pero también concentra el riesgo: si el hub cae o es comprometido, afecta a todas las sedes.</p>
+                        <p>La malla parcial puede mejorar resiliencia, pero multiplica puntos a asegurar y gestionar.</p>
+                    </div>
+                    <div class="impact-card impact-scalability">
+                        <span class="impact-title">Escalabilidad</span>
+                        <p>Hub-and-spoke es más simple de administrar, pero puede saturarse si todo pasa por el hub.</p>
+                        <p>La malla parcial puede escalar mejor para ciertos flujos, pero incrementa complejidad de diseño y monitoreo.</p>
+                    </div>
+                </div>
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">3. Patrones de arquitectura de aplicaciones y su efecto en la red</h2>
+        <p>Aunque el foco del módulo son redes, el patrón de las aplicaciones impacta directamente en la arquitectura de red.</p>
+        
+        <details class="pattern-item">
+            <summary class="pattern-summary">3.1 Cliente–servidor y 3 capas</summary>
+            <div class="pattern-content">
+                <ul>
+                    <li><strong>Cliente–servidor simple:</strong> Aplicación que se conecta directamente a un servidor (por ejemplo, cliente pesado a servidor de base de datos).</li>
+                    <li><strong>Arquitectura en 3 capas:</strong> Capa de presentación (front-end / web), Capa de lógica de negocio (aplicación), Capa de datos (bases de datos).</li>
+                </ul>
+
+                <div class="impact-grid">
+                    <div class="impact-card impact-security">
+                        <span class="impact-title">Seguridad</span>
+                        <p>Facilita definir zonas: Servidores web en DMZ. Servidores de aplicación en una red interna protegida. Bases de datos en la zona más restringida.</p>
+                        <p>Se puede controlar mejor quién puede hablar con quién, reduciendo superficie de ataque.</p>
+                    </div>
+                    <div class="impact-card impact-scalability">
+                        <span class="impact-title">Escalabilidad</span>
+                        <p>Puedes escalar por capas (por ejemplo, balancear servidores web, luego escalar capa de aplicación, etc.). El patrón permite añadir servicios sin romper todo el diseño.</p>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="pattern-item">
+            <summary class="pattern-summary">3.2 Microservicios y APIs</summary>
+            <div class="pattern-content">
+                <p>En arquitecturas modernas, una aplicación se divide en muchos servicios pequeños que se comunican entre sí mediante APIs.</p>
+
+                <div class="impact-grid">
+                    <div class="impact-card impact-security">
+                        <span class="impact-title">Seguridad</span>
+                        <p>Aumenta la superficie de exposición (más servicios, más endpoints). Requiere patrones adicionales: Autenticación y autorización entre servicios. Gateways de API. Segmentación fina y controles de tráfico este-oeste (dentro del centro de datos).</p>
+                    </div>
+                    <div class="impact-card impact-scalability">
+                        <span class="impact-title">Escalabilidad</span>
+                        <p>Muy buena para escalar de forma granular (solo el microservicio que lo necesita). Pero exige una arquitectura de red y monitoreo más robusta para que no se convierta en un caos.</p>
+                    </div>
+                </div>
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">4. Patrones de despliegue: on-premise, nube, híbrida</h2>
+        
+        <details class="pattern-item">
+            <summary class="pattern-summary">4.1 On-premise tradicional</summary>
+            <div class="pattern-content">
+                <p>Todo (o casi todo) está en el data center local de la organización.</p>
+                <ul>
+                    <li><strong>Seguridad:</strong> Perímetro más claro (aunque esto ya no es absoluto). Controles más concentrados en un lugar físico.</li>
+                    <li><strong>Escalabilidad:</strong> Limitada por la capacidad de hardware propio (crecer implica comprary desplegar más).</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="pattern-item">
+            <summary class="pattern-summary">4.2 Nube pública</summary>
+            <div class="pattern-content">
+                <p>Servicios, aplicaciones y datos alojados en un proveedor de nube.</p>
+                <ul>
+                    <li><strong>Seguridad:</strong> El perímetro se vuelve más difuso. Aparecen patrones como Zero Trust, microsegmentación en la nube, identidades como nuevo perímetro. Se comparten responsabilidades entre el proveedor y la organización (modelo de responsabilidad compartida).</li>
+                    <li><strong>Escalabilidad:</strong> Escalabilidad elástica: más recursos bajo demanda. Requiere controlar el costo y la complejidad de la arquitectura.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="pattern-item">
+            <summary class="pattern-summary">4.3 Arquitectura híbrida y multicloud</summary>
+            <div class="pattern-content">
+                <p>Parte de la infraestructura on-premise, parte en nube(s).</p>
+                <ul>
+                    <li><strong>Seguridad:</strong> Deben definirse patrones claros de conectividad segura: VPNs, enlaces dedicados, SD-WAN, etc. Hay que cuidar la consistencia de políticas de seguridad en ambos lados (on-prem y nube).</li>
+                    <li><strong>Escalabilidad:</strong> Permite crecer de forma más flexible. Aumenta la complejidad de diseño, monitoreo y operación.</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">5. Patrones de seguridad en la arquitectura</h2>
+        <p>Hay patrones específicos cuyo foco principal es la seguridad:</p>
+
+        <details class="pattern-item">
+            <summary class="pattern-summary">5.1 Perímetro tradicional</summary>
+            <div class="pattern-content">
+                <p>Seguridad concentrada en la “frontera” entre red interna e Internet (firewall perimetral).</p>
+                <p><strong>Impacto:</strong> Sencillo de visualizar, pero cada vez menos suficiente: usuarios remotos, nube, SaaS, móviles, etc.</p>
+            </div>
+        </details>
+
+        <details class="pattern-item">
+            <summary class="pattern-summary">5.2 DMZ (zona desmilitarizada)</summary>
+            <div class="pattern-content">
+                <p>Zona intermedia donde se ubican servidores expuestos (web, correo, portales), separados de la red interna.</p>
+                <p><strong>Impacto:</strong> Reduce el riesgo de que un compromiso de un servidor expuesto implique acceso directo a la red interna. Bien usada, es un patrón clave para proteger servicios públicos.</p>
+            </div>
+        </details>
+
+        <details class="pattern-item">
+            <summary class="pattern-summary">5.3 Microsegmentación</summary>
+            <div class="pattern-content">
+                <p>En lugar de tener “una gran red interna”, se divide en segmentos muy específicos, a veces hasta nivel de aplicación o servicio.</p>
+                <p><strong>Impacto:</strong> Disminuye el “radio de explosión” de un ataque (se limita a un segmento). Mejora la capacidad de aplicar políticas diferentes según criticidad. Requiere una planificación cuidadosa para no complicar demasiado la operación.</p>
+            </div>
+        </details>
+
+        <details class="pattern-item">
+            <summary class="pattern-summary">5.4 Zero Trust</summary>
+            <div class="pattern-content">
+                <p>No se asume que “todo lo interno es confiable”. Cada acceso se verifica y autoriza según identidad, contexto, dispositivo, etc.</p>
+                <p><strong>Impacto:</strong> Obliga a rediseñar muchos patrones tradicionales (VPN simples, redes planas, etc.). Mejora control y visibilidad cuando hay usuarios remotos, nube, SaaS y dispositivos diversos.</p>
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title">6. Cómo evaluar un patrón desde seguridad y escalabilidad</h2>
+        <p>Cuando analices o diseñes usando un patrón, pregúntate:</p>
+        
+        <div class="eval-grid">
+            <div class="eval-box">
+                <div class="eval-header">En Seguridad:</div>
+                <ul>
+                    <li>¿Cómo afecta este patrón la superficie de ataque?</li>
+                    <li>¿Dónde puedo colocar controles de seguridad más efectivos?</li>
+                    <li>Si un componente se ve comprometido, ¿hasta dónde puede llegar el atacante?</li>
+                </ul>
+            </div>
+            <div class="eval-box">
+                <div class="eval-header">En Escalabilidad:</div>
+                <ul>
+                    <li>¿Qué pasa si duplicamos el número de usuarios o servicios?</li>
+                    <li>¿Dónde están los posibles cuellos de botella?</li>
+                    <li>¿Este patrón permite crecer por partes (capas, sedes, servicios) sin rediseñar todo?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

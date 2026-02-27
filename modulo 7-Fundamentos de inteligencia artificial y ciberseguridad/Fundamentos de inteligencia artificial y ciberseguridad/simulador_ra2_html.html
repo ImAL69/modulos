@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Simulador RA2 — Análisis de Umbrales, Prevalencia y AUC</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap');
+
+    .ethics-foundations-container {
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 50px 40px;
+        background: #fdfcfb;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        border-top: 6px solid #c0922e;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.8);
+        border-radius: 8px;
+        padding: 5px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    .header-section {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        font-weight: 900;
+        color: #2c3e50;
+        margin: 0 auto 25px auto;
+        line-height: 1.2;
+        max-width: 85%;
+        position: relative;
+        display: inline-block;
+        animation: fadeUp 1s ease both;
+    }
+
+    .main-title::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: #c0922e;
+        margin: 15px auto 0 auto;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 20px 40px rgba(44, 62, 80, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        border: 1px solid #eee;
+        opacity: 0;
+        animation: zoomInSmooth 1.2s ease 0.3s forwards;
+    }
+
+    .intro-text {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 50px;
+        color: #555;
+    }
+
+    .definitions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-bottom: 60px;
+    }
+
+    .def-card {
+        background: white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border-top: 5px solid #ccc;
+        transition: transform 0.3s;
+    }
+
+    .def-card:hover { transform: translateY(-5px); }
+
+    .def-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .card-moral { border-color: #78909c; }
+    .card-moral h3 { color: #546e7a; }
+
+    .card-etica { border-color: #c0922e; }
+    .card-etica h3 { color: #c0922e; }
+
+    .card-ley { border-color: #2c3e50; }
+    .card-ley h3 { color: #2c3e50; }
+
+    .compass-section {
+        background: #f4f4f4;
+        padding: 40px;
+        border-radius: 15px;
+        margin-bottom: 60px;
+    }
+
+    .section-heading {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: #2c3e50;
+        margin-bottom: 40px;
+    }
+
+    .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .principle-item {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 4px solid #c0922e;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+
+    .principle-item h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+        color: #2c3e50;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .principle-icon { font-size: 1.5rem; }
+
+    .other-principles-box {
+        margin-bottom: 60px;
+        padding: 0 20px;
+    }
+
+    .elegant-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .elegant-list li {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .elegant-list li:last-child {
+        border-bottom: none;
+    }
+
+    .elegant-list strong {
+        color: #c0922e;
+        font-size: 1.1rem;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    details.warning-box {
+        background: #fff3e0;
+        border: 1px solid #ffe0b2;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 50px;
+        cursor: pointer;
+    }
+
+    summary.warning-title {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 1.1rem;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    summary.warning-title::after { content: '▼'; margin-left: auto; font-size: 0.8rem; }
+    details[open] summary.warning-title::after { content: '▲'; }
+
+    .warning-content {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #ffcc80;
+        color: #5d4037;
+    }
+
+    .reflection-box {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 40px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .reflection-box h3 {
+        font-family: 'Playfair Display', serif;
+        color: #c0922e;
+        margin-top: 0;
+        font-size: 1.8rem;
+    }
+
+    .reflection-questions {
+        text-align: left;
+        display: inline-block;
+        max-width: 800px;
+    }
+
+    .reflection-questions li {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+    }
+
+    .code-block {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.95rem;
+        overflow-x: auto;
+        margin: 20px 0;
+        border-left: 4px solid #c0922e;
+    }
+
+    .code-block code {
+        color: #ecf0f1;
+    }
+
+    .highlight {
+        background: #c0922e;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+
+    .info-box {
+        background: #e3f2fd;
+        border: 1px solid #90caf9;
+        border-left: 4px solid #2196f3;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .info-box h4 {
+        color: #1565c0;
+        margin-top: 0;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .step-number {
+        display: inline-block;
+        background: #c0922e;
+        color: white;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+        border-radius: 50%;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomInSmooth {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo {
+            position: static;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .main-title { font-size: 2.2rem; max-width: 100%; }
+        .principles-grid { grid-template-columns: 1fr; }
+        .definitions-grid { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="ethics-foundations-container">
+
+    <div class="header-section">
+        <h1 class="main-title">🎯 Simulador RA2 — Análisis de Umbrales, Prevalencia y AUC</h1>
+
+        <p class="intro-text">
+            En esta actividad aplicarás un <strong>simulador interactivo</strong> para explorar el efecto de 
+            variar umbral–prevalencia–AUC en un detector (fraude/phishing o autenticación adaptativa). 
+            Documentarás resultados mediante tablas y gráficas, y justificarás en 1 página la configuración 
+            operativa viable y los controles complementarios necesarios (MFA, reputación, sandboxing, etc.), 
+            citando <strong>NIST SP 800-94</strong> y <strong>ENISA</strong> cuando se use normativa.
+        </p>
+    </div>
+
+    <h2 class="section-heading">🎯 Objetivo</h2>
+    <div class="other-principles-box" style="margin-top: 0;">
+        <p style="font-size: 1.1rem; line-height: 1.8; text-align: justify;">
+            Aplicar un simulador para explorar el efecto de variar <strong>umbral–prevalencia–AUC</strong> 
+            en un detector (fraude/phishing o autenticación adaptativa), documentar resultados (tablas/gráficas) 
+            y justificar, en <span class="highlight">1 página</span>, la configuración operativa viable y los 
+            controles complementarios necesarios (MFA, reputación, sandboxing, etc.). Citar 
+            <strong>NIST SP 800-94</strong> y <strong>ENISA</strong> cuando se use normativa.
+        </p>
+    </div>
+
+    <h2 class="section-heading">📝 Instrucciones para estudiantes</h2>
+
+    <div class="def-card card-etica" style="margin-bottom: 30px;">
+        <h3><span class="step-number">1</span> Descarga del notebook</h3>
+        <p>Descarga <span class="highlight">simulacion_RA2_notebook.ipynb</span> desde los recursos de la actividad.</p>
+    </div>
+
+    <div class="compass-section">
+        <h3 class="section-heading" style="font-size: 1.5rem;"><span class="step-number">2</span> Opciones para ejecutar el notebook</h3>
+        <div class="principles-grid">
+            <div class="principle-item">
+                <h4><span class="principle-icon">☁️</span> Google Colab</h4>
+                <p>Subir el .ipynb a Colab y ejecutar celdas (si hay celdas de instalación, ejecútelas).</p>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">💻</span> Local</h4>
+                <p>Abrir en Jupyter/JupyterLab/VSCode (instalar dependencias si hace falta).</p>
+                <div class="code-block" style="margin-top: 15px;">
+<code>pip install scikit-learn pandas numpy matplotlib seaborn tqdm</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="def-card card-moral" style="margin-bottom: 30px;">
+        <h3><span class="step-number">3</span> Ejecutar el notebook</h3>
+        <p>Ejecuta todas las celdas del notebook.</p>
+        <p><strong>Ajusta parámetros si deseas:</strong></p>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+            <li>Prevalencia</li>
+            <li>AUC</li>
+            <li>Thresholds</li>
+        </ul>
+        <p style="margin-top: 15px;">Genera las figuras para el análisis.</p>
+    </div>
+
+    <div class="info-box">
+        <h4><span class="step-number">4</span> Recopila evidencia obligatoria</h4>
+        <ul style="margin-left: 20px;">
+            <li><strong>CSV:</strong> <span class="highlight">simulacion_ra2_results.csv</span> (generado por el notebook)</li>
+            <li><strong>Imágenes:</strong> 2–3 imágenes relevantes
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>Heatmap FPR</li>
+                    <li>Alert_count vs threshold</li>
+                    <li>PR curve</li>
+                </ul>
+            </li>
+            <li><strong>Documento de análisis:</strong> 1 página (máx. 1 página A4) con:
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>Resumen ejecutivo</li>
+                    <li>Umbral recomendado y justificación (impacto en carga de analistas)</li>
+                    <li>Controles complementarios (MFA, sandboxing, reputación, shadow-mode)</li>
+                    <li>Consideraciones de privacidad (DPIA si aplica)</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="reflection-box">
+        <h3><span class="step-number">5</span> Empaqueta y sube el entregable</h3>
+        <div class="reflection-questions">
+            <p style="margin-bottom: 20px;"><strong>Archivo final en PDF o PPTX que incluya:</strong></p>
+            <ul>
+                <li>✅ Las figuras (imágenes)</li>
+                <li>✅ La página de análisis</li>
+            </ul>
+            <p style="margin-top: 25px; margin-bottom: 20px;"><strong>Adjuntar también:</strong></p>
+            <ul>
+                <li>✅ El CSV con los resultados</li>
+                <li>✅ (Opcional) El notebook ejecutado .ipynb</li>
+            </ul>
+            <p style="margin-top: 25px;"><strong>Nombre de archivo sugerido:</strong></p>
+            <div class="code-block" style="margin-top: 15px;">
+<code>RA2_ApellidoNombre.pdf
+RA2_ApellidoNombre_simulacion.csv</code>
+            </div>
+        </div>
+    </div>
+
+    <div class="compass-section">
+        <h3 class="section-heading" style="font-size: 1.5rem;">📊 Elementos clave del análisis</h3>
+        <div class="principles-grid">
+            <div class="principle-item">
+                <h4><span class="principle-icon">📈</span> Resumen ejecutivo</h4>
+                <p>Contexto del detector, objetivos y hallazgos principales en máximo 3 párrafos.</p>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🎚️</span> Umbral recomendado</h4>
+                <p>Justificación basada en balance FPR/TPR, impacto en carga de analistas y viabilidad operativa.</p>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🛡️</span> Controles complementarios</h4>
+                <p>MFA, sandboxing, análisis de reputación, shadow-mode. Citar NIST SP 800-94 y ENISA.</p>
+            </div>
+            <div class="principle-item">
+                <h4><span class="principle-icon">🔒</span> Privacidad</h4>
+                <p>Consideraciones de DPIA, anonimización de datos, cumplimiento normativo.</p>
+            </div>
+        </div>
+    </div>
+
+    <details class="warning-box">
+        <summary class="warning-title">📚 Referencias normativas importantes (Clic para ver)</summary>
+        <div class="warning-content">
+            <ul>
+                <li><strong>NIST SP 800-94:</strong> Guide to Intrusion Detection and Prevention Systems (IDPS) - Proporciona directrices para la implementación de sistemas de detección y prevención de intrusiones.</li>
+                <li><strong>ENISA:</strong> European Union Agency for Cybersecurity - Ofrece guías sobre gestión de riesgos de ciberseguridad y mejores prácticas.</li>
+                <li><strong>GDPR/DPIA:</strong> Evaluación de Impacto en Protección de Datos - Necesaria cuando se procesen datos personales con sistemas de detección.</li>
+            </ul>
+        </div>
+    </details>
+
+    <details class="warning-box">
+        <summary class="warning-title">💡 Recomendaciones para el análisis (Clic para ver)</summary>
+        <div class="warning-content">
+            <ul>
+                <li><strong>Balance operativo:</strong> Considera el costo de falsos positivos vs. el riesgo de falsos negativos.</li>
+                <li><strong>Contexto del negocio:</strong> Justifica tus decisiones según el impacto en operaciones y usuarios.</li>
+                <li><strong>Controles en capas:</strong> Ningún control es perfecto; propón defensa en profundidad.</li>
+                <li><strong>Evidencia visual:</strong> Las gráficas deben ser claras y auto-explicativas.</li>
+                <li><strong>Citación correcta:</strong> Referencia específicamente las secciones de NIST/ENISA que soportan tus decisiones.</li>
+                <li><strong>Pragmatismo:</strong> Propón soluciones viables, no teóricas. Considera recursos disponibles.</li>
+            </ul>
+        </div>
+    </details>
+
+    <div class="other-principles-box">
+        <h2 class="section-heading" style="font-size:1.5rem; text-align:left;">✅ Checklist final antes de entregar</h2>
+        <ul class="elegant-list">
+            <li>
+                <strong>✓ Notebook ejecutado completamente</strong>
+                Todas las celdas ejecutadas sin errores.
+            </li>
+            <li>
+                <strong>✓ CSV generado</strong>
+                Archivo simulacion_ra2_results.csv presente.
+            </li>
+            <li>
+                <strong>✓ Imágenes incluidas (2-3)</strong>
+                Heatmap, curvas y gráficos relevantes en buena calidad.
+            </li>
+            <li>
+                <strong>✓ Análisis de 1 página</strong>
+                Completo, con todos los elementos solicitados.
+            </li>
+            <li>
+                <strong>✓ Referencias normativas</strong>
+                Citadas NIST SP 800-94 y ENISA cuando corresponda.
+            </li>
+            <li>
+                <strong>✓ Nomenclatura correcta</strong>
+                Archivos nombrados según el formato especificado.
+            </li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <h4>⚠️ Aspectos críticos a tener en cuenta</h4>
+        <ul style="margin-left: 20px;">
+            <li><strong>Impacto en analistas:</strong> Un umbral muy bajo genera exceso de alertas y fatiga del equipo.</li>
+            <li><strong>Falsos negativos:</strong> Un umbral muy alto puede dejar pasar amenazas reales.</li>
+            <li><strong>Prevalencia:</strong> La tasa base de eventos maliciosos afecta significativamente el VPP.</li>
+            <li><strong>Contexto operativo:</strong> Considera horarios, capacidad del SOC y criticidad de activos.</li>
+        </ul>
+    </div>
+
+    <p style="margin-bottom:50px; text-align:center; font-size: 13px; color:#666;">
+        Fundación Escuela Tecnológica de Neiva – FET | Comprometidos con la excelencia educativa
+    </p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .network-tech-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #00b0ff; /* Azul Brillante */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: #0091ea;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(0, 176, 255, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #80d8ff;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+        margin-top: 50px;
+        font-weight: 700;
+        padding-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .title-icon { font-size: 2rem; }
+
+    /* Colores por Sección */
+    .title-campus { color: #0277bd; border-bottom: 2px solid #81d4fa; }
+    .title-wan { color: #7b1fa2; border-bottom: 2px solid #ce93d8; }
+    .title-iot { color: #ef6c00; border-bottom: 2px solid #ffcc80; }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #e1f5fe;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #039be5;
+    }
+
+    /* --- ACORDEONES (PREGUNTAS) --- */
+    details.qa-item {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        border: 1px solid #e0e0e0;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    summary.qa-summary {
+        padding: 15px 20px;
+        background: #f5f5f5;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.05rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    /* Colores de Header Acordeón por Sección */
+    .campus-section summary.qa-summary { color: #0277bd; }
+    .campus-section summary.qa-summary:hover { background: #e1f5fe; }
+    .campus-section details[open] summary { background: #81d4fa; color: #01579b; }
+
+    .wan-section summary.qa-summary { color: #7b1fa2; }
+    .wan-section summary.qa-summary:hover { background: #f3e5f5; }
+    .wan-section details[open] summary { background: #ce93d8; color: #4a148c; }
+
+    .iot-section summary.qa-summary { color: #ef6c00; }
+    .iot-section summary.qa-summary:hover { background: #fff3e0; }
+    .iot-section details[open] summary { background: #ffcc80; color: #e65100; }
+
+    summary.qa-summary::-webkit-details-marker { display: none; }
+    summary.qa-summary::after { content: '+'; font-size: 1.5rem; font-weight: bold; }
+    details[open] summary.qa-summary::after { content: '-'; }
+
+    .qa-content {
+        padding: 20px;
+        border-top: 1px solid #e0e0e0;
+        color: #455a64;
+    }
+
+    .qa-content ul { padding-left: 20px; margin-bottom: 15px; }
+    .qa-content li { margin-bottom: 5px; }
+
+    /* --- RESPUESTA CLARA (HIGHLIGHT) --- */
+    .clear-answer {
+        background: #fafafa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+        font-weight: 500;
+        border-left-width: 4px;
+        border-left-style: solid;
+    }
+
+    .campus-section .clear-answer { border-left-color: #0277bd; color: #01579b; background: #e1f5fe; }
+    .wan-section .clear-answer { border-left-color: #7b1fa2; color: #4a148c; background: #f3e5f5; }
+    .iot-section .clear-answer { border-left-color: #ef6c00; color: #bf360c; background: #fff3e0; }
+
+    .clear-answer strong { display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 0.85rem; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="network-tech-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">1. Tecnologías de red para distintos entornos</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/lvnsc5eraupvw2tc780ye/Gemini_Generated_Image_w0l5dxw0l5dxw0l5.png?rlkey=sllv519grnh88a6xsl5xguqq0&st=e7psbw3t&raw=1" alt="Tecnologías de Red" class="hero-image">
+    </div>
+
+    <div class="intro-box">
+        <p>En una organización real (educativa, empresarial o pública) no existe “una sola red”. Existen entornos con necesidades distintas: usuarios en campus, sedes remotas, acceso desde casa, servicios en nube, dispositivos IoT, y en algunos casos entornos industriales (OT).</p>
+        <p>Por eso, elegir tecnologías de red implica responder una pregunta central: <strong>¿qué tipo de conectividad necesita cada entorno para funcionar bien, crecer sin caos y mantenerse seguro?</strong></p>
+    </div>
+
+    <div class="campus-section content-block">
+        <h2 class="section-title title-campus"><span class="title-icon">🏫</span> 1.1 LAN, WLAN y redes de campus</h2>
+        <p>Un campus (como una institución educativa) combina redes cableadas (LAN) y redes inalámbricas (WLAN) para conectar usuarios, servicios y equipos. La calidad del campus depende de 4 decisiones: topología, segmentación, acceso, y administración/monitoreo.</p>
+
+        <details class="qa-item">
+            <summary class="qa-summary">1) ¿Qué es LAN y para qué se usa en un campus?</summary>
+            <div class="qa-content">
+                <p>La LAN (Local Area Network) es la red cableada interna (Ethernet) que conecta:</p>
+                <ul>
+                    <li>PCs, laboratorios, impresoras, teléfonos IP.</li>
+                    <li>Switches de acceso y distribución.</li>
+                    <li>Servidores locales o enlaces hacia data center/nube.</li>
+                </ul>
+                <p>Se usa porque ofrece: Alta estabilidad (menos interferencia), Alto rendimiento (1G/10G/40G según el diseño), Seguridad y control más fáciles de implementar (por puerto, VLAN, 802.1X).</p>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> LAN es la columna vertebral confiable del campus: sostiene tráfico pesado, laboratorios, equipos fijos y servicios críticos.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">2) ¿Qué es WLAN y por qué es crítica en instituciones modernas?</summary>
+            <div class="qa-content">
+                <p>La WLAN (Wireless LAN) es la red Wi-Fi (APs + control/gestión) para: Estudiantes con portátiles y móviles, Visitantes, Docentes en movimiento, IoT ligero (sensores, cámaras Wi-Fi, etc.).</p>
+                <p>Es crítica porque hoy la movilidad es la norma. Sin buen Wi-Fi: La experiencia del usuario cae, el soporte se vuelve un caos, y la adopción de plataformas (LMS, videoclases, etc.) se afecta.</p>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> WLAN es el “punto de contacto” con la mayoría de usuarios; su calidad define la percepción del servicio tecnológico.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">3) ¿Qué componentes forman una red de campus bien diseñada?</summary>
+            <div class="qa-content">
+                <p>Una red de campus suele organizarse en capas (modelo típico):</p>
+                <ul>
+                    <li><strong>Acceso:</strong> switches para usuarios y APs (con PoE).</li>
+                    <li><strong>Distribución/agregación:</strong> agrupa accesos, aplica políticas (VLAN, routing interno, ACLs).</li>
+                    <li><strong>Core (núcleo):</strong> alto rendimiento y alta disponibilidad, conecta todo.</li>
+                </ul>
+                <p>En WLAN: Access Points (APs) bien ubicados, controladora (física o en nube) o gestión centralizada, autenticación (portal cautivo, 802.1X, WPA2/WPA3-Enterprise según el caso).</p>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> campus = arquitectura jerárquica, segmentación por zonas y administración centralizada.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">4) ¿Cómo se segmenta un campus para operar y asegurar mejor?</summary>
+            <div class="qa-content">
+                <p>Segmentar es dividir para controlar “quién habla con quién”. Lo típico:</p>
+                <ul>
+                    <li>VLAN Usuarios</li>
+                    <li>VLAN Docentes</li>
+                    <li>VLAN Administrativos</li>
+                    <li>VLAN Laboratorios</li>
+                    <li>VLAN Invitados</li>
+                    <li>VLAN IoT/CCTV</li>
+                    <li>VLAN Servidores/Servicios internos</li>
+                    <li>VLAN Gestión/Administración</li>
+                </ul>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> segmentación reduce superficie de ataque, limita incidentes, mejora rendimiento y facilita control.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">5) ¿Qué decisiones clave garantizan buen rendimiento en LAN/WLAN?</summary>
+            <div class="qa-content">
+                <ul>
+                    <li><strong>Capacidad:</strong> uplinks de acceso→distribución (1G/10G), core dimensionado.</li>
+                    <li><strong>Redundancia:</strong> enlaces duplicados y equipos en alta disponibilidad en puntos críticos.</li>
+                    <li><strong>QoS:</strong> priorizar voz/video si aplica.</li>
+                    <li><strong>Wi-Fi bien planeado:</strong> site survey, densidad por aula, canales, potencia, roaming.</li>
+                    <li><strong>Monitoreo y gestión:</strong> visibilidad de congestión, caídas, interferencia y clientes.</li>
+                </ul>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> no es solo “poner switches y APs”, es planear capacidad, segmentación, redundancia y visibilidad.</div>
+            </div>
+        </details>
+    </div>
+
+    <div class="wan-section content-block">
+        <h2 class="section-title title-wan"><span class="title-icon">🌐</span> 1.2 WAN, SD-WAN y conectividad remota</h2>
+        <p>Cuando hay sedes, trabajo remoto o nube, aparece la WAN: conectividad entre ubicaciones y servicios externos. Aquí importan: latencia, disponibilidad, seguridad, costos y control centralizado.</p>
+
+        <details class="qa-item">
+            <summary class="qa-summary">1) ¿Qué es WAN y qué problemas resuelve?</summary>
+            <div class="qa-content">
+                <p>La WAN (Wide Area Network) conecta: sedes entre sí, sedes con un data center, sedes con servicios en nube.</p>
+                <p>Resuelve: acceso a aplicaciones centralizadas, integración institucional, continuidad operativa (multi-sede), comunicaciones seguras con enlaces controlados.</p>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> WAN une la organización extendida; sin WAN estable, cada sede “vive aislada” o sufre fallos constantes.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">2) ¿Qué opciones típicas existen para WAN?</summary>
+            <div class="qa-content">
+                <ul>
+                    <li><strong>Internet + VPN sitio a sitio:</strong> costo moderado, rápida de implementar, rendimiento variable.</li>
+                    <li><strong>MPLS / enlaces dedicados:</strong> más predecibles, más costosos, orientados a criticidad.</li>
+                    <li><strong>Enlaces redundantes (doble ISP):</strong> alta disponibilidad.</li>
+                    <li><strong>Conectividad directa a nube:</strong> (cuando aplica) mejor latencia/estabilidad, costo mayor.</li>
+                </ul>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> la opción depende de criticidad, presupuesto y necesidad de predictibilidad.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">3) ¿Qué es SD-WAN y por qué se usa hoy?</summary>
+            <div class="qa-content">
+                <p>SD-WAN es una forma de gestionar la WAN mediante software y políticas centralizadas. Permite:</p>
+                <ul>
+                    <li>Usar múltiples enlaces (MPLS + Internet + 4G/5G).</li>
+                    <li>Enrutar por aplicación (no solo por IP).</li>
+                    <li>Priorizar tráfico crítico.</li>
+                    <li>Aplicar seguridad y segmentación.</li>
+                    <li>Monitorear y controlar desde una consola.</li>
+                </ul>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> SD-WAN convierte la WAN en un sistema administrado por políticas, más flexible y eficiente que la WAN tradicional.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">4) ¿Cuándo SD-WAN es mejor que una WAN tradicional?</summary>
+            <div class="qa-content">
+                <p>Muchas sedes con necesidades distintas. Varias aplicaciones críticas (voz, video, LMS, ERP). Necesidad de failover automático (si cae un enlace). Deseo de control central y despliegue rápido. Tráfico hacia nube/SaaS distribuido.</p>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> SD-WAN brilla cuando la red crece y se necesita control, resiliencia y eficiencia sin operar “sede por sede”.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">5) ¿Qué es conectividad remota y qué se debe asegurar?</summary>
+            <div class="qa-content">
+                <p>Es el acceso de usuarios fuera del campus (casa, campo, viajes) a recursos internos o en nube.</p>
+                <p>Opciones comunes:</p>
+                <ul>
+                    <li><strong>VPN (cliente o SSL):</strong> acceso cifrado, confiable, pero puede volverse cuello de botella si todo pasa por un punto central.</li>
+                    <li><strong>ZTNA (acceso por identidad y contexto):</strong> acceso más granular (“solo a esta app”), reduce exposición de red.</li>
+                    <li><strong>Acceso a SaaS:</strong> (sin entrar a red interna) con MFA y control de identidad.</li>
+                </ul>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> conectividad remota debe ser cifrada, autenticada (idealmente MFA), con control por roles y mínimo privilegio.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">6) ¿Qué riesgos aparecen en WAN/remoto?</summary>
+            <div class="qa-content">
+                <p>Túneles mal documentados, usuarios con acceso excesivo, dependencia de un único firewall/VPN, mala segmentación entre sedes, falta de monitoreo (no saber por dónde viaja el tráfico), exposición de credenciales y dispositivos no gestionados.</p>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> los riesgos crecen con la distancia; por eso se requiere control central, segmentación, MFA y monitoreo.</div>
+            </div>
+        </details>
+    </div>
+
+    <div class="iot-section content-block">
+        <h2 class="section-title title-iot"><span class="title-icon">🤖</span> 1.3 Redes IoT, OT e integración con TI</h2>
+        <p>Aquí cambia el juego: IoT/OT introduce dispositivos numerosos, heterogéneos y a veces inseguros. Integrarlos “como si fueran PCs” es un error grave.</p>
+
+        <details class="qa-item">
+            <summary class="qa-summary">1) ¿Qué es IoT y por qué es un reto de red?</summary>
+            <div class="qa-content">
+                <p>IoT (Internet of Things) son dispositivos conectados: sensores, cámaras, controles, lectores, smart devices, etc.</p>
+                <p>Retos: muchos dispositivos, firmware desactualizado, credenciales débiles, poca visibilidad, tráfico especial (telemetría, streaming).</p>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> IoT amplía superficie de ataque y exige segmentación fuerte, control de identidad del dispositivo y monitoreo.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">2) ¿Qué es OT y por qué se trata diferente?</summary>
+            <div class="qa-content">
+                <p>OT (Operational Technology) se refiere a sistemas que controlan procesos físicos: control industrial, PLCs, SCADA, equipos de planta, infraestructura crítica.</p>
+                <p>Se trata diferente porque: la prioridad es disponibilidad y seguridad operacional, muchos equipos no soportan parches frecuentes, protocolos industriales no fueron diseñados para Internet.</p>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> OT no se administra como TI tradicional; requiere políticas más estrictas, ventanas de cambio controladas y segmentación reforzada.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">3) ¿Qué significa integrar IoT/OT con TI?</summary>
+            <div class="qa-content">
+                <p>Significa conectar esos entornos con sistemas corporativos: analítica de datos, monitoreo central, gestión de activos, dashboards y automatización. Pero se debe hacer sin exponer OT/IoT a la red general.</p>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> integrar no es mezclar; es conectar con control, usando zonas, gateways y reglas específicas.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">4) ¿Cuál es el principio de seguridad número 1 en IoT/OT?</summary>
+            <div class="qa-content">
+                <p>Segmentación por zonas y control estricto de comunicación: IoT/OT en redes separadas (VLAN/VRF/zonas), reglas claras hacia servicios permitidos (servidores, NTP, gestión), nada de “cualquier a cualquier”.</p>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> IoT/OT debe estar aislado y comunicado solo por necesidad funcional.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">5) ¿Qué mecanismos de red ayudan a integrar IoT/OT de forma segura?</summary>
+            <div class="qa-content">
+                <ul>
+                    <li>VLAN/VRF y microsegmentación para separar dominios.</li>
+                    <li>NAC / 802.1X (cuando aplica) para autenticar dispositivos.</li>
+                    <li>Listas de control (ACL) y firewalls internos entre zonas.</li>
+                    <li>Gateways/proxies para concentrar y controlar tráfico.</li>
+                    <li>Monitoreo de red (inventario, detección de anomalías).</li>
+                    <li>Acceso remoto controlado (por saltos/bastion, MFA, registros).</li>
+                </ul>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> la integración segura se logra con zonas, controles de acceso, gateways y monitoreo continuo.</div>
+            </div>
+        </details>
+
+        <details class="qa-item">
+            <summary class="qa-summary">6) ¿Qué errores comunes hacen fallar la integración IoT/OT–TI?</summary>
+            <div class="qa-content">
+                <p>Poner IoT en la VLAN de usuarios, usar contraseñas por defecto o compartidas, permitir salida libre a Internet, no tener inventario de dispositivos, no registrar eventos ni tráfico, no definir responsables de mantenimiento.</p>
+                <div class="clear-answer"><strong>Respuesta clara:</strong> el error típico es tratar IoT/OT como “equipos normales”; eso rompe seguridad y operación.</div>
+            </div>
+        </details>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .ai-infrastructure-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #7b1fa2; /* Morado Cibernético */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #4a148c;
+        margin: 0 auto 20px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    /* IMAGEN HERO (Enlace corregido) */
+    .hero-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(123, 31, 162, 0.2);
+        margin: 0 auto 40px auto;
+        display: block;
+        opacity: 0;
+        animation: zoomIn 1.2s ease 0.3s forwards;
+        border: 1px solid #e1bee7;
+    }
+
+    /* --- TEXTO INTRODUCTORIO --- */
+    .content-block {
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+        margin-bottom: 50px;
+    }
+
+    .content-block p { margin-bottom: 20px; }
+
+    /* Destacados en el texto */
+    .highlight-text {
+        background: #f3e5f5;
+        color: #4a148c;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-weight: 600;
+    }
+
+    .intro-card {
+        background: #fce4ec; /* Morado muy suave */
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 5px solid #8e24aa;
+        margin-bottom: 30px;
+    }
+
+    /* --- OBJETIVOS (GRID) --- */
+    .objectives-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #6a1b9a;
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        border-bottom: 2px solid #e1bee7;
+        padding-bottom: 15px;
+    }
+
+    .obj-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+
+    .obj-card {
+        background: #ffffff;
+        border: 1px solid #e1bee7;
+        border-radius: 15px;
+        padding: 25px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .obj-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(106, 27, 154, 0.1);
+        border-color: #8e24aa;
+    }
+
+    .obj-icon {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        background: #f3e5f5;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #7b1fa2;
+    }
+
+    .obj-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #455a64;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .obj-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="ai-infrastructure-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Infraestructuras seguras para IA y tecnologías distribuidas (diseño)</h1>
+        
+        <img src="https://www.dropbox.com/scl/fi/10lkrvtzot34r1avurpkj/Gemini_Generated_Image_jrb9t2jrb9t2jrb9.png?rlkey=nevqutcr3iyzhngrog8n0vixv&st=yszfv5i9&raw=1" alt="Infraestructura IA" class="hero-image">
+    </div>
+
+    <div class="content-block">
+        <p>En esta Unidad nos enfocaremos en cómo <span class="highlight-text">diseñar infraestructuras seguras</span> capaces de soportar soluciones de <span class="highlight-text">Inteligencia Artificial (IA)</span> y tecnologías <span class="highlight-text">distribuidas</span> (nube, multi-sede, edge, IoT/OT, APIs y microservicios). En este tipo de entornos, el reto no es solo “conectar” componentes: es lograr que el intercambio de datos, el despliegue de modelos, la operación diaria y la escalabilidad se realicen con <strong>control, trazabilidad y resiliencia</strong>, minimizando exposición y errores de configuración.</p>
+        
+        <div class="intro-card">
+            <p>A diferencia de una infraestructura tradicional, en IA y arquitecturas distribuidas el flujo de datos se vuelve más intenso y sensible (datasets, pipelines, logs, modelos, inferencia en tiempo real). Por eso, el diseño debe integrar desde el inicio principios como <strong>segmentación por zonas, mínimo privilegio, seguridad por identidad, protección de APIs, monitoreo centralizado, y continuidad operativa.</strong></p>
+            <p style="margin-bottom:0;">El objetivo es que el estudiante pueda pasar de “ideas sueltas” a un <strong>diseño estructurado, justificable y verificable</strong>, alineado con el entorno y sus riesgos.</p>
+        </div>
+    </div>
+
+    <h2 class="objectives-title">Objetivos de la Unidad</h2>
+
+    <div class="obj-grid">
+        
+        <div class="obj-card">
+            <div class="obj-icon">🧩</div>
+            <div class="obj-text">
+                Comprender los componentes y flujos típicos de una infraestructura para IA y tecnologías distribuidas (datos, cómputo, almacenamiento, servicios, APIs, redes y seguridad).
+            </div>
+        </div>
+
+        <div class="obj-card">
+            <div class="obj-icon">⚠️</div>
+            <div class="obj-text">
+                Identificar riesgos principales en entornos distribuidos con IA (exposición de datos, movimiento lateral, configuraciones inseguras, accesos excesivos, dependencia de nube, disponibilidad).
+            </div>
+        </div>
+
+        <div class="obj-card">
+            <div class="obj-icon">🏗️</div>
+            <div class="obj-text">
+                Diseñar una arquitectura segura para IA aplicando segmentación, control de acceso por identidad, políticas de comunicación entre zonas y controles perimetrales adecuados.
+            </div>
+        </div>
+
+        <div class="obj-card">
+            <div class="obj-icon">🛡️</div>
+            <div class="obj-text">
+                Seleccionar y justificar “building blocks” de seguridad para infraestructuras distribuidas (NGFW/WAF, ZTNA/VPN, NAC/802.1X, IAM/MFA, monitoreo y registros).
+            </div>
+        </div>
+
+        <div class="obj-card">
+            <div class="obj-icon">✅</div>
+            <div class="obj-text">
+                Definir criterios de verificación del diseño (pruebas, métricas y evidencias) para demostrar que la infraestructura cumple con seguridad, disponibilidad y desempeño.
+            </div>
+        </div>
+
+        <div class="obj-card">
+            <div class="obj-icon">📄</div>
+            <div class="obj-text">
+                Elaborar un esquema de documentación técnica básico del diseño (diagramas, decisiones, reglas clave, riesgos residuales y plan de validación).
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
