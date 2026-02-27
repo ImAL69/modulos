@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 0: Guía de Aprendizaje</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative; overflow: hidden;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        padding: 5px; background: #fff; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    /* ACORDEÓN MEJORADO */
+    details {
+        background: #f5faff; margin-bottom: 20px; border-radius: 12px; border: 1px solid #bbdefb;
+        transition: all 0.3s ease;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #1565c0; font-family: 'Montserrat', sans-serif;
+        display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 25px; background: #fff; border-top: 1px solid #bbdefb; line-height: 1.6; }
+
+    /* TABLA DE EVALUACIÓN */
+    .eval-table {
+        width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem;
+    }
+    .eval-table th { background: #1565c0; color: white; padding: 15px; text-align: left; font-weight: 600; }
+    .eval-table td { border: 1px solid #bbdefb; padding: 15px; vertical-align: top; }
+    .eval-table tr:nth-child(even) { background: #f5faff; }
+
+    .highlight-yellow { background-color: #fff9c4; padding: 2px 5px; border-radius: 4px; font-weight: bold; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Guía de Aprendizaje</h1>
+        <p>Mapa de Ruta: Actividades, Pesos y Cronograma</p>
+    </div>
+
+    <div class="content-block">
+        <h2 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">📊 Sistema de Evaluación y Pesos</h2>
+        <p>La evaluación del módulo se centra en la <strong>evidencia práctica</strong>. No hay exámenes de memoria; hay productos entregables que demuestran tu capacidad de aplicar la teoría a problemas reales.</p>
+        
+        <table class="eval-table">
+            <thead>
+                <tr>
+                    <th>Actividad</th>
+                    <th>Resultado de Aprendizaje (RA)</th>
+                    <th>Evidencia Esperada</th>
+                    <th>Peso (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Foro Act. 1</strong></td>
+                    <td>RA1: Calidad de Datos</td>
+                    <td>Participación + Tabla de Riesgos de Calidad de Datos</td>
+                    <td>15%</td>
+                </tr>
+                <tr>
+                    <td><strong>Taller Act. 2</strong></td>
+                    <td>RA2: Modelado</td>
+                    <td>Notebook de Entrenamiento + Reporte Comparativo (PDF)</td>
+                    <td>35%</td>
+                </tr>
+                <tr>
+                    <td><strong>Proyecto Act. 4</strong></td>
+                    <td>RA3: Integración</td>
+                    <td>Proyecto Final Completo (Pipeline + Dashboard + Documentación de Riesgos)</td>
+                    <td>50%</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-size:0.85rem; color:#757575; font-style:italic; margin-top:5px;">* Nota: Los porcentajes son referenciales y se ajustan al microcurrículo oficial de la institución.</p>
+
+        <h2 style="color:#0d47a1; margin-top:40px; font-family:'Montserrat', sans-serif;">📅 Cronograma Académico Detallado</h2>
+        
+        <details>
+            <summary>Semanas 1-2: Fundamentos y Calidad de Datos (RA1)</summary>
+            <div class="details-content">
+                <p><strong>Enfoque:</strong> Entender que "basura entra, basura sale". Aprenderemos a diagnosticar riesgos en datos y limpiarlos.</p>
+                <ul>
+                    <li><strong>Contenidos:</strong> Tipos de variables, estadística descriptiva, detección de nulos y outliers, imputación.</li>
+                    <li><strong>Herramientas:</strong> Pandas, Seaborn.</li>
+                    <li><strong>Entregable Hito:</strong> Participación en Foro Act. 1 (Diagnóstico de Calidad y Riesgo).</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>Semanas 3-5: Modelado Predictivo y Métricas (RA2)</summary>
+            <div class="details-content">
+                <p><strong>Enfoque:</strong> Entrenar modelos que generalicen bien y no solo memoricen datos (evitar Overfitting).</p>
+                <ul>
+                    <li><strong>Contenidos:</strong> Algoritmos supervisados (Regresión Logística, Árboles), partición Train/Test, Validación Cruzada, Métricas (Precision, Recall, F1).</li>
+                    <li><strong>Herramientas:</strong> Scikit-Learn.</li>
+                    <li><strong>Entregable Hito:</strong> Taller Act. 2 (Comparación de Modelos).</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>Semanas 6-9: Proyecto Integrador y Operación (RA3)</summary>
+            <div class="details-content">
+                <p><strong>Enfoque:</strong> Construir un sistema robusto que funcione en el mundo real.</p>
+                <ul>
+                    <li><strong>Contenidos:</strong> Pipelines automatizados, detección de anomalías, monitoreo de deriva (Drift), gestión de riesgos operativos.</li>
+                    <li><strong>Herramientas:</strong> Pipelines de Sklearn, Joblib (persistencia).</li>
+                    <li><strong>Entregable Hito:</strong> Proyecto Integrador Final (Avances 1, 2 y Entrega Final).</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</div>
+
+</body>
+</html>

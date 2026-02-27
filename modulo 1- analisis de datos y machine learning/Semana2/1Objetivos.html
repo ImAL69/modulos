@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Objetivos Semana 2: Preparación Avanzada</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0; /* Azul Institucional */
+    }
+
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        width: 160px;
+        height: auto;
+        z-index: 100;
+        padding: 5px;
+        background: #fff;
+        border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box {
+        text-align: left;
+        margin-bottom: 60px;
+        padding-top: 40px;
+        padding-right: 180px; 
+        padding-left: 20px;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 30px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: #0d47a1;
+        margin: 0 0 15px 0;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.4rem;
+        color: #546e7a;
+        display: block;
+        font-weight: 300;
+        border-left: 4px solid #1976d2;
+        padding-left: 15px;
+    }
+
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1.1rem;
+        text-align: justify;
+    }
+
+    /* LISTA DE OBJETIVOS CON ICONOS */
+    .objective-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 30px;
+    }
+    .objective-list li {
+        margin-bottom: 25px;
+        padding: 25px;
+        background: #f5faff;
+        border-radius: 10px;
+        border-left: 5px solid #1565c0;
+        display: flex;
+        align-items: flex-start;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+    }
+    .objective-list i {
+        font-size: 1.8rem;
+        color: #1565c0;
+        margin-right: 20px;
+        margin-top: 5px;
+    }
+    
+    .obj-text h4 {
+        margin: 0 0 10px 0;
+        color: #0d47a1;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .highlight-box {
+        background: #e3f2fd;
+        padding: 30px;
+        border-radius: 12px;
+        border-left: 6px solid #0d47a1;
+        margin: 30px 0;
+        font-size: 1.15rem;
+        color: #0d47a1;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 20px; text-align: center; }
+        .main-title { font-size: 2rem; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Semana 2: Ingeniería de Características y Preparación para el Modelado</h1>
+        <span class="subtitle">Unidad 1 - RA1: Transformando Datos en Información Accionable</span>
+    </div>
+
+    <div class="content-block">
+        <p>Habiendo completado el diagnóstico inicial y la limpieza básica de los datos (Semana 1), entramos en la fase más creativa y determinante del ciclo de vida del dato: la <strong>Ingeniería de Características (Feature Engineering)</strong>. Los algoritmos de Machine Learning son, en esencia, funciones matemáticas que operan sobre vectores numéricos. Si no transformamos adecuadamente nuestras variables categóricas, textos y fechas en representaciones numéricas coherentes, el modelo más sofisticado fracasará.</p>
+        
+        <div class="highlight-box">
+            <strong>⚠️ Gestión del Riesgo Técnico:</strong> El objetivo no es solo que el código corra sin errores, sino mitigar el <strong>Riesgo de Desempeño del Modelo</strong>. Un error común es filtrar datos ("Data Leakage") del conjunto de prueba al de entrenamiento (como calcular la media de escalado usando todo el dataset), lo que genera una falsa sensación de éxito. Esta semana aprenderemos a construir pipelines herméticos.
+        </div>
+
+        <h3 style="color:#0d47a1; margin-top:40px; font-family: 'Montserrat', sans-serif; font-size: 1.8rem;">🎯 Objetivos Académicos Profundos</h3>
+        <ul class="objective-list">
+            <li>
+                <i class="fa-solid fa-code-branch"></i>
+                <div class="obj-text">
+                    <h4>1. Dominio de Transformación de Variables</h4>
+                    Aplicar técnicas avanzadas de escalado (StandardScaler para gaussianas, MinMaxScaler para rangos acotados) y codificación (One-Hot, Ordinal, Target Encoding). Entenderemos matemáticamente por qué un árbol de decisión no necesita escalado pero una red neuronal sí.
+                </div>
+            </li>
+            <li>
+                <i class="fa-solid fa-scissors"></i>
+                <div class="obj-text">
+                    <h4>2. Estrategias de Validación Rigurosa</h4>
+                    Implementar la partición de datos (Train/Test Split) con criterios de seguridad: uso de <strong>Estratificación</strong> para clases desbalanceadas (crítico en fraude y ciberataques donde el evento es <1%) y divisiones temporales para logs, evitando sesgos de "mirar al futuro".
+                </div>
+            </li>
+            <li>
+                <i class="fa-solid fa-file-export"></i>
+                <div class="obj-text">
+                    <h4>3. Construcción del "Gold Standard"</h4>
+                    Producir un dataset maestro: limpio, transformado y dividido, listo para ser consumido por algoritmos de ML. Documentaremos la trazabilidad de cada transformación para asegurar que el pipeline sea reproducible en producción.
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

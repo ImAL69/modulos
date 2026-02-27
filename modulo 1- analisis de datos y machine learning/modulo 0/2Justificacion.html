@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Justificación: IA en Ciberseguridad</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        width: 150px;
+        height: auto;
+        z-index: 100;
+        padding: 5px;
+        background: #fff;
+        border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .uni-logo:hover { 
+        transform: translateY(-2px) scale(1.02); 
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .header-box {
+        text-align: left;
+        margin-bottom: 50px;
+        padding-top: 30px;
+        padding-right: 180px; 
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #0d47a1;
+        margin: 0 0 10px 0;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        color: #546e7a;
+        font-weight: 400;
+    }
+
+    .problem-card {
+        background: #e3f2fd;
+        border: 1px solid #90caf9;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        border-left: 6px solid #1565c0;
+        transition: transform 0.3s;
+    }
+    .problem-card:hover { transform: translateY(-5px); }
+
+    .problem-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: #0d47a1;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .solution-text {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #90caf9;
+        color: #1b5e20;
+        font-weight: 600;
+    }
+
+    .qa-box {
+        background: #ffffff;
+        border: 2px solid #64b5f6;
+        padding: 25px;
+        border-radius: 12px;
+        margin-top: 30px;
+    }
+    .qa-q { font-weight: 700; color: #1565c0; display: block; margin-bottom: 15px; font-size: 1.1rem; }
+    .qa-a { font-style: italic; color: #455a64; background: #f1f8e9; padding: 20px; border-radius: 8px; border: 1px solid #c5e1a5; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Justificación y Contexto Académico</h1>
+        <span class="subtitle">La Necesidad Crítica de la IA en Seguridad Informática</span>
+    </div>
+
+    <div class="content-block">
+        <p>La convergencia entre la Ciencia de Datos y la Ciberseguridad no es una moda, es una necesidad operativa de supervivencia. Los métodos tradicionales basados en "firmas" (conocer previamente el ataque para detectarlo) son insuficientes ante amenazas de día cero, ataques polimórficos y la velocidad de operación de los ciberdelincuentes automatizados. Este módulo aborda tres problemáticas centrales:</p>
+        
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-triangle-exclamation"></i> 1. El Problema de la "Fatiga de Alertas"</span>
+            <p>Los sistemas tradicionales (SIEM, IDS) generan miles de alertas diarias, muchas de las cuales son falsos positivos. Esto satura a los equipos SOC (Security Operations Centers), llevando a la desensibilización y al riesgo de ignorar amenazas reales críticas que quedan sepultadas en el ruido. <strong>Riesgo Operativo:</strong> Alta probabilidad de ignorar incidentes reales debido a la sobrecarga.</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución del Módulo:</strong> Implementaremos modelos de clasificación y scoring de riesgo para filtrar el ruido, priorizar incidentes y presentar al analista solo aquello que requiere intervención humana real.
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-database"></i> 2. El Problema de la Calidad de Datos</span>
+            <p>Los datos en el mundo real son "sucios". Logs incompletos, formatos inconsistentes, timestamps desincronizados y valores atípicos (outliers) son la norma. Entrenar modelos con estos datos crudos lleva inevitablemente a resultados erróneos y decisiones peligrosas ("Garbage In, Garbage Out"). <strong>Riesgo de Datos:</strong> Datos incompletos o sesgados generan modelos inútiles o discriminatorios.</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución del Módulo:</strong> Desarrollaremos competencias avanzadas en preprocesamiento de datos (Data Wrangling), aprendiendo a imputar valores, normalizar escalas y transformar variables categóricas de forma estadísticamente válida.
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-brain"></i> 3. El Problema de la Detección de lo "Desconocido"</span>
+            <p>Los antivirus tradicionales funcionan con firmas: detectan lo que ya conocen. Sin embargo, los ataques de día cero (Zero-Day) o las amenazas internas no tienen firmas previas. Los sistemas basados en reglas estáticas son ciegos ante nuevos patrones de ataque. <strong>Riesgo Técnico:</strong> Incapacidad para adaptarse a nuevas amenazas (Deriva del Modelo).</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución del Módulo:</strong> Aplicaremos técnicas de aprendizaje no supervisado (Detección de Anomalías) para identificar comportamientos que se desvían de la norma, permitiendo detectar amenazas nunca antes vistas.
+            </div>
+        </div>
+
+        <div class="qa-box">
+            <span class="qa-q">Reflexión para el Estudiante: ¿Qué diferencia a un técnico de un ingeniero de datos en seguridad?</span>
+            <div class="qa-a">
+                El técnico ejecuta herramientas; el ingeniero entiende los fundamentos y gestiona los riesgos. Al finalizar este módulo, no solo sabrán ejecutar un script de Python, sino que entenderán por qué el modelo tomó una decisión, cuáles son sus sesgos y limitaciones, y cómo integrar esa inteligencia en una estrategia de seguridad holística y defendible ante la dirección.
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

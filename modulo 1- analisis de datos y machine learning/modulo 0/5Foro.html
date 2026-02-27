@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foro Social: Presentémonos</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 40px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .instruction-box {
+        background: #e3f2fd; padding: 30px; border-radius: 12px; border-left: 6px solid #1565c0;
+        margin-bottom: 30px;
+    }
+    
+    .step-list { list-style: none; padding: 0; }
+    .step-list li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+    .step-list li::before { 
+        content: '💬'; position: absolute; left: 0; top: 0; color: #1565c0; font-size: 1.2rem;
+    }
+
+    .rules-card {
+        background: #fff; border: 1px dashed #1565c0; padding: 25px; border-radius: 8px; text-align: center; color: #0d47a1; margin-top: 40px;
+    }
+
+    /* Imagen ilustrativa (banner) */
+    .feature-img { display:block; max-width:100%; height:auto; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.08); margin:20px auto; }
+    .img-caption { text-align:center; color:#546e7a; font-size:0.9rem; margin-top:8px; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Foro Social: Networking y Comunidad</h1>
+        <p>Construyamos comunidad desde el primer día. (No evaluativo)</p>
+    </div>
+
+    <div class="instruction-box">
+        <h3 style="color:#0d47a1; margin-top:0;">📝 Instrucciones de Participación</h3>
+        <p>En el mundo de los datos, los problemas complejos se resuelven en equipo. Usa este espacio para encontrar pares con intereses similares.</p>
+        <figure>
+            <img class="feature-img" src="https://www.dropbox.com/scl/fi/9lol8ftamb4mcmlfp3j1b/Gemini_Generated_Image_wo09ykwo09ykwo09.png?rlkey=sl6mwrmtk15sqoqaqsx1b6cai&st=vpibr3mo&raw=1" alt="Ilustración motivacional de un perrito para dar la bienvenida al foro de estudiantes" />
+            <figcaption class="img-caption">Bienvenidos al foro: ¡preséntate y conecta con tus compañeros!</figcaption>
+        </figure>
+        <ul class="step-list">
+            <li><strong>Tu Presentación ("Pitch" Personal):</strong> No solo digas tu nombre. Cuéntanos:
+                <br>1. Tu background (¿Vienes de TI, de Negocios, de otra área?).
+                <br>2. Tu experiencia real con datos (¿Excel avanzado? ¿SQL? ¿Nada aún?).
+                <br>3. <strong>Tu objetivo:</strong> ¿Qué problema específico de tu trabajo o entorno quieres resolver con lo que aprendas aquí?</li>
+            <li><strong>Interacción de Valor:</strong> Responde a al menos <strong>2 compañeros</strong>.
+                <br><em>No escribas solo "Bienvenido".</em> Pregunta sobre sus herramientas, comparte un recurso útil para su objetivo o conecta puntos comunes ("¡Yo también lucho con esos reportes de Excel!").</li>
+        </ul>
+    </div>
+
+    <div class="rules-card">
+        <strong>🤝 Netiquette Profesional:</strong><br>
+        Mantén un tono respetuoso y constructivo. Estamos aquí para aprender. Valora la diversidad de experiencias: el experto en código puede aprender mucho del experto en negocio, y viceversa.
+    </div>
+
+</div>
+
+</body>
+</html>

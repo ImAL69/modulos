@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bienvenida al Módulo: Análisis de Datos y ML</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        width: 150px;
+        height: auto;
+        z-index: 100;
+        padding: 5px;
+        background: #fff;
+        border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .uni-logo:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .header-box {
+        text-align: left;
+        margin-bottom: 50px;
+        padding-top: 30px;
+        padding-right: 180px; 
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #0d47a1;
+        margin: 0 0 10px 0;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        color: #546e7a;
+        font-weight: 400;
+    }
+
+    .section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        color: #1565c0;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        border-left: 5px solid #1565c0;
+        padding-left: 15px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .highlight-box {
+        background: #e3f2fd;
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 6px solid #0d47a1;
+        margin: 30px 0;
+        font-size: 1.05rem;
+    }
+
+    .info-card {
+        background: #f5faff;
+        border: 1px solid #bbdefb;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        transition: transform 0.2s;
+    }
+    .info-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+    .card-title { font-weight: 700; color: #1565c0; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Análisis de Datos y Machine Learning</h1>
+        <span class="subtitle">Módulo 4: Fundamentación Técnica y Operacionalización</span>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title"><i class="fa-solid fa-door-open"></i> Visión General del Curso</h2>
+        <p>Bienvenidos a un módulo que representa un cambio de paradigma en la formación tecnológica. En la era actual, la ciberseguridad y la gestión de TI ya no pueden depender únicamente de reglas estáticas y revisión manual. El volumen y la velocidad de los datos exigen una nueva competencia: la capacidad de <strong>convertir datos en inteligencia predictiva</strong>.</p>
+        
+        <p>Este curso no es solo un tutorial de Python. Es una inmersión en la metodología científica de datos aplicada a problemas reales, integrando la <strong>Gestión de Riesgos</strong> como eje transversal. Aprenderán a pensar como Científicos de Datos: cuestionando la calidad de la información, evaluando la incertidumbre y construyendo sistemas que aprenden de la experiencia (Machine Learning) para automatizar decisiones complejas.</p>
+        
+        <div class="highlight-box">
+            <strong>💡 La Diferencia Profesional:</strong> Un analista tradicional reacciona a incidentes basándose en lo que ve. Un analista con competencias en datos <strong>anticipa</strong> incidentes modelando patrones ocultos en terabytes de logs, reduciendo el tiempo de respuesta y minimizando el error humano.
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title"><i class="fa-solid fa-laptop-code"></i> Ecosistema Tecnológico</h2>
+        <p>Para lograr estos objetivos, utilizaremos un stack tecnológico estándar en la industria. No se trata solo de herramientas, sino de estándares de trabajo colaborativo y reproducible:</p>
+        
+        <div class="info-card">
+            <span class="card-title">🐍 Python & Pandas (El Motor)</span>
+            Usaremos Python como lenguaje base debido a su dominio absoluto en Data Science. La librería <strong>Pandas</strong> será nuestra "navaja suiza" para manipular, limpiar y estructurar datos tabulares (logs, transacciones, usuarios) antes de que toquen cualquier modelo.
+        </div>
+        
+        <div class="info-card">
+            <span class="card-title">🤖 Scikit-Learn (El Cerebro)</span>
+            Aprenderemos a implementar algoritmos de Machine Learning (Supervisados y No Supervisados) con <strong>Scikit-Learn</strong>. Nos enfocaremos en entender qué pasa "bajo el capó": cómo el algoritmo optimiza errores y cómo evitar el sobreajuste (overfitting).
+        </div>
+
+        <div class="info-card">
+            <span class="card-title">📓 Jupyter & Git (El Laboratorio)</span>
+            Trabajaremos en <strong>Jupyter Notebooks</strong> para documentar nuestros experimentos paso a paso, integrando código, visualizaciones y narrativa. Además, gestionaremos versiones con Git para asegurar la trazabilidad de nuestros cambios.
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 class="section-title"><i class="fa-solid fa-road"></i> Metodología "Learning by Doing"</h2>
+        <p>Este módulo huye de la teoría abstracta desconectada. Cada concepto matemático (como la desviación estándar o la entropía) se explicará a través de su utilidad práctica:</p>
+        <ul>
+            <li>No memorizaremos fórmulas; las programaremos para entender cómo detectan anomalías.</li>
+            <li>No asumiremos que los datos están limpios; enfrentaremos datasets "sucios" y reales que requieren ingeniería.</li>
+            <li>No entregaremos solo código; entregaremos <strong>Pipelines</strong> y reportes de decisión para gerencia, enfocados en mitigar riesgos reales del negocio.</li>
+        </ul>
+    </div>
+    
+    <div class="highlight-box" style="background-color: #e8f5e9; border-left-color: #2e7d32; color: #1b5e20;">
+        <strong>✅ Checklist de Arranque:</strong> Antes de la primera sesión, asegúrate de tener instalado Anaconda/Miniconda, configurado tu entorno virtual y acceso al repositorio de datasets del curso.
+    </div>
+
+</div>
+
+</body>
+</html>

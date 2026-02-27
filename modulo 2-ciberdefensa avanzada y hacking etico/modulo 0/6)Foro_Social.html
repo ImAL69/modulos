@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foro Social: Presentémonos</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 40px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .instruction-box {
+        background: #e3f2fd; padding: 30px; border-radius: 12px; border-left: 6px solid #1565c0;
+        margin-bottom: 30px;
+    }
+    
+    .step-list { list-style: none; padding: 0; }
+    .step-list li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+    .step-list li::before { 
+        content: '💬'; position: absolute; left: 0; top: 0; color: #1565c0; font-size: 1.2rem;
+    }
+
+    .rules-card {
+        background: #fff; border: 1px dashed #1565c0; padding: 25px; border-radius: 8px; text-align: center; color: #0d47a1; margin-top: 40px;
+    }
+
+    /* Estilo corregido para la imagen */
+    .feature-img { 
+        display:block; 
+        max-width:100%; 
+        height:auto; 
+        border-radius:12px; 
+        box-shadow:0 8px 24px rgba(0,0,0,0.15); 
+        margin:20px auto; 
+        border: 1px solid #e0e0e0;
+    }
+    .img-caption { text-align:center; color:#546e7a; font-size:0.9rem; margin-top:8px; font-style: italic; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Foro Social: Comunidad Hacker</h1>
+        <p>Conecta con tu "Red Team". Experiencias, expectativas y networking.</p>
+    </div>
+
+    <div class="instruction-box">
+        <h3 style="color:#0d47a1; margin-top:0;">📝 Dinámica de Presentación</h3>
+        <p>La ciberseguridad es una disciplina colaborativa. Nadie sabe todo, pero todos saben algo. Rompamos el hielo:</p>
+        
+        <figure>
+             <!-- Enlace corregido con raw=1 para visualización directa -->
+             <img src="https://www.dropbox.com/scl/fi/g9y6hcil0ohec4t0ccwqr/Gemini_Generated_Image_7g1vra7g1vra7g1v.png?rlkey=q4x3jbi84uuy8hbseyk91fv5f&st=we9mkct5&raw=1" alt="Comunidad de Ciberseguridad Colaborando" class="feature-img">
+             <figcaption class="img-caption">"En ciberseguridad, el eslabón más fuerte es el equipo."</figcaption>
+        </figure>
+
+        <ul class="step-list">
+            <li><strong>Tu Perfil ("Whoami"):</strong> Nombre, background profesional (¿TI, desarrollo, redes, o vienes de cero?) y sistema operativo favorito.</li>
+            <li><strong>Experiencia Previa:</strong> ¿Alguna vez has sido víctima de un ataque (virus, phishing)? ¿O has tenido que limpiar uno? Cuéntanos (sin revelar datos sensibles).</li>
+            <li><strong>Tu Objetivo:</strong> ¿Por qué Ciberdefensa? ¿Buscas proteger tu empresa, certificarte como CEH/OSCP, o simple curiosidad intelectual?</li>
+        </ul>
+    </div>
+
+    <div class="rules-card">
+        <strong>🤝 Código de Conducta:</strong><br>
+        Respeto absoluto. Aquí hay expertos y principiantes; el objetivo es aprender juntos. Recuerda: <em>"La única pregunta tonta es la que no se hace."</em>
+    </div>
+
+
+    <div class="instruction-box" style="margin-top:25px;">
+        <h3 style="color:#0d47a1; margin-top:0;">🤝 Cómo aportar valor en el foro (sin respuestas vacías)</h3>
+        <ul class="step-list">
+            <li><strong>Comenta a 2 compañeros:</strong> haz una pregunta técnica o comparte una recomendación útil.</li>
+            <li><strong>Comparte aprendizaje:</strong> cuenta un “error” que te enseñó algo (sin datos sensibles).</li>
+            <li><strong>Evita spam:</strong> no pegues enlaces sin explicar por qué ayudan.</li>
+        </ul>
+    </div>
+
+    <div class="instruction-box">
+        <h3 style="color:#0d47a1; margin-top:0;">💡 Preguntas para romper el hielo (elige 2 y responde)</h3>
+        <ul class="step-list">
+            <li>¿Qué fue lo primero que te despertó interés por ciberseguridad?</li>
+            <li>¿Qué te cuesta más hoy: redes, Linux o documentar evidencias?</li>
+            <li>¿Qué te gustaría poder hacer al final de las 9 semanas?</li>
+            <li>¿Qué hábito de seguridad crees que falla más en empresas reales?</li>
+            <li>Si pudieras aprender solo una cosa de este módulo, ¿cuál sería?</li>
+        </ul>
+        <p style="margin-bottom:0;"><strong>Tip:</strong> responde con ejemplos. En ciberseguridad, el contexto lo es todo.</p>
+    </div>
+
+    <div class="rules-card">
+        <strong>🔒 OPSEC básico:</strong><br>
+        Comparte experiencias, no datos. No publiques IPs, dominios internos, correos personales ni nombres de sistemas reales.
+    </div>
+
+
+</div>
+
+</body>
+</html>

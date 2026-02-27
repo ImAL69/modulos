@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist de Entrega Final</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .checklist-container {
+        background: #f5faff; padding: 30px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+
+    .check-item {
+        display: flex; align-items: center; margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;
+    }
+    .check-item input { width: 25px; height: 25px; margin-right: 15px; cursor: pointer; accent-color: #1565c0; }
+    .check-label { font-size: 1.1rem; cursor: pointer; flex: 1; }
+
+    .upload-btn {
+        display: block; width: 100%; padding: 20px; background: #2e7d32; color: white; text-align: center; border: none; border-radius: 50px; font-weight: bold; font-size: 1.2rem; margin-top: 30px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .upload-btn:hover { background: #1b5e20; transform: scale(1.02); }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Checklist de Entrega Final</h1>
+        <p>Asegura tu 50% antes de subir los archivos.</p>
+    </div>
+
+    <div class="checklist-container">
+        <div class="check-item">
+            <input type="checkbox" id="c1">
+            <label for="c1" class="check-label">El Informe Ejecutivo tiene máximo 3 páginas y lenguaje de negocio.</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="c2">
+            <label for="c2" class="check-label">El Informe Técnico incluye TODAS las evidencias gráficas necesarias.</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="c3">
+            <label for="c3" class="check-label">La Presentación (PPTX/PDF) tiene entre 8 y 10 diapositivas.</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="c4">
+            <label for="c4" class="check-label">He revisado la ortografía y el formato de los documentos.</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="c5">
+            <label for="c5" class="check-label">He anonimizado cualquier dato personal real (si aplica).</label>
+        </div>
+
+        </div>
+
+
+
+    <div class="lessons-box" style="margin-top:26px;">
+        <strong>🧭 Guía para tu reunión de cierre (15 minutos):</strong>
+        <ul style="margin:10px 0 0 18px;">
+            <li><strong>Min 0–2:</strong> Contexto y alcance (qué se probó, qué no).</li>
+            <li><strong>Min 2–7:</strong> Hallazgos top (3–5) con impacto claro y prioridad.</li>
+            <li><strong>Min 7–12:</strong> Plan de mitigación (quick wins vs mediano plazo) y responsables.</li>
+            <li><strong>Min 12–15:</strong> Lecciones aprendidas + próximos pasos (retest, hardening, monitoreo).</li>
+        </ul>
+    </div>
+
+    <div class="final-card" style="border-bottom-color:#ff6f00;">
+        <i class="fa-solid fa-clipboard-list final-icon" style="color:#ff6f00;"></i>
+        <h3 class="final-title" style="color:#e65100;">Plantilla corta de Lecciones Aprendidas</h3>
+        <p style="margin-bottom:0;">Copia este formato y responde con frases cortas (máximo 8–10 líneas):</p>
+        <div style="text-align:left; margin-top:14px; background:#fff; border:1px solid #ffe0b2; padding:16px; border-radius:10px;">
+            <ul style="margin:0 0 0 18px; color:#5d4037;">
+                <li><strong>Qué funcionó bien:</strong> (herramientas, comunicación, preparación)</li>
+                <li><strong>Qué salió mal:</strong> (bloqueos, accesos, fallos de laboratorio)</li>
+                <li><strong>Qué haría diferente:</strong> (pasos, evidencia, enfoque)</li>
+                <li><strong>Control preventivo recomendado:</strong> (hardening, monitoreo, proceso)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="final-card" style="border-bottom-color:#2e7d32;">
+        <i class="fa-solid fa-circle-check final-icon" style="color:#2e7d32;"></i>
+        <h3 class="final-title" style="color:#1b5e20;">Cierre Profesional</h3>
+        <p style="margin-bottom:0;">
+            Si tu informe permite que un equipo de TI <strong>reproduzca</strong> el hallazgo y <strong>aplique</strong> la corrección sin preguntarte,
+            entonces tu auditoría está lista para el mundo real.
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

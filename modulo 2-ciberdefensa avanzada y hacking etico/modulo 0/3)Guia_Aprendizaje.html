@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Aprendizaje: Hoja de Ruta</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative; overflow: hidden;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        padding: 5px; background: #fff; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    /* ACORDEÓN MEJORADO */
+    details {
+        background: #f5faff; margin-bottom: 20px; border-radius: 12px; border: 1px solid #bbdefb;
+        transition: all 0.3s ease;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #1565c0; font-family: 'Montserrat', sans-serif;
+        display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 25px; background: #fff; border-top: 1px solid #bbdefb; line-height: 1.6; }
+
+    /* TABLA DE EVALUACIÓN */
+    .eval-table {
+        width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem;
+    }
+    .eval-table th { background: #1565c0; color: white; padding: 15px; text-align: left; font-weight: 600; }
+    .eval-table td { border: 1px solid #bbdefb; padding: 15px; vertical-align: top; }
+    .eval-table tr:nth-child(even) { background: #f5faff; }
+
+    .highlight-yellow { background-color: #fff9c4; padding: 2px 5px; border-radius: 4px; font-weight: bold; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Guía de Aprendizaje</h1>
+        <p>Cronograma, Hitos Evaluativos y Estrategia</p>
+    </div>
+
+    <div class="content-block">
+        <h2 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">📊 Sistema de Evaluación (Assessment)</h2>
+        <p>En este módulo, la teoría sin práctica es irrelevante. La evaluación se centra en la entrega de productos tangibles que demuestren competencia técnica y capacidad de comunicación.</p>
+        
+        <table class="eval-table">
+            <thead>
+                <tr>
+                    <th>Actividad</th>
+                    <th>Fase del Hacking</th>
+                    <th>Producto Esperado (Evidencia)</th>
+                    <th>Peso (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Actividad 1: Foro Técnico</strong></td>
+                    <td>Reconocimiento (Unidad 1)</td>
+                    <td>Análisis de Superficie de Ataque + Identificación de Riesgos (Matriz).</td>
+                    <td>15%</td>
+                </tr>
+                <tr>
+                    <td><strong>Actividad 2: Laboratorio (CTF)</strong></td>
+                    <td>Explotación (Unidad 2)</td>
+                    <td>Informe Técnico de Intrusión (Captura de evidencias, screenshots, logs).</td>
+                    <td>35%</td>
+                </tr>
+                <tr>
+                    <td><strong>Actividad 3: Proyecto Final</strong></td>
+                    <td>Reporte y Cierre (Unidad 3)</td>
+                    <td>Informe Ejecutivo + Plan de Mitigación y Remediación.</td>
+                    <td>50%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 style="color:#0d47a1; margin-top:40px; font-family:'Montserrat', sans-serif;">📅 Cronograma Táctico (9 Semanas)</h2>
+        
+        <details open>
+            <summary>Unidad 1: Análisis de Vulnerabilidades (Semanas 1-2)</summary>
+            <div class="details-content">
+                <p><strong>Misión:</strong> Mapear el terreno sin ser detectados. Entender el alcance legal.</p>
+                <ul>
+                    <li><strong>Semana 1:</strong> Fundamentos Legales, Ética, Tipos de Pentest (White/Grey/Black Box).</li>
+                    <li><strong>Semana 2:</strong> Reconocimiento Activo y Pasivo (OSINT), Google Dorks, Shodan, Escaneo con Nmap y Nessus.</li>
+                    <li><strong>Hito:</strong> Foro Evaluativo "Superficie de Ataque".</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>Unidad 2: Metodologías y Ejecución (Semanas 3-5)</summary>
+            <div class="details-content">
+                <p><strong>Misión:</strong> Obtener acceso inicial y escalar privilegios.</p>
+                <ul>
+                    <li><strong>Semana 3:</strong> Framework Metasploit, Payloads, Exploits Web (SQLi, XSS).</li>
+                    <li><strong>Semana 4:</strong> Post-Explotación, Escalada de Privilegios (Linux/Windows), Persistencia.</li>
+                    <li><strong>Semana 5:</strong> Movimiento Lateral y Pivoting en redes corporativas.</li>
+                    <li><strong>Hito:</strong> Laboratorio práctico de intrusión controlada.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>Unidad 3: Mitigación y Reporte (Semanas 6-9)</summary>
+            <div class="details-content">
+                <p><strong>Misión:</strong> Traducir el daño técnico en riesgo de negocio y proponer soluciones.</p>
+                <ul>
+                    <li><strong>Semana 6:</strong> Puntuación de Vulnerabilidades (CVSS v3.1), Priorización de Riesgos.</li>
+                    <li><strong>Semana 7:</strong> Avance del Informe Ejecutivo (Lenguaje de negocio).</li>
+                    <li><strong>Semana 8:</strong> Estrategias de Hardening, Parches y Defensa en Profundidad.</li>
+                    <li><strong>Semana 9:</strong> Entrega Final y Lecciones Aprendidas.</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <div class="content-block" style="margin-top:35px;">
+        <h2 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">✅ Criterios de calidad (qué hace que una evidencia sea “profesional”)</h2>
+        <p>Una entrega sólida no es “corrí Nmap y ya”. Se evalúa tu capacidad de <strong>pensar, validar y comunicar</strong> como auditor.</p>
+        <div class="details-content" style="border:1px solid #bbdefb; border-radius:12px;">
+            <ul style="margin:0; padding-left:20px;">
+                <li><strong>Reproducible:</strong> otra persona puede repetir tus pasos y obtener resultados similares.</li>
+                <li><strong>Trazable:</strong> cada hallazgo tiene evidencia (captura, log, comando, timestamp).</li>
+                <li><strong>Priorizado:</strong> justificas severidad (impacto + probabilidad), no “todo es crítico”.</li>
+                <li><strong>Accionable:</strong> la recomendación se puede ejecutar (parche, hardening, control compensatorio).</li>
+                <li><strong>Claro:</strong> lenguaje técnico para técnicos y resumen para negocio.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <h2 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">📄 Plantilla rápida de reporte (te ahorra tiempo)</h2>
+        <p>Puedes usar esta estructura para el laboratorio y el proyecto final:</p>
+        <div class="details-content" style="border:1px solid #bbdefb; border-radius:12px;">
+            <ol style="margin:0; padding-left:22px;">
+                <li><strong>Objetivo</strong> (qué intentas comprobar y por qué).</li>
+                <li><strong>Alcance / Reglas</strong> (qué sí / qué no; restricciones, ventana de pruebas).</li>
+                <li><strong>Metodología</strong> (recon → enumeración → validación → prueba controlada).</li>
+                <li><strong>Hallazgos</strong> (tabla: hallazgo → evidencia → impacto → recomendación → severidad).</li>
+                <li><strong>Conclusión</strong> (lecciones, riesgos clave y próximos pasos).</li>
+            </ol>
+        </div>
+        <p style="margin-top:15px;"><span class="highlight-yellow">Tip:</span> si un hallazgo no tiene evidencia, no lo incluyas como “confirmado”. Déjalo como “observación” o “hipótesis”.</p>
+    </div>
+
+    <div class="content-block">
+        <h2 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">⏱️ Plan semanal recomendado</h2>
+        <div class="details-content" style="border:1px solid #bbdefb; border-radius:12px;">
+            <ul style="margin:0; padding-left:20px;">
+                <li><strong>15–20 min</strong> lectura previa (conceptos + glosario).</li>
+                <li><strong>2–4 horas</strong> laboratorio (con bitácora en vivo).</li>
+                <li><strong>30–45 min</strong> consolidación (reporte + evidencias).</li>
+                <li><strong>Regla de oro:</strong> si no está documentado, “no existe” como evidencia.</li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

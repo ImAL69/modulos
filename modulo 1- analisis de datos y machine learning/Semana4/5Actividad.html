@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividad 3: Estudio de Caso Comparativo</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo { position: absolute; top: 30px; right: 40px; width: 160px; height: auto; z-index: 100; padding: 5px; background: #fff; border-radius: 8px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 60px; padding-top: 40px; padding-right: 180px; padding-left: 20px; border-bottom: 1px solid #e0e0e0; padding-bottom: 30px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 15px 0; }
+    
+    .instruction-box {
+        background: #e3f2fd; padding: 30px; border-radius: 12px; border-left: 6px solid #1565c0;
+        margin-bottom: 30px; font-size: 1.05rem;
+    }
+    
+    .step-list { list-style: none; padding: 0; }
+    .step-list li { margin-bottom: 20px; padding-left: 40px; position: relative; }
+    .step-list li::before { 
+        content: '⚖️'; position: absolute; left: 0; top: 0; font-size: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 20px; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Estudio de Caso Comparativo</h1>
+        <span class="subtitle">Evaluación Robusta y Decisión Final</span>
+    </div>
+
+    <div class="instruction-box">
+        <h3 style="color:#0d47a1; margin-top:0;">📝 Consigna del Caso</h3>
+        <p>En este estudio de caso, actuarás como consultor senior. Deberás entregar un <strong>Reporte de Decisión</strong> comparando el desempeño del Modelo A (Lineal) y el Modelo B (Árbol/Ensamble) sobre los mismos datos, recomendando cuál implementar en producción.</p>
+        
+        <ul class="step-list">
+            <li><strong>Comparación Técnica Rigurosa:</strong> Presenta métricas de ambos modelos tanto en el conjunto de Entrenamiento (Train) como en el de Prueba (Test). Identifica explícitamente si alguno sufre de Overfitting (gran diferencia entre train y test) o Underfitting (bajo rendimiento en ambos).</li>
+            <li><strong>Análisis de Impacto en Negocio:</strong> Traduce la matriz de confusión a términos operativos. ¿Cuántos ataques reales se perdieron (Falsos Negativos)? ¿Cuántas falsas alarmas se generaron (Falsos Positivos)? Calcula el "costo" de cada error.</li>
+            <li><strong>Recomendación Operacional:</strong> Define qué modelo usarías en producción y con qué configuración. Incluye una recomendación sobre el umbral de decisión (threshold): ¿deberíamos ser más estrictos o más permisivos con las alertas?</li>
+        </ul>
+        <p><strong>Entregable:</strong> Documento PDF que incluya gráficos de curvas de aprendizaje, tabla comparativa de métricas y tu conclusión argumentada.</p>
+    </div>
+</div>
+
+</body>
+</html>

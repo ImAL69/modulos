@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7. Conocimientos Previos</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .skill-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 25px;
+        border-left: 6px solid #1565c0; transition: transform 0.2s;
+    }
+    .skill-card:hover { transform: translateY(-3px); }
+
+    .skill-title { font-size: 1.3rem; font-weight: 700; color: #0d47a1; margin-bottom: 10px; display: block; font-family: 'Montserrat', sans-serif; }
+    
+    .skill-list { list-style: none; padding: 0; }
+    .skill-list li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+    .skill-list li::before { content: '•'; color: #1565c0; font-weight: bold; position: absolute; left: 0; }
+
+    .alert-box {
+        background: #fff3e0; border-left: 6px solid #ff9800; padding: 20px; margin-top: 30px; border-radius: 8px; color: #e65100;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Conocimientos Previos</h1>
+        <p>Requisitos fundamentales para el éxito en el módulo.</p>
+    </div>
+
+    <p style="margin-bottom: 30px; font-size: 1.1rem;">
+        Para aprovechar al máximo este curso de Ciberdefensa Avanzada, es indispensable contar con una base técnica sólida en las siguientes áreas. El hacking no es magia; es el conocimiento profundo de cómo funcionan los sistemas para hacer que hagan algo para lo que no fueron diseñados.
+    </p>
+
+    <div class="skill-card">
+        <span class="skill-title"><i class="fa-solid fa-network-wired"></i> 1. Redes de Computadoras</span>
+        <ul class="skill-list">
+            <li><strong>Modelo OSI y TCP/IP:</strong> Comprensión profunda de las capas, encapsulamiento y flujo de datos.</li>
+            <li><strong>Direccionamiento IP:</strong> IPv4, máscaras de subred (CIDR), puertas de enlace y enrutamiento básico.</li>
+            <li><strong>Servicios de Red:</strong> Funcionamiento de DNS, DHCP, HTTP/HTTPS, FTP y SSH.</li>
+            <li><strong>Análisis de Tráfico:</strong> Capacidad básica para leer una captura de paquetes (Wireshark).</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <span class="skill-title"><i class="fa-brands fa-linux"></i> 2. Sistemas Operativos (Linux/Windows)</span>
+        <ul class="skill-list">
+            <li><strong>Línea de Comandos (CLI):</strong> Navegación de directorios, gestión de archivos y permisos (chmod, chown).</li>
+            <li><strong>Gestión de Usuarios y Procesos:</strong> Identificación de procesos activos, matar tareas, creación de usuarios.</li>
+            <li><strong>Virtualización:</strong> Manejo básico de máquinas virtuales (VMware/VirtualBox) y configuración de redes virtuales (NAT vs Bridge).</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <span class="skill-title"><i class="fa-solid fa-book"></i> 3. Fundamentos de Seguridad y Documentación</span>
+        <ul class="skill-list">
+            <li><strong>Terminología Base:</strong> Diferencia clara entre Vulnerabilidad, Amenaza, Riesgo y Exploit.</li>
+            <li><strong>Tríada CIA:</strong> Conceptos de Confidencialidad, Integridad y Disponibilidad.</li>
+            <li><strong>Inglés Técnico:</strong> Capacidad para leer documentación oficial, manuales (man pages) y reportes de vulnerabilidades (CVEs) en inglés.</li>
+        </ul>
+    </div>
+
+    <div class="alert-box">
+        <strong>⚠️ Nota Importante:</strong> Si detectas vacíos en alguno de estos conocimientos, te recomendamos encarecidamente revisar el material de apoyo en la biblioteca virtual antes de la Semana 1. Este módulo asume que ya dominas estos conceptos base.
+    </div>
+
+
+    <div class="skill-card">
+        <span class="skill-title"><i class="fa-solid fa-spell-check"></i> 4. Glosario mínimo (para no perderte)</span>
+        <ul class="skill-list">
+            <li><strong>Activo:</strong> lo que tiene valor (servidor, app, base de datos).</li>
+            <li><strong>Vector de ataque:</strong> camino por donde entra el ataque (web, correo, RDP).</li>
+            <li><strong>Exposición:</strong> algo accesible desde donde no debería (puerto abierto, panel público).</li>
+            <li><strong>Enumeración:</strong> obtener detalles útiles (usuarios, versiones, rutas, endpoints).</li>
+            <li><strong>Falso positivo:</strong> “parece vulnerable” pero no aplica al validar.</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <span class="skill-title"><i class="fa-solid fa-list-check"></i> 5. Autoevaluación rápida</span>
+        <ul class="skill-list">
+            <li>¿Puedes explicar qué hace <strong>DNS</strong> y por qué es crítico?</li>
+            <li>¿Entiendes <strong>NAT vs Bridge</strong> en máquinas virtuales?</li>
+            <li>¿Sabes leer permisos Linux (<strong>rwx</strong>) y por qué importan?</li>
+            <li>¿Puedes leer un <strong>CVE</strong> y entender qué afecta y cómo se explota?</li>
+        </ul>
+        <p style="margin:10px 0 0 0; color:#546e7a;">
+            Si marcaste “no” en varios puntos, repasa antes de Semana 1: te ahorrará frustración y te hará avanzar más rápido.
+        </p>
+    </div>
+
+    <div class="alert-box">
+        <strong>✅ Recomendación práctica:</strong> 20 minutos diarios de práctica básica (CLI Linux + lectura de escaneos + documentación). La constancia vale más que “maratones” de una sola noche.
+    </div>
+
+
+</div>
+
+</body>
+</html>

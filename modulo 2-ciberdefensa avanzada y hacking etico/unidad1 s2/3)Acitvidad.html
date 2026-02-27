@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Actividad 1: Foro Evaluativo</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .instruction-box {
+        background: #e3f2fd; padding: 30px; border-radius: 12px; border-left: 6px solid #1565c0;
+        margin-bottom: 30px;
+    }
+
+    .step-list { list-style: none; padding: 0; }
+    .step-list li { margin-bottom: 20px; padding-left: 40px; position: relative; }
+    .step-list li::before { 
+        content: attr(data-step); 
+        position: absolute; left: 0; top: 0; 
+        background: #1565c0; color: white; width: 28px; height: 28px; 
+        border-radius: 50%; text-align: center; font-weight: bold; line-height: 28px;
+    }
+
+    .example-table {
+        width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9rem;
+    }
+    .example-table th { background: #1565c0; color: white; padding: 12px; text-align: left; }
+    .example-table td { border: 1px solid #bbdefb; padding: 12px; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .example-table { display: block; overflow-x: auto; }
+    }
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Actividad 1: Foro Evaluativo (15%)</h1>
+<p>Tema: Superficie de Ataque, Vulnerabilidades y Amenazas.</p>
+</div>
+<div class="instruction-box">
+<h3 style="color:#0d47a1; margin-top:0;">📝 Consigna de Trabajo</h3>
+<p>Utilizando los conceptos de OSINT y Escaneo vistos en la semana, analiza el siguiente caso hipotético y presenta tus hallazgos.</p>
+<ul class="step-list">
+<li data-step="1"><strong>Selecciona un Escenario:</strong> Elige entre una PYME de e-commerce o una Universidad con campus virtual.</li>
+<li data-step="2"><strong>Construye la Tabla de Riesgos:</strong> Identifica al menos 3 vectores de ataque posibles para esa organización (basado en lo que aprendiste que se puede encontrar con Shodan/Google).</li>
+<li data-step="3"><strong>Publica tu Análisis:</strong> Usa el formato de tabla a continuación.</li>
+</ul>
+</div>
+<div class="instruction-box" style="background:#f5faff; border-left-color:#1976d2;">
+<h3 style="color:#0d47a1; margin-top:0;">📌 Reglas de calidad del post (para sacar 5.0)</h3>
+<ul class="step-list">
+<li data-step="A"><strong>Coherencia técnica:</strong> cada vector debe estar atado a un <em>activo</em> (ej. “panel /admin”, “puerto 3389”, “correo filtrado”).</li>
+<li data-step="B"><strong>Impacto realista:</strong> explica consecuencias en negocio (datos, operación, reputación) sin exagerar.</li>
+<li data-step="C"><strong>Mitigación concreta:</strong> agrega al menos 1 control por fila (parche, hardening, MFA, WAF, segmentación).</li>
+</ul>
+<p style="margin:0;"><strong>Tip:</strong> evita frases genéricas como “un hacker entra”. Di <em>cómo</em> entraría y qué obtendría.</p>
+</div>
+<h3 style="color:#1565c0; margin-top:10px;">Sección adicional obligatoria: Mitigación</h3>
+<p>Debajo de tu tabla, agrega un bloque corto con <strong>3 medidas de mitigación</strong> priorizadas (rápidas vs estructurales). Ejemplo:</p>
+<table class="example-table">
+<thead>
+<tr>
+<th>Riesgo</th>
+<th>Mitigación Rápida (Quick Win)</th>
+<th>Mitigación Estructural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fuerza bruta en /admin</td>
+<td>Rate limit + MFA + bloqueo por intentos</td>
+<td>SSO, IAM centralizado, monitoreo SIEM</td>
+</tr>
+</tbody>
+</table>
+<div style="margin-top: 22px; background:#fff3e0; border-left:6px solid #ff9800; padding:18px; border-radius:10px; color:#e65100;">
+<strong>⚠️ Originalidad:</strong> no copies tablas idénticas. Cambia el escenario, los activos y justifica tus elecciones. Si usas una fuente (ej. CVE o técnica), menciona el nombre o enlace.
+    </div>
+<div style="margin-top: 18px; font-size: 0.95rem; color:#455a64;">
+<strong>Participación:</strong> tus 2 réplicas deben incluir <em>una recomendación técnica</em> y <em>una pregunta</em> para abrir debate (ej. “¿Tienen WAF?”, “¿hay segmentación de red?”).
+    </div>
+
+<h3 style="color:#1565c0;">Formato de Entrega Requerido:</h3>
+<table class="example-table">
+<thead>
+<tr>
+<th>Activo Identificado</th>
+<th>Vulnerabilidad Potencial</th>
+<th>Amenaza (¿Quién/Qué?)</th>
+<th>Impacto (Si se explota)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Servidor Web (Puerto 80)</td>
+<td>Apache versión obsoleta (2.2)</td>
+<td>Hacker externo / Script Kiddie</td>
+<td>Defacement (Daño de imagen) o Robo de datos</td>
+</tr>
+<tr>
+<td>Panel de Administración (/admin)</td>
+<td>Contraseña débil (fuerza bruta)</td>
+<td>Botnet automatizada</td>
+<td>Acceso total al sistema</td>
+</tr>
+</tbody>
+</table>
+<div style="margin-top: 30px; font-size: 0.9rem; color: #546e7a;">
+<strong>Nota:</strong> Debes replicar a al menos 2 compañeros aportando una medida de mitigación para sus riesgos identificados.
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Objetivos Semana 4: Evaluación Robusta</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0; /* Azul Institucional */
+    }
+
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        width: 160px;
+        height: auto;
+        z-index: 100;
+        padding: 5px;
+        background: #fff;
+        border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box {
+        text-align: left;
+        margin-bottom: 60px;
+        padding-top: 40px;
+        padding-right: 180px; 
+        padding-left: 20px;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 30px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #0d47a1;
+        margin: 0 0 15px 0;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.3rem;
+        color: #546e7a;
+        display: block;
+        font-weight: 300;
+        border-left: 4px solid #1976d2;
+        padding-left: 15px;
+    }
+
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1.1rem;
+        text-align: justify;
+    }
+
+    .highlight-box {
+        background: #e3f2fd;
+        padding: 30px;
+        border-radius: 12px;
+        border-left: 6px solid #0d47a1;
+        margin: 30px 0;
+        font-size: 1.1rem;
+        color: #0d47a1;
+    }
+
+    .objective-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 30px;
+    }
+    .objective-list li {
+        margin-bottom: 25px;
+        padding: 25px;
+        background: #f5faff;
+        border-radius: 10px;
+        border-left: 5px solid #1565c0;
+        display: flex;
+        align-items: flex-start;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+    }
+    .objective-list i {
+        font-size: 1.8rem;
+        color: #1565c0;
+        margin-right: 25px;
+        margin-top: 5px;
+    }
+    .obj-text h4 {
+        margin: 0 0 10px 0;
+        color: #0d47a1;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { 
+            position: static; 
+            display: block; 
+            margin: 0 auto 20px auto; 
+        }
+        .header-box { 
+            padding-right: 20px; 
+            text-align: center;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Semana 4: Evaluación Robusta y Toma de Decisiones</h1>
+        <span class="subtitle">Unidad 2 - RA2: Trade-offs, Diagnóstico y Clustering</span>
+    </div>
+
+    <div class="content-block">
+        <p>En las semanas anteriores, aprendimos a preparar datos y a entrenar modelos básicos. Sin embargo, en un entorno profesional, entrenar es la parte fácil. El verdadero desafío surge cuando el modelo falla: ¿Por qué tiene bajo rendimiento? ¿Está memorizando los datos (Overfitting) o es demasiado simple (Underfitting)?</p>
+        
+        <p>Esta semana profundizaremos en el <strong>diagnóstico de modelos</strong> y en técnicas avanzadas para mejorar su rendimiento (Ensambles y Regularización). Además, exploraremos el aprendizaje no supervisado (Clustering), fundamental para detectar amenazas nuevas que no tienen etiquetas históricas.</p>
+        
+        <div class="highlight-box">
+            <strong>⚠️ Enfoque Estratégico:</strong> No buscamos el modelo perfecto, sino el modelo <strong>robusto</strong>. Un modelo que funciona bien en el laboratorio pero falla ante el más mínimo cambio de datos en producción es un riesgo operativo. Aprenderemos a tomar decisiones técnicas basadas en la evidencia de las Curvas de Aprendizaje y la Validación Cruzada.
+        </div>
+
+        <h3 style="color:#0d47a1; margin-top:40px;">🎯 Objetivos de Aprendizaje Avanzado</h3>
+        <ul class="objective-list">
+            <li>
+                <i class="fa-solid fa-stethoscope"></i>
+                <div class="obj-text">
+                    <h4>Diagnóstico de Errores: Bias vs. Variance</h4>
+                    Aprenderás a utilizar <strong>Curvas de Aprendizaje (Learning Curves)</strong> para diagnosticar si tu modelo sufre de alto sesgo (Underfitting) o alta varianza (Overfitting). Esta habilidad te permitirá decidir si necesitas más datos, más features o un modelo más complejo, ahorrando semanas de trabajo a ciegas.
+                </div>
+            </li>
+            <li>
+                <i class="fa-solid fa-layer-group"></i>
+                <div class="obj-text">
+                    <h4>Dominio de Ensambles y Regularización</h4>
+                    Comprenderás conceptual y prácticamente cómo técnicas como <strong>Random Forest (Bagging)</strong> y la <strong>Regularización (L1/L2)</strong> reducen la varianza y mejoran la generalización del modelo, haciendo que sea más estable frente a datos nuevos y ruidosos.
+                </div>
+            </li>
+            <li>
+                <i class="fa-solid fa-circle-nodes"></i>
+                <div class="obj-text">
+                    <h4>Aprendizaje No Supervisado (Clustering)</h4>
+                    Implementarás algoritmos de agrupamiento como <strong>K-Means</strong> y <strong>DBSCAN</strong> para descubrir patrones ocultos en los datos sin necesidad de etiquetas. Esto es vital en ciberseguridad para la detección de anomalías (Zero-Day Attacks) donde no tenemos ejemplos previos del ataque.
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

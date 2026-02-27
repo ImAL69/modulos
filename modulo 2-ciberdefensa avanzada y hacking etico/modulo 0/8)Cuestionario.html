@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8. Cuestionario Diagnóstico</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .quiz-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 25px;
+    }
+    .quiz-question { font-weight: 700; color: #1565c0; display: block; margin-bottom: 15px; font-size: 1.1rem; }
+    
+    .option { 
+        display: block; padding: 10px 15px; margin-bottom: 8px; background: #fff; 
+        border: 1px solid #e0e0e0; border-radius: 6px; cursor: pointer; transition: all 0.2s;
+    }
+    .option:hover { background: #e3f2fd; border-color: #2196f3; }
+
+    .btn-submit {
+        display: block; width: 200px; margin: 30px auto 0; padding: 15px;
+        background: #0d47a1; color: white; border: none; border-radius: 50px;
+        font-weight: bold; cursor: pointer; font-size: 1rem;
+    }
+    .btn-submit:hover { background: #1565c0; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Cuestionario Diagnóstico</h1>
+        <p>Evaluación de conceptos base (No calificable).</p>
+    </div>
+
+    <form>
+        <div class="quiz-card">
+            <span class="quiz-question">1. ¿Cuál es la diferencia principal entre una Vulnerabilidad y una Amenaza?</span>
+            <label class="option"><input type="radio" name="q1"> Una vulnerabilidad es externa y una amenaza es interna.</label>
+            <label class="option"><input type="radio" name="q1"> Una vulnerabilidad es una debilidad del sistema; una amenaza es un posible evento que explota esa debilidad.</label>
+            <label class="option"><input type="radio" name="q1"> Son sinónimos.</label>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">2. ¿Qué significa "Alcance" (Scope) en una auditoría de penetración?</span>
+            <label class="option"><input type="radio" name="q2"> La distancia física desde la que puedo hackear.</label>
+            <label class="option"><input type="radio" name="q2"> Los límites acordados de qué sistemas se pueden probar y qué técnicas están permitidas.</label>
+            <label class="option"><input type="radio" name="q2"> La cantidad de dinero que cobraré por el trabajo.</label>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">3. ¿Qué puerto utiliza por defecto el protocolo SSH?</span>
+            <label class="option"><input type="radio" name="q3"> Puerto 80</label>
+            <label class="option"><input type="radio" name="q3"> Puerto 21</label>
+            <label class="option"><input type="radio" name="q3"> Puerto 22</label>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">4. En el contexto ético, ¿qué documento es INDISPENSABLE antes de iniciar un test?</span>
+            <label class="option"><input type="radio" name="q4"> Un manual de usuario.</label>
+            <label class="option"><input type="radio" name="q4"> Una autorización escrita y firmada por el dueño del activo.</label>
+            <label class="option"><input type="radio" name="q4"> Un antivirus actualizado.</label>
+        </div>
+        <div class="quiz-card" style="border-left:6px solid #2e7d32;">
+            <span class="quiz-question">📌 ¿Cómo usar este diagnóstico?</span>
+            <p style="margin:0; color:#546e7a;">
+                No es calificable. Úsalo para identificar vacíos y reforzarlos. Al terminar, anota 3 temas fuertes y 3 temas por mejorar.
+            </p>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">5. ¿Qué es un falso positivo en un escaneo?</span>
+            <label class="option"><input type="radio" name="q5"> Una vulnerabilidad inventada por un atacante.</label>
+            <label class="option"><input type="radio" name="q5"> Un hallazgo que parece vulnerable, pero al validarlo no aplica.</label>
+            <label class="option"><input type="radio" name="q5"> Un puerto que está cerrado.</label>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">6. ¿Cuál es el objetivo principal del reconocimiento (recon)?</span>
+            <label class="option"><input type="radio" name="q6"> Instalar malware de inmediato.</label>
+            <label class="option"><input type="radio" name="q6"> Recolectar información para decidir por dónde atacar.</label>
+            <label class="option"><input type="radio" name="q6"> Borrar logs para “cubrir huellas”.</label>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">7. ¿Qué significa el principio de “mínimo privilegio”?</span>
+            <label class="option"><input type="radio" name="q7"> Dar permisos de admin para evitar errores.</label>
+            <label class="option"><input type="radio" name="q7"> Dar solo los permisos estrictamente necesarios.</label>
+            <label class="option"><input type="radio" name="q7"> Bloquear todo el tráfico de red.</label>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">8. ¿Qué indica normalmente un puerto “open” en Nmap?</span>
+            <label class="option"><input type="radio" name="q8"> Que el sistema está apagado.</label>
+            <label class="option"><input type="radio" name="q8"> Que hay un servicio escuchando y accesible en ese puerto.</label>
+            <label class="option"><input type="radio" name="q8"> Que la IP es falsa.</label>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">9. ¿Qué práctica es más segura para laboratorio?</span>
+            <label class="option"><input type="radio" name="q9"> Probar ataques en redes públicas para “ver qué pasa”.</label>
+            <label class="option"><input type="radio" name="q9"> Usar VMs con snapshots y una red aislada.</label>
+            <label class="option"><input type="radio" name="q9"> Desactivar firewall siempre.</label>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">10. ¿Qué es el “scope” y por qué existe?</span>
+            <label class="option"><input type="radio" name="q10"> Para cobrar más.</label>
+            <label class="option"><input type="radio" name="q10"> Para definir límites, proteger legalmente y evitar daños.</label>
+            <label class="option"><input type="radio" name="q10"> Para acelerar el ataque.</label>
+        </div>
+
+
+
+        <button type="button" class="btn-submit">Enviar Respuestas</button>
+    </form>
+
+</div>
+
+</body>
+</html>

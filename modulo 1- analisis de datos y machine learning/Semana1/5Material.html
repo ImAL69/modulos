@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico - Unidad 1</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; line-height: 1.8; }
+
+    .module-container {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #1565c0; overflow: hidden;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 160px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 60px; padding-top: 40px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 30px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.4rem; font-weight: 800; color: #0d47a1; margin: 0 auto 15px auto; }
+    
+    /* ACORDEÓN MEJORADO */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+    summary {
+        padding: 25px; cursor: pointer; font-weight: 700; color: #1565c0; font-size: 1.1rem; font-family: 'Montserrat', sans-serif;
+        display: flex; align-items: center;
+    }
+    summary i { margin-right: 15px; font-size: 1.5rem; }
+    summary:hover { background: #e3f2fd; }
+    
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; line-height: 1.6; }
+
+    .checklist-list { list-style: none; padding: 0; }
+    .checklist-list li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+    .checklist-list li::before { content: '✓'; color: #2e7d32; font-weight: bold; position: absolute; left: 0; font-size: 1.2rem; }
+
+    .code-block {
+        background: #263238; color: #eceff1; padding: 20px; border-radius: 8px; 
+        font-family: 'Courier New', monospace; overflow-x: auto; margin: 20px 0; font-size: 0.9rem; line-height: 1.5;
+        border-left: 5px solid #ff9800;
+    }
+
+    .dataset-box {
+        border-left: 6px solid #f57f17; background: #fffde7; padding: 20px; margin-bottom: 20px; border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 20px; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="module-container">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Unidad 1</h1>
+        <p style="color:#546e7a;">Recursos Técnicos para EDA y Limpieza</p>
+    </div>
+
+    <!-- RECURSO 1: GUÍA EDA -->
+    <details>
+        <summary><i class="fa-solid fa-book-open"></i> Guía Rápida: Checklist para EDA Profesional</summary>
+        <div class="details-content">
+            <p>Antes de modelar, asegúrate de haber auditado estos puntos en tu dataset:</p>
+            <ul class="checklist-list">
+                <li><strong>Dimensiones:</strong> ¿Cuántas filas y columnas tengo? (<code>df.shape</code>). Si hay pocas filas, el modelo no aprenderá. Si hay demasiadas columnas, cuidado con la dimensionalidad.</li>
+                <li><strong>Tipos de datos:</strong> ¿Son numéricos, objetos (texto) o fechas? ¿Coinciden con la realidad? (<code>df.info()</code>). Ej: Una columna de "Precio" leída como texto es un error.</li>
+                <li><strong>Valores nulos:</strong> ¿Qué porcentaje de datos falta por columna? (<code>df.isnull().sum()</code>). Más del 50% de nulos suele implicar borrar la columna.</li>
+                <li><strong>Duplicados:</strong> ¿Hay filas repetidas que puedan sesgar el modelo? (<code>df.duplicated()</code>). En ciberseguridad, logs idénticos pueden ser válidos (ataque repetitivo) o error de duplicación. Analiza el timestamp.</li>
+                <li><strong>Estadística descriptiva:</strong> Media, desviación, mínimos y máximos. (<code>df.describe()</code>). ¿Hay valores negativos donde no debería?</li>
+                <li><strong>Balance de Clases:</strong> ¿La variable objetivo está balanceada (50/50) o desbalanceada (99/1)? Esto define la métrica de éxito.</li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- RECURSO 2: CÓDIGO BASE -->
+    <details>
+        <summary><i class="fa-brands fa-python"></i> Snippet: Diagnóstico Inicial en Python</summary>
+        <div class="details-content">
+            <p>Usa este esqueleto de código en tu Jupyter Notebook para iniciar la exploración. Copia y pega:</p>
+            <div class="code-block">
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# 1. Cargar datos
+try:
+    df = pd.read_csv('cyber_logs.csv')
+    print("Dataset cargado exitosamente.")
+except FileNotFoundError:
+    print("Error: Archivo no encontrado.")
+
+# 2. Inspección inicial
+print("-" * 30)
+print(f"Dimensiones: {df.shape[0]} filas, {df.shape[1]} columnas")
+print("-" * 30)
+print("\nTipos de datos:\n", df.dtypes)
+
+# 3. Revisión de calidad
+nulos = df.isnull().sum()
+print("\nValores nulos por columna (Top 5):\n", nulos[nulos > 0].sort_values(ascending=False).head(5))
+print(f"\nFilas duplicadas: {df.duplicated().sum()}")
+
+# 4. Visualización rápida de nulos
+plt.figure(figsize=(10, 6))
+sns.heatmap(df.isnull(), cbar=False, yticklabels=False, cmap='viridis')
+plt.title("Mapa de calor de valores faltantes")
+plt.show()
+            </div>
+        </div>
+    </details>
+
+    <!-- RECURSO 3: DESCRIPCIÓN DE DATASETS -->
+    <details>
+        <summary><i class="fa-solid fa-database"></i> Descripción de Datasets de Práctica</summary>
+        <div class="details-content">
+            <p>Para esta semana trabajaremos con dos versiones de un mismo caso de estudio sobre <strong>"Detección de Intrusiones de Red"</strong>:</p>
+            
+            <div class="dataset-box">
+                <strong>📁 Dataset A ("Sucio"):</strong><br>
+                Contiene errores comunes simulados: valores nulos en puertos, columnas numéricas con símbolos de moneda o texto, y registros duplicados. 
+                <br><em>Reto: Identificar todos los problemas de calidad y documentarlos.</em>
+            </div>
+
+            <div class="dataset-box" style="border-color: #2e7d32; background: #e8f5e9;">
+                <strong>📁 Dataset B ("Limpio"):</strong><br>
+                Es la versión procesada y lista para analizar. Úsala como "solucionario" para comparar tus resultados de limpieza y verificar si llegaste a la estructura correcta.
+            </div>
+        </div>
+    </details>
+
+    <!-- RECURSO 4: ESTRUCTURA DEL REPORTE -->
+    <details>
+        <summary><i class="fa-solid fa-file-lines"></i> Estructura del Reporte de EDA</summary>
+        <div class="details-content">
+            <p>Tu reporte (mini-entrega de la semana) debe contener estas secciones:</p>
+            <ol style="margin-left: 20px;">
+                <li><strong>Resumen Ejecutivo:</strong> Descripción breve del dataset y objetivo del análisis.</li>
+                <li><strong>Diccionario de Datos:</strong> Tabla con el nombre de variables, tipo y descripción.</li>
+                <li><strong>Análisis de Calidad:</strong>
+                    <ul>
+                        <li>Reporte de nulos y estrategia propuesta (¿imputar o borrar?).</li>
+                        <li>Reporte de outliers y justificación (¿ruido o ataque?).</li>
+                    </ul>
+                </li>
+                <li><strong>Análisis Univariado:</strong> Histogramas de distribución de las variables principales.</li>
+                <li><strong>Conclusiones Preliminares:</strong> ¿Los datos son viables para responder la pregunta de negocio?</li>
+            </ol>
+        </div>
+    </details>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rúbrica: Actividad 2</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #1565c0;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .rubric-table {
+        width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9rem;
+    }
+    .rubric-table th { background: #1565c0; color: white; padding: 15px; text-align: left; font-weight: 600; }
+    .rubric-table td { border: 1px solid #bbdefb; padding: 15px; vertical-align: top; }
+    .level-high { background: #e3f2fd; color: #0d47a1; font-weight:bold; }
+    
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .rubric-table { font-size: 0.8rem; }
+    }
+
+
+
+.checklist-box{
+  background:#fff8e1;
+  border:1px solid #ffe082;
+  padding:22px;
+  border-radius:12px;
+  margin:22px 0;
+  border-left:6px solid #ffca28;
+}
+.checklist-box h3{margin:0 0 10px 0; font-family:'Montserrat', sans-serif; color:#5d4037;}
+.checklist-box ul{margin:0; padding-left:22px;}
+.mini-code{
+  background:#263238; color:#eceff1; padding:14px 16px; border-radius:10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size:0.92rem; overflow-x:auto; margin:10px 0;
+}
+.tip-box{
+  background:#e8f5e9; border:1px solid #a5d6a7; padding:20px; border-radius:12px; margin:20px 0;
+  border-left:6px solid #2e7d32;
+}
+.tip-box h3{margin:0 0 10px 0; font-family:'Montserrat', sans-serif; color:#1b5e20;}
+.badge{
+  display:inline-block; padding:2px 10px; border-radius:999px; font-weight:700; font-size:0.78rem; margin-right:6px;
+  background:#e3f2fd; border:1px solid #90caf9; color:#0d47a1;
+}
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Rúbrica de Evaluación (35%)</h1>
+<p>Criterios de calificación para el Informe Técnico de Pentest.</p>
+</div>
+<div style="overflow-x:auto;">
+<table class="rubric-table">
+<thead>
+<tr>
+<th style="width: 25%;">Criterio</th>
+<th style="width: 25%;">Excelente (5.0)</th>
+<th style="width: 25%;">Aceptable (3.0 - 4.0)</th>
+<th style="width: 25%;">Insuficiente (0 - 2.9)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ejecución Técnica</strong><br/>Éxito del exploit.</td>
+<td class="level-high">Logra comprometer el objetivo y obtener acceso verificado (Shell), demostrando dominio de la herramienta.</td>
+<td>Logra el acceso pero el proceso es confuso o requirió ayuda excesiva.</td>
+<td>No logra explotar la vulnerabilidad o rompe el servicio (DoS).</td>
+</tr>
+<tr>
+<td><strong>Calidad de la Evidencia</strong><br/>Documentación.</td>
+<td class="level-high">Capturas de pantalla nítidas, con timestamps y comandos visibles. Logs adjuntos. Irrefutable.</td>
+<td>Capturas borrosas, recortadas o faltan pasos intermedios clave.</td>
+<td>Sin evidencia gráfica o evidencia genérica no atribuible al estudiante.</td>
+</tr>
+<tr>
+<td><strong>Análisis y Mitigación</strong><br/>Valor agregado.</td>
+<td class="level-high">Explica técnicamente POR QUÉ ocurrió el fallo y ofrece una solución concreta y aplicable.</td>
+<td>La explicación es superficial ("estaba abierto") y la solución genérica ("actualizar").</td>
+<td>No ofrece análisis ni solución, solo muestra el hackeo.</td>
+</tr>
+<tr><td><strong>Estructura del Informe</strong><br/>Orden y claridad.</td><td class="level-high">Secciones completas (resumen, alcance, pasos, evidencia, mitigación). Flujo lógico y fácil de seguir.</td><td>Faltan secciones menores o el orden confunde por momentos.</td><td>Documento desordenado o incompleto; no se entiende el proceso.</td></tr><tr><td><strong>Resumen Ejecutivo</strong><br/>Comunicación a no técnicos.</td><td class="level-high">Describe riesgo e impacto en lenguaje simple, sin jerga excesiva, y con conclusión accionable.</td><td>Existe, pero es muy técnico o demasiado corto; no explica impacto.</td><td>No hay resumen ejecutivo o no comunica el riesgo.</td></tr><tr><td><strong>Ética y Alcance</strong><br/>Buenas prácticas.</td><td class="level-high">Respeta el scope, evita acciones destructivas, y documenta decisiones responsables.</td><td>Pequeñas omisiones (no menciona alcance) pero no hay acciones riesgosas.</td><td>Acciones fuera de alcance, destructivas o sin control (DoS / prácticas inseguras).</td></tr><tr><td><strong>Priorización y Mitigación</strong><br/>Plan aplicable.</td><td class="level-high">Propone mitigación específica (qué cambiar) y controles compensatorios. Prioriza por impacto/probabilidad.</td><td>Mitigación parcialmente específica; priorización poco justificada.</td><td>Mitigación genérica o inexistente; no hay prioridad.</td></tr></tbody>
+</table>
+</div><div class="checklist-box"><h3>Nota importante sobre evidencia y originalidad</h3>
+
+
+</div>
+</div>
+</body>
+</html>

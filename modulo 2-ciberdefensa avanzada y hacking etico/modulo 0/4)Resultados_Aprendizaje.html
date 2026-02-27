@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resultados de Aprendizaje (RA)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .ra-card {
+        background: #f5faff; border: 1px solid #bbdefb; border-radius: 12px;
+        padding: 30px; margin-bottom: 30px; transition: transform 0.2s;
+        border-left: 6px solid #1565c0;
+    }
+    .ra-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+    .ra-header {
+        display: flex; align-items: center; margin-bottom: 20px;
+    }
+    .ra-badge {
+        background: #1565c0; color: white; padding: 5px 15px; border-radius: 50px;
+        font-weight: bold; margin-right: 15px; font-family: 'Montserrat', sans-serif;
+    }
+    .ra-title { font-size: 1.4rem; font-weight: 700; color: #0d47a1; }
+    
+    .ra-details ul { margin: 0; padding-left: 20px; color: #546e7a; margin-top: 15px; line-height: 1.7; }
+    .ra-details li { margin-bottom: 10px; }
+    .ra-details strong { color: #0d47a1; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Resultados de Aprendizaje (RA)</h1>
+        <p>Competencias verificables al finalizar el módulo.</p>
+    </div>
+
+    <div class="ra-card">
+        <div class="ra-header">
+            <span class="ra-badge">RA1</span>
+            <span class="ra-title">Evaluación de Vulnerabilidades y Riesgos</span>
+        </div>
+        <div class="ra-details">
+            <p><strong>Competencia:</strong> Capacidad para auditar una infraestructura tecnológica, identificar debilidades de configuración o software, y clasificarlas según su nivel de riesgo y criticidad.</p>
+            <ul>
+                <li><strong>Saber (Conocimiento):</strong> Protocolos de red, arquitectura de seguridad, CVEs, CVSS (Scoring System) y normativas legales.</li>
+                <li><strong>Hacer (Habilidad):</strong> Ejecución de escaneos de vulnerabilidades, verificación manual de falsos positivos y mapeo de superficie de ataque.</li>
+                <li><strong>Ser (Actitud):</strong> Meticulosidad, ética profesional y responsabilidad legal en el manejo de información sensible.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="ra-card">
+        <div class="ra-header">
+            <span class="ra-badge">RA2</span>
+            <span class="ra-title">Ejecución Controlada de Pruebas de Penetración</span>
+        </div>
+        <div class="ra-details">
+            <p><strong>Competencia:</strong> Capacidad para explotar vulnerabilidades identificadas en un entorno autorizado, demostrando el impacto real de un ataque exitoso.</p>
+            <ul>
+                <li><strong>Saber (Conocimiento):</strong> Funcionamiento de exploits, payloads, shellcodes, técnicas de evasión y escalada de privilegios.</li>
+                <li><strong>Hacer (Habilidad):</strong> Uso de Metasploit, explotación manual de inyecciones SQL/XSS, y movimiento lateral en redes.</li>
+                <li><strong>Ser (Actitud):</strong> Disciplina operativa para respetar el alcance (Scope) y no causar denegación de servicio (DoS) accidental.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="ra-card">
+        <div class="ra-header">
+            <span class="ra-badge">RA3</span>
+            <span class="ra-title">Comunicación de Hallazgos y Mitigación</span>
+        </div>
+        <div class="ra-details">
+            <p><strong>Competencia:</strong> Capacidad para comunicar eficazmente los riesgos técnicos a audiencias ejecutivas y proponer planes de remediación viables.</p>
+            <ul>
+                <li><strong>Saber (Conocimiento):</strong> Estructura de informes de auditoría, cálculo de impacto financiero, controles compensatorios y hardening.</li>
+                <li><strong>Hacer (Habilidad):</strong> Redacción de informes técnicos y ejecutivos, diseño de planes de acción para cerrar brechas.</li>
+                <li><strong>Ser (Actitud):</strong> Comunicación asertiva, orientada a soluciones y al negocio, no solo al problema técnico.</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="ra-card">
+        <div class="ra-header">
+            <span class="ra-badge">✔</span>
+            <span class="ra-title">Cómo demostrar cada RA (evidencias mínimas)</span>
+        </div>
+        <div class="ra-details">
+            <p>Estos resultados se evidencian con productos concretos. Si tu entrega incluye esto, vas en ruta:</p>
+            <ul>
+                <li><strong>RA1:</strong> mapa de superficie de ataque (hosts/puertos/servicios) + validación de hallazgos (no solo escáner) + priorización.</li>
+                <li><strong>RA2:</strong> prueba controlada (POC) + evidencia de acceso/impacto + respeto al alcance (sin DoS, sin improvisar).</li>
+                <li><strong>RA3:</strong> informe técnico + resumen ejecutivo + recomendaciones accionables + plan de remediación por prioridad.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="ra-card">
+        <div class="ra-header">
+            <span class="ra-badge">★</span>
+            <span class="ra-title">Criterios de desempeño (lo que distingue un trabajo excelente)</span>
+        </div>
+        <div class="ra-details">
+            <ul>
+                <li><strong>Precisión:</strong> hallazgos confirmados y explicados con claridad.</li>
+                <li><strong>Orden:</strong> bitácora limpia, comandos y capturas con contexto.</li>
+                <li><strong>Priorización:</strong> severidad argumentada (impacto + probabilidad).</li>
+                <li><strong>Enfoque ético:</strong> respeto del scope y cuidado del entorno.</li>
+                <li><strong>Comunicación:</strong> recomendaciones específicas (qué cambiar, dónde y por qué).</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="ra-card">
+        <div class="ra-header">
+            <span class="ra-badge">🧾</span>
+            <span class="ra-title">Checklist final (auto‑control antes de entregar)</span>
+        </div>
+        <div class="ra-details">
+            <ul>
+                <li>Incluí <strong>objetivo</strong> y <strong>alcance</strong> de la práctica.</li>
+                <li>Documenté <strong>comandos</strong> y <strong>resultados</strong> (reproducible).</li>
+                <li>Agregué <strong>evidencia</strong> (capturas/logs) para cada hallazgo.</li>
+                <li>Expliqué <strong>impacto</strong> real y <strong>recomendación</strong> accionable.</li>
+                <li>Priorizé con lógica (no todo es crítico).</li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

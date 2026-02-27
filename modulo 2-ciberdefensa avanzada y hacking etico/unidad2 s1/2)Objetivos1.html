@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 2.1: Metodologías de Pentesting</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .methodology-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 20px;
+        transition: transform 0.2s; display: flex; gap: 20px; align-items: flex-start;
+    }
+    .methodology-card:hover { transform: translateY(-3px); border-color: #0d47a1; }
+    
+    .methodology-icon {
+        font-size: 2.5rem; color: #1565c0; min-width: 60px; text-align: center;
+    }
+
+    .methodology-content h3 { margin: 0 0 10px 0; color: #0d47a1; font-family: 'Montserrat', sans-serif; }
+    
+    .badge {
+        display: inline-block; background: #e3f2fd; color: #1565c0; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .methodology-card { flex-direction: column; gap: 10px; }
+        .methodology-icon { min-width: auto; text-align: left; }
+    }
+
+    /* === BLOQUES EXTRA (complemento) === */
+    .section-title{
+        margin-top: 45px;
+        color:#1565c0;
+        font-family:'Montserrat', sans-serif;
+        font-weight:800;
+        font-size:1.45rem;
+        text-align:center;
+    }
+    .subnote{
+        color:#546e7a;
+        font-size:1.05rem;
+        margin: 10px 0 0 0;
+        text-align:center;
+    }
+    .info-box{
+        background:#e3f2fd;
+        border:1px solid #bbdefb;
+        border-left:6px solid #1565c0;
+        padding:18px 18px;
+        border-radius:12px;
+        margin:22px 0;
+    }
+    .info-box strong{ color:#0d47a1; }
+    .pill-row{
+        display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;
+    }
+    .pill{
+        background:#ffffff;
+        border:1px solid #bbdefb;
+        color:#1565c0;
+        padding:6px 10px;
+        border-radius:999px;
+        font-size:0.85rem;
+        font-weight:700;
+        display:inline-flex; align-items:center; gap:8px;
+    }
+    .two-col{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap:18px;
+        margin-top:18px;
+    }
+    .card-lite{
+        background:#ffffff;
+        border:1px solid #e0e0e0;
+        border-radius:12px;
+        padding:18px 18px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    }
+    .card-lite h4{
+        margin:0 0 8px 0;
+        font-family:'Montserrat', sans-serif;
+        color:#0d47a1;
+        font-size:1.05rem;
+    }
+    .checklist{
+        list-style:none;
+        padding:0;
+        margin:12px 0 0 0;
+    }
+    .checklist li{
+        margin:8px 0;
+        padding-left:28px;
+        position:relative;
+    }
+    .checklist li::before{
+        content:"✅";
+        position:absolute;
+        left:0;
+        top:0;
+    }
+    .warning-box{
+        background:#ffebee;
+        border:1px solid #ef9a9a;
+        border-left:6px solid #c62828;
+        color:#b71c1c;
+        padding:16px 18px;
+        border-radius:12px;
+        margin:22px 0;
+        font-weight:700;
+    }
+    .codebox{
+        background:#263238;
+        color:#eceff1;
+        padding:16px 16px;
+        border-radius:12px;
+        overflow:auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size:0.92rem;
+        line-height:1.6;
+        margin-top:10px;
+    }
+    .mini-grid{
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap:14px;
+        margin-top:18px;
+    }
+    .mini-card{
+        background:#f5faff;
+        border:1px solid #bbdefb;
+        border-radius:12px;
+        padding:16px 16px;
+    }
+    .mini-card .k{
+        font-weight:800;
+        color:#1565c0;
+        font-family:'Montserrat', sans-serif;
+        margin-bottom:6px;
+        display:block;
+    }
+    .qa{
+        margin-top:14px;
+        padding:12px 14px;
+        border-radius:12px;
+        border:1px dashed #bbdefb;
+        background:#ffffff;
+    }
+    .qa b{ color:#0d47a1; }
+    @media (max-width: 768px) {
+        .two-col{ grid-template-columns: 1fr; }
+    }
+
+    .compare-table{
+        width:100%;
+        border-collapse:collapse;
+        margin-top:12px;
+        font-size:0.95rem;
+    }
+    .compare-table th{
+        background:#1565c0;
+        color:#ffffff;
+        padding:10px;
+        text-align:left;
+    }
+    .compare-table td{
+        border:1px solid #ddd;
+        padding:10px;
+        vertical-align:top;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 2.1: Metodologías de Pentesting</h1>
+        <p>Estándares globales para una ejecución profesional y auditable.</p>
+    </div>
+
+    <p style="margin-bottom: 30px; font-size: 1.1rem;">
+        Un "ataque" desordenado no sirve de nada. Para que un pentest tenga validez legal y técnica, debe seguir una metodología estandarizada. No se trata de "ver qué encuentro", sino de seguir un proceso científico y reproducible.
+    </p>
+
+    <div class="methodology-card">
+        <div class="methodology-icon"><i class="fa-solid fa-book-open"></i></div>
+        <div class="methodology-content">
+            <h3>PTES (Penetration Testing Execution Standard)</h3>
+            <p>Es la "biblia" de la ejecución. Cubre el ciclo completo: desde la negociación comercial (Pre-engagement) hasta la inteligencia, modelado de amenazas, análisis de vulnerabilidad, explotación, post-explotación y reporte.</p>
+            <span class="badge">Estándar de facto</span>
+        </div>
+    </div>
+
+    <div class="methodology-card">
+        <div class="methodology-icon"><i class="fa-solid fa-globe"></i></div>
+        <div class="methodology-content">
+            <h3>OWASP (Open Web Application Security Project)</h3>
+            <p>El estándar absoluto para seguridad web. Se enfoca en vulnerabilidades de aplicaciones (SQL Injection, XSS, Broken Auth). Si vas a auditar una web, DEBES usar la <em>OWASP Testing Guide</em>.</p>
+            <span class="badge">Web & Apps</span>
+        </div>
+    </div>
+
+    <div class="methodology-card">
+        <div class="methodology-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <div class="methodology-content">
+            <h3>OSSTMM (Open Source Security Testing Methodology Manual)</h3>
+            <p>Se centra en métricas científicas. No dice "esto es seguro", sino que calcula un "Risk Assessment Value" (RAV) basado en hechos verificables (visibilidad, acceso, confianza).</p>
+            <span class="badge">Métricas & Ciencia</span>
+        </div>
+    </div>
+
+    <div class="methodology-card">
+        <div class="methodology-icon"><i class="fa-solid fa-building-shield"></i></div>
+        <div class="methodology-content">
+            <h3>NIST SP 800-115</h3>
+            <p>La guía del gobierno de EE.UU. Es el estándar requerido para auditorías en sector gobierno y financiero. Es menos técnica y más procedimental.</p>
+            <span class="badge">Gobierno & Cumplimiento</span>
+        </div>
+    </div>
+
+
+    <h3 class="section-title">Cómo elegir una metodología (sin confundirte)</h3>
+    <p class="subnote">No hay “una mejor” para todo: depende del objetivo, el tipo de sistema y el entregable esperado.</p>
+
+    <div class="two-col">
+        <div class="card-lite">
+            <h4>Guía rápida de decisión</h4>
+            <ul class="checklist">
+                <li>Si el foco es <b>web/app</b> → prioriza <b>OWASP</b> (Testing Guide + Top 10).</li>
+                <li>Si necesitas ciclo completo “end‑to‑end” → <b>PTES</b>.</li>
+                <li>Si te piden métricas y medición → <b>OSSTMM</b>.</li>
+                <li>Si hay cumplimiento/sector público → <b>NIST SP 800‑115</b>.</li>
+            </ul>
+        </div>
+        <div class="card-lite">
+            <h4>Entregables típicos (lo que se espera recibir)</h4>
+            <ul class="checklist">
+                <li><b>Alcance + RoE</b> firmado (o aprobado) antes de ejecutar.</li>
+                <li><b>Registro reproducible</b> (herramienta + comando + resultado).</li>
+                <li><b>Reporte técnico</b> con evidencia y recomendación.</li>
+                <li><b>Resumen ejecutivo</b> (impacto y prioridad en lenguaje de negocio).</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <strong>Tip profesional:</strong> Puedes combinar metodologías: usar PTES como “esqueleto” y OWASP como profundidad para pruebas web.
+    </div>
+
+    <h3 class="section-title">Comparativo práctico</h3>
+    <div class="card-lite" style="margin-top:18px;">
+        <table class="compare-table" style="width:100%; border-collapse:collapse;">
+            <thead>
+                <tr>
+                    <th style="background:#1565c0;color:#fff;padding:10px;">Marco</th>
+                    <th style="background:#1565c0;color:#fff;padding:10px;">¿Cuándo usarlo?</th>
+                    <th style="background:#1565c0;color:#fff;padding:10px;">Fortaleza</th>
+                    <th style="background:#1565c0;color:#fff;padding:10px;">Limitación común</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border:1px solid #ddd;padding:10px;"><b>PTES</b></td>
+                    <td style="border:1px solid #ddd;padding:10px;">Pentest completo (infra/app) con reporte formal</td>
+                    <td style="border:1px solid #ddd;padding:10px;">Ciclo end‑to‑end, muy aplicable</td>
+                    <td style="border:1px solid #ddd;padding:10px;">No detalla tanto pruebas web como OWASP</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #ddd;padding:10px;"><b>OWASP</b></td>
+                    <td style="border:1px solid #ddd;padding:10px;">Apps web/APIs, autenticación, sesiones, inyecciones</td>
+                    <td style="border:1px solid #ddd;padding:10px;">Profundidad técnica en web</td>
+                    <td style="border:1px solid #ddd;padding:10px;">No cubre por sí sola todo el ciclo del pentest</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #ddd;padding:10px;"><b>OSSTMM</b></td>
+                    <td style="border:1px solid #ddd;padding:10px;">Cuando debes medir y justificar con métricas</td>
+                    <td style="border:1px solid #ddd;padding:10px;">Enfoque científico verificable</td>
+                    <td style="border:1px solid #ddd;padding:10px;">Menos “paso a paso” práctico para principiantes</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #ddd;padding:10px;"><b>NIST 800‑115</b></td>
+                    <td style="border:1px solid #ddd;padding:10px;">Gobierno, compliance, entornos regulados</td>
+                    <td style="border:1px solid #ddd;padding:10px;">Procedimiento y gobernanza</td>
+                    <td style="border:1px solid #ddd;padding:10px;">Puede sentirse menos técnico/operativo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 class="section-title">Mini‑caso (para entregar en tu bitácora)</h3>
+    <div class="qa">
+        <b>Situación:</b> Una empresa te pide auditar una aplicación web de ventas (login, carrito, pagos) y su servidor público.<br>
+        <b>Tu tarea:</b> responde en 6–10 líneas: ¿qué marco usarías como base y qué combinarías? ¿Qué evidencias entregarías?
+    </div>
+
+</div>
+
+</body>
+</html>

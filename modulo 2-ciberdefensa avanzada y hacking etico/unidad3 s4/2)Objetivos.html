@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 9: Cierre y Comunicación Ejecutiva</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .final-card {
+        background: #fff; border: 1px solid #ddd; padding: 30px; border-radius: 12px; margin-bottom: 30px;
+        text-align: center; border-bottom: 6px solid #1565c0;
+    }
+    .final-icon { font-size: 3rem; color: #1565c0; margin-bottom: 20px; }
+    .final-title { font-size: 1.5rem; font-weight: bold; color: #0d47a1; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    .lessons-box {
+        background: #e3f2fd; padding: 25px; border-radius: 12px; margin-top: 30px; border: 1px solid #90caf9;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Semana 9: El Arte del Cierre</h1>
+        <p>Comunicación Ejecutiva y Lecciones Aprendidas (3.5 y 3.6).</p>
+    </div>
+
+    <p style="margin-bottom: 30px; font-size: 1.1rem;">
+        Hemos llegado al final. Ya sabemos hackear, validar y mitigar. Ahora debemos aprender a <strong>cerrar el ciclo</strong>. Un proyecto sin cierre formal es un proyecto eterno.
+    </p>
+
+    <div class="final-card">
+        <i class="fa-solid fa-handshake-simple final-icon"></i>
+        <h3 class="final-title">Tema 3.5: El Informe Final</h3>
+        <p>No es solo un PDF; es tu tarjeta de presentación. Debe contar una historia coherente: "Esto encontramos, esto significa para su negocio y así es como lo arreglamos juntos".</p>
+    </div>
+
+    <div class="final-card" style="border-bottom-color: #2e7d32;">
+        <i class="fa-solid fa-graduation-cap final-icon" style="color: #2e7d32;"></i>
+        <h3 class="final-title" style="color: #1b5e20;">Tema 3.6: Lecciones Aprendidas</h3>
+        <p>¿Qué salió mal durante la prueba? ¿Tumbamos algún servicio por error? ¿El cliente tardó en dar accesos? Documentar esto es vital para mejorar en la próxima auditoría.</p>
+    </div>
+
+    <div class="lessons-box">
+        <strong>🎓 Reflexión Final:</strong> El mejor pentester no es el que más hacks hace, sino el que mejor comunica el riesgo y genera confianza en el cliente para convertirse en su aliado estratégico.
+    </div>
+
+
+
+    <div style="margin-top:30px; background:#f5faff; border:1px solid #bbdefb; padding:26px; border-radius:12px;">
+        <h2 style="margin:0 0 10px 0; color:#0d47a1; font-family:'Montserrat',sans-serif;">
+            <i class="fa-solid fa-bullseye"></i> Objetivos del cierre (medibles y verificables)
+        </h2>
+        <p style="margin:0 0 14px 0;">
+            Estos objetivos te guían para entregar un paquete final que simule una auditoría real y se pueda evaluar con evidencia.
+        </p>
+        <ul style="margin:0 0 0 18px; color:#455a64;">
+            <li><strong>Objetivo 1:</strong> Sintetizar hallazgos en lenguaje ejecutivo (máximo 3 páginas) con impacto y prioridad.</li>
+            <li><strong>Objetivo 2:</strong> Documentar un informe técnico reproducible (paso a paso + evidencia + PoC controlada).</li>
+            <li><strong>Objetivo 3:</strong> Presentar resultados en 8–10 diapositivas con mensaje claro (riesgo → acción).</li>
+            <li><strong>Objetivo 4:</strong> Proponer un plan de mitigación con acciones concretas, responsables y criterio de cierre (retest).</li>
+        </ul>
+    </div>
+
+    <div style="margin-top:18px; background:#fff; border:1px solid #e0e0e0; padding:26px; border-radius:12px;">
+        <h2 style="margin:0 0 10px 0; color:#37474f; font-family:'Montserrat',sans-serif;">
+            <i class="fa-solid fa-clipboard-check"></i> Evidencia mínima esperada (lo que debes tener sí o sí)
+        </h2>
+        <ul style="margin:0 0 0 18px; color:#546e7a;">
+            <li>Mapa de superficie de ataque (hosts/puertos/servicios o endpoints).</li>
+            <li>Al menos 2–4 hallazgos <strong>validados</strong> (evita falsos positivos).</li>
+            <li>Capturas/logs ordenados y con contexto (fecha, comando, resultado).</li>
+            <li>Recomendación ejecutable por hallazgo (qué, dónde, cómo, responsable).</li>
+            <li>Priorización clara (P1/P2/P3) y justificación breve.</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

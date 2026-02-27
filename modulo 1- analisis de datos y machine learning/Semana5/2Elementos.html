@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teoría 3.1: Anatomía Profunda de un Pipeline de ML</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; line-height: 1.8; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        overflow: hidden; border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo { position: absolute; top: 30px; right: 40px; width: 160px; height: auto; z-index: 100; padding: 5px; background: #fff; border-radius: 8px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 60px; padding-top: 40px; padding-right: 180px; padding-left: 20px; border-bottom: 1px solid #e0e0e0; padding-bottom: 30px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.4rem; font-weight: 800; color: #0d47a1; margin: 0 0 15px 0; }
+
+    .content-block { margin-bottom: 50px; font-size: 1.1rem; line-height: 1.8; text-align: justify; }
+
+    /* ESTILO DE PASOS DEL PIPELINE */
+    .pipeline-step {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 30px; border-radius: 12px; margin-bottom: 25px; position: relative; padding-left: 80px;
+        border-left: 6px solid #1565c0;
+    }
+    .pipeline-step::before {
+        content: '\f061'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+        position: absolute; left: 25px; top: 35px; font-size: 2rem; color: #1565c0;
+    }
+    .step-title { color: #0d47a1; font-weight: 700; font-size: 1.3rem; display: block; margin-bottom: 15px; }
+    
+    .risk-note {
+        margin-top: 15px; padding: 15px; background-color: #fff3e0; border-radius: 8px; border-left: 4px solid #ef6c00; color: #bf360c; font-size: 1rem;
+    }
+
+    .reproducibility-box {
+        background: #e3f2fd; border-left: 6px solid #1565c0; padding: 30px; margin-top: 40px; border-radius: 12px; font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 20px; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Anatomía de un Pipeline de Datos</h1>
+        <p style="color:#546e7a;">Estandarización, Flujo y Control de Calidad</p>
+    </div>
+
+    <div class="content-block">
+        <p>Un <strong>Pipeline de Machine Learning</strong> es una arquitectura de software que define la secuencia lógica de transformaciones que sufren los datos desde su estado crudo hasta convertirse en una predicción. A diferencia de un script lineal, un pipeline está diseñado para ser modular, resiliente y repetible.</p>
+
+        <h2 style="color:#0d47a1; margin-top:40px;">Etapas Críticas y Gestión de Riesgos</h2>
+
+        <div class="pipeline-step">
+            <span class="step-title">1. Ingesta de Datos (Data Ingestion)</span>
+            <p>Es el punto de entrada. Implica la conexión automática a fuentes de datos heterogéneas: Bases de Datos SQL, APIs REST, Logs de Servidor en tiempo real, o archivos en almacenamiento en la nube (S3/Azure Blob). El sistema debe ser capaz de manejar interrupciones de red y reintentar conexiones fallidas.</p>
+            <div class="risk-note">
+                <strong>⚠️ Riesgo Identificado:</strong> Cambio silencioso de esquema en la fuente (Schema Drift) o indisponibilidad de la API. <br>
+                <strong>Plan de Respuesta:</strong> Implementar validación de esquema estricta al inicio (usando herramientas como Great Expectations) y sistemas de alertas si el volumen de datos ingeridos es anormalmente bajo (posible fallo silencioso).
+            </div>
+        </div>
+
+        <div class="pipeline-step">
+            <span class="step-title">2. Validación y Limpieza (Data Validation)</span>
+            <p>Antes de procesar, los datos deben pasar "puertas de calidad". Se verifican tipos de datos, rangos permitidos (ej. edad > 0) y unicidad. Aquí se aplican las reglas de negocio para filtrar basura.</p>
+            <div class="risk-note">
+                <strong>⚠️ Riesgo Identificado:</strong> Ingesta de datos corruptos que "envenenan" el modelo. <br>
+                <strong>Plan de Respuesta:</strong> Cuarentena automática de registros que no cumplan las reglas de calidad, desviándolos a una tabla de errores para revisión humana, sin detener el flujo principal.
+            </div>
+        </div>
+
+        <div class="pipeline-step">
+            <span class="step-title">3. Transformación (Feature Engineering)</span>
+            <p>Conversión de datos limpios a vectores numéricos. Incluye escalado, normalización, codificación de variables categóricas (One-Hot) y creación de nuevas variables. <strong>Crucial:</strong> Los parámetros de transformación (ej. la media para el StandardScaler) deben guardarse desde el entrenamiento para aplicarse idénticos en producción.</p>
+        </div>
+
+        <div class="pipeline-step">
+            <span class="step-title">4. Modelado y Evaluación (Modeling & Inference)</span>
+            <p>El modelo cargado (artefacto serializado .pkl) recibe los vectores y genera una predicción (clase o probabilidad). En esta etapa se puede incluir un monitoreo de confianza del modelo.</p>
+            <div class="risk-note">
+                <strong>⚠️ Riesgo Identificado:</strong> Latencia alta en la respuesta o degradación del modelo (Drift). <br>
+                <strong>Plan de Contingencia:</strong> Implementar un sistema de "Fallback" (reglas simples) si el modelo tarda demasiado o si su confianza es muy baja.
+            </div>
+        </div>
+
+        <div class="reproducibility-box">
+            <h3 style="color:#0d47a1; margin-top:0;">🔐 Pilares de la Reproducibilidad Técnica</h3>
+            <ul>
+                <li><strong>Configuración Externa:</strong> Nada "quemado" en código (hardcoded). Usa archivos de configuración (.yaml, .env) para credenciales y parámetros.</li>
+                <li><strong>Semillas (Seeds):</strong> Fija <code>random_state</code> en todas las librerías para que los resultados estocásticos sean idénticos en cada ejecución.</li>
+                <li><strong>Logging Estructurado:</strong> El pipeline debe "hablar". Cada paso debe registrar qué hizo, cuántos datos procesó y si hubo advertencias, facilitando la auditoría forense.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

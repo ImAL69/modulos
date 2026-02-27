@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Semana 2: Reconocimiento (OSINT)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    .subtitle { font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #546e7a; border-left: 4px solid #1976d2; padding-left: 15px; }
+
+    .content-block { margin-bottom: 40px; text-align: justify; }
+
+    .target-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
+    .target-item { 
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; 
+        display: flex; gap: 15px; align-items: start; transition: transform 0.2s;
+    }
+    .target-item:hover { transform: translateY(-5px); }
+    .target-icon { font-size: 1.8rem; color: #1565c0; margin-top: 4px; }
+    .target-content h4 { margin: 0 0 5px 0; color: #0d47a1; font-family: 'Montserrat', sans-serif; font-weight: 700; }
+
+    .warning-box {
+        background: #fff3e0; border-left: 6px solid #ff9800; padding: 20px; border-radius: 8px; color: #e65100; margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Semana 2: Reconocimiento y Enumeración</h1>
+<span class="subtitle">Objetivos 1.3: Mapeo de la Superficie de Ataque</span>
+</div>
+<div class="content-block">
+<p>Entramos en la fase técnica. El objetivo de esta semana es responder una sola pregunta: <strong>¿Qué tan grande es la ventana que dejamos abierta?</strong></p>
+<p>Utilizaremos técnicas de Inteligencia de Fuentes Abiertas (OSINT) y escaneo activo para construir un mapa detallado de la infraestructura del objetivo. No vamos a "romper" nada todavía; vamos a observar, catalogar y documentar.</p>
+<h3 style="color:#1565c0; font-family:'Montserrat', sans-serif; margin-top: 40px;">🎯 Objetivos de Aprendizaje (1.3)</h3>
+<ul class="target-list">
+<li class="target-item">
+<i class="fa-solid fa-satellite-dish target-icon"></i>
+<div class="target-content">
+<h4>Reconocimiento Pasivo (OSINT)</h4>
+<p>Obtener información sin tocar los servidores del objetivo. Uso de Google Dorks, Shodan, TheHarvester y redes sociales para encontrar correos, subdominios y tecnologías expuestas.</p>
+</div>
+</li>
+<li class="target-item">
+<i class="fa-solid fa-radar target-icon"></i>
+<div class="target-content">
+<h4>Enumeración Activa</h4>
+<p>Interactuar directamente con la red. Uso de <strong>Nmap</strong> para descubrir hosts vivos, puertos abiertos y versiones de servicios (Banner Grabbing).</p>
+</div>
+</li>
+<li class="target-item">
+<i class="fa-solid fa-fingerprint target-icon"></i>
+<div class="target-content">
+<h4>Identificación de Tecnologías</h4>
+<p>Determinar qué software corre detrás (Apache/Nginx, PHP/Python, CMS WordPress/Joomla) para buscar vulnerabilidades específicas (CVEs).</p>
+</div>
+</li>
+</ul>
+<div class="warning-box">
+<strong>⚠️ Diferencia Táctica:</strong> El reconocimiento pasivo es indetectable. La enumeración activa (Nmap) genera ruido en los logs y puede alertar a los sistemas de defensa (IDS/IPS). Aprenderemos a ser sigilosos.
+        </div>
+<div class="content-block" style="margin-top:35px;">
+<h3 style="color:#1565c0; font-family:'Montserrat', sans-serif;">🧩 ¿Qué debes entregar al final de la semana?</h3>
+<p>Tu producto principal es un <strong>Mapa de Superficie de Ataque</strong> (attack surface map) que muestre, de forma ordenada, qué activos descubriste, cómo los identificaste y qué pistas técnicas encontraste para la siguiente fase (análisis de vulnerabilidades).</p>
+<div style="background:#e3f2fd; border-left:6px solid #1565c0; padding:22px; border-radius:12px; margin:18px 0;">
+<h4 style="margin:0 0 8px 0; color:#0d47a1; font-family:'Montserrat', sans-serif;">Evidencia mínima (para que tu trabajo sea verificable)</h4>
+<ul style="margin:10px 0 0 18px;">
+<li><strong>Tabla de activos:</strong> host/IP/dominio, puertos, servicio, versión, y “cómo lo encontraste”.</li>
+<li><strong>Capturas con contexto:</strong> pantalla completa y/o salida de terminal clara (no recortes sin explicación).</li>
+<li><strong>Logs crudos:</strong> salida guardada de Nmap/OSINT (ideal: archivos .txt o .log).</li>
+<li><strong>Conclusión breve:</strong> 5–8 líneas con lo más relevante y qué explorarías después.</li>
+</ul>
+</div>
+<h3 style="color:#1565c0; font-family:'Montserrat', sans-serif; margin-top:30px;">✅ Checklist de logro (autoverificación)</h3>
+<ul class="target-list" style="margin-top:18px;">
+<li class="target-item">
+<i class="fa-solid fa-check-double target-icon"></i>
+<div class="target-content">
+<h4>OSINT aplicado (sin tocar el objetivo)</h4>
+<p>Identificaste <strong>subdominios, correos o tecnologías</strong> usando fuentes públicas (dorks, buscadores, repositorios, huellas).</p>
+</div>
+</li>
+<li class="target-item">
+<i class="fa-solid fa-bug-slash target-icon"></i>
+<div class="target-content">
+<h4>Escaneo responsable</h4>
+<p>Ejecutaste Nmap con parámetros coherentes con el entorno y explicas por qué elegiste ese tipo de escaneo (rápido vs profundo).</p>
+</div>
+</li>
+<li class="target-item">
+<i class="fa-solid fa-file-circle-check target-icon"></i>
+<div class="target-content">
+<h4>Documentación profesional</h4>
+<p>Guardaste evidencia y puedes reconstruir tu proceso (comando → resultado → interpretación → siguiente paso).</p>
+</div>
+</li>
+</ul>
+<h3 style="color:#1565c0; font-family:'Montserrat', sans-serif; margin-top:35px;">⚡ Errores comunes (y cómo evitarlos)</h3>
+<div style="background:#f5faff; border:1px solid #bbdefb; padding:22px; border-radius:12px;">
+<ul style="margin:0 0 0 18px;">
+<li><strong>Escanear “por escanear”:</strong> no es cantidad; es <em>sentido</em>. Explica qué buscabas con cada comando.</li>
+<li><strong>Confundir puerto con vulnerabilidad:</strong> un puerto abierto no es “malo” por sí solo; lo importante es <strong>servicio, versión y exposición</strong>.</li>
+<li><strong>No guardar logs:</strong> si mañana no puedes probar lo que hiciste, se pierde el valor del trabajo.</li>
+<li><strong>Repetir resultados sin interpretar:</strong> siempre agrega <em>qué significa</em> el hallazgo y qué harías después.</li>
+</ul>
+</div>
+<div class="warning-box" style="margin-top:30px;">
+<strong>🛡️ Nota ética práctica:</strong> en entornos reales, el reconocimiento activo puede activar alertas. En laboratorio, practica primero la metodología y la documentación; la “velocidad” viene después.
+      </div>
+</div>
+
+</div>
+</div>
+</body>
+</html>

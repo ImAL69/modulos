@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidad 1: Introducción y Objetivos</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1; /* Azul Institucional */
+    }
+
+    /* LOGO POSICIONADO CORRECTAMENTE A LA DERECHA */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        width: 160px;
+        height: auto;
+        z-index: 100;
+        padding: 5px;
+        background: #fff;
+        border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box {
+        text-align: left;
+        margin-bottom: 60px;
+        padding-top: 40px;
+        padding-right: 180px; /* Margen para proteger el logo */
+        padding-left: 20px;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 30px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: #0d47a1;
+        margin: 0 0 15px 0;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.4rem;
+        color: #546e7a;
+        display: block;
+        font-weight: 300;
+        border-left: 4px solid #1976d2;
+        padding-left: 15px;
+    }
+
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1.1rem;
+        text-align: justify;
+    }
+    
+    .highlight-box {
+        background: #e3f2fd;
+        padding: 30px;
+        border-radius: 12px;
+        border-left: 6px solid #1565c0;
+        margin: 30px 0;
+        font-size: 1.15rem;
+        color: #0d47a1;
+    }
+
+    /* LISTA DE OBJETIVOS DETALLADA */
+    .objective-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 30px;
+    }
+    .objective-list li {
+        margin-bottom: 25px;
+        padding: 25px;
+        background: #f5faff;
+        border-radius: 10px;
+        border-left: 5px solid #1565c0;
+        display: flex;
+        align-items: flex-start;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+    }
+    .objective-list i {
+        font-size: 1.8rem;
+        color: #1565c0;
+        margin-right: 25px;
+        margin-top: 5px;
+    }
+    
+    .obj-text h4 {
+        margin: 0 0 10px 0;
+        color: #0d47a1;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    /* Imagen ilustrativa */
+    .feature-img { display:block; width:65%; max-width:600px; height:auto; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.08); margin:20px auto; }
+    .img-caption { text-align:center; color:#546e7a; font-size:0.9rem; margin-top:8px; }
+
+    @media (max-width: 768px) {
+        .uni-logo { 
+            position: static; 
+            display: block; 
+            margin: 0 auto 20px auto; 
+        }
+        .header-box { 
+            padding-right: 20px; 
+            text-align: center;
+        }
+        .main-title { font-size: 2rem; }
+        /* En pantallas pequeñas, la imagen ocupa todo el ancho para mejor legibilidad */
+        .feature-img { width:100%; max-width:100%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <!-- LOGO CORRECTO -->
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Unidad 1: Fundamentos y Flujo de Análisis de Datos para ML</h1>
+        <span class="subtitle">Semana 1: Preparación, EDA y Calidad del Dato</span>
+    </div>
+
+    <div class="content-block">
+        <p>Bienvenidos a la Unidad 1. Antes de aplicar algoritmos complejos de Machine Learning, debemos dominar el arte de preparar la materia prima: los datos. En el contexto de la ciberseguridad y los negocios, los datos rara vez llegan listos para ser consumidos; suelen estar incompletos, contener errores (ruido) o presentar sesgos que pueden llevar a decisiones catastróficas.</p>
+        
+        <p>Esta semana sentaremos las bases de la <strong>Ingeniería de Datos</strong> aplicada. No es una semana de "teoría vacía"; es una semana de estrategia. Entenderemos por qué el 80% del tiempo de un científico de datos se va en la limpieza y cómo una mala limpieza es el principal riesgo de fracaso en un proyecto de IA.</p>
+
+        <div class="highlight-box">
+            <strong>⚠️ Mensaje Crítico:</strong> Esta semana <strong>NO</strong> vamos a "entrenar modelos". Nos enfocaremos exclusivamente en el diagnóstico y la higiene de los datos. Recuerden el principio fundamental de la ciencia de datos: <em>"Garbage In, Garbage Out"</em> (Si entra basura, sale basura). Un modelo entrenado con datos sucios no es una herramienta, es un riesgo de seguridad en sí mismo.
+        </div>
+
+        <figure>
+            <img class="feature-img" src="https://www.dropbox.com/scl/fi/7b4awbi6ikicfnvk8378u/Gemini_Generated_Image_243fwu243fwu243f-1.png?rlkey=1v16chz9apepu4gk1brh3oqgd&st=grjikx7q&raw=1" alt="Ilustración motivacional de perrito sobre fundamentos y exploración de datos" />
+            <figcaption class="img-caption">Semana 1: Fundamentos y EDA — la calidad del dato es la base de todo.</figcaption>
+        </figure>
+
+        <h3 style="color:#0d47a1; margin-top: 50px; font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 700;">🎯 Objetivos de Aprendizaje Profundo</h3>
+        <ul class="objective-list">
+            <li>
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                <div class="obj-text">
+                    <h4>1. Diagnóstico de Calidad de Datos (Data Quality Assessment)</h4>
+                    Aprenderán a auditar un dataset como un forense. Identificarán tipos de variables (numéricas, categóricas, ordinales, temporales) y detectarán patologías críticas: valores nulos informativos vs aleatorios (MCAR/MNAR), duplicados ocultos y formatos inconsistentes que rompen los pipelines automatizados.
+                </div>
+            </li>
+            <li>
+                <i class="fa-solid fa-diagram-project"></i>
+                <div class="obj-text">
+                    <h4>2. Flujo de EDA (Exploratory Data Analysis)</h4>
+                    Plantearemos un flujo de trabajo coherente para "interrogar" a los datos. Usaremos estadística descriptiva (media, mediana, desviación, cuartiles) y visualización para descubrir la estructura subyacente de la información, detectando sesgos antes de que lleguen al modelo.
+                </div>
+            </li>
+            <li>
+                <i class="fa-solid fa-broom"></i>
+                <div class="obj-text">
+                    <h4>3. Estrategias de Limpieza Justificada</h4>
+                    La limpieza no es mecánica; es estratégica. Aprenderán a decidir cuándo imputar un valor (y con qué método: media, mediana, KNN) y cuándo eliminar un registro, justificando técnicamente el impacto de esa decisión en la integridad de la información y evitando la pérdida de datos valiosos (especialmente en logs de ataques).
+                </div>
+            </li>
+        </ul>
+
+        <h3 style="color:#0d47a1; margin-top: 50px; font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 700;">📦 Producto Esperado</h3>
+        <p>Al final de la semana, no solo habrán corrido celdas de código. Deberán generar un <strong>Mini-Reporte de Calidad de Datos (Data Quality Report)</strong> que incluya un diagnóstico del dataset asignado y un plan de limpieza detallado. Este documento es el estándar profesional para comunicar riesgos de datos a los stakeholders antes de iniciar cualquier proceso de modelado.</p>
+    </div>
+</div>
+
+</body>
+</html>

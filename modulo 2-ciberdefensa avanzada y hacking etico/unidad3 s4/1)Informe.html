@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recurso: Estructura Informe Técnico</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .structure-box {
+        background: #fff; border: 1px solid #90caf9; padding: 0; border-radius: 12px; overflow: hidden; margin-bottom: 30px;
+    }
+    .structure-header {
+        background: #e3f2fd; padding: 15px 25px; border-bottom: 1px solid #90caf9; font-weight: bold; color: #0d47a1;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .structure-body { padding: 25px; }
+
+    .section-tag {
+        display: inline-block; background: #1565c0; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 10px; vertical-align: middle;
+    }
+
+    .detail-list { margin: 0; padding-left: 20px; color: #546e7a; }
+    .detail-list li { margin-bottom: 5px; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Recurso: Estructura del Informe Técnico</h1>
+        <p>Guía de contenido para el entregable "Informe Técnico Detallado".</p>
+    </div>
+
+    <p style="margin-bottom: 30px;">
+        Este documento es para el personal de TI (SysAdmins, Desarrolladores). Debe ser lo suficientemente detallado para que puedan reproducir el ataque y aplicar la solución sin preguntarte nada.
+    </p>
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>1. Información del Hallazgo</span>
+            <i class="fa-solid fa-circle-info"></i>
+        </div>
+        <div class="structure-body">
+            <ul class="detail-list">
+                <li><strong>ID:</strong> Código único (ej. VULN-001).</li>
+                <li><strong>Nombre:</strong> Descriptivo (ej. "Inyección SQL en Formulario de Login").</li>
+                <li><strong>Activo Afectado:</strong> URL, IP o Servidor específico.</li>
+                <li><strong>Severidad (CVSS):</strong> Score v3.1 (Base, Temporal y Ambiental si aplica).</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>2. Descripción y Prueba de Concepto (PoC)</span>
+            <i class="fa-solid fa-code"></i>
+        </div>
+        <div class="structure-body">
+            <p style="margin-top:0;">El "paso a paso" para replicar el fallo:</p>
+            <ul class="detail-list">
+                <li><strong>Herramientas:</strong> ¿Qué software usaste? (Burp Suite, Nmap, script python).</li>
+                <li><strong>Pasos de Reproducción:</strong> 1. Ir a la URL... 2. Ingresar payload... 3. Observar error.</li>
+                <li><strong>Evidencia:</strong> Capturas de pantalla OBLIGATORIAS mostrando el resultado.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>3. Recomendación Técnica</span>
+            <i class="fa-solid fa-wrench"></i>
+        </div>
+        <div class="structure-body">
+            <p style="margin-top:0;">La solución concreta:</p>
+            <ul class="detail-list">
+                <li><strong>Solución Inmediata:</strong> ¿Qué hacer ya? (ej. Sanitizar inputs, actualizar librería).</li>
+                <li><strong>Solución a Largo Plazo:</strong> (ej. Implementar WAF, capacitación de código seguro).</li>
+                <li><strong>Referencias:</strong> Enlaces a documentación oficial o CVEs.</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>4. Análisis de Impacto (Lenguaje Técnico + Negocio)</span>
+            <i class="fa-solid fa-chart-pie"></i>
+        </div>
+        <div class="structure-body">
+            <p style="margin-top:0;">Explica <strong>qué podría pasar</strong> si el hallazgo se explota, en dos niveles:</p>
+            <ul class="detail-list">
+                <li><strong>Impacto técnico:</strong> fuga de datos, ejecución remota, escalamiento de privilegios, denegación de servicio, etc.</li>
+                <li><strong>Impacto de negocio:</strong> caída de ventas, sanciones por datos, interrupción operativa, reputación, costos de recuperación.</li>
+                <li><strong>Condiciones de explotación:</strong> ¿requiere autenticación? ¿se puede hacer remoto? ¿hay mitigaciones existentes?</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>5. Priorización (Qué arreglar primero y por qué)</span>
+            <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <div class="structure-body">
+            <p style="margin-top:0;">Recomendación práctica: prioriza con una mezcla de <strong>severidad</strong> + <strong>explotabilidad</strong> + <strong>criticidad del activo</strong>.</p>
+            <ul class="detail-list">
+                <li><strong>P1 (Inmediato):</strong> RCE, auth bypass, exposición de datos sensibles, credenciales por defecto.</li>
+                <li><strong>P2 (Alta):</strong> XSS almacenado, configuraciones débiles, rutas administrativas expuestas.</li>
+                <li><strong>P3 (Programable):</strong> versiones con riesgo bajo, hardening recomendado, mejoras de logging.</li>
+            </ul>
+            <p style="margin-bottom:0;"><strong>Tip:</strong> Si dos hallazgos tienen CVSS similar, arregla primero el que tenga mayor impacto real (datos críticos o sistemas core).</p>
+        </div>
+    </div>
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>6. Retest y Criterio de Cierre</span>
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="structure-body">
+            <ul class="detail-list">
+                <li><strong>Qué se prueba:</strong> el mismo vector de ataque que funcionó, con evidencia antes/después.</li>
+                <li><strong>Qué NO se asume:</strong> “ya actualizamos” no es evidencia; se confirma con retest.</li>
+                <li><strong>Salida esperada:</strong> el exploit ya no funciona y la configuración/versión evidencia la corrección.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>7. Anexo de Evidencias (Formato recomendado)</span>
+            <i class="fa-solid fa-paperclip"></i>
+        </div>
+        <div class="structure-body">
+            <p style="margin-top:0;">Ordena tus capturas y logs para que el equipo de TI pueda seguirlas sin preguntarte:</p>
+            <ul class="detail-list">
+                <li><strong>E-01:</strong> Recon/Enumeración (puertos, endpoints, versión).</li>
+                <li><strong>E-02:</strong> PoC (payload/steps + resultado).</li>
+                <li><strong>E-03:</strong> Impacto (prueba controlada: lectura de dato, acceso limitado, etc.).</li>
+                <li><strong>E-04:</strong> Remediación (cambio aplicado o comandos sugeridos).</li>
+                <li><strong>E-05:</strong> Retest (antes/después).</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

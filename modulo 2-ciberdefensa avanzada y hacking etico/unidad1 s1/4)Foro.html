@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Foro: Superficie de Ataque</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 40px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .scenario-box {
+        background: #263238; color: #eceff1; padding: 25px; border-radius: 12px; margin-bottom: 30px; font-family: 'Roboto', sans-serif;
+    }
+    .scenario-title { color: #80cbc4; font-weight: bold; display: block; margin-bottom: 10px; font-size: 1.2rem; }
+
+    .instruction-list { list-style: none; padding: 0; }
+    .instruction-list li { margin-bottom: 15px; padding-left: 20px; position: relative; }
+    .instruction-list li::before { content: '👉'; position: absolute; left: 0; }
+
+    .btn-discuss {
+        display: block; width: 250px; margin: 30px auto 0; padding: 15px;
+        background: #1565c0; color: white; text-align: center; border-radius: 50px;
+        text-decoration: none; font-weight: bold; transition: transform 0.2s;
+    }
+    .btn-discuss:hover { transform: scale(1.05); background: #0d47a1; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Foro de Discusión: Superficie de Ataque</h1>
+<p>Análisis de caso práctico: Identificación de Riesgos.</p>
+</div>
+<div class="scenario-box">
+<span class="scenario-title"><i class="fa-solid fa-building"></i> Escenario: La Startup "FinTech-X"</span>
+<p>La empresa "FinTech-X" acaba de lanzar su app móvil. Tienen:</p>
+<ul>
+<li>Un servidor web Apache expuesto a Internet (Puerto 80/443).</li>
+<li>Una base de datos MySQL en el mismo servidor (Puerto 3306 abierto por error).</li>
+<li>Empleados que usan contraseñas como "empresa2023".</li>
+<li>No tienen firewall perimetral, solo el de Windows Defender.</li>
+</ul>
+</div>
+<h3 style="color:#0d47a1;">📝 Tu Misión:</h3>
+<ul class="instruction-list">
+<li><strong>Identifica la Superficie de Ataque:</strong> ¿Qué puntos de entrada ves? (Puertos, personas, software).</li>
+<li><strong>Clasifica los Riesgos:</strong> ¿Cuál es el riesgo más crítico y por qué? (Ej. ¿Es peor el puerto 3306 abierto o las contraseñas débiles?).</li>
+<li><strong>Propón una Solución Rápida:</strong> ¿Qué acción inmediata tomarías para reducir el riesgo hoy mismo?</li>
+</ul>
+<a class="btn-discuss" href="#">PARTICIPAR EN EL DEBATE</a>
+<div style="margin-top: 35px;">
+<h3 style="color:#0d47a1;">📌 Estructura sugerida para tu respuesta (cópiala y complétala)</h3>
+<div class="scenario-box" style="background:#f5faff; color:#37474f; border:1px solid #bbdefb;">
+<span class="scenario-title" style="color:#0d47a1;"><i class="fa-solid fa-pen-to-square"></i> Plantilla</span>
+<ol style="margin:0; padding-left:20px; line-height:1.7;">
+<li><strong>Superficie de ataque (mínimo 6 puntos):</strong> separa en <em>técnico</em> (puertos/servicios) y <em>humano/proceso</em> (contraseñas, capacitación, políticas).</li>
+<li><strong>Riesgo #1 (crítico):</strong> explica impacto y probabilidad en 3–5 líneas.</li>
+<li><strong>Riesgo #2 (alto/medio):</strong> explica por qué no es el #1.</li>
+<li><strong>Quick wins (hoy mismo):</strong> 2–3 acciones inmediatas sin afectar el negocio.</li>
+<li><strong>Mediano plazo:</strong> 1–2 acciones estructurales (políticas, hardening, monitoreo, IAM).</li>
+</ol>
+</div>
+<h3 style="color:#0d47a1; margin-top:30px;">📊 Mini‑matriz de riesgo (para justificar tu prioridad)</h3>
+<p style="color:#546e7a;">Completa esta matriz en tu respuesta (puede ser texto, no necesitas tabla perfecta):</p>
+<div class="scenario-box" style="background:#ffffff; color:#37474f; border:1px solid #e0e0e0;">
+<ul style="margin:0; padding-left:20px; line-height:1.7;">
+<li><strong>Riesgo:</strong> (ej. BD expuesta a Internet)</li>
+<li><strong>Impacto:</strong> Bajo / Medio / Alto (¿qué se pierde?)</li>
+<li><strong>Probabilidad:</strong> Baja / Media / Alta (¿qué tan fácil es?)</li>
+<li><strong>Acción inmediata:</strong> (qué harías hoy)</li>
+<li><strong>Acción de mediano plazo:</strong> (qué harías después)</li>
+</ul>
+</div>
+<h3 style="color:#0d47a1; margin-top:30px;">✅ Criterios de evaluación (lo que se calificará)</h3>
+<ul class="instruction-list">
+<li><strong>Claridad:</strong> se entiende tu lógica sin adivinar.</li>
+<li><strong>Prioridad justificada:</strong> no es “porque sí”, sino por impacto/probabilidad.</li>
+<li><strong>Acciones aplicables:</strong> medidas concretas (configuración, controles, procesos).</li>
+<li><strong>Respeto y colaboración:</strong> comenta al menos a 1 compañero con una mejora o pregunta útil.</li>
+</ul>
+<div class="scenario-box" style="margin-top:25px;">
+<span class="scenario-title"><i class="fa-solid fa-shield-heart"></i> Nota ética</span>
+<p style="margin:0;">En este foro hablamos de <strong>análisis y mitigación</strong>. No compartas instrucciones operativas de explotación ni datos reales de sistemas externos. Mantén el debate en el contexto académico.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

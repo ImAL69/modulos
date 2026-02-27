@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 3.4: Indicadores y Mejora Continua</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .kpi-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;
+    }
+    .kpi-card {
+        background: #fff; border: 1px solid #e0e0e0; padding: 25px; border-radius: 12px; text-align: center;
+        transition: transform 0.2s; border-bottom: 5px solid #ff9800;
+    }
+    .kpi-card:hover { transform: translateY(-5px); border-bottom-color: #e65100; }
+    
+    .kpi-title { font-weight: 700; color: #37474f; font-size: 1.1rem; display: block; margin-bottom: 10px; }
+    .kpi-value { font-size: 2rem; color: #1565c0; font-weight: 800; font-family: 'Montserrat', sans-serif; }
+
+    .retest-box {
+        background: #e8f5e9; padding: 25px; border-radius: 12px; margin-top: 40px; border: 1px dashed #2e7d32;
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 3.4: Indicadores y Mejora Continua</h1>
+        <p>Métricas para gestionar la ciberseguridad a largo plazo.</p>
+    </div>
+
+    <p style="margin-bottom: 30px; font-size: 1.1rem;">
+        Lo que no se mide, no se puede mejorar. Para que la seguridad sea sostenible, debemos implementar KPIs (Key Performance Indicators) que nos digan si estamos ganando o perdiendo la batalla.
+    </p>
+
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <span class="kpi-title">MTTR (Mean Time To Remediate)</span>
+            <span class="kpi-value">&lt; 48 Horas</span>
+            <p>Tiempo promedio que tarda el equipo en parchar una vulnerabilidad crítica desde que es reportada.</p>
+        </div>
+
+        <div class="kpi-card" style="border-bottom-color: #f44336;">
+            <span class="kpi-title">Tasa de Reincidencia</span>
+            <span class="kpi-value">0%</span>
+            <p>Porcentaje de vulnerabilidades que reaparecen después de haber sido supuestamente "arregladas".</p>
+        </div>
+
+        <div class="kpi-card" style="border-bottom-color: #2196f3;">
+            <span class="kpi-title">Cobertura de Activos</span>
+            <span class="kpi-value">100%</span>
+            <p>Porcentaje de servidores y aplicaciones críticas que han sido auditadas al menos una vez este año.</p>
+        </div>
+    </div>
+
+    <div class="retest-box">
+        <h3 style="color:#1b5e20; margin-top:0;"><i class="fa-solid fa-rotate-right"></i> El Proceso de Retest</h3>
+        <p>El ciclo no se cierra hasta que verificas la solución. El "Retest" es una mini-auditoría enfocada solo en los fallos reportados para confirmar que el parche es efectivo y no se puede bypassar.</p>
+    </div>
+
+
+
+    <div style="margin-top:35px; padding:24px; background:#f5faff; border:1px solid #bbdefb; border-radius:12px;">
+        <h2 style="margin:0 0 12px 0; color:#0d47a1; font-family:'Montserrat',sans-serif; font-size:1.35rem;">
+            <i class="fa-solid fa-chart-line"></i> KPIs recomendados (más allá de los 3 básicos)
+        </h2>
+        <p style="margin:0 0 14px 0;">
+            Los KPIs deben ayudarte a responder: <strong>¿estamos reduciendo riesgo?</strong> y <strong>¿estamos mejorando el proceso?</strong>.
+            A continuación tienes métricas adicionales comunes en programas de seguridad.
+        </p>
+
+        <div class="kpi-grid" style="margin-top:0;">
+            <div class="kpi-card" style="border-bottom-color:#4caf50;">
+                <span class="kpi-title">MTTD (Mean Time To Detect)</span>
+                <span class="kpi-value">&lt; 24 Horas</span>
+                <p>Tiempo promedio para detectar un evento relevante (alerta SIEM, anomalía, IOC confirmado).</p>
+            </div>
+            <div class="kpi-card" style="border-bottom-color:#9c27b0;">
+                <span class="kpi-title">% Hallazgos sin Dueño</span>
+                <span class="kpi-value">0%</span>
+                <p>Hallazgos sin responsable asignado. Si existe, la remediación se estanca.</p>
+            </div>
+            <div class="kpi-card" style="border-bottom-color:#00bcd4;">
+                <span class="kpi-title">Backlog de Vulnerabilidades</span>
+                <span class="kpi-value">↓ Mensual</span>
+                <p>Número total de vulnerabilidades abiertas por severidad. Debe tender a la baja.</p>
+            </div>
+            <div class="kpi-card" style="border-bottom-color:#ff9800;">
+                <span class="kpi-title">Cumplimiento de Retest</span>
+                <span class="kpi-value">≥ 90%</span>
+                <p>Porcentaje de correcciones verificadas por retest (no “cerradas por confianza”).</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top:22px; padding:24px; background:#fff; border:1px solid #e0e0e0; border-radius:12px;">
+        <h2 style="margin:0 0 10px 0; color:#37474f; font-family:'Montserrat',sans-serif; font-size:1.35rem;">
+            <i class="fa-solid fa-sliders"></i> Cómo definir metas y umbrales (sin inventar)
+        </h2>
+        <p style="margin:0 0 12px 0;">
+            Evita fijar números “bonitos” sin contexto. Usa una base inicial (tu línea base) y mejora por iteraciones.
+        </p>
+        <ul style="margin:0 0 0 18px; color:#546e7a;">
+            <li><strong>Línea base:</strong> mide 2–4 semanas y registra el promedio.</li>
+            <li><strong>Meta trimestral:</strong> mejora 10–20% sobre esa base (realista).</li>
+            <li><strong>Umbral de alerta:</strong> si el KPI empeora 2 periodos seguidos, se revisa causa raíz.</li>
+        </ul>
+    </div>
+
+    <div class="retest-box" style="margin-top:22px;">
+        <h3 style="color:#1b5e20; margin-top:0;"><i class="fa-solid fa-circle-check"></i> Buenas prácticas de mejora continua</h3>
+        <ul style="margin:10px 0 0 18px; color:#1b5e20;">
+            <li>Reunión de “post-mortem” para hallazgos críticos: qué falló y qué control faltó.</li>
+            <li>Actualizar baselines/hardening cada vez que haya cambios mayores de infraestructura.</li>
+            <li>Convertir hallazgos recurrentes en políticas y automatizaciones (IaC, CI/CD, escaneo continuo).</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

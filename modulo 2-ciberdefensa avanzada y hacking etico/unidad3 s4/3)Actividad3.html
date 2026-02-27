@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividad 3: Proyecto Integrador</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .project-alert {
+        background: #263238; color: #fff; padding: 30px; border-radius: 12px; margin-bottom: 30px; text-align: center;
+        border: 2px solid #1565c0;
+    }
+    .project-weight { font-size: 3rem; font-weight: 800; color: #42a5f5; display: block; line-height: 1; margin-bottom: 10px; }
+
+    .req-list { list-style: none; padding: 0; }
+    .req-list li { margin-bottom: 15px; background: #f5faff; padding: 15px; border-radius: 8px; border-left: 5px solid #1565c0; }
+    .req-title { font-weight: bold; color: #0d47a1; display: block; margin-bottom: 5px; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Proyecto Integrador Final</h1>
+        <p>Informe Ejecutivo de Auditoría y Plan de Mitigación.</p>
+    </div>
+
+    <div class="project-alert">
+        <span class="project-weight">50%</span>
+        <span>DE LA NOTA FINAL DEL MÓDULO</span>
+    </div>
+
+    <p style="margin-bottom: 30px;">
+        Este es el momento de demostrar todo lo aprendido. Deberás entregar un paquete completo de auditoría simulando un escenario real.
+    </p>
+
+    <h3 style="color:#1565c0; font-family:'Montserrat', sans-serif;">📦 Entregables Requeridos:</h3>
+    <ul class="req-list">
+        <li>
+            <span class="req-title">1. Informe Ejecutivo (PDF)</span>
+            Resumen de alto nivel para la gerencia. Debe incluir gráficas de riesgo, resumen de impacto financiero y conclusiones estratégicas. <strong>Máximo 3 páginas.</strong>
+        </li>
+        <li>
+            <span class="req-title">2. Informe Técnico Detallado (PDF)</span>
+            Para el equipo de TI. Debe incluir paso a paso de explotación, evidencias (screenshots), CVSS score detallado y comandos de remediación específicos.
+        </li>
+        <li>
+            <span class="req-title">3. Presentación de Resultados (PPTX/PDF)</span>
+            Entre 8 y 10 diapositivas diseñadas para ser expuestas en una reunión de cierre de 15 minutos ante la junta directiva.
+        </li>
+    </ul>
+
+
+
+    <div style="margin-top:30px; background:#f5faff; border:1px solid #bbdefb; padding:26px; border-radius:12px;">
+        <h3 style="margin:0 0 10px 0; color:#0d47a1; font-family:'Montserrat', sans-serif;">
+            <i class="fa-solid fa-route"></i> Ruta recomendada para construir tu entrega (paso a paso)
+        </h3>
+        <ol style="margin:0 0 0 18px; color:#455a64;">
+            <li><strong>Define alcance:</strong> objetivo, activos, lo permitido y lo prohibido (sin DoS, sin externos).</li>
+            <li><strong>Recon/Enumeración:</strong> registra puertos/endpoints/versiones con evidencia.</li>
+            <li><strong>Valida hallazgos:</strong> prueba manualmente para confirmar (evita “solo escaneo”).</li>
+            <li><strong>PoC controlada:</strong> demuestra impacto sin dañar el entorno.</li>
+            <li><strong>Mitigación:</strong> acciones concretas (parche/hardening/segmentación/controles compensatorios).</li>
+            <li><strong>Retest:</strong> evidencia antes/después para cerrar hallazgos.</li>
+            <li><strong>Comunicación:</strong> redacta ejecutivo + técnico + slides con la misma historia.</li>
+        </ol>
+    </div>
+
+    <div style="margin-top:18px; background:#263238; color:#fff; padding:22px; border-radius:12px; border:2px solid #1565c0;">
+        <h3 style="margin:0 0 8px 0; color:#90caf9; font-family:'Montserrat', sans-serif;">
+            <i class="fa-solid fa-triangle-exclamation"></i> Errores comunes que bajan nota (evítalos)
+        </h3>
+        <ul style="margin:0 0 0 18px;">
+            <li>Reportar vulnerabilidades sin validar (falsos positivos).</li>
+            <li>Capturas sin contexto (no se entiende qué se probó).</li>
+            <li>Recomendaciones genéricas (“actualizar todo”, “mejorar seguridad”).</li>
+            <li>Informe ejecutivo que parece técnico (sin enfoque de negocio).</li>
+            <li>No incluir criterio de cierre y retest.</li>
+        </ul>
+    </div>
+
+    <div style="margin-top:18px; background:#fff; border:1px solid #e0e0e0; padding:26px; border-radius:12px;">
+        <h3 style="margin:0 0 10px 0; color:#37474f; font-family:'Montserrat', sans-serif;">
+            <i class="fa-solid fa-file-circle-check"></i> Checklist de paquete final (interno)
+        </h3>
+        <ul style="margin:0 0 0 18px; color:#546e7a;">
+            <li><strong>PDF Ejecutivo:</strong> 3 páginas máx, 3–5 hallazgos clave, priorización, impacto.</li>
+            <li><strong>PDF Técnico:</strong> PoC, pasos reproducibles, evidencias, CVSS/Severidad razonada, mitigación.</li>
+            <li><strong>Slides:</strong> 8–10, historia clara (contexto → hallazgos → impacto → plan).</li>
+            <li><strong>Anonimización:</strong> sin datos personales reales ni credenciales reales.</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

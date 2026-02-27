@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teoría 1.3: Preparación para ML</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; line-height: 1.8; }
+
+    .module-container {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #1565c0; overflow: hidden;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 160px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 60px; padding-top: 40px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 30px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.4rem; font-weight: 800; color: #0d47a1; margin: 0 auto 15px auto; }
+    
+    .concept-box {
+        background: #f5faff; border: 1px solid #90caf9; padding: 25px; margin-bottom: 25px; border-radius: 12px;
+    }
+    .concept-title { color: #1565c0; font-weight: 700; margin-bottom: 10px; display: block; font-size: 1.1rem; }
+
+    .alert-box {
+        background: #fff3e0; border-left: 6px solid #d32f2f; padding: 25px; margin-top: 30px; border-radius: 8px; color: #b71c1c; font-size: 1.05rem;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 20px; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="module-container">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Preparación para Machine Learning</h1>
+        <p style="color:#546e7a;">Feature Engineering y Partición de Datos</p>
+    </div>
+
+    <div class="content-block">
+        <p>Una vez limpios, los datos deben ser traducidos al lenguaje de los algoritmos: las matemáticas. Esto implica convertir todo texto en número, ajustar escalas y separar la información para una evaluación honesta.</p>
+
+        <h3 style="color:#0d47a1; margin-top:40px;">🏗️ Conceptos Clave de Preparación</h3>
+        
+        <div class="concept-box">
+            <span class="concept-title">1. Definición de Feature (X) vs Target (y)</span>
+            <p>Las <strong>Features</strong> son las variables predictoras (columnas con datos). El <strong>Target</strong> es el objetivo (lo que queremos predecir, ej. "Es Fraude?"). Definir mal el target invalida todo el proyecto. En aprendizaje supervisado, necesitamos datos históricos etiquetados.</p>
+        </div>
+
+        <div class="concept-box">
+            <span class="concept-title">2. Partición de Datos (Train / Validation / Test)</span>
+            <p>Debemos separar los datos en tres grupos:</p>
+            <ul>
+                <li><strong>Train (70%):</strong> Para que el modelo aprenda.</li>
+                <li><strong>Validation (15%):</strong> Para ajustar parámetros (tuning) mientras entrenamos.</li>
+                <li><strong>Test (15%):</strong> Datos <strong>invisibles</strong> ("en una caja fuerte") que solo se usan al final para evaluar el rendimiento real. Si el modelo ve estos datos antes, hace trampa.</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <span class="concept-title">3. Baseline (Línea Base)</span>
+            <p>Es un modelo trivial o "tonto" (ej. predecir siempre "no es fraude" o predecir el promedio). Sirve como punto de referencia mínimo. Si tu modelo complejo de IA no supera al Baseline, no sirve.</p>
+        </div>
+
+        <div class="alert-box">
+            <strong>⚠️ Error Típico Crítico: Fuga de Datos (Data Leakage)</strong><br>
+            Ocurre cuando usamos información del futuro o del set de prueba para entrenar. <br>
+            <em>Ejemplo:</em> Normalizar (calcular media y desviación) usando TODO el dataset antes de dividirlo. Esto "contamina" el entrenamiento con estadísticas del test. <br>
+            <strong>Solución:</strong> Calcular la media SOLO con Train, y usar ese valor para transformar Test.
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

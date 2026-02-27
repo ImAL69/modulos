@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Actividad: Autoevaluación de Borrador</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .checklist-container {
+        background: #f5faff; padding: 30px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+
+    .check-item {
+        display: flex; align-items: center; margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;
+    }
+    .check-item input { width: 20px; height: 20px; margin-right: 15px; cursor: pointer; }
+    .check-label { font-size: 1.05rem; cursor: pointer; flex: 1; }
+
+    .feedback-btn {
+        display: block; width: 100%; padding: 15px; background: #1565c0; color: white; text-align: center; border: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; margin-top: 20px; cursor: pointer;
+    }
+    .feedback-btn:hover { background: #0d47a1; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Checklist de Calidad: Informe Ejecutivo</h1>
+<p>Autoevaluación antes del envío del avance.</p>
+</div>
+<p>Antes de subir tu archivo, marca las casillas para asegurar que cumples con los criterios de calidad profesional.</p>
+<div class="checklist-container">
+<div class="check-item">
+<input id="c1" type="checkbox"/>
+<label class="check-label" for="c1"><strong>Claridad:</strong> El Resumen Ejecutivo NO contiene jerga técnica (como "TCP Handshake" o "Payload Meterpreter") sin explicar su impacto.</label>
+</div>
+<div class="check-item">
+<input id="c2" type="checkbox"/>
+<label class="check-label" for="c2"><strong>Privacidad:</strong> Todas las capturas de pantalla han sido sanitizadas (IPs públicas o nombres de usuarios reales pixelados).</label>
+</div>
+<div class="check-item">
+<input id="c3" type="checkbox"/>
+<label class="check-label" for="c3"><strong>Priorización:</strong> Los hallazgos están ordenados por Riesgo (Crítico -&gt; Bajo), no por orden de descubrimiento.</label>
+</div>
+<div class="check-item">
+<input id="c4" type="checkbox"/>
+<label class="check-label" for="c4"><strong>Ortografía y Formato:</strong> El documento tiene una portada profesional, índice y paginación correcta.</label>
+</div>
+
+<div class="alert-box" style="margin-top: 20px; background:#e3f2fd; border-color:#90caf9; color:#0d47a1;">
+<strong>Tip:</strong> Si no marcaste alguna casilla, no es “malo”: úsalo como plan de mejora.
+  Anota qué falta y qué acción concreta harás hoy para corregirlo.
+</div>
+
+
+<div class="check-item">
+<input id="c5" type="checkbox"/>
+<label class="check-label" for="c5"><strong>Evidencia:</strong> Cada hallazgo incluye al menos una prueba reproducible (comando + salida o captura) y una explicación breve del resultado.</label>
+</div>
+
+<div class="check-item">
+<input id="c6" type="checkbox"/>
+<label class="check-label" for="c6"><strong>Impacto:</strong> Por cada riesgo crítico/alto, explico en 1–2 frases qué podría pasar en la operación (pérdida de datos, acceso no autorizado, indisponibilidad).</label>
+</div>
+
+<div class="check-item">
+<input id="c7" type="checkbox"/>
+<label class="check-label" for="c7"><strong>Recomendación:</strong> Las recomendaciones son específicas (parche/configuración/control), no genéricas tipo “mejorar seguridad”.</label>
+</div>
+
+<div class="check-item">
+<input id="c8" type="checkbox"/>
+<label class="check-label" for="c8"><strong>Consistencia:</strong> No hay contradicciones entre el resumen ejecutivo y la matriz de hallazgos (mismos números, mismas prioridades).</label>
+</div>
+
+<div class="check-item">
+<input id="c9" type="checkbox"/>
+<label class="check-label" for="c9"><strong>Lenguaje:</strong> Puedo explicar el hallazgo sin tecnicismos excesivos: qué es, por qué importa y qué hacer.</label>
+</div>
+</div>
+
+<section class="draft-card" style="margin-top: 25px; border-left-color:#26c6da;">
+<span class="draft-title" style="color:#00838f;"><i class="fa-solid fa-award"></i> ¿Cómo se revisará tu avance?</span>
+<ul class="list-req">
+<li><strong>Completitud:</strong> están los componentes mínimos (resumen, matriz, evidencias).</li>
+<li><strong>Calidad:</strong> claridad, sanitización, priorización y recomendaciones accionables.</li>
+<li><strong>Rigor:</strong> lo que afirmas se sostiene con pruebas (sin “suposiciones”).</li>
+</ul>
+<p style="margin-top:10px;">Consejo: si tu informe fuese a un gerente, ¿podría decidir <em>qué arreglar primero</em> sin llamarte a preguntar?</p>
+</section>
+</div>
+</body>
+</html>

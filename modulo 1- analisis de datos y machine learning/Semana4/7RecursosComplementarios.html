@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos Complementarios</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 160px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 60px; padding-top: 40px; padding-right: 180px; padding-left: 20px; border-bottom: 1px solid #e0e0e0; padding-bottom: 30px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 15px 0; }
+    
+    .resource-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 20px;
+    }
+    .resource-title {
+        font-family: 'Montserrat', sans-serif; font-weight: 700; color: #1565c0; font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center;
+    }
+    .resource-title i { margin-right: 10px; font-size: 1.3rem; }
+    
+    .description { margin-bottom: 15px; color: #546e7a; font-size: 0.95rem; text-align: justify; }
+    .usage-tip { background: #e3f2fd; padding: 10px 15px; border-radius: 6px; font-size: 0.9rem; color: #0d47a1; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 20px; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Recursos Complementarios</h1>
+        <p>Material de profundización para reforzar la unidad de Modelado.</p>
+    </div>
+
+    <div class="resource-card">
+        <div class="resource-title"><i class="fa-solid fa-layer-group"></i> Datasets para Práctica de Clustering</div>
+        <div class="description">
+            Colección de datos sin etiqueta (Unsupervised) diseñados específicamente para practicar segmentación. Incluye datos sintéticos de comportamiento de usuarios y logs de red anónimos. Útiles para probar la capacidad de K-Means y DBSCAN para encontrar grupos ocultos.
+        </div>
+        <div class="usage-tip">
+            <strong>Cómo usarlo:</strong> Intenta encontrar grupos naturales en los datos sin usar ninguna columna "target". ¿Los grupos que encuentra el algoritmo tienen sentido de negocio?
+        </div>
+    </div>
+
+    <div class="resource-card">
+        <div class="resource-title"><i class="fa-solid fa-chart-area"></i> Guía Técnica: Interpretación de Curvas ROC/AUC</div>
+        <div class="description">
+            Lectura profunda sobre cómo interpretar la curva ROC (Receiver Operating Characteristic) y el área bajo la curva (AUC). Explica qué significa un modelo que "abraza" la esquina superior izquierda versus uno que sigue la diagonal aleatoria, y cómo usar esta métrica para comparar modelos independientemente del umbral de decisión.
+        </div>
+        <div class="usage-tip">
+            <strong>Cómo usarlo:</strong> Úsalo como criterio de desempate cuando las métricas puntuales (accuracy, recall) son similares entre dos modelos.
+        </div>
+    </div>
+
+    <div class="resource-card">
+        <div class="resource-title"><i class="fa-solid fa-file-invoice"></i> Plantilla: Informe Ejecutivo de Selección de Modelo</div>
+        <div class="description">
+            Documento de texto con la estructura estándar para presentar una decisión de modelado a stakeholders no técnicos: Resumen Ejecutivo, Metodología Simplificada, Comparación de Resultados (en términos de dinero/riesgo), Análisis de Impacto y Recomendación Final.
+        </div>
+        <div class="usage-tip">
+            <strong>Cómo usarlo:</strong> Copia esta estructura para tu entrega de la Actividad 3. Asegura que tu conclusión cubra tanto lo técnico como lo estratégico.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

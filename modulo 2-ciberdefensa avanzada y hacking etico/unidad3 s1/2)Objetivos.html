@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 6: Análisis y Priorización</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .risk-matrix {
+        background: #fff; padding: 20px; border-radius: 12px; border: 1px solid #ddd; margin-top: 20px; text-align: center;
+    }
+    .risk-title { font-weight: bold; color: #37474f; display: block; margin-bottom: 10px; }
+
+    .cvss-card {
+        background: #f5faff; border-left: 6px solid #ff9800; padding: 25px; margin-bottom: 25px; border-radius: 8px;
+    }
+    .cvss-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .cvss-title { font-size: 1.3rem; font-weight: 700; color: #e65100; font-family: 'Montserrat', sans-serif; }
+
+    .formula-box {
+        background: #263238; color: #fff; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; text-align: center; font-size: 1.1rem; margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 3.1: Análisis y Priorización</h1>
+        <p>No todo es urgente. Aprendiendo a clasificar la criticidad.</p>
+    </div>
+
+    <p style="margin-bottom: 30px; font-size: 1.1rem;">
+        Si reportas 50 vulnerabilidades como "Críticas", el cliente no arreglará ninguna. El arte del reporte es la <strong>priorización</strong>. Debemos distinguir entre lo que es teóricamente posible y lo que representa un riesgo inminente.
+    </p>
+
+    <div class="formula-box">
+        Riesgo = Impacto × Probabilidad
+    </div>
+
+    <div class="cvss-card">
+        <div class="cvss-header">
+            <span class="cvss-title">El Estándar CVSS (Common Vulnerability Scoring System)</span>
+            <i class="fa-solid fa-calculator" style="font-size: 1.5rem; color: #ff9800;"></i>
+        </div>
+        <p>Aprenderemos a usar la calculadora CVSS v3.1 para asignar un puntaje objetivo (0.0 a 10.0) a cada hallazgo, basándonos en:</p>
+        <ul style="color: #546e7a;">
+            <li><strong>Vector de Ataque:</strong> ¿Se puede explotar remoto o requiere acceso físico?</li>
+            <li><strong>Complejidad:</strong> ¿Es fácil (script kiddie) o difícil (experto)?</li>
+            <li><strong>Impacto CIA:</strong> ¿Afecta Confidencialidad, Integridad o Disponibilidad?</li>
+        </ul>
+    </div>
+
+    <div class="cvss-card" style="border-left-color: #f44336;">
+        <span class="cvss-title" style="color: #b71c1c;">Enfoque Basado en Riesgo de Negocio</span>
+        <p>Un puntaje CVSS de 9.0 en un servidor de pruebas aislado puede ser <strong>menos prioritario</strong> que un CVSS de 5.0 en el servidor principal de facturación. El contexto del negocio manda.</p>
+    </div>
+
+
+    <div class="cvss-card" style="border-left-color:#1976d2;">
+        <div class="cvss-header">
+            <span class="cvss-title" style="color:#0d47a1;">Objetivo de la Semana: priorizar con criterio</span>
+            <i class="fa-solid fa-layer-group" style="font-size: 1.5rem; color: #1976d2;"></i>
+        </div>
+        <p>Tu meta no es producir una lista larga, sino una lista <strong>accionable</strong>. Para cada hallazgo debes contestar:</p>
+        <ul style="color:#546e7a;">
+            <li><strong>¿Qué evidencia lo prueba?</strong> (captura, respuesta HTTP, log, comando y salida).</li>
+            <li><strong>¿Cuál es el impacto real?</strong> (datos, dinero, operación, reputación).</li>
+            <li><strong>¿Qué tan probable es?</strong> (expuesto a internet, requiere credenciales, requiere condiciones raras).</li>
+            <li><strong>¿Qué se hace primero?</strong> (quick win vs mejora estructural).</li>
+        </ul>
+    </div>
+
+    <div class="cvss-card">
+        <div class="cvss-header">
+            <span class="cvss-title">CVSS en 60 segundos (lo mínimo para usarlo bien)</span>
+            <i class="fa-solid fa-gauge-high" style="font-size: 1.5rem; color: #ff9800;"></i>
+        </div>
+        <p><strong>CVSS</strong> te da un número objetivo (0.0 a 10.0), pero no decide por ti. Úsalo como “base” y luego ajusta por contexto.</p>
+        <div class="formula-box" style="background:#1b2a33;">
+            Prioridad final = CVSS + Contexto del negocio
+        </div>
+        <p style="margin-top:0; color:#546e7a;">Ejemplo rápido: un CVSS 7.5 en un servidor interno aislado puede bajar de prioridad; un CVSS 5.3 en el servidor de pagos puede subir.</p>
+    </div>
+
+    <div class="cvss-card" style="border-left-color:#4caf50;">
+        <span class="cvss-title" style="color:#1b5e20;">Marco de priorización (simple y efectivo)</span>
+        <ul style="color:#546e7a;">
+            <li><strong>P0 – Acción inmediata (24–72h):</strong> RCE, credenciales expuestas, acceso a datos sensibles, administración pública expuesta.</li>
+            <li><strong>P1 – Urgente (1–2 semanas):</strong> escalamiento de privilegios probable, bypass de autenticación, datos internos accesibles.</li>
+            <li><strong>P2 – Planificado (2–6 semanas):</strong> hardening, mejoras de configuración, reducción de superficie de ataque.</li>
+            <li><strong>P3 – Mejora continua:</strong> hallazgos informativos, recomendaciones de buenas prácticas, higiene de seguridad.</li>
+        </ul>
+    </div>
+
+    <div class="risk-matrix">
+        <span class="risk-title">Plantilla mínima de tabla de hallazgos (para tu reporte)</span>
+        <p style="margin:0; color:#546e7a;">
+            <strong>Hallazgo</strong> | <strong>Activo</strong> | <strong>Evidencia</strong> | <strong>Impacto</strong> | <strong>Probabilidad</strong> | <strong>CVSS</strong> | <strong>Prioridad</strong> | <strong>Mitigación</strong>
+        </p>
+        <p style="margin:10px 0 0 0; font-size:0.95rem; color:#607d8b;">
+            Consejo: si no puedes llenar “Evidencia” y “Mitigación”, el hallazgo aún no está listo.
+        </p>
+    </div>
+
+    <div class="cvss-card" style="border-left-color:#9c27b0;">
+        <span class="cvss-title" style="color:#6a1b9a;">Ejercicio guiado (sin herramientas)</span>
+        <p>Clasifica estos 3 casos (P0/P1/P2/P3) y justifica en 2 líneas:</p>
+        <ol style="color:#546e7a;">
+            <li>Panel de administración accesible desde internet sin MFA.</li>
+            <li>Servidor con versión antigua, pero aislado y sin acceso externo.</li>
+            <li>Endpoint que permite enumerar usuarios por mensajes de error.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

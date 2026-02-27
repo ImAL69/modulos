@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Material Didáctico: Bloque 1</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    /* ACORDEONES DIDÁCTICOS */
+    details {
+        background: #f5faff; margin-bottom: 20px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #1565c0; font-family: 'Montserrat', sans-serif;
+        display: flex; align-items: center; gap: 15px; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; }
+
+    .concept-box {
+        border-left: 4px solid #fbc02d; background: #fffde7; padding: 15px; margin: 15px 0; font-style: italic; color: #f57f17;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+/* ===== Video-card (sin iframe, 100% compatible) ===== */
+.video-card{
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap:18px;
+  background:#ffffff;
+  border:1px solid #e6eef8;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(13,71,161,.08);
+  margin: 18px 0 34px 0;
+}
+.video-thumb{
+  width:100%;
+  height: 220px;
+  object-fit: cover;
+  display:block;
+  background:#fff;
+}
+.video-info{
+  padding:18px 18px 18px 0;
+}
+.video-info h4{
+  margin:0 0 8px;
+  font-family:'Montserrat',sans-serif;
+  color:#0d47a1;
+}
+.video-info p{
+  margin:0 0 10px;
+  color:#455a64;
+}
+.video-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:12px;
+  font-weight:800;
+  text-decoration:none;
+  background:#0d47a1;
+  color:#fff;
+  border:1px solid #0d47a1;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.video-btn:hover{
+  transform: translateY(-1px);
+  box-shadow:0 12px 26px rgba(13,71,161,.25);
+}
+.video-tasks{
+  margin-top:12px;
+  background:#f5faff;
+  border:1px solid #bbdefb;
+  border-radius:12px;
+  padding:12px 14px;
+}
+.video-tasks ul{margin:8px 0 0 18px;}
+@media (max-width: 900px){
+  .video-card{grid-template-columns:1fr;}
+  .video-info{padding:16px;}
+  .video-thumb{height: 200px;}
+}
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Material Didáctico - Bloque 1</h1>
+<p>Conceptos Base, Marco Legal y Buenas Prácticas.</p>
+</div>
+<details open="">
+<summary><i class="fa-solid fa-book-open"></i> 1. Conceptos Base: CIA Triad &amp; AAA</summary>
+<div class="details-content">
+<p>La seguridad no es un producto, es un proceso para proteger tres pilares:</p>
+<ul>
+<li><strong>Confidencialidad:</strong> Solo los autorizados pueden ver la data (Cifrado).</li>
+<li><strong>Integridad:</strong> La data no ha sido alterada (Hashing).</li>
+<li><strong>Disponibilidad:</strong> El sistema funciona cuando se necesita (Redundancia).</li>
+</ul>
+<p><strong>El modelo AAA:</strong> Authentication (¿Quién eres?), Authorization (¿Qué puedes hacer?) y Accounting (¿Qué hiciste? Logs).</p>
+</div>
+</details>
+<details>
+<summary><i class="fa-solid fa-gavel"></i> 2. Marco Legal y Ético</summary>
+<div class="details-content">
+<p>La diferencia entre un Pentest y un delito es el <strong>permiso</strong>. Documentos clave:</p>
+<ul>
+<li><strong>NDA (Non-Disclosure Agreement):</strong> Acuerdo de confidencialidad. Lo que ves en la red del cliente, se queda ahí.</li>
+<li><strong>Statement of Work (SOW):</s
+trong> Define qué se va a probar, cuándo y cómo.</li>
+<li><strong>Get Out of Jail Free Card:</strong> Carta de autorización firmada por un directivo con poder legal (CEO/CTO) que autoriza explícitamente el ataque.</li>
+</ul>
+<div class="concept-box">
+                "Nunca asumas que tienes permiso. Si no está escrito y firmado, no existe."
+            </div>
+</div>
+</details>
+<details>
+<summary><i class="fa-solid fa-thumbs-up"></i> 3. Buenas Prácticas de Auditoría</summary>
+<div class="details-content">
+<p>Para ser un profesional, sigue estas reglas de oro:</p>
+<ul>
+<li><strong>No causar daño (Do No Harm):</strong> Evita probar exploits inestables en producción que puedan causar un "Kernel Panic" o caída del servicio.</li>
+<li><strong>Documentar todo:</strong> Un hallazgo sin evidencia (captura de pantalla, log) no vale nada.</li>
+<li><strong>Comunicación constante:</strong> Si encuentras una vulnerabilidad crítica (ej. acceso total a la BD), repórtalo inmediatamente, no esperes al informe final.</li>
+</ul>
+</div>
+</details>
+<details>
+<summary><i class="fa-solid fa-chart-line"></i> 4. Priorización del Riesgo: CVSS vs Riesgo Real</summary>
+<div class="details-content">
+<p>En auditorías reales, verás dos “lenguajes” de severidad:</p>
+<ul>
+<li><strong>CVSS:</strong> puntaje técnico estandarizado para una vulnerabilidad (qué tan explotable es y qué impacto técnico tendría).</li>
+<li><strong>Riesgo real:</strong> contexto del negocio (¿hay datos sensibles?, ¿está expuesto a Internet?, ¿hay controles compensatorios?).</li>
+</ul>
+<div class="concept-box">
+                Un CVSS alto no siempre es el riesgo #1 si el activo no es crítico o está aislado. Y un CVSS medio puede ser crítico si afecta un sistema con datos sensibles y sin controles.
+            </div>
+<p><strong>Regla práctica:</strong> prioriza por <em>Impacto</em> (qué se pierde) + <em>Exposición</em> (qué tan accesible está) + <em>Probabilidad</em> (qué tan fácil es aprovecharlo).</p>
+</div>
+</details>
+<details>
+<summary><i class="fa-solid fa-globe"></i> 5. Superficie de Ataque y OSINT (pensar como atacante)</summary>
+<div class="details-content">
+<p>El reconocimiento no empieza con “hackear”; empieza con observar:</p>
+<ul>
+<li><strong>Activos públicos:</strong> dominios, subdominios, aplicaciones, endpoints, repositorios, documentos indexados.</li>
+<li><strong>Identidades:</strong> correos corporativos, patrones de usuario, perfiles públicos (sin doxxing).</li>
+<li><strong>Procesos:</strong> restablecimiento de contraseñas, onboarding/offboarding, manejo de accesos.</li>
+</ul>
+<p><strong>Qué debes producir:</strong> una lista estructurada de posibles puntos de entrada y datos expuestos. No necesitas explotar nada para encontrar “higiene débil”.</p>
+</div>
+</details>
+<details>
+<summary><i class="fa-solid fa-laptop-code"></i> 6. Preparación del Laboratorio (sin dramas)</summary>
+<div class="details-content">
+<p>Para practicar con seguridad y sin perder tiempo:</p>
+<ul>
+<li><strong>Usa snapshots:</strong> antes de cada práctica importante, crea un punto de restauración.</li>
+<li><strong>Red aislada:</strong> preferible Host‑Only o NAT según la práctica (evita redes públicas).</li>
+<li><strong>Carpeta de evidencias:</strong> organiza por semana y por actividad (capturas, logs, notas).</li>
+<li><strong>Bitácora:</strong> registra comandos, resultados y conclusiones; “si no está documentado, no existe”.</li>
+</ul>
+<div class="concept-box">
+                Objetivo del laboratorio: aprender y documentar. No “romper” cosas, no improvisar y no salirte del alcance.
+            </div>
+</div>
+</details>
+<details>
+<summary><i class="fa-solid fa-file-signature"></i> 7. Plantilla rápida de Bitácora (para evidencias)</summary>
+<div class="details-content">
+<p>Usa esta estructura (puedes copiarla a tu documento):</p>
+<ul>
+<li><strong>Objetivo:</strong> qué vas a comprobar.</li>
+<li><strong>Alcance:</strong> qué sistema/ambiente, límites y restricciones.</li>
+<li><strong>Pasos:</strong> acciones realizadas (numeradas).</li>
+<li><strong>Evidencias:</strong> capturas/logs/outputs con fecha y contexto.</li>
+<li><strong>Hallazgos:</strong> qué encontraste y por qué importa.</li>
+<li><strong>Recomendación:</strong> quick win + acción de mediano plazo.</li>
+</ul>
+<p style="color:#546e7a;"><em>Tip:</em> mientras practicas, escribe. No confíes en “luego lo documento”.</p>
+</div>
+</details>
+<details>
+<summary><i class="fa-solid fa-triangle-exclamation"></i> 8. Errores frecuentes del principiante (y cómo evitarlos)</summary>
+<div class="details-content">
+<ul>
+<li><strong>Confundir herramienta con conclusión:</strong> que una herramienta “alerte” no significa que sea explotable.</li>
+<li><strong>Probar sin objetivo:</strong> cada paso debe responder a una pregunta (“¿qué expone este servicio?”).</li>
+<li><strong>No priorizar:</strong> 20 hallazgos sin orden valen menos que 5 bien explicados y priorizados.</li>
+<li><strong>No pensar en negocio:</strong> seguridad es proteger datos y continuidad, no “coleccionar vulnerabilidades”.</li>
+</ul>
+</div>
+</details>
+</div>
+<!-- ===== Video recomendado (sin iframe) ===== -->
+<div class="video-card reveal">
+  <img class="video-thumb" src="https://i.ytimg.com/vi/SHij0JRLgUk/hqdefault.jpg" alt="Miniatura del video recomendado">
+  <div class="video-info">
+    <h4>Video de refuerzo: Conceptos base (CIA / AAA) y fundamentos</h4>
+    <p>
+      Refuerza lo esencial para este bloque: <strong>Confidencialidad, Integridad, Disponibilidad (CIA)</strong> y
+      <strong>Autenticación, Autorización y Auditoría (AAA)</strong>. Úsalo como guía para tu evidencia y tu análisis.
+    </p>
+    <a class="video-btn" href="https://www.youtube.com/watch?v=SHij0JRLgUk" target="_blank" rel="noopener">▶ Ver en YouTube</a>
+
+    <div class="video-tasks">
+      <strong>🎯 Después de verlo (entregable rápido 5–8 min):</strong>
+      <ul>
+        <li>Define CIA y escribe <strong>1 ejemplo real</strong> por cada componente.</li>
+        <li>Explica AAA con un caso: “usuario entra a un sistema” (¿qué valida cada A?).</li>
+        <li>Identifica <strong>2 malas prácticas</strong> (p. ej., claves débiles, hash obsoleto) y cómo mitigarlas.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico: Bloque 1 (U3)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    /* ACORDEONES DIDÁCTICOS */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #1565c0; font-family: 'Montserrat', sans-serif;
+        display: flex; align-items: center; gap: 15px; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; }
+
+    .comparison-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;
+    }
+    .comp-col { padding: 15px; border-radius: 8px; }
+    .tech-col { background: #ffebee; border: 1px solid #ef9a9a; color: #c62828; }
+    .exec-col { background: #e8f5e9; border: 1px solid #a5d6a7; color: #2e7d32; }
+    .col-title { font-weight: bold; display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 0.8rem; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .comparison-grid { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Bloque 1 (U3)</h1>
+        <p>Comunicación Efectiva: Técnico vs Ejecutivo.</p>
+    </div>
+
+    <details open>
+        <summary><i class="fa-solid fa-language"></i> 1. Traducción de Idiomas</summary>
+        <div class="details-content">
+            <p>El error #1 de los pentesters junior es enviar logs técnicos al CEO. Debes aprender a traducir.</p>
+            <div class="comparison-grid">
+                <div class="comp-col tech-col">
+                    <span class="col-title">Lenguaje Técnico (Para IT)</span>
+                    "Se detectó vulnerabilidad CVE-2021-44228 en Apache Log4j permitiendo RCE vía payload JNDI."
+                </div>
+                <div class="comp-col exec-col">
+                    <span class="col-title">Lenguaje Ejecutivo (Para Gerencia)</span>
+                    "Existe un fallo crítico en el servidor web que permitiría a un atacante tomar control total del sistema y robar datos de clientes."
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-layer-group"></i> 2. Niveles de Clasificación</summary>
+        <div class="details-content">
+            <p>Usa una escala de colores estándar para tus informes:</p>
+            <ul>
+                <li><span style="color:#b71c1c; font-weight:bold;">CRÍTICO:</span> Acción inmediata (hoy). Riesgo de compromiso total.</li>
+                <li><span style="color:#e65100; font-weight:bold;">ALTO:</span> Acción urgente (esta semana). Difícil de explotar pero alto impacto.</li>
+                <li><span style="color:#f57f17; font-weight:bold;">MEDIO:</span> Planificar corrección. Requiere condiciones específicas.</li>
+                <li><span style="color:#2e7d32; font-weight:bold;">BAJO/INFO:</span> Buenas prácticas. No representa riesgo directo.</li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-lightbulb"></i> 3. Lecciones Clave para el Informe</summary>
+        <div class="details-content">
+            <p><strong>El "Qué", "Y Qué", "Y Ahora Qué":</strong></p>
+            <ul>
+                <li><strong>Qué:</strong> Encontré un puerto abierto.</li>
+                <li><strong>Y Qué (So What?):</strong> Eso permite a cualquiera ver nuestros archivos internos.</li>
+                <li><strong>Y Ahora Qué:</strong> Configurar el firewall para bloquear acceso externo al puerto 445.</li>
+            </ul>
+        </div>
+    </details>
+
+
+
+    <details>
+        <summary><i class="fa-solid fa-triangle-exclamation"></i> 3. Cómo redactar recomendaciones que sí se pueden ejecutar</summary>
+        <div class="details-content">
+            <p>Una recomendación profesional debe incluir <strong>acción</strong>, <strong>dueño</strong>, <strong>plazo</strong> y <strong>criterio de verificación</strong> (retest). Evita frases vagas como “mejorar seguridad”.</p>
+            <table class="action-table">
+                <thead>
+                    <tr>
+                        <th>Mala recomendación</th>
+                        <th>Recomendación ejecutable</th>
+                        <th>Evidencia de cierre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>“Actualizar el servidor”</td>
+                        <td>“Actualizar Apache de X→Y, reiniciar servicio en ventana nocturna y validar versiones expuestas.”</td>
+                        <td>Captura versión + retest sin explotación</td>
+                    </tr>
+                    <tr>
+                        <td>“Poner más seguridad a la VPN”</td>
+                        <td>“Habilitar MFA (TOTP/Push), deshabilitar autenticación simple y aplicar política de bloqueo.”</td>
+                        <td>Login con MFA + registro en IAM</td>
+                    </tr>
+                    <tr>
+                        <td>“Restringir accesos”</td>
+                        <td>“Segmentar red: permitir solo tráfico web→db en puertos específicos con allowlist y logging.”</td>
+                        <td>Reglas firewall + prueba de bloqueo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-file-lines"></i> 4. Plantilla mínima de Plan de Acción (copiable)</summary>
+        <div class="details-content">
+            <p>Copia y pega este bloque en tu informe y completa con tus hallazgos:</p>
+            <pre style="white-space:pre-wrap; background:#0b1020; color:#e6edf3; padding:16px; border-radius:10px; border:1px solid #1f2a44; overflow:auto; font-size:0.95rem;">Acción requerida:
+Responsable:
+Prioridad:
+Plazo:
+Sistema/Activo:
+Hallazgo asociado:
+Justificación (impacto + probabilidad):
+Pasos de implementación (1–5):
+Riesgo residual (si aplica):
+Criterio de cierre (evidencia + retest):</pre>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-magnifying-glass"></i> 5. Retest: qué probar y qué NO asumir</summary>
+        <div class="details-content">
+            <ul style="margin:0 0 0 18px;">
+                <li><strong>Prueba lo mismo que funcionó</strong>: mismo vector, misma ruta, mismo payload/consulta (controlada).</li>
+                <li><strong>Verifica bypass</strong>: si el parche fue “parcial”, intenta variantes seguras (sin DoS).</li>
+                <li><strong>Registra evidencia</strong>: captura antes/después, versión del servicio y fecha del retest.</li>
+                <li><strong>No asumas</strong> que “actualizado” significa “corregido”: confirma con prueba.</li>
+            </ul>
+        </div>
+    </details>
+
+</div>
+
+</body>
+</html>

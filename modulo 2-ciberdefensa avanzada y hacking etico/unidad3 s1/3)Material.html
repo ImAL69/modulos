@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico: Bloque 1 (U3)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    /* ACORDEONES DIDÁCTICOS */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #1565c0; font-family: 'Montserrat', sans-serif;
+        display: flex; align-items: center; gap: 15px; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; }
+
+    .comparison-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;
+    }
+    .comp-col { padding: 15px; border-radius: 8px; }
+    .tech-col { background: #ffebee; border: 1px solid #ef9a9a; color: #c62828; }
+    .exec-col { background: #e8f5e9; border: 1px solid #a5d6a7; color: #2e7d32; }
+    .col-title { font-weight: bold; display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 0.8rem; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .comparison-grid { grid-template-columns: 1fr; }
+    }
+
+
+    /* ===== Video-card (sin iframe, miniatura limpia) ===== */
+    .video-card {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 18px;
+        background: #ffffff;
+        border: 1px solid #bbdefb;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(13,71,161,.08);
+        margin: 10px 0 34px 0;
+    }
+    .video-thumb {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+        background: #fff;
+    }
+    .video-info {
+        padding: 18px 18px 18px 0;
+    }
+    .video-info h4 {
+        margin: 0 0 8px;
+        font-family: 'Montserrat', sans-serif;
+        color: #1565c0;
+        font-weight: 800;
+    }
+    .video-info p { margin: 0 0 10px; }
+    .video-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-weight: 800;
+        text-decoration: none;
+        background: #1565c0;
+        color: #fff;
+        border: 1px solid #1565c0;
+        transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .video-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 26px rgba(21,101,192,.25);
+    }
+    .video-tasks {
+        margin-top: 12px;
+        background: #f5faff;
+        border: 1px solid #bbdefb;
+        border-radius: 12px;
+        padding: 12px 14px;
+    }
+    .video-tasks ul { margin: 8px 0 0 18px; }
+
+    /* ===== Distintivo al fondo (abajo-derecha) ===== */
+    .container-extended::after {
+        content: "";
+        position: absolute;
+        right: -150px;
+        bottom: -175px;
+        width: 660px;
+        height: 370px;
+        background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'%3E %3Cdefs%3E %3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E %3Cstop offset='0' stop-color='%230d47a1'/%3E %3Cstop offset='0.55' stop-color='%231565c0'/%3E %3Cstop offset='1' stop-color='%2300b8d4'/%3E %3C/linearGradient%3E %3CradialGradient id='r' cx='28%' cy='28%' r='78%'%3E %3Cstop offset='0' stop-color='%23fff' stop-opacity='0.22'/%3E %3Cstop offset='1' stop-color='%23fff' stop-opacity='0'/%3E %3C/radialGradient%3E %3C/defs%3E %3Crect width='1200' height='675' fill='url(%23g)'/%3E %3Crect width='1200' height='675' fill='url(%23r)'/%3E %3Cg opacity='0.14'%3E %3Cpath d='M0 540H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 420H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 300H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 180H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M240 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M480 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M720 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M960 0V675' stroke='%23fff' stroke-width='2'/%3E %3C/g%3E %3Cg transform='translate(95,135)'%3E %3Crect x='0' y='0' rx='26' ry='26' width='760' height='122' fill='rgba(255,255,255,0.12)' stroke='rgba(255,255,255,0.22)'/%3E %3Ctext x='34' y='78' font-family='Montserrat, Arial, sans-serif' font-size='46' fill='%23fff' font-weight='800'%3E Lenguaje Ejecutivo (CISO/CEO) %3C/text%3E %3C/g%3E %3Cg transform='translate(95,302)'%3E %3Ctext x='0' y='0' font-family='Roboto, Arial, sans-serif' font-size='30' fill='rgba(255,255,255,0.92)' font-weight='500'%3E Impacto • Riesgo • Decisión %3C/text%3E %3Ctext x='0' y='52' font-family='Roboto, Arial, sans-serif' font-size='24' fill='rgba(255,255,255,0.86)'%3E Traduce hallazgos a acciones priorizadas. %3C/text%3E %3C/g%3E %3Cg transform='translate(930,505)'%3E %3Ccircle cx='70' cy='70' r='70' fill='rgba(255,255,255,0.18)'/%3E %3Ccircle cx='70' cy='70' r='54' fill='rgba(13,71,161,0.95)'/%3E %3Cpath d='M60 45 L105 70 L60 95 Z' fill='%23fff'/%3E %3C/g%3E %3C/svg%3E');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.10;
+        transform: rotate(-6deg);
+        pointer-events: none;
+        filter: saturate(1.05) contrast(1.02);
+    }
+
+    @media (max-width: 768px) {
+        .video-card { grid-template-columns: 1fr; }
+        .video-info { padding: 16px; }
+        .video-thumb { height: 200px; }
+        .container-extended::after {
+            right: -220px;
+            bottom: -210px;
+            width: 560px;
+            height: 315px;
+            opacity: 0.08;
+        }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Bloque 1 (U3)</h1>
+        <p>Comunicación Efectiva: Técnico vs Ejecutivo.</p>
+    </div>
+
+    
+
+<!-- ===== Video recomendado (sin iframe) ===== -->
+<div class="video-card">
+  <img class="video-thumb" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'%3E %3Cdefs%3E %3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E %3Cstop offset='0' stop-color='%230d47a1'/%3E %3Cstop offset='0.55' stop-color='%231565c0'/%3E %3Cstop offset='1' stop-color='%2300b8d4'/%3E %3C/linearGradient%3E %3CradialGradient id='r' cx='28%' cy='28%' r='78%'%3E %3Cstop offset='0' stop-color='%23fff' stop-opacity='0.22'/%3E %3Cstop offset='1' stop-color='%23fff' stop-opacity='0'/%3E %3C/radialGradient%3E %3C/defs%3E %3Crect width='1200' height='675' fill='url(%23g)'/%3E %3Crect width='1200' height='675' fill='url(%23r)'/%3E %3Cg opacity='0.14'%3E %3Cpath d='M0 540H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 420H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 300H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 180H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M240 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M480 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M720 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M960 0V675' stroke='%23fff' stroke-width='2'/%3E %3C/g%3E %3Cg transform='translate(95,135)'%3E %3Crect x='0' y='0' rx='26' ry='26' width='760' height='122' fill='rgba(255,255,255,0.12)' stroke='rgba(255,255,255,0.22)'/%3E %3Ctext x='34' y='78' font-family='Montserrat, Arial, sans-serif' font-size='46' fill='%23fff' font-weight='800'%3E Lenguaje Ejecutivo (CISO/CEO) %3C/text%3E %3C/g%3E %3Cg transform='translate(95,302)'%3E %3Ctext x='0' y='0' font-family='Roboto, Arial, sans-serif' font-size='30' fill='rgba(255,255,255,0.92)' font-weight='500'%3E Impacto • Riesgo • Decisión %3C/text%3E %3Ctext x='0' y='52' font-family='Roboto, Arial, sans-serif' font-size='24' fill='rgba(255,255,255,0.86)'%3E Traduce hallazgos a acciones priorizadas. %3C/text%3E %3C/g%3E %3Cg transform='translate(930,505)'%3E %3Ccircle cx='70' cy='70' r='70' fill='rgba(255,255,255,0.18)'/%3E %3Ccircle cx='70' cy='70' r='54' fill='rgba(13,71,161,0.95)'/%3E %3Cpath d='M60 45 L105 70 L60 95 Z' fill='%23fff'/%3E %3C/g%3E %3C/svg%3E" alt="Miniatura del video recomendado (sin logos)">
+  <div class="video-info">
+    <h4>Video recomendado: Ciberseguridad para directivos (cómo hablar en “lenguaje ejecutivo”)</h4>
+    <p>
+      Refuerza lo de este material: traducir lo técnico a <strong>impacto</strong>, <strong>riesgo</strong> y
+      <strong>decisiones</strong> (qué se arregla primero y por qué).
+    </p>
+    <a class="video-btn" href="https://www.youtube.com/watch?v=ZJvFbJw0IUw" target="_blank" rel="noopener">▶ Ver en YouTube (nueva pestaña)</a>
+
+    <div class="video-tasks">
+      <strong>🎯 Mini‑reto (aplícalo a un hallazgo):</strong>
+      <ul>
+        <li><strong>Qué pasó:</strong> 1 frase sin jerga (máx. 18 palabras).</li>
+        <li><strong>So what:</strong> impacto en negocio (dinero, operación, reputación, clientes).</li>
+        <li><strong>Now what:</strong> 2 acciones: una P0 (hoy) y una P1 (mejora).</li>
+        <li><strong>Medida:</strong> indicador de cierre (ej. “puerto cerrado”, “MFA activo”, “parche aplicado”).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<details open>
+        <summary><i class="fa-solid fa-language"></i> 1. Traducción de Idiomas</summary>
+        <div class="details-content">
+            <p>El error #1 de los pentesters junior es enviar logs técnicos al CEO. Debes aprender a traducir.</p>
+            <div class="comparison-grid">
+                <div class="comp-col tech-col">
+                    <span class="col-title">Lenguaje Técnico (Para IT)</span>
+                    "Se detectó vulnerabilidad CVE-2021-44228 en Apache Log4j permitiendo RCE vía payload JNDI."
+                </div>
+                <div class="comp-col exec-col">
+                    <span class="col-title">Lenguaje Ejecutivo (Para Gerencia)</span>
+                    "Existe un fallo crítico en el servidor web que permitiría a un atacante tomar control total del sistema y robar datos de clientes."
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-layer-group"></i> 2. Niveles de Clasificación</summary>
+        <div class="details-content">
+            <p>Usa una escala de colores estándar para tus informes:</p>
+            <ul>
+                <li><span style="color:#b71c1c; font-weight:bold;">CRÍTICO:</span> Acción inmediata (hoy). Riesgo de compromiso total.</li>
+                <li><span style="color:#e65100; font-weight:bold;">ALTO:</span> Acción urgente (esta semana). Difícil de explotar pero alto impacto.</li>
+                <li><span style="color:#f57f17; font-weight:bold;">MEDIO:</span> Planificar corrección. Requiere condiciones específicas.</li>
+                <li><span style="color:#2e7d32; font-weight:bold;">BAJO/INFO:</span> Buenas prácticas. No representa riesgo directo.</li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-lightbulb"></i> 3. Lecciones Clave para el Informe</summary>
+        <div class="details-content">
+            <p><strong>El "Qué", "Y Qué", "Y Ahora Qué":</strong></p>
+            <ul>
+                <li><strong>Qué:</strong> Encontré un puerto abierto.</li>
+                <li><strong>Y Qué (So What?):</strong> Eso permite a cualquiera ver nuestros archivos internos.</li>
+                <li><strong>Y Ahora Qué:</strong> Configurar el firewall para bloquear acceso externo al puerto 445.</li>
+            </ul>
+        </div>
+    </details>
+
+
+    <details>
+        <summary><i class="fa-solid fa-file-lines"></i> 4. Estructura de un Reporte Ejecutivo (1 página)</summary>
+        <div class="details-content">
+            <p>El reporte ejecutivo existe para decidir: <strong>qué se arregla primero</strong>, quién lo hace y en qué plazo.</p>
+            <ul>
+                <li><strong>Resumen (3–5 líneas):</strong> qué se evaluó y resultado general.</li>
+                <li><strong>Top 3 riesgos:</strong> impacto en negocio (sin jerga técnica).</li>
+                <li><strong>Acciones inmediatas (P0):</strong> 3–5 medidas concretas.</li>
+                <li><strong>Riesgos residuales:</strong> qué queda pendiente y por qué.</li>
+            </ul>
+            <p><em>Tip:</em> si un directivo solo lee esta página, debe entender la situación y la ruta.</p>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-pen-to-square"></i> 5. Plantilla de Hallazgo “bien escrito” (copiable)</summary>
+        <div class="details-content">
+            <p>Usa este formato para que tu hallazgo sea claro y reproducible:</p>
+            <div style="background:#263238; color:#fff; padding:18px; border-radius:10px; font-family:'Courier New', monospace; font-size:0.98rem;">
+                <strong>Título:</strong> [Qué encontraste + dónde]<br>
+                <strong>Activo:</strong> [IP/host/app/ruta]<br>
+                <strong>Descripción:</strong> [Qué es y por qué importa]<br>
+                <strong>Evidencia:</strong> [captura/log/comando + salida relevante]<br>
+                <strong>Impacto:</strong> [qué podría lograr un atacante]<br>
+                <strong>Probabilidad:</strong> [expuesto, requisitos, condiciones]<br>
+                <strong>Severidad/Prioridad:</strong> [CVSS + contexto]<br>
+                <strong>Recomendación:</strong> [acción concreta + responsable sugerido + plazo]
+            </div>
+            <p style="margin-top:12px;">Regla: <strong>si no puedes explicar el impacto en una frase</strong>, aún no lo entendiste del todo.</p>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-shield-halved"></i> 6. Recomendaciones accionables (Hardening sin humo)</summary>
+        <div class="details-content">
+            <p>Una buena recomendación no es “actualice”. Es <strong>qué cambiar</strong> y <strong>cómo verificar</strong> que quedó bien.</p>
+            <ul>
+                <li><strong>Quick wins:</strong> cerrar puertos innecesarios, aplicar MFA, rotar credenciales, deshabilitar cuentas inactivas.</li>
+                <li><strong>Configuración:</strong> headers de seguridad, políticas de contraseña, rate limiting, desactivar servicios legacy.</li>
+                <li><strong>Controles compensatorios:</strong> WAF, segmentación de red, listas de control por IP, monitoreo y alertas.</li>
+            </ul>
+            <p><em>Verificación:</em> incluye un paso simple tipo “repetir escaneo” o “validar endpoint” para confirmar la mitigación.</p>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-list-check"></i> 7. Checklist final antes de entregar</summary>
+        <div class="details-content">
+            <ul>
+                <li>¿Cada hallazgo tiene evidencia clara y legible?</li>
+                <li>¿Separaste versión técnica y versión ejecutiva?</li>
+                <li>¿La prioridad está justificada por impacto + probabilidad?</li>
+                <li>¿Tus recomendaciones son concretas y verificables?</li>
+                <li>¿El documento se entiende sin que tú lo expliques en vivo?</li>
+            </ul>
+        </div>
+    </details>
+
+</div>
+
+</body>
+</html>

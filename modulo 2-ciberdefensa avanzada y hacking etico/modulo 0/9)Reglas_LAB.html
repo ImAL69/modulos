@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9. Reglas del Laboratorio</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #d32f2f; /* Rojo de advertencia */
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #c62828; margin: 0 0 10px 0; }
+    
+    .rule-card {
+        background: #ffebee; border: 1px solid #ffcdd2; padding: 25px; border-radius: 12px; margin-bottom: 20px;
+        border-left: 6px solid #d32f2f; display: flex; gap: 20px;
+    }
+    .rule-icon { font-size: 2rem; color: #d32f2f; margin-top: 5px; }
+    .rule-content h3 { margin: 0 0 10px 0; color: #b71c1c; font-family: 'Montserrat', sans-serif; }
+    .rule-content p { margin: 0; }
+
+    .agreement-box {
+        background: #eceff1; padding: 30px; margin-top: 40px; border-radius: 12px; text-align: center;
+    }
+    
+    .btn-agree {
+        display: inline-block; padding: 15px 40px; background: #2e7d32; color: white; 
+        text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 20px;
+        box-shadow: 0 4px 6px rgba(46, 125, 50, 0.3); transition: transform 0.2s;
+    }
+    .btn-agree:hover { transform: scale(1.05); background: #1b5e20; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .rule-card { flex-direction: column; gap: 10px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Reglas del Laboratorio (Obligatorio)</h1>
+        <p>Protocolo de conducta para prácticas en entornos controlados.</p>
+    </div>
+
+    <div class="rule-card">
+        <div class="rule-icon"><i class="fa-solid fa-ban"></i></div>
+        <div class="rule-content">
+            <h3>1. Prohibido Atacar Redes Públicas</h3>
+            <p>Las prácticas deben realizarse <strong>exclusivamente</strong> dentro de las máquinas virtuales (VMs) proporcionadas o en la red VPN académica. Escanear o atacar sitios web externos (gobierno, empresas, universidades) es un delito y causal de expulsión inmediata.</p>
+        </div>
+    </div>
+
+    <div class="rule-card">
+        <div class="rule-icon"><i class="fa-solid fa-server"></i></div>
+        <div class="rule-content">
+            <h3>2. Uso de Entornos Aislados (Sandbox)</h3>
+            <p>Todo malware, exploit o payload debe ejecutarse en un entorno aislado de la red de producción. No conectes tu máquina de ataque (Kali) a la red Wi-Fi pública de la institución sin las debidas precauciones.</p>
+        </div>
+    </div>
+
+    <div class="rule-card">
+        <div class="rule-icon"><i class="fa-solid fa-user-shield"></i></div>
+        <div class="rule-content">
+            <h3>3. Responsabilidad Personal</h3>
+            <p>El estudiante asume la responsabilidad legal completa por el uso de las herramientas y conocimientos adquiridos fuera del ámbito académico estricto de este curso.</p>
+        </div>
+    </div>
+
+    
+    <div class="rule-card">
+        <div class="rule-icon"><i class="fa-solid fa-bomb"></i></div>
+        <div class="rule-content">
+            <h3>4. Prohibido Denegación de Servicio (DoS) y Fuerza Bruta</h3>
+            <p>No se permiten pruebas que degraden deliberadamente el servicio (flooding, DoS) ni ataques de fuerza bruta indiscriminados. Nuestro objetivo es <strong>aprender y validar</strong>, no tumbar sistemas.</p>
+        </div>
+    </div>
+
+    <div class="rule-card">
+        <div class="rule-icon"><i class="fa-solid fa-key"></i></div>
+        <div class="rule-content">
+            <h3>5. No reutilizar credenciales reales</h3>
+            <p>Jamás uses contraseñas personales o corporativas en laboratorios. Si una práctica requiere credenciales, utiliza las proporcionadas o crea claves específicas para el curso.</p>
+        </div>
+    </div>
+
+    <div class="rule-card">
+        <div class="rule-icon"><i class="fa-solid fa-camera"></i></div>
+        <div class="rule-content">
+            <h3>6. Evidencias sin datos sensibles</h3>
+            <p>Las capturas deben evitar datos personales o información real de terceros. Si aparece algo sensible, debes <strong>ocultarlo</strong> (censura) antes de compartirlo.</p>
+        </div>
+    </div>
+
+    <div class="rule-card">
+        <div class="rule-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+        <div class="rule-content">
+            <h3>Protocolo si algo sale mal</h3>
+            <p>Si un servicio cae o la VM queda inestable: <strong>detén la prueba</strong>, registra comandos y hora, toma una captura, y reporta al instructor. No “improvises” más ataques para intentar arreglarlo.</p>
+        </div>
+    </div>
+
+<div class="agreement-box">
+        <p><strong>Declaración de Conformidad:</strong><br>
+        He leído, entiendo y acepto las reglas de comportamiento ético y legal para participar en este laboratorio de ciberseguridad.</p>
+        <a href="#" class="btn-agree">ACEPTO LAS REGLAS</a>
+    </div>
+
+</div>
+
+</body>
+</html>

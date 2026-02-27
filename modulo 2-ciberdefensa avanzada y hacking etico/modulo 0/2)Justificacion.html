@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Justificación: ¿Por qué Hacking Ético?</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        width: 150px;
+        height: auto;
+        z-index: 100;
+        padding: 5px;
+        background: #fff;
+        border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .uni-logo:hover { 
+        transform: translateY(-2px) scale(1.02); 
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .header-box {
+        text-align: left;
+        margin-bottom: 50px;
+        padding-top: 30px;
+        padding-right: 180px; 
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #0d47a1;
+        margin: 0 0 10px 0;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        color: #546e7a;
+        font-weight: 400;
+    }
+
+    .problem-card {
+        background: #e3f2fd;
+        border: 1px solid #90caf9;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        border-left: 6px solid #1565c0;
+        transition: transform 0.3s;
+    }
+    .problem-card:hover { transform: translateY(-5px); }
+
+    .problem-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: #0d47a1;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .solution-text {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #90caf9;
+        color: #1b5e20;
+        font-weight: 600;
+    }
+
+    .context-block {
+        background: #fafafa;
+        border-left: 5px solid #607d8b;
+        padding: 20px;
+        margin-top: 40px;
+        font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Justificación del Módulo</h1>
+        <span class="subtitle">La necesidad crítica de la seguridad ofensiva</span>
+    </div>
+
+    <div class="content-block">
+        <p>Históricamente, la seguridad informática se centraba en "construir muros más altos" (Firewalls, Antivirus). Sin embargo, la sofisticación de los ataques modernos (Ransomware, APTs, Ingeniería Social) ha demostrado que los muros no son suficientes. Las empresas necesitan validar si sus defensas realmente funcionan.</p>
+        
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-eye-slash"></i> 1. El Mito de la "Seguridad por Oscuridad"</span>
+            <p>Muchas organizaciones creen que si nadie conoce su IP o arquitectura, están seguras. Esto es falso. Bots automatizados escanean todo el rango IPv4 de Internet múltiples veces al día. Si tienes un puerto abierto, un atacante lo encontrará en minutos. <strong>Riesgo:</strong> Exposición no detectada de servicios críticos (RDP, bases de datos).</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución:</strong> Realizar <strong>Reconocimiento Activo (OSINT)</strong> para ver nuestra organización con los ojos del atacante y cerrar brechas antes de que sean explotadas.
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-file-contract"></i> 2. Cumplimiento Normativo (Compliance)</span>
+            <p>Normativas internacionales como <strong>ISO 27001, PCI-DSS (Tarjetas de crédito), HIPAA (Salud) y GDPR</strong> exigen explícitamente la realización de pruebas de penetración (pentesting) periódicas. No hacerlo implica multas millonarias y la imposibilidad de operar en ciertos mercados.</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución:</strong> Aprender a documentar hallazgos técnicos en un <strong>Informe Ejecutivo de Auditoría</strong> que cumpla con los estándares legales y de compliance.
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-bug"></i> 3. Vulnerabilidades de Lógica de Negocio</span>
+            <p>Un escáner automático (como Nessus) puede detectar un parche faltante, pero no puede detectar un error lógico (ej: un carrito de compras que acepta valores negativos, permitiendo al atacante ganar dinero). Solo un humano puede encontrar estos fallos.</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución:</strong> Desarrollar la mentalidad analítica del pentester para encontrar fallos que las herramientas automáticas ignoran.
+            </div>
+        </div>
+
+        <div class="context-block">
+            <strong>💡 Dato Real:</strong> Según el informe de IBM, el costo promedio de una brecha de datos en 2023 fue de 4.45 millones de dólares. El pentesting es una inversión minúscula comparada con el costo de recuperación ante un desastre.
+        </div>
+    </div>
+
+    <div class="content-block" style="margin-top:40px;">
+        <h2 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">🔍 Escaneo vs Pentest (diferencia que cambia todo)</h2>
+        <div class="problem-card" style="border-left-color:#2e7d32;">
+            <span class="problem-title" style="color:#1b5e20;"><i class="fa-solid fa-magnifying-glass"></i> Escaneo automatizado</span>
+            <p>Un escaneo identifica posibles vulnerabilidades basándose en firmas, versiones y patrones. Es rápido, útil y necesario, pero genera <strong>falsos positivos</strong> y no siempre demuestra impacto real.</p>
+            <div class="solution-text" style="color:#1b5e20;">
+                <i class="fa-solid fa-check"></i> Resultado típico: “podría ser vulnerable a X”.
+            </div>
+        </div>
+
+        <div class="problem-card" style="border-left-color:#6a1b9a;">
+            <span class="problem-title"><i class="fa-solid fa-user-secret"></i> Pentest (prueba de penetración)</span>
+            <p>Un pentest valida, explota de forma controlada y traduce hallazgos a riesgo. No basta con detectar: se debe demostrar <strong>qué puede lograr un atacante</strong> y cómo mitigarlo.</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> Resultado típico: “se explotó X con evidencia, impacto y recomendación”.
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-shield-halved"></i> 4. Configuraciones débiles (el enemigo silencioso)</span>
+            <p>Muchas brechas no son “zero‑days”: son configuraciones incorrectas (puertos expuestos, credenciales por defecto, permisos excesivos, paneles administrativos sin restricción). Suelen pasar años en producción porque “todo funciona”.</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución:</strong> Aplicar hardening, mínimo privilegio y validación periódica de exposición externa (superficie de ataque).
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-people-arrows"></i> 5. Factor humano e ingeniería social</span>
+            <p>Las organizaciones pueden tener buena tecnología, pero fallar por procesos: contraseñas recicladas, falta de MFA, permisos heredados, links maliciosos y ausencia de cultura de reporte.</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución:</strong> Simulaciones controladas, capacitación y controles (MFA, políticas de acceso, monitoreo, respuesta a incidentes).
+            </div>
+        </div>
+
+        <div class="context-block">
+            <strong>📌 Resultado que buscamos:</strong> convertir seguridad en algo verificable. No “creemos” que estamos seguros; lo <em>probamos</em>, medimos y corregimos.
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

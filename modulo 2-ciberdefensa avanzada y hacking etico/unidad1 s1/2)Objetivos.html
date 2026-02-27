@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Semana 1: Objetivos y Temario</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .topic-card {
+        background: #fff; border: 1px solid #e0e0e0; padding: 25px; border-radius: 12px; margin-bottom: 25px;
+        transition: all 0.3s ease; border-left: 5px solid #90caf9;
+    }
+    .topic-card:hover { transform: translateX(5px); border-left-color: #1565c0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+    .topic-header { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
+    .topic-badge { background: #1565c0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+    .topic-title { font-size: 1.3rem; font-weight: 700; color: #0d47a1; font-family: 'Montserrat', sans-serif; }
+
+    .subtopic-list { margin-left: 20px; color: #546e7a; }
+    .subtopic-list li { margin-bottom: 5px; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Temario Detallado: Semana 1</h1>
+<p>Desglose de los conceptos clave a dominar (1.1 y 1.2).</p>
+</div>
+<div class="topic-card">
+<div class="topic-header">
+<span class="topic-badge">TEMA 1.1</span>
+<span class="topic-title">Fundamentos de Hacking Ético</span>
+</div>
+<p>Estableceremos las reglas del juego. No se trata solo de técnica, sino de metodología y legalidad.</p>
+<ul class="subtopic-list">
+<li><strong>Autorizaciones:</strong> Diferencia entre autorización tácita y explícita.</li>
+<li><strong>Alcance (Scope):</strong> Definición de IPs, dominios y horarios permitidos para la prueba.</li>
+<li><strong>Limitaciones:</strong> Qué NO hacer (ej. No tumbar servidores productivos, no ingeniería social a directivos).</li>
+<li><strong>Tipos de Pentest:</strong> Caja Blanca (White Box), Caja Negra (Black Box) y Caja Gris (Grey Box).</li>
+</ul>
+</div>
+<div class="topic-card">
+<div class="topic-header">
+<span class="topic-badge">TEMA 1.2</span>
+<span class="topic-title">Anatomía de Vulnerabilidades y Amenazas</span>
+</div>
+<p>Aprenderemos a categorizar los fallos de seguridad para entender cómo los explotan los atacantes.</p>
+<ul class="subtopic-list">
+<li><strong>Fallos de Configuración:</strong> Permisos excesivos (chmod 777), contraseñas por defecto (admin/admin), servicios innecesarios activos.</li>
+<li><strong>Errores de Software:</strong> Bugs en el código, falta de validación de inputs (SQL Injection, XSS), desbordamientos de búfer.</li>
+<li><strong>Vectores de Ataque:</strong>
+<ul>
+<li><em>Red:</em> Sniffing, MITM, DoS.</li>
+<li><em>Web:</em> OWASP Top 10.</li>
+<li><em>OS:</em> Escalada de privilegios, Malware.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="topic-card">
+<div class="topic-header">
+<span class="topic-badge">OBJETIVOS</span>
+<span class="topic-title">Resultados medibles de la Semana 1</span>
+</div>
+<p>Al terminar la Semana 1, deberías poder demostrar lo siguiente (no solo “entenderlo”):</p>
+<ul class="subtopic-list">
+<li><strong>Explicar y defender el Scope:</strong> redactar en 5–8 líneas qué está dentro/fuera del alcance y por qué.</li>
+<li><strong>Identificar superficie de ataque:</strong> listar puntos de entrada por categorías (red, web, identidades, procesos).</li>
+<li><strong>Priorizar riesgos:</strong> justificar al menos 3 riesgos con criterios de impacto y probabilidad.</li>
+<li><strong>Proponer quick wins:</strong> sugerir 3 medidas inmediatas (sin afectar operación) y 2 de mediano plazo.</li>
+</ul>
+</div>
+<div class="topic-card">
+<div class="topic-header">
+<span class="topic-badge">PRODUCTO</span>
+<span class="topic-title">Evidencia mínima recomendada</span>
+</div>
+<p>Para que tu aprendizaje sea “auditable”, guarda evidencia en una bitácora (texto + capturas si aplica):</p>
+<ul class="subtopic-list">
+<li><strong>Bitácora</strong> con fecha/hora, objetivo, pasos, resultados y conclusiones.</li>
+<li><strong>Mapa de superficie de ataque</strong> (lista estructurada o diagrama simple).</li>
+<li><strong>Matriz rápida de riesgos</strong>: riesgo → impacto → probabilidad → acción inmediata.</li>
+</ul>
+<p style="color:#546e7a; margin-top:10px;"><em>Tip:</em> un buen análisis no es largo; es claro, justificable y fácil de seguir.</p>
+</div>
+<div class="topic-card">
+<div class="topic-header">
+<span class="topic-badge">PREGUNTAS</span>
+<span class="topic-title">Preguntas guía (para estudiar y debatir)</span>
+</div>
+<ul class="subtopic-list">
+<li>¿Por qué “tener un firewall” no significa estar seguro?</li>
+<li>¿Qué diferencia real hay entre <strong>escaneo</strong> y <strong>pentest</strong>?</li>
+<li>¿Qué hace que una vulnerabilidad sea crítica: la técnica o el contexto?</li>
+<li>Si el cliente dice “pruebe todo”, ¿cómo defines límites responsables?</li>
+<li>¿Qué acciones reducen riesgo más rápido: parches, configuración o controles de identidad?</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
