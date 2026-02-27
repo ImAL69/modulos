@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teoría 2.1: Formulación del Problema</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; line-height: 1.8; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        overflow: hidden; border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo { position: absolute; top: 30px; right: 40px; width: 160px; height: auto; z-index: 100; padding: 5px; background: #fff; border-radius: 8px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 60px; padding-top: 40px; padding-right: 180px; padding-left: 20px; border-bottom: 1px solid #e0e0e0; padding-bottom: 30px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 15px 0; }
+
+    .content-block { margin-bottom: 50px; font-size: 1.1rem; line-height: 1.8; text-align: justify; }
+
+    .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+    .step-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+    .step-title { color: #1565c0; font-weight: 700; margin-bottom: 10px; display: block; font-size: 1.2rem; font-family: 'Montserrat', sans-serif; }
+
+    .metric-box {
+        background: #e3f2fd; border-left: 6px solid #1565c0; padding: 25px; margin-top: 40px; border-radius: 8px; font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 20px; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Formulación del Problema Supervisado</h1>
+        <p style="color:#546e7a;">Traduciendo Necesidades de Negocio a Matemáticas</p>
+    </div>
+
+    <div class="content-block">
+        <p>Antes de escribir una sola línea de código para entrenar un modelo, debemos realizar un ejercicio de traducción. Debemos convertir una pregunta vaga como "¿Cómo detectamos el fraude?" en un problema de optimización matemática concreto. Este paso define el éxito o fracaso del proyecto.</p>
+
+        <div class="step-grid">
+            <div class="step-card">
+                <span class="step-title">1. Definir la Etiqueta (Target)</span>
+                <p>En el aprendizaje supervisado, necesitamos "enseñarle" al modelo con ejemplos pasados. Debemos construir una variable objetivo <code>y</code> clara.
+                <br><em>Ejemplo:</em> En detección de fraude, la etiqueta es <code>es_fraude (0/1)</code>. Si no tenemos datos históricos etiquetados por humanos o sistemas previos, no podemos usar métodos supervisados.</p>
+            </div>
+
+            <div class="step-card">
+                <span class="step-title">2. Elegir la Métrica de Éxito</span>
+                <div>No todas las métricas sirven igual y dependen del costo del error:
+                <ul>
+                    <li><strong>Minimizar Falsos Negativos (Prioridad: Recall):</strong> Vital en salud o detección de intrusos. Es preferible una falsa alarma (revisar un log normal) a dejar pasar un ataque real que comprometa la red.</li>
+                    <li><strong>Minimizar Falsos Positivos (Prioridad: Precision):</strong> Importante en filtros de spam o bloqueos automáticos de usuarios, para no afectar la experiencia del cliente legítimo.</li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <span class="step-title">3. Diseño Experimental</span>
+                <div>¿Cómo sabremos si el modelo funciona?
+                <ul>
+                    <li><strong>Baseline:</strong> Necesitamos un punto de comparación. ¿Qué tan bueno sería un modelo aleatorio o un modelo que siempre predice "no fraude"?</li>
+                    <li><strong>Control de Sesgos:</strong> Debemos asegurarnos de que los datos de entrenamiento representen la realidad operativa futura, evitando sesgos temporales o de selección.</li>
+                </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="metric-box">
+            <strong>💡 Reflexión:</strong> El algoritmo optimiza una función matemática (minimizar el error cuadrático, maximizar la verosimilitud), pero tú, como ingeniero, optimizas un objetivo de negocio. Si esas dos metas no están alineadas mediante la elección correcta de la métrica y la etiqueta, el proyecto fracasará aunque el código sea perfecto.
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

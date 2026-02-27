@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teoría 1.1: Fundamentos y Ciclo de Vida del Dato</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; line-height: 1.8; }
+
+    .module-container {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #1565c0; overflow: hidden;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 160px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 60px; padding-top: 40px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 30px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.4rem; font-weight: 800; color: #0d47a1; margin: 0 auto 15px auto; }
+    
+    .content-block { margin-bottom: 50px; font-size: 1.1rem; text-align: justify; }
+
+    /* ESTILO DE DIAGRAMA DE FLUJO TEXTUAL */
+    .flow-step {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 20px;
+        position: relative; padding-left: 30px; border-left: 6px solid #1565c0;
+    }
+    .flow-title { font-weight: 700; color: #0d47a1; display: block; margin-bottom: 10px; font-size: 1.2rem; font-family: 'Montserrat', sans-serif; }
+    
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+    .info-card { background: #ffffff; border: 1px solid #e0e0e0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: transform 0.2s; }
+    .info-card:hover { transform: translateY(-5px); border-color: #1565c0; }
+    .card-title { color: #1565c0; font-weight: 700; display: block; margin-bottom: 10px; font-size: 1.15rem; }
+
+    .qa-box { background: #e3f2fd; padding: 25px; border-radius: 12px; margin-top: 40px; border: 1px solid #90caf9; }
+    .qa-q { font-weight: 700; color: #0d47a1; display: block; margin-bottom: 10px; font-size: 1.1rem; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 20px; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="module-container">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Fundamentos: El Ciclo de Vida del Dato</h1>
+        <p style="color:#546e7a; font-size:1.2rem;">Metodología Científica para Proyectos de IA</p>
+    </div>
+
+    <div class="content-block">
+        <p>El análisis de datos no es una actividad aislada ni lineal; es un proceso cíclico e iterativo. En la industria, el estándar de oro para gestionar proyectos de minería de datos es la metodología <strong>CRISP-DM</strong> (Cross Industry Standard Process for Data Mining). Comprender este ciclo es vital para no perderse en la complejidad técnica y asegurar que el proyecto entregue valor real al negocio.</p>
+        
+        <h3 style="color:#0d47a1; margin-top:40px;">🔄 Las 6 Fases de CRISP-DM</h3>
+        
+        <div class="flow-step">
+            <span class="flow-title">1. Entendimiento del Negocio (Business Understanding)</span>
+            <p>Antes de tocar un solo dato, debemos entender el problema. ¿Qué queremos resolver? ¿Cuál es el costo del error? En ciberseguridad, esto implica definir si buscamos reducir falsos positivos o detectar ataques de día cero. <strong>Riesgo:</strong> Resolver el problema equivocado por falta de comunicación con los stakeholders.</p>
+        </div>
+
+        <div class="flow-step">
+            <span class="flow-title">2. Entendimiento de los Datos (Data Understanding)</span>
+            <p>Recolección inicial y Análisis Exploratorio (EDA). Aquí evaluamos la calidad: ¿Tenemos suficientes datos históricos? ¿Las etiquetas son confiables? ¿Hay sesgos temporales? <strong>Actividad clave:</strong> Perfilamiento de datos.</p>
+        </div>
+
+        <div class="flow-step">
+            <span class="flow-title">3. Preparación de los Datos (Data Preparation)</span>
+            <p>La fase más larga (70-80% del tiempo). Incluye limpieza, selección de características (Feature Selection), transformación y creación de nuevas variables. El objetivo es crear la "Tabla Analítica Base" (ABT) que alimentará al modelo.</p>
+        </div>
+
+        <div class="flow-step">
+            <span class="flow-title">4. Modelado (Modeling)</span>
+            <p>Selección de la técnica de modelado (ej. Árboles de Decisión, Redes Neuronales) y calibración de parámetros. A menudo se vuelve a la fase de preparación si el modelo requiere formatos específicos.</p>
+        </div>
+
+        <div class="flow-step">
+            <span class="flow-title">5. Evaluación (Evaluation)</span>
+            <p>No se evalúa solo con métricas matemáticas (Accuracy), sino con criterios de negocio. ¿El modelo es robusto? ¿Es seguro implementarlo? ¿Cumple con los requisitos de latencia?</p>
+        </div>
+        
+        <div class="flow-step">
+            <span class="flow-title">6. Despliegue (Deployment)</span>
+            <p>Integración del modelo en el entorno productivo. Incluye la planificación del monitoreo y mantenimiento.</p>
+        </div>
+
+        <h3 style="color:#0d47a1; margin-top:50px;">📊 Tipos de Analítica: ¿Dónde estamos?</h3>
+        <div class="card-grid">
+            <div class="info-card">
+                <span class="card-title">Analítica Descriptiva</span>
+                <p><strong>¿Qué pasó?</strong> Mira al pasado. Usa agregaciones y visualizaciones. <br><em>Ejemplo:</em> Dashboard de ataques del último mes.</p>
+            </div>
+            <div class="info-card">
+                <span class="card-title">Analítica Inferencial</span>
+                <p><strong>¿Por qué pasó?</strong> Busca causas y relaciones entre variables. <br><em>Ejemplo:</em> Correlación entre hora del día y tipo de ataque.</p>
+            </div>
+            <div class="info-card">
+                <span class="card-title">Analítica Predictiva (ML)</span>
+                <p><strong>¿Qué pasará?</strong> Usa modelos para estimar eventos futuros. <br><em>Ejemplo:</em> Probabilidad de que esta conexión sea maliciosa.</p>
+            </div>
+        </div>
+
+        <div class="qa-box">
+            <span class="qa-q">Concepto Crítico: Reproducibilidad</span>
+            <p>En ciencia de datos, un resultado que no se puede reproducir no existe. Es fundamental:</p>
+            <ul>
+                <li><strong>Control de Versiones:</strong> Usar Git para código y DVC para datos.</li>
+                <li><strong>Semillas (Seeds):</strong> Fijar <code>random_state=42</code> para que los resultados aleatorios sean constantes.</li>
+                <li><strong>Documentación:</strong> Registrar cada decisión de limpieza (supuestos) en el notebook.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

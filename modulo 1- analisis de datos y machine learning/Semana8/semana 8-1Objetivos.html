@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 8: Monitoreo, Mantenimiento y Mejora Continua</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0; /* Azul Institucional */
+    }
+
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        width: 160px;
+        height: auto;
+        z-index: 100;
+        padding: 5px;
+        background: #fff;
+        border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box {
+        text-align: left;
+        margin-bottom: 60px;
+        padding-top: 40px;
+        padding-right: 180px; 
+        padding-left: 20px;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 30px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: #0d47a1;
+        margin: 0 0 15px 0;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.3rem;
+        color: #546e7a;
+        display: block;
+        font-weight: 300;
+        border-left: 4px solid #1976d2;
+        padding-left: 15px;
+    }
+
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1.1rem;
+        text-align: justify;
+    }
+
+    .highlight-box {
+        background: #e3f2fd;
+        padding: 30px;
+        border-radius: 12px;
+        border-left: 6px solid #0d47a1;
+        margin: 30px 0;
+        font-size: 1.1rem;
+        color: #0d47a1;
+    }
+
+    .objective-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 30px;
+    }
+    .objective-list li {
+        margin-bottom: 25px;
+        padding: 25px;
+        background: #f5faff;
+        border-radius: 10px;
+        border-left: 5px solid #1565c0;
+        display: flex;
+        align-items: flex-start;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+    }
+    .objective-list i {
+        font-size: 1.8rem;
+        color: #1565c0;
+        margin-right: 25px;
+        margin-top: 5px;
+    }
+    .obj-text h4 {
+        margin: 0 0 10px 0;
+        color: #0d47a1;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { 
+            position: static; 
+            display: block; 
+            margin: 0 auto 20px auto; 
+        }
+        .header-box { 
+            padding-right: 20px; 
+            text-align: center;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Semana 8: Monitoreo, Riesgo y Mejora Continua</h1>
+        <span class="subtitle">Unidad 3 - RA3: Garantizando la Estabilidad del Proceso en el Tiempo</span>
+    </div>
+
+    <div class="content-block">
+        <p>El despliegue de un modelo de Machine Learning es, paradójicamente, el comienzo de sus problemas. En el momento en que un modelo entra en producción, comienza a degradarse. El mundo cambia, los patrones de ataque evolucionan, el comportamiento de los usuarios se transforma y los datos que alimentan al sistema sufren mutaciones silenciosas.</p>
+        
+        <p>Esta semana abordaremos la disciplina del <strong>MLOps (Machine Learning Operations)</strong> enfocada en la sostenibilidad. Aprenderemos a construir sistemas de vigilancia que detecten cuándo nuestro modelo deja de ser útil ("Model Drift") y diseñaremos los protocolos de respuesta para mantener la seguridad operativa.</p>
+        
+        <div class="highlight-box">
+            <strong>⚠️ Gestión del Riesgo de Obsolescencia:</strong> Un modelo estático en un entorno dinámico como la ciberseguridad es un riesgo creciente. Si no monitoreamos la distribución de los datos de entrada y la confianza de las predicciones, estaremos ciegos ante nuevos vectores de ataque. El objetivo es pasar de un sistema "configurar y olvidar" a un sistema de "mejora continua".
+        </div>
+
+        <h3 style="color:#0d47a1; margin-top:40px;">🎯 Objetivos de Aprendizaje Profundo</h3>
+        <ul class="objective-list">
+            <li>
+                <i class="fa-solid fa-chart-line"></i>
+                <div class="obj-text">
+                    <h4>Diseño de Tableros de Control (KPIs)</h4>
+                    Definir e implementar métricas duales: <strong>Técnicas</strong> (Latencia, Tasa de Nulos, Distribución de Scores) y de <strong>Negocio</strong> (Tasa de Falsos Positivos, Tiempo de Respuesta a Incidentes, Costo de Fraude Evitado).
+                </div>
+            </li>
+            <li>
+                <i class="fa-solid fa-wind"></i>
+                <div class="obj-text">
+                    <h4>Detección de Deriva (Drift Detection)</h4>
+                    Comprender profundamente los fenómenos de <strong>Data Drift</strong> (cambio en la entrada, P(X)) y <strong>Concept Drift</strong> (cambio en la relación, P(Y|X)). Aprenderemos métodos estadísticos como la Divergencia de Kullback-Leibler o la prueba de Kolmogorov-Smirnov para detectar cambios en las distribuciones.
+                </div>
+            </li>
+            <li>
+                <i class="fa-solid fa-rotate"></i>
+                <div class="obj-text">
+                    <h4>Estrategias de Reentrenamiento</h4>
+                    Establecer políticas claras de mantenimiento: ¿Cuándo reentrenar? ¿Por calendario (Batch Retraining) o por evento (Trigger-based)? ¿Cómo gestionar el versionado de modelos para permitir un Rollback seguro en caso de fallo?
+                </div>
+            </li>
+        </ul>
+
+        <h3 style="color:#0d47a1; margin-top:40px;">📦 Producto de la Semana</h3>
+        <p>Entregarás el <strong>Avance 2 del Proyecto Final (Actividad 4)</strong>. Este documento debe integrar el plan de monitoreo detallado, especificando qué alertas se dispararán si el modelo falla y cuál es el protocolo de recuperación (Plan de Contingencia), demostrando una visión completa del ciclo de vida del software de IA.</p>
+    </div>
+</div>
+
+</body>
+</html>

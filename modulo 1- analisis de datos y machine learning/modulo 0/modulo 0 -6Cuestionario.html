@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuestionario Diagnóstico</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: center; margin-bottom: 50px; padding-top: 30px; padding-right: 150px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; text-align: left; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .quiz-intro {
+        margin-bottom: 40px; font-size: 1.1rem; text-align: justify;
+    }
+
+    .topic-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-bottom: 40px;
+    }
+    .topic-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; text-align: left;
+        border-left: 5px solid #1565c0; transition: transform 0.2s;
+    }
+    .topic-card:hover { transform: translateY(-5px); }
+    
+    .topic-title { font-weight: 700; color: #0d47a1; display: block; margin-bottom: 10px; font-size: 1.1rem; }
+
+    .action-btn {
+        display: block; width: 250px; margin: 40px auto 0; padding: 15px;
+        background: #0d47a1; color: white; text-align: center; border-radius: 50px;
+        text-decoration: none; font-weight: bold; font-family: 'Montserrat', sans-serif;
+        box-shadow: 0 4px 10px rgba(13, 71, 161, 0.3); transition: transform 0.2s;
+    }
+    .action-btn:hover { transform: scale(1.05); background: #1565c0; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Diagnóstico de Conocimientos Previos</h1>
+        <p>Tu punto de partida para personalizar tu ruta de aprendizaje.</p>
+    </div>
+
+    <div class="quiz-intro">
+        <p>Este instrumento <strong>NO es un examen calificable</strong>. Su propósito es ayudarte a identificar qué áreas necesitas reforzar antes de entrar en los temas avanzados. El análisis de datos se construye sobre tres pilares fundamentales: Estadística, Programación y Lógica de Negocio. Evaluaremos tus bases en estos frentes.</p>
+    </div>
+
+    <div class="topic-grid">
+        <div class="topic-card">
+            <span class="topic-title">📊 Fundamentos de Datos</span>
+            <p>¿Distingues una variable categórica de una numérica? ¿Sabes qué es un "valor nulo" y por qué es un riesgo de calidad?</p>
+        </div>
+        <div class="topic-card">
+            <span class="topic-title">📈 Estadística Básica</span>
+            <p>¿Entiendes la diferencia entre Media y Mediana? ¿Sabes interpretar una desviación estándar como medida de riesgo?</p>
+        </div>
+        <div class="topic-card">
+            <span class="topic-title">🤖 Conceptos de ML</span>
+            <p>¿Tienes nociones sobre aprendizaje supervisado vs no supervisado? ¿Sabes qué es el sobreajuste (overfitting)?</p>
+        </div>
+        <div class="topic-card">
+            <span class="topic-title">🎯 Métricas de Éxito</span>
+            <p>¿Sabes que "Exactitud" (Accuracy) no siempre es la mejor métrica? ¿Has oído hablar de la Matriz de Confusión?</p>
+        </div>
+    </div>
+
+    <div style="background-color: #e3f2fd; padding: 20px; border-radius: 8px; text-align: center;">
+        <strong>💡 Resultado:</strong> Al finalizar, recibirás una lista de recursos de nivelación (videos, lecturas cortas) específicos para las áreas donde tengas oportunidades de mejora.
+    </div>
+
+    <a href="#" class="action-btn">INICIAR DIAGNÓSTICO</a>
+    
+</div>
+
+</body>
+</html>

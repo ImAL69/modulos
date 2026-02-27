@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico - Unidad 2</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; line-height: 1.8; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        overflow: hidden; border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo { position: absolute; top: 30px; right: 40px; width: 160px; height: auto; z-index: 100; padding: 5px; background: #fff; border-radius: 8px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 60px; padding-top: 40px; padding-right: 180px; padding-left: 20px; border-bottom: 1px solid #e0e0e0; padding-bottom: 30px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 15px 0; }
+
+    /* ACORDEÓN MEJORADO */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+    summary {
+        padding: 25px; cursor: pointer; font-weight: 700; color: #1565c0; font-size: 1.1rem;
+        display: flex; align-items: center; list-style: none; font-family: 'Montserrat', sans-serif;
+    }
+    summary i { margin-right: 15px; font-size: 1.5rem; }
+    summary:hover { background: #e3f2fd; }
+    
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; line-height: 1.8; }
+
+    .code-block {
+        background: #263238; color: #eceff1; padding: 20px; border-radius: 8px; 
+        font-family: 'Courier New', monospace; overflow-x: auto; margin: 20px 0; font-size: 0.95rem; line-height: 1.5;
+        border-left: 5px solid #ff9800;
+    }
+    
+    .info-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;
+    }
+    .info-item {
+        background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 4px solid #1565c0;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 20px; text-align: center; }
+        .info-grid { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Unidad 2</h1>
+        <p>Herramientas para Diagnóstico y Evaluación Robusta</p>
+    </div>
+
+    <!-- RECURSO 1: CURVAS DE APRENDIZAJE -->
+    <details>
+        <summary><i class="fa-brands fa-python"></i> Guía de Código: Curvas de Aprendizaje (Learning Curves)</summary>
+        <div class="details-content">
+            <p>El siguiente código te permite visualizar si tu modelo sufre de <strong>Overfitting</strong> (aprende de memoria) o <strong>Underfitting</strong> (no aprende nada). Copia y pega en tu notebook para diagnosticar el estado de tu entrenamiento.</p>
+            <div class="code-block">
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.model_selection import learning_curve
+
+def plot_learning_curve(estimator, title, X, y, ylim=None, cv=5):
+    plt.figure(figsize=(10, 6))
+    plt.title(title)
+    if ylim is not None:
+        plt.ylim(*ylim)
+    plt.xlabel("Training examples")
+    plt.ylabel("Score")
+    
+    # Calcular scores para diferentes tamaños de entrenamiento
+    train_sizes, train_scores, test_scores = learning_curve(
+        estimator, X, y, cv=cv, n_jobs=-1, train_sizes=np.linspace(.1, 1.0, 5))
+    
+    # Promedios y desviaciones estándar
+    train_scores_mean = np.mean(train_scores, axis=1)
+    test_scores_mean = np.mean(test_scores, axis=1)
+    
+    plt.grid()
+    plt.plot(train_sizes, train_scores_mean, 'o-', color="r", label="Training score")
+    plt.plot(train_sizes, test_scores_mean, 'o-', color="g", label="Cross-validation score")
+    plt.legend(loc="best")
+    return plt
+
+# Ejemplo de uso:
+# plot_learning_curve(modelo_arbol, "Diagnóstico de Árbol", X_train, y_train)
+# plt.show()
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>📉 Overfitting (Varianza Alta):</strong><br>
+                    La línea roja (Train) está muy alta (casi 1.0) y la verde (Validation) está muy baja. Hay una gran "brecha" entre ellas. El modelo memoriza pero no generaliza.
+                </div>
+                <div class="info-item">
+                    <strong>📈 Underfitting (Sesgo Alto):</strong><br>
+                    Ambas líneas convergen pero en un valor muy bajo de score. El modelo es demasiado simple para capturar la complejidad de los datos.
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <!-- RECURSO 2: PLANTILLA DE SELECCIÓN -->
+    <details>
+        <summary><i class="fa-solid fa-file-contract"></i> Matriz de Decisión (Plantilla para Informe)</summary>
+        <div class="details-content">
+            <p>Usa esta estructura en tu informe final para justificar tu elección de modelo. No basta con decir "el Modelo B es mejor", debes evidenciarlo con múltiples criterios.</p>
+            
+            <table style="width:100%; border-collapse: collapse; margin-top:20px;">
+                <tr style="background:#e3f2fd;">
+                    <th style="padding:12px; border:1px solid #ccc;">Criterio de Decisión</th>
+                    <th style="padding:12px; border:1px solid #ccc;">Modelo A (Regresión Logística)</th>
+                    <th style="padding:12px; border:1px solid #ccc;">Modelo B (Random Forest)</th>
+                </tr>
+                <tr>
+                    <td style="padding:12px; border:1px solid #ccc;"><strong>Rendimiento Crítico (Recall)</strong><br><em>¿Qué tanto fraude detecta?</em></td>
+                    <td style="padding:12px; border:1px solid #ccc;">0.75 (Bajo)</td>
+                    <td style="padding:12px; border:1px solid #ccc;">0.92 (Alto)</td>
+                </tr>
+                <tr>
+                    <td style="padding:12px; border:1px solid #ccc;"><strong>Estabilidad (Gap Train/Test)</strong><br><em>¿Memoriza los datos?</em></td>
+                    <td style="padding:12px; border:1px solid #ccc;">Muy estable (Gap &lt; 2%)</td>
+                    <td style="padding:12px; border:1px solid #ccc;">Propenso a Overfitting (Gap > 10%)<br><em>Requiere ajuste de hiperparámetros.</em></td>
+                </tr>
+                <tr>
+                    <td style="padding:12px; border:1px solid #ccc;"><strong>Interpretabilidad</strong><br><em>¿Podemos explicarlo al CEO?</em></td>
+                    <td style="padding:12px; border:1px solid #ccc;">Alta (Coeficientes directos)</td>
+                    <td style="padding:12px; border:1px solid #ccc;">Media (Importancia de variables)</td>
+                </tr>
+                <tr>
+                    <td style="padding:12px; border:1px solid #ccc; background-color:#f9fbe7; font-weight:bold;">Veredicto Final</td>
+                    <td style="padding:12px; border:1px solid #ccc;">Descartado por riesgo de falsos negativos.</td>
+                    <td style="padding:12px; border:1px solid #ccc;"><strong>Seleccionado</strong> (Se optimizará para reducir overfitting).</td>
+                </tr>
+            </table>
+        </div>
+    </details>
+
+    <!-- RECURSO 3: VALIDACIÓN ROBUSTA -->
+    <details>
+        <summary><i class="fa-solid fa-shield-halved"></i> Guía Conceptual: Validación Cruzada (Cross-Validation)</summary>
+        <div class="details-content">
+            <p><strong>¿Por qué un simple `train_test_split` no es suficiente?</strong></p>
+            <p>Si tienes "suerte" (o mala suerte) en cómo se parten aleatoriamente los datos, tu modelo parecerá mejor o peor de lo que realmente es. La <strong>Validación Cruzada (K-Fold Cross Validation)</strong> es más honesta y robusta:</p>
+            <ol style="margin-left:20px; margin-bottom:20px;">
+                <li>Divide tus datos de entrenamiento en 5 partes iguales (folds).</li>
+                <li>Entrena el modelo en 4 partes y lo prueba en la 1 restante.</li>
+                <li>Repite el proceso 5 veces, rotando la parte de prueba para que cada dato sea validado una vez.</li>
+                <li>Tu score final es el <strong>promedio</strong> de los 5 intentos, lo que reduce la varianza de la evaluación.</li>
+            </ol>
+            <p><em>En código (sklearn):</em> <code>scores = cross_val_score(modelo, X, y, cv=5, scoring='recall')</code></p>
+        </div>
+    </details>
+
+</div>
+
+</body>
+</html>

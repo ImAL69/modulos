@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos Complementarios: Semana 2</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; line-height: 1.6; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo { position: absolute; top: 30px; right: 40px; width: 160px; height: auto; z-index: 100; padding: 5px; background: #fff; border-radius: 8px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 60px; padding-top: 40px; padding-right: 180px; padding-left: 20px; border-bottom: 1px solid #e0e0e0; padding-bottom: 30px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 15px 0; }
+    
+    .resource-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 30px; border-radius: 12px; margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+    .resource-title {
+        font-family: 'Montserrat', sans-serif; font-weight: 700; color: #1565c0; font-size: 1.3rem; margin-bottom: 15px; display: flex; align-items: center;
+        border-bottom: 2px solid #e3f2fd; padding-bottom: 10px;
+    }
+    .resource-title i { margin-right: 15px; font-size: 1.5rem; }
+    
+    .description { margin-bottom: 20px; color: #546e7a; font-size: 1rem; text-align: justify; }
+    
+    .usage-tip { 
+        background: #e3f2fd; padding: 20px; border-radius: 8px; font-size: 0.95rem; color: #0d47a1; margin-top: 15px;
+        border-left: 5px solid #1565c0;
+    }
+
+    /* Tablas dentro de las tarjetas */
+    .tech-table {
+        width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem;
+    }
+    .tech-table th { background: #1976d2; color: white; padding: 10px; text-align: left; }
+    .tech-table td { border: 1px solid #bbdefb; padding: 10px; vertical-align: top; background: white; }
+    
+    h3 { color: #0d47a1; margin-top: 20px; font-size: 1.1rem; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 20px; text-align: center; }
+        .tech-table { display: block; overflow-x: auto; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Recursos Complementarios y Guía Avanzada</h1>
+        <p>Material de profundización técnica para ingeniería de datos y ML.</p>
+    </div>
+
+    <!-- RECURSO 1: DATASETS -->
+    <div class="resource-card">
+        <div class="resource-title"><i class="fa-solid fa-database"></i> Datasets de Práctica: El Reto del Desbalance</div>
+        <div class="description">
+            <p>En el mundo real, especialmente en ciberseguridad y detección de fraudes, los datos nunca están equilibrados. Es normal encontrar una proporción de 99% transacciones legítimas frente a un 1% de fraudes. Entrenar modelos con estos datos requiere estrategias específicas.</p>
+            
+            <h3>Contenido del Paquete de Datasets:</h3>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li><strong>Dataset A (Balanceado 50/50):</strong> Ideal para aprender cómo funcionan los algoritmos en condiciones perfectas. Úsalo para establecer una línea base teórica.</li>
+                <li><strong>Dataset B (Desbalanceado 98/2):</strong> Simula un escenario real de detección de intrusos. Aquí verás cómo la métrica "Accuracy" falla (un modelo que predice siempre "0" tendrá 98% de accuracy pero 0% de utilidad).</li>
+                <li><strong>Dataset C (Alta Cardinalidad):</strong> Contiene variables como "User_Agent" o "IP_Address" con miles de valores únicos, para practicar técnicas avanzadas de encoding.</li>
+            </ul>
+
+            <div class="usage-tip">
+                <strong>💡 Ejercicio Sugerido:</strong> Entrena un modelo de Regresión Logística en el Dataset B sin hacer nada especial. Observa la Matriz de Confusión. Probablemente verás que predice muy bien la clase mayoritaria pero ignora por completo la clase minoritaria (los ataques). Luego, investiga técnicas como <strong>SMOTE (Oversampling)</strong> o <strong>Class Weight</strong> para corregirlo.
+            </div>
+        </div>
+    </div>
+
+    <!-- RECURSO 2: FEATURE ENGINEERING AVANZADO -->
+    <div class="resource-card">
+        <div class="resource-title"><i class="fa-brands fa-python"></i> Guía Conceptual: Feature Engineering Avanzado</div>
+        <div class="description">
+            <p>La ingeniería de características es el arte de crear nuevas variables a partir de las existentes para facilitar el aprendizaje del modelo. A veces, la información no está en el dato crudo, sino en la relación entre datos.</p>
+            
+            <h3>Técnicas Clave Explicadas:</h3>
+            <table class="tech-table">
+                <tr>
+                    <th>Técnica</th>
+                    <th>Descripción</th>
+                    <th>Cuándo usarla</th>
+                </tr>
+                <tr>
+                    <td><strong>PCA (Principal Component Analysis)</strong></td>
+                    <td>Reduce la dimensionalidad del dataset creando nuevas variables sintéticas (componentes) que capturan la mayor varianza posible.</td>
+                    <td>Cuando tienes demasiadas columnas (>50) y sufres la "maldición de la dimensionalidad" o multicolinealidad severa.</td>
+                </tr>
+                <tr>
+                    <td><strong>Binning (Discretización)</strong></td>
+                    <td>Convierte una variable numérica continua en rangos o categorías (ej. Edad -> "Joven", "Adulto", "Senior").</td>
+                    <td>Cuando la relación entre la variable y el objetivo no es lineal, o para manejar outliers extremos agrupándolos.</td>
+                </tr>
+                <tr>
+                    <td><strong>Interaction Features</strong></td>
+                    <td>Crear nuevas variables combinando dos existentes (ej. <code>Multiplicación</code>, <code>Suma</code>, <code>Ratio</code>).</td>
+                    <td>Ejemplo: En ciberseguridad, <code>bytes_enviados / duración_conexión</code> puede revelar una tasa de transferencia anómala que las variables por separado no muestran.</td>
+                </tr>
+                <tr>
+                    <td><strong>Feature Selection (RFE)</strong></td>
+                    <td>Eliminación Recursiva de Características. Entrena el modelo y elimina las variables menos importantes iterativamente.</td>
+                    <td>Para limpiar el modelo de ruido y hacerlo más ligero y rápido en producción.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- RECURSO 3: CHEAT SHEET PREPROCESAMIENTO -->
+    <div class="resource-card">
+        <div class="resource-title"><i class="fa-solid fa-list-check"></i> Cheat Sheet: Scikit-Learn Preprocessing</div>
+        <div class="description">
+            <p>Elegir el escalador o codificador incorrecto puede destruir el rendimiento de tu modelo. Esta guía rápida te ayuda a decidir cuál usar según la naturaleza estadística de tus datos.</p>
+
+            <h3>1. Escaladores Numéricos (Scaling)</h3>
+            <table class="tech-table">
+                <tr>
+                    <th>Clase Sklearn</th>
+                    <th>Fórmula</th>
+                    <th>Uso Recomendado</th>
+                    <th>Sensible a Outliers?</th>
+                </tr>
+                <tr>
+                    <td><code>StandardScaler</code></td>
+                    <td>z = (x - u) / s</td>
+                    <td>Para algoritmos que asumen distribución normal (Regresión Lineal, Logística, SVM).</td>
+                    <td><strong>Sí</strong> (mucho)</td>
+                </tr>
+                <tr>
+                    <td><code>MinMaxScaler</code></td>
+                    <td>X_std = (X - X.min) / (X.max - X.min)</td>
+                    <td>Para Redes Neuronales o algoritmos que necesitan datos acotados [0, 1]. Preserva la forma de la distribución original.</td>
+                    <td><strong>Sí</strong> (mucho)</td>
+                </tr>
+                <tr>
+                    <td><code>RobustScaler</code></td>
+                    <td>(x - q2) / (q3 - q1)</td>
+                    <td>Usa la mediana y el rango intercuartílico. Ideal si tus datos tienen muchos valores extremos que no quieres eliminar.</td>
+                    <td><strong>No</strong> (es robusto)</td>
+                </tr>
+            </table>
+
+            <h3>2. Codificadores Categóricos (Encoding)</h3>
+            <table class="tech-table">
+                <tr>
+                    <th>Clase Sklearn</th>
+                    <th>Funcionamiento</th>
+                    <th>Cuándo usar</th>
+                </tr>
+                <tr>
+                    <td><code>OneHotEncoder</code></td>
+                    <td>Crea una columna por cada categoría (dummy variables).</td>
+                    <td>Variables nominales (sin orden) con <strong>poca cardinalidad</strong> (<10 categorías). Ej: Sexo, Color.</td>
+                </tr>
+                <tr>
+                    <td><code>OrdinalEncoder</code></td>
+                    <td>Asigna un entero (0, 1, 2...) a cada categoría.</td>
+                    <td>Variables ordinales <strong>con jerarquía clara</strong>. Ej: Nivel Educativo, Calificación (Bajo, Medio, Alto).</td>
+                </tr>
+                <tr>
+                    <td><code>LabelEncoder</code></td>
+                    <td>Similar a Ordinal, pero diseñado solo para la variable objetivo (y), no para las features (X).</td>
+                    <td>Solo para codificar la variable 'target' en problemas de clasificación.</td>
+                </tr>
+            </table>
+
+            <div class="usage-tip">
+                <strong>💡 Consejo Pro:</strong> Nunca uses <code>fit()</code> o <code>fit_transform()</code> sobre el conjunto de Test. Solo usa <code>transform()</code>. El conjunto de Test debe ser tratado como datos "nuevos" que el modelo nunca ha visto, usando los parámetros (media, desviación, rangos) aprendidos del conjunto de Train.
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

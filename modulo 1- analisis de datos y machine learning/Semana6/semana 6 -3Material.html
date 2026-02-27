@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico - Anomalías</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; line-height: 1.8; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        overflow: hidden; border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo { position: absolute; top: 30px; right: 40px; width: 160px; height: auto; z-index: 100; padding: 5px; background: #fff; border-radius: 8px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 60px; padding-top: 40px; padding-right: 180px; padding-left: 20px; border-bottom: 1px solid #e0e0e0; padding-bottom: 30px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 15px 0; }
+
+    /* ACORDEÓN MEJORADO */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+    summary {
+        padding: 25px; cursor: pointer; font-weight: 700; color: #1565c0; font-size: 1.1rem;
+        display: flex; align-items: center; list-style: none; font-family: 'Montserrat', sans-serif;
+    }
+    summary i { margin-right: 15px; font-size: 1.5rem; }
+    summary:hover { background: #e3f2fd; }
+    
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; line-height: 1.8; }
+
+    .code-block {
+        background: #263238; color: #eceff1; padding: 20px; border-radius: 8px; 
+        font-family: 'Courier New', monospace; overflow-x: auto; margin: 20px 0; font-size: 0.95rem; line-height: 1.5;
+        border-left: 5px solid #ff9800;
+    }
+
+    .policy-table { width: 100%; border-collapse: collapse; min-width: 600px; margin-top:20px; }
+    .policy-table th { background: #1565c0; color: white; padding: 12px; text-align: left; font-weight: 600; }
+    .policy-table td { border: 1px solid #bbdefb; padding: 12px; }
+    .level-crit { color: #d32f2f; font-weight: bold; background-color: #ffebee; }
+    .level-high { color: #f57f17; font-weight: bold; background-color: #fffde7; }
+    .level-med { color: #1976d2; font-weight: bold; background-color: #e3f2fd; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 20px; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Detección de Anomalías</h1>
+        <p>Recursos Técnicos y Operativos para la Gestión de Incidentes</p>
+    </div>
+
+    <!-- RECURSO 1: NOTEBOOK BASELINE -->
+    <details>
+        <summary><i class="fa-brands fa-python"></i> Guía de Código: Isolation Forest (No Supervisado)</summary>
+        <div class="details-content">
+            <p>El <strong>Isolation Forest</strong> es uno de los algoritmos más eficientes para detectar anomalías en grandes volúmenes de datos (Big Data). Funciona bajo la premisa de que las anomalías son datos "fáciles de aislar" (requieren menos cortes aleatorios en un árbol para quedar solos).</p>
+            <p>El siguiente script entrena un modelo de Isolation Forest, predice anomalías y separa los datos sospechosos para su revisión:</p>
+            <div class="code-block">
+from sklearn.ensemble import IsolationForest
+import pandas as pd
+
+# Supongamos que X_train ya está escalado y limpio
+# contamination: estimación de qué porcentaje de los datos son anomalías (ej. 1%)
+# random_state: para reproducibilidad
+
+print("Entrenando Isolation Forest...")
+iso_forest = IsolationForest(n_estimators=100, contamination=0.01, random_state=42, n_jobs=-1)
+iso_forest.fit(X_train)
+
+# Predecir en el set de prueba
+# Devuelve -1 para anomalía y 1 para normal
+print("Generando predicciones...")
+preds = iso_forest.predict(X_test)
+
+# Obtener también el "score de anomalía" (cuanto más bajo, más anómalo)
+scores = iso_forest.decision_function(X_test)
+
+# Filtrar y mostrar las anomalías detectadas
+anomalias = X_test[preds == -1]
+print(f"Detectadas {len(anomalias)} anomalías potenciales de un total de {len(X_test)} registros.")
+print("Primeras 5 anomalías detectadas:\n", anomalias.head())
+            </div>
+        </div>
+    </details>
+
+    <!-- RECURSO 2: PLANTILLA POLÍTICA -->
+    <details>
+        <summary><i class="fa-solid fa-bell"></i> Plantilla: Política de Alertamiento y Severidad</summary>
+        <div class="details-content">
+            <p>Un modelo de detección no debe enviar todas sus alertas con la misma urgencia. Es fundamental definir una política de severidad basada en la probabilidad de la anomalía (score del modelo) o en reglas de negocio adicionales. Usa esta tabla como base para tu proyecto:</p>
+            <div style="overflow-x:auto;">
+                <table class="policy-table">
+                    <thead>
+                        <tr>
+                            <th>Nivel de Severidad</th>
+                            <th>Criterio Técnico (Probabilidad / Score)</th>
+                            <th>Acción Automática (Respuesta)</th>
+                            <th>SLA de Revisión Humana</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="level-crit">Crítico (P1)</td>
+                            <td>Score < -0.8 (Muy anómalo) OR IP en Blacklist</td>
+                            <td>Bloqueo inmediato de IP en Firewall + Alerta SMS a Guardia.</td>
+                            <td>Inmediato (< 15 min)</td>
+                        </tr>
+                        <tr>
+                            <td class="level-high">Alto (P2)</td>
+                            <td>Score entre -0.8 y -0.5</td>
+                            <td>Crear Ticket en Jira con Prioridad Alta. Notificar por Slack.</td>
+                            <td>< 4 horas</td>
+                        </tr>
+                        <tr>
+                            <td class="level-med">Medio (P3)</td>
+                            <td>Score entre -0.5 y 0 (Levemente anómalo)</td>
+                            <td>Registrar en Log de Auditoría para reporte semanal de tendencias.</td>
+                            <td>Revisión semanal (Batch)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </details>
+
+    <!-- RECURSO 3: DATASET INFO -->
+    <details>
+        <summary><i class="fa-solid fa-database"></i> Descripción del Dataset: Logs de Eventos de Red</summary>
+        <div class="details-content">
+            <p>Para la actividad práctica, trabajaremos con un archivo simulado de <strong>Logs de Firewall Corporativo</strong>. Este dataset contiene millones de conexiones normales y un pequeño porcentaje de intentos de intrusión inyectados.</p>
+            <h4>Variables Clave (Features):</h4>
+            <ul>
+                <li><strong>bytes_sent / bytes_received:</strong> Volumen de datos transferidos. Un volumen muy alto en <code>bytes_sent</code> hacia una IP externa desconocida podría indicar exfiltración de datos.</li>
+                <li><strong>duration:</strong> Duración de la conexión en segundos. Conexiones muy largas o extremadamente cortas (scans) pueden ser sospechosas.</li>
+                <li><strong>dst_port:</strong> Puerto de destino (ej. 80, 443, 22, 3389). Intentos de conexión a puertos administrativos (22, 3389) desde IPs externas suelen ser ataques de fuerza bruta.</li>
+                <li><strong>src_ip / dst_ip:</strong> Direcciones IP de origen y destino.</li>
+                <li><strong>protocol:</strong> Protocolo de transporte (TCP, UDP, ICMP).</li>
+            </ul>
+            <p><em>Objetivo del Análisis:</em> Utilizar estas variables numéricas y categóricas para detectar patrones de comportamiento que se desvíen de la línea base normal de la red corporativa.</p>
+        </div>
+    </details>
+
+</div>
+
+</body>
+</html>

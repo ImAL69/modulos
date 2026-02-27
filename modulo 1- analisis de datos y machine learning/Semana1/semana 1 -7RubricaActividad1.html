@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rúbrica: Actividad 1</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+
+    .module-container {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 160px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 60px; padding-top: 40px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 30px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 auto 10px auto; }
+
+    .rubric-table {
+        width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem;
+    }
+    .rubric-table th { background: #1565c0; color: white; padding: 15px; text-align: left; font-weight: 600; }
+    .rubric-table td { border: 1px solid #bbdefb; padding: 15px; vertical-align: top; }
+    .level-high { background: #e3f2fd; color: #0d47a1; font-weight:bold; }
+    
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 20px; text-align: center; }
+        .rubric-table { font-size: 0.8rem; }
+    }
+</style>
+</head>
+<body>
+
+<div class="module-container">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Rúbrica de Evaluación: Foro (15%)</h1>
+        
+    </div>
+
+    <div style="overflow-x:auto;">
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Criterio</th>
+                    <th style="width: 25%;">Excelente (5.0)</th>
+                    <th style="width: 25%;">Aceptable (3.0 - 4.0)</th>
+                    <th style="width: 25%;">Insuficiente (0 - 2.9)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Identificación de Riesgos (Datos)</strong><br>Profundidad del diagnóstico.</td>
+                    <td class="level-high">Identifica correctamente ≥3 problemas de calidad (nulos, outliers, formato), clasificándolos con terminología técnica (MCAR, MNAR, Sesgo).</td>
+                    <td>Identifica problemas evidentes pero su descripción es genérica o usa términos coloquiales.</td>
+                    <td>No identifica problemas reales o confunde conceptos básicos.</td>
+                </tr>
+                <tr>
+                    <td><strong>Propuesta de Solución</strong><br>Justificación técnica.</td>
+                    <td class="level-high">Propone acciones correctivas (imputar, borrar, transformar) justificando el impacto en el modelo de ML (ej. "evitar sesgo", "mantener varianza").</td>
+                    <td>Propone soluciones estándar ("borrar todo") sin analizar las consecuencias en la pérdida de información.</td>
+                    <td>No propone soluciones o son incorrectas para el tipo de dato.</td>
+                </tr>
+                <tr>
+                    <td><strong>Interacción con Pares</strong><br>Calidad del debate.</td>
+                    <td class="level-high">Realiza al menos 2 réplicas que aportan valor técnico, sugiriendo mejoras o cuestionando constructivamente la estrategia del compañero.</td>
+                    <td>Responde a compañeros pero se limita a validar ("estoy de acuerdo") sin agregar contenido nuevo.</td>
+                    <td>No interactúa o sus comentarios son irrelevantes.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
