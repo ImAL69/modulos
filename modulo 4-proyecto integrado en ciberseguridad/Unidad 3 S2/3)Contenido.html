@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contenido Esperado: Análisis y Discusión</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: static; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .tophead{display:flex; align-items:flex-start; gap:18px; margin-bottom:18px;}
+    .tophead .header-box{flex:1; margin:0;}
+    .tophead .uni-logo{position:static !important; right:auto !important; left:auto !important; top:auto !important; margin-left:auto; align-self:flex-start; box-shadow:0 10px 30px rgba(0,0,0,0.12);}
+
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .expected-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 20px;
+    }
+    .expected-title { font-weight: 700; color: #1565c0; display: block; margin-bottom: 10px; font-size: 1.2rem; }
+
+    .tip-list { list-style: none; padding: 0; }
+    .tip-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+    .tip-list li::before { content: '👉'; position: absolute; left: 0; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <div class="tophead">
+    <div class="header-box">
+        <h1 class="main-title">Contenido Esperado: Profundidad</h1>
+        <p>Lo que diferencia un trabajo mediocre de uno excelente.</p>
+    </div>
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+</div>
+
+    <div class="expected-card">
+        <span class="expected-title"><i class="fa-solid fa-microscope"></i> Análisis y Discusión</span>
+        <p>No te limites a decir "funcionó". Discute <strong>por qué</strong> funcionó. ¿Qué factores influyeron? ¿Hubo falsos positivos? ¿Cómo se compara tu resultado con el estándar de la industria?</p>
+    </div>
+
+    <div class="expected-card" style="border-color: #ffe0b2; background: #fff3e0;">
+        <span class="expected-title" style="color: #e65100;"><i class="fa-solid fa-triangle-exclamation"></i> Limitaciones y Riesgos</span>
+        <p>La honestidad intelectual es clave. Declara explícitamente qué no cubre tu solución (ej. "Protege el servidor web pero no la base de datos interna") y qué riesgos residuales quedan.</p>
+    </div>
+
+    <div class="expected-card" style="border-color: #c8e6c9; background: #e8f5e9;">
+        <span class="expected-title" style="color: #2e7d32;"><i class="fa-solid fa-lightbulb"></i> Recomendaciones</span>
+        <p>¿Qué debería hacer la organización mañana? Propón un plan de mejora continua o escalamiento (ej. "Extender el monitoreo a la sucursal norte").</p>
+    </div>
+
+</div>
+
+
+<script>
+(() => {
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced) return;
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=> {
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold: 0.12});
+  els.forEach(el=> io.observe(el));
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidad 3 S1: Validación y Resultados</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+    body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; color: #37474f; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+    
+    .container-extended {
+        max-width: 1200px; margin: 40px auto; background: #fff; border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08); overflow: hidden; position: relative;
+        border-top: 8px solid #0d47a1;
+    }
+
+    /* HEADER */
+    .header-hero {
+        background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+        padding: 60px 40px; color: white; position: relative;
+    }
+    .uni-logo {
+        position: absolute; top: 20px; right: 40px; width: 140px; background: white; 
+        padding: 5px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    
+    /* SECCIONES */
+    .section-block { padding: 40px; border-bottom: 1px solid #eee; }
+    .section-title { font-size: 2rem; color: #0d47a1; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 15px; }
+    .section-desc { font-size: 1.1rem; color: #546e7a; margin-bottom: 30px; max-width: 800px; }
+
+    /* TARJETAS INTERACTIVAS */
+    .metric-card {
+        background: white; border: 1px solid #e0e0e0; border-radius: 12px; padding: 25px;
+        transition: transform 0.3s, box-shadow 0.3s; height: 100%;
+    }
+    .metric-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+    .metric-icon { font-size: 2.5rem; margin-bottom: 15px; }
+    
+    /* COMUNICACIÓN TOGGLE */
+    .comm-toggle {
+        display: flex; background: #e3f2fd; padding: 5px; border-radius: 50px; width: fit-content; margin-bottom: 20px;
+    }
+    .comm-btn {
+        padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: bold; transition: all 0.3s;
+    }
+    .comm-btn.active { background: #1565c0; color: white; shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    /* CODE BOX */
+    .code-box {
+        background: #263238; color: #80cbc4; padding: 20px; border-radius: 8px; 
+        font-family: 'Courier New', monospace; margin-top: 15px; overflow-x: auto;
+    }
+
+    /* CHART CONTAINER */
+    .chart-container {
+        position: relative; height: 300px; width: 100%;
+    }
+
+    /* ANIMACIONES GOD (ligeras + accesibles) */
+    .reveal { opacity: 0; transform: translateY(18px) scale(0.995); filter: blur(1px);
+              transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1), filter .8s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    .hover-glow { transition: transform .25s ease, box-shadow .25s ease; }
+    .hover-glow:hover { transform: translateY(-6px); box-shadow: 0 18px 34px rgba(13,71,161,.16); }
+    .floaty { animation: floaty 6s ease-in-out infinite; }
+    @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .orb { position:absolute; border-radius:999px; filter: blur(30px); opacity:.35; pointer-events:none; }
+    .orb.one{ width:320px; height:320px; left:-120px; top:-120px; background:#64b5f6; }
+    .orb.two{ width:260px; height:260px; right:120px; top:120px; background:#00e5ff; }
+    .orb.three{ width:420px; height:420px; right:-180px; bottom:-180px; background:#7c4dff; opacity:.22; }
+    @media (prefers-reduced-motion: reduce){
+        .reveal{ opacity:1; transform:none; filter:none; transition:none; }
+        .floaty{ animation:none; }
+        .hover-glow:hover{ transform:none; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <!-- HERO SECTION -->
+    <div class="header-hero">
+        <div class="orb one"></div><div class="orb two"></div><div class="orb three"></div>
+        <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+        <span class="bg-blue-800 text-blue-100 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">Módulo 5: Proyecto Integrado</span>
+        <h1 class="text-4xl font-extrabold mb-2">Unidad 3: Ejecución y Validación</h1>
+        <p class="text-blue-100 text-xl font-light">Semana 1: Análisis de Resultados, Impacto y Comunicación Estratégica.</p>
+    </div>
+
+
+    <!-- ACTIVIDAD EVALUATIVA 2 (30%) -->
+    <div class="section-block reveal" id="actividad-evaluativa">
+        <h2 class="section-title"><i class="fa-solid fa-clipboard-check"></i> Actividad evaluativa 2 (30%) — Ejecución y avance</h2>
+        <p class="section-desc">
+            En esta entrega demuestras <strong>avance real</strong> (no promesas): implementación/validación, evidencia verificable y decisiones justificadas.
+            La idea es que cualquier persona (docente, par, cliente) pueda <strong>reproducir</strong> lo que hiciste y confirmar los resultados.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="metric-card hover-glow border-l-4 border-l-indigo-600 reveal">
+                <h3 class="text-lg font-bold text-indigo-900 mb-2"><i class="fa-regular fa-calendar-days mr-2"></i>Semanas de realización</h3>
+                <p class="text-gray-700"><strong>Semanas 6–7</strong>. Planea tu trabajo como un sprint:</p>
+                <ul class="list-disc pl-5 mt-3 space-y-2 text-gray-600">
+                    <li><strong>Semana 6:</strong> implementación + pruebas iniciales + bitácora + captura de evidencias.</li>
+                    <li><strong>Semana 7:</strong> validación, análisis preliminar, ajustes/mejoras, y redacción final del informe.</li>
+                    <li><strong>Tip GOD:</strong> congela una “versión de entrega” (tag/release) y documenta cambios.</li>
+                </ul>
+            </div>
+
+            <div class="metric-card hover-glow border-l-4 border-l-emerald-600 reveal">
+                <h3 class="text-lg font-bold text-emerald-900 mb-2"><i class="fa-solid fa-box-archive mr-2"></i>Producto (lo que entregas)</h3>
+                <p class="text-gray-700 mb-3">
+                    <strong>Informe de avance</strong> (PDF <strong>3–5 páginas</strong>) + <strong>anexos</strong> (bitácora, capturas, logs, repositorio/enlaces reproducibles).
+                </p>
+                <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-4 text-sm text-emerald-900">
+                    <strong>Obligatorio:</strong> mínimo <strong>2 fuentes técnicas</strong> citadas en <strong>APA</strong> (normas, docs oficiales, papers, estándares).
+                </div>
+                <ul class="mt-4 space-y-2 text-gray-600 list-disc pl-5">
+                    <li>Link a repositorio o paquete de evidencias (con estructura clara).</li>
+                    <li>Cómo ejecutar/reproducir (README “paso a paso”).</li>
+                    <li>Indicadores/KPIs y resultados medibles.</li>
+                </ul>
+            </div>
+
+            <div class="metric-card hover-glow border-l-4 border-l-amber-600 reveal">
+                <h3 class="text-lg font-bold text-amber-900 mb-2"><i class="fa-solid fa-list-ul mr-2"></i>Debe incluir (sí o sí)</h3>
+                <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+                    <li><strong>Avance vs cronograma:</strong> qué se cumplió, qué se reprogramó y por qué.</li>
+                    <li><strong>Evidencia técnica verificable:</strong> pruebas, logs, capturas, métricas, before/after.</li>
+                    <li><strong>Decisiones/cambios justificados:</strong> alcance/metodología (qué cambió y el motivo).</li>
+                    <li><strong>Gestión de riesgos:</strong> riesgos actuales, mitigaciones aplicadas y pendientes.</li>
+                    <li><strong>Ética / legalidad / cumplimiento:</strong> datos, permisos, privacidad, licencias, trazabilidad.</li>
+                </ol>
+                <div class="mt-4 p-4 rounded-lg bg-amber-50 border border-amber-200 text-sm text-amber-900">
+                    <strong>Regla de oro:</strong> si no hay evidencia, <em>no existe</em>. Documenta todo.
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="metric-card hover-glow reveal">
+                <h3 class="text-xl font-bold text-blue-900 mb-3"><i class="fa-solid fa-pen-ruler mr-2"></i>Plantilla rápida del informe (3–5 páginas)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                        <strong>1. Resumen (½ pág.)</strong>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li>Qué se implementó y para qué.</li>
+                            <li>Resultado clave (número).</li>
+                            <li>Decisión recomendada (seguir / ajustar).</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                        <strong>2. Avance vs cronograma</strong>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li>Tabla: plan vs real.</li>
+                            <li>Bloqueadores y cómo los resolviste.</li>
+                            <li>Próximos pasos.</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                        <strong>3. Evidencia técnica</strong>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li>Casos de prueba (entrada→salida).</li>
+                            <li>Logs / capturas / gráficas.</li>
+                            <li>Métricas + interpretación.</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                        <strong>4. Riesgos + ética/legal</strong>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li>Riesgos vigentes y mitigaciones.</li>
+                            <li>Privacidad, licencias, permisos.</li>
+                            <li>Riesgo residual (qué queda).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-4 rounded-lg bg-blue-50 border border-blue-200 text-sm text-blue-900">
+                    <strong>Mini‑reto (súper GOD):</strong> agrega una sección “<em>Reproducibilidad</em>” con un comando/flujo
+                    para que el docente ejecute tu validación en menos de 10 minutos.
+                </div>
+            </div>
+
+            <div class="metric-card hover-glow reveal">
+                <h3 class="text-xl font-bold text-blue-900 mb-3"><i class="fa-solid fa-ranking-star mr-2"></i>Rúbrica (30%) — cómo te evalúan</h3>
+
+                <div class="space-y-4">
+                    <div class="p-4 rounded-lg bg-white border border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <strong>Ejecución vs plan</strong><span class="text-blue-700 font-extrabold">30%</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1">Cumplimiento del plan, control del alcance y consistencia con el cronograma.</p>
+                    </div>
+
+                    <div class="p-4 rounded-lg bg-white border border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <strong>Evidencia verificable</strong><span class="text-blue-700 font-extrabold">30%</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1">Pruebas, logs, capturas, métricas y trazabilidad (se puede comprobar).</p>
+                    </div>
+
+                    <div class="p-4 rounded-lg bg-white border border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <strong>Análisis preliminar y mejoras</strong><span class="text-blue-700 font-extrabold">25%</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1">Lectura crítica de resultados y mejoras aplicadas (no solo “salió”).</p>
+                    </div>
+
+                    <div class="p-4 rounded-lg bg-white border border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <strong>Riesgos / ética / cumplimiento</strong><span class="text-blue-700 font-extrabold">15%</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1">Gestión de riesgos, privacidad, licencias, seguridad y buenas prácticas.</p>
+                    </div>
+                </div>
+
+                <div class="mt-5 p-4 rounded-lg bg-slate-900 text-slate-100 text-sm">
+                    <strong>Checklist final antes de subir:</strong>
+                    <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-200">
+                        <li>PDF 3–5 páginas (sin relleno, directo al punto).</li>
+                        <li>Anexos organizados (carpetas / nombres claros).</li>
+                        <li>2+ fuentes técnicas en APA (con enlaces si aplica).</li>
+                        <li>README reproducible (pasos y requisitos).</li>
+                        <li>Evidencias que muestren “antes vs después”.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SECCIÓN 3.1: ANÁLISIS Y VALIDACIÓN -->
+    <div class="section-block reveal" id="analisis">
+        <h2 class="section-title"><i class="fa-solid fa-microscope"></i> 3.1 Análisis y Validación de Resultados</h2>
+        <p class="section-desc">No basta con implementar; hay que demostrar que funcionó. Aquí transformamos la "data cruda" del piloto en "evidencia de éxito".</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Columna Izquierda: Teoría -->
+            <div class="space-y-6">
+                <div class="metric-card border-l-4 border-l-blue-600">
+                    <h3 class="text-lg font-bold text-blue-800 mb-2">El Proceso de Validación</h3>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                        <li><strong>Pruebas Funcionales:</strong> ¿El control hace lo que debe hacer? (Ej. El firewall bloquea el puerto 22).</li>
+                        <li><strong>Pruebas de Estrés:</strong> ¿Soporta la carga real? (Ej. Latencia añadida por la VPN).</li>
+                        <li><strong>Pruebas de Regresión:</strong> ¿Rompimos algo que funcionaba antes?</li>
+                    </ul>
+                </div>
+                
+                <div class="metric-card bg-slate-50">
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">KPIs de Éxito (Ejemplo Real)</h3>
+                    <div class="grid grid-cols-2 gap-4 mt-4">
+                        <div class="text-center p-3 bg-white rounded shadow-sm">
+                            <div class="text-2xl font-bold text-green-600">95%</div>
+                            <div class="text-xs text-gray-500 uppercase">Ataques Bloqueados</div>
+                        </div>
+                        <div class="text-center p-3 bg-white rounded shadow-sm">
+                            <div class="text-2xl font-bold text-blue-600">&lt; 50ms</div>
+                            <div class="text-xs text-gray-500 uppercase">Latencia Agregada</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Gráfico -->
+            <div class="metric-card">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Reducción de Incidentes (Piloto)</h3>
+                <div class="chart-container">
+                    <canvas id="validationChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-2">Figura 1: Comparativa de incidentes detectados antes y después de la implementación.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 3.2: EVALUACIÓN DE IMPACTO -->
+    <div class="section-block bg-slate-50 reveal" id="impacto">
+        <h2 class="section-title"><i class="fa-solid fa-scale-balanced"></i> 3.2 Evaluación de Pertinencia e Impacto</h2>
+        <p class="section-desc">La seguridad perfecta es infinitamente cara. Aquí evaluamos si la solución vale lo que cuesta y qué riesgo queda remanente.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <!-- Card 1: Costo-Beneficio -->
+            <div class="metric-card border-t-4 border-t-emerald-500">
+                <i class="fa-solid fa-money-bill-trend-up metric-icon text-emerald-600"></i>
+                <h3 class="text-xl font-bold mb-2">ROI de Seguridad (ROSI)</h3>
+                <p class="text-sm text-gray-600 mb-4">Calculamos cuánto dinero ahorramos al evitar incidentes.</p>
+                <div class="code-box text-xs">
+                    ROSI = (ALE * %Mitigación) - Costo Solución
+                    <br>-------------------------------------
+                    <br>           Costo Solución
+                </div>
+            </div>
+
+            <!-- Card 2: Riesgo Residual -->
+            <div class="metric-card border-t-4 border-t-amber-500">
+                <i class="fa-solid fa-triangle-exclamation metric-icon text-amber-600"></i>
+                <h3 class="text-xl font-bold mb-2">Riesgo Residual</h3>
+                <p class="text-sm text-gray-600">El riesgo que permanece después de aplicar controles. <strong>Nunca es cero.</strong></p>
+                <div class="mt-4 p-3 bg-amber-50 rounded text-sm text-amber-900 border border-amber-200">
+                    <strong>Ejemplo:</strong> Instalamos Antivirus (Riesgo reducido), pero si el usuario desactiva el agente, seguimos expuestos (Riesgo Residual Humano).
+                </div>
+            </div>
+
+            <!-- Card 3: Escalamiento -->
+            <div class="metric-card border-t-4 border-t-indigo-500">
+                <i class="fa-solid fa-arrow-up-right-dots metric-icon text-indigo-600"></i>
+                <h3 class="text-xl font-bold mb-2">Viabilidad de Escala</h3>
+                <p class="text-sm text-gray-600">¿Funciona para 10 usuarios? Sí. ¿Funcionará para 10,000? Aquí analizamos cuellos de botella de la arquitectura propuesta.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 3.3: COMUNICACIÓN -->
+    <div class="section-block reveal" id="comunicacion">
+        <h2 class="section-title"><i class="fa-solid fa-comments"></i> 3.3 Comunicación de Resultados</h2>
+        <p class="section-desc">El "traductor universal". Cómo contar la misma historia a dos audiencias radicalmente distintas para obtener aprobación.</p>
+
+        <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-lg">
+            <div class="flex flex-col items-center mb-8">
+                <h3 class="text-xl font-bold mb-4">Simulador de Mensaje</h3>
+                <div class="comm-toggle">
+                    <div class="comm-btn active" onclick="setAudience('tech', this)">Audiencia Técnica (TI)</div>
+                    <div class="comm-btn" onclick="setAudience('exec', this)">Audiencia Ejecutiva (CEO)</div>
+                </div>
+            </div>
+
+            <div id="tech-msg" class="block animate-fade">
+                <div class="bg-slate-900 text-green-400 p-6 rounded-lg font-mono text-sm border-l-4 border-green-500">
+                    <p class="mb-2">> REPORTE DE INCIDENTE:</p>
+                    <p class="mb-2">> VULNERABILIDAD: CVE-2023-44487 (HTTP/2 Rapid Reset).</p>
+                    <p class="mb-2">> ACCIÓN: Se implementó WAF RuleSet v2.1 bloqueando streams > 100/sec.</p>
+                    <p>> ESTADO: Mitigado. Latencia incrementada en 2ms (despreciable).</p>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-3"><em>Enfoque: Precisión, datos duros, jerga técnica estándar.</em></p>
+            </div>
+
+            <div id="exec-msg" class="hidden animate-fade">
+                <div class="bg-white text-gray-800 p-6 rounded-lg border-l-4 border-blue-600 shadow-sm border border-gray-100">
+                    <h4 class="font-bold text-lg text-blue-900 mb-2">Resumen Ejecutivo</h4>
+                    <p class="mb-2">Se detectó un riesgo crítico que podría haber dejado fuera de línea nuestra tienda online durante el Black Friday.</p>
+                    <p class="mb-2"><strong>Solución:</strong> Se aplicó una actualización de seguridad preventiva.</p>
+                    <p><strong>Resultado:</strong> El negocio está protegido y operativo al 100% sin costo adicional.</p>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-3"><em>Enfoque: Riesgo de negocio, continuidad operativa, dinero.</em></p>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- MATERIAL DIDÁCTICO -->
+    <div class="section-block bg-blue-50 reveal">
+        <h2 class="section-title text-2xl"><i class="fa-solid fa-book-open"></i> Recursos de la Semana (convertidos en guía práctica)</h2>
+        <p class="section-desc">Aquí no descargas nada: te digo <strong>qué debe contener</strong> cada “recurso” y <strong>cómo usarlo</strong> para que tu entrega quede verificable.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
+            <div class="metric-card hover-glow reveal">
+                <div class="flex items-center gap-3 mb-3">
+                    <i class="fa-regular fa-file-pdf text-red-500 text-2xl"></i>
+                    <h3 class="font-extrabold text-sm text-slate-900">Plantilla Informe Final (PDF)</h3>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-2 list-disc pl-5">
+                    <li>Portada + objetivo + alcance.</li>
+                    <li>Tabla “plan vs real” (con fechas).</li>
+                    <li>Resultados: KPI + evidencia (captura/log).</li>
+                    <li>Riesgos + ética/legal + conclusiones.</li>
+                </ul>
+                <div class="mt-3 text-xs bg-red-50 border border-red-200 rounded-lg p-3 text-red-900">
+                    <strong>Tip:</strong> cada sección debe responder “¿qué hice?” + “¿cómo lo pruebo?”
+                </div>
+            </div>
+
+            <div class="metric-card hover-glow reveal">
+                <div class="flex items-center gap-3 mb-3">
+                    <i class="fa-regular fa-file-excel text-green-600 text-2xl"></i>
+                    <h3 class="font-extrabold text-sm text-slate-900">Calculadora ROI / ROSI</h3>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-2 list-disc pl-5">
+                    <li>Define un incidente tipo (impacto + probabilidad).</li>
+                    <li>Estima pérdidas (ALE) y % mitigación.</li>
+                    <li>Compara costo solución vs ahorro esperado.</li>
+                    <li>Concluye: “vale la pena / no vale” con números.</li>
+                </ul>
+                <div class="mt-3 text-xs bg-green-50 border border-green-200 rounded-lg p-3 text-green-900">
+                    <strong>Mini‑reto:</strong> agrega una tabla de supuestos (para transparencia).
+                </div>
+            </div>
+
+            <div class="metric-card hover-glow reveal">
+                <div class="flex items-center gap-3 mb-3">
+                    <i class="fa-solid fa-list-check text-blue-600 text-2xl"></i>
+                    <h3 class="font-extrabold text-sm text-slate-900">Checklist de validación</h3>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-2 list-disc pl-5">
+                    <li>Casos de prueba (mín. 5): entrada → salida.</li>
+                    <li>Evidencia por caso: captura o log.</li>
+                    <li>Criterios de aceptación (qué es “OK”).</li>
+                    <li>Registro de fallas y correcciones.</li>
+                </ul>
+                <div class="mt-3 text-xs bg-blue-50 border border-blue-200 rounded-lg p-3 text-blue-900">
+                    <strong>Regla:</strong> si un caso no tiene evidencia, no cuenta.
+                </div>
+            </div>
+
+            <div class="metric-card hover-glow reveal">
+                <div class="flex items-center gap-3 mb-3">
+                    <i class="fa-solid fa-video text-purple-600 text-2xl"></i>
+                    <h3 class="font-extrabold text-sm text-slate-900">Tutorial de visualización</h3>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-2 list-disc pl-5">
+                    <li>Una gráfica “antes vs después”.</li>
+                    <li>Una gráfica de tendencia (por semanas).</li>
+                    <li>Una tabla resumen con KPI + meta.</li>
+                    <li>Insight: 2–3 líneas de interpretación.</li>
+                </ul>
+                <div class="mt-3 text-xs bg-purple-50 border border-purple-200 rounded-lg p-3 text-purple-900">
+                    <strong>Tip GOD:</strong> menos gráficos, más lectura clara (títulos que expliquen).
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- SCRIPT PARA CHART.JS Y LÓGICA -->
+<script>
+    // Gráfico de Validación
+    const ctx = document.getElementById('validationChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Semana 1 (Base)', 'Semana 2', 'Semana 3 (Piloto)', 'Semana 4 (Ajuste)'],
+            datasets: [
+                {
+                    label: 'Intentos de Intrusión Exitosos',
+                    data: [45, 30, 5, 2],
+                    backgroundColor: 'rgba(239, 68, 68, 0.7)', // Rojo
+                    borderColor: 'rgba(239, 68, 68, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Intentos Bloqueados',
+                    data: [10, 25, 90, 98],
+                    backgroundColor: 'rgba(16, 185, 129, 0.7)', // Verde
+                    borderColor: 'rgba(16, 185, 129, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom' }
+            },
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Lógica del Toggle de Audiencia
+    function setAudience(type, btn) {
+        // Reset botones
+        document.querySelectorAll('.comm-btn').forEach(b => {
+            b.classList.remove('active');
+            b.style.background = 'transparent';
+            b.style.color = '#37474f';
+        });
+        
+        // Activar botón seleccionado
+        btn.classList.add('active');
+        btn.style.background = '#1565c0';
+        btn.style.color = 'white';
+
+        // Mostrar contenido
+        const techMsg = document.getElementById('tech-msg');
+        const execMsg = document.getElementById('exec-msg');
+
+        if (type === 'tech') {
+            techMsg.classList.remove('hidden');
+            execMsg.classList.add('hidden');
+        } else {
+            techMsg.classList.add('hidden');
+            execMsg.classList.remove('hidden');
+        }
+    }
+
+
+    // Scroll reveal (animación GOD)
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=> {
+        entries.forEach(e=>{
+            if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el=> io.observe(el));
+
+</script>
+
+</body>
+</html>

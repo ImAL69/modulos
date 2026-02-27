@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cuestionario Diagnóstico</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .quiz-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 25px;
+    }
+    .quiz-question { font-weight: 700; color: #1565c0; display: block; margin-bottom: 15px; font-size: 1.1rem; }
+    
+    .option { 
+        display: block; padding: 10px 15px; margin-bottom: 8px; background: #fff; 
+        border: 1px solid #e0e0e0; border-radius: 6px; cursor: pointer; transition: all 0.2s;
+    }
+    .option:hover { background: #e3f2fd; border-color: #2196f3; }
+
+    .btn-submit {
+        display: block; width: 200px; margin: 30px auto 0; padding: 15px;
+        background: #0d47a1; color: white; border: none; border-radius: 50px;
+        font-weight: bold; cursor: pointer; font-size: 1rem;
+    }
+    .btn-submit:hover { background: #1565c0; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+
+/* =========================
+   Mejora visual + animaciones (ligeras)
+   ========================= */
+:root{
+  --fet-blue:#0d47a1;
+  --fet-blue2:#1565c0;
+  --fet-sky:#e3f2fd;
+  --text:#37474f;
+}
+body{
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(21,101,192,.10), transparent 55%),
+              radial-gradient(900px 600px at 85% 25%, rgba(13,71,161,.08), transparent 60%),
+              linear-gradient(180deg, #f7f9fc 0%, #f0f2f5 60%, #eef3f8 100%);
+}
+.container-extended{
+  isolation:isolate;
+}
+.container-extended::before,
+.container-extended::after{
+  content:"";
+  position:absolute;
+  inset:auto;
+  z-index:-1;
+  filter: blur(0px);
+  opacity:.55;
+  pointer-events:none;
+}
+.container-extended::before{
+  width:520px;height:520px;
+  left:-260px; top:-260px;
+  background: radial-gradient(circle at 30% 30%, rgba(21,101,192,.25), transparent 65%);
+  animation: blobFloat 12s ease-in-out infinite;
+}
+.container-extended::after{
+  width:420px;height:420px;
+  right:-210px; bottom:-210px;
+  background: radial-gradient(circle at 70% 70%, rgba(13,71,161,.22), transparent 65%);
+  animation: blobFloat2 14s ease-in-out infinite;
+}
+@keyframes blobFloat{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(30px,18px) scale(1.05); }
+}
+@keyframes blobFloat2{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(-28px,-14px) scale(1.06); }
+}
+.reveal{
+  opacity:0;
+  transform: translateY(14px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.in-view{
+  opacity:1;
+  transform:none;
+}
+.feature-card, .reason-card, .ra-card, .profile-card, .skill-card, .quiz-card, details{
+  will-change: transform;
+}
+.feature-card:hover, .reason-card:hover, .ra-card:hover, .profile-card:hover, .skill-card:hover{
+  transform: translateY(-6px) scale(1.01);
+}
+kbd{
+  background:#0b2f6b;
+  color:#fff;
+  padding:2px 8px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:.9rem;
+}
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 12px; border-radius:999px;
+  background: rgba(21,101,192,.10);
+  border:1px solid rgba(21,101,192,.25);
+  color: var(--fet-blue2);
+  font-weight:700;
+  font-size:.92rem;
+  margin:6px 8px 0 0;
+}
+.callout{
+  background: #ffffff;
+  border: 1px solid #bbdefb;
+  border-left: 6px solid #1565c0;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  margin: 22px 0;
+}
+.callout h3{
+  margin:0 0 10px 0;
+  font-family:'Montserrat', sans-serif;
+  color: var(--fet-blue);
+}
+.grid-2{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:16px;
+}
+@media (max-width: 860px){
+  .grid-2{ grid-template-columns: 1fr; }
+}
+.small{
+  color:#546e7a;
+  font-size:.95rem;
+}
+hr.soft{
+  border:none;
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(13,71,161,.25), transparent);
+  margin: 28px 0;
+}
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+}
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Cuestionario Diagnóstico</h1>
+<p>Validación de conceptos base para iniciar el proyecto.</p>
+</div>
+<hr class="soft"/><form class="reveal">
+<div class="quiz-card reveal">
+<span class="quiz-question">1. ¿Qué diferencia a una Amenaza de un Riesgo?</span>
+<label class="option"><input name="q1" type="radio"/> Son lo mismo.</label>
+<label class="option"><input name="q1" type="radio"/> La Amenaza es el agente externo (potencial); el Riesgo es la probabilidad de que esa amenaza explote una vulnerabilidad causando impacto.</label>
+<label class="option"><input name="q1" type="radio"/> El riesgo es externo y la amenaza es interna.</label>
+</div>
+<div class="quiz-card reveal">
+<span class="quiz-question">2. ¿Qué es un "Activo de Información"?</span>
+<label class="option"><input name="q2" type="radio"/> Solo las computadoras y servidores.</label>
+<label class="option"><input name="q2" type="radio"/> Cualquier información o recurso que tenga valor para la organización (datos, hardware, software, personas).</label>
+<label class="option"><input name="q2" type="radio"/> El dinero en el banco.</label>
+</div>
+<div class="quiz-card reveal">
+<span class="quiz-question">3. ¿Qué marco es el estándar global para la gestión de seguridad de la información?</span>
+<label class="option"><input name="q3" type="radio"/> HTML5</label>
+<label class="option"><input name="q3" type="radio"/> ISO/IEC 27001</label>
+<label class="option"><input name="q3" type="radio"/> Python</label>
+</div>
+
+<div class="quiz-card">
+<span class="quiz-question">4. ¿Cuál es la relación correcta?</span>
+<label class="option"><input name="q4" type="radio"/> Amenaza = debilidad; Vulnerabilidad = actor; Riesgo = control.</label>
+<label class="option"><input data-correct="1" name="q4" type="radio"/> Amenaza = evento/actor potencial; Vulnerabilidad = debilidad; Riesgo = probabilidad × impacto.</label>
+<label class="option"><input name="q4" type="radio"/> Riesgo = parche; Amenaza = firewall; Vulnerabilidad = política.</label>
+</div>
+<div class="quiz-card">
+<span class="quiz-question">5. ¿Qué es evidencia técnica "verificable" en un proyecto?</span>
+<label class="option"><input name="q5" type="radio"/> Una opinión personal del analista.</label>
+<label class="option"><input data-correct="1" name="q5" type="radio"/> Capturas/logs/outputs con contexto, fecha/hora y trazabilidad (qué hice, dónde y con qué resultado).</label>
+<label class="option"><input name="q5" type="radio"/> Un audio diciendo que “sí funcionó”.</label>
+</div>
+<div class="quiz-card">
+<span class="quiz-question">6. En NIST CSF, ¿cuál de estas funciones corresponde a "Detect"?</span>
+<label class="option"><input name="q6" type="radio"/> Identificar activos.</label>
+<label class="option"><input data-correct="1" name="q6" type="radio"/> Monitorear eventos y descubrir incidentes a tiempo (alertas, logs, SIEM).</label>
+<label class="option"><input name="q6" type="radio"/> Comprar licencias.</label>
+</div>
+<div class="quiz-card">
+<span class="quiz-question">7. ¿Qué práctica es MÁS alineada con ética y legalidad?</span>
+<label class="option"><input name="q7" type="radio"/> Escanear redes ajenas “para aprender”.</label>
+<label class="option"><input data-correct="1" name="q7" type="radio"/> Trabajar con autorización escrita y alcance definido (qué sí / qué no).</label>
+<label class="option"><input name="q7" type="radio"/> Probar contraseñas de un compañero “porque es rápido”.</label>
+</div>
+<div class="quiz-card">
+<span class="quiz-question">8. Si un control reduce probabilidad pero no impacto, ¿qué cambia principalmente?</span>
+<label class="option"><input data-correct="1" name="q8" type="radio"/> Disminuye el riesgo al bajar la probabilidad de ocurrencia (aunque el impacto potencial siga alto).</label>
+<label class="option"><input name="q8" type="radio"/> El activo deja de existir.</label>
+<label class="option"><input name="q8" type="radio"/> El ataque se vuelve legal.</label>
+</div>
+<div class="quiz-card">
+<span class="quiz-question">9. ¿Qué significa “alcance” en un proyecto de ciberseguridad?</span>
+<label class="option"><input name="q9" type="radio"/> Todo lo que se me ocurra durante el módulo.</label>
+<label class="option"><input data-correct="1" name="q9" type="radio"/> Lo que incluye y excluye el proyecto: sistemas, procesos, sedes, periodos y restricciones.</label>
+<label class="option"><input name="q9" type="radio"/> La velocidad de Internet.</label>
+</div>
+<div class="quiz-card">
+<span class="quiz-question">10. ¿Cuál es una métrica válida para evaluar un piloto?</span>
+<label class="option"><input name="q10" type="radio"/> “Se ve bonito”.</label>
+<label class="option"><input data-correct="1" name="q10" type="radio"/> Tiempo de detección (MTTD), tasa de clic en phishing simulado, % de equipos parchados, etc.</label>
+<label class="option"><input name="q10" type="radio"/> Cantidad de memes en el chat.</label>
+</div>
+<button class="btn-submit" type="button">Enviar Respuestas</button>
+
+<div class="callout" id="diagResult" style="display:none; margin-top:26px;">
+<h3>Resultado del diagnóstico</h3>
+<p id="diagScore" style="margin:0 0 10px 0;"></p>
+<div class="small" id="diagFeedback"></div>
+</div>
+</form>
+</div>
+
+<script>
+(function(){
+  const btn = document.querySelector('.btn-submit');
+  const resultBox = document.getElementById('diagResult');
+  const scoreEl = document.getElementById('diagScore');
+  const fbEl = document.getElementById('diagFeedback');
+
+  if(!btn || !resultBox || !scoreEl || !fbEl) return;
+
+  function getTotalQuestions(){
+    const names = new Set();
+    document.querySelectorAll('input[type="radio"]').forEach(r=>names.add(r.name));
+    return names.size;
+  }
+
+  function compute(){
+    const total = getTotalQuestions();
+    let answered = 0;
+    let correct = 0;
+
+    const groups = {};
+    document.querySelectorAll('input[type="radio"]').forEach(r=>{
+      (groups[r.name] ||= []).push(r);
+    });
+
+    Object.values(groups).forEach(radios=>{
+      const chosen = radios.find(r=>r.checked);
+      if(chosen) answered++;
+      if(chosen && chosen.hasAttribute('data-correct')) correct++;
+    });
+
+    const pct = total ? Math.round((correct/total)*100) : 0;
+
+    let level = 'Base por reforzar';
+    let msg = `
+      <ul>
+        <li>Repasa: activos/amenazas/vulnerabilidades/riesgos y cómo se conectan.</li>
+        <li>Entra al módulo con una bitácora lista para capturar evidencias.</li>
+        <li>Antes de proponer controles, justifica el riesgo (probabilidad × impacto).</li>
+      </ul>`;
+    if(pct >= 70){
+      level = 'Base sólida';
+      msg = `
+      <ul>
+        <li>Vas bien: enfócate en delimitar alcance y definir métricas del piloto.</li>
+        <li>Para subir nivel: conecta cada control con un estándar (ISO/NIST/OWASP).</li>
+        <li>Recuerda: evidencia verificable y comunicación ejecutiva.</li>
+      </ul>`;
+    }else if(pct >= 40){
+      level = 'Base aceptable';
+      msg = `
+      <ul>
+        <li>Refuerza marcos (ISO 27001 / NIST CSF) y trazabilidad de evidencias.</li>
+        <li>Practica: construir una matriz de riesgos y priorizar 3 controles.</li>
+        <li>Define un piloto pequeño (PoC) que puedas demostrar en 1 semana.</li>
+      </ul>`;
+    }
+
+    scoreEl.innerHTML = `<strong>Puntaje:</strong> ${correct}/${total} (${pct}%). <strong>Nivel:</strong> ${level}. <span class="small">(Respondidas: ${answered}/${total})</span>`;
+    fbEl.innerHTML = `<p class="small" style="margin:0 0 10px 0;"><strong>Siguiente paso recomendado:</strong></p>${msg}`;
+
+    resultBox.style.display = 'block';
+    resultBox.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  btn.addEventListener('click', compute);
+})();
+</script>
+
+<script>
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window) || els.length===0){
+    els.forEach(el=>el.classList.add('in-view'));
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuestionario Diagnóstico</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .quiz-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 25px;
+    }
+    .quiz-question { font-weight: 700; color: #1565c0; display: block; margin-bottom: 15px; font-size: 1.1rem; }
+    
+    .option { 
+        display: block; padding: 10px 15px; margin-bottom: 8px; background: #fff; 
+        border: 1px solid #e0e0e0; border-radius: 6px; cursor: pointer; transition: all 0.2s;
+    }
+    .option:hover { background: #e3f2fd; border-color: #2196f3; }
+
+    .btn-submit {
+        display: block; width: 200px; margin: 30px auto 0; padding: 15px;
+        background: #0d47a1; color: white; border: none; border-radius: 50px;
+        font-weight: bold; cursor: pointer; font-size: 1rem;
+    }
+    .btn-submit:hover { background: #1565c0; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Cuestionario Diagnóstico</h1>
+        <p>Evaluación de conceptos base (No calificable).</p>
+    </div>
+
+    <form>
+        <div class="quiz-card">
+            <span class="quiz-question">1. ¿Cuál es la principal diferencia entre cifrado Simétrico y Asimétrico?</span>
+            <label class="option"><input type="radio" name="q1"> El simétrico usa una sola clave para cifrar y descifrar; el asimétrico usa un par (pública/privada).</label>
+            <label class="option"><input type="radio" name="q1"> El asimétrico es más rápido que el simétrico.</label>
+            <label class="option"><input type="radio" name="q1"> El simétrico solo sirve para texto y el asimétrico para imágenes.</label>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">2. ¿Qué propiedad garantiza una función Hash?</span>
+            <label class="option"><input type="radio" name="q2"> Confidencialidad (nadie puede leer el mensaje).</label>
+            <label class="option"><input type="radio" name="q2"> Integridad (si el archivo cambia un bit, el hash cambia totalmente).</label>
+            <label class="option"><input type="radio" name="q2"> Disponibilidad (el archivo siempre está accesible).</label>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">3. En Blockchain, ¿qué es un "Bloque"?</span>
+            <label class="option"><input type="radio" name="q3"> Un firewall que bloquea conexiones.</label>
+            <label class="option"><input type="radio" name="q3"> Un contenedor de transacciones enlazado criptográficamente al anterior.</label>
+            <label class="option"><input type="radio" name="q3"> Una criptomoneda.</label>
+        </div>
+
+        </form>
+
+
+
+        <div class="quiz-card">
+            <span class="quiz-question">4. ¿Para qué sirve una Firma Digital (en la práctica)?</span>
+            <label class="option"><input type="radio" name="q4"> Para ocultar el contenido del mensaje (confidencialidad).</label>
+            <label class="option"><input type="radio" name="q4"> Para garantizar integridad y autenticidad del autor.</label>
+            <label class="option"><input type="radio" name="q4"> Para aumentar la velocidad de transferencia.</label>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">5. ¿Cuál es una práctica segura al almacenar contraseñas?</span>
+            <label class="option"><input type="radio" name="q5"> Guardarlas con MD5 para que ocupen poco.</label>
+            <label class="option"><input type="radio" name="q5"> Guardarlas con un hash fuerte con salt (ej. bcrypt/Argon2).</label>
+            <label class="option"><input type="radio" name="q5"> Guardarlas en texto plano pero en un archivo oculto.</label>
+        </div>
+
+        <div class="quiz-card">
+            <span class="quiz-question">6. Blockchain es más útil cuando…</span>
+            <label class="option"><input type="radio" name="q6"> Una sola organización controla todo y confía en sí misma.</label>
+            <label class="option"><input type="radio" name="q6"> Varias partes no confían entre sí y necesitan un registro verificable.</label>
+            <label class="option"><input type="radio" name="q6"> Solo quieres guardar datos rápido y barato.</label>
+        </div>
+
+        <div class="quiz-card" style="background:#fff3e0; border:1px solid #ffcc80;">
+            <span class="quiz-question" style="color:#e65100;">📌 Interpretación (autolectura)</span>
+            <p style="margin:0;">
+                Este diagnóstico no se califica. Si te equivocaste en 2 o más preguntas, revisa primero: <strong>hash vs cifrado</strong>, <strong>claves</strong> y <strong>firmas</strong> antes de entrar a blockchain.
+            </p>
+        </div>
+
+</div>
+
+</body>
+</html>

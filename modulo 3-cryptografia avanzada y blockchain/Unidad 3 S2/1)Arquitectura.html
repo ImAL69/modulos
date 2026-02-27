@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 3.3: Evaluación de Arquitectura</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .trilemma-box {
+        background: #fff3e0; border: 1px solid #ffe0b2; padding: 25px; border-radius: 12px; margin-bottom: 30px;
+        text-align: center;
+    }
+    .trilemma-title { font-weight: 800; color: #e65100; font-size: 1.3rem; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    .type-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+    }
+    .type-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 20px; border-radius: 10px; text-align: left;
+        border-left: 5px solid #1565c0;
+    }
+    .card-head { font-weight: 700; color: #0d47a1; font-size: 1.1rem; display: block; margin-bottom: 5px; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 3.3: Evaluación de Arquitectura</h1>
+        <p>Eligiendo el modelo correcto para el negocio.</p>
+    </div>
+
+    <div class="trilemma-box">
+        <span class="trilemma-title"><i class="fa-solid fa-triangle-exclamation"></i> El Trilema de Blockchain</span>
+        <p>Solo puedes elegir dos: <strong>Descentralización, Seguridad o Escalabilidad</strong>.
+        <br>Bitcoin elige Descentralización y Seguridad (es lento).
+        <br>Solana prioriza Escalabilidad (es menos descentralizado).</p>
+    </div>
+
+    <h3 style="color:#0d47a1;">Tipologías de Red</h3>
+    <div class="type-grid">
+        <div class="type-card">
+            <span class="card-head">Pública (Public)</span>
+            <p><strong>Acceso:</strong> Cualquiera lee y escribe.
+            <br><strong>Uso:</strong> Criptomonedas, Identidad Soberana.
+            <br><strong>Pros:</strong> Censura imposible. <strong>Contras:</strong> Lenta, costosa.</p>
+        </div>
+
+        <div class="type-card" style="border-left-color: #2e7d32;">
+            <span class="card-head" style="color: #1b5e20;">Privada (Private)</span>
+            <p><strong>Acceso:</strong> Solo una organización controla los nodos.
+            <br><strong>Uso:</strong> Auditoría interna, Supply Chain cerrada.
+            <br><strong>Pros:</strong> Rápida, privada. <strong>Contras:</strong> Centralizada (es casi una BD).</p>
+        </div>
+
+        <div class="type-card" style="border-left-color: #fbc02d;">
+            <span class="card-head" style="color: #f57f17;">Híbrida / Consorcio</span>
+            <p><strong>Acceso:</strong> Un grupo de empresas valida (Bancos, Aseguradoras).
+            <br><strong>Uso:</strong> Pagos interbancarios.
+            <br><strong>Pros:</strong> Balance ideal para empresas.</p>
+        </div>
+    </div>
+
+
+
+<h3 style="color:#0d47a1;margin-top:35px;">🧠 Cómo leer una arquitectura blockchain (como profesional)</h3>
+<p>No analices una arquitectura por el nombre de la red. Analízala por <strong>roles, flujos y puntos de fallo</strong>.</p>
+<ul>
+<li><strong>Nodos validadores:</strong> ¿quién los opera?, ¿cuántos son?, ¿qué pasa si fallan?</li>
+<li><strong>Clientes/usuarios:</strong> ¿cómo firman?, ¿dónde guardan claves?</li>
+<li><strong>Capa de datos:</strong> ¿qué va on-chain y qué va off-chain?</li>
+<li><strong>Gobernanza:</strong> ¿quién puede actualizar reglas o contratos?</li>
+</ul>
+
+<div class="trilemma-box">
+<span class="trilemma-title">Regla de evaluación rápida</span>
+<p>Si una sola organización puede apagar o reescribir el sistema, <strong>no es descentralización</strong>, aunque use blockchain.</p>
+</div>
+
+<h3 style="color:#0d47a1;">Arquitectura típica híbrida (la más usada)</h3>
+<ul>
+<li>Blockchain pública → hashes, timestamps, verificación.</li>
+<li>Backend tradicional → lógica de negocio, usuarios, permisos.</li>
+<li>Base de datos → datos completos y privados.</li>
+</ul>
+
+</div>
+
+</body>
+</html>

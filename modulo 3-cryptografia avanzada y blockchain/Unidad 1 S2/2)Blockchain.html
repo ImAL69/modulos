@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 1.4: Teoría Blockchain</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .diagram-box {
+        background: #fff3e0; border: 1px solid #ffe0b2; padding: 20px; border-radius: 12px; margin-bottom: 30px;
+        text-align: center; color: #e65100; font-family: 'Courier New', monospace;
+    }
+
+    .concept-box {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 20px;
+    }
+    .concept-title { color: #1565c0; font-weight: 700; font-size: 1.2rem; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 1.4: Fundamentos de Blockchain</h1>
+        <p>Estructura, Distribución y Consenso.</p>
+    </div>
+
+    <div class="diagram-box">
+        [ Bloque N-1 ] <--- Hash --- [ Bloque N ] <--- Hash --- [ Bloque N+1 ]
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-link"></i> La Cadena de Bloques</span>
+        <p>Es una base de datos distribuida donde los registros (bloques) están enlazados criptográficamente. Cada bloque contiene el hash del bloque anterior, creando una cadena inmutable. Modificar un bloque antiguo invalidaría todos los bloques posteriores.</p>
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-users"></i> Red Distribuida (P2P)</span>
+        <p>No existe una autoridad central. Todos los nodos de la red mantienen una copia exacta del libro mayor (Ledger). Esto elimina el punto único de fallo y garantiza la transparencia.</p>
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-handshake"></i> Mecanismo de Consenso</span>
+        <p>Es el protocolo mediante el cual los nodos acuerdan cuál es la versión válida de la cadena. Ejemplos:</p>
+        <ul>
+            <li><strong>Proof of Work (PoW):</strong> Competencia computacional (minería).</li>
+            <li><strong>Proof of Stake (PoS):</strong> Validación basada en la posesión de activos.</li>
+        </ul>
+    </div>
+
+
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-book-open"></i> Componentes de un bloque (lo mínimo que debes recordar)</span>
+        <ul>
+            <li><strong>Hash del bloque anterior:</strong> enlaza la cadena.</li>
+            <li><strong>Merkle Root (hash de transacciones):</strong> resume todas las transacciones del bloque.</li>
+            <li><strong>Timestamp:</strong> referencia temporal.</li>
+            <li><strong>Nonce / campos de consenso:</strong> depende del mecanismo (PoW/PoS/otros).</li>
+        </ul>
+        <p style="margin-bottom:0;"><strong>Idea:</strong> la inmutabilidad práctica sale de (1) hash chaining + (2) consenso + (3) distribución.</p>
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-scale-balanced"></i> ¿Cuándo blockchain SÍ y cuándo NO?</span>
+        <table style="width:100%;border-collapse:collapse;">
+            <thead>
+                <tr>
+                    <th style="background:#1565c0;color:#fff;padding:12px;text-align:left;">Pregunta</th>
+                    <th style="background:#1565c0;color:#fff;padding:12px;text-align:left;">Si respondes “Sí”</th>
+                    <th style="background:#1565c0;color:#fff;padding:12px;text-align:left;">Si respondes “No”</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border:1px solid #bbdefb;padding:12px;">¿Hay <strong>múltiples partes</strong> que no confían entre sí?</td>
+                    <td style="border:1px solid #bbdefb;padding:12px;">Blockchain puede tener sentido.</td>
+                    <td style="border:1px solid #bbdefb;padding:12px;">BD central + firmas suele ser suficiente.</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #bbdefb;padding:12px;">¿Necesitas un registro <strong>auditable</strong> y compartido?</td>
+                    <td style="border:1px solid #bbdefb;padding:12px;">Blockchain/ledger distribuido ayuda.</td>
+                    <td style="border:1px solid #bbdefb;padding:12px;">Logs firmados y control de acceso pueden bastar.</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #bbdefb;padding:12px;">¿Tu sistema requiere <strong>alto rendimiento</strong> y baja latencia?</td>
+                    <td style="border:1px solid #bbdefb;padding:12px;">Cuidado: blockchain suele ser lenta.</td>
+                    <td style="border:1px solid #bbdefb;padding:12px;">Mejor BD tradicional.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-shield"></i> Amenazas típicas (para entender riesgos reales)</span>
+        <ul>
+            <li><strong>51% / control de consenso:</strong> si un actor domina el poder de validación puede reordenar/invalidar.</li>
+            <li><strong>Smart contract bugs:</strong> el código es ley… incluso si el código está mal.</li>
+            <li><strong>Puentes (bridges) y oráculos:</strong> suelen ser los puntos más atacados (fuera de la cadena).</li>
+        </ul>
+        <p style="margin-bottom:0;"><strong>Clave:</strong> blockchain reduce algunos riesgos, pero introduce otros (costos, complejidad, superficie de ataque).</p>
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Mini‑reto (10 min)</span>
+        <p>Describe un proceso real (universidad/empresa) donde haya <strong>más de 2 actores</strong> (ej. proveedor–transportista–cliente). Responde:</p>
+        <ol>
+            <li>¿Qué se registraría como transacción?</li>
+            <li>¿Qué dato NO pondrías on‑chain (por privacidad)?</li>
+            <li>¿Qué usarías para privacidad? (hash, cifrado, off‑chain)</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidad 1: Introducción</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    .subtitle { font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #546e7a; border-left: 4px solid #1976d2; padding-left: 15px; }
+
+    .intro-block { margin-bottom: 40px; text-align: justify; }
+
+    .phase-steps {
+        display: flex; gap: 20px; margin-top: 30px;
+    }
+    .step-card {
+        flex: 1; background: #f5faff; border: 1px solid #bbdefb; padding: 20px; border-radius: 12px; text-align: center;
+        transition: transform 0.2s;
+    }
+    .step-card:hover { transform: translateY(-5px); border-color: #0d47a1; }
+    .step-icon { font-size: 2.5rem; color: #1565c0; margin-bottom: 15px; }
+    .step-title { font-weight: 700; color: #0d47a1; font-family: 'Montserrat', sans-serif; display: block; margin-bottom: 10px; }
+
+    .goal-box {
+        background: #e3f2fd; padding: 25px; border-radius: 12px; border-left: 6px solid #0d47a1; margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .phase-steps { flex-direction: column; }
+    }
+
+    /* === UX + Animaciones (ligeras, accesibles) === */
+    :root{ --fet-blue:#0d47a1; --fet-blue2:#1565c0; --fet-bg:#f0f2f5; --fet-ink:#37474f; --fet-soft:#f5faff; --fet-border:#bbdefb; }
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(21,101,192,.08);border:1px solid rgba(21,101,192,.18);color:var(--fet-blue2);font-weight:700;font-size:.9rem;margin:6px 8px 0 0;}
+    .callout{background:linear-gradient(135deg, rgba(13,71,161,.08), rgba(21,101,192,.04));border:1px solid rgba(13,71,161,.18);border-left:6px solid var(--fet-blue);padding:22px;border-radius:14px;margin:26px 0;}
+    .callout h3{margin:0 0 10px 0;color:var(--fet-blue);font-family:'Montserrat',sans-serif;}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px;}
+    .mini-card{background:#fff;border:1px solid #e0e0e0;border-radius:14px;padding:18px;box-shadow:0 8px 22px rgba(0,0,0,.05);transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;}
+    .mini-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.08);border-color:rgba(21,101,192,.45);}
+    .mini-card h4{margin:0 0 8px 0;color:var(--fet-blue);font-family:'Montserrat',sans-serif;}
+    .check{list-style:none;padding:0;margin:10px 0 0 0;}
+    .check li{display:flex;gap:10px;align-items:flex-start;margin:10px 0;}
+    .check li::before{content:'✅';margin-top:1px;}
+    .warn li::before{content:'⚠️';}
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono','Courier New',monospace;background:#263238;color:#fff;padding:2px 8px;border-radius:8px;font-size:.9rem;}
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease, transform .55s ease;}
+    .reveal.in{opacity:1;transform:none;}
+    .shine{position:absolute;inset:-2px;pointer-events:none;background:radial-gradient(600px 200px at 20% 0%, rgba(21,101,192,.12), transparent 60%);mix-blend-mode:multiply;}
+    @media (max-width:768px){ .grid-2{grid-template-columns:1fr;} }
+    @media (prefers-reduced-motion: reduce){ .reveal{transition:none;opacity:1;transform:none;} .mini-card,.uni-logo{transition:none;} }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Unidad 1: Análisis de Problemáticas</h1>
+        <span class="subtitle">Semanas 1 - 3: El Diagnóstico</span>
+    </div>
+
+    <div class="intro-block">
+        <p>Todo gran proyecto comienza con una buena pregunta. En esta unidad, no vamos a configurar firewalls ni a escribir código todavía. Vamos a observar, escuchar y diagnosticar.</p>
+        <p>El objetivo es identificar una <strong>necesidad real</strong> de ciberseguridad en un contexto específico (tu empresa, tu comunidad, una entidad pública) y formular un proyecto que la resuelva de manera efectiva y sustentada.</p>
+    </div>
+
+    <div class="phase-steps">
+        <div class="step-card">
+            <i class="fa-solid fa-stethoscope step-icon"></i>
+            <span class="step-title">Diagnosticar</span>
+            <p>Identificar activos, amenazas y brechas.</p>
+        </div>
+        <div class="step-card">
+            <i class="fa-solid fa-book-open step-icon"></i>
+            <span class="step-title">Fundamentar</span>
+            <p>Buscar referentes teóricos y normativos.</p>
+        </div>
+        <div class="step-card">
+            <i class="fa-solid fa-pen-to-square step-icon"></i>
+            <span class="step-title">Formular</span>
+            <p>Redactar el problema y los objetivos.</p>
+        </div>
+    </div>
+
+    <div class="goal-box">
+        <strong>🎯 Meta de la Unidad:</strong> Al finalizar la semana 3, tendrás un "Anteproyecto" sólido que justifica POR QUÉ es necesario intervenir y QUÉ vas a lograr.
+    </div>
+
+
+    <div class="callout reveal">
+      <div class="shine"></div>
+      <h3>🎯 ¿Qué vas a lograr en esta unidad?</h3>
+      <div class="grid-2">
+        <div class="mini-card">
+          <h4>Resultado (RA1) en lenguaje humano</h4>
+          <p>Vas a <strong>entender un contexto real</strong>, identificar riesgos y convertir “una queja” en un <strong>problema formulado</strong> con soporte normativo y teórico.</p>
+          <div class="chip">Semanas 1–3</div><div class="chip">Diagnóstico</div><div class="chip">Formulación</div>
+        </div>
+        <div class="mini-card">
+          <h4>Entregable puente</h4>
+          <p>Dejas lista una <strong>nota conceptual</strong> que luego alimenta el anteproyecto: problema + justificación + alcance preliminar + preguntas guía + fuentes clave.</p>
+          <ul class="check">
+            <li>Contexto y actores</li>
+            <li>Activos y riesgos</li>
+            <li>Marco (NIST/ISO/OWASP) aplicable</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mini-card reveal">
+      <h4>🧭 Ruta rápida de trabajo (para no perderse)</h4>
+      <ol style="margin:10px 0 0 18px;">
+        <li><strong>Observa el entorno:</strong> ¿qué sistema/proceso se afecta y a quién?</li>
+        <li><strong>Define el activo:</strong> datos, infraestructura, personas, reputación.</li>
+        <li><strong>Busca evidencia:</strong> logs, capturas, reportes, políticas, testimonios.</li>
+        <li><strong>Relaciona con un marco:</strong> NIST CSF / ISO 27001 / OWASP.</li>
+        <li><strong>Formula el problema:</strong> síntoma + causa probable + impacto.</li>
+      </ol>
+      <p style="margin-top:12px;color:#546e7a;"><strong>Tip:</strong> Si no puedes explicar el problema en 2–3 frases, aún está muy grande. Recórtalo hasta que sea ejecutable.</p>
+    </div>
+
+
+</div>
+
+
+<script>
+(() => {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(e=>e.classList.add('in')); return; }
+  const io = new IntersectionObserver((entries)=> {
+    entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+  }, {threshold: 0.12});
+  els.forEach(e=>io.observe(e));
+})();
+</script>
+
+</body>
+</html>

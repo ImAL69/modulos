@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist de Entrega Final</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+:root {
+  --blue:#0d47a1;
+  --blue2:#1565c0;
+  --bg:#f0f2f5;
+  --text:#37474f;
+  --muted:#607d8b;
+  --card:#ffffff;
+  --line:#e0e0e0;
+  --soft:#f5faff;
+  --warn-bg:#fff3e0;
+  --warn:#e65100;
+  --ok:#2e7d32;
+  --shadow: 0 10px 40px rgba(0,0,0,0.08);
+  --r:20px;
+}
+
+body {
+    background-color: var(--bg);
+    margin: 0;
+    padding: 40px 20px;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text);
+    line-height: 1.8;
+    overflow-x:hidden;
+}
+
+.container-extended {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 54px;
+    background: var(--card);
+    border-radius: var(--r);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    border-top: 8px solid var(--blue);
+}
+
+.orb {
+    position:absolute; border-radius:999px;
+    opacity:.16; pointer-events:none;
+    animation: floaty 10s ease-in-out infinite;
+    transform: translate3d(0,0,0);
+}
+.orb.one { width:260px; height:260px; background: radial-gradient(circle at 30% 30%, #42a5f5, transparent 70%); top:-120px; left:-120px; }
+.orb.two { width:320px; height:320px; background: radial-gradient(circle at 30% 30%, #7e57c2, transparent 70%); bottom:-160px; right:-160px; animation-duration: 12s; }
+.orb.three { width:180px; height:180px; background: radial-gradient(circle at 30% 30%, #26c6da, transparent 70%); top:40%; right:-90px; animation-duration: 14s; }
+@keyframes floaty {
+  0%,100% { transform: translateY(0px) translateX(0px) scale(1); }
+  50% { transform: translateY(-10px) translateX(8px) scale(1.02); }
+}
+
+.uni-logo {
+    position: absolute; top: 26px; right: 34px;
+    width: 150px; height: auto; z-index: 100;
+    background: rgba(255,255,255,0.95); padding: 6px; border-radius: 10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 10px 26px rgba(0,0,0,0.14); }
+
+.header-box {
+    text-align: left;
+    margin-bottom: 36px;
+    padding-top: 18px;
+    padding-right: 190px;
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 16px;
+}
+.main-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--blue);
+    margin: 0 0 10px 0;
+    letter-spacing: .2px;
+}
+.sub { margin: 0; color: var(--muted); font-size: 1.02rem; }
+
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .orb { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .uni-logo { transition:none; }
+}
+
+.card {
+  background:#fff; border:1px solid #e6e6e6;
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0,0,0,0.09); }
+
+.pill {
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eef6ff;
+  border: 1px solid #cfe5ff;
+  color: var(--blue2);
+  font-weight: 700;
+  font-size: .92rem;
+  margin-top: 10px;
+}
+.pill i { opacity: .9; }
+
+.grid-2 { display:grid; grid-template-columns: 1.1fr .9fr; gap: 18px; }
+@media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.callout {
+  background: var(--warn-bg);
+  border: 1px solid #ffe0b2;
+  border-left: 6px solid var(--warn);
+  padding: 16px 18px;
+  border-radius: 14px;
+  color: #7a3c00;
+}
+.callout strong { color: var(--warn); }
+
+.list-clean { margin: 10px 0 0 18px; }
+.list-clean li { margin: 6px 0; }
+
+@media (max-width: 768px) {
+    .uni-logo { position: static; display: block; margin: 0 auto 18px auto; }
+    .header-box { padding-right: 0; text-align: center; }
+    .container-extended { padding: 44px 22px; }
+    body { padding: 28px 14px; }
+}
+
+
+.checklist-wrapper{ background: var(--soft); padding: 26px; border-radius: 16px; border: 1px solid #bbdefb; }
+.check-item{ display:flex; align-items:flex-start; gap: 14px; margin-bottom: 14px; background:#fff; padding: 16px; border-radius: 12px; border: 1px solid #e0e0e0; }
+.check-input{ margin-top: 5px; width: 20px; height: 20px; accent-color: var(--blue2); cursor: pointer; flex: 0 0 auto; }
+.check-text{ font-size: 1.03rem; cursor: pointer; flex: 1; }
+.meter{ margin-top: 18px; background:#e3f2fd; border:1px solid #bbdefb; border-radius: 12px; overflow:hidden; height: 14px; }
+.meter > div{ height:100%; width: 0%; background: linear-gradient(90deg, #1565c0, #26c6da); transition: width .35s ease; }
+.status-row{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; margin-top: 12px; }
+.status-text{ color: var(--muted); font-weight: 600; }
+.mini{ font-size:.92rem; color: var(--muted); }
+.tag-ok{ background:#e8f5e9; border:1px solid #c8e6c9; color:#1b5e20; }
+.tag-warn{ background:#fff8e1; border:1px solid #ffe082; color:#7a5b00; }
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+  <div class="orb one"></div><div class="orb two"></div><div class="orb three"></div>
+
+  <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+  <div class="header-box">
+    <h1 class="main-title">Checklist de Cierre</h1>
+    <p class="sub">Verificación final de coherencia antes de entregar. Marca cada punto y deja tu trabajo “a prueba de profe”.</p>
+    <div class="pill reveal"><i class="fa-solid fa-clipboard-check"></i> Última revisión · estándar 5.0</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card reveal">
+      <h3 style="margin:0 0 8px 0; color:var(--blue); font-family:Montserrat; font-weight:800;">Checklist obligatorio</h3>
+      <p class="mini" style="margin:0 0 14px 0;">Consejo: si una casilla dice “evidencia”, añade captura/log/tabla. Si dice “coherencia”, revisa que lo que prometes se vea en resultados.</p>
+
+      <div class="checklist-wrapper" id="wrap">
+        <div class="check-item">
+          <input type="checkbox" class="check-input" id="c1">
+          <label for="c1" class="check-text"><strong>Hilo conductor:</strong> Coherencia entre problema → metodología → resultados → conclusiones (sin saltos).</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" class="check-input" id="c2">
+          <label for="c2" class="check-text"><strong>Evidencia técnica:</strong> Capturas/logs legibles que demuestran implementación y pruebas (no “capturas borrosas”).</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" class="check-input" id="c3">
+          <label for="c3" class="check-text"><strong>Resultados y lectura:</strong> Resultados interpretados (qué significan) y no solo mostrados.</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" class="check-input" id="c4">
+          <label for="c4" class="check-text"><strong>Recomendaciones:</strong> Pasos concretos para mejora o escalamiento (qué harías después y por qué).</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" class="check-input" id="c5">
+          <label for="c5" class="check-text"><strong>Formato y referencias:</strong> Documento 3–5 páginas + anexos; mínimo 2 fuentes técnicas en APA.</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" class="check-input" id="c6">
+          <label for="c6" class="check-text"><strong>Integridad académica:</strong> Texto original (sin “copy-paste”), citaciones claras, anexos propios.</label>
+        </div>
+
+        <div class="meter" aria-label="Progreso del checklist"><div id="bar"></div></div>
+        <div class="status-row">
+          <div class="status-text" id="status">Progreso: 0% · 0/6 completados</div>
+          <div class="pill tag-warn" id="tag"><i class="fa-solid fa-hourglass-half"></i> En proceso</div>
+        </div>
+        <p class="mini" id="hint" style="margin:10px 0 0 0;">
+          Tip GOD: si vas a afirmar algo (“mejoró el rendimiento”), acompáñalo con una métrica o evidencia que lo soporte.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="card" style="margin-bottom:16px;">
+        <h3 style="margin:0 0 8px 0; color:var(--blue); font-family:Montserrat; font-weight:800;">Mini-guía para cerrar</h3>
+        <ul class="list-clean">
+          <li><strong>1) Titula bien:</strong> que el título refleje el problema y la solución.</li>
+          <li><strong>2) Una tabla clave:</strong> “antes vs después” o “pruebas realizadas”.</li>
+          <li><strong>3) Una figura clave:</strong> arquitectura, flujo o diagrama simple.</li>
+          <li><strong>4) Un riesgo + mitigación:</strong> técnico/ético/legal.</li>
+          <li><strong>5) Revisa ortografía:</strong> baja nota sin piedad si está descuidado.</li>
+        </ul>
+      </div>
+
+      <div class="callout card">
+        <strong><i class="fa-solid fa-triangle-exclamation"></i> Error típico:</strong>
+        “Tengo firewall entonces ya soy seguro”. Mejor: “Configuré y probé reglas X/Y, validé con prueba Z y documenté limitaciones”.
+      </div>
+
+      <div class="card reveal" style="margin-top:16px;">
+        <h3 style="margin:0 0 8px 0; color:var(--blue); font-family:Montserrat; font-weight:800;">Plantilla express (3–5 páginas)</h3>
+        <ol class="list-clean">
+          <li><strong>Problema</strong> (contexto + alcance).</li>
+          <li><strong>Metodología</strong> (pasos + por qué).</li>
+          <li><strong>Implementación</strong> (qué hiciste).</li>
+          <li><strong>Pruebas y resultados</strong> (evidencia).</li>
+          <li><strong>Conclusiones + mejoras</strong> (acciones).</li>
+          <li><strong>Referencias</strong> (APA) + <strong>Anexos</strong>.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const ids = ['c1','c2','c3','c4','c5','c6'];
+  const bar = document.getElementById('bar');
+  const status = document.getElementById('status');
+  const tag = document.getElementById('tag');
+  const hint = document.getElementById('hint');
+  const key = 'm5_checklist_cierre';
+
+  try {
+    const saved = JSON.parse(localStorage.getItem(key) || '{}');
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && saved[id]) el.checked = true;
+    });
+  } catch(e){}
+
+  function update() {
+    const checked = ids.filter(id => document.getElementById(id).checked).length;
+    const pct = Math.round((checked / ids.length) * 100);
+    bar.style.width = pct + '%';
+    status.textContent = `Progreso: ${pct}% · ${checked}/${ids.length} completados`;
+
+    const all = checked === ids.length;
+    tag.classList.toggle('tag-ok', all);
+    tag.classList.toggle('tag-warn', !all);
+    tag.innerHTML = all
+      ? '<i class="fa-solid fa-circle-check"></i> Listo para entregar'
+      : '<i class="fa-solid fa-hourglass-half"></i> En proceso';
+
+    hint.textContent = all
+      ? 'Checklist completado: ahora revisa que tu ZIP tenga el nombre correcto y que el PDF se abra bien.'
+      : 'Tip GOD: convierte “opinión” en “evidencia” (métrica, captura, log, tabla).';
+
+    const state = {};
+    ids.forEach(id => state[id] = document.getElementById(id).checked);
+    try { localStorage.setItem(key, JSON.stringify(state)); } catch(e){}
+  }
+
+  ids.forEach(id => document.getElementById(id).addEventListener('change', update));
+  update();
+})();
+</script>
+
+<script>
+(() => {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

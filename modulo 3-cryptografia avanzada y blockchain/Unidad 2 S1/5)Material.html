@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico: Bloque 1</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    /* ACORDEONES DIDÁCTICOS */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #0d47a1; font-family: 'Montserrat', sans-serif;
+        display: flex; align-items: center; gap: 15px; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; }
+
+    .code-ex {
+        background: #263238; color: #fff; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.9rem; margin-top: 10px;
+    }
+
+    .warning-table {
+        width: 100%; border-collapse: collapse; margin-top: 15px;
+    }
+    .warning-table th { background: #b71c1c; color: white; padding: 10px; }
+    .warning-table td { border: 1px solid #ffcdd2; padding: 10px; background: #ffebee; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* ==========================================================
+       BLOQUE VIDEO (SIN IFRAME) + MARCA DE AGUA (MISMA MINIATURA)
+       ========================================================== */
+
+    :root{
+        --thumb-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='720' viewBox='0 0 1280 720'%3E%3Cdefs%3E%3CradialGradient id='g' cx='28%25' cy='18%25' r='85%25'%3E%3Cstop offset='0%25' stop-color='%230d47a1' stop-opacity='0.95'/%3E%3Cstop offset='55%25' stop-color='%230b1020' stop-opacity='0.98'/%3E%3Cstop offset='100%25' stop-color='%23060a14'/%3E%3C/radialGradient%3E%3ClinearGradient id='l' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%234fc3f7' stop-opacity='0.22'/%3E%3Cstop offset='100%25' stop-color='%2329b6f6' stop-opacity='0.05'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1280' height='720' fill='url(%23g)'/%3E%3Cpath d='M0 520 C 240 460, 360 620, 640 560 C 920 500, 1040 610, 1280 560 L1280 720 L0 720 Z' fill='url(%23l)'/%3E%3Crect x='72' y='86' width='1136' height='548' rx='28' fill='%23ffffff' fill-opacity='0.06' stroke='%23bbdefb' stroke-opacity='0.35'/%3E%3Ctext x='120' y='340' font-family='Montserrat, Arial, sans-serif' font-size='54' font-weight='800' fill='%23e3f2fd'%3EPar%C3%A1metros seguros%3C/text%3E%3Ctext x='120' y='400' font-family='Roboto, Arial, sans-serif' font-size='28' font-weight='400' fill='%23bbdefb'%3ENonces%2C modos%2C claves y anti-patrones%3C/text%3E%3Cpath d='M610 510 L610 610 L700 560 Z' fill='%23ffffff' fill-opacity='0.92'/%3E%3Ccircle cx='655' cy='560' r='86' fill='%23ffffff' fill-opacity='0.08' stroke='%23ffffff' stroke-opacity='0.18'/%3E%3C/svg%3E");
+    }
+
+    /* Marca de agua (sin "sombra" sobre el contenido) */
+    .container-extended{ z-index: 0; }
+    .container-extended::after{
+        content:"";
+        position:absolute;
+        right: 18px;
+        bottom: 18px;
+        width: 360px;
+        height: 202px;
+        background-image: var(--thumb-svg);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.06;
+        pointer-events: none;
+        z-index: -1;
+        transform: rotate(-1deg);
+        filter: blur(0.1px);
+    }
+    @media (max-width: 900px){
+        .container-extended::after{ display:none; }
+    }
+
+    .video-card{
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 18px;
+        padding: 18px;
+        margin: 18px 0 26px 0;
+        border-radius: 14px;
+        border: 1px solid #bbdefb;
+        background: linear-gradient(180deg, #f5faff 0%, #ffffff 100%);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+    }
+
+    .video-thumb{
+        border-radius: 12px;
+        min-height: 180px;
+        background-image: var(--thumb-svg);
+        background-size: cover;
+        background-position: center;
+        border: 1px solid rgba(187,222,251,0.9);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .video-thumb::before{
+        content:"";
+        position:absolute;
+        inset: 0;
+        background: radial-gradient(circle at 30% 30%, rgba(79,195,247,0.16), rgba(11,16,32,0.0) 60%);
+    }
+
+    .video-meta h3{
+        margin: 0 0 6px 0;
+        font-family: 'Montserrat', sans-serif;
+        color: #0d47a1;
+        font-weight: 800;
+        font-size: 1.15rem;
+        line-height: 1.25;
+    }
+
+    .video-meta p{
+        margin: 0 0 10px 0;
+        color:#37474f;
+    }
+
+    .mini-tasks{
+        margin: 10px 0 14px 18px;
+        padding: 0;
+    }
+    .mini-tasks li{ margin: 6px 0; }
+
+    .video-actions{
+        display:flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    .btn-youtube{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background:#0d47a1;
+        color:#fff;
+        text-decoration:none;
+        font-weight:700;
+        border: 1px solid rgba(13,71,161,0.35);
+        box-shadow: 0 10px 18px rgba(13,71,161,0.18);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-youtube:hover{
+        transform: translateY(-1px);
+        box-shadow: 0 14px 24px rgba(13,71,161,0.22);
+    }
+
+    .video-hint{
+        font-size: 0.92rem;
+        color:#607d8b;
+        margin-top: 6px;
+    }
+
+    @media (max-width: 768px) {
+        .video-card{ grid-template-columns: 1fr; }
+        .video-thumb{ min-height: 190px; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Bloque 1</h1>
+        <p>Parámetros Seguros y Errores Frecuentes.</p>
+    </div>
+
+    
+    <!-- =========================
+         VIDEO (SIN IFRAME)
+         Ubicación: debajo del header-box, antes del primer <details>
+         ========================= -->
+    <section class="video-card" aria-label="Video de refuerzo">
+        <div class="video-thumb" role="img" aria-label="Miniatura del video"></div>
+
+        <div class="video-meta">
+            <h3>Video de refuerzo: mejores prácticas para cifrado (modos, nonces/IV, claves) y errores típicos de implementación</h3>
+            <p>
+                Este video refuerza exactamente lo que trabajas aquí: <strong>parámetros seguros</strong> (AES/RSA/ECC/SHA),
+                por qué <strong>ECB</strong> es un anti‑patrón, cómo pensar en <strong>IV/nonce</strong>, y qué hacer para evitar
+                errores como <strong>claves hardcode</strong> o mala gestión de secretos.
+            </p>
+
+            <ul class="mini-tasks">
+                <li><strong>Qué observar:</strong> anota 3 reglas “de oro” sobre IV/nonce y modos de operación (en tus palabras).</li>
+                <li><strong>Qué aplicar:</strong> revisa tu tabla de anti‑patrones y marca cuáles corrige AEAD (GCM/ChaCha20‑Poly1305).</li>
+                <li><strong>Qué documentar:</strong> escribe un checklist de 6 puntos para tu código (KMS/rotación, no hardcode, RNG, etc.).</li>
+                <li><strong>Qué decidir:</strong> elige 1 modo recomendado para “mensajes” y 1 para “archivos” y justifica en 2 líneas.</li>
+            </ul>
+
+            <div class="video-actions">
+                <a class="btn-youtube" href="https://www.youtube.com/watch?v=nWZEu-oB0FQ" target="_blank" rel="noopener">
+                    ▶ Ver en YouTube (nueva pestaña)
+                </a>
+            </div>
+            <div class="video-hint">
+                Tip: si encuentras 1 solo anti‑patrón en tu código, documenta el riesgo + la corrección + cómo lo verificarías (retest).
+            </div>
+        </div>
+    </section>
+
+<details open>
+        <summary><i class="fa-solid fa-sliders"></i> Parámetros Recomendados (2024)</summary>
+        <div class="details-content">
+            <p>La criptografía caduca. Usa estas longitudes de clave mínimas:</p>
+            <ul>
+                <li><strong>Simétrico (AES):</strong> 256 bits. (128 es aceptable, pero 256 es futuro-proof).</li>
+                <li><strong>Asimétrico (RSA):</strong> Mínimo 2048 bits (preferible 4096).</li>
+                <li><strong>Asimétrico (ECC):</strong> Mínimo 256 bits (más eficiente que RSA).</li>
+                <li><strong>Hash:</strong> SHA-256 o superior (SHA-3). Nunca MD5 o SHA-1.</li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-bug"></i> Top 3 Errores de Novato</summary>
+        <div class="details-content">
+            <table class="warning-table">
+                <thead>
+                    <tr>
+                        <th>Error</th>
+                        <th>Por qué es peligroso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ECB Mode</strong></td>
+                        <td>El modo "Electronic Codebook" cifra bloques idénticos de la misma manera. Un atacante puede ver patrones (ej. el Pingüino de Tux visible en cifrado ECB).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hardcoding Keys</strong></td>
+                        <td>Escribir la clave en el código fuente. Si subes el código a GitHub, la clave es pública para siempre.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reutilizar IVs</strong></td>
+                        <td>Usar el mismo Vector de Inicialización para dos mensajes distintos con la misma clave permite ataques de criptoanálisis.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-brands fa-python"></i> Ejemplo Práctico: Fernet (Python)</summary>
+        <div class="details-content">
+            <p>La librería <code>cryptography</code> ofrece "Fernet", que implementa AES-128-CBC con HMAC y rotación de claves automáticamente. Es la forma más segura para principiantes.</p>
+            <div class="code-ex">
+                from cryptography.fernet import Fernet<br><br>
+                # Generar clave<br>
+                key = Fernet.generate_key()<br>
+                f = Fernet(key)<br><br>
+                # Cifrar<br>
+                token = f.encrypt(b"Mensaje secreto")<br>
+                print(token)
+            </div>
+        </div>
+    </details>
+
+
+
+    <details open>
+        <summary><i class="fa-solid fa-route"></i> Ruta didáctica (sin perderte)</summary>
+        <div class="details-content">
+            <ol>
+                <li><strong>Lee “Librerías”:</strong> entiende AEAD, IV/nonce y por qué ECB es un error.</li>
+                <li><strong>Lee “Claves”:</strong> entiende KMS y envelope encryption.</li>
+                <li><strong>Practica:</strong> cifra/descifra + hash + (opcional) firma, y documenta.</li>
+                <li><strong>Entrega:</strong> evidencia + explicación + verificación.</li>
+            </ol>
+            <p style="margin-bottom:0;"><strong>Meta:</strong> que tu informe se pueda auditar y reproducir.</p>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-camera"></i> Evidencias que te piden (checklist)</summary>
+        <div class="details-content">
+            <ul>
+                <li>Comandos o código (mínimo) + salida.</li>
+                <li>Capturas de antes/después (hash o verificación fallida al modificar).</li>
+                <li>Explicación breve de la propiedad: confidencialidad / integridad / autenticidad.</li>
+                <li>Buenas prácticas: no exponer llaves, no usar datos reales, anonimizar.</li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-bug"></i> Lista rápida de anti‑patrones</summary>
+        <div class="details-content">
+            <table class="warning-table">
+                <thead>
+                    <tr><th>Anti‑patrón</th><th>Qué provoca</th><th>Qué hacer</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>ECB</td><td>Filtra patrones</td><td>Usar GCM/ChaCha20 o CBC + HMAC</td></tr>
+                    <tr><td>IV fijo</td><td>Rompe seguridad</td><td>IV/nonce aleatorio por mensaje</td></tr>
+                    <tr><td>Clave hardcode</td><td>Exposición permanente</td><td>Secret manager/KMS</td></tr>
+                    <tr><td>Hash débil</td><td>Colisiones</td><td>SHA‑256/SHA‑3</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-graduation-cap"></i> Preguntas que te pueden hacer (prepárate)</summary>
+        <div class="details-content">
+            <ul>
+                <li>¿Por qué AEAD es mejor que “cifrar y ya”?</li>
+                <li>¿Qué diferencia hay entre hash y HMAC?</li>
+                <li>¿Qué pasa si se filtra una clave? ¿Cómo limita el daño la rotación?</li>
+                <li>¿Qué datos jamás deberías subir a un foro/captura?</li>
+            </ul>
+        </div>
+    </details>
+
+</div>
+
+</body>
+</html>

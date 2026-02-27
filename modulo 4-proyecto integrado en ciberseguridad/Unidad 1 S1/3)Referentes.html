@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 1.2: Referentes Teóricos</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .ref-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+    }
+    .ref-card {
+        background: #fff; border: 1px solid #e0e0e0; padding: 25px; border-radius: 12px;
+        text-align: center; transition: transform 0.2s; border-bottom: 5px solid #1565c0;
+    }
+    .ref-card:hover { transform: translateY(-5px); border-bottom-color: #0d47a1; }
+    
+    .ref-title { font-weight: 800; color: #0d47a1; font-size: 1.2rem; margin-bottom: 10px; display: block; font-family: 'Montserrat', sans-serif; }
+
+    .normative-box {
+        background: #e8eaf6; padding: 20px; border-radius: 8px; margin-top: 30px; border: 1px solid #c5cae9;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* === UX + Animaciones (ligeras, accesibles) === */
+    :root{ --fet-blue:#0d47a1; --fet-blue2:#1565c0; --fet-bg:#f0f2f5; --fet-ink:#37474f; --fet-soft:#f5faff; --fet-border:#bbdefb; }
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(21,101,192,.08);border:1px solid rgba(21,101,192,.18);color:var(--fet-blue2);font-weight:700;font-size:.9rem;margin:6px 8px 0 0;}
+    .callout{background:linear-gradient(135deg, rgba(13,71,161,.08), rgba(21,101,192,.04));border:1px solid rgba(13,71,161,.18);border-left:6px solid var(--fet-blue);padding:22px;border-radius:14px;margin:26px 0;}
+    .callout h3{margin:0 0 10px 0;color:var(--fet-blue);font-family:'Montserrat',sans-serif;}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px;}
+    .mini-card{background:#fff;border:1px solid #e0e0e0;border-radius:14px;padding:18px;box-shadow:0 8px 22px rgba(0,0,0,.05);transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;}
+    .mini-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.08);border-color:rgba(21,101,192,.45);}
+    .mini-card h4{margin:0 0 8px 0;color:var(--fet-blue);font-family:'Montserrat',sans-serif;}
+    .check{list-style:none;padding:0;margin:10px 0 0 0;}
+    .check li{display:flex;gap:10px;align-items:flex-start;margin:10px 0;}
+    .check li::before{content:'✅';margin-top:1px;}
+    .warn li::before{content:'⚠️';}
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono','Courier New',monospace;background:#263238;color:#fff;padding:2px 8px;border-radius:8px;font-size:.9rem;}
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease, transform .55s ease;}
+    .reveal.in{opacity:1;transform:none;}
+    .shine{position:absolute;inset:-2px;pointer-events:none;background:radial-gradient(600px 200px at 20% 0%, rgba(21,101,192,.12), transparent 60%);mix-blend-mode:multiply;}
+    @media (max-width:768px){ .grid-2{grid-template-columns:1fr;} }
+    @media (prefers-reduced-motion: reduce){ .reveal{transition:none;opacity:1;transform:none;} .mini-card,.uni-logo{transition:none;} }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 1.2: Referentes Teóricos</h1>
+        <p>No inventes la rueda; usa estándares.</p>
+    </div>
+
+    <p style="margin-bottom: 30px;">
+        Para que tu proyecto sea profesional, debe basarse en marcos de referencia reconocidos mundialmente. No digas "creo que es seguro", di "cumple con NIST".
+    </p>
+
+    <div class="ref-grid">
+        <div class="ref-card">
+            <span class="ref-title">ISO/IEC 27001</span>
+            <p>El estándar de oro para Sistemas de Gestión de Seguridad de la Información (SGSI). Define controles administrativos y técnicos.</p>
+        </div>
+
+        <div class="ref-card" style="border-bottom-color: #2e7d32;">
+            <span class="ref-title">NIST CSF</span>
+            <p>Marco de Ciberseguridad del NIST: Identificar, Proteger, Detectar, Responder, Recuperar. Ideal para enfoque operativo.</p>
+        </div>
+
+        <div class="ref-card" style="border-bottom-color: #f57f17;">
+            <span class="ref-title">OWASP</span>
+            <p>Si tu proyecto involucra software o web, OWASP (Open Web Application Security Project) es la biblia. Top 10 vulnerabilidades.</p>
+        </div>
+    </div>
+
+    <div class="normative-box">
+        <strong>⚖️ Marco Legal:</strong> No olvides la Ley de Protección de Datos Personales (Habeas Data) de tu país. Tu solución debe ser técnicamente segura y legalmente viable.
+    </div>
+
+
+    <div class="callout reveal">
+      <div class="shine"></div>
+      <h3>📚 Cómo usar referentes sin “copiar y pegar”</h3>
+      <div class="grid-2">
+        <div class="mini-card">
+          <h4>Mapa rápido de marcos</h4>
+          <ul class="check">
+            <li><strong>NIST CSF:</strong> organiza el programa (Identify, Protect, Detect, Respond, Recover).</li>
+            <li><strong>ISO/IEC 27001:</strong> gestión (SGSI) y controles a nivel organizacional.</li>
+            <li><strong>OWASP:</strong> foco en apps web y APIs (riesgos y testing).</li>
+            <li><strong>MITRE ATT&CK:</strong> tácticas/técnicas del adversario (amenazas reales).</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h4>Qué debes producir</h4>
+          <ul class="check">
+            <li>Un <strong>resumen</strong> (3–5 ideas) de lo que aplica a tu caso.</li>
+            <li>Un <strong>por qué</strong>: “esto aplica porque mi activo es X y el riesgo es Y”.</li>
+            <li>1–2 <strong>citas</strong> en formato APA o IEEE (según te pidan).</li>
+          </ul>
+          <p style="margin-top:10px;color:#546e7a;"><strong>Regla:</strong> si el referente no cambia tu decisión, solo está “de adorno”.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mini-card reveal">
+      <h4>🧩 Ejemplo de conexión (del referente al caso)</h4>
+      <p><strong>Enunciado:</strong> “Usaremos NIST CSF para estructurar el diagnóstico y priorizar controles”.</p>
+      <ul class="check">
+        <li><strong>Identify:</strong> activos + stakeholders + riesgos.</li>
+        <li><strong>Protect:</strong> controles propuestos (MFA, hardening, backups).</li>
+        <li><strong>Detect:</strong> registros, alertas, monitoreo básico.</li>
+      </ul>
+    </div>
+
+
+</div>
+
+
+<script>
+(() => {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(e=>e.classList.add('in')); return; }
+  const io = new IntersectionObserver((entries)=> {
+    entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+  }, {threshold: 0.12});
+  els.forEach(e=>io.observe(e));
+})();
+</script>
+
+</body>
+</html>

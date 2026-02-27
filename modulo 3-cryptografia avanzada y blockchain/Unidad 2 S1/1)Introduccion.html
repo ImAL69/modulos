@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidad 2: Implementación y Trazabilidad</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    .subtitle { font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #546e7a; border-left: 4px solid #1976d2; padding-left: 15px; }
+
+    .intro-block { margin-bottom: 40px; text-align: justify; font-size: 1.1rem; }
+
+    .highlight-section {
+        background: #e3f2fd; padding: 30px; border-radius: 12px; border: 1px solid #bbdefb; margin-top: 30px;
+        display: flex; gap: 20px; align-items: center;
+    }
+    .highlight-icon { font-size: 3rem; color: #1565c0; }
+    .highlight-text { flex: 1; }
+
+    .roadmap-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
+    .roadmap-item { 
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; 
+        transition: transform 0.2s; position: relative; overflow: hidden;
+    }
+    .roadmap-item:hover { transform: translateY(-5px); border-color: #0d47a1; }
+    .roadmap-num { 
+        position: absolute; top: -10px; right: -10px; background: #e3f2fd; color: #1565c0; 
+        width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+        font-weight: 800; font-size: 1.2rem; 
+    }
+    .roadmap-title { font-weight: 700; color: #0d47a1; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .highlight-section { flex-direction: column; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Unidad 2: Implementación y Trazabilidad</h1>
+        <span class="subtitle">Semanas 3, 4 y 5: De la Teoría al Código</span>
+    </div>
+
+    <div class="intro-block">
+        <p>En la Unidad 1 aprendimos el "qué" y el "por qué". Ahora entramos en el "cómo". La criptografía teórica es inútil si no se sabe implementar correctamente en una aplicación real.</p>
+        <p>Durante las próximas tres semanas, dejaremos de hablar de conceptos abstractos para escribir código que proteja datos reales. Aprenderemos a usar librerías estándar de la industria, a gestionar el ciclo de vida de las claves criptográficas y a desplegar nuestros primeros contratos inteligentes en una red de prueba.</p>
+    </div>
+
+    <div class="highlight-section">
+        <i class="fa-solid fa-code highlight-icon"></i>
+        <div class="highlight-text">
+            <strong>Enfoque Práctico:</strong> No vamos a diseñar nuevos algoritmos matemáticos (eso es para doctores en matemáticas). Vamos a aprender a ser <strong>consumidores inteligentes</strong> de criptografía, evitando los errores de implementación que causan el 90% de las brechas de seguridad.
+        </div>
+    </div>
+
+    <h3 style="color:#0d47a1; font-family:'Montserrat', sans-serif; margin-top: 50px;">🗺️ Hoja de Ruta Unidad 2:</h3>
+    <ul class="roadmap-list">
+        <li class="roadmap-item">
+            <div class="roadmap-num">1</div>
+            <span class="roadmap-title">Semana 3: Implementación Segura</span>
+            Uso de librerías (Python Cryptography / OpenSSL) y gestión de secretos (Key Management).
+        </li>
+        <li class="roadmap-item">
+            <div class="roadmap-num">2</div>
+            <span class="roadmap-title">Semana 4: Integración de Servicios</span>
+            Canales seguros (TLS), autenticación robusta y firma de documentos digitales.
+        </li>
+        <li class="roadmap-item">
+            <div class="roadmap-num">3</div>
+            <span class="roadmap-title">Semana 5: Blockchain Práctico</span>
+            Despliegue de nodos, transacciones en testnet y laboratorio integrado.
+        </li>
+    </ul>
+
+
+
+    <div class="highlight-section" style="margin-top: 25px;">
+        <i class="fa-solid fa-shield-halved highlight-icon"></i>
+        <div class="highlight-text">
+            <strong>Objetivo central de la Unidad 2:</strong> pasar de “sé lo que es” a “sé implementarlo sin meter la pata”.
+            La mayoría de incidentes no ocurren porque AES/RSA se rompan, sino por <strong>configuración insegura</strong>,
+            <strong>gestión pobre de claves</strong> o <strong>uso incorrecto de librerías</strong>.
+        </div>
+    </div>
+
+    <div class="intro-block" style="margin-top: 30px;">
+        <h3 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">🧭 Qué vas a construir estas semanas</h3>
+        <ul>
+            <li><strong>Semana 3:</strong> cifrado/hashing/firma con librerías estándar + primeros hábitos de KMS/secretos.</li>
+            <li><strong>Semana 4:</strong> integración con servicios (TLS, autenticación) + evidencia profesional.</li>
+            <li><strong>Semana 5:</strong> trazabilidad con blockchain en testnet y laboratorio integrador.</li>
+        </ul>
+        <p style="margin-bottom:0;">
+            <strong>Regla del curso:</strong> “no inventes criptografía”. Tu meta es usar bien lo que existe y
+            demostrarlo con evidencia reproducible.
+        </p>
+    </div>
+
+    <div class="intro-block" style="margin-top: 25px;">
+        <h3 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">📌 Evidencia mínima que vas a necesitar (desde ya)</h3>
+        <div style="background:#f5faff;border:1px solid #bbdefb;border-radius:12px;padding:18px;">
+            <ul style="margin:0 0 0 18px;">
+                <li>Captura/registro del <strong>comando</strong> o <strong>script</strong> ejecutado.</li>
+                <li>Entrada y salida (sin datos sensibles reales).</li>
+                <li>Explicación breve: <strong>qué propiedad</strong> estás logrando (confidencialidad/integridad/autenticidad).</li>
+                <li>Validación: cómo verificas que funciona (descifrar, comparar hash, verificar firma).</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="intro-block" style="margin-top: 25px;">
+        <h3 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">🧠 Mapa mental rápido</h3>
+        <div style="background:#fff3e0;border:1px solid #ffe0b2;border-radius:12px;padding:18px;color:#37474f;">
+            <strong>Datos</strong> → (cifrado) → <strong>confidencialidad</strong><br>
+            <strong>Archivo</strong> → (hash) → <strong>integridad</strong><br>
+            <strong>Mensaje</strong> → (HMAC) → <strong>integridad + autenticidad</strong> (clave compartida)<br>
+            <strong>Documento</strong> → (firma digital) → <strong>integridad + autor + no repudio</strong>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

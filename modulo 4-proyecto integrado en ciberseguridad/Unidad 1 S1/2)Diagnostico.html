@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 1.1: Diagnóstico</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .diag-list { list-style: none; padding: 0; }
+    .diag-item {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 20px; border-radius: 12px; margin-bottom: 20px;
+        display: flex; gap: 20px; align-items: start;
+    }
+    .diag-icon { font-size: 2rem; color: #1565c0; margin-top: 5px; min-width: 50px; text-align: center; }
+    .diag-content h4 { margin: 0 0 5px 0; color: #0d47a1; font-family: 'Montserrat', sans-serif; font-size: 1.2rem; }
+
+    .tool-tip {
+        background: #fff3e0; border-left: 5px solid #ff9800; padding: 20px; border-radius: 8px; margin-top: 30px; color: #e65100; font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* === UX + Animaciones (ligeras, accesibles) === */
+    :root{ --fet-blue:#0d47a1; --fet-blue2:#1565c0; --fet-bg:#f0f2f5; --fet-ink:#37474f; --fet-soft:#f5faff; --fet-border:#bbdefb; }
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(21,101,192,.08);border:1px solid rgba(21,101,192,.18);color:var(--fet-blue2);font-weight:700;font-size:.9rem;margin:6px 8px 0 0;}
+    .callout{background:linear-gradient(135deg, rgba(13,71,161,.08), rgba(21,101,192,.04));border:1px solid rgba(13,71,161,.18);border-left:6px solid var(--fet-blue);padding:22px;border-radius:14px;margin:26px 0;}
+    .callout h3{margin:0 0 10px 0;color:var(--fet-blue);font-family:'Montserrat',sans-serif;}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px;}
+    .mini-card{background:#fff;border:1px solid #e0e0e0;border-radius:14px;padding:18px;box-shadow:0 8px 22px rgba(0,0,0,.05);transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;}
+    .mini-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.08);border-color:rgba(21,101,192,.45);}
+    .mini-card h4{margin:0 0 8px 0;color:var(--fet-blue);font-family:'Montserrat',sans-serif;}
+    .check{list-style:none;padding:0;margin:10px 0 0 0;}
+    .check li{display:flex;gap:10px;align-items:flex-start;margin:10px 0;}
+    .check li::before{content:'✅';margin-top:1px;}
+    .warn li::before{content:'⚠️';}
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono','Courier New',monospace;background:#263238;color:#fff;padding:2px 8px;border-radius:8px;font-size:.9rem;}
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease, transform .55s ease;}
+    .reveal.in{opacity:1;transform:none;}
+    .shine{position:absolute;inset:-2px;pointer-events:none;background:radial-gradient(600px 200px at 20% 0%, rgba(21,101,192,.12), transparent 60%);mix-blend-mode:multiply;}
+    @media (max-width:768px){ .grid-2{grid-template-columns:1fr;} }
+    @media (prefers-reduced-motion: reduce){ .reveal{transition:none;opacity:1;transform:none;} .mini-card,.uni-logo{transition:none;} }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 1.1: Diagnóstico del Contexto</h1>
+        <p>¿Qué duele y por qué es importante?</p>
+    </div>
+
+    <ul class="diag-list">
+        <li class="diag-item">
+            <div class="diag-icon"><i class="fa-solid fa-server"></i></div>
+            <div class="diag-content">
+                <h4>1. Activos Críticos</h4>
+                <p>No se puede proteger todo por igual. Identifica qué es lo más valioso: ¿La base de datos de clientes? ¿La propiedad intelectual? ¿La disponibilidad del servicio web?</p>
+            </div>
+        </li>
+
+        <li class="diag-item">
+            <div class="diag-icon"><i class="fa-solid fa-users"></i></div>
+            <div class="diag-content">
+                <h4>2. Actores Involucrados (Stakeholders)</h4>
+                <p>¿Quiénes interactúan con el sistema? Usuarios finales, administradores, proveedores externos. El error humano suele ser la brecha más grande.</p>
+            </div>
+        </li>
+
+        <li class="diag-item">
+            <div class="diag-icon"><i class="fa-solid fa-bug"></i></div>
+            <div class="diag-content">
+                <h4>3. Amenazas Predominantes</h4>
+                <p>No digas "hackers" en general. Sé específico: ¿Ransomware? ¿Phishing dirigido? ¿Insiders maliciosos? ¿Fallas de configuración en la nube?</p>
+            </div>
+        </li>
+    </ul>
+
+    <div class="tool-tip">
+        <i class="fa-solid fa-lightbulb"></i> Tip: Usa una matriz DOFA (Debilidades, Oportunidades, Fortalezas, Amenazas) enfocada en seguridad para estructurar tu diagnóstico.
+    </div>
+
+
+    <div class="callout reveal">
+      <div class="shine"></div>
+      <h3>🔎 Checklist de un diagnóstico “serio”</h3>
+      <div class="grid-2">
+        <div class="mini-card">
+          <h4>Qué debes identificar</h4>
+          <ul class="check">
+            <li><strong>Activos críticos:</strong> datos, sistemas, procesos, reputación.</li>
+            <li><strong>Amenazas:</strong> phishing, ransomware, fuga de datos, insiders, fallas.</li>
+            <li><strong>Vulnerabilidades:</strong> configuración, parches, contraseñas, procesos.</li>
+            <li><strong>Impactos:</strong> dinero, operación, legal, confianza, seguridad física.</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h4>Evidencia mínima (sin inventar)</h4>
+          <ul class="check">
+            <li>Capturas (con fecha/hora) de incidentes o configuraciones.</li>
+            <li>Extractos de logs (anonimizados) o reportes de auditoría.</li>
+            <li>Políticas/Procedimientos existentes (o su ausencia).</li>
+            <li>Entrevistas cortas: 3–5 preguntas a un actor clave.</li>
+          </ul>
+          <p style="margin-top:10px;">Usa una <span class="kbd">bitácora</span> para registrar qué viste, dónde, cuándo y por qué es relevante.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mini-card reveal">
+      <h4>🧠 Preguntas guía (para encontrar la raíz)</h4>
+      <ul class="check">
+        <li>¿Qué está pasando exactamente (hecho) y qué debería pasar (deseado)?</li>
+        <li>¿Desde cuándo ocurre y con qué frecuencia?</li>
+        <li>¿A quién afecta más y cómo se manifiesta el daño?</li>
+        <li>¿Qué controles existen hoy (técnicos/administrativos) y por qué fallan?</li>
+      </ul>
+      <p style="color:#546e7a;margin-top:10px;">Evita diagnósticos vagos tipo “falta seguridad”. Di <em>dónde</em>, <em>qué</em> y <em>qué evidencia</em> lo soporta.</p>
+    </div>
+
+
+</div>
+
+
+<script>
+(() => {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(e=>e.classList.add('in')); return; }
+  const io = new IntersectionObserver((entries)=> {
+    entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+  }, {threshold: 0.12});
+  els.forEach(e=>io.observe(e));
+})();
+</script>
+
+</body>
+</html>

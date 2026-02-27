@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Justificación: ¿Por qué Criptografía?</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    .subtitle { font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #546e7a; font-weight: 400; }
+
+    .problem-card {
+        background: #e3f2fd; border: 1px solid #90caf9; padding: 25px; border-radius: 12px; margin-bottom: 30px;
+        border-left: 6px solid #1565c0; transition: transform 0.3s;
+    }
+    .problem-card:hover { transform: translateY(-5px); }
+    .problem-title { font-family: 'Montserrat', sans-serif; font-weight: 700; color: #0d47a1; font-size: 1.2rem; margin-bottom: 15px; display: block; }
+    
+    .solution-text { margin-top: 15px; padding-top: 15px; border-top: 1px dashed #90caf9; color: #1b5e20; font-weight: 600; }
+
+    .context-block {
+        background: #fafafa; border-left: 5px solid #607d8b; padding: 20px; margin-top: 40px; font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Justificación del Módulo</h1>
+        <span class="subtitle">Confianza Digital, Integridad y Protección de Datos</span>
+    </div>
+
+    <div class="content-block">
+        <p>En la era digital, la información es el activo más valioso. Sin embargo, su valor depende de dos factores: que sea confidencial (solo la ve quien debe) y que sea íntegra (nadie la ha modificado). La criptografía es la herramienta que garantiza estas propiedades.</p>
+        
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-file-shield"></i> 1. El Problema de la Confianza en Internet</span>
+            <p>Internet fue diseñado para compartir, no para proteger. En una red abierta, ¿cómo sabes que el sitio web de tu banco es real? ¿Cómo sabes que el archivo que descargaste no tiene un virus inyectado en el camino?</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución:</strong> Infraestructura de Clave Pública (PKI) y Firmas Digitales para garantizar autenticidad e integridad.
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-link"></i> 2. La Necesidad de Trazabilidad Inmutable</span>
+            <p>En cadenas de suministro o registros financieros, la corrupción o el error humano pueden alterar la historia. "Quién hizo qué y cuándo" a menudo se pierde o se falsifica.</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución:</strong> Tecnología Blockchain para crear registros distribuidos e inmutables donde la verdad es compartida y verificable por todos.
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-user-lock"></i> 3. Protección de Datos Personales</span>
+            <p>Con regulaciones como GDPR, proteger los datos de los usuarios no es opcional, es ley. Almacenar contraseñas en texto plano o usar algoritmos obsoletos (MD5) es negligencia.</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución:</strong> Implementación correcta de algoritmos robustos (Hashing con Salt, AES-256) y gestión segura de claves.
+            </div>
+        </div>
+
+        <div class="context-block">
+            <strong>💡 Realidad:</strong> La criptografía mal implementada es peor que no tener criptografía, porque da una falsa sensación de seguridad. Este módulo te enseñará a no cometer ese error.
+        </div>
+    </div>
+
+
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-lock-open"></i> 4. El Error Más Costoso: Gestionar Mal las Claves</span>
+            <p>Muchas brechas ocurren no por “romper” AES o RSA, sino por malas prácticas: claves compartidas, almacenadas en código, sin rotación o sin control de acceso.</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución:</strong> Key Management (KMS/HSM), rotación, mínimos privilegios y separación de ambientes (dev/test/prod).
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <span class="problem-title"><i class="fa-solid fa-shield"></i> 5. Criptografía como Control de Riesgo</span>
+            <p>La cripto no reemplaza controles: complementa. Cifrar una base de datos no arregla accesos mal configurados; una firma digital no evita phishing si el usuario no verifica el certificado.</p>
+            <div class="solution-text">
+                <i class="fa-solid fa-check"></i> <strong>Solución:</strong> Defensa en profundidad: autenticación fuerte + control de acceso + logging + cifrado + backups.
+            </div>
+        </div>
+
+        <div class="context-block">
+            <strong>📌 Idea clave:</strong> El objetivo no es “usar blockchain”, sino <em>resolver un problema de confianza</em> con la herramienta más simple y segura posible.
+        </div>
+
+</div>
+
+</body>
+</html>

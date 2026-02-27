@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 1.5: Ecosistema Blockchain</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .type-table {
+        width: 100%; border-collapse: collapse; margin-bottom: 30px;
+    }
+    .type-table th { background: #1565c0; color: white; padding: 15px; }
+    .type-table td { border: 1px solid #ddd; padding: 15px; text-align: center; }
+
+    .smart-box {
+        background: #e8f5e9; padding: 25px; border-radius: 12px; border-left: 6px solid #2e7d32;
+    }
+    .smart-title { color: #1b5e20; font-weight: 700; font-size: 1.2rem; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .type-table { display: block; overflow-x: auto; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 1.5: Tipos y Smart Contracts</h1>
+        <p>Categorías de redes y lógica programable.</p>
+    </div>
+
+    <h3 style="color:#0d47a1;">Tipos de Blockchain</h3>
+    <table class="type-table">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Acceso</th>
+                <th>Ejemplo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Pública</strong></td>
+                <td>Abierta a todos (Permissionless)</td>
+                <td>Bitcoin, Ethereum</td>
+            </tr>
+            <tr>
+                <td><strong>Privada</strong></td>
+                <td>Solo invitados (Permissioned)</td>
+                <td>Hyperledger Fabric</td>
+            </tr>
+            <tr>
+                <td><strong>Consorcio</strong></td>
+                <td>Grupo de organizaciones</td>
+                <td>R3 Corda</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="smart-box">
+        <span class="smart-title"><i class="fa-solid fa-scroll"></i> Smart Contracts</span>
+        <p>Son protocolos informáticos autoejecutables que facilitan, verifican o hacen cumplir la negociación o ejecución de un contrato. El código se almacena en la blockchain y se ejecuta automáticamente cuando se cumplen las condiciones predefinidas ("If This Then That").</p>
+    </div>
+
+
+
+    <div class="smart-box" style="margin-top:18px;">
+        <span class="smart-title"><i class="fa-solid fa-triangle-exclamation"></i> Principio clave: “el contrato se ejecuta, no interpreta”</span>
+        <p>Un smart contract no “entiende” intención. Si la lógica está mal, se ejecuta igual. Por eso, en el mundo real se recomienda:</p>
+        <ul style="margin:10px 0 0 18px;">
+            <li><strong>Validaciones estrictas</strong> de entradas y estados.</li>
+            <li><strong>Controles de acceso</strong> (roles, owners, multisig).</li>
+            <li><strong>Auditoría</strong> del código y pruebas (unit tests) antes de desplegar.</li>
+        </ul>
+    </div>
+
+    <div class="smart-box" style="margin-top:18px; border-left-color:#1565c0; background:#f5faff;">
+        <span class="smart-title" style="color:#1565c0;"><i class="fa-solid fa-code"></i> Patrón mental: Estado + Reglas</span>
+        <p>Piensa el contrato como una máquina de estados:</p>
+        <div style="background:#ffffff;border:1px solid #bbdefb;border-radius:12px;padding:14px;font-family:'Courier New',monospace;color:#0d47a1;">
+            Estado: {CREADO → ACTIVO → CERRADO}<br>
+            Regla: "Solo el rol X puede pasar de ACTIVO a CERRADO"<br>
+            Evento: "PagoRecibido()" o "EntregaConfirmada()"
+        </div>
+        <p style="margin-top:10px;">Cuando el estado cambia, se generan eventos (logs) que pueden auditarse.</p>
+    </div>
+
+    <div class="smart-box" style="margin-top:18px; border-left-color:#ef6c00; background:#fff3e0;">
+        <span class="smart-title" style="color:#e65100;"><i class="fa-solid fa-bug"></i> Fallas típicas (para tu análisis)</span>
+        <ul style="margin:10px 0 0 18px;">
+            <li><strong>Reentrancy:</strong> una llamada externa vuelve a entrar antes de actualizar estado.</li>
+            <li><strong>Overflow/underflow:</strong> aritmética fuera de rango (hoy mitigado en Solidity moderno).</li>
+            <li><strong>Permisos débiles:</strong> cualquiera puede ejecutar funciones críticas.</li>
+            <li><strong>Oráculo manipulable:</strong> dato externo no confiable (precio, clima, etc.).</li>
+        </ul>
+    </div>
+
+    <div class="smart-box" style="margin-top:18px;">
+        <span class="smart-title"><i class="fa-solid fa-lightbulb"></i> Ejemplos de uso (bien planteados)</span>
+        <ul style="margin:10px 0 0 18px;">
+            <li><strong>Escrow (depósito en garantía):</strong> fondos se liberan si se confirma entrega.</li>
+            <li><strong>Subastas:</strong> reglas transparentes y verificables.</li>
+            <li><strong>Certificados verificables:</strong> hash del diploma/acta registrado para verificación.</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

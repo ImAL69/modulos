@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico: Bloque 1 (U3)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    /* ACORDEONES DIDÁCTICOS */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #0d47a1; font-family: 'Montserrat', sans-serif;
+        display: flex; align-items: center; gap: 15px; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; }
+
+    .resource-list { list-style: none; padding: 0; }
+    .resource-list li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .resource-list i { color: #1976d2; }
+
+    .kpi-table {
+        width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem;
+    }
+    .kpi-table th { background: #0d47a1; color: white; padding: 10px; }
+    .kpi-table td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .kpi-table { display: block; overflow-x: auto; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Unidad 3</h1>
+        <p>Herramientas para la Evaluación y Comunicación.</p>
+    </div>
+
+    <details open>
+        <summary><i class="fa-solid fa-chart-pie"></i> Métricas de Impacto (KPIs)</summary>
+        <div class="details-content">
+            <p>Para demostrar el éxito, usa métricas cuantificables:</p>
+            <table class="kpi-table">
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>MTTR</strong></td>
+                        <td>Tiempo Medio de Reparación.</td>
+                        <td>Reducción de 48h a 4h.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cobertura</strong></td>
+                        <td>Porcentaje de activos protegidos.</td>
+                        <td>Del 50% al 95%.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Incidentes</strong></td>
+                        <td>Cantidad de eventos de seguridad.</td>
+                        <td>Reducción del 60% mensual.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-file-powerpoint"></i> Guía de Presentación Ejecutiva</summary>
+        <div class="details-content">
+            <p>Estructura recomendada para tu defensa (10-15 min):</p>
+            <ul class="resource-list">
+                <li><i class="fa-solid fa-check"></i> <strong>Slide 1:</strong> Título y "Gancho" (El problema en una frase).</li>
+                <li><i class="fa-solid fa-check"></i> <strong>Slide 2-3:</strong> Diagnóstico y Riesgo (¿Cuánto perdemos?).</li>
+                <li><i class="fa-solid fa-check"></i> <strong>Slide 4-6:</strong> Solución y Demo (¿Qué hicimos?).</li>
+                <li><i class="fa-solid fa-check"></i> <strong>Slide 7-8:</strong> Resultados y ROI (¿Qué ganamos?).</li>
+                <li><i class="fa-solid fa-check"></i> <strong>Slide 9:</strong> Cierre y Próximos Pasos.</li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-shield-cat"></i> Cálculo de Riesgo Residual</summary>
+        <div class="details-content">
+            <p><strong>Fórmula Básica:</strong></p>
+            <p style="font-family: 'Courier New', monospace; background: #eee; padding: 10px; border-radius: 5px; text-align: center;">Riesgo Residual = (Amenaza * Vulnerabilidad * Impacto) * (1 - %Eficacia del Control)</p>
+            <p>Usa esto para justificar por qué, aunque instalaste un firewall, todavía existe un riesgo bajo.</p>
+        </div>
+    </details>
+
+</div>
+
+</body>
+</html>

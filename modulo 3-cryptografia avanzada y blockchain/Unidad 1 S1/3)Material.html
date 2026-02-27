@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico: Bloque 1</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    /* ACORDEONES DIDÁCTICOS */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #0d47a1; font-family: 'Montserrat', sans-serif;
+        display: flex; align-items: center; gap: 15px; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; }
+
+    .concept-table {
+        width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem;
+    }
+    .concept-table th { background: #0d47a1; color: white; padding: 10px; }
+    .concept-table td { border: 1px solid #ddd; padding: 10px; }
+
+    .best-practice-box {
+        background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; margin-top: 15px; color: #1b5e20;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .concept-table { display: block; overflow-x: auto; }
+    }
+
+    /* ==========================================================
+       BLOQUE VIDEO (SIN IFRAME) + MARCA DE AGUA (MISMA MINIATURA)
+       ========================================================== */
+
+    :root{
+        --thumb-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='720' viewBox='0 0 1280 720'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='20%25' r='80%25'%3E%3Cstop offset='0%25' stop-color='%230d47a1' stop-opacity='0.95'/%3E%3Cstop offset='60%25' stop-color='%230b1020' stop-opacity='0.98'/%3E%3Cstop offset='100%25' stop-color='%23060a14'/%3E%3C/radialGradient%3E%3ClinearGradient id='l' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%234fc3f7' stop-opacity='0.30'/%3E%3Cstop offset='100%25' stop-color='%2329b6f6' stop-opacity='0.06'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1280' height='720' fill='url(%23g)'/%3E%3Cpath d='M0 520 C 240 460, 360 620, 640 560 C 920 500, 1040 610, 1280 560 L1280 720 L0 720 Z' fill='url(%23l)'/%3E%3Crect x='72' y='80' width='1136' height='560' rx='28' fill='%23ffffff' fill-opacity='0.06' stroke='%23bbdefb' stroke-opacity='0.35'/%3E%3Ctext x='120' y='345' font-family='Montserrat, Arial, sans-serif' font-size='54' font-weight='800' fill='%23e3f2fd'%3ECriptograf%C3%ADa aplicada%3C/text%3E%3Ctext x='120' y='405' font-family='Roboto, Arial, sans-serif' font-size='28' font-weight='400' fill='%23bbdefb'%3ESim%C3%A9trica vs Asim%C3%A9trica %E2%80%A2 Hash %E2%80%A2 Firmas %E2%80%A2 TLS%3C/text%3E%3Cpath d='M610 510 L610 610 L700 560 Z' fill='%23ffffff' fill-opacity='0.92'/%3E%3Ccircle cx='655' cy='560' r='86' fill='%23ffffff' fill-opacity='0.08' stroke='%23ffffff' stroke-opacity='0.18'/%3E%3C/svg%3E");
+    }
+
+    .container-extended::after{
+        content:"";
+        position:absolute;
+        right: 26px;
+        bottom: 22px;
+        width: 420px;
+        height: 236px;
+        background-image: var(--thumb-svg);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.10;
+        pointer-events: none;
+        filter: blur(0.1px);
+        transform: rotate(-1deg);
+        z-index: 0;
+    }
+
+    .video-card{
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 18px;
+        padding: 18px;
+        margin: 18px 0 26px 0;
+        border-radius: 14px;
+        border: 1px solid #bbdefb;
+        background: linear-gradient(180deg, #f5faff 0%, #ffffff 100%);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+    }
+
+    .video-thumb{
+        border-radius: 12px;
+        min-height: 180px;
+        background-image: var(--thumb-svg);
+        background-size: cover;
+        background-position: center;
+        border: 1px solid rgba(187,222,251,0.9);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .video-thumb::before{
+        content:"";
+        position:absolute;
+        inset: 0;
+        background: radial-gradient(circle at 30% 30%, rgba(79,195,247,0.18), rgba(11,16,32,0.0) 60%);
+    }
+
+    .video-meta h3{
+        margin: 0 0 6px 0;
+        font-family: 'Montserrat', sans-serif;
+        color: #0d47a1;
+        font-weight: 800;
+        font-size: 1.15rem;
+        line-height: 1.25;
+    }
+
+    .video-meta p{
+        margin: 0 0 10px 0;
+        color:#37474f;
+    }
+
+    .mini-tasks{
+        margin: 10px 0 14px 18px;
+        padding: 0;
+    }
+    .mini-tasks li{ margin: 6px 0; }
+
+    .video-actions{
+        display:flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    .btn-youtube{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background:#0d47a1;
+        color:#fff;
+        text-decoration:none;
+        font-weight:700;
+        border: 1px solid rgba(13,71,161,0.35);
+        box-shadow: 0 10px 18px rgba(13,71,161,0.18);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-youtube:hover{
+        transform: translateY(-1px);
+        box-shadow: 0 14px 24px rgba(13,71,161,0.22);
+    }
+
+    .video-hint{
+        font-size: 0.92rem;
+        color:#607d8b;
+        margin-top: 6px;
+    }
+
+    @media (max-width: 768px) {
+        .video-card{ grid-template-columns: 1fr; }
+        .video-thumb{ min-height: 190px; }
+        .container-extended::after{ width: 300px; height: 168px; opacity: 0.09; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Bloque 1</h1>
+        <p>Conceptos clave y buenas prácticas criptográficas.</p>
+    </div>
+
+    
+    <!-- =========================
+         VIDEO (SIN IFRAME)
+         Ubicación: debajo del header-box, antes del primer <details>
+         ========================= -->
+    <section class="video-card" aria-label="Video de refuerzo">
+        <div class="video-thumb" role="img" aria-label="Miniatura del video"></div>
+
+        <div class="video-meta">
+            <h3>Video de refuerzo: criptografía en la vida real (simétrica, asimétrica, HTTPS/TLS, hash y claves)</h3>
+            <p>
+                Refuerza los conceptos del bloque: diferencias entre <strong>cifrado simétrico</strong> y <strong>asimétrico</strong>,
+                cómo se usan juntos en <strong>HTTPS/TLS</strong>, y en qué casos hablar de <strong>hash</strong> o <strong>firma digital</strong>.
+            </p>
+
+            <ul class="mini-tasks">
+                <li><strong>Qué observar:</strong> identifica en qué momento se negocia la clave y cuándo se cifra a alta velocidad.</li>
+                <li><strong>Qué aplicar:</strong> clasifica 5 ejemplos: “cifrado”, “hash”, “HMAC” o “firma digital” (justifica en 1 línea).</li>
+                <li><strong>Qué documentar:</strong> redacta 3 “Do’s & Don’ts” para tu proyecto (algoritmos, claves, RNG/nonce).</li>
+                <li><strong>Qué decidir:</strong> para cada caso (contraseña, archivo, mensaje, documento), elige la herramienta correcta y por qué.</li>
+            </ul>
+
+            <div class="video-actions">
+                <a class="btn-youtube" href="https://www.youtube.com/watch?v=IFZS36m8Miw" target="_blank" rel="noopener">
+                    ▶ Ver en YouTube (nueva pestaña)
+                </a>
+            </div>
+            <div class="video-hint">
+                Tip: mientras lo ves, marca 3 frases “en simple” que podrías usar para explicar esto a un cliente/no técnico.
+            </div>
+        </div>
+    </section>
+
+<details open>
+        <summary><i class="fa-solid fa-scale-balanced"></i> Simétrico vs Asimétrico: Comparativa</summary>
+        <div class="details-content">
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>Simétrico (AES)</th>
+                        <th>Asimétrico (RSA/ECC)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Claves</strong></td>
+                        <td>1 (Compartida)</td>
+                        <td>2 (Pública + Privada)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Velocidad</strong></td>
+                        <td>Muy Rápido</td>
+                        <td>Lento (Computacionalmente costoso)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Uso Principal</strong></td>
+                        <td>Cifrar grandes volúmenes de datos.</td>
+                        <td>Intercambio de claves y Firmas Digitales.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-thumbs-up"></i> Buenas Prácticas (Do's & Don'ts)</summary>
+        <div class="details-content">
+            <ul>
+                <li><strong>NO inventes tu propio algoritmo:</strong> Siempre usa estándares probados (AES, SHA-256). La "seguridad por oscuridad" no funciona en criptografía.</li>
+                <li><strong>Gestión de Claves:</strong> La seguridad del sistema depende totalmente de dónde guardas la clave privada. Nunca la hardcodees en el código.</li>
+                <li><strong>Aleatoriedad:</strong> Usa generadores de números aleatorios criptográficamente seguros (CSPRNG), no `Math.random()`.</li>
+            </ul>
+            <div class="best-practice-box">
+                <strong>Regla de Oro:</strong> Si pierdes la clave, pierdes los datos para siempre. No hay "recuperar contraseña" en criptografía real.
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-shuffle"></i> Cifrado Híbrido (El estándar web)</summary>
+        <div class="details-content">
+            <p>Así funciona HTTPS (TLS):</p>
+            <ol>
+                <li>El navegador y el servidor usan <strong>Asimétrico</strong> para negociar y compartir una clave de sesión de forma segura.</li>
+                <li>Una vez compartida, cambian a <strong>Simétrico</strong> usando esa clave de sesión para transmitir los datos de la web a alta velocidad.</li>
+            </ol>
+        </div>
+    </details>
+
+
+
+    <details>
+        <summary><i class="fa-solid fa-hashtag"></i> Hash vs Cifrado vs Firma: ¿qué escoger?</summary>
+        <div class="details-content">
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Necesidad</th>
+                        <th>Lo correcto</th>
+                        <th>Por qué</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Que nadie lea el mensaje</td>
+                        <td><strong>Cifrado</strong> (AES/ChaCha20)</td>
+                        <td>Protege confidencialidad con clave.</td>
+                    </tr>
+                    <tr>
+                        <td>Detectar cambios en un archivo</td>
+                        <td><strong>Hash</strong> (SHA-256+)</td>
+                        <td>Huella única: si cambia, se nota.</td>
+                    </tr>
+                    <tr>
+                        <td>Integridad + autenticidad en canal interno</td>
+                        <td><strong>HMAC</strong></td>
+                        <td>Hash + clave compartida (rápido).</td>
+                    </tr>
+                    <tr>
+                        <td>Probar autor y no repudio</td>
+                        <td><strong>Firma digital</strong> (RSA/ECC)</td>
+                        <td>Verificable por terceros.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="best-practice-box">
+                <strong>Nota:</strong> “Cifrar contraseñas” es un error común. Las contraseñas se almacenan con <strong>hash fuerte + salt</strong> (Argon2/bcrypt).
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-dice"></i> Aleatoriedad (RNG): la base invisible</summary>
+        <div class="details-content">
+            <p>La criptografía falla si la aleatoriedad es mala. Ejemplos típicos:</p>
+            <ul>
+                <li><strong>IV repetido</strong> en modos que lo prohíben (rompe confidencialidad).</li>
+                <li><strong>Semillas predecibles</strong> (claves fáciles de adivinar).</li>
+                <li>Uso de <code>Math.random()</code> para claves/tokens (no es CSPRNG).</li>
+            </ul>
+            <div class="best-practice-box">
+                <strong>Buenas prácticas:</strong> usa CSPRNG del sistema operativo, rota claves, y evita reutilizar IV/nonce.
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-file-signature"></i> Firma digital: qué prueba y qué NO</summary>
+        <div class="details-content">
+            <ul>
+                <li><strong>Sí prueba:</strong> el documento no cambió y la firma corresponde a la clave privada del firmante.</li>
+                <li><strong>No prueba:</strong> que el firmante “sea buena persona” 😄. La identidad depende de <strong>certificados</strong> y confianza (PKI).</li>
+            </ul>
+            <p style="margin-bottom:0;"><strong>Idea clave:</strong> firma = integridad + autenticidad + no repudio (si la clave privada está protegida).</p>
+        </div>
+    </details>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist Cierre del Módulo</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .checklist-wrapper {
+        background: #f5faff; padding: 30px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+
+    .check-item {
+        display: flex; align-items: start; margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;
+    }
+    .check-input { margin-top: 5px; margin-right: 15px; width: 20px; height: 20px; accent-color: #1565c0; cursor: pointer; }
+    .check-text { font-size: 1.05rem; cursor: pointer; flex: 1; }
+
+    .validate-btn {
+        display: block; width: 100%; padding: 15px; background: #2e7d32; color: white; text-align: center; border: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; margin-top: 25px; cursor: pointer;
+    }
+    .validate-btn:hover { background: #1b5e20; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Checklist de Cierre</h1>
+        <p>Verificación final de coherencia del proyecto.</p>
+    </div>
+
+    <div class="checklist-wrapper">
+        <div class="check-item">
+            
+            <label for="c1" class="check-text"><strong>Coherencia Caso-Tecnología:</strong> La solución elegida (Blockchain o BD) resuelve realmente el problema planteado en el caso de uso.</label>
+        </div>
+        <div class="check-item">
+            
+            <label for="c2" class="check-text"><strong>Análisis de Riesgos:</strong> Se han identificado y mitigado los riesgos específicos de la tecnología (ej. pérdida de claves, bugs en smart contracts).</label>
+        </div>
+        <div class="check-item">
+            
+            <label for="c3" class="check-text"><strong>Métricas de Éxito:</strong> El informe define claramente cómo se medirá el éxito (KPIs, ahorro de costos, tiempo).</label>
+        </div>
+        <div class="check-item">
+            
+            <label for="c4" class="check-text"><strong>Conclusión Sólida:</strong> La conclusión resume los hallazgos y ofrece una recomendación final clara a la gerencia.</label>
+        </div>
+
+        
+    </div>
+
+
+
+<section style="margin-top:40px;">
+<h3 style="color:#0d47a1;">🧭 Checklist reflexivo (uso profesional)</h3>
+<p>Este checklist no es para marcar casillas, es para <strong>validar criterio</strong>. Léelo como si fueras auditor del proyecto.</p>
+<ul>
+<li>¿La tecnología responde al problema o al entusiasmo?</li>
+<li>¿La evidencia es verificable por un tercero?</li>
+<li>¿Los riesgos están explícitos y aceptados?</li>
+<li>¿La conclusión sería defendible ante gerencia?</li>
+</ul>
+<p><strong>Tip:</strong> si no puedes justificar una decisión en una frase clara, revísala.</p>
+</section>
+
+</div>
+
+</body>
+</html>

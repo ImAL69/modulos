@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 3.5: Matriz de Decisión</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .decision-matrix {
+        width: 100%; border-collapse: collapse; margin-bottom: 30px; text-align: left;
+    }
+    .decision-matrix th { background: #1565c0; color: white; padding: 15px; }
+    .decision-matrix td { border: 1px solid #ddd; padding: 15px; vertical-align: top; }
+    
+    .score-high { color: #2e7d32; font-weight: bold; }
+    .score-low { color: #c62828; font-weight: bold; }
+
+    .alert-box {
+        background: #fff3e0; border-left: 5px solid #ff9800; padding: 20px; border-radius: 8px; color: #e65100;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .decision-matrix { display: block; overflow-x: auto; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 3.5: Matriz de Decisión</h1>
+        <p>Evaluación objetiva de tecnología.</p>
+    </div>
+
+    <p style="margin-bottom: 30px;">
+        No elijas tecnología por moda ("Hype"). Usa una matriz ponderada para comparar opciones objetivamente.
+    </p>
+
+    <table class="decision-matrix">
+        <thead>
+            <tr>
+                <th>Criterio</th>
+                <th>Peso</th>
+                <th>Opción A: Base de Datos (SQL)</th>
+                <th>Opción B: Blockchain</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Costo de Implementación</strong></td>
+                <td>30%</td>
+                <td class="score-high">Bajo (Tecnología madura)</td>
+                <td class="score-low">Alto (Complejidad técnica)</td>
+            </tr>
+            <tr>
+                <td><strong>Rendimiento (TPS)</strong></td>
+                <td>20%</td>
+                <td class="score-high">Muy Alto (>10k TPS)</td>
+                <td class="score-low">Bajo (<100 TPS en pública)</td>
+            </tr>
+            <tr>
+                <td><strong>Resistencia a Censura</strong></td>
+                <td>50%</td>
+                <td class="score-low">Baja (Admin puede borrar)</td>
+                <td class="score-high">Muy Alta (Inmutable)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert-box">
+        <strong>💡 Conclusión:</strong> Si tu prioridad es la resistencia a la censura (50%), Blockchain gana. Si es el costo y velocidad, gana SQL. El contexto define al ganador.
+    </div>
+
+
+
+<section style="margin-top:40px;">
+<h3 style="color:#0d47a1;">📊 Uso profesional de la matriz de decisión</h3>
+<p>La matriz no decide por ti: <strong>hace explícitas tus prioridades</strong>. Sirve para justificar decisiones técnicas ante negocio y auditoría.</p>
+<ul>
+<li>Pondera impacto real, no preferencias.</li>
+<li>Define criterios observables.</li>
+<li>Permite recalcular escenarios.</li>
+</ul>
+</section>
+
+</div>
+
+</body>
+</html>

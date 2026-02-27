@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resultados de Aprendizaje (RA)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .ra-card {
+        background: #f5faff; border: 1px solid #bbdefb; border-radius: 12px;
+        padding: 30px; margin-bottom: 30px; transition: transform 0.2s;
+        border-left: 6px solid #1565c0;
+    }
+    .ra-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+    .ra-header { display: flex; align-items: center; margin-bottom: 20px; }
+    .ra-badge {
+        background: #1565c0; color: white; padding: 5px 15px; border-radius: 50px;
+        font-weight: bold; margin-right: 15px; font-family: 'Montserrat', sans-serif;
+    }
+    .ra-title { font-size: 1.4rem; font-weight: 700; color: #0d47a1; }
+    
+    .ra-details ul { margin: 0; padding-left: 20px; color: #546e7a; margin-top: 15px; line-height: 1.7; }
+    .ra-details li { margin-bottom: 10px; }
+    .ra-details strong { color: #0d47a1; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+
+/* =========================
+   Mejora visual + animaciones (ligeras)
+   ========================= */
+:root{
+  --fet-blue:#0d47a1;
+  --fet-blue2:#1565c0;
+  --fet-sky:#e3f2fd;
+  --text:#37474f;
+}
+body{
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(21,101,192,.10), transparent 55%),
+              radial-gradient(900px 600px at 85% 25%, rgba(13,71,161,.08), transparent 60%),
+              linear-gradient(180deg, #f7f9fc 0%, #f0f2f5 60%, #eef3f8 100%);
+}
+.container-extended{
+  isolation:isolate;
+}
+.container-extended::before,
+.container-extended::after{
+  content:"";
+  position:absolute;
+  inset:auto;
+  z-index:-1;
+  filter: blur(0px);
+  opacity:.55;
+  pointer-events:none;
+}
+.container-extended::before{
+  width:520px;height:520px;
+  left:-260px; top:-260px;
+  background: radial-gradient(circle at 30% 30%, rgba(21,101,192,.25), transparent 65%);
+  animation: blobFloat 12s ease-in-out infinite;
+}
+.container-extended::after{
+  width:420px;height:420px;
+  right:-210px; bottom:-210px;
+  background: radial-gradient(circle at 70% 70%, rgba(13,71,161,.22), transparent 65%);
+  animation: blobFloat2 14s ease-in-out infinite;
+}
+@keyframes blobFloat{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(30px,18px) scale(1.05); }
+}
+@keyframes blobFloat2{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(-28px,-14px) scale(1.06); }
+}
+.reveal{
+  opacity:0;
+  transform: translateY(14px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.in-view{
+  opacity:1;
+  transform:none;
+}
+.feature-card, .reason-card, .ra-card, .profile-card, .skill-card, .quiz-card, details{
+  will-change: transform;
+}
+.feature-card:hover, .reason-card:hover, .ra-card:hover, .profile-card:hover, .skill-card:hover{
+  transform: translateY(-6px) scale(1.01);
+}
+kbd{
+  background:#0b2f6b;
+  color:#fff;
+  padding:2px 8px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:.9rem;
+}
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 12px; border-radius:999px;
+  background: rgba(21,101,192,.10);
+  border:1px solid rgba(21,101,192,.25);
+  color: var(--fet-blue2);
+  font-weight:700;
+  font-size:.92rem;
+  margin:6px 8px 0 0;
+}
+.callout{
+  background: #ffffff;
+  border: 1px solid #bbdefb;
+  border-left: 6px solid #1565c0;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  margin: 22px 0;
+}
+.callout h3{
+  margin:0 0 10px 0;
+  font-family:'Montserrat', sans-serif;
+  color: var(--fet-blue);
+}
+.grid-2{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:16px;
+}
+@media (max-width: 860px){
+  .grid-2{ grid-template-columns: 1fr; }
+}
+.small{
+  color:#546e7a;
+  font-size:.95rem;
+}
+hr.soft{
+  border:none;
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(13,71,161,.25), transparent);
+  margin: 28px 0;
+}
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+}
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Resultados de Aprendizaje (RA)</h1>
+<p>Competencias de egreso del programa.</p>
+</div>
+<div class="ra-card reveal">
+<div class="ra-header">
+<span class="ra-badge">RA1</span>
+<span class="ra-title">Diagnóstico y Formulación</span>
+</div>
+<div class="ra-details">
+<p><strong>Competencia:</strong> Analizar problemáticas de ciberseguridad en contextos reales, formulando propuestas de intervención sustentadas en marcos normativos y teóricos.</p>
+<ul>
+<li><strong>Saber:</strong> Análisis de riesgos, estándares internacionales.</li>
+<li><strong>Hacer:</strong> Diagnosticar brechas y formular problemas de investigación aplicada.</li>
+</ul>
+</div>
+</div>
+<div class="ra-card reveal">
+<div class="ra-header">
+<span class="ra-badge">RA2</span>
+<span class="ra-title">Diseño e Implementación</span>
+</div>
+<div class="ra-details">
+<p><strong>Competencia:</strong> Diseñar e implementar soluciones de ciberseguridad viables, definiendo metodologías, herramientas y controles con evidencia verificable.</p>
+<ul>
+<li><strong>Saber:</strong> Arquitectura de seguridad, selección de controles.</li>
+<li><strong>Hacer:</strong> Ejecutar pruebas piloto, recolectar evidencia técnica y documentar procesos.</li>
+</ul>
+</div>
+</div>
+<div class="ra-card reveal">
+<div class="ra-header">
+<span class="ra-badge">RA3</span>
+<span class="ra-title">Evaluación y Comunicación</span>
+</div>
+<div class="ra-details">
+<p><strong>Competencia:</strong> Evaluar el impacto y riesgo residual de la solución, comunicando hallazgos con rigor técnico y ejecutivo a diferentes audiencias.</p>
+<ul>
+<li><strong>Saber:</strong> Métricas de impacto, comunicación ejecutiva.</li>
+<li><strong>Hacer:</strong> Validar resultados, sustentar propuestas y generar informes de alto nivel.</li>
+</ul>
+</div>
+</div>
+
+<div class="content-block reveal">
+<hr class="soft"/>
+<div class="callout">
+<h3>Indicadores sugeridos para demostrar tus RA</h3>
+<div class="grid-2">
+<div>
+<p class="small"><strong>RA1 (Diagnóstico):</strong></p>
+<ul>
+<li>Inventario de activos críticos + diagrama simple (flujo o arquitectura).</li>
+<li>Matriz de riesgos (amenaza, vulnerabilidad, impacto, probabilidad).</li>
+<li>Marco normativo/estándar aplicado (justificación breve).</li>
+</ul>
+</div>
+<div>
+<p class="small"><strong>RA2/RA3 (Implementación y evaluación):</strong></p>
+<ul>
+<li>PoC/Piloto con evidencia reproducible (configuración, logs, capturas).</li>
+<li>Métricas: MTTD/MTTR, cobertura de parches, tasa de clic, hallazgos OWASP, etc.</li>
+<li>Riesgo residual + recomendaciones priorizadas (quick wins vs mediano plazo).</li>
+</ul>
+</div>
+</div>
+<p class="small" style="margin-top:10px;"><strong>Tip:</strong> cada indicador debe conectar con un objetivo del proyecto y una evidencia.</p>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window) || els.length===0){
+    els.forEach(el=>el.classList.add('in-view'));
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>

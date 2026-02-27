@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico: Bloque 2</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    /* ACORDEONES DIDÁCTICOS */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #0d47a1; font-family: 'Montserrat', sans-serif;
+        display: flex; align-items: center; gap: 15px; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; }
+
+    .tool-list { list-style: none; padding: 0; }
+    .tool-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .tool-list i { color: #1976d2; }
+
+    .evidence-box {
+        background: #fff3e0; border-left: 5px solid #ff9800; padding: 15px; font-size: 0.95rem; color: #e65100; margin-top: 15px;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* ==========================================================
+       BLOQUE VIDEO (SIN IFRAME) + MARCA DE AGUA (MISMA MINIATURA)
+       ========================================================== */
+
+    :root{
+        --thumb-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='720' viewBox='0 0 1280 720'%3E%3Cdefs%3E%3CradialGradient id='g' cx='28%25' cy='18%25' r='85%25'%3E%3Cstop offset='0%25' stop-color='%230d47a1' stop-opacity='0.95'/%3E%3Cstop offset='55%25' stop-color='%230b1020' stop-opacity='0.98'/%3E%3Cstop offset='100%25' stop-color='%23060a14'/%3E%3C/radialGradient%3E%3ClinearGradient id='l' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%234f...
+    }
+
+    /* Marca de agua (sin "sombra" sobre el contenido) */
+    .container-extended{ z-index: 0; }
+    .container-extended::after{
+        content:"";
+        position:absolute;
+        right: 18px;
+        bottom: 18px;
+        width: 360px;
+        height: 202px;
+        background-image: var(--thumb-svg);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.06;
+        pointer-events: none;
+        z-index: -1;
+        transform: rotate(-1deg);
+        filter: blur(0.1px);
+    }
+    @media (max-width: 900px){
+        .container-extended::after{ display:none; }
+    }
+
+    .video-card{
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 18px;
+        padding: 18px;
+        margin: 18px 0 26px 0;
+        border-radius: 14px;
+        border: 1px solid #bbdefb;
+        background: linear-gradient(180deg, #f5faff 0%, #ffffff 100%);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+    }
+
+    .video-thumb{
+        border-radius: 12px;
+        min-height: 180px;
+        background-image: var(--thumb-svg);
+        background-size: cover;
+        background-position: center;
+        border: 1px solid rgba(187,222,251,0.9);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .video-thumb::before{
+        content:"";
+        position:absolute;
+        inset: 0;
+        background: radial-gradient(circle at 30% 30%, rgba(79,195,247,0.16), rgba(11,16,32,0.0) 60%);
+    }
+
+    .video-meta h3{
+        margin: 0 0 6px 0;
+        font-family: 'Montserrat', sans-serif;
+        color: #0d47a1;
+        font-weight: 800;
+        font-size: 1.15rem;
+        line-height: 1.25;
+    }
+
+    .video-meta p{
+        margin: 0 0 10px 0;
+        color:#37474f;
+    }
+
+    .mini-tasks{
+        margin: 10px 0 14px 18px;
+        padding: 0;
+    }
+    .mini-tasks li{ margin: 6px 0; }
+
+    .video-actions{
+        display:flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    .btn-youtube{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background:#0d47a1;
+        color:#fff;
+        text-decoration:none;
+        font-weight:700;
+        border: 1px solid rgba(13,71,161,0.35);
+        box-shadow: 0 10px 18px rgba(13,71,161,0.18);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-youtube:hover{
+        transform: translateY(-1px);
+        box-shadow: 0 14px 24px rgba(13,71,161,0.22);
+    }
+
+    .video-hint{
+        font-size: 0.92rem;
+        color:#607d8b;
+        margin-top: 6px;
+    }
+
+    @media (max-width: 768px) {
+        .video-card{ grid-template-columns: 1fr; }
+        .video-thumb{ min-height: 190px; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Bloque 2</h1>
+        <p>Integración Práctica y Evidencias.</p>
+    </div>
+
+    
+    <!-- =========================
+         VIDEO (SIN IFRAME)
+         Ubicación: debajo del header-box, antes del primer <details>
+         ========================= -->
+    <section class="video-card" aria-label="Video de refuerzo">
+        <div class="video-thumb" role="img" aria-label="Miniatura del video"></div>
+
+        <div class="video-meta">
+            <h3>Video de refuerzo: certificados X.509 y TLS en la práctica (cadena de confianza, validación y fallos típicos)</h3>
+            <p>
+                Este video refuerza la integración real: qué contiene un <strong>certificado X.509</strong>, cómo funciona la
+                <strong>cadena de confianza</strong>, qué valida el navegador/cliente en <strong>TLS</strong>, y por qué fallan
+                despliegues por <strong>certificados vencidos</strong>, <strong>autofirmados</strong> o mala verificación.
+            </p>
+
+            <ul class="mini-tasks">
+                <li><strong>Qué observar:</strong> ubica en el video dónde se valida identidad vs dónde se cifra el tráfico.</li>
+                <li><strong>Qué aplicar:</strong> con OpenSSL, escribe 3 comandos que usarías: ver CN/SAN, expiración y cadena.</li>
+                <li><strong>Qué documentar:</strong> define tu evidencia mínima para auditoría: hash + screenshot + fecha/hora + comando.</li>
+                <li><strong>Qué decidir:</strong> de tu lista de “errores frecuentes”, elige 2 y escribe una mitigación concreta por cada uno.</li>
+            </ul>
+
+            <div class="video-actions">
+                <a class="btn-youtube" href="https://www.youtube.com/watch?v=33VYnE7Bzpk" target="_blank" rel="noopener">
+                    ▶ Ver en YouTube (nueva pestaña)
+                </a>
+            </div>
+            <div class="video-hint">
+                Tip: intenta explicar el flujo TLS en 4 pasos sin memorizar: identidad → negociación → cifrado → evidencia/logs.
+            </div>
+        </div>
+    </section>
+
+<details open>
+        <summary><i class="fa-solid fa-screwdriver-wrench"></i> Herramientas de Integración</summary>
+        <div class="details-content">
+            <p>Para trabajar con firmas y certificados, estas son las herramientas estándar:</p>
+            <ul class="tool-list">
+                <li><i class="fa-solid fa-terminal"></i> <strong>OpenSSL:</strong> Línea de comandos para generar claves, CSRs y verificar certificados.</li>
+                <li><i class="fa-solid fa-file-pdf"></i> <strong>Adobe Acrobat Reader:</strong> Verifica firmas PAdES en documentos PDF visualmente.</li>
+                <li><i class="fa-brands fa-java"></i> <strong>Keytool / Keystore Explorer:</strong> Gestión de almacenes de claves (JKS, PKCS12) para aplicaciones Java.</li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-magnifying-glass-chart"></i> Evidencia de Integridad</summary>
+        <div class="details-content">
+            <p>¿Cómo demuestras que un archivo es auténtico? Publicando su Hash.</p>
+            <p>En Linux/Mac: <code>sha256sum archivo.iso</code></p>
+            <p>En Windows (PowerShell): <code>Get-FileHash archivo.iso</code></p>
+            <div class="evidence-box">
+                <strong>Tip de Auditoría:</strong> Siempre toma un screenshot del comando generando el hash junto a la fecha/hora del sistema. Esa es tu evidencia forense de que el archivo tenía ese estado en ese momento.
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-certificate"></i> Certificados Digitales</summary>
+        <div class="details-content">
+            <p>Un certificado digital (X.509) es básicamente una Clave Pública firmada por una Autoridad de Confianza (CA). Contiene:</p>
+            <ul>
+                <li>Identidad del dueño (ej. google.com).</li>
+                <li>Clave Pública del dueño.</li>
+                <li>Firma de la CA (ej. DigiCert) que valida los dos anteriores.</li>
+                <li>Fecha de expiración.</li>
+            </ul>
+        </div>
+    </details>
+
+
+<details>
+<summary><i class="fa-solid fa-list-check"></i> Checklist de dominio del Bloque 2</summary>
+<div class="details-content">
+<ul>
+<li>Puedo explicar cómo funciona TLS sin memorizar pasos.</li>
+<li>Entiendo por qué el hash prueba integridad.</li>
+<li>Distingo firma digital de firma escaneada.</li>
+<li>Sé qué evidencia presentar en un informe técnico.</li>
+</ul>
+</div>
+</details>
+
+<details>
+<summary><i class="fa-solid fa-bug"></i> Errores frecuentes en integraciones reales</summary>
+<div class="details-content">
+<ul>
+<li>Certificados vencidos o autofirmados en producción.</li>
+<li>No validar cadena de confianza.</li>
+<li>Tokens sin firma o con expiración infinita.</li>
+<li>Logs sin integridad ni sellado de tiempo.</li>
+</ul>
+</div>
+</details>
+
+</div>
+
+</body>
+</html>

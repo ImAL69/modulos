@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rúbrica: Actividad 1</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .rubric-table {
+        width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem;
+    }
+    .rubric-table th { background: #0d47a1; color: white; padding: 15px; text-align: left; font-weight: 600; }
+    .rubric-table td { border: 1px solid #bbdefb; padding: 15px; vertical-align: top; }
+    .level-high { background: #e3f2fd; color: #0d47a1; font-weight:bold; }
+    
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .rubric-table { font-size: 0.8rem; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Rúbrica de Evaluación (15%)</h1>
+        <p>Criterios de calificación para el Foro Técnico.</p>
+    </div>
+
+    <div style="overflow-x:auto;">
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Criterio</th>
+                    <th style="width: 25%;">Excelente (5.0)</th>
+                    <th style="width: 25%;">Aceptable (3.0 - 4.0)</th>
+                    <th style="width: 25%;">Insuficiente (0 - 2.9)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Argumentación Técnica</strong><br>Justificación de la solución.</td>
+                    <td class="level-high">Utiliza conceptos precisos (Hash, Inmutabilidad, Costos) para justificar por qué la solución elegida es mejor. Entiende el "trade-off".</td>
+                    <td>Elige una solución pero sus argumentos son superficiales ("es más seguro") sin explicar el mecanismo subyacente.</td>
+                    <td>Argumentos incorrectos o basados en mitos ("Blockchain es inhackeable y gratis").</td>
+                </tr>
+                <tr>
+                    <td><strong>Comprensión de Integridad</strong><br>Mecanismos de seguridad.</td>
+                    <td class="level-high">Explica claramente cómo se garantiza que el documento no fue modificado (hash chaining o firma digital) en la solución elegida.</td>
+                    <td>Menciona la integridad pero confunde conceptos (ej. confunde cifrado con hash o firma).</td>
+                    <td>No menciona cómo se logra la integridad técnica.</td>
+                </tr>
+                <tr>
+                    <td><strong>Debate y Réplica</strong><br>Pensamiento crítico.</td>
+                    <td class="level-high">La réplica identifica una debilidad técnica real en la postura del compañero con respeto y fundamento sólido.</td>
+                    <td>Réplica genérica ("buen aporte") o basada solo en opiniones personales sin sustento técnico.</td>
+                    <td>No participa en el debate o es irrespetuoso.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div style="margin-top:24px; background:#e8f5e9; border-left:6px solid #2e7d32; padding:18px; border-radius:12px;">
+        <h3 style="margin:0 0 8px 0; color:#1b5e20; font-family:'Montserrat',sans-serif;">✅ Cómo asegurar “Excelente (5.0)”</h3>
+        <ul style="margin:0 0 0 18px;">
+            <li>Usa <strong>mínimo 4 conceptos</strong> bien aplicados (hash, firma, consenso, costos, identidad, auditoría).</li>
+            <li>Explica un <strong>trade‑off</strong> real (ej. transparencia vs privacidad, costo vs confianza).</li>
+            <li>Incluye una <strong>mitigación concreta</strong> (KMS, MFA, roles, auditoría, cifrado off‑chain).</li>
+            <li>Réplica: haz una pregunta técnica y señala 1 debilidad con respeto.</li>
+        </ul>
+    </div>
+
+    <div style="margin-top:18px; background:#fff3e0; border-left:6px solid #ef6c00; padding:18px; border-radius:12px;">
+        <h3 style="margin:0 0 8px 0; color:#e65100; font-family:'Montserrat',sans-serif;">⚠️ Errores que bajan nota</h3>
+        <ul style="margin:0 0 0 18px;">
+            <li>Decir “blockchain es inhackeable” o “gratis”.</li>
+            <li>No hablar de <strong>identidad</strong> ni de cómo se evita suplantación.</li>
+            <li>Confundir <strong>cifrado</strong> con <strong>hash</strong> o <strong>firma</strong>.</li>
+            <li>Réplica vacía (“buen aporte”) sin argumento técnico.</li>
+        </ul>
+    </div>
+
+    <div style="margin-top:18px; background:#f5faff; border-left:6px solid #1565c0; padding:18px; border-radius:12px;">
+        <h3 style="margin:0 0 8px 0; color:#0d47a1; font-family:'Montserrat',sans-serif;">🧾 Plantilla de réplica (para cumplir perfecto)</h3>
+        <p style="margin:0 0 10px 0;">Copia y pega, y completa:</p>
+        <div style="background:#fff;border:1px solid #bbdefb;border-radius:12px;padding:12px;color:#37474f;">
+            <p style="margin:0 0 8px 0;"><strong>Estoy de acuerdo con…</strong> (1 idea del compañero).</p>
+            <p style="margin:0 0 8px 0;"><strong>Pero me preocupa…</strong> (1 riesgo técnico: identidad, costos, privacidad, oráculo).</p>
+            <p style="margin:0 0 8px 0;"><strong>¿Cómo resolverías…?</strong> (pregunta técnica concreta).</p>
+            <p style="margin:0;"><strong>Sugerencia:</strong> (mitigación concreta: firmas, auditoría, KMS, MFA, etc.).</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

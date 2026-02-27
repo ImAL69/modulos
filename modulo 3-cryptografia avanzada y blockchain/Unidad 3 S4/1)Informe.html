@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 3.7: Informe Ejecutivo</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .section-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 20px; margin-bottom: 15px; border-radius: 8px;
+        display: flex; gap: 15px; align-items: center;
+    }
+    .section-num { font-weight: 800; color: #1565c0; font-size: 1.5rem; min-width: 30px; }
+    .section-content h4 { margin: 0 0 5px 0; color: #0d47a1; font-family: 'Montserrat', sans-serif; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 3.7: El Informe Ejecutivo</h1>
+        <p>Estructura de alto nivel para la toma de decisiones.</p>
+    </div>
+
+    <p style="margin-bottom: 30px;">
+        Este documento define si el proyecto recibe financiación o se cancela. Debe ser claro, directo y centrado en el valor.
+    </p>
+
+    <div class="section-card">
+        <div class="section-num">1</div>
+        <div class="section-content">
+            <h4>Resumen Ejecutivo</h4>
+            <p>En 1 párrafo: ¿Cuál es el problema? ¿Cuál es la solución propuesta? ¿Cuánto cuesta y qué ganamos?</p>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <div class="section-num">2</div>
+        <div class="section-content">
+            <h4>Análisis de Riesgos</h4>
+            <p>Identificar los riesgos actuales (sin criptografía) vs los riesgos residuales (con la nueva solución). Mostrar la reducción del riesgo neto.</p>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <div class="section-num">3</div>
+        <div class="section-content">
+            <h4>Hoja de Ruta (Roadmap)</h4>
+            <p>Plan de implementación de alto nivel. Hitos clave, tiempos estimados y entregables principales.</p>
+        </div>
+    </div>
+
+
+
+<section style="margin-top:40px;">
+<h3 style="color:#0d47a1;">📑 Informe técnico – nivel profesional (MAX)</h3>
+<p>Este informe no es académico básico. Simula un <strong>documento de decisión técnica</strong> que podrías presentar a una organización.</p>
+
+<h4>📌 Estructura recomendada (obligatoria)</h4>
+<ol>
+<li><strong>Resumen ejecutivo (½ página):</strong> problema, solución propuesta y conclusión.</li>
+<li><strong>Contexto y necesidad:</strong> qué se quiere proteger (datos, procesos, evidencia).</li>
+<li><strong>Alternativas evaluadas:</strong> BD tradicional, firmas digitales, blockchain híbrida.</li>
+<li><strong>Matriz de decisión:</strong> criterios, pesos, puntajes y resultado.</li>
+<li><strong>Diseño seleccionado:</strong> arquitectura final explicada.</li>
+<li><strong>Evidencias técnicas:</strong> hash, cifrado, trazabilidad (TxID o justificación).</li>
+<li><strong>Riesgos y mitigaciones:</strong> técnicos, humanos y operativos.</li>
+<li><strong>Conclusiones:</strong> qué sí resuelve y qué no.</li>
+</ol>
+
+<div style="background:#e8f5e9;border-left:6px solid #2e7d32;padding:16px;border-radius:12px;">
+<strong>Regla de oro:</strong> Si otra persona puede repetir tu proceso solo con este informe, está bien hecho.
+</div>
+</section>
+
+</div>
+
+</body>
+</html>

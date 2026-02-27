@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 2.5: Trazabilidad en Blockchain</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .concept-box {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 25px;
+    }
+    .concept-title { color: #1565c0; font-weight: 700; font-size: 1.2rem; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    .process-diagram {
+        background: #e3f2fd; padding: 20px; border-radius: 8px; text-align: center; color: #0d47a1; font-weight: bold; margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 2.5: Registro y Trazabilidad</h1>
+        <p>Creando evidencias inmutables.</p>
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-camera"></i> Proof of Existence (Prueba de Existencia)</span>
+        <p>No guardamos el archivo (PDF/JPG) en la blockchain porque es muy caro. Guardamos su <strong>Hash</strong>. Si en el futuro alguien cuestiona el documento, calculamos su hash de nuevo y verificamos si coincide con el registrado en el bloque X de la fecha Y.</p>
+    </div>
+
+    <div class="process-diagram">
+        Documento original ➔ Función SHA-256 ➔ Hash único ➔ Transacción en Blockchain ➔ Receipt (Prueba)
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-timeline"></i> Trazabilidad de Cadena de Suministro</span>
+        <p>Cada vez que un producto cambia de manos (Productor -> Transportista -> Vendedor), se registra una transacción. Esto crea un historial auditale que impide falsificaciones o alteraciones en el registro de origen.</p>
+    </div>
+
+
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-stamp"></i> Timestamping: “Notaría digital”</span>
+        <p>La idea no es guardar tu archivo en blockchain. Guardas su <strong>huella (hash)</strong> para poder probar:
+        “Este documento existía antes de esta fecha y no ha sido alterado”.</p>
+        <div class="process-diagram">Archivo ➜ SHA-256 ➜ Hash ➜ Transacción ➜ Bloque/Fecha ➜ Verificación futura</div>
+        <p style="margin-bottom:0;"><strong>Importante:</strong> blockchain prueba existencia del hash en el tiempo, no “quién” lo creó (eso requiere identidad/firma).</p>
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-shield"></i> ¿Qué garantiza y qué NO garantiza?</span>
+        <ul>
+            <li><strong>Sí garantiza:</strong> inmutabilidad práctica del registro (si el consenso es confiable) y evidencia temporal.</li>
+            <li><strong>No garantiza:</strong> veracidad del contenido (si subes un hash de algo falso, seguirá siendo falso).</li>
+            <li><strong>No garantiza:</strong> privacidad (si publicas datos sensibles, no se pueden borrar).</li>
+        </ul>
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-layer-group"></i> Modelo recomendado: On-chain mínimo + Off-chain todo lo pesado</span>
+        <p><strong>Mejor práctica:</strong> almacena el archivo fuera de la cadena (S3, Drive, IPFS) y en blockchain solo:</p>
+        <ul>
+            <li>Hash del archivo</li>
+            <li>Un identificador (ID) o puntero (sin datos personales)</li>
+            <li>Metadatos no sensibles (tipo de documento, versión)</li>
+        </ul>
+        <p style="margin-bottom:0;"><strong>Razón:</strong> costos, privacidad y escalabilidad.</p>
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Mini-reto</span>
+        <p>Piensa en un caso real (académico o empresarial) donde sería útil “probar existencia”:</p>
+        <ol style="margin:10px 0 0 18px;">
+            <li>¿Qué documento/evento registrarías?</li>
+            <li>¿Qué dato jamás pondrías on-chain?</li>
+            <li>¿Qué evidencia mostrarías en un informe?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Objetivos del Módulo</title>
+<style>
+  :root{
+    --bg:#f0f2f5;
+    --card:#ffffff;
+    --text:#0f172a;
+    --muted:#475569;
+    --primary:#0b4aa2;
+    --primary2:#0a66c2;
+    --ring: rgba(11,74,162,.18);
+    --shadow: 0 18px 40px rgba(2,6,23,.10);
+    --radius:22px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+    background: radial-gradient(1200px 500px at 10% 10%, rgba(11,74,162,.08), transparent 60%),
+                radial-gradient(900px 420px at 90% 5%, rgba(10,102,194,.08), transparent 55%),
+                var(--bg);
+    color:var(--text);
+  }
+  .page{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 34px 18px 60px;
+  }
+  .shell{
+    background:var(--card);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    overflow:hidden;
+    border:1px solid rgba(2,6,23,.06);
+  }
+  .topbar{
+    position:relative;
+    padding: 22px 26px 18px;
+    border-top: 6px solid var(--primary);
+    background:
+      radial-gradient(680px 320px at 0% 0%, rgba(10,102,194,.12), transparent 55%),
+      linear-gradient(180deg, rgba(15,23,42,.02), transparent);
+  }
+  .topbar-row{
+    display:flex;
+    gap:18px;
+    align-items:flex-start;
+    justify-content:space-between;
+    flex-wrap:wrap;
+  }
+  .logo{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+  }
+  .logo img{
+    width: 150px;
+    max-width: 42vw;
+    height:auto;
+    background: rgba(255,255,255,.92);
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 10px 24px rgba(2,6,23,.10);
+  }
+  h1{
+    margin: 10px 0 6px;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height:1.08;
+    color: var(--primary);
+    letter-spacing: .2px;
+  }
+  .subtitle{
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .divider{
+    height:1px;
+    background: rgba(2,6,23,.10);
+    margin-top: 18px;
+  }
+  .content{
+    padding: 26px;
+    display:grid;
+    grid-template-columns: 1.3fr .7fr;
+    gap: 18px;
+  }
+  @media (max-width: 980px){
+    .content{grid-template-columns:1fr}
+  }
+  .card{
+    background: #fff;
+    border:1px solid rgba(2,6,23,.08);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    box-shadow: 0 10px 22px rgba(2,6,23,.06);
+  }
+  .card h2{
+    margin: 0 0 8px;
+    font-size: 20px;
+    color: #0b2f6b;
+  }
+  .card p{margin: 0 0 10px; color: var(--muted); line-height:1.55}
+  .bullets{
+    margin: 10px 0 0;
+    padding-left: 18px;
+    color: var(--text);
+  }
+  .bullets li{margin: 8px 0; line-height:1.45}
+  .badge-row{
+    display:flex; flex-wrap:wrap; gap:8px;
+    margin-top: 10px;
+  }
+  .badge{
+    font-size: 12px;
+    color: #0b2f6b;
+    background: rgba(10,102,194,.10);
+    border:1px solid rgba(10,102,194,.22);
+    padding: 6px 10px;
+    border-radius: 999px;
+  }
+  .callout{
+    border-left: 5px solid var(--primary2);
+    background: rgba(10,102,194,.06);
+    padding: 12px 12px 12px 14px;
+    border-radius: 14px;
+    color: var(--text);
+  }
+  .callout b{color:#0b2f6b}
+  .checklist{
+    list-style:none;
+    padding:0;
+    margin: 10px 0 0;
+  }
+  .checklist li{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    padding: 10px 10px;
+    border-radius: 14px;
+    border:1px dashed rgba(2,6,23,.12);
+    margin: 10px 0;
+    background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.65));
+  }
+  .tick{
+    width: 22px; height:22px; flex:0 0 22px;
+    border-radius: 7px;
+    background: rgba(11,74,162,.10);
+    border:1px solid rgba(11,74,162,.22);
+    display:grid; place-items:center;
+    margin-top: 2px;
+  }
+  .tick svg{width:14px;height:14px}
+  .mini{
+    display:grid;
+    gap: 12px;
+  }
+  .rubric{
+    display:grid;
+    gap: 10px;
+  }
+  .rubric .row{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    border:1px solid rgba(2,6,23,.08);
+    background: rgba(15,23,42,.02);
+  }
+  .pill{
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(11,74,162,.10);
+    border: 1px solid rgba(11,74,162,.18);
+    white-space:nowrap;
+    color:#0b2f6b;
+  }
+
+  /* reveal animations */
+  .reveal{opacity:0; transform: translateY(14px); filter: blur(6px); transition: opacity .7s ease, transform .7s ease, filter .7s ease;}
+  .reveal.in{opacity:1; transform:none; filter:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; filter:none; transition:none;}
+  }
+</style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="shell">
+      <header class="topbar">
+        <div class="topbar-row">
+          <div>
+            <h1 class="reveal">Objetivos del módulo</h1>
+            <p class="subtitle reveal">Qué vas a lograr y cómo demostrarlo con evidencia clara.</p>
+          </div>
+
+          <!-- Logo SIEMPRE arriba a la derecha (sin depender del CSS del LMS) -->
+          <div class="logo">
+            <img
+              src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1"
+              alt="Logo FET"
+              style="display:block; margin-left:auto;"
+            />
+          </div>
+        </div>
+        <div class="divider"></div>
+      </header>
+
+      <div class="content">
+        <section class="card reveal">
+          <h2>Objetivo general (SMART)</h2>
+          <p>
+            Al finalizar este bloque, serás capaz de <b>formular y justificar</b> una propuesta de solución
+            (o mejora) con una ruta de implementación realista, usando diagnóstico, referentes y criterios de calidad.
+          </p>
+          <div class="badge-row">
+            <span class="badge">Específico</span>
+            <span class="badge">Medible</span>
+            <span class="badge">Alcanzable</span>
+            <span class="badge">Relevante</span>
+            <span class="badge">Con tiempo</span>
+          </div>
+
+          <h2 style="margin-top:16px">Objetivos específicos</h2>
+          <ul class="bullets">
+            <li><b>Diagnosticar</b> el contexto y el problema con datos, observaciones y supuestos explícitos.</li>
+            <li><b>Analizar referentes</b> (buenas prácticas, casos, normas o metodologías) y extraer criterios aplicables.</li>
+            <li><b>Diseñar</b> una solución: alcance, componentes, responsables, recursos y riesgos clave.</li>
+            <li><b>Planificar</b> la implementación: actividades, tiempos, dependencias y evidencias por entregar.</li>
+            <li><b>Validar calidad</b> con una lista de verificación y criterios de aceptación.</li>
+          </ul>
+
+          <div class="callout" style="margin-top:12px">
+            <b>En palabras simples:</b> no es “solo escribir”. Es demostrar que tu propuesta se sostiene, se puede ejecutar y se puede evaluar.
+          </div>
+        </section>
+
+        <aside class="mini">
+          <section class="card reveal">
+            <h2>Indicadores de logro</h2>
+            <div class="rubric">
+              <div class="row">
+                <div><b>Claridad del objetivo</b><div style="color:var(--muted); font-size:13px">Redactado en verbo + objeto + criterio.</div></div>
+                <span class="pill">✔ Medible</span>
+              </div>
+              <div class="row">
+                <div><b>Coherencia</b><div style="color:var(--muted); font-size:13px">Diagnóstico → referentes → diseño → plan.</div></div>
+                <span class="pill">✔ Consistente</span>
+              </div>
+              <div class="row">
+                <div><b>Ejecutabilidad</b><div style="color:var(--muted); font-size:13px">Incluye recursos, roles y tiempos.</div></div>
+                <span class="pill">✔ Realista</span>
+              </div>
+              <div class="row">
+                <div><b>Evidencia</b><div style="color:var(--muted); font-size:13px">Productos verificables (tablas, diagramas, anexos).</div></div>
+                <span class="pill">✔ Verificable</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card reveal">
+            <h2>Checklist antes de entregar</h2>
+            <ul class="checklist">
+              <li>
+                <span class="tick" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <div><b>Objetivo general SMART</b><div style="color:var(--muted); font-size:13px">Incluye criterio de éxito (cómo se mide).</div></div>
+              </li>
+              <li>
+                <span class="tick" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <div><b>Referentes citados</b><div style="color:var(--muted); font-size:13px">Al menos 2–3 fuentes o casos aplicados a tu contexto.</div></div>
+              </li>
+              <li>
+                <span class="tick" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <div><b>Plan con tiempos</b><div style="color:var(--muted); font-size:13px">Actividades + responsable + evidencia por actividad.</div></div>
+              </li>
+            </ul>
+          </section>
+
+          <section class="card reveal">
+            <h2>Mini‑reto (10–15 min)</h2>
+            <p>
+              Toma tu objetivo general y reescríbelo en una sola oración con esta plantilla:
+              <b>“Al finalizar, podré [verbo] [objeto] para [propósito] medido por [criterio].”</b>
+            </p>
+            <p style="margin:0;color:var(--muted); font-size:13px">
+              Tip: Si no puedes medirlo, todavía no está listo.
+            </p>
+          </section>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+<script>
+(() => {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, { threshold: 0.14 });
+  els.forEach(e => io.observe(e));
+})();
+</script>
+</body>
+</html>

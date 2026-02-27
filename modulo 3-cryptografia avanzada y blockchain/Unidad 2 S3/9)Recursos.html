@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos Complementarios U2</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .resource-list { list-style: none; padding: 0; }
+    .resource-item {
+        background: #fff; border: 1px solid #e0e0e0; padding: 20px; margin-bottom: 15px; border-radius: 8px;
+        display: flex; align-items: center; justify-content: space-between; transition: box-shadow 0.2s;
+    }
+    .resource-item:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 5px solid #1976d2; }
+    
+    .res-info { display: flex; align-items: center; gap: 15px; }
+    .res-icon { font-size: 1.5rem; color: #1976d2; }
+    .res-title { font-weight: bold; color: #37474f; font-family: 'Montserrat', sans-serif; }
+    .res-desc { font-size: 0.9rem; color: #78909c; margin: 0; }
+
+    .btn-download {
+        background: #0d47a1; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 0.9rem; font-weight: bold;
+    }
+    .btn-download:hover { background: #1565c0; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .resource-item { flex-direction: column; align-items: flex-start; gap: 15px; }
+        .btn-download { width: 100%; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Recursos Complementarios U2</h1>
+        <p>Guía práctica y explicativa para dominar la evidencia técnica, la trazabilidad y la correcta presentación del laboratorio, sin necesidad de descargar archivos externos.</p>
+    </div>
+
+    
+
+
+
+    <div class="resource-item" style="border-left:5px solid #2e7d32;">
+        <div class="res-info">
+            <i class="fa-solid fa-terminal res-icon" style="color:#2e7d32;"></i>
+            <div>
+                <span class="res-title">Comandos rápidos (para evidencias)</span>
+                <p class="res-desc">Usa estos ejemplos para tu informe (ajusta nombres de archivo).</p>
+                <div style="margin-top:10px;background:#ffffff;border:1px solid #e0e0e0;border-radius:10px;padding:12px;font-family:'Courier New',monospace;color:#37474f;">
+                    <div><strong>Windows (PowerShell):</strong> <span>Get-FileHash .\archivo.pdf -Algorithm SHA256</span></div>
+                    <div style="margin-top:6px;"><strong>Linux/macOS:</strong> <span>shasum -a 256 archivo.pdf</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="resource-item" style="border-left:5px solid #1565c0;">
+        <div class="res-info">
+            <i class="fa-solid fa-file-shield res-icon" style="color:#1565c0;"></i>
+            <div>
+                <span class="res-title">Checklist de laboratorio (texto, sin descargas)</span>
+                <p class="res-desc">Marca mentalmente antes de entregar:</p>
+                <ul style="margin:10px 0 0 18px;color:#546e7a;">
+                    <li>Hash antes/después + explicación.</li>
+                    <li>Cifrado/descifrado con evidencia.</li>
+                    <li>TxID y captura del explorador.</li>
+                    <li>Conclusiones y límites.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="resource-item" style="border-left:5px solid #ef6c00;">
+        <div class="res-info">
+            <i class="fa-solid fa-pen-nib res-icon" style="color:#ef6c00;"></i>
+            <div>
+                <span class="res-title">Plantilla de informe (estructura sugerida)</span>
+                <p class="res-desc">Copia y pega esta estructura en tu documento:</p>
+                <div style="margin-top:10px;background:#ffffff;border:1px solid #e0e0e0;border-radius:10px;padding:12px;color:#37474f;">
+                    <ol style="margin:0 0 0 18px;">
+                        <li>Portada</li>
+                        <li>Herramientas y entorno</li>
+                        <li>Evidencias por tarea (objetivo → procedimiento → evidencia → verificación)</li>
+                        <li>Análisis crítico</li>
+                        <li>Conclusiones</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top:18px;background:#ffebee;border-left:6px solid #d32f2f;padding:18px;border-radius:12px;color:#b71c1c;">
+        <strong><i class="fa-solid fa-triangle-exclamation"></i> Seguridad:</strong> nunca compartas tu frase semilla, llaves privadas o datos reales. Usa siempre datos de prueba.
+    </div>
+
+</div>
+
+</body>
+</html>

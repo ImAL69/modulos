@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico: Bloque 3</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    /* ACORDEONES DIDÁCTICOS */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #0d47a1; font-family: 'Montserrat', sans-serif;
+        display: flex; align-items: center; gap: 15px; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; }
+
+    .doc-tips {
+        background: #e0f2f1; padding: 15px; border-radius: 8px; color: #00695c; margin-top: 15px;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* ==========================================================
+       BLOQUE VIDEO (SIN IFRAME) + MARCA DE AGUA (MISMA MINIATURA)
+       ========================================================== */
+
+    :root{
+        --thumb-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='720' viewBox='0 0 1280 720'%3E%3Cdefs%3E%3CradialGradient id='g' cx='28%25' cy='18%25' r='85%25'%3E%3Cstop offset='0%25' stop-color='%230d47a1' stop-opacity='0.95'/%3E%3Cstop offset='55%25' stop-color='%230b1020' stop-opacity='0.98'/%3E%3Cstop offset='100%25' stop-color='%23060a14'/%3E%3C/radialGradient%3E%3ClinearGradient id='l' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%234f...
+    }
+
+    /* Marca de agua (sin "sombra" sobre el contenido) */
+    .container-extended{ z-index: 0; }
+    .container-extended::after{
+        content:"";
+        position:absolute;
+        right: 18px;
+        bottom: 18px;
+        width: 360px;
+        height: 202px;
+        background-image: var(--thumb-svg);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.06;
+        pointer-events: none;
+        z-index: -1;
+        transform: rotate(-1deg);
+        filter: blur(0.1px);
+    }
+    @media (max-width: 900px){
+        .container-extended::after{ display:none; }
+    }
+
+    .video-card{
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 18px;
+        padding: 18px;
+        margin: 18px 0 26px 0;
+        border-radius: 14px;
+        border: 1px solid #bbdefb;
+        background: linear-gradient(180deg, #f5faff 0%, #ffffff 100%);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+    }
+
+    .video-thumb{
+        border-radius: 12px;
+        min-height: 180px;
+        background-image: var(--thumb-svg);
+        background-size: cover;
+        background-position: center;
+        border: 1px solid rgba(187,222,251,0.9);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .video-thumb::before{
+        content:"";
+        position:absolute;
+        inset: 0;
+        background: radial-gradient(circle at 30% 30%, rgba(79,195,247,0.16), rgba(11,16,32,0.0) 60%);
+    }
+
+    .video-meta h3{
+        margin: 0 0 6px 0;
+        font-family: 'Montserrat', sans-serif;
+        color: #0d47a1;
+        font-weight: 800;
+        font-size: 1.15rem;
+        line-height: 1.25;
+    }
+
+    .video-meta p{
+        margin: 0 0 10px 0;
+        color:#37474f;
+    }
+
+    .mini-tasks{
+        margin: 10px 0 14px 18px;
+        padding: 0;
+    }
+    .mini-tasks li{ margin: 6px 0; }
+
+    .video-actions{
+        display:flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    .btn-youtube{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background:#0d47a1;
+        color:#fff;
+        text-decoration:none;
+        font-weight:700;
+        border: 1px solid rgba(13,71,161,0.35);
+        box-shadow: 0 10px 18px rgba(13,71,161,0.18);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-youtube:hover{
+        transform: translateY(-1px);
+        box-shadow: 0 14px 24px rgba(13,71,161,0.22);
+    }
+
+    .video-hint{
+        font-size: 0.92rem;
+        color:#607d8b;
+        margin-top: 6px;
+    }
+
+    @media (max-width: 768px) {
+        .video-card{ grid-template-columns: 1fr; }
+        .video-thumb{ min-height: 190px; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Bloque 3</h1>
+        <p>Documentación Ejecutiva y Evaluación.</p>
+    </div>
+
+    
+    <!-- =========================
+         VIDEO (SIN IFRAME)
+         Ubicación: debajo del header-box, antes del primer <details>
+         ========================= -->
+    <section class="video-card" aria-label="Video de refuerzo">
+        <div class="video-thumb" role="img" aria-label="Miniatura del video"></div>
+
+        <div class="video-meta">
+            <h3>Video de refuerzo: cómo escribir un reporte ejecutivo (para gerencia) sin jerga técnica</h3>
+            <p>
+                Este video refuerza el bloque de <strong>Documentación Ejecutiva y Evaluación</strong>: cómo estructurar un reporte para
+                gerencia con foco en <strong>decisiones</strong>, <strong>riesgo</strong>, <strong>beneficio</strong> y métricas
+                (por ejemplo, ROI y costos operativos), evitando tecnicismos innecesarios.
+            </p>
+
+            <ul class="mini-tasks">
+                <li><strong>Qué observar:</strong> anota 3 “frases puente” que traduzcan técnico → negocio (como en tu ejemplo Mal/Bien).</li>
+                <li><strong>Qué aplicar:</strong> reescribe 2 frases técnicas del material en lenguaje ejecutivo (máx. 20 palabras cada una).</li>
+                <li><strong>Qué documentar:</strong> define 3 métricas para tu caso: ahorro, reducción de fraude, costo por transacción (y cómo las medirías).</li>
+                <li><strong>Qué decidir:</strong> redacta un cierre de 5 líneas: recomendación, ROI esperado, riesgos y plan de mitigación.</li>
+            </ul>
+
+            <div class="video-actions">
+                <a class="btn-youtube" href="https://www.youtube.com/watch?v=i02fEc-39Kk" target="_blank" rel="noopener">
+                    ▶ Ver en YouTube (nueva pestaña)
+                </a>
+            </div>
+            <div class="video-hint">
+                Tip: tu resumen ejecutivo debe responder 4 preguntas: ¿Qué problema? ¿Qué ganamos? ¿Qué cuesta? ¿Qué riesgo queda?
+            </div>
+        </div>
+    </section>
+
+<details open>
+        <summary><i class="fa-solid fa-file-invoice-dollar"></i> Calculando el ROI de Blockchain</summary>
+        <div class="details-content">
+            <p>Para justificar el proyecto, debes calcular el Retorno de Inversión:</p>
+            <ul>
+                <li><strong>Ahorro en Intermediarios:</strong> ¿Cuántos notarios/auditores eliminamos?</li>
+                <li><strong>Reducción de Fraude:</strong> ¿Cuánto dinero perdemos hoy por datos falsificados?</li>
+                <li><strong>Costo de Transacción:</strong> ¿Es el "Gas fee" menor que la comisión bancaria actual?</li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-pen-nib"></i> Escribiendo para Gerencia</summary>
+        <div class="details-content">
+            <p>El informe ejecutivo debe evitar la jerga técnica innecesaria.</p>
+            <div class="doc-tips">
+                <strong>Mal:</strong> "Usamos SHA-256 en una Merkle Tree sobre Ethereum Mainnet."<br>
+                <strong>Bien:</strong> "Implementamos un registro inmutable en una red pública que garantiza matemáticamente la integridad de los datos."
+            </div>
+        </div>
+    </details>
+
+
+
+<details>
+<summary><i class="fa-solid fa-brain"></i> Pensamiento de cierre</summary>
+<div class="details-content">
+<p>La mejor solución no es la más compleja, es la que <strong>resiste cambios</strong> y sigue siendo segura.</p>
+</div>
+</details>
+
+</div>
+
+</body>
+</html>

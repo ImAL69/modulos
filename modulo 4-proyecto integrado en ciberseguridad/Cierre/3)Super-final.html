@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrega Final del Módulo</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+:root {
+  --blue:#0d47a1;
+  --blue2:#1565c0;
+  --bg:#f0f2f5;
+  --text:#37474f;
+  --muted:#607d8b;
+  --card:#ffffff;
+  --line:#e0e0e0;
+  --soft:#f5faff;
+  --warn-bg:#fff3e0;
+  --warn:#e65100;
+  --ok:#2e7d32;
+  --shadow: 0 10px 40px rgba(0,0,0,0.08);
+  --r:20px;
+}
+
+body {
+    background-color: var(--bg);
+    margin: 0;
+    padding: 40px 20px;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text);
+    line-height: 1.8;
+    overflow-x:hidden;
+}
+
+.container-extended {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 54px;
+    background: var(--card);
+    border-radius: var(--r);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    border-top: 8px solid var(--blue);
+}
+
+.orb {
+    position:absolute; border-radius:999px;
+    opacity:.16; pointer-events:none;
+    animation: floaty 10s ease-in-out infinite;
+    transform: translate3d(0,0,0);
+}
+.orb.one { width:260px; height:260px; background: radial-gradient(circle at 30% 30%, #42a5f5, transparent 70%); top:-120px; left:-120px; }
+.orb.two { width:320px; height:320px; background: radial-gradient(circle at 30% 30%, #7e57c2, transparent 70%); bottom:-160px; right:-160px; animation-duration: 12s; }
+.orb.three { width:180px; height:180px; background: radial-gradient(circle at 30% 30%, #26c6da, transparent 70%); top:40%; right:-90px; animation-duration: 14s; }
+@keyframes floaty {
+  0%,100% { transform: translateY(0px) translateX(0px) scale(1); }
+  50% { transform: translateY(-10px) translateX(8px) scale(1.02); }
+}
+
+.uni-logo {
+    position: absolute; top: 26px; right: 34px;
+    width: 150px; height: auto; z-index: 100;
+    background: rgba(255,255,255,0.95); padding: 6px; border-radius: 10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 10px 26px rgba(0,0,0,0.14); }
+
+.header-box {
+    text-align: left;
+    margin-bottom: 36px;
+    padding-top: 18px;
+    padding-right: 190px;
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 16px;
+}
+.main-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--blue);
+    margin: 0 0 10px 0;
+    letter-spacing: .2px;
+}
+.sub { margin: 0; color: var(--muted); font-size: 1.02rem; }
+
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .orb { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .uni-logo { transition:none; }
+}
+
+.card {
+  background:#fff; border:1px solid #e6e6e6;
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0,0,0,0.09); }
+
+.pill {
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eef6ff;
+  border: 1px solid #cfe5ff;
+  color: var(--blue2);
+  font-weight: 700;
+  font-size: .92rem;
+  margin-top: 10px;
+}
+.pill i { opacity: .9; }
+
+.grid-2 { display:grid; grid-template-columns: 1.1fr .9fr; gap: 18px; }
+@media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.callout {
+  background: var(--warn-bg);
+  border: 1px solid #ffe0b2;
+  border-left: 6px solid var(--warn);
+  padding: 16px 18px;
+  border-radius: 14px;
+  color: #7a3c00;
+}
+.callout strong { color: var(--warn); }
+
+.list-clean { margin: 10px 0 0 18px; }
+.list-clean li { margin: 6px 0; }
+
+@media (max-width: 768px) {
+    .uni-logo { position: static; display: block; margin: 0 auto 18px auto; }
+    .header-box { padding-right: 0; text-align: center; }
+    .container-extended { padding: 44px 22px; }
+    body { padding: 28px 14px; }
+}
+
+
+.requirements{ text-align:left; background: var(--warn-bg); padding: 18px; border-radius: 14px; border: 1px solid #ffe0b2; }
+.req-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.req-card{ background:#fff; border:1px solid #ffe0b2; border-radius: 12px; padding: 14px; }
+.req-card strong{ color: var(--warn); }
+.upload-area{
+  border: 3px dashed #1976d2; border-radius: 16px; padding: 34px; margin: 18px 0 0 0;
+  background: #e3f2fd; transition: transform .2s ease, background .2s ease;
+}
+.upload-area:hover { background: #d7ecff; transform: translateY(-3px); }
+.upload-icon { font-size: 3.6rem; color: var(--blue2); margin-bottom: 12px; }
+.steps{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 18px; }
+.step{ border-left: 6px solid #26c6da; }
+.fine{ color:#78909c; font-size:.92rem; }
+code{ background:#0b1b2b10; padding: 2px 6px; border-radius: 6px; }
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+  <div class="orb one"></div><div class="orb two"></div><div class="orb three"></div>
+
+  <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+  <div class="header-box">
+    <h1 class="main-title">Entrega Final</h1>
+    <p class="sub">Aquí confirmas que tu entrega está completa, bien nombrada y con anexos verificables (nivel pro).</p>
+    <div class="pill reveal"><i class="fa-solid fa-cloud-arrow-up"></i> Entrega en plataforma · versión final</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card reveal">
+      <h3 style="margin:0 0 10px 0; color:var(--blue); font-family:Montserrat; font-weight:900;">Requisitos del archivo (ZIP)</h3>
+      <div class="requirements">
+        <strong>⚠️ Requisitos obligatorios</strong>
+        <ul class="list-clean" style="color: var(--warn);">
+          <li><strong>Formato:</strong> ZIP que contenga <strong>Informe PDF + Presentación + Anexos</strong>.</li>
+          <li><strong>Nombre:</strong> <code>Apellido_Nombre_ProyectoFinal_M5.zip</code></li>
+          <li><strong>Peso máximo:</strong> 100 MB (si pesa más: comprime o separa anexos según indique el docente).</li>
+          <li><strong>Fecha límite:</strong> revisa el calendario académico en tu plataforma.</li>
+        </ul>
+
+        <div class="req-grid">
+          <div class="req-card">
+            <strong><i class="fa-solid fa-file-pdf"></i> Informe (PDF)</strong>
+            <p style="margin:6px 0 0 0;">3–5 páginas + referencias APA + anexos (capturas/logs/tablas).</p>
+          </div>
+          <div class="req-card">
+            <strong><i class="fa-solid fa-display"></i> Presentación</strong>
+            <p style="margin:6px 0 0 0;">8–10 diapositivas: problema → método → resultado → impacto → riesgos → mejoras.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="upload-area reveal" aria-label="Zona informativa de entrega">
+        <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+        <h3 style="margin:0 0 6px 0;">En la plataforma: usa el botón “Entregar”</h3>
+        <p style="margin:0; color: var(--muted);">
+          Esta sección es informativa. La carga real se hace en el LMS (Moodle/Q10) según tu curso.
+        </p>
+      </div>
+
+      <p class="fine" style="margin-top:12px;">
+        Al entregar, certificas que tu trabajo es original y cumples con integridad académica.
+      </p>
+    </div>
+
+    <div class="reveal">
+      <div class="card">
+        <h3 style="margin:0 0 8px 0; color:var(--blue); font-family:Montserrat; font-weight:900;">Checklist express antes de subir</h3>
+        <div class="steps">
+          <div class="card step">
+            <strong>1) Abre el ZIP</strong>
+            <p style="margin:6px 0 0 0;">Verifica que <strong>sí</strong> estén el PDF, la presentación y los anexos.</p>
+          </div>
+          <div class="card step">
+            <strong>2) Prueba tu PDF</strong>
+            <p style="margin:6px 0 0 0;">Que se abra bien, sin páginas en blanco, y con capturas legibles.</p>
+          </div>
+          <div class="card step">
+            <strong>3) Nombre correcto</strong>
+            <p style="margin:6px 0 0 0;">Respeta exactamente el formato del nombre; evita tildes/espacios raros.</p>
+          </div>
+          <div class="card step">
+            <strong>4) Referencias APA</strong>
+            <p style="margin:6px 0 0 0;">Mínimo 2 fuentes técnicas. No uses “links sueltos” sin formato.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout card reveal" style="margin-top:16px;">
+        <strong><i class="fa-solid fa-bolt"></i> Consejo GOD:</strong>
+        incluye un anexo llamado <code>00_Indice_Anexos.pdf</code> (1 página) que liste capturas/logs y dónde se usan. Te sube la claridad brutal.
+      </div>
+
+      <div class="card reveal" style="margin-top:16px;">
+        <h3 style="margin:0 0 8px 0; color:var(--blue); font-family:Montserrat; font-weight:900;">Último control de calidad</h3>
+        <ul class="list-clean">
+          <li>¿Tu “contenido esperado” está <strong>completo</strong> y en orden?</li>
+          <li>¿Tu rúbrica está “cubierta” (cada criterio tiene evidencia)?</li>
+          <li>¿Tus mejoras proponen <strong>acciones</strong>, no solo deseos?</li>
+        </ul>
+        <p class="fine" style="margin:10px 0 0 0;">Si la respuesta es “sí” a todo, estás para nota alta.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

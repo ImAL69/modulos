@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Objetivos y Temario S1</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .topic-box {
+        background: #fff; border: 1px solid #e0e0e0; padding: 25px; border-radius: 12px; margin-bottom: 25px;
+        border-left: 6px solid #1976d2; transition: all 0.3s ease;
+    }
+    .topic-box:hover { transform: translateX(5px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+    .topic-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+    .topic-badge { background: #0d47a1; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+    .topic-title { font-size: 1.3rem; font-weight: 700; color: #0d47a1; font-family: 'Montserrat', sans-serif; }
+
+    .sub-list { list-style: none; padding: 0; margin-left: 10px; }
+    .sub-list li { margin-bottom: 8px; position: relative; padding-left: 25px; }
+    .sub-list li::before { content: '✔️'; position: absolute; left: 0; font-size: 0.9rem; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Objetivos y Temario S1</h1>
+        <p>Desglose de competencias para la Semana 1.</p>
+    </div>
+
+    <div class="topic-box">
+        <div class="topic-header">
+            <span class="topic-badge">TEMA 1.1</span>
+            <span class="topic-title">Fundamentos de Criptografía Moderna</span>
+        </div>
+        <p>Entenderemos los pilares de la seguridad de la información:</p>
+        <ul class="sub-list">
+            <li><strong>Confidencialidad:</strong> Solo el destinatario autorizado puede leer el mensaje.</li>
+            <li><strong>Integridad:</strong> Garantía de que el mensaje no fue modificado en tránsito.</li>
+            <li><strong>Autenticación:</strong> Verificación de identidad del emisor.</li>
+            <li><strong>No Repudio:</strong> El emisor no puede negar haber enviado el mensaje.</li>
+            <li><strong>Amenazas Comunes:</strong> Ataques Man-in-the-Middle (MitM), criptoanálisis básico.</li>
+        </ul>
+    </div>
+
+    <div class="topic-box" style="border-left-color: #2e7d32;">
+        <div class="topic-header">
+            <span class="topic-badge" style="background:#2e7d32;">TEMA 1.2</span>
+            <span class="topic-title" style="color:#1b5e20;">Criptografía Simétrica vs Asimétrica</span>
+        </div>
+        <p>Compararemos los dos grandes paradigmas criptográficos:</p>
+        <ul class="sub-list">
+            <li><strong>Cifrado Simétrico:</strong> Una sola clave para todo (AES, ChaCha20). Rápido pero difícil de distribuir.</li>
+            <li><strong>Cifrado Asimétrico:</strong> Par de claves pública/privada (RSA, ECC). Seguro pero lento.</li>
+            <li><strong>Enfoque Híbrido:</strong> Lo mejor de ambos mundos (como funciona HTTPS/TLS).</li>
+        </ul>
+    </div>
+
+
+
+    <div class="topic-box" style="border-left-color:#6a1b9a;">
+        <div class="topic-header">
+            <span class="topic-badge" style="background:#6a1b9a;">TEMA 1.3</span>
+            <span class="topic-title" style="color:#4a148c;">Cifrado híbrido y por qué es el estándar</span>
+        </div>
+        <p>Conectarás lo aprendido con un flujo real: <strong>TLS/HTTPS</strong>. Entenderás por qué:</p>
+        <ul class="sub-list">
+            <li>El asimétrico se usa para <strong>acordar una clave</strong> o autenticar identidad.</li>
+            <li>El simétrico se usa para <strong>transportar datos</strong> a alta velocidad.</li>
+            <li>La seguridad real depende de <strong>parámetros</strong> (tamaños de clave, modos, RNG), no solo del nombre del algoritmo.</li>
+        </ul>
+    </div>
+
+    <div class="topic-box" style="border-left-color:#ef6c00;">
+        <div class="topic-header">
+            <span class="topic-badge" style="background:#ef6c00;">OBJETIVO</span>
+            <span class="topic-title" style="color:#e65100;">Resultados esperados de la Semana 1</span>
+        </div>
+        <ul class="sub-list">
+            <li>Clasificar un escenario y decir si requiere <strong>cifrado</strong>, <strong>hash</strong>, <strong>HMAC</strong> o <strong>firma</strong>.</li>
+            <li>Explicar cómo se resuelve el problema de <strong>distribución de claves</strong>.</li>
+            <li>Justificar, con 2–3 razones, por qué una mala implementación rompe la seguridad (aunque el algoritmo sea fuerte).</li>
+        </ul>
+    </div>
+
+    <div class="topic-box" style="border-left-color:#2e7d32;">
+        <div class="topic-header">
+            <span class="topic-badge" style="background:#2e7d32;">MINI-RETO</span>
+            <span class="topic-title" style="color:#1b5e20;">Decisión rápida</span>
+        </div>
+        <p><strong>Situación:</strong> quieres enviar un archivo a un compañero y asegurarte de que no lo cambien y que provenga de ti.</p>
+        <ul class="sub-list">
+            <li>¿Qué usarías: cifrado simétrico, hash, HMAC o firma digital?</li>
+            <li>¿Qué evidencia entregarías para demostrarlo (captura/outputs)?</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

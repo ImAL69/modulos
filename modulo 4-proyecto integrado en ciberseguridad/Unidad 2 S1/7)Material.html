@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico: Bloque 1</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    /* ACORDEONES DIDÁCTICOS */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #0d47a1; font-family: 'Montserrat', sans-serif;
+        display: flex; align-items: center; gap: 15px; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; }
+
+    .resource-list { list-style: none; padding: 0; }
+    .resource-list li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .resource-list i { color: #1976d2; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+/* ====== UI+ Animations (lightweight) ====== */
+:root{
+  --fet-blue:#0d47a1;
+  --fet-blue2:#1565c0;
+  --fet-sky:#e3f2fd;
+}
+.container-extended{
+  background-image: radial-gradient(1200px 500px at 10% -10%, rgba(13,71,161,0.08), transparent 60%),
+                    radial-gradient(900px 400px at 90% 0%, rgba(21,101,192,0.08), transparent 55%);
+}
+.container-extended::before{
+  content:"";
+  position:absolute; inset:-2px;
+  background: linear-gradient(135deg, rgba(13,71,161,0.10), rgba(25,118,210,0.06), transparent 55%);
+  pointer-events:none;
+}
+.section-card{
+  background:#f5faff; border:1px solid #bbdefb;
+  padding:22px; border-radius:14px; margin:18px 0;
+  box-shadow: 0 8px 18px rgba(13,71,161,0.06);
+}
+.section-card h3, .section-card h4{ margin-top:0; color: var(--fet-blue); font-family:'Montserrat',sans-serif; }
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:7px 12px; border-radius:999px;
+  background: var(--fet-sky); color: var(--fet-blue);
+  font-weight:800; font-size:0.9rem; border:1px solid #90caf9;
+}
+.kpi-grid{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap:14px; margin-top:14px;
+}
+.kpi{
+  background:#fff; border:1px solid #e0e0e0; border-left:6px solid var(--fet-blue2);
+  padding:14px 16px; border-radius:12px;
+}
+.kpi strong{ color: var(--fet-blue); }
+.tip{
+  background:#fff3e0; border:1px solid #ffe0b2; color:#6d4c41;
+  padding:14px 16px; border-radius:12px; margin-top:10px;
+}
+.good{
+  background:#e8f5e9; border:1px solid #c8e6c9; color:#1b5e20;
+  padding:14px 16px; border-radius:12px; margin-top:10px;
+}
+.checklist{
+  list-style:none; padding:0; margin:10px 0 0 0;
+}
+.checklist li{
+  padding-left:28px; position:relative; margin:10px 0;
+}
+.checklist li::before{
+  content:"✓"; position:absolute; left:0; top:0;
+  width:20px; height:20px; border-radius:50%;
+  display:inline-flex; align-items:center; justify-content:center;
+  background: var(--fet-blue); color:#fff; font-weight:900; font-size:0.85rem;
+}
+.reveal-item{ opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal-item.is-visible{ opacity:1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce){
+  .reveal-item{ opacity:1 !important; transform:none !important; transition:none !important; }
+}
+
+
+/* ==========================================================
+   BLOQUE VIDEO (SIN IFRAME) + MARCA DE AGUA (MISMA MINIATURA)
+   ========================================================== */
+:root{ --thumb-svg: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221280%22%20height%3D%22720%22%20viewBox%3D%220%200%201280%20720%22%3E%0A%3Cdefs%3E%0A%20%20%3CradialGradient%20id%3D%22g%22%20cx%3D%2224%25%22%20cy%3D%2218%25%22%20r%3D%2290%25%22%3E%0A%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230d47a1%22%20stop-opacity%3D%220.96%22%2F%3E%0A%20%20%20%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%230b1020%22%20stop-opacity%3D%220.98%22%2F%3E%0A%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23060a14%22%2F%3E%0A%20%20%3C%2FradialGradient%3E%0A%20%20%3ClinearGradient%20id%3D%22l%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234fc3f7%22%20stop-opacity%3D%220.22%22%2F%3E%0A%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%237c4dff%22%20stop-opacity%3D%220.14%22%2F%3E%0A%20%20%3C%2FlinearGradient%3E%0A%3C%2Fdefs%3E%0A%3Crect%20width%3D%221280%22%20height%3D%22720%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%3Cpath%20d%3D%22M0%20520%20C%20260%20420%2C%20420%20640%2C%20720%20540%20C%20980%20455%2C%201100%20520%2C%201280%20470%20L1280%20720%20L0%20720%20Z%22%20fill%3D%22url%28%23l%29%22%2F%3E%0A%3Cg%20opacity%3D%220.18%22%3E%0A%20%20%3Ccircle%20cx%3D%22220%22%20cy%3D%22170%22%20r%3D%22120%22%20fill%3D%22%234fc3f7%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%221090%22%20cy%3D%22160%22%20r%3D%22150%22%20fill%3D%22%237c4dff%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22980%22%20cy%3D%22610%22%20r%3D%22130%22%20fill%3D%22%234fc3f7%22%2F%3E%0A%3C%2Fg%3E%0A%3Cg%3E%0A%20%20%3Crect%20x%3D%22160%22%20y%3D%22150%22%20width%3D%22960%22%20height%3D%22420%22%20rx%3D%2226%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.08%29%22%20stroke%3D%22rgba%28255%2C255%2C255%2C0.18%29%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22400%22%20cy%3D%22360%22%20r%3D%2278%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.14%29%22%20stroke%3D%22rgba%28255%2C255%2C255%2C0.22%29%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M382%20322%20L382%20398%20L454%20360%20Z%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.92%29%22%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E"); }
+
+/* Marca de agua (sin sombra sobre el contenido) */
+.container-extended{ z-index: 0; }
+.container-extended::after{
+    content:"";
+    position:absolute;
+    right: 18px;
+    bottom: 18px;
+    width: 360px;
+    height: 202px;
+    background-image: var(--thumb-svg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: -1;
+    transform: rotate(-1deg);
+    filter: blur(0.1px);
+}
+@media (max-width: 900px){
+    .container-extended::after{ display:none; }
+}
+
+.video-card{
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 18px;
+    padding: 18px;
+    margin: 18px 0 26px 0;
+    border-radius: 14px;
+    border: 1px solid #bbdefb;
+    background: linear-gradient(180deg, #f5faff 0%, #ffffff 100%);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+}
+.video-thumb{
+    border-radius: 12px;
+    min-height: 180px;
+    background-image: var(--thumb-svg);
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(187,222,251,0.9);
+    position: relative;
+    overflow: hidden;
+}
+.video-thumb::before{
+    content:"";
+    position:absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(79,195,247,0.16), rgba(11,16,32,0.0) 60%);
+}
+.video-meta h3{
+    margin: 0 0 6px 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #0d47a1;
+    font-weight: 800;
+    font-size: 1.15rem;
+    line-height: 1.25;
+}
+.video-meta p{ margin: 0 0 10px 0; color:#37474f; }
+.mini-tasks{ margin: 10px 0 14px 18px; padding: 0; }
+.mini-tasks li{ margin: 6px 0; }
+.video-actions{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+.btn-youtube{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background:#0d47a1;
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    border: 1px solid rgba(13,71,161,0.35);
+    box-shadow: 0 10px 18px rgba(13,71,161,0.18);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-youtube:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 14px 24px rgba(13,71,161,0.22);
+}
+.video-hint{ font-size: 0.92rem; color:#607d8b; margin-top: 6px; }
+@media (max-width: 768px) {
+    .video-card{ grid-template-columns: 1fr; }
+    .video-thumb{ min-height: 190px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Bloque 1 (U2)</h1>
+        <p>Herramientas para el Diseño de Proyectos.</p>
+    </div>
+
+    
+    <!-- =========================
+         VIDEO (SIN IFRAME)
+         Ubicación: debajo del header-box, antes del primer <details>
+         ========================= -->
+    <section class="video-card" aria-label="Video de refuerzo">
+        <div class="video-thumb" role="img" aria-label="Miniatura del video"></div>
+
+        <div class="video-meta">
+            <h3>Video de refuerzo: scope creep (deslizamiento del alcance) y control de cambios aplicado a proyectos</h3>
+            <p>
+                Este video complementa tus <strong>Guías de Diseño</strong>: qué es el <em>scope creep</em>, por qué sucede y cómo
+                lo frenas con un <strong>control de cambios</strong> claro (impacto en tiempo, costo, calidad y riesgos).
+            </p>
+
+            <ul class="mini-tasks">
+                <li><strong>Qué observar:</strong> identifica 3 causas típicas del scope creep y relaciónalas con tu proyecto.</li>
+                <li><strong>Qué aplicar:</strong> redacta un “alcance mínimo” (incluye: entregables + exclusiones + criterios de aceptación).</li>
+                <li><strong>Qué documentar:</strong> diseña un flujo de control de cambios: solicitud → análisis → aprobación → actualización → evidencia.</li>
+                <li><strong>Qué decidir:</strong> define 2 reglas de gobernanza: quién aprueba cambios y cuándo se rechazan (por costo/risgo).</li>
+            </ul>
+
+            <div class="video-actions">
+                <a class="btn-youtube" href="https://www.youtube.com/watch?v=uaqa7nOLcnc" target="_blank" rel="noopener">
+                    ▶ Ver en YouTube (nueva pestaña)
+                </a>
+            </div>
+            <div class="video-hint">
+                Tip: cada cambio aprobado debe dejar rastro: “qué cambió”, “por qué”, “impacto”, “quién aprobó” y “fecha”.
+            </div>
+        </div>
+    </section>
+
+<details open>
+        <summary><i class="fa-solid fa-compass-drafting"></i> Guías de Diseño</summary>
+        <div class="details-content">
+            <ul class="resource-list">
+                <li><i class="fa-solid fa-file-pdf"></i> <strong>Guía de Alcance:</strong> Cómo definir los límites del proyecto para evitar el "scope creep".</li>
+                <li><i class="fa-solid fa-file-pdf"></i> <strong>Plantilla de Control de Cambios:</strong> Formato para gestionar modificaciones en el proyecto.</li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-shield-cat"></i> Catálogos de Controles</summary>
+        <div class="details-content">
+            <p>No inventes los controles; usa los estándares:</p>
+            <ul>
+                <li><strong>NIST SP 800-53:</strong> Catálogo masivo de controles de seguridad y privacidad.</li>
+                <li><strong>CIS Controls v8:</strong> Los 18 controles críticos priorizados.</li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-vial"></i> Guías de Testing</summary>
+        <div class="details-content">
+            <p>Para la fase de implementación y prueba:</p>
+            <ul>
+                <li><strong>OWASP Testing Guide (WSTG):</strong> Metodología estándar para probar seguridad web.</li>
+                <li><strong>ASVS (Application Security Verification Standard):</strong> Lista de verificación de requisitos de seguridad.</li>
+            </ul>
+        </div>
+    </details>
+
+</div>
+
+
+<script>
+(function(){
+  try{
+    const targets = document.querySelectorAll(
+      ".phase-item, .method-card, .design-step, .pilot-card, details, .doc-section, .obj-wrapper, .req-list li, table tr, .section-card"
+    );
+    targets.forEach(el => el.classList.add("reveal-item"));
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("is-visible");
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.12, rootMargin: "0px 0px -10% 0px"});
+    targets.forEach(el => io.observe(el));
+  }catch(e){}
+})();
+</script>
+
+</body>
+</html>

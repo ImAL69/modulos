@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 2.1: Implementación Segura</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .principle-box {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 25px;
+    }
+    .principle-title { color: #1565c0; font-weight: 700; font-size: 1.2rem; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    .dont-box {
+        background: #ffebee; border: 1px solid #ef9a9a; color: #c62828; padding: 20px; border-radius: 8px; margin-top: 20px;
+        text-align: center; font-weight: bold;
+    }
+
+    .code-snippet {
+        background: #263238; color: #80cbc4; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.9rem; margin-top: 15px; text-align: left;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 2.1: Implementación con Librerías</h1>
+        <p>Buenas prácticas de desarrollo seguro.</p>
+    </div>
+
+    <div class="principle-box">
+        <span class="principle-title"><i class="fa-solid fa-box-open"></i> Usa Estándares, No Inventos</span>
+        <p>La regla de oro de la criptografía aplicada es: <strong>Nunca escribas tu propio algoritmo criptográfico.</strong> Usa librerías auditadas y mantenidas por la comunidad.</p>
+        <ul>
+            <li><strong>Python:</strong> <code>cryptography</code>, <code>PyCryptodome</code>.</li>
+            <li><strong>Java:</strong> <code>Bouncy Castle</code>.</li>
+            <li><strong>Node.js:</strong> Módulo nativo <code>crypto</code>.</li>
+        </ul>
+    </div>
+
+    <div class="principle-box">
+        <span class="principle-title"><i class="fa-solid fa-gears"></i> Configuración Segura</span>
+        <p>No basta con usar la librería, hay que configurarla bien. Errores comunes:</p>
+        <ul>
+            <li>Usar modos de cifrado inseguros (como ECB). <strong>Usa siempre CBC o GCM.</strong></li>
+            <li>Usar vectores de inicialización (IV) estáticos o nulos. <strong>El IV debe ser aleatorio para cada mensaje.</strong></li>
+        </ul>
+        <div class="code-snippet">
+            # MAL: IV estático (Inseguro)<br>
+            iv = b'0000000000000000'<br><br>
+            # BIEN: IV aleatorio (Seguro)<br>
+            iv = os.urandom(16)
+        </div>
+    </div>
+
+    <div class="dont-box">
+        <i class="fa-solid fa-ban"></i> PROHIBIDO: Implementar AES o RSA "a mano" copiando fórmulas matemáticas. Un error de un bit en la implementación hace que el sistema sea vulnerable.
+    </div>
+
+
+
+    <div class="principle-box">
+        <span class="principle-title"><i class="fa-solid fa-toolbox"></i> Caja de herramientas (qué usar para qué)</span>
+        <ul>
+            <li><strong>AES‑GCM / ChaCha20‑Poly1305 (AEAD):</strong> cifrado moderno con autenticación (evita “cifrar sin integridad”).</li>
+            <li><strong>SHA‑256 / SHA‑3:</strong> integridad (huella).</li>
+            <li><strong>HMAC‑SHA256:</strong> integridad + autenticidad en canales donde compartes una clave.</li>
+            <li><strong>RSA/ECC:</strong> intercambio de claves y firma digital.</li>
+        </ul>
+        <p style="margin-bottom:0;"><strong>Consejo:</strong> si no necesitas recuperar el dato, no cifres: usa hash (ej. contraseñas).</p>
+    </div>
+
+    <div class="principle-box">
+        <span class="principle-title"><i class="fa-solid fa-lock"></i> Modo recomendado: AEAD (GCM / ChaCha20‑Poly1305)</span>
+        <p>AEAD significa “cifrado autenticado”: protege <strong>confidencialidad</strong> + <strong>integridad</strong> en un solo paso.
+        En la práctica te evita el error clásico: “cifré el archivo, pero lo pudieron modificar”.</p>
+        <div class="code-snippet">
+            # Pseudoflujo seguro (AEAD)<br>
+            nonce = os.urandom(12)<br>
+            ciphertext, tag = encrypt(key, nonce, plaintext, aad=b"metadata")<br>
+            plaintext = decrypt(key, nonce, ciphertext, tag, aad=b"metadata")
+        </div>
+        <p style="margin-top:10px;margin-bottom:0;">
+            <strong>AAD</strong> (datos asociados) es metadata que no se cifra, pero queda protegida contra cambios.
+        </p>
+    </div>
+
+    <div class="principle-box">
+        <span class="principle-title"><i class="fa-solid fa-clipboard-check"></i> Evidencia mínima de laboratorio</span>
+        <ol style="margin:10px 0 0 18px;">
+            <li>Generación de clave (sin mostrarla completa en capturas públicas).</li>
+            <li>Cifrado: archivo/mensaje → salida.</li>
+            <li>Descifrado: salida → original (y prueba de igualdad).</li>
+            <li>Integridad: altera 1 byte y muestra que falla verificación.</li>
+        </ol>
+    </div>
+
+    <div class="dont-box">
+        <i class="fa-solid fa-ban"></i> PROHIBIDO: usar ECB, IV fijo, “mi propio algoritmo”, o guardar claves en el repositorio.
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentémonos</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 40px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .intro-text { font-size: 1.1rem; color: #546e7a; margin-bottom: 30px; }
+
+    .card-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px;
+    }
+
+    .profile-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; transition: transform 0.2s;
+    }
+    .profile-card:hover { transform: translateY(-3px); border-color: #1565c0; }
+
+    .card-icon { font-size: 2rem; color: #1565c0; margin-bottom: 15px; }
+    .card-title { font-weight: 700; color: #0d47a1; font-family: 'Montserrat', sans-serif; margin-bottom: 10px; display: block; }
+
+    .action-box {
+        background: #e3f2fd; border-left: 5px solid #1565c0; padding: 25px; border-radius: 8px; margin-top: 30px;
+    }
+
+    .btn-participate {
+        display: inline-block; padding: 12px 30px; background: #0d47a1; color: white; 
+        text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 15px;
+        transition: background 0.2s;
+    }
+    .btn-participate:hover { background: #1565c0; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Presentémonos</h1>
+        <p>¿Quiénes somos y qué sabemos de seguridad?</p>
+    </div>
+
+    <p class="intro-text">
+        La criptografía solía ser dominio de espías y matemáticos; hoy es esencial para desarrolladores y administradores. Queremos conocer tu punto de partida.
+    </p>
+
+    <div class="card-grid">
+        <div class="profile-card">
+            <i class="fa-solid fa-id-badge card-icon"></i>
+            <span class="card-title">1. Tu Perfil</span>
+            <p>¿Eres desarrollador, sysadmin, auditor o vienes de otra área? ¿Cuál es tu experiencia general en TI?</p>
+        </div>
+
+        <div class="profile-card">
+            <i class="fa-solid fa-lock card-icon"></i>
+            <span class="card-title">2. Experiencia Previa</span>
+            <p>¿Has implementado HTTPS? ¿Has comprado criptomonedas? ¿Has usado PGP o firmas digitales? (Es válido decir "ninguna").</p>
+        </div>
+
+        <div class="profile-card">
+            <i class="fa-solid fa-rocket card-icon"></i>
+            <span class="card-title">3. Expectativas</span>
+            <p>¿Qué esperas aprender? ¿Te interesa más la parte técnica de cifrado o el funcionamiento de Blockchain?</p>
+        </div>
+    </div>
+
+    <div class="action-box">
+        <h3 style="margin-top:0; color:#0d47a1;">💬 Instrucciones:</h3>
+        <p>Crea una nueva entrada presentándote. Lee a tus compañeros; quizás encuentres a alguien con quien debatir sobre Ethereum o AES.</p>
+        
+
+    <div class="action-box">
+        <h3 style="margin-top:0; color:#0d47a1;">🧩 Plantilla rápida (copia y pega en tu presentación)</h3>
+        <ul style="margin:10px 0 0 18px;">
+            <li><strong>Nombre y rol:</strong> (dev / admin / auditor / estudiante / otro)</li>
+            <li><strong>Tu experiencia en cripto:</strong> (HTTPS, firmas, VPN, wallets, ninguna)</li>
+            <li><strong>Qué te interesa:</strong> (cifrado, blockchain, smart contracts, trazabilidad)</li>
+            <li><strong>Meta personal:</strong> (ej. “aprender a firmar documentos y verificar integridad”)</li>
+            <li><strong>Un reto:</strong> (ej. “no entiendo la diferencia entre hash y cifrado”)</li>
+        </ul>
+        <p style="margin:12px 0 0 0; color:#546e7a;"><strong>Tip:</strong> si mencionas un caso real (tu trabajo/proyecto), la discusión del curso te servirá más.</p>
+    </div>
+
+    <div class="profile-card" style="margin-top:18px;">
+        <i class="fa-solid fa-comments card-icon"></i>
+        <span class="card-title">4. Interacción mínima esperada</span>
+        <p>Responde a 2 compañeros con: (1) una pregunta técnica, (2) una sugerencia de seguridad y (3) un ejemplo de uso cotidiano de cripto.</p>
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resultados de Aprendizaje (RA)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .ra-card {
+        background: #f5faff; border: 1px solid #bbdefb; border-radius: 12px;
+        padding: 30px; margin-bottom: 30px; transition: transform 0.2s;
+        border-left: 6px solid #1565c0;
+    }
+    .ra-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+    .ra-header { display: flex; align-items: center; margin-bottom: 20px; }
+    .ra-badge {
+        background: #1565c0; color: white; padding: 5px 15px; border-radius: 50px;
+        font-weight: bold; margin-right: 15px; font-family: 'Montserrat', sans-serif;
+    }
+    .ra-title { font-size: 1.4rem; font-weight: 700; color: #0d47a1; }
+    
+    .ra-details ul { margin: 0; padding-left: 20px; color: #546e7a; margin-top: 15px; line-height: 1.7; }
+    .ra-details li { margin-bottom: 10px; }
+    .ra-details strong { color: #0d47a1; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* --- Symmetry improvements --- */
+    .ra-details { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    .ra-details p { margin: 0; }
+    .ra-pills {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 6px;
+    }
+    .pill {
+        background: #ffffff;
+        border: 1px solid #e3f2fd;
+        border-radius: 12px;
+        padding: 14px 16px;
+        line-height: 1.55;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .pill h4{
+        margin: 0 0 8px 0;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+        color: #0d47a1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .pill ul{
+        margin: 0;
+        padding-left: 18px;
+        color: #546e7a;
+    }
+    .pill li{ margin: 0 0 6px 0; }
+    .pill li:last-child{ margin-bottom: 0; }
+
+    @media (max-width: 820px){
+        .ra-pills{ grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Resultados de Aprendizaje (RA)</h1>
+        <p>Competencias alineadas al cronograma del módulo (Unidades 1–3) y a la evaluación.</p>
+    </div>
+
+    <div class="ra-card">
+        <div class="ra-header">
+            <span class="ra-badge">RA1</span>
+            <span class="ra-title">Fundamentos criptográficos aplicados</span>
+        </div>
+        <div class="ra-details">
+            <p><strong>Competencia:</strong> Explicar y diferenciar cifrado simétrico/asimétrico, funciones hash y firmas digitales, y relacionarlos con objetivos de seguridad (confidencialidad, integridad, autenticidad y no repudio) en contextos reales.</p>
+
+            
+        <div class="ra-pills">
+            <div class="pill">
+                <h4>📘 Saber</h4>
+                <ul>
+                    <li>confidencialidad</li>
+<li>integridad</li>
+<li>autenticidad y no repudio</li>
+<li>cifrado simétrico vs asimétrico</li>
+<li>hash vs HMAC vs firma digital</li>
+<li>concepto de consenso y registro distribuido</li>
+                </ul>
+            </div>
+            <div class="pill">
+                <h4>🛠️ Hacer</h4>
+                <ul>
+                    <li>identificar qué mecanismo resuelve cada necesidad</li>
+<li>argumentar cuándo NO es necesario usar blockchain</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="ra-card">
+        <div class="ra-header">
+            <span class="ra-badge">RA2</span>
+            <span class="ra-title">Implementación segura y verificación</span>
+        </div>
+        <div class="ra-details">
+            <p><strong>Competencia:</strong> Aplicar criptografía usando librerías estándar para cifrar, firmar y verificar información, incorporando buenas prácticas de gestión de claves y validación de resultados mediante evidencia reproducible.</p>
+
+            
+        <div class="ra-pills">
+            <div class="pill">
+                <h4>📘 Saber</h4>
+                <ul>
+                    <li>buenas prácticas de llaves (KMS/HSM</li>
+<li>rotación)</li>
+<li>IV</li>
+<li>salt y aleatoriedad (RNG)</li>
+<li>modos de cifrado modernos (ej. AEAD)</li>
+<li>evidencia verificable (comandos</li>
+<li>outputs</li>
+<li>logs)</li>
+                </ul>
+            </div>
+            <div class="pill">
+                <h4>🛠️ Hacer</h4>
+                <ul>
+                    <li>cifrar y descifrar datos de forma segura</li>
+<li>firmar y verificar documentos</li>
+<li>documentar pasos reproducibles con evidencia</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="ra-card">
+        <div class="ra-header">
+            <span class="ra-badge">RA3</span>
+            <span class="ra-title">Evaluación y toma de decisiones tecnológicas</span>
+        </div>
+        <div class="ra-details">
+            <p><strong>Competencia:</strong> Evaluar la pertinencia y viabilidad de soluciones criptográficas y/o blockchain, considerando costos, escalabilidad, privacidad, riesgos y requisitos del negocio, y justificar decisiones con criterios técnicos y ejecutivos.</p>
+
+            
+        <div class="ra-pills">
+            <div class="pill">
+                <h4>📘 Saber</h4>
+                <ul>
+                    <li>costos y trade-offs (rendimiento</li>
+<li>complejidad)</li>
+<li>privacidad y cumplimiento</li>
+<li>riesgos de implementación y obsolescencia</li>
+<li>criterios para elegir blockchain (múltiples partes</li>
+<li>desconfianza</li>
+<li>auditoría)</li>
+                </ul>
+            </div>
+            <div class="pill">
+                <h4>🛠️ Hacer</h4>
+                <ul>
+                    <li>construir una matriz de decisión (sí/no blockchain)</li>
+<li>proponer arquitectura y controles</li>
+<li>defender la decisión con argumentos claros</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    
+
+    </div>
+    </div>
+        </div>
+    </div>
+
+    
+
+    <div class="ra-card">
+        <div class="ra-header">
+            <span class="ra-badge">RA4</span>
+            <span class="ra-title">Comunicación y evidencia profesional</span>
+        </div>
+        <div class="ra-details">
+            <p><strong>Competencia:</strong> Documentar resultados (cifrado, hash/HMAC, firmas y trazabilidad) en un formato profesional y auditabile, explicando hallazgos y decisiones tanto en lenguaje técnico como ejecutivo.</p>
+
+            
+        <div class="ra-pills">
+            <div class="pill">
+                <h4>📘 Saber</h4>
+                <ul>
+                    <li>estructura de informe (resumen</li>
+<li>método</li>
+<li>evidencia</li>
+<li>conclusiones)</li>
+<li>trazabilidad de evidencias (antes/después)</li>
+<li>buenas prácticas de anonimización</li>
+                </ul>
+            </div>
+            <div class="pill">
+                <h4>🛠️ Hacer</h4>
+                <ul>
+                    <li>entregar informe claro y reproducible</li>
+<li>presentar resultados en formato ejecutivo (slides/resumen)</li>
+<li>definir criterio de cierre y retest</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="ra-card">
+        <div class="ra-header">
+            <span class="ra-badge">RA5</span>
+            <span class="ra-title">Gestión de riesgos criptográficos</span>
+        </div>
+        <div class="ra-details">
+            <p><strong>Competencia:</strong> Identificar amenazas y fallas comunes de implementación criptográfica y proponer mitigaciones realistas (controles técnicos y de proceso) para reducir el riesgo.</p>
+
+            
+        <div class="ra-pills">
+            <div class="pill">
+                <h4>📘 Saber</h4>
+                <ul>
+                    <li>robo o exposición de claves</li>
+<li>downgrade y mala configuración</li>
+<li>hashes débiles/obsoletos y colisiones</li>
+<li>mala aleatoriedad (RNG)</li>
+                </ul>
+            </div>
+            <div class="pill">
+                <h4>🛠️ Hacer</h4>
+                <ul>
+                    <li>recomendar mitigaciones (KMS</li>
+<li>rotación</li>
+<li>MFA</li>
+<li>hardening)</li>
+<li>definir controles compensatorios</li>
+<li>priorizar acciones según impacto y probabilidad</li>
+                </ul>
+            </div>
+</body>
+</html>

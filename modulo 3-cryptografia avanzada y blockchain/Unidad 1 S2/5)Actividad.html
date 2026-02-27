@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividad 1: Foro Evaluativo</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .instruction-box {
+        background: #e3f2fd; padding: 30px; border-radius: 12px; border-left: 6px solid #0d47a1; margin-bottom: 30px;
+    }
+
+    .scenario-box {
+        background: #fff; border: 1px solid #90caf9; padding: 25px; border-radius: 12px; margin-bottom: 20px;
+    }
+    .scenario-title { font-weight: bold; color: #1565c0; display: block; margin-bottom: 10px; font-size: 1.1rem; }
+
+    .btn-discuss {
+        display: block; width: 250px; margin: 30px auto 0; padding: 15px;
+        background: #0d47a1; color: white; text-align: center; border-radius: 50px;
+        text-decoration: none; font-weight: bold; transition: transform 0.2s;
+    }
+    .btn-discuss:hover { transform: scale(1.05); background: #1565c0; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Actividad 1: Foro Técnico (15%)</h1>
+        <p>Debate: ¿Cuándo usar Blockchain?</p>
+    </div>
+
+    <div class="instruction-box">
+        <h3 style="color:#0d47a1; margin-top:0;">📝 Consigna</h3>
+        <p>Analiza el siguiente escenario y argumenta técnicamente.</p>
+        
+        <div class="scenario-box">
+            <span class="scenario-title">Caso: La Votación Estudiantil</span>
+            <p>La universidad quiere un sistema de votación digital seguro. 
+            <br><strong>Opción A:</strong> Base de datos centralizada con firmas digitales.
+            <br><strong>Opción B:</strong> Blockchain pública (Ethereum).</p>
+        </div>
+
+        <p><strong>Preguntas:</strong></p>
+        <ul>
+            <li>¿Cuál opción garantiza mejor la transparencia?</li>
+            <li>¿Cuál es más costosa de implementar?</li>
+            <li>¿Es realmente necesario usar Blockchain aquí?</li>
+        </ul>
+        <p>Debes responder y replicar a un compañero.</p>
+    </div>
+
+    
+
+    <div class="instruction-box">
+        <h3 style="color:#0d47a1; margin-top:0;">🧭 Qué debes entregar (estructura exacta)</h3>
+        <ol style="margin:0 0 0 18px;">
+            <li><strong>Decisión (A o B):</strong> elige una opción y di por qué en 3–5 líneas.</li>
+            <li><strong>Transparencia:</strong> explica cómo se logra (auditoría, registro, verificabilidad) y qué limita.</li>
+            <li><strong>Costos:</strong> menciona costos técnicos (infra, complejidad, mantenimiento) y operativos (gestión de claves, soporte).</li>
+            <li><strong>Seguridad real:</strong> indica 2 riesgos y cómo mitigarlos (ej. fraude de identidad, coerción, oráculo, suplantación).</li>
+            <li><strong>Conclusión:</strong> 1 frase contundente (“Blockchain solo se justifica si…”).</li>
+        </ol>
+    </div>
+
+    <div class="instruction-box" style="background:#f3e5f5; border-left-color:#6a1b9a;">
+        <h3 style="color:#4a148c; margin-top:0;">🔍 Pistas para argumentar (sin caer en mitos)</h3>
+        <ul style="margin:0 0 0 18px;">
+            <li><strong>Transparencia ≠ privacidad:</strong> una blockchain pública es auditable, pero puede exponer metadatos.</li>
+            <li><strong>Integridad sin blockchain:</strong> firmas digitales + logs firmados también dan evidencia.</li>
+            <li><strong>Identidad es el corazón:</strong> si la identidad falla, la votación falla (aunque uses blockchain).</li>
+        </ul>
+    </div>
+
+    <div class="instruction-box" style="background:#fff3e0; border-left-color:#ef6c00;">
+        <h3 style="color:#e65100; margin-top:0;">🧠 Bonus (sube nota si lo incluyes)</h3>
+        <p style="margin:0;">Propón una <strong>Opción C (híbrida)</strong>: BD + firmas + auditoría pública (hashes) sin poner votos completos en cadena. Explica en 4–6 líneas.</p>
+    </div>
+
+    <p style="margin-top:18px;color:#546e7a;"><strong>Nota:</strong> no necesitas botón “IR AL FORO”. Tu respuesta se publica en la plataforma del curso.</p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rúbrica Actividad 2</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .rubric-table {
+        width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem;
+    }
+    .rubric-table th { background: #0d47a1; color: white; padding: 15px; text-align: left; font-weight: 600; }
+    .rubric-table td { border: 1px solid #bbdefb; padding: 15px; vertical-align: top; }
+    .level-high { background: #e3f2fd; color: #0d47a1; font-weight:bold; }
+    
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .rubric-table { font-size: 0.8rem; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Rúbrica de Evaluación (35%)</h1>
+        <p>Criterios de calificación para el Laboratorio.</p>
+    </div>
+
+    <div style="overflow-x:auto;">
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Criterio</th>
+                    <th style="width: 25%;">Excelente (5.0)</th>
+                    <th style="width: 25%;">Aceptable (3.0 - 4.0)</th>
+                    <th style="width: 25%;">Insuficiente (0 - 2.9)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Implementación Técnica</strong><br>Cifrado y Hash.</td>
+                    <td class="level-high">Demuestra con evidencia clara la generación correcta de Hash y el cifrado/descifrado exitoso usando algoritmos estándar.</td>
+                    <td>Realiza los procesos pero la evidencia es confusa o incompleta.</td>
+                    <td>No logra realizar el cifrado o usa algoritmos no solicitados.</td>
+                </tr>
+                <tr>
+                    <td><strong>Trazabilidad Blockchain</strong><br>Registro en cadena.</td>
+                    <td class="level-high">Presenta el TxID verificable en un explorador de bloques que contiene el Hash correcto del archivo.</td>
+                    <td>Presenta una transacción pero no contiene el Hash o no se puede verificar.</td>
+                    <td>No presenta evidencia de interacción con Blockchain.</td>
+                </tr>
+                <tr>
+                    <td><strong>Análisis y Conclusiones</strong><br>Comprensión conceptual.</td>
+                    <td class="level-high">Explica correctamente por qué el Hash cambió y qué garantiza la transacción en Blockchain (inmutabilidad).</td>
+                    <td>Describe los pasos pero no explica el "por qué" técnico detrás de ellos.</td>
+                    <td>Solo pega capturas sin explicación.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div style="margin-top:22px; background:#e8f5e9; border-left:6px solid #2e7d32; padding:18px; border-radius:12px;">
+        <h3 style="margin:0 0 8px 0; color:#1b5e20; font-family:'Montserrat',sans-serif;">✅ Cómo asegurar “Excelente (5.0)”</h3>
+        <ul style="margin:0 0 0 18px;">
+            <li>Evidencias <strong>claras</strong>: hash antes/después, cifrado/descifrado, TxID verificable.</li>
+            <li>Explicación técnica del <strong>por qué</strong> (no solo pasos).</li>
+            <li>Incluyes límites y riesgos (privacidad, veracidad del contenido, identidad).</li>
+            <li>Informe reproducible: cualquier persona puede repetir el laboratorio con tus pasos.</li>
+        </ul>
+    </div>
+
+    <div style="margin-top:18px; background:#fff3e0; border-left:6px solid #ef6c00; padding:18px; border-radius:12px;">
+        <h3 style="margin:0 0 8px 0; color:#e65100; font-family:'Montserrat',sans-serif;">⚠️ Errores que bajan nota</h3>
+        <ul style="margin:0 0 0 18px;">
+            <li>TxID sin evidencia en explorador o hash incorrecto.</li>
+            <li>Capturas sin explicación o sin verificación.</li>
+            <li>Uso de datos sensibles reales o exposición de llaves.</li>
+            <li>Confundir hash con cifrado o “blockchain prueba verdad”.</li>
+        </ul>
+    </div>
+
+    <div style="margin-top:18px; background:#f5faff; border-left:6px solid #1565c0; padding:18px; border-radius:12px;">
+        <h3 style="margin:0 0 8px 0; color:#0d47a1; font-family:'Montserrat',sans-serif;">🧾 Plantilla corta de conclusiones</h3>
+        <div style="background:#fff;border:1px solid #bbdefb;border-radius:12px;padding:12px;color:#37474f;">
+            <p style="margin:0 0 6px 0;">En este laboratorio se demostró <strong>integridad</strong> al evidenciar el cambio del hash tras modificar el archivo.</p>
+            <p style="margin:0 0 6px 0;">Se garantizó <strong>confidencialidad</strong> al cifrar y descifrar correctamente un mensaje con AES.</p>
+            <p style="margin:0 0 6px 0;">La <strong>trazabilidad</strong> se respaldó al registrar el hash en una testnet, obteniendo un TxID verificable que funciona como evidencia temporal.</p>
+            <p style="margin:0;">Como límite, blockchain no valida la veracidad del contenido ni protege privacidad si se publican datos sensibles; por ello se recomienda almacenar solo hashes y reforzar identidad con firmas.</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

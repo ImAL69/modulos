@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Objetivos Semana 2</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .obj-wrapper {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 25px;
+        border-left: 6px solid #1976d2; display: flex; gap: 20px; align-items: start;
+    }
+    .obj-icon { font-size: 2.5rem; color: #1976d2; margin-top: 5px; }
+    .obj-content h3 { margin: 0 0 10px 0; color: #0d47a1; font-family: 'Montserrat', sans-serif; }
+
+    .consolidation-box {
+        background: #e3f2fd; padding: 20px; border-radius: 8px; margin-top: 30px; border: 1px solid #90caf9;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .obj-wrapper { flex-direction: column; text-align: center; align-items: center; }
+    }
+
+
+/* ====== Animaciones suaves + feel moderno (sin romper estructura) ====== */
+.container-extended::before{
+  content:"";
+  position:absolute; inset:-40% -20%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(13,71,161,0.12), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(25,118,210,0.10), transparent 60%),
+    radial-gradient(circle at 60% 85%, rgba(46,125,50,0.10), transparent 55%);
+  transform: rotate(10deg);
+  pointer-events:none;
+  animation: bgFloat 18s ease-in-out infinite;
+}
+@keyframes bgFloat{0%,100%{transform:rotate(10deg) translateY(0)}50%{transform:rotate(10deg) translateY(18px)}}
+
+.reveal{opacity:0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1; transform: translateY(0);}
+.obj-wrapper{ transition: transform .2s ease, box-shadow .2s ease; }
+.obj-wrapper:hover{ transform: translateY(-2px); box-shadow: 0 12px 28px rgba(13,71,161,.10); }
+
+.pill-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;}
+.pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
+  background:#ffffff; border:1px solid #e3f2fd; box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  font-size:.95rem; }
+.pill i{color:#0d47a1;}
+.mini-grid{display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:16px;}
+.card-mini{background:#fff; border:1px solid #e3f2fd; border-radius:12px; padding:14px; box-shadow: 0 10px 28px rgba(0,0,0,0.04);}
+.card-mini strong{color:#0d47a1;}
+.checklist{margin:10px 0 0 0; padding-left:18px;}
+.checklist li{margin:6px 0;}
+.tag{display:inline-block; padding:3px 10px; border-radius:999px; background:#e3f2fd; color:#0d47a1; font-weight:700; font-size:.85rem;}
+@media (max-width: 900px){ .mini-grid{grid-template-columns: 1fr;} }
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box reveal">
+<h1 class="main-title">Objetivos Semana 2: Formulación</h1>
+<p>De la idea abstracta al proyecto concreto.</p>
+</div>
+<div class="obj-wrapper reveal">
+<div class="obj-icon"><i class="fa-solid fa-pen-nib"></i></div>
+<div class="obj-content">
+<h3>1. Convertir el Diagnóstico en Problema</h3>
+<p>El objetivo central es transformar la lista de síntomas ("el sistema es lento", "hay virus") en un <strong>Enunciado del Problema</strong> técnico, acotado y soluble mediante un proyecto de ingeniería.</p>
+</div>
+</div>
+<div class="obj-wrapper reveal" style="border-left-color: #2e7d32;">
+<div class="obj-icon" style="color:#2e7d32;"><i class="fa-solid fa-layer-group"></i></div>
+<div class="obj-content">
+<h3>2. Consolidar Hallazgos</h3>
+<p>Integrar el contexto organizacional, los riesgos identificados y el mapa de interesados en una narrativa coherente que justifique la inversión en seguridad.</p>
+</div>
+</div>
+
+<div class="obj-wrapper reveal" style="border-left-color: #ef6c00;">
+<div class="obj-icon" style="color:#ef6c00;"><i class="fa-solid fa-bullseye"></i></div>
+<div class="obj-content">
+<h3>3. Definir Objetivo General y Objetivos Específicos (SMART)</h3>
+<p>Plasmar <strong>qué vas a lograr</strong>, <strong>para quién</strong>, <strong>en qué contexto</strong> y <strong>con qué evidencia</strong>. Un objetivo bien escrito guía el alcance, las actividades y la evaluación.</p>
+<div class="pill-row">
+<span class="pill"><i class="fa-solid fa-check"></i>Específico</span>
+<span class="pill"><i class="fa-solid fa-scale-balanced"></i>Medible</span>
+<span class="pill"><i class="fa-solid fa-person-running"></i>Alcanzable</span>
+<span class="pill"><i class="fa-solid fa-link"></i>Relevante</span>
+<span class="pill"><i class="fa-solid fa-calendar-days"></i>Con tiempo</span>
+</div>
+<div class="mini-grid">
+<div class="card-mini">
+<span class="tag">Plantilla rápida</span>
+<p style="margin:10px 0 0 0;"><strong>Objetivo general:</strong> Diseñar/implementar/evaluar <em>[solución]</em> para <em>[proceso/área]</em> en <em>[organización]</em> con el fin de <em>[impacto]</em>, verificable mediante <em>[métrica/evidencia]</em>.</p>
+</div>
+<div class="card-mini">
+<span class="tag">Ejemplo</span>
+<p style="margin:10px 0 0 0;"><strong>General:</strong> Diseñar un plan de seguridad para reducir incidentes de malware en el área administrativa, validado con un inventario, matriz de riesgos y plan de controles priorizados.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="obj-wrapper reveal" style="border-left-color: #6a1b9a;">
+<div class="obj-icon" style="color:#6a1b9a;"><i class="fa-solid fa-diagram-project"></i></div>
+<div class="obj-content">
+<h3>4. Delimitar Alcance, Supuestos y Criterios de Aceptación</h3>
+<p>Convertir tu idea en un proyecto “cerrado”: qué entra, qué NO entra, bajo qué condiciones trabajas, y cómo sabrás que el entregable cumple.</p>
+<ul class="checklist">
+<li><strong>Alcance:</strong> activos, procesos, sedes, usuarios, tecnología.</li>
+<li><strong>Exclusiones:</strong> lo que no se va a tocar (para evitar “alcance infinito”).</li>
+<li><strong>Supuestos:</strong> condiciones necesarias (acceso a info, permisos, tiempos).</li>
+<li><strong>Criterios de aceptación:</strong> evidencias mínimas (matriz de riesgos + priorización + controles + conclusiones).</li>
+</ul>
+</div>
+</div>
+<div class="obj-wrapper reveal" style="border-left-color: #00838f;">
+<div class="obj-icon" style="color:#00838f;"><i class="fa-solid fa-clipboard-check"></i></div>
+<div class="obj-content">
+<h3>5. Plan de Trabajo de la Semana (paso a paso)</h3>
+<p>Una ruta concreta para que avances sin perderte:</p>
+<div class="mini-grid">
+<div class="card-mini">
+<strong>1) Redacción técnica</strong>
+<ul class="checklist">
+<li>Redacta el <strong>enunciado del problema</strong> (causa → efecto → impacto).</li>
+<li>Escribe <strong>objetivo general</strong> y 3–5 <strong>específicos</strong>.</li>
+<li>Lista <strong>entradas</strong> (insumos) y <strong>salidas</strong> (evidencias).</li>
+</ul>
+</div>
+<div class="card-mini">
+<strong>2) Control de alcance</strong>
+<ul class="checklist">
+<li>Define “<strong>IN</strong>” y “<strong>OUT</strong>” (mínimo 5 puntos cada uno).</li>
+<li>Identifica 3 riesgos del proyecto (tiempo, acceso, datos).</li>
+<li>Define <strong>criterios de aceptación</strong> con indicadores claros.</li>
+</ul>
+</div>
+</div>
+<div class="consolidation-box" style="margin-top:16px;">
+<strong>🎯 Mini‑reto:</strong> Resume tu proyecto en <strong>una sola frase</strong> (máximo 25 palabras) incluyendo: organización + problema + solución + evidencia.  
+      <em>Tip:</em> si no cabe en una frase, tu alcance todavía está muy amplio.
+    </div>
+</div>
+</div>
+<div class="consolidation-box reveal">
+<strong>🔑 Clave de la Semana:</strong> La delimitación. Un proyecto que intenta "arreglar toda la seguridad" está destinado al fracaso. Aprenderemos a decir "esto SÍ entra en el alcance" y "esto NO".
+    </div>
+</div>
+<script>
+(() => {
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(el => io.observe(el));
+})();
+</script></body>
+</html>
