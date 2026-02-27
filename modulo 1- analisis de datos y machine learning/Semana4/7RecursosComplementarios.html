@@ -28,7 +28,10 @@
     
     .resource-card {
         background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 20px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        animation: fadeInUp 0.55s ease both;
     }
+    .resource-card:hover { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(21,101,192,0.14); }
     .resource-title {
         font-family: 'Montserrat', sans-serif; font-weight: 700; color: #1565c0; font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center;
     }
@@ -36,6 +39,12 @@
     
     .description { margin-bottom: 15px; color: #546e7a; font-size: 0.95rem; text-align: justify; }
     .usage-tip { background: #e3f2fd; padding: 10px 15px; border-radius: 6px; font-size: 0.9rem; color: #0d47a1; }
+
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
     @media (max-width: 768px) {
         .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
@@ -80,6 +89,30 @@
         </div>
         <div class="usage-tip">
             <strong>Cómo usarlo:</strong> Copia esta estructura para tu entrega de la Actividad 3. Asegura que tu conclusión cubra tanto lo técnico como lo estratégico.
+        </div>
+    </div>
+
+
+
+    <div class="resource-card">
+        <div class="resource-title"><i class="fa-solid fa-video"></i> Mediación multimedia (video y podcast técnico)</div>
+        <div class="description">
+            Recursos sugeridos para reforzar conceptos de evaluación de modelos y operación en entornos reales.
+        </div>
+        <div class="usage-tip">
+            <strong>Video:</strong> <a href="https://www.youtube.com/watch?v=85dtiMz9tSo" target="_blank" rel="noopener">Video: evaluación de modelos (StatQuest)</a><br>
+            <strong>Podcast:</strong> <a href="https://www.youtube.com/watch?v=06-AZXmwHjo" target="_blank" rel="noopener">Podcast técnico: ML en producción (MLOps)</a>
+        </div>
+    </div>
+
+    <div class="resource-card">
+        <div class="resource-title"><i class="fa-solid fa-screwdriver-wrench"></i> Herramientas de apoyo del syllabus</div>
+        <div class="description">
+            Accesos directos a herramientas citadas para documentación visual y monitoreo de calidad/drift.
+        </div>
+        <div class="usage-tip">
+            <strong>Diagrams.net:</strong> <a href="https://app.diagrams.net/" target="_blank" rel="noopener">https://app.diagrams.net/</a><br>
+            <strong>Evidently AI:</strong> <a href="https://www.evidentlyai.com/" target="_blank" rel="noopener">https://www.evidentlyai.com/</a>
         </div>
     </div>
 
