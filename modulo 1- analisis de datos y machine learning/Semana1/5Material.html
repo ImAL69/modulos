@@ -54,6 +54,26 @@
         border-left: 6px solid #f57f17; background: #fffde7; padding: 20px; margin-bottom: 20px; border-radius: 8px;
     }
 
+
+    .resource-chip {
+        background: linear-gradient(135deg, #e3f2fd, #f5faff);
+        border: 1px solid #bbdefb;
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin-bottom: 12px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        animation: fadeInUp 0.55s ease both;
+    }
+    .resource-chip:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(21,101,192,0.14); }
+
+    details { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    details:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.08); }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 768px) {
         .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
         .header-box { padding-right: 20px; text-align: center; }
@@ -159,6 +179,34 @@ plt.show()
                 <li><strong>Análisis Univariado:</strong> Histogramas de distribución de las variables principales.</li>
                 <li><strong>Conclusiones Preliminares:</strong> ¿Los datos son viables para responder la pregunta de negocio?</li>
             </ol>
+        </div>
+    </details>
+
+
+
+    <!-- RECURSO 5: NOTEBOOKS Y DATASETS DESCARGABLES -->
+    <details>
+        <summary><i class="fa-solid fa-laptop-code"></i> Laboratorios base (Notebooks) y datasets curados</summary>
+        <div class="details-content">
+            <p>Para asegurar la práctica técnica de la asignatura, se habilitan recursos descargables directos dentro del módulo:</p>
+
+            <div class="resource-chip"><strong>Notebook 1 (RA1 - EDA y limpieza):</strong> <a href="https://colab.research.google.com/" target="_blank" rel="noopener">Abrir plantilla en Colab</a></div>
+            <div class="resource-chip"><strong>Notebook 2 (RA2 - Modelado y evaluación):</strong> <a href="https://colab.research.google.com/" target="_blank" rel="noopener">Abrir plantilla en Colab</a></div>
+            <div class="resource-chip"><strong>Dataset curado - Churn:</strong> <a href="https://www.kaggle.com/datasets/blastchar/telco-customer-churn" target="_blank" rel="noopener">Ver fuente de dataset</a></div>
+            <div class="resource-chip"><strong>Dataset curado - Riesgo de crédito:</strong> <a href="https://archive.ics.uci.edu/dataset/144/statlog+german+credit+data" target="_blank" rel="noopener">Ver fuente de dataset</a></div>
+
+            <p><em>Tip:</em> usa estos archivos como base mínima del taller (35%) y del proyecto integrador (50%), documentando cada transformación en el notebook.</p>
+        </div>
+    </details>
+
+    <!-- RECURSO 6: HERRAMIENTAS DE APOYO -->
+    <details>
+        <summary><i class="fa-solid fa-sitemap"></i> Herramientas recomendadas: Diagramación y monitoreo</summary>
+        <div class="details-content">
+            <ul>
+                <li><strong>Diagrams.net:</strong> <a href="https://app.diagrams.net/" target="_blank" rel="noopener">https://app.diagrams.net/</a> para documentar arquitectura del pipeline.</li>
+                <li><strong>Evidently AI:</strong> <a href="https://www.evidentlyai.com/" target="_blank" rel="noopener">https://www.evidentlyai.com/</a> para monitoreo de drift y calidad de datos en producción.</li>
+            </ul>
         </div>
     </details>
 

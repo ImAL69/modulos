@@ -24,13 +24,14 @@
     .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
 
     .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
-    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; animation: pulseTitle 2.2s ease-in-out infinite; }
     
     /* ACORDEÓN MEJORADO */
     details {
         background: #f5faff; margin-bottom: 20px; border-radius: 12px; border: 1px solid #bbdefb;
         transition: all 0.3s ease;
     }
+    details:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(21,101,192,0.14); }
     summary {
         padding: 20px; cursor: pointer; font-weight: 700; color: #1565c0; font-family: 'Montserrat', sans-serif;
         display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem;
@@ -47,6 +48,12 @@
     .eval-table tr:nth-child(even) { background: #f5faff; }
 
     .highlight-yellow { background-color: #fff9c4; padding: 2px 5px; border-radius: 4px; font-weight: bold; }
+
+
+    @keyframes pulseTitle {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.01); }
+    }
 
     @media (max-width: 768px) {
         .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
@@ -100,10 +107,10 @@
         </table>
         <p style="font-size:0.85rem; color:#757575; font-style:italic; margin-top:5px;">* Nota: Los porcentajes son referenciales y se ajustan al microcurrículo oficial de la institución.</p>
 
-        <h2 style="color:#0d47a1; margin-top:40px; font-family:'Montserrat', sans-serif;">📅 Cronograma Académico Detallado</h2>
+        <h2 style="color:#0d47a1; margin-top:40px; font-family:'Montserrat', sans-serif;">📅 Estructura oficial por Unidades (Microcurrículo)</h2>
         
         <details>
-            <summary>Semanas 1-2: Fundamentos y Calidad de Datos (RA1)</summary>
+            <summary>Unidad 1 (Semanas 1-2): Fundamentos y flujo de análisis de datos para machine learning (RA1)</summary>
             <div class="details-content">
                 <p><strong>Enfoque:</strong> Entender que "basura entra, basura sale". Aprenderemos a diagnosticar riesgos en datos y limpiarlos.</p>
                 <ul>
@@ -115,7 +122,7 @@
         </details>
 
         <details>
-            <summary>Semanas 3-5: Modelado Predictivo y Métricas (RA2)</summary>
+            <summary>Unidad 2 (Semanas 3-5): Modelado y evaluación de modelos de machine learning (RA2)</summary>
             <div class="details-content">
                 <p><strong>Enfoque:</strong> Entrenar modelos que generalicen bien y no solo memoricen datos (evitar Overfitting).</p>
                 <ul>
@@ -127,7 +134,7 @@
         </details>
 
         <details>
-            <summary>Semanas 6-9: Proyecto Integrador y Operación (RA3)</summary>
+            <summary>Unidad 3 (Semanas 6-9): Integración, despliegue y monitoreo operativo de modelos (RA3)</summary>
             <div class="details-content">
                 <p><strong>Enfoque:</strong> Construir un sistema robusto que funcione en el mundo real.</p>
                 <ul>
