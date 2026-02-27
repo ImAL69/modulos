@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Unidad 1 (RAP1) · Riesgo inicial</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    .subtitle { font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #546e7a; border-left: 4px solid #1976d2; padding-left: 15px; }
+
+    .content-block { margin-bottom: 40px; text-align: justify; }
+
+    .highlight-box {
+        background: #e3f2fd; padding: 25px; border-radius: 12px; border-left: 6px solid #0d47a1; margin: 30px 0; font-size: 1.05rem;
+    }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+    .feature-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; transition: transform 0.2s;
+    }
+    .feature-card:hover { transform: translateY(-5px); border-color: #1565c0; }
+    .card-icon { font-size: 2rem; color: #1565c0; margin-bottom: 15px; display: block; }
+    .card-title { font-weight: 700; color: #0d47a1; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+
+/* =========================
+   Mejora visual + animaciones (ligeras)
+   ========================= */
+:root{
+  --fet-blue:#0d47a1;
+  --fet-blue2:#1565c0;
+  --fet-sky:#e3f2fd;
+  --text:#37474f;
+}
+body{
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(21,101,192,.10), transparent 55%),
+              radial-gradient(900px 600px at 85% 25%, rgba(13,71,161,.08), transparent 60%),
+              linear-gradient(180deg, #f7f9fc 0%, #f0f2f5 60%, #eef3f8 100%);
+}
+.container-extended{
+  isolation:isolate;
+}
+.container-extended::before,
+.container-extended::after{
+  content:"";
+  position:absolute;
+  inset:auto;
+  z-index:-1;
+  filter: blur(0px);
+  opacity:.55;
+  pointer-events:none;
+}
+.container-extended::before{
+  width:520px;height:520px;
+  left:-260px; top:-260px;
+  background: radial-gradient(circle at 30% 30%, rgba(21,101,192,.25), transparent 65%);
+  animation: blobFloat 12s ease-in-out infinite;
+}
+.container-extended::after{
+  width:420px;height:420px;
+  right:-210px; bottom:-210px;
+  background: radial-gradient(circle at 70% 70%, rgba(13,71,161,.22), transparent 65%);
+  animation: blobFloat2 14s ease-in-out infinite;
+}
+@keyframes blobFloat{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(30px,18px) scale(1.05); }
+}
+@keyframes blobFloat2{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(-28px,-14px) scale(1.06); }
+}
+.reveal{
+  opacity:0;
+  transform: translateY(14px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.in-view{
+  opacity:1;
+  transform:none;
+}
+.feature-card, .reason-card, .ra-card, .profile-card, .skill-card, .quiz-card, details{
+  will-change: transform;
+}
+.feature-card:hover, .reason-card:hover, .ra-card:hover, .profile-card:hover, .skill-card:hover{
+  transform: translateY(-6px) scale(1.01);
+}
+kbd{
+  background:#0b2f6b;
+  color:#fff;
+  padding:2px 8px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:.9rem;
+}
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 12px; border-radius:999px;
+  background: rgba(21,101,192,.10);
+  border:1px solid rgba(21,101,192,.25);
+  color: var(--fet-blue2);
+  font-weight:700;
+  font-size:.92rem;
+  margin:6px 8px 0 0;
+}
+.callout{
+  background: #ffffff;
+  border: 1px solid #bbdefb;
+  border-left: 6px solid #1565c0;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  margin: 22px 0;
+}
+.callout h3{
+  margin:0 0 10px 0;
+  font-family:'Montserrat', sans-serif;
+  color: var(--fet-blue);
+}
+.grid-2{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:16px;
+}
+@media (max-width: 860px){
+  .grid-2{ grid-template-columns: 1fr; }
+}
+.small{
+  color:#546e7a;
+  font-size:.95rem;
+}
+hr.soft{
+  border:none;
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(13,71,161,.25), transparent);
+  margin: 28px 0;
+}
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+}
+
+
+    /* Imagen hero (adaptada y más pequeña, sin overlays) */
+    .hero-image{
+        margin: 18px 0 34px 0;
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #e6eef8;
+        border-radius: 14px;
+        overflow: hidden;
+    }
+    .hero-image img{
+        width: 100%;
+        height: 260px;              /* tamaño acordado */
+        object-fit: contain;        /* se ve completa */
+        display:block;
+        background: #ffffff;
+    }
+    @media (max-width: 768px){
+        .hero-image img{ height: 200px; }
+    }
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">UNIDAD DE APRENDIZAJE 1 · RAP1</h1>
+<span class="subtitle">3.2) Análisis de riesgo inicial</span>
+</div>
+
+
+<div class="content-block reveal">
+  <h3>Análisis de riesgo inicial</h3>
+  <p>El análisis de riesgo inicial transforma hallazgos técnicos en decisiones priorizadas. En respuesta rápida, la pregunta es: <strong>¿qué escenario me puede impactar pronto y fuerte?</strong> y <strong>¿qué puedo hacer ya?</strong></p><div class="reveal highlight-box"><strong>Modelo de trabajo:</strong> escenarios + evidencia + controles + plan por horizontes.</div>
+</div>
+
+<div class="content-block reveal">
+  <h3>1) Escenarios: la unidad mínima del riesgo</h3>
+  <p>Un escenario describe actor, objetivo, vector, precondiciones, pasos y consecuencia. Es mejor que una lista plana porque conecta a acciones y telemetría.</p><ul><li><strong>Actor:</strong> quién y por qué.</li><li><strong>Objetivo:</strong> qué activo/dato busca.</li><li><strong>Vector:</strong> por dónde entra.</li><li><strong>Pasos:</strong> cadena resumida (6–12 pasos).</li><li><strong>Consecuencia:</strong> impacto (C/I/A) y efectos de negocio.</li><li><strong>Controles:</strong> qué existe y qué falta.</li><li><strong>Evidencia:</strong> qué confirma o refuta el escenario.</li></ul>
+</div>
+
+<div class="content-block reveal">
+  <h3>2) Criterios prácticos para estimar probabilidad</h3>
+  <div class="grid-2 reveal"><div><h4>Indicadores que suben probabilidad</h4><ul><li>Exposición pública confirmada.</li><li>EPSS alto o explotación activa reportada.</li><li>Controles inexistentes o débiles (sin MFA, sin segmentación).</li><li>Telemetría pobre (no detectas).</li><li>Historial de incidentes similares en el sector.</li></ul></div><div><h4>Indicadores que la bajan</h4><ul><li>Activo aislado y no expuesto.</li><li>Controles compensatorios efectivos (WAF, MFA, PAM).</li><li>Segmentación fuerte y mínimo privilegio.</li><li>Monitoreo y respuesta probados.</li><li>Requiere interacción compleja o privilegios altos.</li></ul></div></div>
+</div>
+
+<div class="content-block reveal">
+  <h3>3) Impacto: cómo hacerlo defendible</h3>
+  <p>Impacto no es “me asusta”. Se justifica con consecuencias: indisponibilidad, fuga de datos, fraude, sanciones, reputación, operación.</p><div class="callout reveal"><h3>Escala sugerida (1–5)</h3><ul><li><strong>1–2:</strong> impacto limitado, servicio no crítico, datos no sensibles.</li><li><strong>3:</strong> impacto moderado, afecta productividad/servicio parcial.</li><li><strong>4:</strong> impacto alto, datos sensibles o interrupción relevante.</li><li><strong>5:</strong> crítico, servicio esencial o fuga masiva con consecuencias legales.</li></ul></div><div class="badge"><i class="fa-solid fa-scale-balanced"></i> Tip: siempre vincula impacto a un activo y a un proceso real.</div>
+</div>
+
+<div class="content-block reveal">
+  <h3>4) Registro de riesgos (estructura profesional)</h3>
+  <div class="callout reveal"><h3>Campos recomendados</h3><ul><li><strong>ID</strong> · <strong>Escenario</strong> · <strong>Activo</strong> · <strong>Actor</strong> · <strong>Vector</strong> · <strong>Impacto</strong> · <strong>Probabilidad</strong> · <strong>Nivel</strong> · <strong>Controles actuales</strong> · <strong>Brechas</strong> · <strong>Acción</strong> · <strong>Owner</strong> · <strong>Fecha</strong> · <strong>Verificación</strong></li></ul></div><p>Mantener este registro actualizado es lo que permite mejorar semana a semana sin reiniciar el análisis desde cero.</p>
+</div>
+
+<div class="content-block reveal">
+  <h3>5) Acciones por horizonte (rápido vs estructural)</h3>
+  <div class="grid-2 reveal"><div><h4>Quick wins (0–72h)</h4><ul><li>Rotación de secretos/tokens expuestos.</li><li>Reglas temporales WAF/rate limiting.</li><li>Bloqueo de accesos anómalos y refuerzo MFA.</li><li>Aislamiento de hosts con señales de persistencia.</li><li>Verificación de backups y restauración de prueba.</li></ul></div><div><h4>Estructurales (2–8 semanas)</h4><ul><li>Segmentación y zero trust en rutas críticas.</li><li>Hardening y baseline automatizado.</li><li>Centralización de logs y correlación (SIEM).</li><li>Gestión de vulnerabilidades con SLAs.</li><li>Programa de revisiones IAM y PAM.</li></ul></div></div>
+</div>
+
+<div class="content-block reveal">
+  <h3>6) Taller: construir 6 escenarios y priorizarlos</h3>
+  <ol><li>Define 6 escenarios relevantes para tu sistema (3 externos, 2 internos, 1 supply chain).</li><li>Asigna impacto y probabilidad con justificación (evidencia + contexto).</li><li>Lista controles actuales y brechas por escenario.</li><li>Define 10 acciones (5 rápidas, 5 estructurales) y asigna dueños.</li><li>Define métricas de seguimiento por acción (cómo sabrás que mejoró).</li></ol><div class="callout reveal"><h3>Entregables</h3><ul><li>Registro de riesgos con 6 escenarios priorizados.</li><li>Plan por horizontes con owners y verificación.</li><li>Métricas seleccionadas (MTTD/MTTR/% SLA/exposición).</li></ul></div>
+</div>
+
+<div class="callout reveal"><h3>Preguntas avanzadas</h3><ul><li>¿Cómo incorporas detectabilidad como factor de riesgo?</li><li>¿Qué evidencia te faltaría para pasar de hipótesis a hallazgo confirmado?</li><li>¿Qué acciones reducen simultáneamente varios riesgos (alto apalancamiento)?</li><li>¿Cómo gestionas el riesgo residual y su aceptación formal?</li></ul></div>
+
+<div class="content-block reveal">
+  <h3>Glosario operativo #1 (repaso rápido)</h3>
+  <p>Usa este glosario como checklist al escribir sobre <strong>3.2) Análisis de riesgo inicial</strong>. Si un término aparece en tu informe, debe estar aplicado a un ejemplo específico del sistema.</p><ul><li><strong>Activo:</strong> Elemento con valor (sistema, dato, proceso) que se debe proteger.</li><li><strong>Superficie:</strong> Conjunto de componentes y puntos potenciales de interacción (existe).</li><li><strong>Exposición:</strong> Parte de la superficie que es accesible realmente (se demuestra).</li><li><strong>Vector:</strong> Ruta concreta usada para alcanzar un objetivo mediante una debilidad.</li><li><strong>Amenaza:</strong> Agente/intención/capacidad que puede causar daño.</li><li><strong>Riesgo:</strong> Decisión: impacto × probabilidad considerando contexto y controles.</li><li><strong>Control:</strong> Medida preventiva/detectiva/correctiva con evidencia de efectividad.</li><li><strong>Señal:</strong> Patrón observable en telemetría que sugiere actividad maliciosa.</li></ul><div class="callout reveal"><h3>Ejercicio relámpago (10 min)</h3><ul><li>Elige 3 términos y escribe un ejemplo real (del sistema) y un contraejemplo (lo que NO sería).</li><li>Convierte 1 hallazgo en: evidencia → riesgo → control → verificación.</li><li>Define 2 señales con su fuente de log (qué campo mirarías).</li></ul></div>
+</div>
+
+<div class="content-block reveal">
+  <h3>Laboratorio guiado #2: aplicación práctica</h3>
+  <p>Este laboratorio está diseñado para que apliques <strong>3.2) Análisis de riesgo inicial</strong> sobre un sistema real o simulado. La idea es producir evidencias (capturas, logs, configuraciones) y conectar cada hallazgo con una acción verificable.</p><div class="grid-2 reveal"><div><h4>🎯 Objetivo</h4><ul><li>Convertir el contenido en un artefacto ejecutable.</li><li>Definir señales de detección y controles de alto impacto.</li><li>Entregar un backlog priorizado con verificación.</li></ul></div><div><h4>🧰 Insumos</h4><ul><li>Descripción del sistema (1 página) + diagrama simple.</li><li>Lista de endpoints/servicios/roles (aunque sea preliminar).</li><li>Acceso a logs (WAF/API/IAM/EDR) o dataset simulado.</li><li>Herramienta de escaneo o checklist (manual).</li></ul></div></div><div class="callout reveal"><h3>Pasos (60–90 min)</h3><ol><li>Delimita alcance y activos (máximo 10).</li><li>Enumera exposición real (público/interno) con evidencia.</li><li>Elige 1 actor plausible y redacta una cadena de ataque de 8–10 pasos.</li><li>Mapea 5 técnicas a señales (qué log y qué campo observar).</li><li>Define 5 controles (2 preventivos, 2 detectivos, 1 correctivo) con verificación.</li><li>Cierra con un backlog de 8 acciones priorizadas (SLA, owner, prueba de cierre).</li></ol></div><div class="callout reveal"><h3>Criterios de evaluación</h3><ul><li>Trazabilidad: cada afirmación se apoya en evidencia.</li><li>Accionabilidad: recomendaciones concretas y verificables.</li><li>Priorización consistente: explica por qué va primero.</li><li>Claridad: cualquier persona del equipo puede ejecutar el plan.</li></ul></div>
+</div>
+
+<div class="content-block reveal">
+  <h3>Glosario operativo #3 (repaso rápido)</h3>
+  <p>Usa este glosario como checklist al escribir sobre <strong>3.2) Análisis de riesgo inicial</strong>. Si un término aparece en tu informe, debe estar aplicado a un ejemplo específico del sistema.</p><ul><li><strong>Activo:</strong> Elemento con valor (sistema, dato, proceso) que se debe proteger.</li><li><strong>Superficie:</strong> Conjunto de componentes y puntos potenciales de interacción (existe).</li><li><strong>Exposición:</strong> Parte de la superficie que es accesible realmente (se demuestra).</li><li><strong>Vector:</strong> Ruta concreta usada para alcanzar un objetivo mediante una debilidad.</li><li><strong>Amenaza:</strong> Agente/intención/capacidad que puede causar daño.</li><li><strong>Riesgo:</strong> Decisión: impacto × probabilidad considerando contexto y controles.</li><li><strong>Control:</strong> Medida preventiva/detectiva/correctiva con evidencia de efectividad.</li><li><strong>Señal:</strong> Patrón observable en telemetría que sugiere actividad maliciosa.</li></ul><div class="callout reveal"><h3>Ejercicio relámpago (10 min)</h3><ul><li>Elige 3 términos y escribe un ejemplo real (del sistema) y un contraejemplo (lo que NO sería).</li><li>Convierte 1 hallazgo en: evidencia → riesgo → control → verificación.</li><li>Define 2 señales con su fuente de log (qué campo mirarías).</li></ul></div>
+</div>
+
+<div class="content-block reveal">
+  <h3>Laboratorio guiado #4: aplicación práctica</h3>
+  <p>Este laboratorio está diseñado para que apliques <strong>3.2) Análisis de riesgo inicial</strong> sobre un sistema real o simulado. La idea es producir evidencias (capturas, logs, configuraciones) y conectar cada hallazgo con una acción verificable.</p><div class="grid-2 reveal"><div><h4>🎯 Objetivo</h4><ul><li>Convertir el contenido en un artefacto ejecutable.</li><li>Definir señales de detección y controles de alto impacto.</li><li>Entregar un backlog priorizado con verificación.</li></ul></div><div><h4>🧰 Insumos</h4><ul><li>Descripción del sistema (1 página) + diagrama simple.</li><li>Lista de endpoints/servicios/roles (aunque sea preliminar).</li><li>Acceso a logs (WAF/API/IAM/EDR) o dataset simulado.</li><li>Herramienta de escaneo o checklist (manual).</li></ul></div></div><div class="callout reveal"><h3>Pasos (60–90 min)</h3><ol><li>Delimita alcance y activos (máximo 10).</li><li>Enumera exposición real (público/interno) con evidencia.</li><li>Elige 1 actor plausible y redacta una cadena de ataque de 8–10 pasos.</li><li>Mapea 5 técnicas a señales (qué log y qué campo observar).</li><li>Define 5 controles (2 preventivos, 2 detectivos, 1 correctivo) con verificación.</li><li>Cierra con un backlog de 8 acciones priorizadas (SLA, owner, prueba de cierre).</li></ol></div><div class="callout reveal"><h3>Criterios de evaluación</h3><ul><li>Trazabilidad: cada afirmación se apoya en evidencia.</li><li>Accionabilidad: recomendaciones concretas y verificables.</li><li>Priorización consistente: explica por qué va primero.</li><li>Claridad: cualquier persona del equipo puede ejecutar el plan.</li></ul></div>
+</div>
+
+<div class="content-block reveal">
+  <h3>Glosario operativo #5 (repaso rápido)</h3>
+  <p>Usa este glosario como checklist al escribir sobre <strong>3.2) Análisis de riesgo inicial</strong>. Si un término aparece en tu informe, debe estar aplicado a un ejemplo específico del sistema.</p><ul><li><strong>Activo:</strong> Elemento con valor (sistema, dato, proceso) que se debe proteger.</li><li><strong>Superficie:</strong> Conjunto de componentes y puntos potenciales de interacción (existe).</li><li><strong>Exposición:</strong> Parte de la superficie que es accesible realmente (se demuestra).</li><li><strong>Vector:</strong> Ruta concreta usada para alcanzar un objetivo mediante una debilidad.</li><li><strong>Amenaza:</strong> Agente/intención/capacidad que puede causar daño.</li><li><strong>Riesgo:</strong> Decisión: impacto × probabilidad considerando contexto y controles.</li><li><strong>Control:</strong> Medida preventiva/detectiva/correctiva con evidencia de efectividad.</li><li><strong>Señal:</strong> Patrón observable en telemetría que sugiere actividad maliciosa.</li></ul><div class="callout reveal"><h3>Ejercicio relámpago (10 min)</h3><ul><li>Elige 3 términos y escribe un ejemplo real (del sistema) y un contraejemplo (lo que NO sería).</li><li>Convierte 1 hallazgo en: evidencia → riesgo → control → verificación.</li><li>Define 2 señales con su fuente de log (qué campo mirarías).</li></ul></div>
+</div>
+
+<div class="content-block reveal">
+  <h3>Laboratorio guiado #6: aplicación práctica</h3>
+  <p>Este laboratorio está diseñado para que apliques <strong>3.2) Análisis de riesgo inicial</strong> sobre un sistema real o simulado. La idea es producir evidencias (capturas, logs, configuraciones) y conectar cada hallazgo con una acción verificable.</p><div class="grid-2 reveal"><div><h4>🎯 Objetivo</h4><ul><li>Convertir el contenido en un artefacto ejecutable.</li><li>Definir señales de detección y controles de alto impacto.</li><li>Entregar un backlog priorizado con verificación.</li></ul></div><div><h4>🧰 Insumos</h4><ul><li>Descripción del sistema (1 página) + diagrama simple.</li><li>Lista de endpoints/servicios/roles (aunque sea preliminar).</li><li>Acceso a logs (WAF/API/IAM/EDR) o dataset simulado.</li><li>Herramienta de escaneo o checklist (manual).</li></ul></div></div><div class="callout reveal"><h3>Pasos (60–90 min)</h3><ol><li>Delimita alcance y activos (máximo 10).</li><li>Enumera exposición real (público/interno) con evidencia.</li><li>Elige 1 actor plausible y redacta una cadena de ataque de 8–10 pasos.</li><li>Mapea 5 técnicas a señales (qué log y qué campo observar).</li><li>Define 5 controles (2 preventivos, 2 detectivos, 1 correctivo) con verificación.</li><li>Cierra con un backlog de 8 acciones priorizadas (SLA, owner, prueba de cierre).</li></ol></div><div class="callout reveal"><h3>Criterios de evaluación</h3><ul><li>Trazabilidad: cada afirmación se apoya en evidencia.</li><li>Accionabilidad: recomendaciones concretas y verificables.</li><li>Priorización consistente: explica por qué va primero.</li><li>Claridad: cualquier persona del equipo puede ejecutar el plan.</li></ul></div>
+</div>
+<script>
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window) || els.length===0){
+    els.forEach(el=>el.classList.add('in-view'));
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>

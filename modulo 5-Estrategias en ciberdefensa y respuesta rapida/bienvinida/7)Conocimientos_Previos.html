@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Conocimientos previos sugeridos</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    .subtitle { font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #546e7a; border-left: 4px solid #1976d2; padding-left: 15px; }
+
+    .content-block { margin-bottom: 40px; text-align: justify; }
+
+    .highlight-box {
+        background: #e3f2fd; padding: 25px; border-radius: 12px; border-left: 6px solid #0d47a1; margin: 30px 0; font-size: 1.05rem;
+    }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+    .feature-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; transition: transform 0.2s;
+    }
+    .feature-card:hover { transform: translateY(-5px); border-color: #1565c0; }
+    .card-icon { font-size: 2rem; color: #1565c0; margin-bottom: 15px; display: block; }
+    .card-title { font-weight: 700; color: #0d47a1; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+
+/* =========================
+   Mejora visual + animaciones (ligeras)
+   ========================= */
+:root{
+  --fet-blue:#0d47a1;
+  --fet-blue2:#1565c0;
+  --fet-sky:#e3f2fd;
+  --text:#37474f;
+}
+body{
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(21,101,192,.10), transparent 55%),
+              radial-gradient(900px 600px at 85% 25%, rgba(13,71,161,.08), transparent 60%),
+              linear-gradient(180deg, #f7f9fc 0%, #f0f2f5 60%, #eef3f8 100%);
+}
+.container-extended{
+  isolation:isolate;
+}
+.container-extended::before,
+.container-extended::after{
+  content:"";
+  position:absolute;
+  inset:auto;
+  z-index:-1;
+  filter: blur(0px);
+  opacity:.55;
+  pointer-events:none;
+}
+.container-extended::before{
+  width:520px;height:520px;
+  left:-260px; top:-260px;
+  background: radial-gradient(circle at 30% 30%, rgba(21,101,192,.25), transparent 65%);
+  animation: blobFloat 12s ease-in-out infinite;
+}
+.container-extended::after{
+  width:420px;height:420px;
+  right:-210px; bottom:-210px;
+  background: radial-gradient(circle at 70% 70%, rgba(13,71,161,.22), transparent 65%);
+  animation: blobFloat2 14s ease-in-out infinite;
+}
+@keyframes blobFloat{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(30px,18px) scale(1.05); }
+}
+@keyframes blobFloat2{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(-28px,-14px) scale(1.06); }
+}
+.reveal{
+  opacity:0;
+  transform: translateY(14px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.in-view{
+  opacity:1;
+  transform:none;
+}
+.feature-card, .reason-card, .ra-card, .profile-card, .skill-card, .quiz-card, details{
+  will-change: transform;
+}
+.feature-card:hover, .reason-card:hover, .ra-card:hover, .profile-card:hover, .skill-card:hover{
+  transform: translateY(-6px) scale(1.01);
+}
+kbd{
+  background:#0b2f6b;
+  color:#fff;
+  padding:2px 8px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:.9rem;
+}
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 12px; border-radius:999px;
+  background: rgba(21,101,192,.10);
+  border:1px solid rgba(21,101,192,.25);
+  color: var(--fet-blue2);
+  font-weight:700;
+  font-size:.92rem;
+  margin:6px 8px 0 0;
+}
+.callout{
+  background: #ffffff;
+  border: 1px solid #bbdefb;
+  border-left: 6px solid #1565c0;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  margin: 22px 0;
+}
+.callout h3{
+  margin:0 0 10px 0;
+  font-family:'Montserrat', sans-serif;
+  color: var(--fet-blue);
+}
+.grid-2{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:16px;
+}
+@media (max-width: 860px){
+  .grid-2{ grid-template-columns: 1fr; }
+}
+.small{
+  color:#546e7a;
+  font-size:.95rem;
+}
+hr.soft{
+  border:none;
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(13,71,161,.25), transparent);
+  margin: 28px 0;
+}
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+}
+
+
+    /* Imagen hero (adaptada y más pequeña, sin overlays) */
+    .hero-image{
+        margin: 18px 0 34px 0;
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #e6eef8;
+        border-radius: 14px;
+        overflow: hidden;
+    }
+    .hero-image img{
+        width: 100%;
+        height: 260px;              /* tamaño acordado */
+        object-fit: contain;        /* se ve completa */
+        display:block;
+        background: #ffffff;
+    }
+    @media (max-width: 768px){
+        .hero-image img{ height: 200px; }
+    }
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+  <img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+  <div class="header-box">
+    <h1 class="main-title">Módulo 2: Estrategias de ciberdefensa y respuesta rápida</h1>
+    <span class="subtitle">Conocimientos previos sugeridos</span>
+  </div>
+
+  <div class="hero-image reveal">
+    <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221600%22%20height%3D%22520%22%20viewBox%3D%220%200%201600%20520%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230d47a1%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.55%22%20stop-color%3D%22%231565c0%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2300acc1%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22r%22%20cx%3D%2275%25%22%20cy%3D%2230%25%22%20r%3D%2265%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22rgba%28255%2C255%2C255%2C.22%29%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22rgba%28255%2C255%2C255%2C0%29%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22s%22%20x%3D%22-20%25%22%20y%3D%22-20%25%22%20width%3D%22140%25%22%20height%3D%22140%25%22%3E%0A%20%20%20%20%20%20%3CfeDropShadow%20dx%3D%220%22%20dy%3D%2210%22%20stdDeviation%3D%2212%22%20flood-color%3D%22rgba%280%2C0%2C0%2C.25%29%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%20%20%3Crect%20width%3D%221600%22%20height%3D%22520%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%3Crect%20width%3D%221600%22%20height%3D%22520%22%20fill%3D%22url%28%23r%29%22/%3E%0A%20%20%3C%21--%20red%20de%20nodos%20--%3E%0A%20%20%3Cg%20opacity%3D%220.30%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M150%20420%20C%20380%20280%2C%20520%20520%2C%20760%20350%20S%201180%20260%2C%201450%20120%22%20fill%3D%22none%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M120%20180%20C%20380%2060%2C%20520%20260%2C%20820%20140%20S%201180%2080%2C%201500%20260%22%20fill%3D%22none%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M260%20520%20C%20520%20320%2C%20720%20520%2C%20980%20380%20S%201240%20330%2C%201600%20140%22%20fill%3D%22none%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3Cg%20opacity%3D%220.85%22%20fill%3D%22%23ffffff%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22150%22%20cy%3D%22420%22%20r%3D%227%22/%3E%3Ccircle%20cx%3D%22410%22%20cy%3D%22300%22%20r%3D%226%22/%3E%3Ccircle%20cx%3D%22760%22%20cy%3D%22350%22%20r%3D%227%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%221180%22%20cy%3D%22260%22%20r%3D%226%22/%3E%3Ccircle%20cx%3D%221450%22%20cy%3D%22120%22%20r%3D%227%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22120%22%20cy%3D%22180%22%20r%3D%227%22/%3E%3Ccircle%20cx%3D%22520%22%20cy%3D%22260%22%20r%3D%226%22/%3E%3Ccircle%20cx%3D%22820%22%20cy%3D%22140%22%20r%3D%227%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%221180%22%20cy%3D%2280%22%20r%3D%226%22/%3E%3Ccircle%20cx%3D%221500%22%20cy%3D%22260%22%20r%3D%227%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20escudo%20--%3E%0A%20%20%3Cg%20filter%3D%22url%28%23s%29%22%20transform%3D%22translate%281120%2C120%29%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M160%200%20L300%2060%20V190%20C300%20290%20235%20375%20160%20410%20C85%20375%2020%20290%2020%20190%20V60%20Z%22%0A%20%20%20%20%20%20%20%20%20%20fill%3D%22rgba%28255%2C255%2C255%2C.16%29%22%20stroke%3D%22rgba%28255%2C255%2C255%2C.55%29%22%20stroke-width%3D%223%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M160%2075%20L220%20110%20V185%20C220%20235%20192%20285%20160%20305%20C128%20285%20100%20235%20100%20185%20V110%20Z%22%0A%20%20%20%20%20%20%20%20%20%20fill%3D%22rgba%28255%2C255%2C255%2C.18%29%22%20stroke%3D%22rgba%28255%2C255%2C255%2C.65%29%22%20stroke-width%3D%223%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M160%20140%20m-32%200%20a32%2032%200%201%200%2064%200%20a32%2032%200%201%200%20-64%200%22%20fill%3D%22rgba%28255%2C255%2C255%2C.75%29%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M160%20140%20v60%22%20stroke%3D%22%230d47a1%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20texto%20--%3E%0A%20%20%3Cg%20font-family%3D%22Montserrat%2C%20Arial%2C%20sans-serif%22%20fill%3D%22%23ffffff%22%3E%0A%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22165%22%20font-size%3D%2256%22%20font-weight%3D%22800%22%3ENivelaci%C3%B3n%20%E2%80%A2%20Fundamentos%3C/text%3E%0A%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22220%22%20font-size%3D%2228%22%20font-weight%3D%22600%22%20opacity%3D%220.95%22%3ELo%20m%C3%ADnimo%20para%20avanzar%20con%20confianza%3C/text%3E%0A%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22275%22%20font-size%3D%2218%22%20font-weight%3D%22500%22%20opacity%3D%220.9%22%3ESeguridad%20%E2%80%A2%20Detecci%C3%B3n%20%E2%80%A2%20Respuesta%20%E2%80%A2%20Recuperaci%C3%B3n%20%E2%80%A2%20Mejora%20continua%3C/text%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Banner: Conocimientos previos sugeridos">
+  </div>
+
+  
+<div class="content-block reveal">
+  <h2 style="color:#0d47a1; font-family:'Montserrat',sans-serif; margin-top:0;">Conocimientos previos sugeridos</h2>
+  
+  <p>
+    Para aprovechar el módulo, conviene tener una base en redes, sistemas operativos y seguridad. No necesitas ser experto;
+    lo importante es que puedas <strong>leer evidencia</strong> (logs/comandos) y <strong>razonar</strong> con criterios de riesgo.
+  </p>
+
+  <h3 style="color:#1565c0; font-family:'Montserrat',sans-serif;">Conocimientos previos sugeridos</h3>
+  <div class="feature-grid">
+    <div class="feature-card reveal">
+      <i class="fa-solid fa-diagram-project card-icon"></i>
+      <span class="card-title">Redes (mínimo)</span>
+      <p>IP, DNS, HTTP/HTTPS, puertos, TCP/UDP. Saber leer conexiones y diferenciar interno/externo.</p>
+    </div>
+    <div class="feature-card reveal">
+      <i class="fa-solid fa-desktop card-icon"></i>
+      <span class="card-title">Sistemas operativos</span>
+      <p>Usuarios/permisos, procesos/servicios, logs/eventos. Conceptos de hardening básico.</p>
+    </div>
+    <div class="feature-card reveal">
+      <i class="fa-solid fa-key card-icon"></i>
+      <span class="card-title">Identidad y acceso</span>
+      <p>Contraseñas, MFA, roles, mínimos privilegios. Riesgos de credenciales comprometidas.</p>
+    </div>
+    <div class="feature-card reveal">
+      <i class="fa-solid fa-file-lines card-icon"></i>
+      <span class="card-title">Lectura de evidencia</span>
+      <p>Entender qué es un log, evento, alerta, indicador y cómo construir un timeline.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box reveal">
+    <strong>Autoevaluación rápida:</strong> si algo de lo anterior te suena nuevo, no te preocupes: esta sección incluye un “repaso exprés” para nivelarte.
+  </div>
+
+  <h3 style="color:#1565c0; font-family:'Montserrat',sans-serif;">Repaso exprés (listo para usar)</h3>
+  <div class="grid-2">
+    <div class="callout">
+      <strong>Comandos útiles (Windows)</strong>
+      <ul class="small">
+        <li><code>ipconfig /all</code> — configuración de red</li>
+        <li><code>netstat -ano</code> — conexiones y PID</li>
+        <li><code>whoami /all</code> — identidad y privilegios</li>
+        <li><code>wevtutil qe Security /c:5</code> — consultar eventos (ejemplo)</li>
+        <li><code>Get-Process</code> / <code>Get-Service</code> — procesos y servicios</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <strong>Comandos útiles (Linux)</strong>
+      <ul class="small">
+        <li><code>ip a</code> / <code>ss -tulpn</code> — red y puertos</li>
+        <li><code>ps aux</code> / <code>systemctl status</code> — procesos/servicios</li>
+        <li><code>journalctl -xe</code> — eventos recientes</li>
+        <li><code>grep</code>, <code>awk</code> — búsqueda de patrones en logs</li>
+        <li><code>last</code>, <code>who</code> — sesiones y usuarios</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="color:#1565c0; font-family:'Montserrat',sans-serif;">Conceptos base (definiciones cortas)</h3>
+  <ul>
+    <li><strong>Activo:</strong> lo que tiene valor (datos, sistemas, reputación, continuidad).</li>
+    <li><strong>Amenaza:</strong> agente/evento que puede causar daño.</li>
+    <li><strong>Vulnerabilidad:</strong> debilidad explotable.</li>
+    <li><strong>Riesgo:</strong> probabilidad × impacto (en contexto).</li>
+    <li><strong>Indicador (IoC):</strong> señal observable (hash, dominio, patrón de log).</li>
+    <li><strong>Incidente:</strong> evento confirmado con impacto o potencial de impacto.</li>
+  </ul>
+
+  <details class="callout">
+    <summary><strong>Mini‑laboratorio (30 min)</strong> — abre para ver pasos</summary>
+    <ol class="small">
+      <li>En tu equipo (o VM), identifica procesos en ejecución y servicios activos.</li>
+      <li>Lista conexiones de red y anota 3 destinos (dominio/IP) que reconozcas.</li>
+      <li>Ubica un log: Windows (Visor de eventos) o Linux (<code>/var/log</code> o <code>journalctl</code>).</li>
+      <li>Escribe un párrafo: ¿qué evidencia te diría que hay una actividad “anómala”?</li>
+    </ol>
+    <p class="small soft">No ejecutas nada ofensivo; solo observación y registro.</p>
+  </details>
+
+</div>
+
+
+<div class="content-block reveal">
+  <h2 style="color:#0d47a1; font-family:'Montserrat',sans-serif; margin-top:0;">Fundamentos ampliados (para nivelarte)</h2>
+  
+<p><strong>DNS y HTTP:</strong> muchos incidentes dejan huellas en resoluciones DNS (consultas a dominios raros) y en tráfico HTTP (descargas, exfiltración, conexiones a C2). Comprender el flujo básico te permite interpretar logs con mayor confianza.</p>
+<p><strong>Identidad:</strong> la mayoría de ataques modernos abusa identidad antes que vulnerabilidades. Por eso se insiste en MFA, mínimos privilegios y monitoreo de inicios de sesión anómalos.</p>
+<p><strong>Logs como narrativa:</strong> un log aislado puede ser ruido; un conjunto ordenado en timeline revela patrón. Tu habilidad clave es conectar eventos coherentes con hipótesis.</p>
+<details class="callout reveal">
+  <summary><strong>Tabla rápida: qué revisar según el síntoma</strong></summary>
+  <div class="small" style="margin-top:10px;">
+    
+<table style="width:100%; border-collapse:collapse;">
+  <tr><th style="text-align:left; padding:8px;">Síntoma</th><th style="text-align:left; padding:8px;">Evidencia típica</th><th style="text-align:left; padding:8px;">Primeros pasos</th></tr>
+  <tr><td style="padding:8px;">Múltiples fallos login</td><td style="padding:8px;">Eventos de autenticación</td><td style="padding:8px;">Ver origen, usuario, patrón, bloquear/MFA</td></tr>
+  <tr><td style="padding:8px;">Equipo lento</td><td style="padding:8px;">Procesos, uso CPU, conexiones</td><td style="padding:8px;">Identificar proceso, revisar persistencia</td></tr>
+  <tr><td style="padding:8px;">Alertas de malware</td><td style="padding:8px;">Detección AV/EDR</td><td style="padding:8px;">Aislar, recolectar evidencia, erradicar</td></tr>
+  <tr><td style="padding:8px;">Archivos cifrados</td><td style="padding:8px;">Extensiones raras, notas</td><td style="padding:8px;">Contener, backups, comunicación, forense</td></tr>
+</table>
+
+  </div>
+</details>
+</div>
+
+
+<div class="content-block reveal">
+  <h2 style="color:#0d47a1; font-family:'Montserrat',sans-serif; margin-top:0;">Recursos y herramientas recomendadas</h2>
+  <p>Recursos para profundizar en <strong>Conocimientos previos sugeridos</strong> (puedes usar los materiales oficiales del curso como fuente principal y complementar con estos temas):</p><h4 style="margin-bottom:6px; color:#0d47a1; font-family:Montserrat, sans-serif;">Marcos de referencia</h4><ul><li>Gestión de riesgos y controles: conceptos de gobernanza, madurez y priorización por criticidad.</li><li>Respuesta a incidentes: ciclo completo (preparación, detección, contención, erradicación, recuperación y lecciones).</li><li>Modelos de defensa: Defense in Depth, Zero Trust y hardening por capas.</li></ul><h4 style="margin-bottom:6px; color:#0d47a1; font-family:Montserrat, sans-serif;">Fuentes de inteligencia y clasificación</h4><ul><li>MITRE ATT&CK (tácticas y técnicas): útil para describir comportamiento del adversario sin depender de nombres de malware.</li><li>OWASP (aplicaciones web): para comprender vectores típicos y controles de mitigación en software.</li><li>CIS Benchmarks (hardening): listas de configuración segura por sistema/tecnología.</li></ul><h4 style="margin-bottom:6px; color:#0d47a1; font-family:Montserrat, sans-serif;">Herramientas prácticas (nivel estudiante)</h4><ul><li>Análisis de logs: búsqueda de patrones, correlación simple y construcción de timelines.</li><li>Monitoreo básico: revisión de eventos del sistema, servicios, procesos y conexiones de red.</li><li>Documentación: plantillas de playbook, matriz de riesgos y reporte post‑mortem.</li></ul><h4 style="margin-bottom:6px; color:#0d47a1; font-family:Montserrat, sans-serif;">Buenas prácticas de operación</h4><ul><li>MFA y gestión de identidades: prioriza el control de cuentas y sesiones.</li><li>Backups y recuperación: prueba restauración y define RPO/RTO cuando aplique.</li><li>Gestión de cambios: registra hardening y verifica que no rompa operación.</li></ul>
+    <p class="small soft">
+      Sugerencia: cuando cites o uses información externa en un entregable, prioriza fuentes oficiales, documentación de fabricantes
+      y buenas prácticas reconocidas. Evita copiar listas sin contexto: explica por qué aplican a tu caso.
+    </p>
+    
+</div>
+
+
+<div class="content-block reveal">
+  <h2 style="color:#0d47a1; font-family:'Montserrat',sans-serif; margin-top:0;">Autoevaluación rápida</h2>
+  
+    <p>Antes de cerrar esta sección, verifica que puedes responder (sin mirar apuntes):</p>
+    <ul>
+      <li>¿Cuál es el objetivo de esta sección y cómo se conecta con un incidente real?</li>
+      <li>¿Qué evidencia mínima recolectarías para sostener tus conclusiones?</li>
+      <li>¿Qué acción tomarías primero y cuál sería tu “punto de no retorno” (acciones irreversibles)?</li>
+      <li>¿Qué mejorarías para reducir recurrencia (control, detección o proceso)?</li>
+      <li>¿Cómo explicarías tu decisión a una persona no técnica (en 2–3 frases)?</li>
+    </ul>
+    <div class="callout">
+      <strong>Tip de calidad:</strong> si tu respuesta no incluye evidencia, es opinión. En ciberdefensa se trabaja con trazabilidad.
+    </div>
+    
+</div>
+
+
+  <div class="content-block reveal">
+    <p class="small soft">
+      <strong>Nota institucional:</strong> Este contenido está diseñado para publicarse en Q10 como página informativa del módulo. 
+      Puedes adaptar fechas, enlaces y criterios de evaluación según el plan de curso y el reglamento académico.
+    </p>
+  </div>
+</div>
+<script>
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window) || els.length===0){
+    els.forEach(el=>el.classList.add('in-view'));
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>

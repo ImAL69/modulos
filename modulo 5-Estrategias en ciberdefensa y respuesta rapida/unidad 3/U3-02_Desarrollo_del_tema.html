@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Unidad 3 (RAP3) · Desarrollo del tema</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    .subtitle { font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #546e7a; border-left: 4px solid #1976d2; padding-left: 15px; }
+
+    .content-block { margin-bottom: 40px; text-align: justify; }
+
+    .highlight-box {
+        background: #e3f2fd; padding: 25px; border-radius: 12px; border-left: 6px solid #0d47a1; margin: 30px 0; font-size: 1.05rem;
+    }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+    .feature-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; transition: transform 0.2s;
+    }
+    .feature-card:hover { transform: translateY(-5px); border-color: #1565c0; }
+    .card-icon { font-size: 2rem; color: #1565c0; margin-bottom: 15px; display: block; }
+    .card-title { font-weight: 700; color: #0d47a1; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+
+/* =========================
+   Mejora visual + animaciones (ligeras)
+   ========================= */
+:root{
+  --fet-blue:#0d47a1;
+  --fet-blue2:#1565c0;
+  --fet-sky:#e3f2fd;
+  --text:#37474f;
+}
+body{
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(21,101,192,.10), transparent 55%),
+              radial-gradient(900px 600px at 85% 25%, rgba(13,71,161,.08), transparent 60%),
+              linear-gradient(180deg, #f7f9fc 0%, #f0f2f5 60%, #eef3f8 100%);
+}
+.container-extended{
+  isolation:isolate;
+}
+.container-extended::before,
+.container-extended::after{
+  content:"";
+  position:absolute;
+  inset:auto;
+  z-index:-1;
+  filter: blur(0px);
+  opacity:.55;
+  pointer-events:none;
+}
+.container-extended::before{
+  width:520px;height:520px;
+  left:-260px; top:-260px;
+  background: radial-gradient(circle at 30% 30%, rgba(21,101,192,.25), transparent 65%);
+  animation: blobFloat 12s ease-in-out infinite;
+}
+.container-extended::after{
+  width:420px;height:420px;
+  right:-210px; bottom:-210px;
+  background: radial-gradient(circle at 70% 70%, rgba(13,71,161,.22), transparent 65%);
+  animation: blobFloat2 14s ease-in-out infinite;
+}
+@keyframes blobFloat{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(30px,18px) scale(1.05); }
+}
+@keyframes blobFloat2{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(-28px,-14px) scale(1.06); }
+}
+.reveal{
+  opacity:0;
+  transform: translateY(14px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.in-view{
+  opacity:1;
+  transform:none;
+}
+.feature-card, .reason-card, .ra-card, .profile-card, .skill-card, .quiz-card, details{
+  will-change: transform;
+}
+.feature-card:hover, .reason-card:hover, .ra-card:hover, .profile-card:hover, .skill-card:hover{
+  transform: translateY(-6px) scale(1.01);
+}
+kbd{
+  background:#0b2f6b;
+  color:#fff;
+  padding:2px 8px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:.9rem;
+}
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 12px; border-radius:999px;
+  background: rgba(21,101,192,.10);
+  border:1px solid rgba(21,101,192,.25);
+  color: var(--fet-blue2);
+  font-weight:700;
+  font-size:.92rem;
+  margin:6px 8px 0 0;
+}
+.callout{
+  background: #ffffff;
+  border: 1px solid #bbdefb;
+  border-left: 6px solid #1565c0;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  margin: 22px 0;
+}
+.callout h3{
+  margin:0 0 10px 0;
+  font-family:'Montserrat', sans-serif;
+  color: var(--fet-blue);
+}
+.grid-2{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:16px;
+}
+@media (max-width: 860px){
+  .grid-2{ grid-template-columns: 1fr; }
+}
+.small{
+  color:#546e7a;
+  font-size:.95rem;
+}
+hr.soft{
+  border:none;
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(13,71,161,.25), transparent);
+  margin: 28px 0;
+}
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+}
+
+
+    /* Imagen hero (adaptada y más pequeña, sin overlays) */
+    .hero-image{
+        margin: 18px 0 34px 0;
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #e6eef8;
+        border-radius: 14px;
+        overflow: hidden;
+    }
+    .hero-image img{
+        width: 100%;
+        height: 260px;              /* tamaño acordado */
+        object-fit: contain;        /* se ve completa */
+        display:block;
+        background: #ffffff;
+    }
+    @media (max-width: 768px){
+        .hero-image img{ height: 200px; }
+    }
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Unidad de Aprendizaje 3 · RAP3</h1>
+<span class="subtitle">Desarrollo — medición, documentación y mejora</span>
+</div>
+
+
+
+<div class="content-block reveal"><h3><i class="fa-solid compass-drafting"></i> Desarrollo del tema — convertir incidentes en mejora</h3><span class='badge'>Ruta de trabajo</span><p>El desarrollo del tema conecta: métrica → hallazgo → decisión → cambio → verificación. Se evita: (1) métricas de vanidad, (2) post‑mortems sin acciones, (3) roadmaps sin priorización.</p><div class="grid-2"><div><div class="callout reveal"><h3>Ciclo de mejora (operacional)</h3><ol>
+<li><strong>Medir</strong>: KPIs/KRIs con fórmula, fuente y dueños.</li>
+<li><strong>Interpretar</strong>: impacto, riesgo residual, tendencias y causas.</li>
+<li><strong>Documentar</strong>: post‑mortem, evidencias, aprobaciones y control de cambios.</li>
+<li><strong>Priorizar</strong>: backlog CAPA por impacto/esfuerzo y dependencias.</li>
+<li><strong>Ejecutar</strong>: cambios con pruebas y rollback.</li>
+<li><strong>Verificar</strong>: medir de nuevo y reportar mejora real.</li>
+</ol></div></div><div><div class="callout reveal"><h3>Buenas prácticas para calidad (sin relleno)</h3><ul>
+<li>Cada KPI/KRI debe responder: <strong>¿qué decisión habilita?</strong></li>
+<li>Cada acción CAPA debe tener: <strong>dueño, fecha, evidencia</strong> y definición de hecho.</li>
+<li>Riesgo residual siempre con <strong>supuestos</strong> y fecha de revisión.</li>
+<li>Roadmap por <strong>capacidades</strong> (personas/proceso/datos/tecnología).</li>
+</ul></div></div></div><hr class="soft"/><div class="content-block reveal"><h3><i class="fa-solid clipboard-list"></i> Artefactos mínimos por bloque</h3><div class='reveal' style='overflow:auto;'><table style='width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden;'><tr><th style='text-align:left;padding:10px;border-bottom:1px solid #e0e0e0;'>Bloque</th><th style='text-align:left;padding:10px;border-bottom:1px solid #e0e0e0;'>Artefacto</th><th style='text-align:left;padding:10px;border-bottom:1px solid #e0e0e0;'>Criterio de calidad</th></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>KPIs/KRIs</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Catálogo + tablero</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Fórmula + fuente + periodicidad + acción</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Riesgo residual</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Registro de riesgos</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Prob/impacto + controles + evidencia</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Post‑mortem</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Informe + timeline</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Hechos verificables + RCA + CAPA</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Auditoría</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Paquete de evidencias</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Trazabilidad + control de acceso</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Madurez</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Modelo + roadmap</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Capacidades por etapa + métricas de avance</td></tr></table></div></div><div class="callout reveal"><h3>Mini‑reto: paquete RAP3 (completo, en pequeño)</h3><p><strong>Mini‑reto:</strong> produce evidencia verificable. No basta con “explicar”: hay que medir, documentar y justificar decisiones.</p><p><strong>Pasos:</strong></p><ol>
+<li>Construye un timeline verificable de 12–20 eventos.</li>
+<li>Define 8 KPIs y 6 KRIs (fórmula, fuente, objetivo).</li>
+<li>Identifica 5 riesgos residuales y compensatorios temporales.</li>
+<li>Escribe post‑mortem técnico + organizacional con 8 acciones CAPA.</li>
+<li>Arma un roadmap 30/60/90 con métricas de avance.</li>
+</ol><p><strong>Entregables:</strong></p><ul>
+<li>Timeline + fuentes</li>
+<li>Catálogo KPI/KRI + tablero</li>
+<li>Registro de riesgo residual</li>
+<li>Post‑mortem con CAPA + dueños/fechas</li>
+<li>Roadmap 30/60/90</li>
+</ul></div><div class="content-block reveal"><h3><i class="fa-solid clipboard-check"></i> Caso guiado: evaluación después del incidente (end‑to‑end)</h3><p>Escenario: incidente de <strong>abuso de credenciales</strong> con acceso a panel admin y extracción parcial. Tu meta es evaluar respuesta y producir mejoras verificables (no sólo conclusiones).</p><ul>
+<li><strong>Hechos</strong>: timeline verificado (IdP/WAF/app/DB) y acciones ejecutadas.</li>
+<li><strong>Evaluación</strong>: MTTD/MTTR, tiempo a contención, ruido y calidad de evidencias.</li>
+<li><strong>Riesgo residual</strong>: qué queda expuesto y compensatorios temporales.</li>
+<li><strong>Mejora</strong>: backlog priorizado + roadmap 30/60/90 con métricas de avance.</li>
+</ul><p>Etiqueta sugerida para evidencias: <code>U3-02</code>.</p></div><div class="content-block reveal"><h3><i class="fa-solid table-list"></i> Plantillas y artefactos de medición (listo para usar)</h3><div class='reveal' style='overflow:auto;'><table style='width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden;'><tr><th style='text-align:left;padding:10px;border-bottom:1px solid #e0e0e0;'>Artefacto</th><th style='text-align:left;padding:10px;border-bottom:1px solid #e0e0e0;'>Campos obligatorios</th><th style='text-align:left;padding:10px;border-bottom:1px solid #e0e0e0;'>Tip de calidad</th></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Catálogo KPI/KRI</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Nombre, tipo (leading/lagging), fórmula, fuente, frecuencia, owner</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Evita métricas sin acción asociada</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Diccionario de datos</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Campo, origen, formato, validación, sensibilidad, retención</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Sin diccionario, los tableros se rompen</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Tablero IR</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>MTTD, MTTR, contención, backlog, ruido, cobertura</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Incluye tendencia y objetivo por criticidad</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Registro de cambios</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Cambio, fecha, razón, impacto, evidencia, aprobación</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Trazabilidad = menos fricción en auditoría</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Matriz de decisiones</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Escenario, umbral, acción, aprobador, rollback, evidencia</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Reduce improvisación bajo presión</td></tr></table></div></div></div>
+<div class="content-block reveal"><h3><i class="fa-solid clipboard-check"></i> Caso guiado: evaluación después del incidente (end‑to‑end)</h3><p>Escenario: incidente de <strong>abuso de credenciales</strong> con acceso a panel admin y extracción parcial. Tu meta es evaluar respuesta y producir mejoras verificables (no sólo conclusiones).</p><ul>
+<li><strong>Hechos</strong>: timeline verificado (IdP/WAF/app/DB) y acciones ejecutadas.</li>
+<li><strong>Evaluación</strong>: MTTD/MTTR, tiempo a contención, ruido y calidad de evidencias.</li>
+<li><strong>Riesgo residual</strong>: qué queda expuesto y compensatorios temporales.</li>
+<li><strong>Mejora</strong>: backlog priorizado + roadmap 30/60/90 con métricas de avance.</li>
+</ul><p>Etiqueta sugerida para evidencias: <code>U3-02_Desarrollo_del_tema.html</code>.</p></div>
+<div class="content-block reveal"><h3><i class="fa-solid table-list"></i> Plantillas y artefactos de medición (listo para usar)</h3><div class='reveal' style='overflow:auto;'><table style='width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden;'><tr><th style='text-align:left;padding:10px;border-bottom:1px solid #e0e0e0;'>Artefacto</th><th style='text-align:left;padding:10px;border-bottom:1px solid #e0e0e0;'>Campos obligatorios</th><th style='text-align:left;padding:10px;border-bottom:1px solid #e0e0e0;'>Tip de calidad</th></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Catálogo KPI/KRI</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Nombre, tipo (leading/lagging), fórmula, fuente, frecuencia, owner</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Evita métricas sin acción asociada</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Diccionario de datos</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Campo, origen, formato, validación, sensibilidad, retención</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Sin diccionario, los tableros se rompen</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Tablero IR</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>MTTD, MTTR, contención, backlog, ruido, cobertura</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Incluye tendencia y objetivo por criticidad</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Registro de cambios</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Cambio, fecha, razón, impacto, evidencia, aprobación</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Trazabilidad = menos fricción en auditoría</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Matriz de decisiones</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Escenario, umbral, acción, aprobador, rollback, evidencia</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Reduce improvisación bajo presión</td></tr></table></div></div>
+<div class="content-block reveal"><h3><i class="fa-solid file-shield"></i> Paquete para auditoría y cumplimiento (compacto pero completo)</h3><p>Un paquete auditable demuestra <strong>qué se hizo</strong>, <strong>por qué</strong>, <strong>cómo se verificó</strong> y <strong>qué se mejorará</strong>. Debe ser trazable y protegido.</p><div class='reveal' style='overflow:auto;'><table style='width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden;'><tr><th style='text-align:left;padding:10px;border-bottom:1px solid #e0e0e0;'>Elemento</th><th style='text-align:left;padding:10px;border-bottom:1px solid #e0e0e0;'>Qué evidencia incluye</th><th style='text-align:left;padding:10px;border-bottom:1px solid #e0e0e0;'>Error común</th></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Resumen ejecutivo</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Impacto, alcance, decisiones, estado</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>No conectar a negocio</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Timeline</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Eventos con fuente y timestamp</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Tiempos inconsistentes</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Evidencia</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Ubicación, control de acceso, integridad</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Sobrescribir evidencia</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Acciones</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Registro de cambios + aprobaciones + rollback</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Acciones críticas sin aprobación</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>RCA y lecciones</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Causa raíz + contribuyentes + CAPA</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Buscar culpables</td></tr><tr><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Plan de mejora</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Backlog, dueños, fechas, métricas</td><td style='vertical-align:top;padding:10px;border-bottom:1px solid #f0f0f0;'>Lista de deseos</td></tr></table></div><p>Etiqueta de versión sugerida: <code>AuditPack-U3-02_Desarrollo_del_tema.html</code>.</p></div>
+<script>
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window) || els.length===0){
+    els.forEach(el=>el.classList.add('in-view'));
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
