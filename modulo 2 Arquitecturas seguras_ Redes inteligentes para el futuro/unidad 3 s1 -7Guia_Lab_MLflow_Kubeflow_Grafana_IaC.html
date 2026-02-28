@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía de laboratorio: MLflow, Kubeflow, Grafana e IaC</title>
+</head>
+<body style="font-family:Arial,sans-serif;max-width:980px;margin:30px auto;line-height:1.65;color:#1f2937;padding:0 16px;">
+  <h1>Guía de laboratorio — Unidad 3</h1>
+  <p>Esta guía cubre recursos prácticos mínimos para el proyecto integrador: <strong>MLflow, Kubeflow, Grafana e Infraestructura como Código (IaC)</strong>.</p>
+
+  <h2>1) Flujo práctico recomendado (paso a paso)</h2>
+  <ol>
+    <li>Definir caso de IA (objetivo, datos, métrica principal).</li>
+    <li>Registrar experimento en MLflow (parámetros, métricas, artefactos).</li>
+    <li>Diseñar pipeline básico en Kubeflow (ingesta → entrenamiento → evaluación).</li>
+    <li>Configurar tablero de observabilidad en Grafana (latencia, errores, disponibilidad).</li>
+    <li>Versionar despliegue con IaC YAML para reproducibilidad.</li>
+  </ol>
+
+  <h2>2) Plantillas YAML mínimas (IaC educativa)</h2>
+  <p><strong>Deployment base (Kubernetes):</strong></p>
+  <pre style="background:#0f172a;color:#e2e8f0;padding:12px;border-radius:8px;overflow:auto;">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: modelo-inferencia
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: modelo-inferencia
+  template:
+    metadata:
+      labels:
+        app: modelo-inferencia
+    spec:
+      containers:
+      - name: api-modelo
+        image: ejemplo/modelo:1.0
+        ports:
+        - containerPort: 8080</pre>
+
+  <p><strong>Service base (Kubernetes):</strong></p>
+  <pre style="background:#0f172a;color:#e2e8f0;padding:12px;border-radius:8px;overflow:auto;">apiVersion: v1
+kind: Service
+metadata:
+  name: svc-modelo
+spec:
+  selector:
+    app: modelo-inferencia
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080</pre>
+
+  <h2>3) Evidencias que debe entregar el estudiante</h2>
+  <ul>
+    <li>Captura de ejecución o bitácora de experimento en MLflow.</li>
+    <li>Diagrama simple del pipeline en Kubeflow.</li>
+    <li>Captura de dashboard en Grafana con al menos 3 métricas.</li>
+    <li>Archivo YAML comentado y justificación de controles de seguridad.</li>
+  </ul>
+
+  <h2>4) Recursos auditivos y lecturas especializadas</h2>
+  <ul>
+    <li>Podcast: The Cloudcast (episodios de Kubernetes/MLOps).</li>
+    <li>Podcast: Software Engineering Daily (arquitecturas distribuidas).</li>
+    <li>Lectura: documentación oficial MLflow y Kubeflow (secciones "getting started").</li>
+    <li>Lectura: guías de observabilidad con Prometheus/Grafana.</li>
+  </ul>
+
+  <p><strong>Nota LMS:</strong> esta guía es recurso de apoyo y no reemplaza el buzón oficial del Proyecto Integrador (50%).</p>
+</body>
+</html>
