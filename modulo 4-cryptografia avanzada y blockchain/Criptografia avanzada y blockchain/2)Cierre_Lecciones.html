@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecciones Aprendidas</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .lesson-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px;
+    }
+    .lesson-card {
+        background: #fff; border: 1px solid #ddd; padding: 25px; border-radius: 12px;
+        border-left: 6px solid #1565c0; transition: transform 0.2s;
+    }
+    .lesson-card:hover { transform: translateY(-5px); }
+    
+    .lesson-title { font-weight: 800; color: #0d47a1; display: block; margin-bottom: 10px; font-size: 1.1rem; }
+
+    .security-box {
+        background: #fff3e0; border: 1px dashed #e65100; padding: 20px; border-radius: 8px; text-align: center; color: #e65100; font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+/* =========================
+   GOD Motion + Visual polish
+   (non-breaking, respects reduced-motion)
+========================= */
+:root{
+  --bg0:#f0f2f5;
+  --card:#ffffff;
+  --ink:#263238;
+  --muted:#607d8b;
+  --pri:#0d47a1;
+  --pri2:#1565c0;
+  --ok:#2e7d32;
+  --warn:#e65100;
+  --shadow: 0 14px 50px rgba(0,0,0,.10);
+  --shadow2: 0 10px 30px rgba(13,71,161,.12);
+  --r: 22px;
+}
+
+body{
+  background:
+    radial-gradient(900px 360px at 18% 0%, rgba(21,101,192,.14), transparent 60%),
+    radial-gradient(900px 420px at 100% 10%, rgba(46,125,50,.10), transparent 55%),
+    var(--bg0);
+}
+
+.container-extended{
+  box-shadow: var(--shadow);
+  transform: translateZ(0);
+}
+
+/* subtle animated background glow */
+.container-extended::before{
+  content:"";
+  position:absolute; inset:-2px;
+  background:
+    radial-gradient(600px 280px at 10% 10%, rgba(13,71,161,.18), transparent 60%),
+    radial-gradient(520px 260px at 90% 20%, rgba(46,125,50,.12), transparent 60%),
+    radial-gradient(700px 420px at 50% 100%, rgba(25,118,210,.10), transparent 65%);
+  opacity:.55;
+  pointer-events:none;
+  filter: blur(20px);
+}
+
+@media (prefers-reduced-motion:no-preference){
+  .container-extended::before{
+    animation: floatGlow 9s ease-in-out infinite alternate;
+  }
+  @keyframes floatGlow{
+    0%{ transform: translate3d(0,0,0) scale(1); opacity:.50; }
+    100%{ transform: translate3d(0,-8px,0) scale(1.02); opacity:.60; }
+  }
+}
+
+/* Entrance animation */
+.reveal{ opacity:0; transform: translateY(14px) scale(.99); }
+.reveal.reveal-in{ opacity:1; transform: translateY(0) scale(1); transition: opacity .55s ease, transform .55s cubic-bezier(.2,.8,.2,1); }
+@media (prefers-reduced-motion:reduce){
+  .reveal{ opacity:1; transform:none; }
+}
+
+.header-box{
+  position:relative;
+}
+.header-box::after{
+  content:"";
+  position:absolute; left:0; bottom:-2px;
+  width:140px; height:4px;
+  background: linear-gradient(90deg, var(--pri), rgba(21,101,192,.35));
+  border-radius:999px;
+}
+
+/* interactive cards */
+.check-item, .lesson-card, .requirements, .upload-area, .security-box{
+  box-shadow: 0 10px 26px rgba(0,0,0,.05);
+}
+.check-item:hover, .lesson-card:hover{
+  box-shadow: var(--shadow2);
+}
+@media (prefers-reduced-motion:no-preference){
+  .check-item, .lesson-card{
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .check-item:hover, .lesson-card:hover{
+    transform: translateY(-4px);
+    border-color: rgba(21,101,192,.35);
+  }
+}
+
+/* nice focus */
+:focus-visible{
+  outline: 3px solid rgba(21,101,192,.35);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* progress bar (used in checklist) */
+.progress-wrap{
+  background: rgba(227,242,253,.65);
+  border: 1px solid rgba(187,222,251,.9);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 18px 0 16px;
+  backdrop-filter: blur(6px);
+}
+.progress-top{
+  display:flex; justify-content:space-between; align-items:center;
+  gap: 12px;
+}
+.progress-top b{ color: var(--pri); }
+.progress-track{
+  height: 10px; border-radius:999px;
+  background: rgba(13,71,161,.12);
+  overflow:hidden;
+  margin-top:10px;
+}
+.progress-fill{
+  height:100%; width:0%;
+  background: linear-gradient(90deg, var(--pri), var(--pri2), rgba(46,125,50,.75));
+  border-radius:999px;
+}
+@media (prefers-reduced-motion:no-preference){
+  .progress-fill{ transition: width .35s cubic-bezier(.2,.8,.2,1); }
+}
+
+/* tiny toast */
+.toast{
+  position: fixed;
+  right: 18px; bottom: 18px;
+  background: rgba(13,71,161,.95);
+  color:#fff;
+  padding: 12px 14px;
+  border-radius: 14px;
+  box-shadow: var(--shadow2);
+  transform: translateY(18px);
+  opacity:0;
+  z-index: 9999;
+  max-width: min(420px, calc(100vw - 36px));
+  font-weight: 600;
+}
+.toast.toast-in{ opacity:1; transform: translateY(0); transition: opacity .25s ease, transform .25s ease; }
+.toast small{ display:block; opacity:.9; font-weight:400; margin-top:2px; }
+
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box" reveal">
+        <h1 class="main-title">Lecciones Aprendidas</h1>
+        <p>Reflexión final sobre seguridad y confianza.</p>
+    </div>
+
+    <div class="lesson-grid" reveal">
+        <div class="lesson-card" reveal">
+            <span class="lesson-title">Propiedad vs Mecanismo</span>
+            <p>Aprendimos que <strong>Integridad</strong> es la propiedad, y <strong>Hash</strong> es el mecanismo. <strong>Autenticación</strong> es la propiedad, y <strong>Firma Digital</strong> es el mecanismo. No confundir el fin con los medios.</p>
+        </div>
+
+        <div class="lesson-card" reveal">
+            <span class="lesson-title">Falsa Sensación de Seguridad</span>
+            <p>Usar Blockchain no hace que los datos sean veraces, solo los hace inmutables. Si registras basura en la blockchain, tendrás basura inmutable para siempre ("Garbage In, Immutable Garbage Out").</p>
+        </div>
+
+        <div class="lesson-card" reveal">
+            <span class="lesson-title">El Eslabón Humano</span>
+            <p>La criptografía más fuerte del mundo falla si el usuario anota su clave privada en un post-it. La seguridad debe ser usable.</p>
+        </div>
+    </div>
+
+    <div class="security-box">
+        <i class="fa-solid fa-shield-halved"></i> "La confianza es buena, pero el control criptográfico es mejor."
+    </div>
+
+
+
+
+<section class="reveal" style="margin-top:34px;">
+  <h3 style="color:#0d47a1;">🧠 Lecciones adicionales (nivel “pro”)</h3>
+  <div class="lesson-grid" style="margin-top:14px;">
+    <div class="lesson-card">
+      <span class="lesson-title">On‑chain ≠ Data Storage</span>
+      <p>La práctica recomendada es <strong>anclar evidencia</strong>: guardas el documento fuera de la cadena (cifrado) y registras solo su <strong>hash</strong> on‑chain. Así logras auditabilidad sin exponer información.</p>
+    </div>
+    <div class="lesson-card">
+      <span class="lesson-title">Modelo de amenaza primero</span>
+      <p>Antes de elegir tecnología, define <strong>quién ataca</strong>, <strong>qué busca</strong> y <strong>dónde puede fallar</strong> el sistema. La seguridad no es un “plugin”; es diseño.</p>
+    </div>
+    <div class="lesson-card">
+      <span class="lesson-title">Costos invisibles</span>
+      <p>El costo real no es solo infraestructura: incluye <strong>auditoría</strong>, <strong>operación</strong>, <strong>rotación de llaves</strong>, monitoreo y respuesta a incidentes.</p>
+    </div>
+  </div>
+
+  <details style="margin-top:14px; background:#f5faff; border:1px solid #bbdefb; border-radius:12px; padding:14px;">
+    <summary style="cursor:pointer; font-weight:800; color:#0d47a1;">Mini‑reto: “Garbage In” (10 min)</summary>
+    <p style="margin-top:10px;">Plantea un ejemplo donde un dato falso se vuelva “inmutable”. Luego escribe una mitigación real (validación, doble control, firma de autoridad, auditoría).</p>
+    <ul style="margin: 8px 0 0 18px;">
+      <li><strong>Dato:</strong> ______</li>
+      <li><strong>Riesgo:</strong> ______</li>
+      <li><strong>Mitigación:</strong> ______</li>
+    </ul>
+  </details>
+</section>
+
+<div class="security-box reveal" style="margin-top:22px;">
+  <i class="fa-solid fa-wand-magic-sparkles"></i>
+  <span>Tu mejor defensa no es “más tecnología”: es <strong>mejor criterio</strong>.</span>
+</div>
+
+<section style="margin-top:40px;">
+<h3 style="color:#0d47a1;">📘 Lecciones de nivel profesional</h3>
+<ul>
+<li>La seguridad es una propiedad del sistema, no de una herramienta.</li>
+<li>Blockchain no crea confianza, solo elimina intermediarios.</li>
+<li>La criptografía reduce riesgos, no los elimina.</li>
+<li>El factor humano sigue siendo el punto más débil.</li>
+</ul>
+
+<div style="background:#f5faff;border-left:6px solid #1565c0;padding:16px;border-radius:12px;">
+<strong>Lección clave:</strong> el mejor diseño es el que sigue funcionando cuando algo sale mal.
+</div>
+</section>
+
+</div>
+
+
+<script>
+(function(){
+  // Scroll reveal
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const nodes = document.querySelectorAll('.reveal');
+  if(reduce){ nodes.forEach(n=>n.classList.add('reveal-in')); return; }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('reveal-in'); io.unobserve(e.target); }
+    });
+  }, {threshold: 0.12});
+  nodes.forEach(n=>io.observe(n));
+
+  // toast helper
+  window.__toast = function(title, msg){
+    let t = document.querySelector('.toast');
+    if(!t){
+      t = document.createElement('div');
+      t.className = 'toast';
+      document.body.appendChild(t);
+    }
+    t.innerHTML = '<div>'+title+'</div>' + (msg?('<small>'+msg+'</small>'):'');
+    t.classList.add('toast-in');
+    clearTimeout(window.__toastT);
+    window.__toastT = setTimeout(()=>t.classList.remove('toast-in'), 2200);
+  };
+})();
+</script>
+
+</body>
+</html>

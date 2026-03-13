@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Unidad 2: Implementación y Trazabilidad - Criptografía Aplicada</title>
+</head>
+<body style="margin:0;padding:18px;background:#f4f6f8;color:#24323a;font-family:Arial,Helvetica,sans-serif;line-height:1.55;">
+<div style="max-width:1000px;margin:0 auto;background:#ffffff;border:1px solid #e6ebef;border-radius:10px;overflow:visible;">
+<div style="padding:18px 18px 0 18px;text-align:right;">
+<img alt="Logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1" style="max-width:160px;height:auto;border:0;display:inline-block;"/>
+</div>
+<div style="padding:0 18px 18px 18px;border-bottom:4px solid #0d47a1;">
+<div style="padding:10px 0 0 0;">
+<div style="display:inline-block;background:#0d47a1;color:#fff;padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:.2px;">
+          Q10 • Contenido compatible
+        </div>
+</div>
+<h1 style="margin:10px 0 6px 0;color:#0d47a1;font-size:26px;line-height:1.2;">Unidad 2: Implementación y Trazabilidad - Criptografía Aplicada</h1>
+<div style="margin:0;color:#54626b;font-size:14px;">Unidad 2 • Introducción — versión Q10-safe</div>
+</div>
+<div style="padding:18px;">
+
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:26px;line-height:1.25;">Unidad 2: Implementación y Trazabilidad</div>
+<p style="margin:0 0 10px 0;">Semanas 3, 4 y 5: De la Teoría al Código - Criptografía Aplicada en el Mundo Real</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">📅 Cronograma de la Unidad 2</div>
+<p style="margin:0 0 10px 0;">3 semanas intensivas de implementación práctica</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Duración</p>
+<p style="margin:0 0 10px 0;">3 semanas (15-21 días)</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Esfuerzo estimado</p>
+<p style="margin:0 0 10px 0;">25-30 horas</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Nivel</p>
+<p style="margin:0 0 10px 0;">Práctico-Implementación</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Evaluación</p>
+<p style="margin:0 0 10px 0;">Laboratorio Integrado (35%)</p></div></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">En la Unidad 1 dominamos el <strong>"qué"</strong> y el <strong>"por qué"</strong> de la criptografía y blockchain. Ahora entramos en el territorio del <strong>"cómo"</strong> – el espacio donde la teoría se encuentra con la realidad del código, los sistemas y los usuarios.</p>
+<p style="margin:0 0 10px 0;">La criptografía teórica es académicamente elegante pero profesionalmente inútil si no sabes implementarla correctamente en una aplicación real. Durante las próximas tres semanas, abandonaremos los conceptos abstractos para escribir código que <strong>proteja datos reales, gestione identidades y garantice trazabilidad verificable</strong>.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">💻
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🎯 Enfoque Práctico: Consumidor Inteligente de Criptografía</div>
+<p style="margin:0 0 10px 0;">No vamos a diseñar nuevos algoritmos matemáticos (eso es para doctores en matemáticas). Vamos a aprender a ser <strong>consumidores inteligentes</strong> de criptografía, evitando los errores de implementación que causan el 90% de las brechas de seguridad. Tu meta: usar bien lo que existe y demostrarlo con evidencia reproducible.</p></div></div></div>
+OBJETIVOS DE LA UNIDAD
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🎯 Objetivos de Aprendizaje - Unidad 2</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Implementación Segura</div>
+<p style="margin:0 0 10px 0;">Usar librerías criptográficas estándar (Python Cryptography, OpenSSL) sin cometer errores comunes que comprometen la seguridad.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🔑
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Gestión de Secretos</div>
+<p style="margin:0 0 10px 0;">Gestionar el ciclo de vida completo de claves criptográficas: generación, almacenamiento, rotación y revocación seguras.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🕸️
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Integración de Servicios</div>
+<p style="margin:0 0 10px 0;">Implementar canales seguros (TLS), autenticación robusta y firma de documentos en arquitecturas distribuidas reales.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🔗
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Blockchain Práctico</div>
+<p style="margin:0 0 10px 0;">Desplegar nodos, ejecutar transacciones en testnets y desarrollar smart contracts básicos con trazabilidad verificable.</p></div></div>
+TIMELINE DETALLADO
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🗓️ Timeline Detallado - Unidad 2</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📅 Semana 3: Implementación Segura</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Criptografía Aplicada y Gestión de Secretos</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>Día 1-2:</strong> Fundamentos de Python Cryptography - Cifrado simétrico (AES), asimétrico (RSA/ECC), y funciones hash (SHA-256, SHA-3).</p>
+<p style="margin:0 0 10px 0;"><strong>Día 3-4:</strong> Firmas digitales y HMAC - Implementación de autenticidad e integridad en aplicaciones.</p>
+<p style="margin:0 0 10px 0;"><strong>Día 5-7:</strong> Gestión de claves (Key Management) - Almacenamiento seguro, rotación, y uso de Hardware Security Modules (HSMs) virtuales.</p>
+<p style="margin:0 0 10px 0;"><strong>Proyecto Semanal:</strong> Script de cifrado/descifrado con gestión automática de claves y verificación de integridad.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📅 Semana 4: Integración de Servicios</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Comunicaciones Seguras y Autenticación</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>Día 1-2:</strong> TLS/SSL en práctica - Certificados X.509, autoridades certificadoras, y configuración segura de servidores.</p>
+<p style="margin:0 0 10px 0;"><strong>Día 3-4:</strong> Autenticación robusta - OAuth2, JWT, y mecanismos de doble factor (2FA/MFA).</p>
+<p style="margin:0 0 10px 0;"><strong>Día 5-7:</strong> Firma de documentos digitales - Formatos estándar (PKCS#7, PDF signatures), sellado de tiempo, y no repudio.</p>
+<p style="margin:0 0 10px 0;"><strong>Proyecto Semanal:</strong> API segura con autenticación JWT y comunicación TLS, más sistema de firma de documentos.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📅 Semana 5: Blockchain Práctico</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Trazabilidad con Smart Contracts</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>Día 1-2:</strong> Configuración de entorno - Nodos Ethereum (Geth), redes de prueba (Goerli/Sepolia), wallets y gas fees.</p>
+<p style="margin:0 0 10px 0;"><strong>Día 3-4:</strong> Smart Contracts básicos - Solidity fundamentals, despliegue en testnet, interacción mediante web3.js.</p>
+<p style="margin:0 0 10px 0;"><strong>Día 5-7:</strong> Laboratorio integrado - Sistema completo de trazabilidad con frontend, backend y blockchain.</p>
+<p style="margin:0 0 10px 0;"><strong>Proyecto Final:</strong> Aplicación completa de trazabilidad de certificados académicos con verificación en blockchain.</p></div></div></div>
+HOJA DE RUTA VISUAL
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🗺️ Hoja de Ruta Visual - Unidad 2</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">1</div>
+<p style="margin:0 0 10px 0;">Semana 3: Implementación Segura</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Uso de Librerías Estándar</div>
+<p style="margin:0 0 10px 0;"><strong>Python Cryptography / OpenSSL:</strong> Cifrado AES-GCM, firmas ECDSA, hashes SHA-256.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Gestión de Secretos</div>
+<p style="margin:0 0 10px 0;"><strong>Key Management Systems:</strong> Almacenamiento seguro, rotación automática, acceso controlado.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Resultado Semanal</div>
+<p style="margin:0 0 10px 0;">Script de cifrado completo con gestión automática de claves y verificación de integridad.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2</div>
+<p style="margin:0 0 10px 0;">Semana 4: Integración de Servicios</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Comunicaciones Seguras</div>
+<p style="margin:0 0 10px 0;"><strong>TLS/SSL:</strong> Certificados X.509, autoridades raíz, configuración segura de servidores.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Autenticación Robusta</div>
+<p style="margin:0 0 10px 0;"><strong>OAuth2 / JWT:</strong> Tokens seguros, refresh mechanisms, revocación.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Resultado Semanal</div>
+<p style="margin:0 0 10px 0;">API segura con autenticación JWT + sistema de firma de documentos digitales.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">3</div>
+<p style="margin:0 0 10px 0;">Semana 5: Blockchain Práctico</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Infraestructura Blockchain</div>
+<p style="margin:0 0 10px 0;"><strong>Nodos y Testnets:</strong> Ethereum nodes, Goerli/Sepolia, gas estimation, wallet management.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Smart Contracts</div>
+<p style="margin:0 0 10px 0;"><strong>Solidity Basics:</strong> Contratos simples, eventos, interacción desde frontend.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Resultado Final</div>
+<p style="margin:0 0 10px 0;">Aplicación completa de trazabilidad con verificación en blockchain (certificados académicos).</p></div></div>
+MAPA MENTAL DE CONCEPTOS
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">• 🧠 Mapa Mental Rápido - Criptografía Aplicada</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📄 Datos Sensibles</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Cifrado (AES-GCM)</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">↓</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🔒 Confidencialidad</div>
+<p style="margin:0 0 10px 0;">Protege contra acceso no autorizado</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📁 Archivo/Código</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Hash (SHA-256)</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">↓</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">✅ Integridad</div>
+<p style="margin:0 0 10px 0;">Detecta modificaciones no autorizadas</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📨 Mensaje API</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">HMAC-SHA256</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">↓</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🔑 Integridad + Autenticidad</div>
+<p style="margin:0 0 10px 0;">Clave compartida, origen verificable</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📜 Documento Legal</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Firma Digital (ECDSA)</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">↓</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">✍️ Integridad + Autoría + No Repudio</div>
+<p style="margin:0 0 10px 0;">Prueba criptográfica de autoría</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">💡
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>💡 Regla de Implementación:</strong> Cada operación criptográfica resuelve un problema específico de seguridad. Elegir la herramienta incorrecta (ej: usar hash donde necesitas cifrado) crea falsa sensación de seguridad. Siempre pregunta: "¿Qué propiedad de seguridad necesito garantizar?"</p></div></div></div>
+HERRAMIENTAS Y TECNOLOGÍAS
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">• 🔧 Stack Tecnológico - Unidad 2</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Python Cryptography</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Librería moderna y segura para operaciones criptográficas en Python</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">OpenSSL CLI</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Herramienta de línea de comandos para operaciones criptográficas básicas</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Hashicorp Vault</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Sistema de gestión de secretos para almacenamiento seguro de claves</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Ethereum / Solidity</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Blockchain para trazabilidad y smart contracts para lógica descentralizada</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Let's Encrypt</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Autoridad certificadora gratuita para certificados TLS/SSL</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">💻
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">FastAPI / Flask</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Frameworks para construir APIs seguras con autenticación JWT</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🛡️
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">JWT / OAuth2</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Estándares para autenticación y autorización en APIs modernas</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🧪
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Goerli / Sepolia</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Redes de prueba de Ethereum para desarrollo sin costos reales</div></div></div></div>
+EVIDENCIA DE APRENDIZAJE
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">📋 📋 Evidencia Mínima Requerida (Desde el Día 1)</div>
+<p style="margin:0 0 10px 0;">Para cada ejercicio y proyecto de esta unidad, deberás documentar evidencia reproducible que demuestre tu dominio práctico:</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Captura/registro del comando o script ejecutado</strong> - Mostrar exactamente lo que ejecutaste</li><li style="margin:6px 0;"><strong>Entrada y salida (sin datos sensibles reales)</strong> - Usar datos de ejemplo, nunca producción</li><li style="margin:6px 0;"><strong>Explicación breve de la propiedad de seguridad lograda</strong> - ¿Confidencialidad, integridad, autenticidad, no repudio?</li><li style="margin:6px 0;"><strong>Validación del funcionamiento</strong> - Cómo verificas que funciona (descifrar, comparar hash, verificar firma)</li><li style="margin:6px 0;"><strong>Análisis de errores comunes evitados</strong> - ¿Qué errores de implementación preveniste?</li><li style="margin:6px 0;"><strong>Reproducibilidad garantizada</strong> - Otro estudiante debería poder reproducir tus resultados</li></ul>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">⚠️
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>⚠️ Regla de Seguridad:</strong> NUNCA uses datos reales, claves de producción, o información sensible en ejercicios de práctica. Usa exclusivamente datos de ejemplo, claves de prueba, y entornos aislados (testnets, bases de datos locales).</p></div></div></div>
+ERRORES COMUNES A EVITAR
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🐞 ⚠️ Errores de Implementación Comunes (¡Evítalos!)</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">🔑 Gestión Pobre de Claves</div>
+<p style="margin:0 0 10px 0;"><strong>Error:</strong> Claves hardcodeadas en código, almacenadas en texto plano, sin rotación.</p>
+<p style="margin:0 0 10px 0;"><strong>Solución:</strong> Usar sistemas de gestión de secretos, variables de entorno, y rotación automática.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Configuración Insegura</div>
+<p style="margin:0 0 10px 0;"><strong>Error:</strong> Algoritmos débiles (MD5, SHA-1), modos ECB en AES, IVs repetidos en CBC.</p>
+<p style="margin:0 0 10px 0;"><strong>Solución:</strong> Usar algoritmos modernos (AES-GCM, SHA-256), modos autenticados, IVs aleatorios.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Falta de Validación</div>
+<p style="margin:0 0 10px 0;"><strong>Error:</strong> No verificar firmas, no validar parámetros de entrada, confiar en datos externos.</p>
+<p style="margin:0 0 10px 0;"><strong>Solución:</strong> Implementar validación exhaustiva, verificar todas las firmas, sanitizar entradas.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Falta de Actualización</div>
+<p style="margin:0 0 10px 0;"><strong>Error:</strong> Librerías desactualizadas, algoritmos obsoletos, certificados expirados.</p>
+<p style="margin:0 0 10px 0;"><strong>Solución:</strong> Mantener dependencias actualizadas, monitorear fechas de expiración, tener plan de migración.</p></div></div></div>
+CHECKLIST DE COMPETENCIA
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">✅ ✅ Checklist de Competencia - Al Finalizar Unidad 2</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">1</div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Implementación Segura</div></div>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">✓ Puedo cifrar/descifrar datos usando AES-GCM correctamente</li><li style="margin:6px 0;">✓ Sé generar y verificar firmas digitales con ECDSA/RSA</li><li style="margin:6px 0;">✓ Implemento HMAC para autenticidad e integridad</li><li style="margin:6px 0;">✓ Uso funciones hash modernas (SHA-256, SHA-3)</li><li style="margin:6px 0;">✓ Evito errores comunes de configuración</li></ul></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2</div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Gestión de Secretos</div></div>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">✓ Almaceno claves de manera segura (no en código)</li><li style="margin:6px 0;">✓ Implemento rotación automática de claves</li><li style="margin:6px 0;">✓ Uso variables de entorno y secret managers</li><li style="margin:6px 0;">✓ Genero claves con suficiente entropía</li><li style="margin:6px 0;">✓ Tengo plan de revocación para claves comprometidas</li></ul></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">3</div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Integración de Servicios</div></div>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">✓ Configuro TLS/SSL correctamente en servidores</li><li style="margin:6px 0;">✓ Implemento autenticación JWT con refresh tokens</li><li style="margin:6px 0;">✓ Firmo y verifico documentos digitales</li><li style="margin:6px 0;">✓ Implemento canales seguros de comunicación</li><li style="margin:6px 0;">✓ Valido certificados y firmas correctamente</li></ul></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">4</div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Blockchain Práctico</div></div>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">✓ Despliego nodos en testnets</li><li style="margin:6px 0;">✓ Ejecuto transacciones y calculo gas fees</li><li style="margin:6px 0;">✓ Desarrollo smart contracts básicos</li><li style="margin:6px 0;">✓ Implemento trazabilidad verificable</li><li style="margin:6px 0;">✓ Interactúo con blockchain desde aplicaciones</li></ul></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">🏁 Meta Final de la Unidad 2</div>
+<p style="margin:0 0 10px 0;">Al completar esta unidad, pasarás de "sé lo que es" a <strong>"sé implementarlo sin meter la pata"</strong>. Podrás tomar decisiones técnicas informadas, implementar soluciones seguras, y documentar evidencia reproducible de tu trabajo. La mayoría de incidentes de seguridad no ocurren porque AES/RSA se rompan matemáticamente, sino por <strong>configuración insegura, gestión pobre de claves, o uso incorrecto de librerías</strong>. Esta unidad te equipa para evitar esos errores.</p></div></div></div>
+</div>
+<div style="padding:14px 18px;border-top:1px solid #e6ebef;color:#6a7882;font-size:12px;">
+<div style="margin:0;">Optimizado para Q10: sin scripts, sin estilos externos y sin dependencias bloqueables.</div>
+</div>
+</div>
+</body>
+</html>

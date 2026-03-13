@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Aprendizaje – Módulo 4</title>
+
+<style>
+
+/* =========================
+   Q10 ULTRA-SAFE PATCH
+   (evita recortes y sanitización común)
+   ========================= */
+html, body {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+img, svg, video { max-width: 100%; height: auto; }
+.container-extended, .container, main, section, article {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+/* Evita que un wrapper externo de Q10 corte sombras */
+.container-extended { overflow: visible !important; }
+
+
+* {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(135deg, #f0f2f5 0%, #e3f2fd 50%, #f0f2f5 100%);
+    background-size: 200% 200%;
+    background-attachment: scroll;
+    margin: 0;
+    padding: 40px 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #37474f;
+    line-height: 1.8;
+    animation: fadeInBody 1s ease-in, gradientShift 15s ease infinite;
+    position: relative;
+    overflow-x: hidden;
+}
+
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(13, 71, 161, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(25, 118, 210, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+    animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.container-extended {
+    max-width: 1000px;
+    margin: auto;
+    background: #fff;
+    padding: 60px 50px;
+    border-radius: 20px;
+    border-top: 8px solid #0d47a1;
+    box-shadow: 0 10px 40px rgba(0,0,0,.08);
+    position: relative;
+    overflow: visible;
+    animation: slideUp 0.8s ease-out;
+    transition: box-shadow 0.3s ease;
+    z-index: 1;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container-extended::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(13, 71, 161, 0.08), transparent);
+    animation: shimmer 4s infinite;
+    z-index: 0;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.container-extended::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(13, 71, 161, 0.03) 0%, transparent 70%);
+    animation: rotateSlow 20s linear infinite;
+    z-index: 0;
+}
+
+@keyframes rotateSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.container-extended:hover {
+    box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #0d47a1;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #0d47a1 0%, #1976d2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleGlow 2s ease-in-out infinite alternate;
+    transition: transform 0.3s ease;
+}
+
+@keyframes titleGlow {
+    from {
+        filter: drop-shadow(0 0 5px rgba(13, 71, 161, 0.3));
+    }
+    to {
+        filter: drop-shadow(0 0 15px rgba(13, 71, 161, 0.6));
+    }
+}
+
+h1:hover {
+    transform: scale(1.02);
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+h2:nth-child(1) { animation-delay: 0.3s; }
+h2:nth-child(2) { animation-delay: 0.5s; }
+h2:nth-child(3) { animation-delay: 0.7s; }
+h2:nth-child(4) { animation-delay: 0.9s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0d47a1, #1976d2);
+    animation: expandLine 1s ease-out 0.5s forwards;
+    border-radius: 2px;
+}
+
+@keyframes expandLine {
+    to { width: 100px; }
+}
+
+p {
+    opacity: 0;
+    animation: fadeInParagraph 0.6s ease-out 0.4s forwards;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes fadeInParagraph {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+details {
+    background: linear-gradient(135deg, #f5faff 0%, #e3f2fd 100%);
+    border: 1px solid #bbdefb;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: cardFadeIn 0.6s ease-out forwards;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(13, 71, 161, 0.1);
+    z-index: 1;
+}
+
+details:nth-child(1) { animation-delay: 0.2s; }
+details:nth-child(2) { animation-delay: 0.4s; }
+details:nth-child(3) { animation-delay: 0.6s; }
+details:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+details::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+details:hover::before {
+    left: 100%;
+}
+
+details:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 15px 40px rgba(13, 71, 161, 0.2);
+    border-color: #0d47a1;
+}
+
+details[open] {
+    background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%);
+    border-left: 6px solid #0d47a1;
+}
+
+summary {
+    padding: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    color: #0d47a1;
+    font-size: 1.1rem;
+    list-style: none;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::before {
+    content: '▶';
+    display: inline-block;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+    color: #1565c0;
+}
+
+details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+summary:hover {
+    color: #1565c0;
+    transform: translateX(5px);
+}
+
+.details-content {
+    padding: 25px;
+    background: #fff;
+    border-top: 1px solid #bbdefb;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.details-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.details-content li {
+    padding: 12px 0 12px 30px;
+    position: relative;
+    transition: all 0.3s ease;
+    animation: slideInListItem 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.details-content li:nth-child(1) { animation-delay: 0.1s; }
+.details-content li:nth-child(2) { animation-delay: 0.2s; }
+.details-content li:nth-child(3) { animation-delay: 0.3s; }
+.details-content li:nth-child(4) { animation-delay: 0.4s; }
+.details-content li:nth-child(5) { animation-delay: 0.5s; }
+.details-content li:nth-child(6) { animation-delay: 0.6s; }
+.details-content li:nth-child(7) { animation-delay: 0.7s; }
+.details-content li:nth-child(8) { animation-delay: 0.8s; }
+.details-content li:nth-child(9) { animation-delay: 0.9s; }
+.details-content li:nth-child(10) { animation-delay: 1s; }
+
+@keyframes slideInListItem {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.details-content li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #0d47a1;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.details-content li:hover {
+    transform: translateX(10px);
+    color: #0d47a1;
+    padding-left: 40px;
+}
+
+.details-content li:hover::before {
+    transform: scale(1.5);
+    color: #1976d2;
+}
+
+.eval-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeInTable 0.8s ease-out 0.6s forwards;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 4px 15px rgba(13, 71, 161, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+@keyframes fadeInTable {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.eval-table th {
+    background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+    color: #fff;
+    padding: 14px;
+    font-weight: 600;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    transition: background 0.3s ease;
+}
+
+.eval-table th:hover {
+    background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+}
+
+.eval-table td {
+    border: 1px solid #bbdefb;
+    padding: 14px;
+    transition: all 0.3s ease;
+}
+
+.eval-table tr {
+    transition: all 0.3s ease;
+}
+
+.eval-table tr:nth-child(even) {
+    background: #f5faff;
+}
+
+.eval-table tr:hover {
+    background: #e3f2fd;
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(13, 71, 161, 0.1);
+}
+
+.reveal {
+    position: relative;
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    animation: revealUp 0.8s ease forwards;
+}
+
+@keyframes revealUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(13, 71, 161, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.uni-logo {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    width: 150px;
+    height: auto;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    padding: 5px;
+    border-radius: 8px;
+    animation: fadeInRight 1s ease-out 0.3s both;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.uni-logo:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+    .container-extended {
+        padding: 40px 25px;
+    }
+    
+    .uni-logo {
+        position: static;
+        display: block;
+        margin: 0 auto 20px auto;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .eval-table {
+        font-size: 0.9rem;
+    }
+    
+    .eval-table th,
+    .eval-table td {
+        padding: 10px;
+    }
+}
+</style>
+</head>
+<body>
+<div class="container-extended">
+
+<img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+<h1>Guía de Aprendizaje – Módulo 4</h1>
+<p><strong>Criptografía Avanzada y Blockchain: Arquitectura de la Confianza Digital</strong></p>
+
+<p>Esta guía te acompañará a lo largo de las 9 semanas del módulo, proporcionándote una hoja de ruta clara sobre qué aprender, cómo evaluar tu progreso, y qué estrategias utilizar para maximizar tu comprensión y aplicación práctica de los conceptos. El módulo está diseñado para construir conocimiento progresivamente, desde los fundamentos teóricos hasta aplicaciones prácticas complejas.</p>
+
+<h2>📊 Sistema de Evaluación Integral</h2>
+<p>El sistema de evaluación está diseñado para medir no solo tu comprensión teórica, sino también tu capacidad de aplicar estos conceptos en situaciones reales. Cada actividad está cuidadosamente diseñada para desarrollar competencias específicas que serán esenciales en tu carrera profesional.</p>
+
+<table class="eval-table">
+<thead>
+<tr><th>Actividad</th><th>Unidad</th><th>Producto Entregable</th><th>Peso</th><th>Criterios Clave</th></tr>
+</thead>
+<tbody>
+<tr>
+    <td><strong>Foro Técnico</strong></td>
+    <td>Unidad 1</td>
+    <td>Análisis de casos reales y evaluación de riesgos criptográficos</td>
+    <td>15%</td>
+    <td>Rigor técnico, análisis crítico, participación constructiva</td>
+</tr>
+<tr>
+    <td><strong>Laboratorio Práctico</strong></td>
+    <td>Unidad 2</td>
+    <td>Informe técnico detallado con evidencias de implementación, capturas de pantalla, código fuente comentado, y análisis de resultados</td>
+    <td>35%</td>
+    <td>Implementación correcta, documentación completa, análisis de seguridad</td>
+</tr>
+<tr>
+    <td><strong>Proyecto Integrador</strong></td>
+    <td>Unidad 3</td>
+    <td>Informe ejecutivo profesional + presentación oral con defensa técnica</td>
+    <td>50%</td>
+    <td>Arquitectura completa, justificación técnica, comunicación efectiva, viabilidad práctica</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Nota importante sobre evaluación:</strong> La evaluación es continua y formativa. No se trata solo de aprobar, sino de dominar los conceptos. Cada actividad está diseñada para construir sobre la anterior, por lo que es fundamental mantener un ritmo constante de trabajo y participar activamente en todas las actividades propuestas.</p>
+
+<h2>📅 Cronograma Detallado (9 Semanas)</h2>
+<p>El módulo está estructurado en 3 unidades que se desarrollan a lo largo de 9 semanas. Cada unidad tiene objetivos de aprendizaje específicos, actividades evaluables, y recursos de apoyo. Es fundamental respetar los tiempos establecidos para poder aprovechar al máximo las actividades colaborativas y el apoyo docente.</p>
+
+<details>
+<summary>🔐 Unidad 1 – Fundamentos Teóricos y Conceptuales (Semanas 1–2)</summary>
+<div class="details-content">
+<h3>Objetivos de Aprendizaje:</h3>
+<ul>
+<li>Comprender los principios fundamentales de seguridad: <strong>confidencialidad</strong> (protección de datos contra acceso no autorizado), <strong>integridad</strong> (garantía de que los datos no han sido alterados), <strong>autenticación</strong> (verificación de identidad), y <strong>no repudio</strong> (imposibilidad de negar una acción realizada).</li>
+<li>Dominar los conceptos de <strong>criptografía simétrica</strong> (AES, modos de operación, gestión de vectores de inicialización) y <strong>criptografía asimétrica</strong> (RSA, ECC, intercambio de claves Diffie-Hellman).</li>
+<li>Entender profundamente las <strong>funciones hash</strong> (SHA-256, resistencia a colisiones, Merkle trees) y su aplicación en verificación de integridad y construcción de blockchain.</li>
+<li>Comprender <strong>firmas digitales</strong> (DSA, ECDSA, infraestructura PKI, certificados digitales) y su papel en autenticación y no repudio.</li>
+<li>Fundamentos de <strong>blockchain</strong>: estructura de bloques, hash de bloques, consenso distribuido, inmutabilidad matemática, y diferencias entre blockchain público, privado y híbrido.</li>
+</ul>
+
+<h3>Actividades de la Unidad:</h3>
+<ul>
+<li><strong>Lecturas fundamentales:</strong> Material teórico sobre principios criptográficos, análisis de papers académicos sobre blockchain, y revisión de estándares NIST.</li>
+<li><strong>Foro técnico evaluable:</strong> Análisis de casos reales de vulnerabilidades criptográficas (como Heartbleed, o violaciones de datos), identificación de causas raíz, y propuesta de soluciones basadas en principios criptográficos sólidos.</li>
+<li><strong>Ejercicios prácticos:</strong> Identificación de propiedades de seguridad en sistemas reales, evaluación de algoritmos según casos de uso, y diseño conceptual de soluciones.</li>
+<li><strong>Autoevaluación:</strong> Cuestionarios sobre conceptos clave, ejercicios de identificación de algoritmos apropiados, y análisis de escenarios de seguridad.</li>
+</ul>
+
+<h3>Recursos Complementarios:</h3>
+<ul>
+<li>Videos explicativos sobre matemática detrás de RSA y ECC.</li>
+<li>Simuladores interactivos de operaciones criptográficas.</li>
+<li>Casos de estudio documentados de implementaciones exitosas y fallidas.</li>
+<li>Biblioteca de algoritmos y estándares (NIST, RFC, ISO).</li>
+</ul>
+</div>
+</details>
+
+<details>
+<summary>⚙️ Unidad 2 – Implementación Práctica y Desarrollo (Semanas 3–5)</summary>
+<div class="details-content">
+<h3>Objetivos de Aprendizaje:</h3>
+<ul>
+<li>Implementar soluciones criptográficas usando <strong>librerías estándar probadas</strong> (como Python cryptography, OpenSSL, o bibliotecas específicas de blockchain como Web3.js).</li>
+<li>Gestionar claves criptográficas de manera segura: generación, almacenamiento, rotación, y revocación usando sistemas KMS (Key Management Systems) y principios de mínimo privilegio.</li>
+<li>Desarrollar aplicaciones que implementen <strong>trazabilidad en blockchain</strong> usando redes de prueba (testnets) como Ethereum Ropsten, Polygon Mumbai, o Hyperledger Fabric local.</li>
+<li>Implementar contratos inteligentes básicos con énfasis en seguridad: prevenir vulnerabilidades comunes (reentrancy, overflow, lógica incorrecta).</li>
+<li>Integrar sistemas criptográficos en aplicaciones existentes: APIs seguras, autenticación basada en tokens (JWT), y cifrado de datos en reposo y en tránsito.</li>
+</ul>
+
+<h3>Actividades de la Unidad:</h3>
+<ul>
+<li><strong>Laboratorio evaluable (35%):</strong> Desarrollo de un sistema completo que incluya: (a) implementación de cifrado simétrico y asimétrico, (b) generación y verificación de firmas digitales, (c) creación de una aplicación blockchain funcional con trazabilidad, (d) gestión segura de claves. El laboratorio debe incluir código fuente comentado, documentación técnica, análisis de seguridad, y pruebas de funcionalidad.</li>
+<li><strong>Ejercicios prácticos:</strong> Implementación de módulos individuales (cifrado de archivos, autenticación con certificados, contratos inteligentes simples), debugging de vulnerabilidades, y optimización de rendimiento.</li>
+<li><strong>Revisión de código:</strong> Análisis de código vulnerable, identificación de fallos de seguridad, y propuesta de correcciones basadas en mejores prácticas.</li>
+<li><strong>Tutoriales guiados:</strong> Configuración de entornos de desarrollo, despliegue en testnets, y uso de herramientas de análisis de seguridad para contratos inteligentes (Slither, Mythril).</li>
+</ul>
+
+<h3>Recursos Complementarios:</h3>
+<ul>
+<li>Guías de instalación y configuración de entornos de desarrollo blockchain.</li>
+<li>Repositorios de código de ejemplo con implementaciones seguras.</li>
+<li>Documentación oficial de librerías criptográficas y frameworks blockchain.</li>
+<li>Herramientas de testing y análisis de seguridad (OWASP ZAP, Burp Suite para APIs; Slither para contratos inteligentes).</li>
+<li>Videos tutoriales paso a paso de implementaciones comunes.</li>
+</ul>
+</div>
+</details>
+
+<details>
+<summary>🎯 Unidad 3 – Evaluación, Diseño Arquitectónico y Comunicación (Semanas 6–9)</summary>
+<div class="details-content">
+<h3>Objetivos de Aprendizaje:</h3>
+<ul>
+<li><strong>Seleccionar algoritmos apropiados</strong> según casos de uso específicos: evaluación de requisitos de seguridad, consideración de rendimiento, análisis de trade-offs entre seguridad y eficiencia, y justificación técnica de decisiones.</li>
+<li><strong>Evaluar arquitecturas criptográficas</strong> existentes: identificación de vulnerabilidades, análisis de diseño, propuesta de mejoras, y evaluación de cumplimiento con estándares y regulaciones.</li>
+<li><strong>Diseñar arquitecturas de seguridad completas</strong> que integren múltiples tecnologías criptográficas: defensa en profundidad, gestión de secretos, logging y auditoría, y planes de respuesta a incidentes.</li>
+<li><strong>Comunicación ejecutiva efectiva</strong>: traducir conceptos técnicos complejos a lenguaje comprensible para stakeholders no técnicos, crear informes ejecutivos profesionales, y presentar soluciones con claridad y convicción.</li>
+<li><strong>Tomar decisiones informadas</strong> sobre cuándo usar blockchain versus bases de datos tradicionales: análisis de requisitos, evaluación de costos y beneficios, y justificación técnica sólida.</li>
+</ul>
+
+<h3>Actividades de la Unidad:</h3>
+<ul>
+<li><strong>Proyecto Integrador evaluable (50%):</strong> Diseño completo de una solución criptográfica o blockchain para un caso de uso real (por ejemplo: sistema de certificados académicos verificables, trazabilidad de cadena de suministro, identidad digital soberana, o sistema de votación electrónica). El proyecto debe incluir: (a) análisis de requisitos y justificación técnica, (b) diseño arquitectónico detallado, (c) selección y justificación de algoritmos, (d) plan de implementación, (e) análisis de riesgos y mitigaciones, (f) evaluación de cumplimiento regulatorio, (g) informe ejecutivo profesional, y (h) presentación oral con defensa técnica ante panel de evaluación.</li>
+<li><strong>Casos de estudio:</strong> Análisis de arquitecturas reales (por ejemplo: cómo funciona la seguridad de Bitcoin, diseño de sistemas PKI empresariales, implementación de blockchain en empresas como IBM o Microsoft).</li>
+<li><strong>Evaluación de propuestas:</strong> Revisión crítica de propuestas técnicas, identificación de fortalezas y debilidades, y propuesta de mejoras basadas en principios de seguridad.</li>
+<li><strong>Talleres de comunicación:</strong> Prácticas de presentación, creación de materiales visuales efectivos, y técnicas para explicar conceptos complejos a audiencias diversas.</li>
+</ul>
+
+<h3>Recursos Complementarios:</h3>
+<ul>
+<li>Plantillas profesionales para informes ejecutivos y documentación técnica.</li>
+<li>Casos de estudio de implementaciones empresariales exitosas.</li>
+<li>Guías de cumplimiento regulatorio (GDPR, HIPAA, SOX, PCI-DSS).</li>
+<li>Herramientas de diseño arquitectónico y diagramación (draw.io, Lucidchart, PlantUML).</li>
+<li>Ejemplos de presentaciones efectivas y técnicas de storytelling para tecnología.</li>
+</ul>
+</div>
+</details>
+
+<h2>🧪 Estrategia de Estudio Recomendada</h2>
+<p>El éxito en este módulo no se logra solo memorizando conceptos, sino desarrollando una comprensión profunda y la capacidad de aplicar el conocimiento en situaciones reales. Las siguientes estrategias han demostrado ser efectivas para estudiantes anteriores.</p>
+
+<details open>
+<summary>💡 Recomendaciones Fundamentales para el Éxito</summary>
+<div class="details-content">
+<ul>
+<li><strong>Comprende primero la propiedad de seguridad que necesitas:</strong> Antes de elegir un algoritmo o tecnología, identifica claramente qué propiedad de seguridad estás intentando garantizar (confidencialidad, integridad, autenticación, no repudio, o una combinación). Esta claridad te permitirá seleccionar las herramientas más apropiadas y evitar soluciones sobrecomplicadas o inadecuadas.</li>
+<li><strong>No reinventes algoritmos:</strong> Nunca implementes algoritmos criptográficos desde cero para uso en producción. Usa siempre librerías bien mantenidas, probadas, y auditadas. La criptografía es extremadamente fácil de implementar incorrectamente, y los errores pueden ser catastróficos. Aprende cómo funcionan los algoritmos para entenderlos, pero usa implementaciones estándar para aplicaciones reales.</li>
+<li><strong>Documenta decisiones y evidencias meticulosamente:</strong> En el mundo profesional, las decisiones de seguridad deben ser justificadas y auditables. Documenta por qué elegiste un algoritmo específico, cómo lo implementaste, qué pruebas realizaste, y qué riesgos identificaste. Esta documentación no solo es esencial para las evaluaciones, sino que es una práctica profesional crítica.</li>
+<li><strong>Justifica cuándo NO usar blockchain:</strong> Una de las habilidades más valiosas es saber cuándo blockchain NO es la solución apropiada. La mayoría de los problemas pueden resolverse más eficientemente con bases de datos tradicionales y cifrado adecuado. Blockchain añade complejidad, costos, y limitaciones de rendimiento que solo se justifican cuando necesitas propiedades específicas como descentralización, inmutabilidad verificable públicamente, o consenso distribuido.</li>
+<li><strong>Practica activamente, no solo leas:</strong> La criptografía y blockchain son campos prácticos. No puedes dominarlos solo leyendo. Escribe código, ejecuta comandos, experimenta con testnets, rompe implementaciones vulnerables, y construye proyectos. Cada línea de código que escribes refuerza tu comprensión.</li>
+<li><strong>Participa activamente en foros y discusiones:</strong> El aprendizaje colaborativo es invaluable. Participa en discusiones de foro, pregunta dudas, comparte tus hallazgos, y ayuda a otros. Explicar conceptos a otros es una de las mejores formas de solidificar tu propio entendimiento.</li>
+<li><strong>Mantén un ritmo constante:</strong> Este módulo requiere tiempo y esfuerzo sostenido. Es mejor dedicar tiempo regularmente (por ejemplo, 10-15 horas por semana) que intentar concentrar todo el trabajo al final. El aprendizaje de conceptos complejos requiere tiempo para que se asienten.</li>
+<li><strong>Construye un portfolio de proyectos:</strong> Además de las actividades evaluables, considera crear proyectos personales que demuestren tus habilidades. Un portfolio de implementaciones criptográficas o aplicaciones blockchain es un activo valioso para tu carrera profesional.</li>
+</ul>
+</div>
+</details>
+
+<details>
+<summary>📚 Recursos de Apoyo y Referencia</summary>
+<div class="details-content">
+<ul>
+<li><strong>Documentación oficial:</strong> NIST Cryptographic Standards, RFC de IETF, documentación de Ethereum, Hyperledger, y otras plataformas blockchain principales.</li>
+<li><strong>Libros recomendados:</strong> "Applied Cryptography" de Bruce Schneier, "Mastering Bitcoin" de Andreas Antonopoulos, y "Blockchain Basics" de Daniel Drescher para fundamentos conceptuales.</li>
+<li><strong>Plataformas de aprendizaje:</strong> Cursos complementarios en Coursera, edX, o plataformas especializadas como ConsenSys Academy para profundización.</li>
+<li><strong>Comunidades:</strong> Stack Overflow para dudas técnicas, Reddit (r/cryptography, r/ethereum), y Discord servers de proyectos blockchain para networking y aprendizaje colaborativo.</li>
+<li><strong>Herramientas prácticas:</strong> Remix IDE para contratos inteligentes, MetaMask para interacción con blockchain, Postman para testing de APIs, y Wireshark para análisis de tráfico de red (opcional para análisis avanzado).</li>
+<li><strong>Noticias y tendencias:</strong> Sigue publicaciones como Coindesk, The Block, y blogs de seguridad como Krebs on Security para mantenerte actualizado sobre desarrollos y vulnerabilidades recientes.</li>
+</ul>
+</div>
+</details>
+
+<details>
+<summary>⚠️ Errores Comunes a Evitar</summary>
+<div class="details-content">
+<ul>
+<li><strong>Subestimar la importancia de la gestión de claves:</strong> Muchos estudiantes se enfocan en algoritmos pero descuidan la gestión de claves, que es donde ocurren la mayoría de las brechas de seguridad reales.</li>
+<li><strong>Usar blockchain para todo:</strong> Evita la tentación de proponer blockchain para problemas que una base de datos tradicional resolvería mejor. Aprende a identificar cuándo blockchain agrega valor real.</li>
+<li><strong>Copiar código sin entenderlo:</strong> Es aceptable usar código de ejemplo, pero asegúrate de entender completamente lo que hace cada línea. El código que no entiendes puede introducir vulnerabilidades.</li>
+<li><strong>Ignorar el contexto de seguridad:</strong> La criptografía no existe en el vacío. Considera siempre el contexto: quién tiene acceso, qué amenazas enfrentas, qué regulaciones aplican, y qué recursos están disponibles.</li>
+<li><strong>No probar suficientemente:</strong> Las implementaciones criptográficas requieren pruebas exhaustivas. Prueba casos límite, manejo de errores, y escenarios de ataque comunes.</li>
+<li><strong>Descuido de la documentación:</strong> Incluso si tu código funciona perfectamente, sin documentación adecuada es difícil de evaluar, mantener, o auditar. La documentación es parte integral del desarrollo profesional.</li>
+</ul>
+</div>
+</details>
+
+<h2>🎓 Criterios de Evaluación Detallados</h2>
+<p>Cada actividad se evalúa según criterios específicos que miden tanto conocimiento técnico como habilidades prácticas. Entender estos criterios te ayudará a enfocar tu esfuerzo en las áreas más importantes.</p>
+
+<details>
+<summary>📝 Criterios para el Foro Técnico (15%)</summary>
+<div class="details-content">
+<ul>
+<li><strong>Rigor técnico (40%):</strong> Precisión en el uso de terminología, comprensión profunda de los conceptos criptográficos involucrados, y capacidad de identificar causas raíz técnicas de vulnerabilidades.</li>
+<li><strong>Análisis crítico (30%):</strong> Evaluación no superficial de los casos, identificación de múltiples aspectos del problema, y consideración de implicaciones más amplias de seguridad.</li>
+<li><strong>Participación constructiva (20%):</strong> Contribuciones que enriquecen la discusión, respuestas a compañeros que añaden valor, y capacidad de construir sobre ideas de otros.</li>
+<li><strong>Comunicación clara (10%):</strong> Expresión clara y organizada de ideas, uso apropiado de ejemplos y analogías, y respeto en la comunicación con compañeros.</li>
+</ul>
+</div>
+</details>
+
+<details>
+<summary>🔬 Criterios para el Laboratorio (35%)</summary>
+<div class="details-content">
+<ul>
+<li><strong>Implementación correcta y funcional (35%):</strong> Código que funciona según especificaciones, uso correcto de librerías estándar, y ausencia de errores críticos.</li>
+<li><strong>Seguridad y mejores prácticas (25%):</strong> Implementación siguiendo mejores prácticas de seguridad, manejo seguro de claves, prevención de vulnerabilidades comunes, y uso apropiado de algoritmos.</li>
+<li><strong>Documentación técnica completa (20%):</strong> Comentarios en código, documentación de APIs, explicación de decisiones de diseño, y guías de uso e instalación.</li>
+<li><strong>Análisis y evidencia (15%):</strong> Capturas de pantalla de ejecución, análisis de resultados, pruebas de funcionalidad, y demostración de que los requisitos se cumplen.</li>
+<li><strong>Calidad del código (5%):</strong> Organización, legibilidad, modularidad, y mantenibilidad del código.</li>
+</ul>
+</div>
+</details>
+
+<details>
+<summary>🚀 Criterios para el Proyecto Integrador (50%)</summary>
+<div class="details-content">
+<ul>
+<li><strong>Análisis y justificación técnica (20%):</strong> Identificación clara de requisitos, justificación sólida de decisiones técnicas, evaluación de alternativas, y análisis de trade-offs.</li>
+<li><strong>Diseño arquitectónico (25%):</strong> Arquitectura coherente y bien diseñada, selección apropiada de tecnologías, consideración de escalabilidad y mantenibilidad, y integración efectiva de componentes.</li>
+<li><strong>Viabilidad y realismo (15%):</strong> Solución práctica y realizable, consideración de costos y recursos, plan de implementación realista, y evaluación de riesgos apropiada.</li>
+<li><strong>Comunicación ejecutiva (20%):</strong> Informe ejecutivo profesional y claro, presentación oral efectiva, capacidad de explicar conceptos técnicos a audiencias no técnicas, y uso apropiado de visualizaciones.</li>
+<li><strong>Defensa técnica (15%):</strong> Capacidad de responder preguntas técnicas, justificación de decisiones bajo escrutinio, conocimiento profundo del proyecto, y capacidad de pensar críticamente sobre el diseño.</li>
+<li><strong>Innovación y creatividad (5%):</strong> Soluciones creativas, consideración de aspectos novedosos, y contribuciones originales al diseño.</li>
+</ul>
+</div>
+</details>
+
+<h2>📞 Soporte y Comunicación</h2>
+<p>Durante el módulo, tendrás acceso a múltiples canales de apoyo. No dudes en utilizarlos cuando tengas dudas o necesites clarificación.</p>
+
+<details>
+<summary>💬 Canales de Comunicación</summary>
+<div class="details-content">
+<ul>
+<li><strong>Foros de discusión:</strong> Úsalos para preguntas técnicas, discusiones sobre conceptos, y colaboración con compañeros. Las preguntas frecuentes de otros estudiantes pueden ayudarte también.</li>
+<li><strong>Sesiones de consulta:</strong> Horarios programados para consultas directas con el docente. Ven preparado con preguntas específicas y código relevante si es necesario.</li>
+<li><strong>Correo electrónico:</strong> Para consultas que requieren respuesta detallada o son de naturaleza privada. Responde en un plazo de 24-48 horas en días hábiles.</li>
+<li><strong>Recursos adicionales:</strong> Materiales complementarios, grabaciones de sesiones, y recursos adicionales estarán disponibles en la plataforma del curso.</li>
+</ul>
+</div>
+</details>
+
+<p><strong>Éxito en tu aprendizaje:</strong> Este módulo está diseñado para ser desafiante pero accesible. Con dedicación, práctica constante, y participación activa, desarrollarás las competencias necesarias para trabajar profesionalmente con criptografía y blockchain. ¡Buena suerte en tu viaje de aprendizaje!</p>
+
+</div>
+
+
+
+</body>
+</html>

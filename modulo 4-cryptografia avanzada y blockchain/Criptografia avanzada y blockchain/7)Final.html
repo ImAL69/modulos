@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos Finales</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .resource-list { list-style: none; padding: 0; }
+    .resource-item {
+        background: #fff; border: 1px solid #e0e0e0; padding: 20px; margin-bottom: 15px; border-radius: 8px;
+        display: flex; align-items: center; justify-content: space-between; transition: box-shadow 0.2s;
+    }
+    .resource-item:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 5px solid #1976d2; }
+    
+    .res-info { display: flex; align-items: center; gap: 15px; }
+    .res-icon { font-size: 1.5rem; color: #1976d2; }
+    .res-title { font-weight: bold; color: #37474f; font-family: 'Montserrat', sans-serif; }
+    .res-desc { font-size: 0.9rem; color: #78909c; margin: 0; }
+
+    .btn-download {
+        background: #0d47a1; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 0.9rem; font-weight: bold;
+    }
+    .btn-download:hover { background: #1565c0; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .resource-item { flex-direction: column; align-items: flex-start; gap: 15px; }
+        .btn-download { width: 100%; text-align: center; }
+    }
+
+    /* ===== Complementos MAX (mantiene el estilo original) ===== */
+    .max-section-title{
+        font-family:'Montserrat',sans-serif;
+        font-weight:800;
+        color:#0d47a1;
+        margin: 34px 0 10px 0;
+        font-size: 1.25rem;
+    }
+    .max-note{
+        background:#f5faff;
+        border:1px dashed #bbdefb;
+        padding:18px 18px;
+        border-radius:12px;
+        color:#37474f;
+        margin:14px 0 18px 0;
+    }
+    .max-note strong{ color:#0d47a1; }
+    .max-grid{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 12px;
+    }
+    .max-card{
+        background:#ffffff;
+        border:1px solid #e0e0e0;
+        border-left:6px solid #1565c0;
+        border-radius:12px;
+        padding:16px;
+    }
+    .max-card h4{
+        margin:0 0 8px 0;
+        font-family:'Montserrat',sans-serif;
+        font-weight:800;
+        color:#0d47a1;
+        font-size: 1rem;
+    }
+    .max-card ul{ margin: 0 0 0 18px; }
+    .max-code{
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        background:#0b1020;
+        color:#e6edf3;
+        border-radius:12px;
+        padding:14px;
+        overflow:auto;
+        border:1px solid rgba(187,222,251,0.25);
+        margin-top: 10px;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        white-space: pre-wrap;
+    }
+    .max-badge{
+        display:inline-block;
+        font-weight:800;
+        font-size:0.82rem;
+        padding:6px 10px;
+        border-radius:999px;
+        background:#e3f2fd;
+        border:1px solid #bbdefb;
+        color:#1565c0;
+        margin-right:8px;
+        margin-top:6px;
+    }
+    @media (max-width: 768px){
+        .max-grid{ grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Recursos Finales</h1>
+        <p>Todo lo que necesitas para tu entrega del 50%.</p>
+    </div>
+
+    <ul class="resource-list">
+        <li class="resource-item">
+            <div class="res-info">
+                <i class="fa-solid fa-file-powerpoint res-icon"></i>
+                <div>
+                    <span class="res-title">Plantilla de Presentación Ejecutiva</span>
+                    <p class="res-desc">Slide deck (.pptx) con la estructura ideal para vender tu solución a la gerencia.</p>
+                </div>
+            </div>
+            
+        </li>
+
+        <li class="resource-item">
+            <div class="res-info">
+                <i class="fa-solid fa-list-check res-icon"></i>
+                <div>
+                    <span class="res-title">Checklist de Entrega Final</span>
+                    <p class="res-desc">Asegúrate de cumplir con todos los puntos de la rúbrica antes de subir tu proyecto.</p>
+                </div>
+            </div>
+            
+        </li>
+
+        <li class="resource-item">
+            <div class="res-info">
+                <i class="fa-solid fa-book-open res-icon"></i>
+                <div>
+                    <span class="res-title">Guía APA 7ma Edición</span>
+                    <p class="res-desc">Resumen rápido para citar correctamente tus fuentes y evitar plagio.</p>
+                </div>
+            </div>
+            
+        </li>
+    </ul>
+
+
+
+<section style="margin-top:40px;">
+<h3 style="color:#0d47a1;">📚 Recursos complementarios – nivel experto (MAX)</h3>
+
+<h4>1. Cómo piensan los arquitectos senior</h4>
+<ul>
+<li>No buscan la tecnología “más nueva”.</li>
+<li>Buscan la <strong>menos riesgosa</strong> que cumpla el objetivo.</li>
+<li>Priorizan recuperación ante fallos.</li>
+</ul>
+
+<h4>2. Cómo se audita un proyecto como este</h4>
+<ul>
+<li>¿La evidencia es verificable?</li>
+<li>¿La decisión es reproducible?</li>
+<li>¿Los riesgos están explícitos?</li>
+</ul>
+
+<h4>3. Señales de un mal diseño</h4>
+<ul>
+<li>Uso excesivo de blockchain.</li>
+<li>Falta de matriz de decisión.</li>
+<li>Diagramas sin explicación.</li>
+</ul>
+
+<h4>4. Señales de un diseño excelente</h4>
+<ul>
+<li>Decisión clara aunque no sea blockchain.</li>
+<li>Arquitectura simple.</li>
+<li>Evidencia sólida.</li>
+</ul>
+
+<div style="background:#e8f5e9;border-left:6px solid #2e7d32;padding:16px;border-radius:12px;">
+<strong>Conclusión final:</strong> este módulo no busca expertos en blockchain, busca <strong>profesionales con criterio</strong>.
+</div>
+</section>
+
+
+<section style="margin-top:40px;">
+  <h3 class="max-section-title">🗂️ Plan de estudio rápido (2–3 horas)</h3>
+  <div class="max-code">Bloque 1 (30 min): Releer problema + alcance + actores
+Bloque 2 (40 min): Matriz + decisión (aplica/no aplica)
+Bloque 3 (40 min): Arquitectura + flujo on/off‑chain
+Bloque 4 (30 min): Riesgos + mitigación + KPIs
+Bloque 5 (20 min): Pulir resumen ejecutivo (máx 12 líneas)</div>
+
+  <div class="max-note">
+    <strong>Consejo:</strong> primero define la decisión y luego escribes el informe. No al revés.
+  </div>
+</section>
+
+<section>
+  <h3 class="max-section-title">✅ Checklist final (antes de entregar)</h3>
+  <div class="max-grid">
+    <div class="max-card">
+      <h4>Documento</h4>
+      <ul>
+        <li>Resumen ejecutivo claro.</li>
+        <li>Alternativas comparadas.</li>
+        <li>Matriz consistente (100% pesos).</li>
+        <li>Riesgos + mitigación.</li>
+      </ul>
+    </div>
+    <div class="max-card">
+      <h4>Evidencia</h4>
+      <ul>
+        <li>Hashes reproducibles (pasos/outputs).</li>
+        <li>Capturas del efecto avalancha.</li>
+        <li>Diagrama de arquitectura.</li>
+        <li>Conclusión ejecutiva (4 líneas).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3 class="max-section-title">🚫 Errores comunes</h3>
+  <ul>
+    <li>Guardar PII/documentos completos on‑chain.</li>
+    <li>Confundir hash con cifrado.</li>
+    <li>Decir “cripto fuerte” sin estándar.</li>
+    <li>No tener plan de claves (quién, dónde, rotación).</li>
+  </ul>
+</section>
+
+
+</div>
+
+</body>
+</html>

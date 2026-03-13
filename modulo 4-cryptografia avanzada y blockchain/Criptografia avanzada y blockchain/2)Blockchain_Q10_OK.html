@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tema 1.4: Teoría Blockchain - Fundamentos, Arquitectura y Aplicaciones</title>
+</head>
+<body style="margin:0;padding:18px;background:#f4f6f8;color:#24323a;font-family:Arial,Helvetica,sans-serif;line-height:1.55;">
+<div style="max-width:1000px;margin:0 auto;background:#ffffff;border:1px solid #e6ebef;border-radius:10px;overflow:visible;">
+<div style="padding:18px 18px 0 18px;text-align:right;">
+<img alt="Logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1" style="max-width:160px;height:auto;border:0;display:inline-block;"/>
+</div>
+<div style="padding:0 18px 18px 18px;border-bottom:4px solid #0d47a1;">
+<div style="padding:10px 0 0 0;">
+<div style="display:inline-block;background:#0d47a1;color:#fff;padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:.2px;">
+          Q10 • Contenido compatible
+        </div>
+</div>
+<h1 style="margin:10px 0 6px 0;color:#0d47a1;font-size:26px;line-height:1.2;">Tema 1.4: Teoría Blockchain - Fundamentos, Arquitectura y Aplicaciones</h1>
+<div style="margin:0;color:#54626b;font-size:14px;">Tema 1.4 • Fundamentos, arquitectura, consenso y casos de uso (versión Q10-safe)</div>
+</div>
+<div style="padding:18px;">
+<div style="margin:10px 0;text-align:center;"><img alt="Logo FET" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1" style="max-width:100%;height:auto;border:0;"/></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:26px;line-height:1.25;">Tema 1.4: Fundamentos de Tecnología Blockchain</div>
+<p style="margin:0 0 10px 0;">Más allá de Bitcoin: Arquitectura Descentralizada, Consenso Distribuido y Aplicaciones Empresariales</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">📅 Cronograma de Aprendizaje</div>
+<p style="margin:0 0 10px 0;">4-6 días de estudio intensivo</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Duración</p>
+<p style="margin:0 0 10px 0;">4-6 días</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Esfuerzo estimado</p>
+<p style="margin:0 0 10px 0;">8-10 horas</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Dificultad</p>
+<p style="margin:0 0 10px 0;">Media-Alta</p></div></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">La tecnología blockchain representa uno de los avances más significativos en arquitectura de sistemas distribuidos desde Internet. Más allá del hype de las criptomonedas, blockchain ofrece un paradigma fundamentalmente nuevo para la coordinación entre entidades que no confían entre sí, eliminando la necesidad de intermediarios centralizados.</p>
+<p style="margin:0 0 10px 0;">Este tema explora la arquitectura blockchain desde sus fundamentos criptográficos hasta sus aplicaciones empresariales. Comprenderás cómo se combinan conceptos previamente estudiados (hashes, firmas digitales, redes P2P) para crear sistemas descentralizados resistentes a la censura, transparentes y verificables.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🎯 Objetivo Principal:</p>
+Comprender la arquitectura fundamental de blockchain, dominar los diferentes mecanismos de consenso, analizar casos de uso reales vs soluciones tradicionales, y desarrollar criterio para determinar cuándo blockchain es la solución apropiada.</div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:18px;line-height:1.25;">📈 Objetivos de Aprendizaje</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🔗
+<p style="margin:0 0 10px 0;">Arquitectura Fundamental</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Comprender la estructura de bloques encadenados, árboles de Merkle, y cómo la inmutabilidad emerge de la combinación de criptografía y consenso distribuido.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🤝
+<p style="margin:0 0 10px 0;">Mecanismos de Consenso</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Dominar Proof of Work, Proof of Stake, y algoritmos alternativos. Entender trade-offs entre seguridad, descentralización y escalabilidad.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📄
+<p style="margin:0 0 10px 0;">Smart Contracts</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Comprender cómo los contratos inteligentes automatizan acuerdos, sus ventajas frente a contratos tradicionales y riesgos de seguridad asociados.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🏭
+<p style="margin:0 0 10px 0;">Aplicaciones Empresariales</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Analizar casos reales de blockchain en supply chain, identidad digital, finanzas descentralizadas (DeFi) y gobierno corporativo.</div></div></div></div>
+SECCIÓN: Diagrama de Blockchain
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🔗 Estructura Fundamental de una Cadena de Bloques</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📦 Bloque #N-1
+┣ Hash anterior: 000000... (Genesis)
+┣ Raíz Merkle: abc123...
+┣ Timestamp: 2023-01-01 10:30:00
+┣ Nonce: 123456
+┗ Hash: def456...</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">⬇ Referenciado por hash
+🔗</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📦 Bloque #N
+┣ Hash anterior: def456...
+┣ Raíz Merkle: ghi789...
+┣ Timestamp: 2023-01-01 10:31:00
+┣ Nonce: 789012
+┗ Hash: jkl012...</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">⬇ Referenciado por hash
+🔗</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📦 Bloque #N+1
+┣ Hash anterior: jkl012...
+┣ Raíz Merkle: mno345...
+┣ Timestamp: 2023-01-01 10:32:00
+┣ Nonce: 345678
+┗ Hash: pqr678...</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">💡 Propiedad Fundamental:</p>
+Cualquier modificación en un bloque cambiaría su hash, rompiendo la referencia del bloque siguiente. Para modificar un bloque antiguo, un atacante necesitaría re-minar ese bloque y todos los siguientes, lo que requiere controlar &gt;50% del poder de cómputo (en PoW) o de stake (en PoS).</div></div>
+SECCIÓN: Arquitectura de Componentes
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🏗️ Arquitectura de Componentes Blockchain</div>
+<p style="margin:0 0 10px 0;">Una implementación blockchain completa integra múltiples componentes que trabajan en conjunto para garantizar seguridad, descentralización y funcionalidad.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🗄️
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Ledger Distribuido</div>
+<p style="margin:0 0 10px 0;">Base de datos replicada en todos los nodos. Cada participante tiene una copia idéntica. No hay propietario único ni punto central de fallo.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🛡️
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Criptografía Asimétrica</div>
+<p style="margin:0 0 10px 0;">Identidades digitales mediante pares de claves. Transacciones firmadas con clave privada, verificadas con clave pública. Direcciones derivadas de hashes de claves públicas.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🌐
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Red P2P</div>
+<p style="margin:0 0 10px 0;">Comunicación directa entre nodos sin servidores centrales. Protocolos de gossip para propagar transacciones y bloques. Resistente a censura y ataques de desconexión.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🌳
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Árbol de Merkle</div>
+<p style="margin:0 0 10px 0;">Estructura jerárquica de hashes que resume todas las transacciones de un bloque. Permite verificación eficiente de inclusión (proof-of-inclusion) sin descargar todas las transacciones.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🧩
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Máquina Virtual</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Entorno de ejecución determinista para smart contracts (EVM en Ethereum, WASM en Polkadot). Aislamiento de procesos y límites de recursos (gas).</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🌿
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Protocolo de Consenso</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Algoritmo que determina qué bloque se agrega a la cadena. Resuelve el problema de los generales bizantinos en entorno descentralizado.</div></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📦 Estructura Detallada de un Bloque (Ejemplo Bitcoin)</div>
+<div style="margin:12px 0;border:1px solid #dfe7ee;border-radius:10px;background:#fbfdff;padding:12px;overflow:auto;font-family:Courier New,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;">Tamaño del bloque:    4 bytes
+Encabezado del bloque: 80 bytes
+  - Versión:          4 bytes
+  - Hash bloque anterior: 32 bytes
+  - Raíz Merkle:      32 bytes
+  - Timestamp:        4 bytes
+  - Bits (dificultad): 4 bytes
+  - Nonce:            4 bytes
+Contador de transacciones: 1-9 bytes (varint)
+Transacciones:        variable
+  - Transacción coinbase (minería)
+  - Transacciones normales</div></div></div>
+SECCIÓN: Historia y Evolución
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">📜 Historia y Evolución de Blockchain</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">1991-2008: Precursores Teóricos</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Stuart Haber y W. Scott Stornetta proponen timestamping criptográfico (1991). Nick Szabo desarrolla concepto de smart contracts (1994). Wei Dai introduce b-money (1998), Hal Finney desarrolla RPOW (2004).</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2009: Bitcoin - Blockchain 1.0</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Satoshi Nakamoto publica el whitepaper de Bitcoin (2008) y lanza la red (2009). Resuelve el problema del doble gasto con Proof of Work y crea la primera moneda digital descentralizada.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2013-2015: Ethereum - Blockchain 2.0</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Vitalik Buterin propone Ethereum (2013), lanzado en 2015. Introduce smart contracts Turing-completos y la Ethereum Virtual Machine (EVM). Expande blockchain más allá de las transacciones monetarias.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2016-2020: Maduración y Especialización</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Emergen blockchains especializadas: Hyperledger (empresarial), Corda (financiera), Polkadot (interoperabilidad). DeFi (Finanzas Descentralizadas) alcanza $100B+ en valor bloqueado. NFT emergen como caso de uso mainstream.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2021-Presente: Escalabilidad y Regulación</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Layer 2 solutions (Rollups, Sidechains) para escalar Ethereum. Avances hacia Proof of Stake con Ethereum 2.0. Marcos regulatorios emergen globalmente. Web3 como visión de Internet descentralizada.</div></div></div>
+SECCIÓN: Mecanismos de Consenso
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🤝 Mecanismos de Consenso: Comparación Detallada</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">⚒️</div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Proof of Work (PoW)</div></div>
+<p style="margin:0 0 10px 0;"><strong>Concepto:</strong> Resolver problema criptográfico costoso computacionalmente pero fácil de verificar.</p>
+<p style="margin:0 0 10px 0;"><strong>Ventajas:</strong> Probado en batalla (Bitcoin), altamente descentralizado, resistente a sybil attacks.</p>
+<p style="margin:0 0 10px 0;"><strong>Desventajas:</strong> Consumo energético masivo, centralización minera, baja throughput (~7 TPS en Bitcoin).</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplos:</strong> Bitcoin, Litecoin, pre-merge Ethereum.</p>
+<p style="margin:0 0 10px 0;"><strong>Seguridad:</strong> Requiere controlar &gt;50% del hashrate para atacar.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🏦</div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Proof of Stake (PoS)</div></div>
+<p style="margin:0 0 10px 0;"><strong>Concepto:</strong> Validadores son seleccionados basados en cantidad de tokens "stakeados" (bloqueados como garantía).</p>
+<p style="margin:0 0 10px 0;"><strong>Ventajas:</strong> Eficiente energéticamente, mayor throughput, incentivos alineados.</p>
+<p style="margin:0 0 10px 0;"><strong>Desventajas:</strong> Riqueza inicial importa (rich get richer), posibles ataques de nothing-at-stake.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplos:</strong> Ethereum 2.0, Cardano, Polkadot, Solana.</p>
+<p style="margin:0 0 10px 0;"><strong>Seguridad:</strong> Requiere controlar &gt;33% del stake para atacar (en algunos algoritmos).</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📋</div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Proof of Authority (PoA)</div></div>
+<p style="margin:0 0 10px 0;"><strong>Concepto:</strong> Validadores pre-aprobados con identidad verificada. Usado en blockchains privadas/consorcio.</p>
+<p style="margin:0 0 10px 0;"><strong>Ventajas:</strong> Extremadamente eficiente, alto throughput, baja latencia.</p>
+<p style="margin:0 0 10px 0;"><strong>Desventajas:</strong> Centralizado, requiere confianza en validadores, no es permissionless.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplos:</strong> VeChain, Microsoft Azure Blockchain, redes de consorcio empresarial.</p>
+<p style="margin:0 0 10px 0;"><strong>Seguridad:</strong> Depende de la reputación y responsabilidad legal de los validadores.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🗳️</div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Delegated Proof of Stake (DPoS)</div></div>
+<p style="margin:0 0 10px 0;"><strong>Concepto:</strong> Usuarios votan delegados que validan bloques. Sistema representativo similar a democracia.</p>
+<p style="margin:0 0 10px 0;"><strong>Ventajas:</strong> Alta escalabilidad, participación amplia mediante votación.</p>
+<p style="margin:0 0 10px 0;"><strong>Desventajas:</strong> Puede centralizarse en pocos delegados, votantes apáticos.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplos:</strong> EOS, Tron, Steem, BitShares.</p>
+<p style="margin:0 0 10px 0;"><strong>Seguridad:</strong> Requiere corromper mayoría de delegados (típicamente 21-101).</p></div></div>
+<div style="overflow:visible;margin:10px 0;"><table style="width:100%;border-collapse:collapse;border:1px solid #dfe7ee;"><thead><tr><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Métrico</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Bitcoin (PoW)</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Ethereum (PoS)</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Solana (PoH+PoS)</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Hyperledger (PoA)</th></tr></thead><tbody><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">TPS (Transacciones por Segundo)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">7</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">15-45</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">65,000</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">1,000-10,000</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Finalidad</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Probabilística (6 bloques)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Final en 2 epochs (~13 min)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">~400ms</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Inmediata</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Consumo Energético</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Alto (≈Países medianos)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Bajo (≈ciudad pequeña)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Bajo</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Muy bajo</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Descentralización</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Alta</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Media-Alta</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Media (pocos validadores)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Baja (permissioned)</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Costo por Transacción</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">$1-50 (variable)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">$0.10-50 (variable)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">$0.00001</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Cero (privada)</td></tr></tbody></table></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">⚠️ Trilema de Blockchain:</p>
+Según la teoría de Vitalik Buterin, cualquier blockchain enfrenta trade-offs entre
+<p style="margin:0 0 10px 0;">Descentralización</p>
+,
+<p style="margin:0 0 10px 0;">Seguridad</p>
+y
+<p style="margin:0 0 10px 0;">Escalabilidad</p>
+. Puedes optimizar dos, pero no los tres simultáneamente.</div></div>
+SECCIÓN: Cuándo usar Blockchain
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🎯 ¿Cuándo Blockchain SÍ y cuándo NO?</div>
+<div style="overflow:visible;margin:10px 0;"><table style="width:100%;border-collapse:collapse;border:1px solid #dfe7ee;"><thead><tr><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Pregunta Clave</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Si respondes "SÍ"</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Si respondes "NO"</th></tr></thead><tbody><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">¿Hay múltiples participantes que no confían entre sí?</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Blockchain puede tener sentido como fuente única de verdad.</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Base de datos centralizada + API + auditoría probablemente suficiente.</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">¿Se necesita trazabilidad inmutable y verificable por terceros?</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Blockchain proporciona auditoría nativa sin confianza en una parte.</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Logs firmados digitalmente pueden ser suficientes.</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">¿Existen intermediarios que añaden costo/retraso/riesgo?</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Blockchain puede eliminar intermediarios mediante automatización.</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Los intermediarios añaden valor (curation, compliance, servicio).</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">¿Se requiere ejecución automática de acuerdos (smart contracts)?</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Blockchain ejecuta código de manera determinista y sin censura.</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Sistemas tradicionales de automatización son más eficientes.</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">¿Los datos son sensibles/privados y no deben exponerse?</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">CUIDADO: Blockchain es por diseño transparente. Considerar hashes off-chain o ZK-proofs.</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Base de datos privada es la solución apropiada.</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">¿Se necesita alto rendimiento (&gt;1,000 TPS) y baja latencia?</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Considerar blockchains de capa 2 o soluciones híbridas. Blockchain pública mainnet no es adecuada.</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Sistemas distribuidos tradicionales (Kafka, bases de datos distribuidas).</td></tr></tbody></table></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">✅ Casos de Uso Apropiados:</p>
+Cadena de suministro (supply chain) con múltiples actores, identidad auto-soberana, propiedad intelectual y royalties automatizados, votación transparente, finanzas descentralizadas (DeFi), registros médicos interoperables con consentimiento del paciente.</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">❌ Casos de Uso Inapropiados:</p>
+Base de datos interna de una sola empresa, sistemas que requieren borrado de datos (GDPR derecho al olvido), aplicaciones que necesitan &gt;10,000 TPS constantes, datos que deben mantenerse completamente privados, sistemas donde un intermediario confiable es más barato que la descentralización.</div></div>
+SECCIÓN: Amenazas y Riesgos
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">⚠️ Amenazas y Riesgos en Sistemas Blockchain</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">％ Ataque 51%</div>
+<p style="margin:0 0 10px 0;"><strong>Descripción:</strong> Una entidad controla &gt;50% del poder de minado (PoW) o stake (PoS).</p>
+<p style="margin:0 0 10px 0;"><strong>Impacto:</strong> Puede reordenar/bloquear transacciones, realizar doble gasto.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplo:</strong> Bitcoin Gold sufrió ataques 51% en 2018 y 2020 con pérdidas de $18M.</p>
+<p style="margin:0 0 10px 0;"><strong>Mitigación:</strong> Algoritmos de consenso robustos, alta descentralización, checkpointing.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">🐞 Vulnerabilidades en Smart Contracts</div>
+<p style="margin:0 0 10px 0;"><strong>Descripción:</strong> Bugs en código de contratos inteligentes explotados por atacantes.</p>
+<p style="margin:0 0 10px 0;"><strong>Impacto:</strong> Pérdida de fondos, comportamiento no deseado, parálisis del contrato.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplo:</strong> The DAO hack (2016): $60M robados debido a vulnerabilidad de reentrada.</p>
+<p style="margin:0 0 10px 0;"><strong>Mitigación:</strong> Auditorías de seguridad, testing exhaustivo, upgrades via proxy patterns.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">🌉 Ataques a Puentes (Bridges)</div>
+<p style="margin:0 0 10px 0;"><strong>Descripción:</strong> Puentes entre blockchains son objetivos frecuentes por su complejidad.</p>
+<p style="margin:0 0 10px 0;"><strong>Impacto:</strong> Pérdida masiva de fondos en múltiples cadenas simultáneamente.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplo:</strong> Ronin Bridge hack (2022): $625M, el mayor hack en cripto historia.</p>
+<p style="margin:0 0 10px 0;"><strong>Mitigación:</strong> Multisig con umbral alto, monitoreo en tiempo real, límites de retiro.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">🕵️ Problemas de Privacidad</div>
+<p style="margin:0 0 10px 0;"><strong>Descripción:</strong> Transparencia total puede revelar patrones, balances, relaciones.</p>
+<p style="margin:0 0 10px 0;"><strong>Impacto:</strong> Pérdida de privacidad, análisis forense de transacciones, doxing.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplo:</strong> Chainalysis y otras empresas rastrean transacciones Bitcoin para gobiernos.</p>
+<p style="margin:0 0 10px 0;"><strong>Mitigación:</strong> ZK-proofs, coin mixing, privacy coins, capa 2 con privacidad.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">🌿 Riesgos de Gobernanza</div>
+<p style="margin:0 0 10px 0;"><strong>Descripción:</strong> Decisiones sobre upgrades, forks, y parámetros de red.</p>
+<p style="margin:0 0 10px 0;"><strong>Impacto:</strong> Divisiones en la comunidad (hard forks), cambios no deseados.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplo:</strong> Ethereum Classic split después del hack de The DAO.</p>
+<p style="margin:0 0 10px 0;"><strong>Mitigación:</strong> Procesos de gobernanza transparentes, votación ponderada, períodos de deliberación.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">📈 Riesgos Regulatorios</div>
+<p style="margin:0 0 10px 0;"><strong>Descripción:</strong> Incertidumbre legal, regulaciones cambiantes, cumplimiento.</p>
+<p style="margin:0 0 10px 0;"><strong>Impacto:</strong> Prohibiciones, requerimientos de KYC/AML, impuestos complejos.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplo:</strong> China prohibiendo criptominería (2021), SEC acciones contra ICOs.</p>
+<p style="margin:0 0 10px 0;"><strong>Mitigación:</strong> Asesoría legal, diseño regulatorio-first, jurisdicciones claras.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🔐 Mejores Prácticas de Seguridad:</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Contratos Inteligentes:</strong> Auditorías múltiples, testing formal, bug bounties, upgradeability patterns.</li><li style="margin:6px 0;"><strong>Custodia:</strong> Multisig wallets, hardware wallets, soluciones institucionales.</li><li style="margin:6px 0;"><strong>Desarrollo:</strong> Librerías auditadas, verificaciones estáticas, límites de gas adecuados.</li><li style="margin:6px 0;"><strong>Operaciones:</strong> Monitoreo 24/7, respuesta a incidentes, backups de claves offline.</li></ul></div></div>
+SECCIÓN: Casos de Uso Empresarial
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🏢 Casos de Uso Empresarial y Aplicaciones Reales</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🚚
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Cadena de Suministro</div>
+<p style="margin:0 0 10px 0;"><strong>Problema:</strong> Trazabilidad fragmentada, certificaciones falsas, falta de transparencia.</p>
+<p style="margin:0 0 10px 0;"><strong>Solución:</strong> Productos tokenizados con historial inmutable desde origen hasta consumidor.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplos:</strong> IBM Food Trust (Walmart, Carrefour), VeChain (LVMH), TradeLens (Maersk, IBM).</p>
+<p style="margin:0 0 10px 0;"><strong>Beneficios:</strong> Reducción fraudes, recall eficiente, sostenibilidad verificable.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🪪
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Identidad Digital</div>
+<p style="margin:0 0 10px 0;"><strong>Problema:</strong> Fragmentación de identidades, riesgo de robo de datos, verificación costosa.</p>
+<p style="margin:0 0 10px 0;"><strong>Solución:</strong> Identidades auto-soberanas (SSI) con credenciales verificables en blockchain.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplos:</strong> Microsoft ION, uPort, Sovrin, Civic.</p>
+<p style="margin:0 0 10px 0;"><strong>Beneficios:</strong> Control individual sobre datos, KYC/AML reutilizable, reducción fraude identidad.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📄
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Contratos Inteligentes</div>
+<p style="margin:0 0 10px 0;"><strong>Problema:</strong> Ejecución manual de acuerdos, costos legales, disputas, retrasos.</p>
+<p style="margin:0 0 10px 0;"><strong>Solución:</strong> Código auto-ejecutable que se activa cuando se cumplen condiciones.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplos:</strong> Derivados financieros, seguros paramétricos, royalties automáticos, préstamos DeFi.</p>
+<p style="margin:0 0 10px 0;"><strong>Beneficios:</strong> Automatización, reducción intermediarios, ejecución sin confianza.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🏛️
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Finanzas Descentralizadas (DeFi)</div>
+<p style="margin:0 0 10px 0;"><strong>Problema:</strong> Exclusión financiera, intermediarios costosos, falta de transparencia.</p>
+<p style="margin:0 0 10px 0;"><strong>Solución:</strong> Protocolos financieros open-source sin permisos en blockchain.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplos:</strong> Uniswap (DEX), Aave (préstamos), Compound (interés), MakerDAO (stablecoin).</p>
+<p style="margin:0 0 10px 0;"><strong>Beneficios:</strong> Acceso global 24/7, transparencia total, composabilidad (money legos).</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">©️
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Propiedad Intelectual y NFTs</div>
+<p style="margin:0 0 10px 0;"><strong>Problema:</strong> Piratería, royalty tracking complejo, verificación de autenticidad.</p>
+<p style="margin:0 0 10px 0;"><strong>Solución:</strong> Tokens no fungibles (NFTs) que representan propiedad digital única.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplos:</strong> Arte digital (Beeple, CryptoPunks), música (Royal), activos tokenizados.</p>
+<p style="margin:0 0 10px 0;"><strong>Beneficios:</strong> Escasez digital verificable, royalties programables, mercado secundario líquido.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🗳️
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Gobernanza y Votación</div>
+<p style="margin:0 0 10px 0;"><strong>Problema:</strong> Fraude electoral, falta de transparencia, resultados impugnables.</p>
+<p style="margin:0 0 10px 0;"><strong>Solución:</strong> Sistemas de votación con resultados auditables y verificables por cualquier persona.</p>
+<p style="margin:0 0 10px 0;"><strong>Ejemplos:</strong> Votación corporativa (tokens de gobernanza), elecciones municipales piloto.</p>
+<p style="margin:0 0 10px 0;"><strong>Beneficios:</strong> Transparencia, resistencia a censura, auditoría independiente.</p></div></div></div>
+SECCIÓN: Ejercicios Prácticos
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">💻 Ejercicio Práctico 1: Análisis de Transacción Blockchain</div>
+<p style="margin:0 0 10px 0;"><strong>Objetivo:</strong> Explorar una transacción real en blockchain pública para comprender su estructura y propiedades.</p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">Visita <a href="https://www.blockchain.com/explorer" target="_blank">Blockchain Explorer</a> o <a href="https://etherscan.io" target="_blank">Etherscan</a></li><li style="margin:6px 0;">Busca una transacción reciente (puedes usar el hash de ejemplo: Bitcoin: <code>a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d</code>)</li><li style="margin:6px 0;">Analiza los siguientes elementos:
+                <ul>
+<li>Inputs y Outputs (en Bitcoin) o From/To/Value (en Ethereum)</li>
+<li>Fee (comisión) pagada</li>
+<li>Confirmaciones (block depth)</li>
+<li>Timestamp y block number</li>
+<li>Script de bloqueo/desbloqueo (en Bitcoin) o datos de transacción (en Ethereum)</li>
+</ul>
+</li><li style="margin:6px 0;">Explica cómo se garantiza la integridad de esta transacción en la cadena</li><li style="margin:6px 0;">Identifica qué información es pública y qué implicaciones de privacidad tiene</li></ol></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">💻 Ejercicio Práctico 2: Diseño de Caso de Uso</div>
+<p style="margin:0 0 10px 0;"><strong>Objetivo:</strong> Aplicar criterio para determinar si blockchain es apropiado para un escenario específico.</p>
+<p style="margin:0 0 10px 0;"><strong>Escenario:</strong> Una universidad quiere digitalizar la emisión y verificación de títulos académicos.</p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">Identifica los actores involucrados (estudiantes, universidad, empleadores, gobiernos)</li><li style="margin:6px 0;">Define qué datos se almacenarían on-chain vs off-chain</li><li style="margin:6px 0;">Determina qué tipo de blockchain sería apropiada (pública, privada, consorcio)</li><li style="margin:6px 0;">Diseña el flujo para:
+                <ul>
+<li>Emisión del título por la universidad</li>
+<li>Verificación por un empleador sin contactar a la universidad</li>
+<li>Revocación en caso de error o fraude</li>
+</ul>
+</li><li style="margin:6px 0;">Analiza ventajas frente al sistema actual (diplomas en papel, verificación manual)</li><li style="margin:6px 0;">Identifica posibles problemas (GDPR, privacidad, costos)</li></ol>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">💡 Solución de Referencia:</p>
+MIT ya emite diplomas digitales via Blockcerts. Datos on-chain: hash del diploma + metadata básica. Datos off-chain: diploma completo PDF. Verificación: empleador verifica hash contra blockchain. Revocación: la universidad firma transacción de revocación.</div></div>
+SECCIÓN: Checklist de Dominio
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">✅ Checklist de Dominio (Al terminar el tema)</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">1</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Arquitectura Fundamental</div>
+<p style="margin:0 0 10px 0;">Puedo explicar cómo los bloques se encadenan criptográficamente, qué es un árbol de Merkle y cómo contribuye a la eficiencia, y cómo emerge la inmutabilidad de esta arquitectura combinada con consenso distribuido.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Mecanismos de Consenso</div>
+<p style="margin:0 0 10px 0;">Comprendo las diferencias fundamentales entre PoW, PoS, PoA y DPoS, puedo explicar sus trade-offs en seguridad, descentralización y escalabilidad, y sé cuándo recomendar cada uno según el caso de uso.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">3</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Criterio de Aplicación</div>
+<p style="margin:0 0 10px 0;">Tengo criterio para determinar cuándo blockchain es solución apropiada vs cuando una base de datos tradicional es mejor. Puedo articular las 3-5 preguntas clave que deben responderse antes de considerar blockchain.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">4</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Smart Contracts y Aplicaciones</div>
+<p style="margin:0 0 10px 0;">Comprendo qué son los smart contracts, sus ventajas frente a contratos tradicionales, riesgos de seguridad comunes, y puedo describir al menos 3 casos de uso empresarial reales con beneficios concretos.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">5</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Riesgos y Mitigaciones</div>
+<p style="margin:0 0 10px 0;">Identifico los principales riesgos en sistemas blockchain (51%, bugs en smart contracts, problemas de privacidad, regulatorios) y conozco estrategias básicas para mitigarlos en diseño e implementación.</p></div></div></div>
+SECCIÓN: Herramientas y Recursos
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🔧 Herramientas y Recursos para Explorar</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🧊
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Block Explorers</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Etherscan (Ethereum), Blockchain.com (Bitcoin), Polkascan (Polkadot). Para analizar transacciones, contratos, direcciones en tiempo real.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🧪
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Sandboxes de Desarrollo</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Remix IDE (Ethereum), Hardhat, Truffle, Foundry. Para desarrollar, testear y desplegar smart contracts sin riesgo.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🌐
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Redes de Prueba</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Goerli, Sepolia (Ethereum testnets), Bitcoin testnet3. Para experimentar con transacciones reales sin usar fondos reales.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📚
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Documentación Oficial</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Ethereum.org, Bitcoin.org, Hyperledger Documentation. Los mejores recursos técnicos directamente de los equipos de desarrollo.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📊
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Análisis y Métricas</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Glassnode, Dune Analytics, DeFi Pulse. Para análisis de datos on-chain, métricas de red, y tendencias del ecosistema.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🎓
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Cursos y Certificaciones</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Coursera "Blockchain Basics", B9Lab Academy, Consensys Academy, Blockchain Council. Para formación estructurada y certificaciones.</div></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">📚 Recursos Adicionales:</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Libro:</strong> "Mastering Bitcoin" de Andreas Antonopoulos (gratuito online)</li><li style="margin:6px 0;"><strong>Libro:</strong> "Mastering Ethereum" de Andreas Antonopoulos y Gavin Wood</li><li style="margin:6px 0;"><strong>Whitepapers:</strong> Bitcoin Whitepaper (Satoshi Nakamoto), Ethereum Whitepaper (Vitalik Buterin)</li><li style="margin:6px 0;"><strong>Video:</strong> Serie "Blockchain" de 3Blue1Brown en YouTube</li><li style="margin:6px 0;"><strong>Podcast:</strong> "Bankless", "Epicenter", "Unchained" para noticias y análisis</li><li style="margin:6px 0;"><strong>Investigación:</strong> Papers académicos en IACR Cryptology ePrint Archive</li></ul></div></div>
+SECCIÓN: Evaluación
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">📊 Evaluación del Tema 1.4</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">✍️ Tarea Práctica: Diseño de Sistema</div>
+<p style="margin:0 0 10px 0;"><strong>Diseñar una solución blockchain para trazabilidad de medicamentos:</strong></p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">Identificar actores: laboratorios, distribuidores, farmacias, pacientes, reguladores</li><li style="margin:6px 0;">Definir qué datos se almacenan on-chain vs off-chain</li><li style="margin:6px 0;">Seleccionar tipo de blockchain y mecanismo de consenso apropiado</li><li style="margin:6px 0;">Diseñar smart contracts para:
+                        <ul>
+<li>Registro de lote de producción</li>
+<li>Transferencia de custodia entre actores</li>
+<li>Verificación de autenticidad por paciente</li>
+<li>Reporte de efectos adversos</li>
+</ul>
+</li><li style="margin:6px 0;">Analizar beneficios vs solución tradicional (papel, bases de datos aisladas)</li></ul></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">❓ Preguntas de Evaluación</div>
+<p style="margin:0 0 10px 0;"><strong>Debes poder responder:</strong></p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">¿Qué problema resuelve el consenso en sistemas distribuidos?</li><li style="margin:6px 0;">¿Por qué PoW consume tanta energía y PoS no?</li><li style="margin:6px 0;">¿Cómo garantiza Bitcoin que no se gaste dos veces la misma moneda?</li><li style="margin:6px 0;">¿Qué ventajas tienen los smart contracts sobre los contratos legales tradicionales?</li><li style="margin:6px 0;">¿Por qué la transparencia de blockchain es tanto ventaja como desventaja?</li><li style="margin:6px 0;">¿Qué es el trilema blockchain y cómo afecta el diseño de sistemas?</li><li style="margin:6px 0;">¿Cuándo es preferible una blockchain privada/permissioned sobre una pública?</li></ul></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🏆 Meta Final:</p>
+Al completar este tema, debes poder evaluar críticamente propuestas blockchain, distinguir casos de uso válidos de soluciones buscando problemas, diseñar arquitecturas apropiadas para diferentes contextos, y comprender los trade-offs fundamentales entre descentralización, seguridad y escalabilidad. Blockchain no es una solución mágica, sino una herramienta poderosa para problemas específicos de coordinación sin confianza.</div></div>
+</div>
+<div style="padding:14px 18px;border-top:1px solid #e6ebef;color:#6a7882;font-size:12px;">
+<div style="margin:0;">Optimizado para Q10: sin scripts, sin estilos externos, sin dependencias bloqueables.</div>
+</div>
+</div>
+</body>
+</html>

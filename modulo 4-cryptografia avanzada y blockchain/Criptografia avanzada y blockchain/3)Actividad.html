@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividad 3: Proyecto Final</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .weight-box {
+        text-align: center; background: #e3f2fd; padding: 20px; border-radius: 12px; margin-bottom: 30px;
+        border: 2px solid #1565c0; color: #0d47a1; font-weight: 800; font-size: 1.5rem;
+    }
+
+    .req-list { list-style: none; padding: 0; }
+    .req-list li { margin-bottom: 15px; padding: 15px; background: #f5faff; border-radius: 8px; border-left: 5px solid #0d47a1; }
+    .req-title { font-weight: bold; color: #0d47a1; display: block; margin-bottom: 5px; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* ===== Complementos MAX (mantiene el estilo original) ===== */
+    .max-section-title{
+        font-family:'Montserrat',sans-serif;
+        font-weight:800;
+        color:#0d47a1;
+        margin: 34px 0 10px 0;
+        font-size: 1.25rem;
+    }
+    .max-note{
+        background:#f5faff;
+        border:1px dashed #bbdefb;
+        padding:18px 18px;
+        border-radius:12px;
+        color:#37474f;
+        margin:14px 0 18px 0;
+    }
+    .max-note strong{ color:#0d47a1; }
+    .max-grid{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 12px;
+    }
+    .max-card{
+        background:#ffffff;
+        border:1px solid #e0e0e0;
+        border-left:6px solid #1565c0;
+        border-radius:12px;
+        padding:16px;
+    }
+    .max-card h4{
+        margin:0 0 8px 0;
+        font-family:'Montserrat',sans-serif;
+        font-weight:800;
+        color:#0d47a1;
+        font-size: 1rem;
+    }
+    .max-card ul{ margin: 0 0 0 18px; }
+    .max-code{
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        background:#0b1020;
+        color:#e6edf3;
+        border-radius:12px;
+        padding:14px;
+        overflow:auto;
+        border:1px solid rgba(187,222,251,0.25);
+        margin-top: 10px;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        white-space: pre-wrap;
+    }
+    .max-badge{
+        display:inline-block;
+        font-weight:800;
+        font-size:0.82rem;
+        padding:6px 10px;
+        border-radius:999px;
+        background:#e3f2fd;
+        border:1px solid #bbdefb;
+        color:#1565c0;
+        margin-right:8px;
+        margin-top:6px;
+    }
+    @media (max-width: 768px){
+        .max-grid{ grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Proyecto Integrador Final</h1>
+        <p>Propuesta de Solución Criptográfica.</p>
+    </div>
+
+    <div class="weight-box">
+        NOTA: 50% DEL MÓDULO
+    </div>
+
+    <p style="margin-bottom: 30px;">
+        Debes seleccionar un problema real (ej. falsificación de diplomas, trazabilidad de medicamentos, firma de contratos) y diseñar una solución completa.
+    </p>
+
+    <h3 style="color:#0d47a1;">Entregables:</h3>
+    <ul class="req-list">
+        <li>
+            <span class="req-title">1. Informe Ejecutivo (PDF)</span>
+            Máximo 6 páginas. Debe incluir la Matriz de Decisión, Diagrama de Arquitectura y Análisis de Riesgos. Justifica por qué elegiste (o descartaste) Blockchain.
+        </li>
+        <li>
+            <span class="req-title">2. Presentación (PPTX/PDF)</span>
+            Entre 8 y 10 diapositivas para defender tu propuesta ante la "gerencia". Enfócate en el valor de negocio.
+        </li>
+        <li>
+            <span class="req-title">3. Evidencias Técnicas (Anexos)</span>
+            Capturas de pantalla de tus pruebas de concepto (generación de claves, hashes, transacciones en testnet) que validan la viabilidad técnica.
+        </li>
+    </ul>
+
+
+
+<section style="margin-top:40px;">
+<h3 style="color:#0d47a1;">🧪 Actividad integradora (MAX)</h3>
+<p>Esta actividad integra <strong>criptografía + blockchain + análisis de riesgos + diseño</strong>.</p>
+
+<h4>Pasos obligatorios</h4>
+<ol>
+<li>Selecciona un caso realista (educativo, empresarial o institucional).</li>
+<li>Define el activo a proteger (documento, evento, transacción).</li>
+<li>Calcula hash y demuestra efecto avalancha.</li>
+<li>Aplica cifrado cuando sea necesario.</li>
+<li>Decide si usar blockchain y justifica.</li>
+<li>Diseña arquitectura y matriz.</li>
+<li>Presenta evidencia técnica.</li>
+</ol>
+
+<div style="background:#fff3e0;border-left:6px solid #ef6c00;padding:16px;border-radius:12px;">
+<strong>Evaluación:</strong> se valora la coherencia entre problema, solución y evidencia.
+</div>
+</section>
+
+
+<section style="margin-top:40px;">
+  <h3 class="max-section-title">🧭 Guía paso a paso (con entregables por etapa)</h3>
+  <div class="max-code">Etapa 1) Caso y alcance (30–45 min)
+- Caso realista + actores + activo a proteger
+- Requisitos: integridad, privacidad, auditabilidad, rendimiento
+Entregable: ½ página de alcance
+
+Etapa 2) Prueba criptográfica (45–60 min)
+- Hash + efecto avalancha (2 inputs casi iguales)
+- (Opcional) cifrado de un archivo sensible
+Entregable: capturas + explicación breve
+
+Etapa 3) Decisión tecnológica (30–45 min)
+- Matriz con pesos
+- Conclusión: aplica o no aplica blockchain
+Entregable: matriz + 1 párrafo de justificación
+
+Etapa 4) Arquitectura (45–60 min)
+- Diagrama + flujo de datos
+- On‑chain (hash) vs off‑chain (datos)
+Entregable: diagrama + explicación
+
+Etapa 5) Informe y presentación (60–90 min)
+- Informe 4–6 páginas
+- Slides 8–10
+Entregable: PDF + PPT/PDF</div>
+</section>
+
+<section>
+  <h3 class="max-section-title">🧪 Casos recomendados (elige 1 y aterrízalo)</h3>
+  <div class="max-grid">
+    <div class="max-card">
+      <h4>Educación</h4>
+      <ul>
+        <li>Verificación de diplomas/certificados.</li>
+        <li>Actas de comité (integridad verificable).</li>
+        <li>Historial de notas (auditabilidad).</li>
+      </ul>
+    </div>
+    <div class="max-card">
+      <h4>Salud / Industria</h4>
+      <ul>
+        <li>Trazabilidad de medicamentos.</li>
+        <li>Cadena de custodia de muestras.</li>
+        <li>Registros de mantenimiento/inspección.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="max-note">
+    <strong>Pregunta clave:</strong> ¿hay múltiples partes que no confían y necesitan un registro verificable? Si NO, BD + firmas suele ganar.
+  </div>
+</section>
+
+<section>
+  <h3 class="max-section-title">✅ Checklist de entrega (antes de subir)</h3>
+  <ul>
+    <li>Matriz con criterios medibles + pesos que suman 100%.</li>
+    <li>Arquitectura clara: qué va on‑chain y qué off‑chain.</li>
+    <li>Riesgos con mitigación (no promesas vagas).</li>
+    <li>Evidencia verificable: hash + pasos para reproducir.</li>
+    <li>Conclusión madura: aplica/no aplica blockchain con argumentos.</li>
+  </ul>
+</section>
+
+
+</div>
+
+</body>
+</html>

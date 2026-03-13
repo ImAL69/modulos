@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 3.5: Matriz de Decisión</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .decision-matrix {
+        width: 100%; border-collapse: collapse; margin-bottom: 30px; text-align: left;
+    }
+    .decision-matrix th { background: #1565c0; color: white; padding: 15px; }
+    .decision-matrix td { border: 1px solid #ddd; padding: 15px; vertical-align: top; }
+    
+    .score-high { color: #2e7d32; font-weight: bold; }
+    .score-low { color: #c62828; font-weight: bold; }
+
+    .alert-box {
+        background: #fff3e0; border-left: 5px solid #ff9800; padding: 20px; border-radius: 8px; color: #e65100;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .decision-matrix { display: block; overflow-x: auto; }
+    }
+
+    /* ===== Complementos de contenido (sin cambiar look & feel) ===== */
+    .section-title{
+        font-family:'Montserrat',sans-serif;
+        font-weight:800;
+        color:#0d47a1;
+        margin: 26px 0 10px 0;
+        font-size: 1.25rem;
+    }
+    .note-box{
+        background:#f5faff;
+        border:1px dashed #bbdefb;
+        padding:18px 18px;
+        border-radius:12px;
+        color:#37474f;
+        margin:14px 0 18px 0;
+    }
+    .note-box strong{ color:#0d47a1; }
+    .pill-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    .pill{
+        display:inline-block;
+        font-size:0.82rem;
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid #e3f2fd;
+        background:#ffffff;
+        color:#1565c0;
+        font-weight:800;
+    }
+    .two-col{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 12px;
+    }
+    .mini-card{
+        background:#ffffff;
+        border:1px solid #e0e0e0;
+        border-left:6px solid #1565c0;
+        border-radius:12px;
+        padding:16px;
+    }
+    .mini-card h4{
+        margin:0 0 8px 0;
+        font-family:'Montserrat',sans-serif;
+        font-weight:800;
+        color:#0d47a1;
+        font-size: 1rem;
+    }
+    .mini-card ul{ margin: 0 0 0 18px; }
+    .micro-code{
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        background:#0b1020;
+        color:#e6edf3;
+        border-radius:12px;
+        padding:14px;
+        overflow:auto;
+        border:1px solid rgba(187,222,251,0.25);
+        margin-top: 10px;
+        font-size: 0.92rem;
+        line-height: 1.5;
+    }
+    @media (max-width: 768px){
+        .two-col{ grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 3.5: Matriz de Decisión</h1>
+        <p>Evaluación objetiva de tecnología.</p>
+    </div>
+
+    <p style="margin-bottom: 30px;">
+        No elijas tecnología por moda ("Hype"). Usa una matriz ponderada para comparar opciones objetivamente.
+    </p>
+
+    <table class="decision-matrix">
+        <thead>
+            <tr>
+                <th>Criterio</th>
+                <th>Peso</th>
+                <th>Opción A: Base de Datos (SQL)</th>
+                <th>Opción B: Blockchain</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Costo de Implementación</strong></td>
+                <td>30%</td>
+                <td class="score-high">Bajo (Tecnología madura)</td>
+                <td class="score-low">Alto (Complejidad técnica)</td>
+            </tr>
+            <tr>
+                <td><strong>Rendimiento (TPS)</strong></td>
+                <td>20%</td>
+                <td class="score-high">Muy Alto (>10k TPS)</td>
+                <td class="score-low">Bajo (<100 TPS en pública)</td>
+            </tr>
+            <tr>
+                <td><strong>Resistencia a Censura</strong></td>
+                <td>50%</td>
+                <td class="score-low">Baja (Admin puede borrar)</td>
+                <td class="score-high">Muy Alta (Inmutable)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert-box">
+        <strong>💡 Conclusión:</strong> Si tu prioridad es la resistencia a la censura (50%), Blockchain gana. Si es el costo y velocidad, gana SQL. El contexto define al ganador.
+    </div>
+
+
+
+<section style="margin-top:40px;">
+<h3 style="color:#0d47a1;">📊 Uso profesional de la matriz de decisión</h3>
+<p>La matriz no decide por ti: <strong>hace explícitas tus prioridades</strong>. Sirve para justificar decisiones técnicas ante negocio y auditoría.</p>
+<ul>
+<li>Pondera impacto real, no preferencias.</li>
+<li>Define criterios observables.</li>
+<li>Permite recalcular escenarios.</li>
+</ul>
+</section>
+
+
+<section style="margin-top:34px;">
+  <h3 class="section-title">🧮 Cómo se usa una matriz ponderada (paso a paso)</h3>
+  <p>Una matriz sirve para <strong>justificar</strong> decisiones. Para que sea defendible, transforma opiniones en puntajes y deja claro el “por qué”.</p>
+
+  <div class="micro-code">Paso 1) Define opciones (A, B, C...)
+Paso 2) Define criterios observables (no “me gusta”, sino “medible”)
+Paso 3) Asigna pesos (suman 100%)
+Paso 4) Puntúa cada opción (por ejemplo 1–5)
+Paso 5) Multiplica: Puntaje * Peso
+Paso 6) Suma totales y revisa sensibilidad (¿cambia si el peso cambia?)</div>
+
+  <div class="note-box">
+    <strong>Regla:</strong> si no puedes explicar un criterio con evidencia (costo real, TPS real, auditoría, cumplimiento), no lo uses.
+  </div>
+</section>
+
+<section>
+  <h3 class="section-title">📌 Criterios típicos que faltan (para decisiones reales)</h3>
+  <p>Tu matriz base está bien, pero en proyectos reales también se consideran estos criterios para evitar sorpresas:</p>
+
+  <div class="two-col">
+    <div class="mini-card">
+      <h4>Negocio y operación</h4>
+
+      <ul>
+        <li>Tiempo de entrega (time‑to‑market)</li>
+        <li>Talento disponible / curva de aprendizaje</li>
+        <li>Costos recurrentes (OPEX) y monitoreo</li>
+        <li>SLA, soporte y continuidad</li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <h4>Seguridad y cumplimiento</h4>
+      <ul>
+        <li>Privacidad de datos (PII) y cumplimiento</li>
+        <li>Auditoría y trazabilidad</li>
+        <li>Modelo de amenaza (MitM, manipulación, insiders)</li>
+        <li>Gestión de claves / identidad</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3 class="section-title">📊 Ejemplo rápido de recalculo (sensibilidad)</h3>
+  <p>Una decisión madura prueba escenarios: “¿y si el peso cambia?” Si el ganador cambia con un pequeño ajuste, la decisión es frágil.</p>
+  <div class="note-box">
+    <strong>Ejemplo:</strong> si “Resistencia a censura” baja de 50% a 25% y “Costo” sube, es probable que SQL gane.
+    Si tu proyecto depende de inmutabilidad verificable (auditoría externa), blockchain puede seguir ganando.
+  </div>
+</section>
+
+<section>
+  <h3 class="section-title">🧠 Mini‑reto (15–20 min): arma tu matriz “de verdad”</h3>
+  <ul>
+    <li>Agrega 3 criterios más (privacidad, cumplimiento, talento disponible).</li>
+    <li>Define escala 1–5 y escribe 1 línea por puntaje (justificación).</li>
+    <li>Recalcula dos escenarios: “prioridad negocio” vs “prioridad auditoría”.</li>
+    <li>Escribe conclusión ejecutiva de 4 líneas: decisión + por qué + riesgo + mitigación.</li>
+  </ul>
+
+  <div class="micro-code">Plantilla de conclusión (copiable):
+Decisión: ______
+Razón principal: ______ (criterio de mayor peso)
+Riesgo: ______ (qué podría salir mal)
+Mitigación: ______ (qué harás para controlarlo)</div>
+</section>
+
+<section>
+  <h3 class="section-title">✅ Buenas prácticas al presentar la matriz</h3>
+  <ul>
+    <li><strong>Transparencia:</strong> muestra pesos y por qué existen (objetivos del proyecto).</li>
+    <li><strong>Datos:</strong> soporta puntajes con referencias (costos, TPS, cumplimiento, auditoría).</li>
+    <li><strong>Trade‑offs:</strong> explica qué se gana y qué se sacrifica.</li>
+    <li><strong>Plan B:</strong> si la opción elegida falla, ¿qué alternativa tienes?</li>
+  </ul>
+</section>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enfoque y Justificación</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .argument-box {
+        background: #fff; border: 1px solid #e0e0e0; padding: 25px; border-radius: 12px; margin-bottom: 20px;
+        transition: transform 0.2s;
+    }
+    .argument-box:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    
+    .arg-title { color: #2e7d32; font-weight: 800; font-size: 1.2rem; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+    .arg-counter { color: #c62828; font-weight: 800; font-size: 1.2rem; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    .tip-box {
+        background: #fff3e0; padding: 20px; border-radius: 8px; border-left: 5px solid #ff9800; margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* ===== Complementos MAX (mantiene el estilo original) ===== */
+    .max-section-title{
+        font-family:'Montserrat',sans-serif;
+        font-weight:800;
+        color:#0d47a1;
+        margin: 34px 0 10px 0;
+        font-size: 1.25rem;
+    }
+    .max-note{
+        background:#f5faff;
+        border:1px dashed #bbdefb;
+        padding:18px 18px;
+        border-radius:12px;
+        color:#37474f;
+        margin:14px 0 18px 0;
+    }
+    .max-note strong{ color:#0d47a1; }
+    .max-grid{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 12px;
+    }
+    .max-card{
+        background:#ffffff;
+        border:1px solid #e0e0e0;
+        border-left:6px solid #1565c0;
+        border-radius:12px;
+        padding:16px;
+    }
+    .max-card h4{
+        margin:0 0 8px 0;
+        font-family:'Montserrat',sans-serif;
+        font-weight:800;
+        color:#0d47a1;
+        font-size: 1rem;
+    }
+    .max-card ul{ margin: 0 0 0 18px; }
+    .max-code{
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        background:#0b1020;
+        color:#e6edf3;
+        border-radius:12px;
+        padding:14px;
+        overflow:auto;
+        border:1px solid rgba(187,222,251,0.25);
+        margin-top: 10px;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        white-space: pre-wrap;
+    }
+    .max-badge{
+        display:inline-block;
+        font-weight:800;
+        font-size:0.82rem;
+        padding:6px 10px;
+        border-radius:999px;
+        background:#e3f2fd;
+        border:1px solid #bbdefb;
+        color:#1565c0;
+        margin-right:8px;
+        margin-top:6px;
+    }
+    @media (max-width: 768px){
+        .max-grid{ grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Enfoque: Pertinencia Tecnológica</h1>
+        <p>Cómo argumentar (y defender) tu solución.</p>
+    </div>
+
+    <p style="margin-bottom: 30px;">
+        El núcleo de tu proyecto es la <strong>justificación</strong>. No basta con decir "usamos Blockchain porque es seguro". Debes demostrar por qué es la herramienta correcta para ESTE problema específico.
+    </p>
+
+    <div class="argument-box">
+        <span class="arg-title"><i class="fa-solid fa-check"></i> Cuándo SÍ argumentar por Blockchain</span>
+        <p>Cuando el problema central es la <strong>falta de confianza</strong> entre múltiples partes que necesitan escribir en el mismo registro. Ejemplo: 5 bancos distintos que no confían entre sí pero necesitan compartir un historial crediticio unificado.</p>
+    </div>
+
+    <div class="argument-box">
+        <span class="arg-counter"><i class="fa-solid fa-xmark"></i> Cuándo NO argumentar por Blockchain</span>
+        <p>Si la solución requiere <strong>alto rendimiento</strong>, privacidad absoluta de datos por defecto, o si hay una entidad central en la que todos ya confían (ej. el gobierno para el registro civil interno). En estos casos, argumenta por una base de datos centralizada con firmas digitales.</p>
+    </div>
+
+    <div class="tip-box">
+        <strong>💡 Tip de Aprobación:</strong> Un proyecto que concluye "Blockchain NO es viable para este caso debido a los costos" puede obtener una nota perfecta (5.0) si la argumentación técnica es sólida. La honestidad intelectual vale más que la implementación forzada.
+    </div>
+
+
+
+<section style="margin-top:40px;">
+<h3 style="color:#0d47a1;">🎯 Enfoque de evaluación (MAX)</h3>
+<p>Este módulo evalúa <strong>criterio profesional</strong>.</p>
+<ul>
+<li>Decisiones justificadas.</li>
+<li>Uso correcto de conceptos.</li>
+<li>Capacidad de decir “no aplica blockchain”.</li>
+<li>Claridad en riesgos y límites.</li>
+</ul>
+
+<p><strong>Recuerda:</strong> en la vida real, justificar bien vale más que implementar de más.</p>
+</section>
+
+
+<section style="margin-top:40px;">
+  <h3 class="max-section-title">🧠 Cómo defender tu enfoque (estructura CER)</h3>
+  <div class="max-code">Claim–Evidence–Reasoning (CER):
+1) Claim: “Blockchain aplica / no aplica”
+2) Evidence: matriz, requisitos, actores, costos, riesgos
+3) Reasoning: conecta evidencia → decisión (trade‑offs)</div>
+</section>
+
+<section>
+  <h3 class="max-section-title">🌳 Árbol de decisión rápido</h3>
+  <div class="max-note">
+    <span class="max-badge">1</span> ¿Múltiples organizaciones escriben y NO confían?<br/>
+    <span class="max-badge">2</span> ¿Necesitas inmutabilidad verificable externamente?<br/>
+    <span class="max-badge">3</span> ¿Puedes evitar datos sensibles on‑chain (solo hash)?<br/>
+    <span class="max-badge">4</span> ¿Costo/latencia es aceptable?<br/><br/>
+    <strong>Si NO en 1 y 2:</strong> casi siempre gana BD + firmas digitales.
+  </div>
+</section>
+
+<section>
+  <h3 class="max-section-title">⚔️ Contraargumentos típicos (y cómo responder)</h3>
+  <div class="max-grid">
+    <div class="max-card">
+      <h4>“Blockchain es más seguro”</h4>
+      <ul>
+        <li>Seguridad depende de <strong>claves, permisos y operación</strong>.</li>
+        <li>Incluye mitigación: KMS, rotación, MFA, roles.</li>
+      </ul>
+    </div>
+    <div class="max-card">
+      <h4>“BD siempre es suficiente”</h4>
+      <ul>
+        <li>BD sirve, pero la integridad se fortalece con <strong>firmas/anclaje</strong>.</li>
+        <li>Útil si hay auditoría externa o múltiples verificadores.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="max-note">
+    <strong>Mini‑reto (10 min):</strong> escribe 2 contraargumentos que te haría un jurado y respóndelos con evidencia (matriz/riesgo/arquitectura).
+  </div>
+</section>
+
+
+</div>
+
+</body>
+</html>

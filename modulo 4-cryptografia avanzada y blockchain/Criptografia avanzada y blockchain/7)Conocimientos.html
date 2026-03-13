@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conocimientos Previos: Fundamentos para Criptografía y Blockchain</title>
+<style>
+
+/* =========================
+   Q10 ULTRA-SAFE PATCH
+   (evita recortes y sanitización común)
+   ========================= */
+html, body {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+img, svg, video { max-width: 100%; height: auto; }
+.container-extended, .container, main, section, article {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+/* Evita que un wrapper externo de Q10 corte sombras */
+.container-extended { overflow: visible !important; }
+
+
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    body { 
+        background-color: #f0f2f5; 
+        margin: 0; 
+        padding: 40px 20px; 
+        font-family: 'Roboto', sans-serif; 
+        color: #37474f;
+        line-height: 1.7;
+    }
+    
+    .container-extended {
+        max-width: 1000px; 
+        margin: 0 auto; 
+        padding: 60px 50px; 
+        background: #ffffff;
+        border-radius: 20px; 
+        position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; 
+        top: 30px; 
+        right: 40px; 
+        width: 150px; 
+        height: auto; 
+        z-index: 100;
+        background: rgba(255,255,255,0.95); 
+        padding: 5px; 
+        border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { 
+        transform: translateY(-2px) scale(1.02); 
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15); 
+    }
+
+    .header-box { 
+        text-align: left; 
+        margin-bottom: 50px; 
+        padding-top: 30px; 
+        padding-right: 180px; 
+        border-bottom: 2px solid #e0e0e0; 
+        padding-bottom: 20px; 
+    }
+    
+    .main-title { 
+        font-family: 'Montserrat', sans-serif; 
+        font-size: 2.2rem; 
+        font-weight: 800; 
+        color: #0d47a1; 
+        margin: 0 0 10px 0; 
+        background: linear-gradient(135deg, #0d47a1 0%, #1976d2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+        color: #546e7a;
+        border-left: 4px solid #1976d2;
+        padding-left: 15px;
+        margin-top: 10px;
+    }
+
+    .intro-paragraph {
+        margin-bottom: 40px; 
+        font-size: 1.1rem;
+        background: #f8fbff;
+        padding: 25px;
+        border-radius: 10px;
+        border: 1px solid #e3f2fd;
+    }
+
+    .skill-card {
+        background: #f5faff; 
+        border: 1px solid #bbdefb; 
+        padding: 30px; 
+        border-radius: 12px; 
+        margin-bottom: 30px;
+        border-left: 6px solid #1565c0; 
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: visible;
+    }
+    
+    .skill-card:hover { 
+        transform: translateY(-5px); 
+        box-shadow: 0 10px 30px rgba(13, 71, 161, 0.15);
+        border-left-color: #0d47a1;
+    }
+
+    .skill-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #1565c0, #0d47a1);
+    }
+
+    .skill-title { 
+        font-size: 1.4rem; 
+        font-weight: 700; 
+        color: #0d47a1; 
+        margin-bottom: 20px; 
+        display: block; 
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .skill-icon {
+        background: #0d47a1;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+    
+    .skill-list { 
+        list-style: none; 
+        padding: 0; 
+        margin: 0;
+    }
+    
+    .skill-list li { 
+        margin-bottom: 12px; 
+        padding-left: 25px; 
+        position: relative; 
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px dashed #e0e0e0;
+    }
+    
+    .skill-list li:last-child {
+        border-bottom: none;
+    }
+    
+    .skill-list li::before { 
+        content: '▸'; 
+        color: #1565c0; 
+        font-weight: bold; 
+        position: absolute; 
+        left: 0; 
+        font-size: 1.2rem;
+    }
+    
+    .skill-level {
+        display: inline-block;
+        padding: 3px 10px;
+        background: #e3f2fd;
+        color: #0d47a1;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+    
+    .skill-level.beginner { background: #e8f5e9; color: #388e3c; }
+    .skill-level.intermediate { background: #fff3e0; color: #f57c00; }
+    .skill-level.advanced { background: #ffebee; color: #d32f2f; }
+    .skill-level.essential { background: #e3f2fd; color: #0d47a1; }
+
+    .alert-box {
+        background: #fff3e0; 
+        border-left: 6px solid #ff9800; 
+        padding: 25px; 
+        margin: 30px 0; 
+        border-radius: 10px; 
+        color: #e65100;
+        font-size: 1.1rem;
+    }
+
+    .alert-box.success {
+        background: #e8f5e9;
+        border-left-color: #4caf50;
+        color: #388e3c;
+    }
+
+    .alert-box.info {
+        background: #e3f2fd;
+        border-left-color: #2196f3;
+        color: #1565c0;
+    }
+
+    /* NUEVAS SECCIONES AÑADIDAS */
+    .skill-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+    
+    .skill-detail-card {
+        background: white;
+        border: 2px solid #e3f2fd;
+        border-radius: 10px;
+        padding: 25px;
+        transition: all 0.3s ease;
+    }
+    
+    .skill-detail-card:hover {
+        transform: translateY(-5px);
+        border-color: #1565c0;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+    .skill-detail-card h4 {
+        color: #0d47a1;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 2px solid #e3f2fd;
+        padding-bottom: 10px;
+    }
+    
+    .skill-detail-card ul {
+        padding-left: 20px;
+        margin: 15px 0;
+    }
+    
+    .skill-detail-card li {
+        margin-bottom: 8px;
+        color: #37474f;
+    }
+    
+    .prerequisites-container {
+        background: linear-gradient(135deg, #f8fbff, #e8f4ff);
+        padding: 30px;
+        border-radius: 12px;
+        margin: 40px 0;
+        border: 2px solid #bbdefb;
+    }
+    
+    .prerequisites-container h3 {
+        color: #0d47a1;
+        margin-top: 0;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .timeline {
+        position: relative;
+        margin: 30px 0;
+        padding-left: 30px;
+    }
+    
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, #0d47a1, #1976d2);
+    }
+    
+    .timeline-item {
+        position: relative;
+        margin-bottom: 25px;
+        padding-left: 25px;
+    }
+    
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -8px;
+        top: 5px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #0d47a1;
+        border: 3px solid white;
+        box-shadow: 0 0 0 2px #0d47a1;
+    }
+    
+    .timeline-title {
+        font-weight: 700;
+        color: #0d47a1;
+        margin-bottom: 5px;
+    }
+    
+    .timeline-desc {
+        color: #546e7a;
+        font-size: 0.95rem;
+    }
+    
+    .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin: 25px 0;
+    }
+    
+    .resource-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+    
+    .resource-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        border-color: #1565c0;
+    }
+    
+    .resource-card h5 {
+        color: #1565c0;
+        margin: 0 0 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .resource-card a {
+        color: #0d47a1;
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-block;
+        margin-top: 10px;
+    }
+    
+    .resource-card a:hover {
+        text-decoration: underline;
+    }
+    
+    .self-assessment {
+        background: linear-gradient(135deg, #fff8e1, #fff3e0);
+        padding: 30px;
+        border-radius: 12px;
+        margin: 40px 0;
+        border: 2px solid #ffb74d;
+    }
+    
+    .self-assessment h3 {
+        color: #e65100;
+        margin-top: 0;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .assessment-question {
+        margin: 20px 0;
+        padding: 15px;
+        background: white;
+        border-radius: 8px;
+        border-left: 4px solid #ff9800;
+    }
+    
+    .assessment-question p {
+        margin: 0 0 10px 0;
+        font-weight: 500;
+    }
+    
+    .learning-path {
+        background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+        padding: 30px;
+        border-radius: 12px;
+        margin: 40px 0;
+        border: 2px solid #81c784;
+    }
+    
+    .learning-path h3 {
+        color: #388e3c;
+        margin-top: 0;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .path-step {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 25px;
+        padding: 15px;
+        background: rgba(255,255,255,0.8);
+        border-radius: 8px;
+    }
+    
+    .step-number {
+        background: #4caf50;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+    
+    .step-content {
+        flex: 1;
+    }
+    
+    .step-content h4 {
+        margin: 0 0 8px 0;
+        color: #388e3c;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { 
+            position: static; 
+            display: block; 
+            margin: 0 auto 20px auto; 
+        }
+        .header-box { 
+            padding-right: 0; 
+            text-align: center; 
+        }
+        .main-title {
+            font-size: 1.8rem;
+        }
+        .skill-grid {
+            grid-template-columns: 1fr;
+        }
+        .resource-grid {
+            grid-template-columns: 1fr;
+        }
+        .timeline {
+            padding-left: 20px;
+        }
+        .timeline::before {
+            left: 10px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Conocimientos Previos Sugeridos</h1>
+        <p>¿Qué necesitas para aprovechar este módulo al máximo?</p>
+        <div class="subtitle">Una guía detallada de los fundamentos técnicos y conceptuales necesarios para dominar la criptografía y blockchain</div>
+    </div>
+
+    <div class="intro-paragraph">
+        <p><strong>La criptografía moderna no es magia negra, sino matemática aplicada a la seguridad.</strong> No necesitas ser un matemático puro ni un genio de la programación, pero sí requiere una base técnica sólida. Este módulo está diseñado para profesionales de TI, pero hemos estructurado los contenidos de manera que sean accesibles con ciertos conocimientos fundamentales.</p>
+        
+        <p>La siguiente guía te ayudará a evaluar tu nivel de preparación y a identificar áreas donde necesitas fortalecer tus conocimientos antes de comenzar. <strong>¡No te preocupes si no dominas todo al 100%!</strong> El curso incluye material de nivelación y ejemplos prácticos que te ayudarán a ponerte al día.</p>
+    </div>
+
+    <!-- SECCIÓN ORIGINAL MANTENIDA Y EXPANDIDA -->
+    <div class="skill-card">
+        <span class="skill-title">
+            <div class="skill-icon"><i class="fa-solid fa-network-wired"></i></div>
+            1. Fundamentos de Redes y Comunicaciones Digitales
+            <span class="skill-level essential">ESENCIAL</span>
+        </span>
+        <ul class="skill-list">
+            <li><strong>Modelo OSI/TCP-IP:</strong> Entender que la seguridad opera en diferentes capas (TLS en capa de transporte/aplicación, IPsec en capa de red, WPA2 en capa de enlace). Comprender el concepto de encapsulamiento y desencapsulamiento de datos.</li>
+            <li><strong>HTTP vs HTTPS:</strong> Diferenciar claramente entre protocolos seguros y no seguros. Entender el concepto de SSL/TLS, certificados digitales y autoridades certificadoras (CA). Saber interpretar el candado en el navegador.</li>
+            <li><strong>Protocolos comunes:</strong> Familiaridad básica con DNS, SMTP, FTP y sus versiones seguras (DNSSEC, SMTPS, FTPS).</li>
+            <li><strong>Arquitectura cliente-servidor:</strong> Comprender cómo se establecen conexiones seguras entre cliente y servidor, incluyendo el handshake SSL/TLS.</li>
+            <li><strong>Puertos y servicios:</strong> Conocer los puertos comunes (80, 443, 22, 25) y qué servicios seguros corren en ellos.</li>
+            <li><strong>VPNs básicas:</strong> Entender el concepto de túnel cifrado y para qué se usan las redes privadas virtuales.</li>
+        </ul>
+    </div>
+
+    <!-- NUEVA SECCIÓN: Skill Grid -->
+    <div class="skill-grid">
+        <div class="skill-detail-card">
+            <h4><i class="fa-solid fa-sitemap"></i> Modelo OSI Práctico</h4>
+            <ul>
+                <li><strong>Capa 7 (Aplicación):</strong> HTTPS, SSH, PGP</li>
+                <li><strong>Capa 4 (Transporte):</strong> TLS/SSL, cifrado de conexiones</li>
+                <li><strong>Capa 3 (Red):</strong> IPsec, cifrado de paquetes</li>
+                <li><strong>Capa 2 (Enlace):</strong> WPA2/WPA3 en WiFi</li>
+            </ul>
+        </div>
+        
+        <div class="skill-detail-card">
+            <h4><i class="fa-solid fa-lock"></i> HTTPS en Profundidad</h4>
+            <ul>
+                <li>Certificados X.509 y autoridades</li>
+                <li>Handshake TLS 1.2/1.3</li>
+                <li>Cifrado simétrico vs asimétrico</li>
+                <li>Perfect Forward Secrecy</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <span class="skill-title">
+            <div class="skill-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            2. Nociones de Programación y Scripting
+            <span class="skill-level intermediate">INTERMEDIO</span>
+        </span>
+        <ul class="skill-list">
+            <li><strong>Lógica de programación:</strong> Variables, estructuras de control (if/else, bucles), funciones, estructuras de datos básicas (listas, diccionarios). No implementaremos AES desde cero (eso es peligroso y complejo), pero usaremos librerías en Python y JavaScript para demostraciones prácticas.</li>
+            <li><strong>Python básico/intermedio:</strong> Saber instalar paquetes con pip, importar módulos, manejar errores básicos. Usaremos principalmente las bibliotecas cryptography, hashlib y pycryptodome.</li>
+            <li><strong>JavaScript/Node.js:</strong> Para módulos de blockchain y Web3, necesitarás entender callbacks, promesas y manejo básico de JSON. Usaremos Web3.js y ethers.js.</li>
+            <li><strong>Terminal/CLI:</strong> Uso básico de línea de comandos (Bash en Linux/Mac, PowerShell en Windows). Debes saber navegar por directorios, ejecutar scripts, generar claves con OpenSSL, y usar herramientas como git.</li>
+            <li><strong>Entornos de desarrollo:</strong> Familiaridad con editores de código (VS Code recomendado) y gestión de entornos virtuales (venv, conda).</li>
+            <li><strong>Control de versiones:</strong> Básico de Git para clonar repositorios y descargar ejemplos de código.</li>
+        </ul>
+    </div>
+
+    <div class="alert-box info">
+        <strong><i class="fa-solid fa-circle-info"></i> RECURSOS DE NIVELACIÓN PROGRAMACIÓN:</strong> Si nunca has programado o necesitas refrescar, te recomendamos:
+        <ul style="margin: 10px 0 0 20px;">
+            <li><a href="https://www.codecademy.com/learn/learn-python-3" target="_blank">Codecademy: Python 3</a> (gratuito)</li>
+            <li><a href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" target="_blank">FreeCodeCamp: JavaScript</a> (gratuito)</li>
+            <li><a href="https://www.w3schools.com/python/" target="_blank">W3Schools Python Tutorial</a> (gratuito)</li>
+            <li>Curso "Python Crash Course" en YouTube (buscar)</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <span class="skill-title">
+            <div class="skill-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            3. Conceptos Fundamentales de Seguridad Informática
+            <span class="skill-level essential">ESENCIAL</span>
+        </span>
+        <ul class="skill-list">
+            <li><strong>Confidencialidad, Integridad y Disponibilidad (CID):</strong> Los tres pilares de la seguridad de la información. Entender cómo la criptografía contribuye a cada uno.</li>
+            <li><strong>Autenticación vs Autorización:</strong> Diferenciar entre verificar identidad (quién eres) y controlar acceso (qué puedes hacer).</li>
+            <li><strong>No repudio:</strong> Comprender cómo las firmas digitales proporcionan prueba legal de autoría.</li>
+            <li><strong>Amenazas comunes:</strong> Conocer conceptos básicos de ataques como Man-in-the-Middle, replay attacks, phishing.</li>
+            <li><strong>Cifrado vs Codificación vs Hashing:</strong> Diferenciar claramente estos tres conceptos. Saber que Base64 NO es cifrado, que MD5 NO es para cifrar contraseñas, etc.</li>
+            <li><strong>Gestón de claves:</strong> Entender por qué la generación, almacenamiento, rotación y destrucción de claves es fundamental.</li>
+            <li><strong>Principio del menor privilegio:</strong> Entender por qué los sistemas criptográficos deben dar solo el acceso necesario.</li>
+        </ul>
+    </div>
+
+    <!-- NUEVA SECCIÓN: Prerrequisitos en Timeline -->
+    <div class="prerequisites-container">
+        <h3><i class="fa-solid fa-road"></i> Ruta de Aprendizaje Recomendada</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-title">Semana 1: Fundamentos</div>
+                <div class="timeline-desc">Modelo OSI, HTTP/HTTPS, conceptos básicos de seguridad, introducción a Python</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-title">Semana 2: Criptografía Simétrica</div>
+                <div class="timeline-desc">AES, modos de operación, hashing (SHA-256), Python para criptografía</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-title">Semana 3: Criptografía Asimétrica</div>
+                <div class="timeline-desc">RSA, ECC, firmas digitales, PKI, matemática modular</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-title">Semana 4: Blockchain Básico</div>
+                <div class="timeline-desc">Bitcoin, proof-of-work, hashing, introducción a JavaScript/Web3</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-title">Semana 5-6: Aplicaciones Avanzadas</div>
+                <div class="timeline-desc">Smart contracts, DeFi, NFT, seguridad en implementaciones</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <span class="skill-title">
+            <div class="skill-icon"><i class="fa-solid fa-calculator"></i></div>
+            4. Matemática Aplicada (sin sufrimiento)
+            <span class="skill-level intermediate">INTERMEDIO</span>
+        </span>
+        <ul class="skill-list">
+            <li><strong>Aritmética modular:</strong> Entender el concepto de "módulo n" (reloj de 12 horas). Es fundamental para RSA, Diffie-Hellman y ECC. Saber que 15 mod 12 = 3.</li>
+            <li><strong>Exponenciación modular:</strong> Comprender por qué 7^5 mod 13 se puede calcular eficientemente, pero encontrar el exponente dada la respuesta es difícil (logaritmo discreto).</li>
+            <li><strong>Números primos:</strong> Saber qué son, por qué son importantes en RSA, y entender que factorizar números grandes es computacionalmente difícil.</li>
+            <li><strong>Generadores pseudoaleatorios (PRNG):</strong> Entender que la seguridad criptográfica depende de números verdaderamente aleatorios e impredecibles.</li>
+            <li><strong>Funciones unidireccionales:</strong> Comprender el concepto de funciones fáciles de calcular pero difíciles de invertir (como hashing).</li>
+            <li><strong>Álgebra básica:</strong> Operaciones con exponentes, logaritmos, resolución de ecuaciones simples.</li>
+            <li><strong>Estadística básica:</strong> Para entender ataques estadísticos y análisis de seguridad.</li>
+        </ul>
+    </div>
+
+    <!-- NUEVA SECCIÓN: Recursos de Nivelación -->
+    <div class="resource-grid">
+        <div class="resource-card">
+            <h5><i class="fa-solid fa-video"></i> Videos Recomendados</h5>
+            <p>Khan Academy: Aritmética Modular</p>
+            <p>3Blue1Brown: Criptografía RSA</p>
+            <p>Computerphile: How SSL/TLS Works</p>
+            <a href="https://www.youtube.com/results?search_query=cryptography+explained" target="_blank">Ver más →</a>
+        </div>
+        
+        <div class="resource-card">
+            <h5><i class="fa-solid fa-book"></i> Libros</h5>
+            <p>"Crypto 101" - Versión gratuita online</p>
+            <p>"Understanding Cryptography" - Christof Paar</p>
+            <p>"The Code Book" - Simon Singh</p>
+            <a href="https://www.crypto101.io/" target="_blank">Acceder recursos →</a>
+        </div>
+        
+        <div class="resource-card">
+            <h5><i class="fa-solid fa-code"></i> Prácticas</h5>
+            <p>Cryptopals Challenges</p>
+            <p>OpenSSL en terminal</p>
+            <p>Python cryptography library</p>
+            <a href="https://cryptopals.com/" target="_blank">Comenzar desafíos →</a>
+        </div>
+    </div>
+
+    <!-- NUEVA SECCIÓN: Auto-Evaluación -->
+    <div class="self-assessment">
+        <h3><i class="fa-solid fa-clipboard-check"></i> Auto-Evaluación Rápida</h3>
+        <p>Responde estas preguntas para evaluar tu preparación:</p>
+        
+        <div class="assessment-question">
+            <p>1. ¿Puedes explicar la diferencia entre HTTP y HTTPS, y qué problema resuelve cada uno?</p>
+        </div>
+        
+        <div class="assessment-question">
+            <p>2. ¿Sabes escribir un script simple en Python que lea un archivo y calcule su hash SHA-256?</p>
+        </div>
+        
+        <div class="assessment-question">
+            <p>3. ¿Puedes explicar por qué RSA necesita números primos grandes y qué pasaría si usáramos primos pequeños?</p>
+        </div>
+        
+        <div class="assessment-question">
+            <p>4. ¿Entiendes la diferencia entre cifrado simétrico (AES) y asimétrico (RSA), y cuándo usar cada uno?</p>
+        </div>
+        
+        <p><strong>Resultado:</strong> Si respondiste "sí" a al menos 3 preguntas, estás listo. Si respondiste "sí" a 1-2, necesitas nivelación. Si respondiste "no" a todas, considera tomar un curso introductorio primero.</p>
+    </div>
+
+    <div class="alert-box">
+        <strong><i class="fa-solid fa-lightbulb"></i> NOTA IMPORTANTE:</strong> Si nunca has programado o tu experiencia es muy básica, <strong>revisa los tutoriales de "Python para principiantes" y "JavaScript básico" antes de la Semana 3</strong>. La parte de blockchain requiere más programación que la parte de criptografía básica.
+        <br><br>
+        <strong>Recuerda:</strong> Muchos conceptos se explicarán desde cero, pero asumimos que tienes la capacidad de aprender rápidamente nuevos conceptos técnicos. La criptografía requiere pensamiento abstracto y atención al detalle.
+    </div>
+
+    <!-- NUEVA SECCIÓN: Ruta de Nivelación -->
+    <div class="learning-path">
+        <h3><i class="fa-solid fa-map-signs"></i> Ruta de Nivelación Rápida (4 semanas)</h3>
+        
+        <div class="path-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Semana 1: HTTPS y Certificados Digitales</h4>
+                <p>Comprende SSL/TLS, certificados X.509, autoridades certificadoras. Instala OpenSSL, genera tu propio certificado autofirmado, configura HTTPS en un servidor web local.</p>
+            </div>
+        </div>
+        
+        <div class="path-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Semana 2: Hash vs Cifrado vs Codificación</h4>
+                <p>Domina las diferencias fundamentales. Practica con MD5, SHA-256, AES, Base64. Usa Python para calcular hashes, cifrar y descifrar archivos pequeños.</p>
+            </div>
+        </div>
+        
+        <div class="path-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>Semana 3: Claves Públicas y Privadas</h4>
+                <p>Genera pares de claves RSA con OpenSSL. Firma y verifica documentos. Envía mensajes cifrados asimétricamente. Entende la infraestructura de clave pública (PKI).</p>
+            </div>
+        </div>
+        
+        <div class="path-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>Semana 4: Blockchain y Consenso</h4>
+                <p>Instala una wallet de Bitcoin/Ethereum. Realiza transacciones de prueba. Entende proof-of-work vs proof-of-stake. Examina un bloque de Bitcoin en un explorador.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert-box success">
+        <strong><i class="fa-solid fa-check-circle"></i> CONSEJO FINAL:</strong> No intentes aprender todo a la vez. La criptografía se construye sobre capas de conocimiento. Comienza por los fundamentos y avanza gradualmente. <strong>¡Es completamente normal sentirse abrumado al principio!</strong> La curva de aprendizaje es empinada pero muy satisfactoria.
+        <br><br>
+        <strong>Recurso clave:</strong> Únete a comunidades como Reddit r/crypto, StackExchange Cryptography, y Discord de desarrollo blockchain para hacer preguntas y aprender de otros.
+    </div>
+
+    <!-- NUEVA SECCIÓN: Expectativas del Curso -->
+    <div class="prerequisites-container">
+        <h3><i class="fa-solid fa-bullseye"></i> Lo que NO necesitas (mitos comunes)</h3>
+        <ul style="margin: 15px 0 0 20px;">
+            <li><strong>No necesitas:</strong> Ser matemático con doctorado</li>
+            <li><strong>No necesitas:</strong> Programar en C++ o ensamblador</li>
+            <li><strong>No necesitas:</strong> Entender teoría de números avanzada</li>
+            <li><strong>No necesitas:</strong> Tener experiencia previa en criptografía</li>
+            <li><strong>No necesitas:</strong> Ser experto en Linux (pero ayuda)</li>
+            <li><strong>No necesitas:</strong> Invertir en hardware especializado</li>
+        </ul>
+        <p style="margin-top: 15px;"><strong>Lo que SÍ necesitas:</strong> Curiosidad, perseverancia, atención al detalle, y ganas de aprender algo complejo pero fascinante.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

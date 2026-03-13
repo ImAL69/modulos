@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEMA 1.2 - Criptografía Simétrica vs Asimétrica</title>
+</head>
+<body style="margin:0;padding:18px;background:#f4f6f8;color:#24323a;font-family:Arial,Helvetica,sans-serif;line-height:1.55;">
+  <div style="max-width:1000px;margin:0 auto;background:#ffffff;border:1px solid #e6ebef;border-radius:10px;overflow:visible;">
+    <div style="padding:18px 18px 0 18px;text-align:right;">
+      <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo" style="max-width:160px;height:auto;border:0;display:inline-block;">
+    </div>
+    <div style="padding:0 18px 18px 18px;border-bottom:4px solid #1b5e20;">
+      <div style="padding:10px 0 0 0;">
+        <div style="display:inline-block;background:#1b5e20;color:#fff;padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:.2px;">
+          Q10 • Contenido compatible
+        </div>
+      </div>
+      <h1 style="margin:10px 0 6px 0;color:#1b5e20;font-size:26px;line-height:1.2;">TEMA 1.2 - Criptografía Simétrica vs Asimétrica</h1>
+      <div style="margin:0;color:#54626b;font-size:14px;">Semana 1 • Comparativa técnica, uso híbrido y decisiones de diseño en sistemas reales</div>
+    </div>
+    <div style="padding:18px;">
+      
+    <p style="margin:0 0 10px 0;">
+      La criptografía simétrica y la asimétrica no compiten: se complementan. En arquitectura moderna se usan juntas para conseguir
+      <b>eficiencia</b> (simétrica) y <b>distribución segura de claves + identidad</b> (asimétrica). Diseñar bien exige entender
+      trade‑offs: rendimiento, latencia, tamaño de claves, superficie de ataque, y requisitos de cumplimiento.
+    </p>
+    <p style="margin:0 0 10px 0;">
+      En este tema revisaremos algoritmos comunes, casos de uso y decisiones de diseño típicas en sistemas reales (APIs, móviles,
+      nube, IoT, banca, mensajería segura).
+    </p>
+    
+    <div style="border:1px solid #c8e6c9;border-radius:10px;overflow:visible;margin:14px 0;background:#fff;">
+      <div style="background:#e8f5e9;padding:12px 14px;color:#1b5e20;font-weight:800;">1) Criptografía simétrica: qué es y cuándo usarla</div>
+      <div style="padding:14px;"><ul style="margin:8px 0 8px 18px;padding:0;"><li style="margin:6px 0;"><b>Idea central:</b> una sola clave compartida cifra y descifra.</li><li style="margin:6px 0;"><b>Fortaleza:</b> es muy rápida (ideal para grandes volúmenes).</li><li style="margin:6px 0;"><b>Reto:</b> distribución de la clave (¿cómo la compartes sin que la roben?).</li><li style="margin:6px 0;"><b>Modos recomendados:</b> AEAD como <b>AES‑GCM</b> o <b>ChaCha20‑Poly1305</b> (cifrado + autenticación).</li><li style="margin:6px 0;"><b>Errores frecuentes:</b> reutilizar nonce/IV en GCM/ChaCha20; usar ECB; usar CBC sin MAC.</li></ul></div>
+    </div>
+    
+    <div style="border:1px solid #c8e6c9;border-radius:10px;overflow:visible;margin:14px 0;background:#fff;">
+      <div style="background:#e8f5e9;padding:12px 14px;color:#1b5e20;font-weight:800;">2) Criptografía asimétrica: qué aporta realmente</div>
+      <div style="padding:14px;"><ul style="margin:8px 0 8px 18px;padding:0;"><li style="margin:6px 0;"><b>Idea central:</b> par de claves (pública/privada).</li><li style="margin:6px 0;"><b>Usos clave:</b> intercambio de claves (p.ej. ECDH), firmas digitales, certificados, identidad.</li><li style="margin:6px 0;"><b>Coste:</b> operaciones más lentas; no se usa para cifrar “todo” el tráfico.</li><li style="margin:6px 0;"><b>Algoritmos:</b> RSA (histórico y común), ECC (moderno y eficiente), Ed25519 (firmas rápidas).</li><li style="margin:6px 0;"><b>Buenas prácticas:</b> usar padding/formatos seguros (RSA‑PSS para firma, OAEP para cifrado de claves).</li></ul></div>
+    </div>
+    
+    <div style="border:1px solid #c8e6c9;border-radius:10px;overflow:visible;margin:14px 0;background:#fff;">
+      <div style="background:#e8f5e9;padding:12px 14px;color:#1b5e20;font-weight:800;">3) Comparativa técnica (con criterios de arquitectura)</div>
+      <div style="padding:14px;">
+    <div style="overflow:visible;margin:10px 0;">
+      <table style="width:100%;border-collapse:collapse;border:1px solid #dfe7ee;border-radius:8px;overflow:hidden;">
+        <thead><tr><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#1b5e20;color:#fff;font-size:13px;">Criterio</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#1b5e20;color:#fff;font-size:13px;">Simétrica</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#1b5e20;color:#fff;font-size:13px;">Asimétrica</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#1b5e20;color:#fff;font-size:13px;">Decisión práctica</th></tr></thead>
+        <tbody><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Velocidad</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Muy alta</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Baja/Media</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Cifra datos masivos con simétrica; usa asimétrica para handshake.</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Claves</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">1 clave compartida</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Par pública/privada</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">La pública se distribuye; la privada se protege estrictamente.</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Escalabilidad</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Difícil compartir con muchos</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Más simple a gran escala</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">PKI facilita identidad y confianza.</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Seguridad típica</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">128‑bit/256‑bit</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">≈ 2048‑RSA / 256‑ECC</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Se mide en bits de seguridad equivalentes.</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Casos de uso</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Discos, DB, backups, streams</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Firmas, certificados, intercambio</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Híbrido: TLS, PGP, Signal.</td></tr></tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    
+    <div style="border:1px solid #bbdefb;border-radius:10px;overflow:visible;margin:14px 0;background:#fff;">
+      <div style="background:#e3f2fd;padding:12px 14px;color:#0d47a1;font-weight:800;">4) Cifrado híbrido: el patrón dominante</div>
+      <div style="padding:14px;"><p style='margin:0 0 10px 0;'><b>Patrón:</b> usar asimétrica para acordar una clave de sesión y luego usar simétrica para cifrar el tráfico. Así se obtiene identidad, confidencialidad e integridad con rendimiento.</p><ul style="margin:8px 0 8px 18px;padding:0;"><li style="margin:6px 0;"><b>Ejemplo (TLS 1.3):</b> ECDHE para secreto compartido + AEAD para datos + certificados para autenticar servidor.</li><li style="margin:6px 0;"><b>Perfect Forward Secrecy:</b> claves efímeras (ECDHE) reducen impacto si una clave privada se filtra luego.</li><li style="margin:6px 0;"><b>Rotación de claves:</b> sesiones cortas y re‑handshake controlado para minimizar exposición.</li></ul></div>
+    </div>
+    
+    <div style="border:1px solid #bbdefb;border-radius:10px;overflow:visible;margin:14px 0;background:#fff;">
+      <div style="background:#e3f2fd;padding:12px 14px;color:#0d47a1;font-weight:800;">5) Casos reales y decisiones típicas</div>
+      <div style="padding:14px;"><ul style="margin:8px 0 8px 18px;padding:0;"><li style="margin:6px 0;"><b>API/Backend:</b> TLS obligatorio + tokens firmados; cifrado en reposo para datos sensibles + KMS.</li><li style="margin:6px 0;"><b>Mensajería:</b> doble ratchet (Signal) = asimétrica para establecer + simétrica con rotación constante.</li><li style="margin:6px 0;"><b>IoT:</b> ECC por eficiencia; claves por dispositivo; actualización segura (firmas) para firmware.</li><li style="margin:6px 0;"><b>Blockchain:</b> firmas (ECDSA/EdDSA) para autorizar; hashes para integridad; no es “cifrado de datos” por defecto.</li><li style="margin:6px 0;"><b>Almacenamiento:</b> simétrica (AES‑XTS para discos); asimétrica para envolver claves (key wrapping).</li></ul></div>
+    </div>
+    
+    <div style="border:1px solid #bbdefb;border-radius:10px;overflow:visible;margin:14px 0;background:#fff;">
+      <div style="background:#e3f2fd;padding:12px 14px;color:#0d47a1;font-weight:800;">Mini‑reto (práctico) — Diseña un esquema de cifrado para una app</div>
+      <div style="padding:14px;"><p style='margin:0 0 10px 0;'>Diseña el esquema para: (a) envío de archivos, (b) compartir con un tercero, (c) auditoría y revocación.</p>
+    <div style="overflow:visible;margin:10px 0;">
+      <table style="width:100%;border-collapse:collapse;border:1px solid #dfe7ee;border-radius:8px;overflow:hidden;">
+        <thead><tr><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#1b5e20;color:#fff;font-size:13px;">Parte</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#1b5e20;color:#fff;font-size:13px;">Mecanismo</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#1b5e20;color:#fff;font-size:13px;">Nota de implementación</th></tr></thead>
+        <tbody><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Envío</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Clave de sesión simétrica por archivo (AEAD)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Genera nonce único; adjunta etiqueta de autenticación.</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Compartir</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Envolver clave con pública del destinatario (asimétrica)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Usa ECIES/NaCl box o RSA‑OAEP (según stack).</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Identidad</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Certificados/firmas</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Firma metadata (hash del archivo + permisos) para no repudio.</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Revocación</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Rotación + control de acceso</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Revoca tokens; re‑cifra claves o usa “envelope encryption”.</td></tr></tbody>
+      </table>
+    </div>
+    <p style='margin:10px 0 0 0;'><b>Entrega:</b> justifica 3 decisiones y menciona 2 errores comunes a evitar.</p></div>
+    </div>
+    
+    </div>
+    <div style="padding:14px 18px;border-top:1px solid #e6ebef;color:#6a7882;font-size:12px;">
+      <div style="margin:0;">Sugerencia: si Q10 inserta este HTML dentro de otro contenedor, no uses &lt;iframe&gt; interno. Pega el archivo como “Recurso HTML / Página”.</div>
+    </div>
+  </div>
+</body>
+</html>
+
+    <div style="border:1px solid #bbdefb;border-radius:10px;overflow:visible;margin:14px 0;background:#fff;">
+      <div style="background:#e3f2fd;padding:12px 14px;color:#0d47a1;font-weight:800;">Apéndice 1: Notas profesionales y ejemplos adicionales</div>
+      <div style="padding:14px;"><p style='margin:0 0 10px 0;'>Este apéndice amplía el tema con recomendaciones, contra‑ejemplos y prácticas de ingeniería para entornos reales (empresas, nube, DevSecOps y cumplimiento). Úsalo como material de consulta y para profundizar tu comprensión.</p><ul style="margin:8px 0 8px 18px;padding:0;"><li style="margin:6px 0;"><b>Recomendación práctica:</b> documenta supuestos, amenaza principal y alcance (qué proteges y de quién).</li><li style="margin:6px 0;"><b>Checklist de implementación:</b> no inventes criptografía; usa librerías auditadas y modos autenticados (AEAD).</li><li style="margin:6px 0;"><b>Gestión de claves:</b> separa claves de datos, rota, revoca y registra accesos; usa KMS/HSM cuando aplique.</li><li style="margin:6px 0;"><b>Validación:</b> prueba con vectores oficiales (NIST/ISO) y añade pruebas negativas (inputs corruptos).</li><li style="margin:6px 0;"><b>Telemetría segura:</b> registra eventos de seguridad sin filtrar secretos; usa redacción (redaction) y control de acceso.</li><li style="margin:6px 0;"><b>Riesgo humano:</b> el error más frecuente no es el algoritmo, es el proceso (copiar/pegar claves, backups expuestos).</li><li style="margin:6px 0;"><b>Mitigación:</b> revisiones de código, análisis estático, y políticas de secretos (no en repositorios).</li><li style="margin:6px 0;"><b>Cuando falle algo:</b> ten plan de respuesta: rotación de claves, invalidación de tokens, comunicación y post‑mortem.</li></ul><p style='margin:10px 0 0 0;'>Mini‑caso: una API que cifra datos con AES‑CBC sin autenticación puede ser vulnerable a padding‑oracle. Solución: migrar a AES‑GCM o ChaCha20‑Poly1305 y aplicar versionado de esquema para transición segura.</p></div>
+    </div>
+    
+
+    <div style="border:1px solid #bbdefb;border-radius:10px;overflow:visible;margin:14px 0;background:#fff;">
+      <div style="background:#e3f2fd;padding:12px 14px;color:#0d47a1;font-weight:800;">Apéndice 2: Notas profesionales y ejemplos adicionales</div>
+      <div style="padding:14px;"><p style='margin:0 0 10px 0;'>Este apéndice amplía el tema con recomendaciones, contra‑ejemplos y prácticas de ingeniería para entornos reales (empresas, nube, DevSecOps y cumplimiento). Úsalo como material de consulta y para profundizar tu comprensión.</p><ul style="margin:8px 0 8px 18px;padding:0;"><li style="margin:6px 0;"><b>Recomendación práctica:</b> documenta supuestos, amenaza principal y alcance (qué proteges y de quién).</li><li style="margin:6px 0;"><b>Checklist de implementación:</b> no inventes criptografía; usa librerías auditadas y modos autenticados (AEAD).</li><li style="margin:6px 0;"><b>Gestión de claves:</b> separa claves de datos, rota, revoca y registra accesos; usa KMS/HSM cuando aplique.</li><li style="margin:6px 0;"><b>Validación:</b> prueba con vectores oficiales (NIST/ISO) y añade pruebas negativas (inputs corruptos).</li><li style="margin:6px 0;"><b>Telemetría segura:</b> registra eventos de seguridad sin filtrar secretos; usa redacción (redaction) y control de acceso.</li><li style="margin:6px 0;"><b>Riesgo humano:</b> el error más frecuente no es el algoritmo, es el proceso (copiar/pegar claves, backups expuestos).</li><li style="margin:6px 0;"><b>Mitigación:</b> revisiones de código, análisis estático, y políticas de secretos (no en repositorios).</li><li style="margin:6px 0;"><b>Cuando falle algo:</b> ten plan de respuesta: rotación de claves, invalidación de tokens, comunicación y post‑mortem.</li></ul><p style='margin:10px 0 0 0;'>Mini‑caso: una API que cifra datos con AES‑CBC sin autenticación puede ser vulnerable a padding‑oracle. Solución: migrar a AES‑GCM o ChaCha20‑Poly1305 y aplicar versionado de esquema para transición segura.</p></div>
+    </div>
+    
+
+    <div style="border:1px solid #bbdefb;border-radius:10px;overflow:visible;margin:14px 0;background:#fff;">
+      <div style="background:#e3f2fd;padding:12px 14px;color:#0d47a1;font-weight:800;">Apéndice 3: Notas profesionales y ejemplos adicionales</div>
+      <div style="padding:14px;"><p style='margin:0 0 10px 0;'>Este apéndice amplía el tema con recomendaciones, contra‑ejemplos y prácticas de ingeniería para entornos reales (empresas, nube, DevSecOps y cumplimiento). Úsalo como material de consulta y para profundizar tu comprensión.</p><ul style="margin:8px 0 8px 18px;padding:0;"><li style="margin:6px 0;"><b>Recomendación práctica:</b> documenta supuestos, amenaza principal y alcance (qué proteges y de quién).</li><li style="margin:6px 0;"><b>Checklist de implementación:</b> no inventes criptografía; usa librerías auditadas y modos autenticados (AEAD).</li><li style="margin:6px 0;"><b>Gestión de claves:</b> separa claves de datos, rota, revoca y registra accesos; usa KMS/HSM cuando aplique.</li><li style="margin:6px 0;"><b>Validación:</b> prueba con vectores oficiales (NIST/ISO) y añade pruebas negativas (inputs corruptos).</li><li style="margin:6px 0;"><b>Telemetría segura:</b> registra eventos de seguridad sin filtrar secretos; usa redacción (redaction) y control de acceso.</li><li style="margin:6px 0;"><b>Riesgo humano:</b> el error más frecuente no es el algoritmo, es el proceso (copiar/pegar claves, backups expuestos).</li><li style="margin:6px 0;"><b>Mitigación:</b> revisiones de código, análisis estático, y políticas de secretos (no en repositorios).</li><li style="margin:6px 0;"><b>Cuando falle algo:</b> ten plan de respuesta: rotación de claves, invalidación de tokens, comunicación y post‑mortem.</li></ul><p style='margin:10px 0 0 0;'>Mini‑caso: una API que cifra datos con AES‑CBC sin autenticación puede ser vulnerable a padding‑oracle. Solución: migrar a AES‑GCM o ChaCha20‑Poly1305 y aplicar versionado de esquema para transición segura.</p></div>
+    </div>
+    
+
+    <div style="border:1px solid #bbdefb;border-radius:10px;overflow:visible;margin:14px 0;background:#fff;">
+      <div style="background:#e3f2fd;padding:12px 14px;color:#0d47a1;font-weight:800;">Apéndice 4: Notas profesionales y ejemplos adicionales</div>
+      <div style="padding:14px;"><p style='margin:0 0 10px 0;'>Este apéndice amplía el tema con recomendaciones, contra‑ejemplos y prácticas de ingeniería para entornos reales (empresas, nube, DevSecOps y cumplimiento). Úsalo como material de consulta y para profundizar tu comprensión.</p><ul style="margin:8px 0 8px 18px;padding:0;"><li style="margin:6px 0;"><b>Recomendación práctica:</b> documenta supuestos, amenaza principal y alcance (qué proteges y de quién).</li><li style="margin:6px 0;"><b>Checklist de implementación:</b> no inventes criptografía; usa librerías auditadas y modos autenticados (AEAD).</li><li style="margin:6px 0;"><b>Gestión de claves:</b> separa claves de datos, rota, revoca y registra accesos; usa KMS/HSM cuando aplique.</li><li style="margin:6px 0;"><b>Validación:</b> prueba con vectores oficiales (NIST/ISO) y añade pruebas negativas (inputs corruptos).</li><li style="margin:6px 0;"><b>Telemetría segura:</b> registra eventos de seguridad sin filtrar secretos; usa redacción (redaction) y control de acceso.</li><li style="margin:6px 0;"><b>Riesgo humano:</b> el error más frecuente no es el algoritmo, es el proceso (copiar/pegar claves, backups expuestos).</li><li style="margin:6px 0;"><b>Mitigación:</b> revisiones de código, análisis estático, y políticas de secretos (no en repositorios).</li><li style="margin:6px 0;"><b>Cuando falle algo:</b> ten plan de respuesta: rotación de claves, invalidación de tokens, comunicación y post‑mortem.</li></ul><p style='margin:10px 0 0 0;'>Mini‑caso: una API que cifra datos con AES‑CBC sin autenticación puede ser vulnerable a padding‑oracle. Solución: migrar a AES‑GCM o ChaCha20‑Poly1305 y aplicar versionado de esquema para transición segura.</p></div>
+    </div>
+    

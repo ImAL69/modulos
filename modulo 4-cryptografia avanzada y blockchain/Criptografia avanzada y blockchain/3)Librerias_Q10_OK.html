@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tema 2.1: Implementación Segura con Librerías</title>
+</head>
+<body style="margin:0;padding:18px;background:#f4f6f8;color:#24323a;font-family:Arial,Helvetica,sans-serif;line-height:1.55;">
+<div style="max-width:1000px;margin:0 auto;background:#ffffff;border:1px solid #e6ebef;border-radius:10px;overflow:visible;">
+<div style="padding:18px 18px 0 18px;text-align:right;">
+<img alt="Logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1" style="max-width:160px;height:auto;border:0;display:inline-block;"/>
+</div>
+<div style="padding:0 18px 18px 18px;border-bottom:4px solid #0d47a1;">
+<div style="padding:10px 0 0 0;">
+<div style="display:inline-block;background:#0d47a1;color:#fff;padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:.2px;">
+          Q10 • Contenido compatible
+        </div>
+</div>
+<h1 style="margin:10px 0 6px 0;color:#0d47a1;font-size:26px;line-height:1.2;">Tema 2.1: Implementación Segura con Librerías</h1>
+<div style="margin:0;color:#54626b;font-size:14px;">Tema 2.1 • Implementación segura con librerías — versión Q10-safe</div>
+</div>
+<div style="padding:18px;">
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:26px;line-height:1.25;">Tema 2.1: Implementación Segura con Librerías</div>
+<p style="margin:0 0 10px 0;">Buenas prácticas para desarrollo criptográfico seguro usando librerías estándar</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">📦 Regla #1: Usa Estándares, No Inventos</p>
+<p style="margin:0 0 10px 0;">La regla fundamental en criptografía aplicada es: <strong>Nunca escribas tu propio algoritmo criptográfico.</strong> Los algoritmos son complejos y un error mínimo puede comprometer toda la seguridad. Usa exclusivamente librerías auditadas y mantenidas por la comunidad.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Python</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">cryptography:</p>
+Moderna, mantenida activamente</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">PyCryptodome:</p>
+Completa, buena documentación</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">hashlib/hmac:</p>
+Para funciones hash (estándar)</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Java</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Bouncy Castle:</p>
+Suite completa</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">JCA/JCE:</p>
+Estándar de Java</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">KeyStore API:</p>
+Para gestión de claves</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">JavaScript/Node.js</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">crypto (nativo):</p>
+Módulo estándar Node.js</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Web Crypto API:</p>
+Para navegadores</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">libsodium.js:</p>
+Interfaz moderna</div></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">⚠️ Importante:</p>
+Incluso usando librerías estándar, debes configurarlas correctamente. Una librería segura mal configurada es tan peligrosa como un algoritmo inseguro.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">• Configuración Segura: Evita Errores Comunes</p>
+<p style="margin:0 0 10px 0;">No basta con usar la librería correcta; la configuración determina la seguridad real. Estos son los errores más frecuentes:</p>
+<div style="overflow:visible;margin:10px 0;"><table style="width:100%;border-collapse:collapse;border:1px solid #dfe7ee;"><thead><tr><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Error Común</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Por qué es Peligroso</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Solución Correcta</th></tr></thead><tbody><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Usar ECB Mode</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Bloques idénticos producen cifrados idénticos, revelando patrones</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Usa CBC, GCM o ChaCha20-Poly1305</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">IV Estático o Predictible</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Permite ataques de diccionario y análisis de patrones</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">IV aleatorio único para cada cifrado</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Claves Débiles o Hardcodeadas</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Exposición de claves en código o versiones</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Usar sistemas de gestión de secretos</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Cifrar sin Autenticación</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Permite modificación de datos cifrados</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Usar AEAD (GCM, ChaCha20-Poly1305)</td></tr></tbody></table></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"># ❌ MAL: Configuración insegura</p>
+<p style="margin:0 0 10px 0;">from</p>
+Crypto.Cipher
+<p style="margin:0 0 10px 0;">import</p>
+AES
+<p style="margin:0 0 10px 0;"># IV estático (INSEGURO)</p>
+iv =
+<p style="margin:0 0 10px 0;">b'0000000000000000'</p>
+<p style="margin:0 0 10px 0;"># Modo ECB (INSEGURO)</p>
+cipher = AES.new(key, AES.MODE_ECB)
+<p style="margin:0 0 10px 0;"># ✅ BIEN: Configuración segura</p>
+<p style="margin:0 0 10px 0;">from</p>
+cryptography.hazmat.primitives.ciphers
+<p style="margin:0 0 10px 0;">import</p>
+Cipher, algorithms, modes
+<p style="margin:0 0 10px 0;">import</p>
+os
+<p style="margin:0 0 10px 0;"># IV aleatorio único (SEGURO)</p>
+iv = os.urandom(16)
+<p style="margin:0 0 10px 0;"># Modo GCM con autenticación (SEGURO)</p>
+cipher = Cipher(algorithms.AES(key), modes.GCM(iv))</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">⛔
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">PROHIBIDO ABSOLUTAMENTE:</p>
+Implementar AES, RSA o cualquier algoritmo criptográfico "a mano" copiando fórmulas matemáticas. Un error de un bit en la implementación hace que TODO el sistema sea vulnerable.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">• Caja de Herramientas: Qué Usar para Qué</p>
+<p style="margin:0 0 10px 0;">Seleccionar el algoritmo correcto para cada tarea es crucial. Aquí tu guía rápida:</p>
+<div style="overflow:visible;margin:10px 0;"><table style="width:100%;border-collapse:collapse;border:1px solid #dfe7ee;"><thead><tr><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Necesidad</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Algoritmo Recomendado</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Ejemplo de Uso</th></tr></thead><tbody><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Cifrado Simétrico (confidencialidad)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">AES-GCM (256-bit) ChaCha20-Poly1305</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Cifrado de archivos, comunicación segura</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Integridad (solo)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">SHA-256, SHA-3 BLAKE2</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Verificación de descargas, checksums</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Autenticación + Integridad (clave compartida)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">HMAC-SHA256</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Tokens JWT, APIs web, cookies</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Cifrado Asimétrico</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">RSA (≥2048 bits) ECC (Curve25519)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Intercambio de claves, firmas digitales</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Contraseñas</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Argon2id, bcrypt, scrypt</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Almacenamiento seguro de credenciales</td></tr></tbody></table></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">💡 Regla práctica:</p>
+Si no necesitas recuperar el dato original, no cifres — usa hash (ejemplo: contraseñas). El hashing es unidireccional y más seguro para verificación.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🔒 Modo Recomendado: AEAD (Cifrado Autenticado)</p>
+<p style="margin:0 0 10px 0;">AEAD (Authenticated Encryption with Associated Data) protege <strong>confidencialidad + integridad</strong> en un solo paso. Evita el error clásico: "cifré el archivo, pero alguien pudo modificar el contenido".</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"># Ejemplo completo con AES-GCM (Python cryptography)</p>
+<p style="margin:0 0 10px 0;">from</p>
+cryptography.hazmat.primitives.ciphers.aead
+<p style="margin:0 0 10px 0;">import</p>
+AESGCM
+<p style="margin:0 0 10px 0;">import</p>
+os
+<p style="margin:0 0 10px 0;"># 1. Generar clave y nonce</p>
+key = AESGCM.generate_key(bit_length=256)
+<p style="margin:0 0 10px 0;"># Clave de 256 bits</p>
+nonce = os.urandom(12)
+<p style="margin:0 0 10px 0;"># Nonce aleatorio (12 bytes para GCM)</p>
+<p style="margin:0 0 10px 0;"># 2. Crear cifrador</p>
+aesgcm = AESGCM(key)
+<p style="margin:0 0 10px 0;"># 3. Cifrar con datos asociados (AAD)</p>
+plaintext =
+<p style="margin:0 0 10px 0;">b"Datos confidenciales del usuario"</p>
+associated_data =
+<p style="margin:0 0 10px 0;">b"metadata:version=1,user=123"</p>
+<p style="margin:0 0 10px 0;"># No se cifra, pero se autentica</p>
+ciphertext = aesgcm.encrypt(nonce, plaintext, associated_data)
+<p style="margin:0 0 10px 0;"># 4. Descifrar y verificar</p>
+<p style="margin:0 0 10px 0;">try</p>
+:
+decrypted = aesgcm.decrypt(nonce, ciphertext, associated_data)
+print(
+<p style="margin:0 0 10px 0;">"✓ Descifrado exitoso, integridad verificada"</p>
+)
+<p style="margin:0 0 10px 0;">except</p>
+Exception
+<p style="margin:0 0 10px 0;">as</p>
+e:
+print(
+<p style="margin:0 0 10px 0;">"✗ Error: datos modificados o clave incorrecta"</p>
+)</div>
+<p style="margin:0 0 10px 0;"><strong>AAD (Associated Data):</strong> Metadatos que no se cifran pero se protegen contra modificaciones. Útil para headers, timestamps, IDs que necesitan autenticidad pero no confidencialidad.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📋
+Evidencia Mínima para Laboratorio/Reporte</div>
+<p style="margin:0 0 10px 0;">Al implementar criptografía en tus proyectos, documenta estos elementos esenciales:</p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Generación de clave segura:</strong> Muestra el método (sin revelar la clave completa en capturas públicas).</li><li style="margin:6px 0;"><strong>Proceso de cifrado:</strong> Archivo/mensaje original → texto cifrado (mostrar transformación).</li><li style="margin:6px 0;"><strong>Proceso de descifrado:</strong> Texto cifrado → original (y prueba de igualdad con hash).</li><li style="margin:6px 0;"><strong>Verificación de integridad:</strong> Alterar 1 byte y demostrar que falla la verificación.</li><li style="margin:6px 0;"><strong>Configuración:</strong> Mostrar parámetros usados (algoritmo, modo, tamaño de clave).</li></ol>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"># Ejemplo de evidencia (fragmento)</p>
+<p style="margin:0 0 10px 0;"># 1. Generación de clave</p>
+key = os.urandom(32)
+<p style="margin:0 0 10px 0;"># AES-256</p>
+print(
+<p style="margin:0 0 10px 0;">"Clave generada (primeros 8 bytes):"</p>
+, key[:8].hex())
+<p style="margin:0 0 10px 0;"># 2. Hash del original (para verificación)</p>
+original_hash = hashlib.sha256(plaintext).hexdigest()
+print(
+<p style="margin:0 0 10px 0;">"Hash del original:"</p>
+, original_hash[:16] +
+<p style="margin:0 0 10px 0;">"..."</p>
+)
+<p style="margin:0 0 10px 0;"># 3. Descifrado y verificación</p>
+decrypted = decrypt(key, ciphertext)
+decrypted_hash = hashlib.sha256(decrypted).hexdigest()
+print(
+<p style="margin:0 0 10px 0;">"¿Coinciden los hashes?"</p>
+, original_hash == decrypted_hash)</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">⚠️
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">LISTA DE PROHIBIDOS:</p>
+• Usar ECB mode • IV fijo o predecible • "Mi propio algoritmo"
+• Guardar claves en el repositorio • Cifrar sin autenticación
+• Claves cortas (&lt;128 bits) • Semillas aleatorias no criptográficas</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🛡️ Checklist de Implementación Segura</p>
+<p style="margin:0 0 10px 0;">Antes de considerar tu implementación como segura, verifica:</p>
+<div style="overflow:visible;margin:10px 0;"><table style="width:100%;border-collapse:collapse;border:1px solid #dfe7ee;"><thead><tr><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Check</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">¿Qué verificar?</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Herramienta/Comando</th></tr></thead><tbody><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">✅</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Librería actualizada sin vulnerabilidades conocidas</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">pip list --outdated o revisar changelog</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">✅</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Modo de operación seguro (GCM, CBC, no ECB)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Revisar código: buscar "ECB"</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">✅</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">IV/nonce aleatorio único por cifrado</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">os.urandom() o equivalente seguro</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">✅</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Autenticación incluida en el cifrado</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Usar AEAD (GCM, ChaCha20-Poly1305)</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">✅</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Longitud de clave adecuada</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">AES: ≥128 bits, RSA: ≥2048 bits</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">✅</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Sin claves hardcodeadas en el código</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Buscar strings largas constantes</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">✅</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Manejo seguro de errores (no revelar detalles)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Excepciones genéricas, no stack traces</td></tr></tbody></table></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🔐 Recuerda:</p>
+La seguridad criptográfica es una cadena: solo es tan fuerte como su eslabón más débil. Una configuración incorrecta anula incluso el algoritmo más fuerte.</div></div>
+</div>
+<div style="padding:14px 18px;border-top:1px solid #e6ebef;color:#6a7882;font-size:12px;">
+<div style="margin:0;">Optimizado para Q10: sin scripts, sin estilos externos y sin dependencias bloqueables.</div>
+</div>
+</div>
+</body>
+</html>

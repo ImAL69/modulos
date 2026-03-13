@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrega Final del Módulo</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+        text-align: center;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .upload-area {
+        border: 3px dashed #1976d2; border-radius: 12px; padding: 50px; margin: 30px 0; background: #e3f2fd;
+        transition: background 0.2s; cursor: pointer;
+    }
+    .upload-area:hover { background: #bbdefb; }
+    .upload-icon { font-size: 4rem; color: #1565c0; margin-bottom: 20px; }
+    
+    .requirements { text-align: left; background: #fff3e0; padding: 20px; border-radius: 8px; border: 1px solid #ffe0b2; margin-bottom: 30px; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+/* =========================
+   GOD Motion + Visual polish
+   (non-breaking, respects reduced-motion)
+========================= */
+:root{
+  --bg0:#f0f2f5;
+  --card:#ffffff;
+  --ink:#263238;
+  --muted:#607d8b;
+  --pri:#0d47a1;
+  --pri2:#1565c0;
+  --ok:#2e7d32;
+  --warn:#e65100;
+  --shadow: 0 14px 50px rgba(0,0,0,.10);
+  --shadow2: 0 10px 30px rgba(13,71,161,.12);
+  --r: 22px;
+}
+
+body{
+  background:
+    radial-gradient(900px 360px at 18% 0%, rgba(21,101,192,.14), transparent 60%),
+    radial-gradient(900px 420px at 100% 10%, rgba(46,125,50,.10), transparent 55%),
+    var(--bg0);
+}
+
+.container-extended{
+  box-shadow: var(--shadow);
+  transform: translateZ(0);
+}
+
+/* subtle animated background glow */
+.container-extended::before{
+  content:"";
+  position:absolute; inset:-2px;
+  background:
+    radial-gradient(600px 280px at 10% 10%, rgba(13,71,161,.18), transparent 60%),
+    radial-gradient(520px 260px at 90% 20%, rgba(46,125,50,.12), transparent 60%),
+    radial-gradient(700px 420px at 50% 100%, rgba(25,118,210,.10), transparent 65%);
+  opacity:.55;
+  pointer-events:none;
+  filter: blur(20px);
+}
+
+@media (prefers-reduced-motion:no-preference){
+  .container-extended::before{
+    animation: floatGlow 9s ease-in-out infinite alternate;
+  }
+  @keyframes floatGlow{
+    0%{ transform: translate3d(0,0,0) scale(1); opacity:.50; }
+    100%{ transform: translate3d(0,-8px,0) scale(1.02); opacity:.60; }
+  }
+}
+
+/* Entrance animation */
+.reveal{ opacity:0; transform: translateY(14px) scale(.99); }
+.reveal.reveal-in{ opacity:1; transform: translateY(0) scale(1); transition: opacity .55s ease, transform .55s cubic-bezier(.2,.8,.2,1); }
+@media (prefers-reduced-motion:reduce){
+  .reveal{ opacity:1; transform:none; }
+}
+
+.header-box{
+  position:relative;
+}
+.header-box::after{
+  content:"";
+  position:absolute; left:0; bottom:-2px;
+  width:140px; height:4px;
+  background: linear-gradient(90deg, var(--pri), rgba(21,101,192,.35));
+  border-radius:999px;
+}
+
+/* interactive cards */
+.check-item, .lesson-card, .requirements, .upload-area, .security-box{
+  box-shadow: 0 10px 26px rgba(0,0,0,.05);
+}
+.check-item:hover, .lesson-card:hover{
+  box-shadow: var(--shadow2);
+}
+@media (prefers-reduced-motion:no-preference){
+  .check-item, .lesson-card{
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .check-item:hover, .lesson-card:hover{
+    transform: translateY(-4px);
+    border-color: rgba(21,101,192,.35);
+  }
+}
+
+/* nice focus */
+:focus-visible{
+  outline: 3px solid rgba(21,101,192,.35);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* progress bar (used in checklist) */
+.progress-wrap{
+  background: rgba(227,242,253,.65);
+  border: 1px solid rgba(187,222,251,.9);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 18px 0 16px;
+  backdrop-filter: blur(6px);
+}
+.progress-top{
+  display:flex; justify-content:space-between; align-items:center;
+  gap: 12px;
+}
+.progress-top b{ color: var(--pri); }
+.progress-track{
+  height: 10px; border-radius:999px;
+  background: rgba(13,71,161,.12);
+  overflow:hidden;
+  margin-top:10px;
+}
+.progress-fill{
+  height:100%; width:0%;
+  background: linear-gradient(90deg, var(--pri), var(--pri2), rgba(46,125,50,.75));
+  border-radius:999px;
+}
+@media (prefers-reduced-motion:no-preference){
+  .progress-fill{ transition: width .35s cubic-bezier(.2,.8,.2,1); }
+}
+
+/* tiny toast */
+.toast{
+  position: fixed;
+  right: 18px; bottom: 18px;
+  background: rgba(13,71,161,.95);
+  color:#fff;
+  padding: 12px 14px;
+  border-radius: 14px;
+  box-shadow: var(--shadow2);
+  transform: translateY(18px);
+  opacity:0;
+  z-index: 9999;
+  max-width: min(420px, calc(100vw - 36px));
+  font-weight: 600;
+}
+.toast.toast-in{ opacity:1; transform: translateY(0); transition: opacity .25s ease, transform .25s ease; }
+.toast small{ display:block; opacity:.9; font-weight:400; margin-top:2px; }
+
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box" reveal">
+        <h1 class="main-title">Entrega Final</h1>
+        <p>Sube aquí tu Proyecto Integrador (50%).</p>
+    </div>
+
+    <div class="requirements" reveal">
+        <strong>⚠️ Requisitos de Archivo:</strong>
+        <ul style="margin: 10px 0 0 20px; color: #e65100;">
+            <li>Formato: PDF Único (Informe + Anexos) o ZIP (Informe + Presentación).</li>
+            <li>Nombre: <code>Apellido_Nombre_ProyectoFinal_M4.pdf</code></li>
+            <li>Peso Máximo: 50 MB.</li>
+            <li>Citas: Normas APA 7ma Edición obligatorias.</li>
+        </ul>
+    </div>
+
+    
+
+    
+<section class="reveal" style="margin-top:24px; text-align:left;">
+  <h3 style="color:#0d47a1;">✅ Checklist rápido antes de entregar</h3>
+  <div class="progress-wrap" style="margin-top:12px;">
+    <div class="progress-top">
+      <div><b>Listo para enviar</b> <span style="color:#607d8b;">(recomendado)</span></div>
+      <div id="subPct" style="font-weight:800;color:#0d47a1;">0%</div>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="subFill"></div></div>
+  </div>
+
+  <div class="checklist-wrapper" style="margin-top:10px;">
+    <div class="check-item reveal">
+      <input class="check-input" type="checkbox" id="s1" />
+      <label for="s1" class="check-text"><strong>Formato correcto:</strong> PDF único o ZIP (según requisitos).</label>
+    </div>
+    <div class="check-item reveal">
+      <input class="check-input" type="checkbox" id="s2" />
+      <label for="s2" class="check-text"><strong>Nombre de archivo:</strong> cumple la convención solicitada.</label>
+    </div>
+    <div class="check-item reveal">
+      <input class="check-input" type="checkbox" id="s3" />
+      <label for="s3" class="check-text"><strong>APA 7:</strong> citas y referencias incluidas.</label>
+    </div>
+    <div class="check-item reveal" style="margin-bottom:0;">
+      <input class="check-input" type="checkbox" id="s4" />
+      <label for="s4" class="check-text"><strong>Anexos:</strong> evidencia (hashes, capturas, diagrama) adjunta.</label>
+    </div>
+  </div>
+</section>
+
+<p style="color: #78909c; font-size: 0.9rem;">
+        Al subir este archivo, declaras que es un trabajo original y que has citado correctamente todas las fuentes utilizadas.
+    </p>
+
+
+
+<section style="margin-top:40px;">
+<h3 style="color:#0d47a1;">🏁 Cierre definitivo del módulo</h3>
+<p>Al finalizar este módulo no se espera que seas un especialista en blockchain, sino un profesional capaz de:</p>
+<ul>
+<li>Elegir tecnologías con criterio.</li>
+<li>Defender decisiones técnicas.</li>
+<li>Reconocer límites y riesgos.</li>
+<li>Priorizar impacto real sobre moda.</li>
+</ul>
+
+<h4>📌 Qué te llevas de este módulo</h4>
+<ul>
+<li>Un marco mental para evaluar tecnologías emergentes.</li>
+<li>Capacidad de análisis estructurado.</li>
+<li>Experiencia en justificar decisiones técnicas.</li>
+</ul>
+
+<div style="background:#e8f5e9;border-left:6px solid #2e7d32;padding:16px;border-radius:12px;">
+<strong>Mensaje final:</strong> la madurez profesional se demuestra cuando sabes decir “esto no aplica”.
+</div>
+</section>
+
+</div>
+
+
+<script>
+(function(){
+  // Scroll reveal
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const nodes = document.querySelectorAll('.reveal');
+  if(reduce){ nodes.forEach(n=>n.classList.add('reveal-in')); return; }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('reveal-in'); io.unobserve(e.target); }
+    });
+  }, {threshold: 0.12});
+  nodes.forEach(n=>io.observe(n));
+
+  // toast helper
+  window.__toast = function(title, msg){
+    let t = document.querySelector('.toast');
+    if(!t){
+      t = document.createElement('div');
+      t.className = 'toast';
+      document.body.appendChild(t);
+    }
+    t.innerHTML = '<div>'+title+'</div>' + (msg?('<small>'+msg+'</small>'):'');
+    t.classList.add('toast-in');
+    clearTimeout(window.__toastT);
+    window.__toastT = setTimeout(()=>t.classList.remove('toast-in'), 2200);
+  };
+})();
+</script>
+
+<script>
+(function(){
+  const area = document.getElementById('uploadArea');
+  const input = document.getElementById('fileInput');
+  const btn = document.getElementById('btnPick');
+  const meta = document.getElementById('fileMeta');
+  const fill = document.getElementById('fakeUploadFill');
+
+  function prettySize(bytes){
+    if(!bytes && bytes !== 0) return '';
+    const u = ['B','KB','MB','GB'];
+    let i=0, n=bytes;
+    while(n>=1024 && i<u.length-1){ n/=1024; i++; }
+    return n.toFixed(i?1:0)+' '+u[i];
+  }
+
+  function fakeUpload(){
+    if(!fill) return;
+    let p=0;
+    fill.style.width = '0%';
+    const t = setInterval(()=>{
+      p += Math.random()*18 + 8;
+      if(p>=100){ p=100; clearInterval(t); window.__toast && window.__toast('Archivo listo ✅','Verifica el checklist y entrega.'); }
+      fill.style.width = p.toFixed(0)+'%';
+    }, 160);
+  }
+
+  function onPick(file){
+    if(!file) return;
+    const ext = (file.name.split('.').pop()||'').toLowerCase();
+    if(!['pdf','zip'].includes(ext)){
+      window.__toast && window.__toast('Formato no permitido','Usa PDF o ZIP.');
+      return;
+    }
+    if(meta) meta.textContent = '📄 ' + file.name + ' • ' + prettySize(file.size);
+    fakeUpload();
+  }
+
+  if(area && input){
+    area.addEventListener('click', ()=>input.click());
+    area.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); input.click(); }});
+    btn && btn.addEventListener('click', (e)=>{ e.stopPropagation(); input.click(); });
+    input.addEventListener('change', ()=>onPick(input.files && input.files[0]));
+    // drag-drop
+    area.addEventListener('dragover', (e)=>{ e.preventDefault(); area.style.background='#bbdefb'; });
+    area.addEventListener('dragleave', ()=>{ area.style.background=''; });
+    area.addEventListener('drop', (e)=>{
+      e.preventDefault(); area.style.background='';
+      const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+      onPick(f);
+    });
+  }
+
+  // submission checklist progress
+  const ids = ['s1','s2','s3','s4'];
+  const key = 'fet_entrega_final_v1';
+  const subFill = document.getElementById('subFill');
+  const subPct = document.getElementById('subPct');
+
+  function load(){
+    try{
+      const s = JSON.parse(localStorage.getItem(key) || '{}');
+      ids.forEach(id=>{
+        const el = document.getElementById(id);
+        if(el && typeof s[id]==='boolean') el.checked = s[id];
+      });
+    }catch(e){}
+  }
+  function save(){
+    const s = {};
+    ids.forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) s[id] = !!el.checked;
+    });
+    try{ localStorage.setItem(key, JSON.stringify(s)); }catch(e){}
+  }
+  function update(){
+    const total = ids.length;
+    const done = ids.filter(id=>document.getElementById(id)?.checked).length;
+    const val = Math.round((done/total)*100);
+    if(subFill) subFill.style.width = val + '%';
+    if(subPct) subPct.textContent = val + '%';
+  }
+
+  load(); update();
+  ids.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.addEventListener('change', ()=>{ save(); update(); });
+  });
+})();
+</script>
+
+</body>
+</html>

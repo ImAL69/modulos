@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividad 2: Laboratorio Integrado</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .lab-box {
+        background: #e3f2fd; padding: 30px; border-radius: 12px; border-left: 6px solid #0d47a1; margin-bottom: 30px;
+    }
+
+    .step-list { list-style: none; padding: 0; }
+    .step-list li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+    .step-list li::before { content: '⚡'; position: absolute; left: 0; color: #1565c0; font-weight: bold; }
+
+    .deliverable {
+        background: #fff3e0; border: 1px solid #ffe0b2; padding: 20px; border-radius: 8px; color: #e65100;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Actividad 2: Laboratorio (35%)</h1>
+        <p>Implementación de Criptografía y Trazabilidad.</p>
+    </div>
+
+    <div class="lab-box">
+        <h3 style="color:#0d47a1; margin-top:0;">📝 Misión: Asegurar y Trazar</h3>
+        <p>Deberás realizar 3 tareas técnicas y documentarlas en un informe PDF.</p>
+    </div>
+
+    <ul class="step-list">
+        <li><strong>Tarea 1 (Integridad):</strong> Genera el Hash SHA-256 de un archivo PDF. Modifica un caracter del archivo y demuestra cómo cambia el Hash.</li>
+        <li><strong>Tarea 2 (Confidencialidad):</strong> Cifra un mensaje de texto usando AES-256 (simétrico) y descífralo para recuperar el original.</li>
+        <li><strong>Tarea 3 (Trazabilidad):</strong> Usa una testnet (como Sepolia o un simulador online) para registrar el Hash del archivo de la Tarea 1 en una transacción. Obtén el ID de la transacción (TxID).</li>
+    </ul>
+
+    <div class="deliverable">
+        <strong>📤 Entregable:</strong> Informe Técnico (PDF) con capturas de pantalla de cada paso (código/consola) y una breve explicación de lo que demuestra cada imagen.
+    </div>
+
+
+
+    <div class="deliverable" style="margin-top:20px;">
+        <strong>📤 Entregable:</strong> Informe Técnico (PDF) con evidencias + análisis. No es solo “capturas”: debes explicar qué demuestra cada una.
+    </div>
+
+    <div class="lab-box" style="margin-top:20px;">
+        <h3 style="color:#0d47a1; margin-top:0;">🧩 Guía de ejecución (paso a paso)</h3>
+        <ol style="margin:10px 0 0 18px;">
+            <li><strong>Integridad:</strong> calcula hash SHA-256 de un PDF. Guarda el valor.</li>
+            <li><strong>Alteración:</strong> modifica mínimamente el archivo (1 carácter). Recalcula hash y compara.</li>
+            <li><strong>Cifrado:</strong> cifra y descifra un mensaje con AES (explica modo y por qué es seguro).</li>
+            <li><strong>Trazabilidad:</strong> registra el hash del PDF en una testnet. Obtén TxID.</li>
+            <li><strong>Verificación:</strong> abre el explorador de bloques y muestra dónde aparece el hash (o el input data).</li>
+        </ol>
+    </div>
+
+    <div class="deliverable" style="background:#e8f5e9;border-color:#c8e6c9;color:#1b5e20;">
+        <strong>✅ Evidencia mínima por tarea</strong>
+        <ul style="margin:10px 0 0 18px;">
+            <li><strong>Tarea 1:</strong> hash antes/después + explicación del efecto avalancha.</li>
+            <li><strong>Tarea 2:</strong> texto original, cifrado y recuperado + nota sobre clave/nonce.</li>
+            <li><strong>Tarea 3:</strong> TxID + captura del explorador + explicación de timestamping.</li>
+        </ul>
+    </div>
+
+    <div class="deliverable" style="background:#fff3e0;border-color:#ffe0b2;color:#e65100;">
+        <strong>🧠 Bonus (sube nota)</strong>
+        <p style="margin:10px 0 0 0;">Propón una solución híbrida (BD + firmas + hash on-chain) y explica por qué reduce costos y mejora privacidad.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

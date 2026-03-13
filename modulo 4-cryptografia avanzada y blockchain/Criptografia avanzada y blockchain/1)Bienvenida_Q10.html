@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bienvenida: Criptografía y Blockchain (Q10)</title>
+  <style>
+/* =========================
+   Q10 ULTRA-SAFE STYLES
+   - Sin @import externos
+   - Sin position:fixed en fondos
+   - Sin JS (Q10 suele sanitizar <script>)
+   - Sin alturas fijas ni overflow oculto en contenedores principales
+   ========================= */
+
+html, body {
+  height: auto !important;
+  min-height: 100% !important;
+  max-height: none !important;
+}
+body {
+  margin: 0 !important;
+  padding: 24px 14px !important;
+  overflow: visible !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #37474f;
+  line-height: 1.75;
+  background: linear-gradient(135deg, #f5f7fb 0%, #e8f2ff 50%, #f5f7fb 100%);
+}
+
+/* Si Q10 mete un contenedor con overflow, esto ayuda */
+.q10-root, .container-extended, main, .wrapper, .content, .container {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.q10-root {
+  width: 100%;
+}
+
+.container-extended {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+  border-top: 8px solid #0d47a1;
+  padding: 48px 40px;
+  position: relative;
+}
+
+/* Evitar recortes por overflow hidden */
+.container-extended { overflow: visible !important; }
+
+.uni-logo {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 140px;
+  height: auto;
+  background: rgba(255,255,255,0.95);
+  padding: 6px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+}
+
+.header-box {
+  padding-right: 180px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 16px;
+}
+
+.main-title {
+  margin: 0 0 8px 0;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0d47a1;
+}
+
+.subtitle {
+  display: inline-block;
+  font-size: 1.1rem;
+  color: #546e7a;
+  border-left: 4px solid #1976d2;
+  padding-left: 12px;
+}
+
+.hero-image {
+  margin: 18px 0 34px 0;
+  border-radius: 14px;
+  border: 1px solid #e6eef8;
+  overflow: hidden;
+  background: #fff;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: contain;
+  display: block;
+}
+
+.content-block {
+  margin: 0 0 34px 0;
+  text-align: justify;
+}
+
+.content-block h3 {
+  margin: 0 0 12px 0;
+  color: #0d47a1;
+}
+
+.highlight-box {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  padding: 18px;
+  border-radius: 12px;
+  border-left: 6px solid #0d47a1;
+  margin: 18px 0 0 0;
+  box-shadow: 0 4px 14px rgba(13, 71, 161, 0.10);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.feature-card {
+  background: #f7fbff;
+  border: 1px solid #bbdefb;
+  padding: 18px;
+  border-radius: 12px;
+}
+
+.card-icon {
+  font-size: 1.8rem;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.card-title {
+  display: block;
+  font-weight: 800;
+  color: #0d47a1;
+  margin: 4px 0 10px 0;
+}
+
+.content-block ul {
+  margin: 10px 0 0 0;
+  padding-left: 18px;
+}
+
+.content-block li {
+  margin: 8px 0;
+}
+
+/* Evitar que líneas HR “corten” en Q10 */
+hr { border: 0; border-top: 2px dashed #e3f2fd; margin: 28px 0; }
+
+@media (max-width: 768px) {
+  body { padding: 14px 10px !important; }
+  .container-extended { padding: 30px 18px; }
+  .uni-logo { position: static; display: block; margin: 0 0 16px auto; }
+  .header-box { padding-right: 0; }
+  .main-title { font-size: 1.7rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="q10-root">
+<div class="container-extended">
+
+<img class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&raw=1" alt="">
+
+<div class="header-box">
+    <h1 class="main-title">Criptografía Avanzada y Blockchain</h1>
+    <span class="subtitle">Módulo 4 — Arquitectura de la Confianza Digital</span>
+</div>
+
+<div class="hero-image">
+<img src="https://www.dropbox.com/scl/fi/3zcxec8qsaoysp1pbvkd6/Gemini_Generated_Image_sgff1ssgff1ssgff.png?rlkey=9u7lpqcnw92xgv28diusyrdwi&raw=1" alt="">
+</div>
+
+<div class="content-block">
+<p>
+La criptografía es el lenguaje matemático que permite que el mundo digital funcione de manera segura. Cada mensaje cifrado, cada pago electrónico, cada contrato digital y cada sistema bancario moderno dependen de algoritmos criptográficos para garantizar que la información no pueda ser robada, alterada o falsificada. Desde los antiguos cifrados de César hasta los complejos algoritmos cuánticos-resistentes de hoy, la criptografía ha evolucionado para convertirse en la columna vertebral de la seguridad informática moderna.
+</p>
+
+<p>
+En un mundo donde cada segundo se transfieren millones de dólares digitalmente, donde los datos personales son el nuevo petróleo y donde la identidad digital es tan valiosa como la física, la criptografía no es una opción: es una necesidad absoluta. Sin ella, no existirían las transacciones bancarias seguras, las comunicaciones privadas, los sistemas de autenticación, ni siquiera el simple acto de ingresar una contraseña en un sitio web.
+</p>
+
+<p>
+Blockchain surge como una evolución natural de esta ciencia. No es solo una base de datos, sino un sistema de registro distribuido donde miles de computadoras verifican cada operación, haciendo casi imposible la corrupción o el fraude sin ser detectado. La tecnología blockchain representa un paradigma fundamental: la descentralización de la confianza. Ya no necesitamos confiar en una entidad central (como un banco o un gobierno) para validar transacciones; en su lugar, una red distribuida de nodos independientes alcanza consenso mediante algoritmos matemáticos verificables.
+</p>
+
+<p>
+Este módulo no se limita a explicar cómo funcionan los algoritmos, sino cómo se construyen ecosistemas de confianza: infraestructuras donde nadie necesita confiar en nadie, porque las matemáticas verifican todo. Exploraremos desde los fundamentos teóricos hasta las implementaciones prácticas más avanzadas, desde el cifrado simétrico básico hasta los protocolos de consenso distribuido más sofisticados.
+</p>
+
+<p>
+La importancia de dominar estos conceptos trasciende lo técnico. En un mercado laboral cada vez más competitivo, los profesionales que entienden profundamente la criptografía y blockchain son altamente valorados. Empresas tecnológicas, instituciones financieras, gobiernos y startups innovadoras buscan constantemente expertos capaces de diseñar sistemas seguros, auditar implementaciones existentes y desarrollar nuevas soluciones basadas en estas tecnologías.
+</p>
+
+<p>
+Además, la criptografía moderna enfrenta desafíos sin precedentes. La computación cuántica amenaza con romper muchos de los algoritmos actuales, lo que ha impulsado el desarrollo de criptografía post-cuántica. Los reguladores gubernamentales buscan implementar "puertas traseras" para la vigilancia, mientras que los defensores de la privacidad luchan por mantener sistemas verdaderamente seguros. Estos debates éticos y técnicos son parte integral de la formación de un experto en seguridad digital.
+</p>
+
+<div class="highlight-box">
+<strong>Objetivo profesional:</strong> Formar ingenieros capaces de diseñar sistemas financieros, plataformas legales, certificados académicos y aplicaciones críticas usando criptografía y blockchain de manera segura y eficiente. Al finalizar este módulo, serás capaz de evaluar la seguridad de sistemas existentes, diseñar arquitecturas criptográficas robustas, implementar soluciones blockchain cuando sea apropiado, y comunicar conceptos técnicos complejos tanto a audiencias técnicas como no técnicas.
+</div>
+</div>
+
+<div class="content-block">
+<h3 style="color:#0d47a1;">🧠 Fundamentos que dominarás</h3>
+
+<div class="feature-grid">
+<div class="feature-card">
+<span class="card-icon" aria-hidden="true">🔒</span>
+<span class="card-title">Criptografía Simétrica</span>
+Uso de AES (Advanced Encryption Standard) para proteger bases de datos, archivos, comunicaciones privadas y discos completos. Aprenderás los modos de operación (ECB, CBC, GCM), gestión de vectores de inicialización, y cómo implementar cifrado a nivel de disco completo. También explorarás algoritmos históricos como DES y 3DES para entender la evolución de la criptografía simétrica.
+</div>
+
+<div class="feature-card">
+<span class="card-icon" aria-hidden="true">🔑</span>
+<span class="card-title">Criptografía Asimétrica</span>
+RSA y ECC (Elliptic Curve Cryptography) para intercambiar claves, autenticar usuarios y firmar documentos. Profundizarás en la teoría matemática detrás de estos sistemas, incluyendo el problema del logaritmo discreto, la factorización de enteros, y cómo elegir parámetros seguros. Aprenderás sobre Diffie-Hellman, ElGamal, y otros protocolos fundamentales.
+</div>
+
+<div class="feature-card">
+<span class="card-icon" aria-hidden="true">#️⃣</span>
+<span class="card-title">Funciones Hash</span>
+SHA‑256 como huella digital para verificar integridad y crear blockchain. Estudiarás la familia SHA (SHA-1, SHA-256, SHA-512), funciones hash resistentes a colisiones, Merkle trees, y cómo se utilizan en estructuras de datos inmutables. También explorarás funciones hash criptográficas especializadas como HMAC y PBKDF2.
+</div>
+
+<div class="feature-card">
+<span class="card-icon" aria-hidden="true">✍️</span>
+<span class="card-title">Firmas Digitales</span>
+Autenticidad, no repudio y validez legal en documentos electrónicos. Aprenderás sobre esquemas de firma como DSA, ECDSA, EdDSA, y cómo implementar sistemas de firma múltiple. Explorarás certificados digitales, autoridades certificadoras (CA), y la infraestructura de clave pública (PKI).
+</div>
+
+<div class="feature-card">
+<span class="card-icon" aria-hidden="true">🛡️</span>
+<span class="card-title">Protocolos de Autenticación</span>
+OAuth 2.0, OpenID Connect, JWT (JSON Web Tokens), y sistemas de autenticación multifactor. Aprenderás a diseñar sistemas de autenticación seguros, gestionar sesiones, y prevenir ataques comunes como replay attacks y session hijacking.
+</div>
+
+<div class="feature-card">
+<span class="card-icon" aria-hidden="true">🌐</span>
+<span class="card-title">Protocolos de Consenso</span>
+Proof of Work (PoW), Proof of Stake (PoS), Delegated Proof of Stake (DPoS), y otros mecanismos de consenso distribuido. Entenderás cómo las redes blockchain alcanzan acuerdo sin una autoridad central, y cuándo usar cada protocolo según el caso de uso.
+</div>
+
+<div class="feature-card">
+<span class="card-icon" aria-hidden="true">💻</span>
+<span class="card-title">Contratos Inteligentes</span>
+Programación de smart contracts en Solidity y otros lenguajes, seguridad en contratos inteligentes, y plataformas como Ethereum, Hyperledger, y Cardano. Aprenderás sobre vulnerabilidades comunes (reentrancy, overflow, etc.) y cómo prevenirlas.
+</div>
+
+<div class="feature-card">
+<span class="card-icon" aria-hidden="true">⚛️</span>
+<span class="card-title">Criptografía Post-Cuántica</span>
+Algoritmos resistentes a computación cuántica como lattice-based cryptography, hash-based signatures, y code-based cryptography. Prepararás sistemas para la era post-cuántica cuando las computadoras cuánticas puedan romper RSA y ECC.
+</div>
+</div>
+</div>
+
+<div class="content-block">
+<h3 style="color:#0d47a1;">🌍 Aplicaciones reales</h3>
+<ul>
+<li><strong>Banca electrónica y transferencias internacionales:</strong> Sistemas de pago seguros como SWIFT, sistemas de pago instantáneo, billeteras digitales, y la infraestructura que permite que millones de transacciones bancarias ocurran diariamente sin fraude masivo.</li>
+<li><strong>Criptomonedas y contratos inteligentes:</strong> Bitcoin, Ethereum, y miles de altcoins que han creado un ecosistema financiero descentralizado valorado en billones de dólares. Plataformas DeFi (Decentralized Finance) que permiten préstamos, intercambios y seguros sin intermediarios tradicionales.</li>
+<li><strong>Certificados académicos verificables:</strong> Sistemas como Blockcerts que permiten a universidades emitir diplomas verificables en blockchain, eliminando la falsificación de títulos y simplificando la verificación de credenciales académicas.</li>
+<li><strong>Identidad digital soberana:</strong> Sistemas de identidad autosoberana (SSI) donde los usuarios controlan sus propios datos de identidad, sin depender de proveedores centralizados. Aplicaciones en pasaportes digitales, licencias de conducir, y documentos de identidad nacionales.</li>
+<li><strong>Logística, trazabilidad y cadenas de suministro:</strong> Sistemas que permiten rastrear productos desde su origen hasta el consumidor final. Aplicaciones en la industria alimentaria para garantizar la seguridad, en la industria farmacéutica para prevenir falsificaciones, y en el comercio de diamantes para garantizar su origen ético.</li>
+<li><strong>Votación electrónica segura:</strong> Sistemas de votación que garantizan el secreto del voto, la integridad de los resultados, y la verificabilidad sin comprometer la privacidad. Implementaciones piloto en varios países y organizaciones.</li>
+<li><strong>Historia clínica digital:</strong> Sistemas que permiten compartir información médica entre proveedores de salud de manera segura, respetando la privacidad del paciente y cumpliendo con regulaciones como HIPAA y GDPR.</li>
+<li><strong>Propiedad intelectual y derechos de autor:</strong> Sistemas de registro de obras creativas, música, arte digital, y patentes en blockchain para establecer prueba de autoría y facilitar la gestión de derechos.</li>
+<li><strong>Internet de las Cosas (IoT) seguro:</strong> Implementación de criptografía ligera en dispositivos IoT con recursos limitados, garantizando que millones de dispositivos conectados no se conviertan en puntos de entrada para ataques.</li>
+<li><strong>Comercio electrónico y pagos:</strong> Sistemas de pago como PayPal, Stripe, y procesadores de tarjetas de crédito que protegen millones de transacciones diarias usando criptografía de extremo a extremo.</li>
+<li><strong>Comunicaciones seguras:</strong> Protocolos como TLS/SSL que protegen las comunicaciones web, aplicaciones de mensajería end-to-end como Signal y WhatsApp, y sistemas de comunicación corporativa segura.</li>
+<li><strong>Almacenamiento en la nube seguro:</strong> Servicios como Dropbox, Google Drive, y OneDrive que cifran datos antes de almacenarlos, permitiendo que solo el propietario pueda acceder a su información.</li>
+<li><strong>Gestión de claves empresariales:</strong> Sistemas HSM (Hardware Security Modules) y KMS (Key Management Systems) que gestionan millones de claves criptográficas para organizaciones grandes.</li>
+<li><strong>Blockchain en el sector público:</strong> Registros de tierras, sistemas de identificación nacional, gestión de subsidios sociales, y transparencia gubernamental mediante registros inmutables.</li>
+<li><strong>Tokens no fungibles (NFTs):</strong> Sistemas que permiten la propiedad verificable de activos digitales únicos, con aplicaciones en arte, gaming, música, y coleccionables digitales.</li>
+</ul>
+</div>
+
+<div class="content-block">
+<h3 style="color:#0d47a1;">⚠ Riesgos que aprenderás a evitar</h3>
+<ul>
+<li><strong>Usar algoritmos obsoletos como MD5 o SHA‑1:</strong> Estos algoritmos han sido rotos criptográficamente y no deben usarse en nuevos sistemas. Aprenderás a identificar algoritmos deprecados y migrar sistemas legacy a estándares modernos y seguros.</li>
+<li><strong>Claves débiles o mal gestionadas:</strong> Claves cortas, predecibles, o reutilizadas comprometen todo el sistema. Aprenderás sobre generación segura de claves, rotación de claves, almacenamiento seguro (HSM, key vaults), y políticas de gestión de claves empresariales.</li>
+<li><strong>Implementar blockchain cuando una base de datos sería mejor:</strong> Blockchain no es la solución para todos los problemas. Aprenderás a evaluar cuándo blockchain agrega valor real y cuándo es simplemente una base de datos costosa e ineficiente. Entenderás los trade-offs entre descentralización, rendimiento, y costo.</li>
+<li><strong>Errores de programación criptográfica:</strong> Implementaciones incorrectas de algoritmos criptográficos, uso de bibliotecas vulnerables, o errores en la lógica de seguridad pueden crear vulnerabilidades críticas. Aprenderás mejores prácticas de programación segura y cómo usar bibliotecas criptográficas probadas.</li>
+<li><strong>Ataques de canal lateral:</strong> Ataques que explotan información obtenida de la implementación física o lógica del sistema, como timing attacks, power analysis, y cache attacks. Aprenderás técnicas de mitigación y programación resistente a estos ataques.</li>
+<li><strong>Vulnerabilidades en contratos inteligentes:</strong> Errores como reentrancy, integer overflow/underflow, y lógica de negocio incorrecta han resultado en pérdidas de cientos de millones de dólares. Dominarás técnicas de auditoría y pruebas de contratos inteligentes.</li>
+<li><strong>Falta de actualización y parches:</strong> Sistemas criptográficos requieren mantenimiento constante. Aprenderás sobre gestión de vulnerabilidades, procesos de actualización segura, y cómo mantener sistemas seguros a largo plazo.</li>
+<li><strong>Exposición de información sensible:</strong> Logs que contienen claves, mensajes de error que revelan información del sistema, o almacenamiento inseguro de secretos. Aprenderás prácticas de seguridad defensiva y principios de mínimo privilegio.</li>
+<li><strong>Problemas de escalabilidad en blockchain:</strong> Redes blockchain pueden volverse lentas y costosas cuando se escalan. Aprenderás sobre soluciones de escalabilidad como sharding, layer 2 solutions, y sidechains, y cuándo implementarlas.</li>
+<li><strong>Riesgos regulatorios y de cumplimiento:</strong> Las regulaciones sobre criptografía y blockchain varían por país y están en constante evolución. Aprenderás sobre GDPR, regulaciones financieras, y cómo diseñar sistemas que cumplan con requisitos legales.</li>
+<li><strong>Ataques de 51% en blockchain:</strong> Cuando un actor controla más del 50% del poder de minería o staking, puede manipular la red. Aprenderás a evaluar la seguridad de diferentes redes y cómo mitigar estos riesgos.</li>
+<li><strong>Pérdida de claves privadas:</strong> En sistemas descentralizados, perder una clave privada significa perder acceso permanente. Aprenderás sobre técnicas de recuperación de claves, multisig, y gestión de claves para usuarios finales.</li>
+</ul>
+</div>
+
+<div class="highlight-box">
+<strong>Idea central:</strong><br>
+La criptografía no sirve para ocultar, sino para **crear confianza en sistemas donde nadie puede hacer trampa**. Es la base matemática que permite que extraños interactúen de manera segura, que sistemas distribuidos alcancen consenso, y que la información digital tenga valor y autenticidad verificable.
+</div>
+
+<div class="content-block">
+<h3 style="color:#0d47a1;">📚 Metodología de aprendizaje</h3>
+<p>
+Este módulo combina teoría sólida con práctica intensiva. No solo aprenderás conceptos abstractos, sino que implementarás sistemas reales, auditarás código vulnerable, y diseñarás soluciones desde cero. Cada concepto se presenta con su contexto histórico, su fundamento matemático, y sus aplicaciones prácticas en la industria.
+</p>
+<p>
+Trabajarás con herramientas profesionales como OpenSSL, GnuPG, frameworks de blockchain como Truffle y Hardhat, y plataformas de desarrollo como Remix. Realizarás proyectos prácticos que incluyen la implementación de sistemas de cifrado, desarrollo de contratos inteligentes, y diseño de arquitecturas de seguridad completas.
+</p>
+<p>
+Además, analizarás casos de estudio reales: desde el hackeo de The DAO que resultó en un hard fork de Ethereum, hasta vulnerabilidades en implementaciones criptográficas que han comprometido sistemas críticos. Estos casos te enseñarán no solo qué hacer, sino también qué evitar.
+</p>
+</div>
+
+<div class="content-block">
+<h3 style="color:#0d47a1;">🔬 Tecnologías y herramientas</h3>
+<p>
+Dominarás un stack tecnológico completo que incluye:</p>
+<ul>
+<li><strong>Lenguajes de programación:</strong> Python para implementaciones criptográficas, Solidity para contratos inteligentes, JavaScript/TypeScript para aplicaciones blockchain, y C/C++ para sistemas de bajo nivel.</li>
+<li><strong>Bibliotecas criptográficas:</strong> Cryptography (Python), Web3.js, Ethers.js, OpenZeppelin para contratos seguros, y bibliotecas de criptografía post-cuántica.</li>
+<li><strong>Plataformas blockchain:</strong> Ethereum, Hyperledger Fabric, Polygon, y otras redes principales. Aprenderás a desarrollar, desplegar y mantener aplicaciones descentralizadas (dApps).</li>
+<li><strong>Herramientas de seguridad:</strong> OWASP ZAP, Burp Suite, herramientas de análisis estático, y frameworks de auditoría de contratos inteligentes como Slither y Mythril.</li>
+<li><strong>Infraestructura:</strong> HSM (Hardware Security Modules), sistemas de gestión de claves, y arquitecturas de seguridad en la nube (AWS KMS, Azure Key Vault).</li>
+</ul>
+</div>
+
+<div class="content-block">
+<h3 style="color:#0d47a1;">🌐 Impacto en la industria</h3>
+<p>
+La demanda de profesionales en criptografía y blockchain está en constante crecimiento. Según estudios del mercado laboral, los salarios para estos roles están entre los más altos en tecnología, con ingenieros blockchain senior ganando significativamente más que el promedio de la industria. Empresas como JPMorgan, IBM, Microsoft, y Google están invirtiendo miles de millones en estas tecnologías.
+</p>
+<p>
+Más allá del aspecto financiero, trabajar en este campo te posiciona en la vanguardia de la innovación tecnológica. Estarás resolviendo problemas que no existían hace una década, trabajando con tecnologías que están redefiniendo industrias completas, y contribuyendo a construir la infraestructura digital del futuro.
+</p>
+<p>
+El conocimiento que adquirirás también te preparará para entender y evaluar nuevas tecnologías emergentes. Cuando aparezcan nuevos algoritmos criptográficos, nuevos protocolos de consenso, o nuevas aplicaciones de blockchain, tendrás las bases para evaluarlos críticamente y adoptarlos de manera informada.
+</p>
+</div>
+
+<div class="content-block">
+<h3 style="color:#0d47a1;">🎓 Perfil que desarrollarás</h3>
+<p>
+Al terminar este módulo tendrás competencias para trabajar como analista de seguridad, ingeniero blockchain, auditor de sistemas digitales, desarrollador de aplicaciones financieras o arquitecto de infraestructura segura. Podrás desempeñarte en roles como:</p>
+<ul>
+<li><strong>Ingeniero de Seguridad Criptográfica:</strong> Diseñar e implementar sistemas criptográficos robustos, evaluar la seguridad de algoritmos, y desarrollar protocolos de seguridad personalizados.</li>
+<li><strong>Desarrollador Blockchain:</strong> Crear aplicaciones descentralizadas, desarrollar contratos inteligentes, y construir infraestructura blockchain para empresas.</li>
+<li><strong>Auditor de Seguridad:</strong> Evaluar la seguridad de sistemas existentes, identificar vulnerabilidades, y recomendar mejoras. Especialización en auditoría de contratos inteligentes y sistemas criptográficos.</li>
+<li><strong>Arquitecto de Seguridad:</strong> Diseñar arquitecturas de seguridad completas para organizaciones, definir políticas de seguridad, y liderar iniciativas de transformación digital segura.</li>
+<li><strong>Consultor en Criptografía:</strong> Asesorar a empresas sobre implementación de tecnologías blockchain, migración a sistemas seguros, y cumplimiento regulatorio.</li>
+<li><strong>Investigador en Seguridad:</strong> Contribuir al avance del campo mediante investigación, desarrollo de nuevos algoritmos, y publicación de hallazgos en conferencias académicas y de la industria.</li>
+</ul>
+<p>
+Sabrás evaluar riesgos, diseñar sistemas confiables y explicar con rigor técnico cómo funciona la seguridad digital moderna. Podrás comunicarte efectivamente tanto con equipos técnicos como con stakeholders no técnicos, traduciendo conceptos complejos en términos comprensibles y justificando decisiones de diseño con argumentos sólidos basados en principios criptográficos fundamentales.
+</p>
+<p>
+Además, desarrollarás un pensamiento crítico que te permitirá evaluar nuevas tecnologías, identificar soluciones sobrevaloradas, y tomar decisiones informadas sobre cuándo y cómo implementar sistemas criptográficos y blockchain. Esta capacidad de evaluación crítica es invaluable en un campo que evoluciona rápidamente y donde las modas pueden llevar a malas decisiones técnicas.
+</p>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

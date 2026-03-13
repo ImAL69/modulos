@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tema 1.3: Teoría de Integridad - Funciones Hash y Firmas Digitales</title>
+</head>
+<body style="margin:0;padding:18px;background:#f4f6f8;color:#24323a;font-family:Arial,Helvetica,sans-serif;line-height:1.55;">
+<div style="max-width:1000px;margin:0 auto;background:#ffffff;border:1px solid #e6ebef;border-radius:10px;overflow:visible;">
+<div style="padding:18px 18px 0 18px;text-align:right;">
+<img alt="Logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1" style="max-width:160px;height:auto;border:0;display:inline-block;"/>
+</div>
+<div style="padding:0 18px 18px 18px;border-bottom:4px solid #0d47a1;">
+<div style="padding:10px 0 0 0;">
+<div style="display:inline-block;background:#0d47a1;color:#fff;padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:.2px;">
+          Q10 • Contenido compatible
+        </div>
+</div>
+<h1 style="margin:10px 0 6px 0;color:#0d47a1;font-size:26px;line-height:1.2;">Tema 1.3: Teoría de Integridad - Funciones Hash y Firmas Digitales</h1>
+<div style="margin:0;color:#54626b;font-size:14px;">Unidad 2 • Objetivos — versión Q10-safe</div>
+</div>
+<div style="padding:18px;">
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:26px;line-height:1.25;">Tema 1.3: Teoría de Integridad - Funciones Hash y Firmas Digitales</div>
+<p style="margin:0 0 10px 0;">Las bases matemáticas para garantizar que los datos no han sido alterados - Guía exhaustiva desde fundamentos hasta aplicaciones avanzadas</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">📅 Cronograma de Aprendizaje Extendido</div>
+<p style="margin:0 0 10px 0;">5-7 días de estudio intensivo con práctica extensiva</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Duración Total</p>
+<p style="margin:0 0 10px 0;">5-7 días</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Esfuerzo estimado</p>
+<p style="margin:0 0 10px 0;">10-15 horas</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Dificultad</p>
+<p style="margin:0 0 10px 0;">Media-Alta</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Prácticas</p>
+<p style="margin:0 0 10px 0;">12 ejercicios</p></div></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Las funciones hash constituyen los pilares fundamentales sobre los que se construye la seguridad digital contemporánea. Su aplicación trasciende la mera verificación de integridad de archivos, extendiéndose a la autenticación de usuarios, la validación de transacciones financieras, la garantía de inmutabilidad en sistemas distribuidos y la protección de comunicaciones a nivel global. Esta guía exhaustiva desentraña las complejidades matemáticas, las implementaciones prácticas y las consideraciones de seguridad que rodean a estas herramientas criptográficas esenciales.</p>
+<p style="margin:0 0 10px 0;">Una función hash criptográfica representa una construcción matemática sofisticada que transforma datos de longitud arbitraria en una "huella digital" única y de tamaño fijo. Esta transformación debe satisfacer propiedades específicas que garantizan resistencia a ataques incluso frente a adversarios con capacidades computacionales significativas. La comprensión profunda de estas propiedades, sus limitaciones y sus aplicaciones prácticas es indispensable para el diseño e implementación de sistemas seguros en la era digital.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🎯 Objetivo Principal Extendido:</p>
+Desarrollar dominio completo sobre las propiedades fundamentales de las funciones hash criptográficas, comprender las diferencias arquitectónicas y de aplicación entre hash simple, HMAC y firmas digitales, implementar soluciones seguras en diversos contextos, y evaluar críticamente la seguridad de algoritmos frente a amenazas actuales y futuras, incluyendo la computación cuántica.</div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:18px;line-height:1.25;">📈 Objetivos de Aprendizaje Detallados</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">#️⃣
+<p style="margin:0 0 10px 0;">Propiedades Fundamentales Avanzadas</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Comprender exhaustivamente las 6 propiedades esenciales de un hash criptográfico, incluyendo determinismo, resistencias a preimagen, segunda preimagen y colisiones, efecto avalancha y velocidad de cálculo. Analizar las relaciones jerárquicas entre estas propiedades y sus implicaciones prácticas en diseño de sistemas.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🔑
+<p style="margin:0 0 10px 0;">HMAC vs Hash Simple: Análisis Profundo</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Entender en profundidad cuándo y por qué usar HMAC en lugar de un hash simple, analizar su construcción interna (ipad/opad), comprender su resistencia a ataques de extensión de longitud, e implementar soluciones seguras para APIs web, microservicios y comunicaciones cliente-servidor.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<p style="margin:0 0 10px 0;">Firmas Digitales: Teoría y Práctica</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Dominar el funcionamiento completo de las firmas digitales, desde la generación de pares de claves hasta la verificación de firmas. Analizar esquemas de firma como RSA-PSS y ECDSA, comprender el no repudio legal, e implementar soluciones para documentos electrónicos, código fuente y transacciones críticas.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🛡️
+<p style="margin:0 0 10px 0;">Aplicaciones Prácticas Avanzadas</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Diseñar e implementar soluciones basadas en hash para escenarios complejos: sistemas de verificación de integridad distribuida, Merkle Trees para bases de datos inmutables, Proof of Work/Stake para consenso distribuido, timestamping criptográfico y almacenamiento seguro de credenciales con técnicas modernas.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🐞
+<p style="margin:0 0 10px 0;">Análisis de Vulnerabilidades</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Identificar, explotar y mitigar vulnerabilidades en implementaciones de funciones hash. Comprender ataques como colisiones, rainbow tables, extensión de longitud, side-channel attacks, y evaluar la resistencia post-cuántica de algoritmos actuales.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">📈
+<p style="margin:0 0 10px 0;">Benchmark y Optimización</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Evaluar el rendimiento de diferentes algoritmos hash en diversos escenarios, optimizar implementaciones para alto rendimiento, comprender trade-offs entre seguridad y velocidad, y seleccionar algoritmos apropiados basándose en métricas cuantitativas.</div></div></div></div>
+SECCIÓN: Historia y Evolución Expandida
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">📜 Historia y Evolución de las Funciones Hash: Un Viaje Cronológico</div>
+<p style="margin:0 0 10px 0;">El desarrollo de funciones hash criptográficas representa una carrera constante entre criptógrafos que diseñan algoritmos y adversarios que buscan vulnerabilidades. Cada generación de algoritmos ha respondido a fallos descubiertos en la anterior, evolucionando desde construcciones simples hasta mecanismos complejos resistentes a ataques sofisticados.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">1974-1988</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Época Prehistórica: Los Fundamentos Teóricos</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>Contribuciones clave:</strong> Ralph Merkle e Ivan Damgård establecieron la construcción teórica que llevaría su nombre. La tesis doctoral de Merkle sobre "Protocolos de comunicación segura en canales inseguros" sentó las bases para el hashing criptográfico moderno.</p>
+<p style="margin:0 0 10px 0;"><strong>Limitaciones:</strong> Los primeros intentos como CRC-32 y sumas de verificación simples ofrecían detección de errores pero ninguna seguridad criptográfica.</p>
+<p style="margin:0 0 10px 0;"><strong>Contexto histórico:</strong> La criptografía aún estaba dominada por algoritmos simétricos como DES, y el concepto de función hash unidireccional era principalmente teórico.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">1989-1992</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Primera Generación: MD Family Emerge</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>MD2 (1989):</strong> Diseñado por Ronald Rivest para sistemas de 8-bit. Rápidamente obsoleto por vulnerabilidades de colisión.</p>
+<p style="margin:0 0 10px 0;"><strong>MD4 (1990):</strong> Más rápido y seguro, pero atacado exitosamente por Hans Dobbertin en 1995, demostrando colisiones en menos de 1 minuto.</p>
+<p style="margin:0 0 10px 0;"><strong>MD5 (1992):</strong> Mejora sobre MD4 con 4 rondas en lugar de 3. Se convirtió en estándar de facto para verificación de integridad durante más de una década.</p>
+<p style="margin:0 0 10px 0;"><strong>Aplicaciones iniciales:</strong> Verificación de descargas, checksums de archivos, almacenamiento de contraseñas (con graves consecuencias).</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">1993-2000</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">SHA Family y Dominio Gubernamental</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>SHA-0 (1993):</strong> Primer estándar del NIST, retirado rápidamente por un defecto no publicado.</p>
+<p style="margin:0 0 10px 0;"><strong>SHA-1 (1995):</strong> Corrección de SHA-0, adopción masiva en certificados SSL/TLS, Git, y numerosos protocolos. Considerado seguro hasta primeros ataques teóricos en 2005.</p>
+<p style="margin:0 0 10px 0;"><strong>Paradigma de seguridad:</strong> La longitud de 160 bits ofrecía teóricamente 80 bits de seguridad contra colisiones (paradoja del cumpleaños).</p>
+<p style="margin:0 0 10px 0;"><strong>Criptoanálisis emergente:</strong> Primeros ataques diferenciales demostraron que MD5 y SHA-1 no eran tan resistentes como se pensaba.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2001-2010</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">SHA-2: La Nueva Generación</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>SHA-256 y SHA-512 (2001):</strong> Parte de la familia SHA-2, longitudes de 256 y 512 bits respectivamente. Basados en diseño Merkle-Damgård pero con mayor número de rondas y constantes más complejas.</p>
+<p style="margin:0 0 10px 0;"><strong>Adopción gradual:</strong> Lenta migración desde SHA-1 debido a compatibilidad y rendimiento. Bitcoin (2009) adoptó SHA-256 para Proof of Work, impulsando su popularidad.</p>
+<p style="margin:0 0 10px 0;"><strong>Ataques significativos:</strong> En 2004, colisiones prácticas en MD5; en 2005, ataques teóricos en SHA-1; en 2008, ataque de colisión en MD5 contra certificados SSL.</p>
+<p style="margin:0 0 10px 0;"><strong>Consecuencias:</strong> NIST anuncia plan de retiro de SHA-1 para 2010 (postergado varias veces).</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2011-2017</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Crisis y Transición: SHA-3 y BLAKE</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>Competencia SHA-3 (2007-2012):</strong> NIST lanza competencia para nuevo estándar post-SHA-2. Participan 64 algoritmos, finalistas incluyen Keccak, BLAKE, Grøstl, JH, Skein.</p>
+<p style="margin:0 0 10px 0;"><strong>Keccak seleccionado (2012):</strong> Diseño innovador de "sponge function", radicalmente diferente a Merkle-Damgård. Estandarizado como SHA-3 en 2015.</p>
+<p style="margin:0 0 10px 0;"><strong>Ataque SHAttered (2017):</strong> Google y CWI anuncian primera colisión práctica en SHA-1, con costo estimado de $110,000 en computación en la nube. Momento decisivo para abandonar SHA-1.</p>
+<p style="margin:0 0 10px 0;"><strong>BLAKE2 (2012):</strong> Derivado de finalista BLAKE, más rápido que MD5 pero tan seguro como SHA-3. Adoptado por proyectos como Argon2 y WireGuard.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2018-Presente</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Era Moderna: Especialización y Post-Cuántica</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>BLAKE3 (2020):</strong> Rediseño completo, extremadamente rápido, basado en árbol de Merkle. 10x más rápido que SHA-256 en CPU modernas.</p>
+<p style="margin:0 0 10px 0;"><strong>Hash para contraseñas:</strong> Argon2 (2015) gana Password Hashing Competition. Diseñado específicamente para ser costoso en tiempo y memoria.</p>
+<p style="margin:0 0 10px 0;"><strong>Preparación cuántica:</strong> NIST inicia proceso de estandarización de algoritmos post-cuánticos. SHA-256 resistente a Grover (reduce seguridad a 128 bits), vulnerable a ataques con suficiente qubits.</p>
+<p style="margin:0 0 10px 0;"><strong>Tendencias actuales:</strong> Hashing paralelizable, hardware acceleration (SHA-NI), hashing en entornos restringidos (IoT), y hashing para blockchain (variantes de SHA-256).</p></div></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">💡 Lección Histórica Fundamental:</p>
+La historia de las funciones hash enseña que ningún algoritmo es eternamente seguro. Los ciclos de vida típicos son: 1) adopción entusiasta, 2) ataques teóricos, 3) ataques prácticos, 4) depreciación gradual, 5) reemplazo. Planificar migraciones periódicas (cada 10-15 años) es esencial en sistemas de producción críticos.</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Evolución de la Resistencia a Colisiones</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">MD5 (1992)
+2
+<p style="margin:0 0 10px 0;">18</p>
+ops</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">→</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">SHA-1 (1995)
+2
+<p style="margin:0 0 10px 0;">63</p>
+ops</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">→</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">SHA-256 (2001)
+2
+<p style="margin:0 0 10px 0;">128</p>
+ops</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">→</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">SHA-3 (2015)
+2
+<p style="margin:0 0 10px 0;">128</p>
+ops</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">→</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Post-Cuántica
+2
+<p style="margin:0 0 10px 0;">256</p>
+ops</div></div></div>
+SECCIÓN: Propiedades Fundamentales Expandida
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🔍 Propiedades Fundamentales de un Hash Criptográfico: Análisis Exhaustivo</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Determinismo</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Para una entrada idéntica, la salida será idéntica en cualquier momento, en cualquier sistema y bajo cualquier condición. Esta propiedad permite verificación consistente a lo largo del tiempo y entre sistemas distribuidos. Es fundamental para aplicaciones como Git (control de versiones), sistemas de deduplicación y verificación de integridad de archivos.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Resistencia a Preimagen (Unidireccionalidad)</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Dado un valor hash H, es computacionalmente inviable encontrar cualquier mensaje M tal que hash(M) = H. Formalmente, para todo adversario A con tiempo polinomial, Pr[M' ← A(H) : hash(M') = H] es insignificante. Esta propiedad es la base de almacenamiento seguro de contraseñas y compromisos criptográficos.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Resistencia a Segunda Preimagen (Weak Collision Resistance)</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Dado un mensaje M1 específico, es inviable encontrar otro mensaje M2 ≠ M1 tal que hash(M1) = hash(M2). Esta propiedad protege contra la suplantación de mensajes específicos en contextos como documentos legales, transacciones financieras o actualizaciones de software firmadas digitalmente.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Resistencia a Colisiones (Strong Collision Resistance)</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Es inviable encontrar dos mensajes distintos cualesquiera M1 y M2 tales que hash(M1) = hash(M2). Por la paradoja del cumpleaños, esta propiedad es aproximadamente la mitad de fuerte que la resistencia a preimagen para la misma longitud de hash. Es crítica para firmas digitales y certificados digitales.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Efecto Avalancha</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Un cambio mínimo en la entrada (incluso un solo bit) produce un cambio drástico e impredecible en la salida (aproximadamente el 50% de los bits cambian). Esta propiedad garantiza que hashes de mensajes similares sean completamente diferentes, haciendo imposible inferir relaciones entre entradas basándose en sus hashes.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">⚡
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Eficiencia Computacional</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Debe ser rápido para hashes legítimos pero configurablemente lento para ciertas aplicaciones (como hashing de contraseñas). Esta propiedad dual permite verificación eficiente de integridad mientras dificulta ataques de fuerza bruta. Algoritmos como Argon2 son intencionalmente lentos y costosos en memoria para contraseñas.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Compresión Determinista</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Mapea entradas de longitud arbitraria a salidas de longitud fija (normalmente 256-512 bits en algoritmos modernos). Esta compresión debe preservar las propiedades de seguridad mientras permite representaciones compactas que son prácticas para almacenamiento y transmisión.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Pseudoaleatoriedad</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">La salida debe ser indistinguible de una secuencia aleatoria para cualquier observador sin conocimiento de la entrada. Esta propiedad es esencial para derivación de claves (KDFs) y generación de identificadores únicos donde la predictibilidad sería una vulnerabilidad.</div></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🎯 Meta de Aprendizaje Avanzada:</p>
+Debes poder explicar matemáticamente por qué la resistencia a colisiones implica resistencia a segunda preimagen, que a su vez implica resistencia a preimagen, pero las implicaciones inversas no se mantienen. Comprender estas relaciones jerárquicas es crucial para seleccionar algoritmos apropiados para diferentes casos de uso.</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">🔬 Análisis Matemático de las Relaciones entre Propiedades</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">→</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Jerarquía Formal de Propiedades</p>
+<p style="margin:0 0 10px 0;">Sea H una función hash. Las relaciones entre propiedades pueden formalizarse como:</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Resistencia a Colisiones ⇒ Resistencia a 2ª Preimagen ⇒ Resistencia a Preimagen</div>
+<p style="margin:0 0 10px 0;"><strong>Demostración intuitiva:</strong> Si puedes encontrar colisiones arbitrarias, ciertamente puedes encontrar una segunda preimagen para un mensaje dado (elige una de las colisiones). Si puedes encontrar segundas preimágenes, puedes encontrar preimágenes (dado H, busca M' cuya segunda preimagen encuentres).</p>
+<p style="margin:0 0 10px 0;"><strong>Implicación práctica:</strong> Un ataque de colisiones compromete todas las propiedades. Un ataque de preimagen no necesariamente compromete resistencia a colisiones.</p></div></div></div></div>
+SECCIÓN: Comparación de Algoritmos Expandida
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">📊 Comparación Detallada: Algoritmos Hash Modernos y Legacy</div>
+<div style="overflow:visible;margin:10px 0;"><table style="width:100%;border-collapse:collapse;border:1px solid #dfe7ee;"><thead><tr><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Algoritmo</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Año</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Longitud</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Diseño</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Velocidad (MB/s)</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Seguridad</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Aplicaciones Principales</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Estado</th></tr></thead><tbody><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">MD5</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">1992</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">128 bits</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Merkle-Damgård</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">650</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Roto Colisiones en segundos</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Verificación de archivos no críticos, checksums legacy</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Deprecated</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">SHA-1</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">1995</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">160 bits</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Merkle-Damgård</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">550</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Inseguro Colisiones prácticas ($110k)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Git (en transición), algunos certificados antiguos</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Obsoleto</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">SHA-256</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">2001</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">256 bits</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Merkle-Damgård</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">230</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Seguro 2¹²⁸ vs colisiones</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Bitcoin, TLS 1.2+, documentos oficiales, blockchain</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Estándar actual</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">SHA-512</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">2001</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">512 bits</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Merkle-Damgård</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">280</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Muy seguro 2²⁵⁶ vs colisiones</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Alta seguridad, post-cuántica preliminar</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Recomendado</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">SHA-3-256</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">2015</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">256 bits</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Sponge (Keccak)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">180</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Muy seguro Resistente a extensión</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Nuevos estándares, seguridad a largo plazo</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Nuevo estándar</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">BLAKE2b</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">2012</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">512 bits</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">HAIFA</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">900</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Seguro Similar a SHA-3</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Alto rendimiento, Argon2, libsodium</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Alternativa rápida</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">BLAKE3</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">2020</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">256 bits</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Merkle Tree</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">1200</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Seguro Ext. paralelizable</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Máximo rendimiento, checksums, P2P</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Next-gen</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Argon2id</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">2015</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Variable</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Memory-hard</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">0.1-10</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Óptimo para passwords Resistente a ASIC/GPU</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Exclusivamente para contraseñas</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Estándar passwords</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">bcrypt</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">1999</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">184 bits</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Eksblowfish</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Varía con coste</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Adecuado No memory-hard</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Contraseñas (legacy systems)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">En desuso</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">scrypt</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">2009</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Variable</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Memory-hard</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Configurable</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Seguro Memory-time tradeoff</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Contraseñas, Litecoin</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Bueno</td></tr></tbody></table></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">💡 Recomendación Práctica Detallada:</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Integridad general:</strong> SHA-256 (compatibilidad) o SHA-3-256 (seguridad a largo plazo)</li><li style="margin:6px 0;"><strong>Contraseñas:</strong> Argon2id con parámetros adecuados (m=64MB, t=3, p=4)</li><li style="margin:6px 0;"><strong>Máximo rendimiento:</strong> BLAKE3 para datos no críticos, BLAKE2b para equilibrio</li><li style="margin:6px 0;"><strong>Blockchain/Consenso:</strong> SHA-256 (Bitcoin), Keccak-256 (Ethereum)</li><li style="margin:6px 0;"><strong>Post-cuántica preliminar:</strong> SHA-512 o SHA-3 con longitud extendida</li><li style="margin:6px 0;"><strong>NUNCA usar:</strong> MD5, SHA-1 para seguridad; MD5, CRC para integridad crítica</li></ul></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Mapa de Decisiones: Selección de Algoritmo Hash</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">¿Para contraseñas?</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">→ Argon2id</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">¿Máxima compatibilidad?</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">→ SHA-256</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">¿Futuro-proof?</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">→ SHA-3-256</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">¿Máxima velocidad?</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">→ BLAKE3</div></div></div></div></div>
+SECCIÓN: Conceptos Matemáticos Expandidos
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🧮 Fundamentos Matemáticos del Hashing: Desde Teoría a Implementación</div>
+<p style="margin:0 0 10px 0;">Las funciones hash criptográficas no son "magia negra" sino construcciones matemáticas rigurosas basadas en teoría de números, álgebra y teoría de la complejidad. Comprender estos fundamentos es esencial para evaluar seguridad, implementar variantes y anticipar vulnerabilidades.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">f</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Funciones de Compresión Unidireccionales: Definición Formal</div>
+<p style="margin:0 0 10px 0;">Una función hash criptográfica H: {0,1}* → {0,1}^n mapea cadenas de longitud arbitraria a cadenas de longitud fija n. Se considera <strong>unidireccional</strong> si para todo adversario probabilístico de tiempo polinomial A, la probabilidad de que, dado y = H(x) para x aleatorio, A pueda encontrar x' tal que H(x') = y es insignificante en el parámetro de seguridad n.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">∀ PPT A: Pr[x ← {0,1}*, y = H(x), x' ← A(y): H(x') = y] ≤ negl(n)</div>
+<p style="margin:0 0 10px 0;"><strong>Implicación práctica:</strong> Esta propiedad formaliza la imposibilidad práctica de "revertir" un hash, incluso con conocimiento completo del algoritmo y acceso a recursos computacionales significativos.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">⊕</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Operaciones Bit a Bit y Construcción de Rondas</div>
+<p style="margin:0 0 10px 0;">Los algoritmos hash modernos utilizan operaciones primitivas a nivel de bits organizadas en rondas iterativas:</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>XOR (⊕):</strong> Suma módulo 2, fundamental para difusión</li><li style="margin:6px 0;"><strong>Rotaciones (ROTL):</strong> Desplazamiento circular de bits</li><li style="margin:6px 0;"><strong>AND/OR/NOT:</strong> Operaciones booleanas básicas</li><li style="margin:6px 0;"><strong>Adición modular (+ mod 2³² o 2⁶⁴):</strong> Para no linealidad</li></ul>
+<p style="margin:0 0 10px 0;"><strong>Ejemplo SHA-256:</strong> 64 rondas, cada una aplica: Ch(E,F,G), Maj(A,B,C), Σ₀(A), Σ₁(E), + constantes Kᵢ + palabra Wⱼ. Esta estructura garantiza mezcla completa después de suficientes rondas.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">M-D</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Construcción Merkle-Damgård: Ventajas y Vulnerabilidades</div>
+<p style="margin:0 0 10px 0;">El paradigma Merkle-Damgård procesa mensajes de la siguiente forma:</p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">Padding del mensaje hasta múltiplo de tamaño de bloque</li><li style="margin:6px 0;">División en bloques M₁, M₂, ..., Mₖ</li><li style="margin:6px 0;">Inicialización de vector de estado IV</li><li style="margin:6px 0;">Iteración: Hᵢ = compresión(Hᵢ₋₁, Mᵢ)</li><li style="margin:6px 0;">Salida: Hₖ</li></ol>
+<p style="margin:0 0 10px 0;"><strong>Vulnerabilidad conocida:</strong> Ataques de extensión de longitud. Si conocemos hash(M) y longitud(M), podemos calcular hash(M || padding || M') para cualquier M' sin conocer M. Esto afecta aplicaciones que usan hash(secreto || mensaje) en lugar de HMAC.</p>
+<p style="margin:0 0 10px 0;"><strong>Mitigación:</strong> HMAC o construcción de Davies-Meyer con feed-forward.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🧽</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Construcción Sponge (SHA-3): Un Enfoque Moderno</div>
+<p style="margin:0 0 10px 0;">La construcción sponge opera en dos fases:</p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Fase de absorción:</strong> Los datos de entrada se XORan con el estado, luego se aplica una función de permutación f</li><li style="margin:6px 0;"><strong>Fase de squeez:</strong> Se extraen bits del estado como salida, aplicando f entre extracciones si es necesario</li></ol>
+<p style="margin:0 0 10px 0;"><strong>Parámetros clave:</strong> tasa (r) y capacidad (c). Seguridad ≈ c/2 bits. SHA3-256 usa r=1088, c=512 para estado de 1600 bits.</p>
+<p style="margin:0 0 10px 0;"><strong>Ventajas sobre Merkle-Damgård:</strong> Resistente a extensión de longitud, más flexible (puede funcionar como PRF, MAC, KDF), diseño más simple y análisis de seguridad más robusto.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🎲</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Paradoja del Cumpleaños: Implicaciones para Longitud de Hash</div>
+<p style="margin:0 0 10px 0;">La probabilidad de colisión entre n elementos elegidos aleatoriamente de un conjunto de tamaño N es aproximadamente:</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">p(n, N) ≈ 1 - e^{-n²/(2N)}</div>
+<p style="margin:0 0 10px 0;">Para hashes de b bits (N = 2ᵇ), el número de intentos necesarios para encontrar una colisión con probabilidad 50% es:</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">n ≈ 1.1774 × 2^{b/2}</div>
+<p style="margin:0 0 10px 0;"><strong>Consecuencias prácticas:</strong> SHA-256 (b=256) ofrece 128 bits de seguridad contra colisiones, no 256. Para 128 bits de seguridad post-cuántica (contra algoritmo de Grover), necesitamos SHA-512 (256 bits de seguridad clásica).</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🎯 Importancia Práctica Extendida:</p>
+La elección de construcción determina propiedades de seguridad fundamentales. Merkle-Damgård es vulnerable a ataques de extensión pero más rápido. Sponge es más seguro pero puede ser menos eficiente en hardware. HAIFA (BLAKE) ofrece un punto intermedio con resistencia a extensión y buen rendimiento.</div></div>
+SECCIÓN: HMAC vs Firmas Digitales Expandida
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🔐 HMAC vs Firmas Digitales: Análisis Comparativo Profundo</div>
+<div style="overflow:visible;margin:10px 0;"><table style="width:100%;border-collapse:collapse;border:1px solid #dfe7ee;"><thead><tr><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Aspecto</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Hash Simple</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">HMAC</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Firma Digital</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Firma con Tiempo</th></tr></thead><tbody><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Esquema de Claves</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Sin clave</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Clave simétrica compartida</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Par de claves (privada/pública)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Par de claves + servicio de timestamping</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Garantías de Seguridad</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Solo integridad (si el hash es conocido)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Integridad + Autenticidad (origen conocido)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Integridad + Autenticidad + No Repudio</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Integridad + Autenticidad + No Repudio + Temporalidad</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Modelo de Confianza</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Ninguno (cualquiera puede calcular)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Confianza compartida (ambas partes conocen clave)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Infraestructura de clave pública (PKI)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">PKI + Autoridad de tiempo confiable</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Escalabilidad</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Alta (sin gestión de claves)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Media (gestión O(n²) para n partes)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Alta (clave pública compartible)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Alta (similar a firma digital)</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Rendimiento</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Muy alto (solo operaciones hash)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Alto (hash + pocas operaciones)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Bajo (operaciones asimétricas costosas)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Bajo + latencia de timestamping</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Costo Computacional</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">O(n) para mensaje de longitud n</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">O(n) + overhead constante pequeño</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">O(n) + coste criptografía asimétrica</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">O(n) + asimétrica + timestamping</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Casos de Uso Típicos</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Verificación de archivos, deduplicación, checksums, identificadores únicos (Git commits)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">APIs web (JWT, OAuth), comunicación interna microservicios, cookies seguras, autenticación mensajes</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Certificados digitales (TLS/SSL), documentos legales, código firmado, actualizaciones de software</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Patentes, evidencias legales, registros contables, transacciones con validez temporal</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Implementación Ejemplo</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">sha256sum archivo.iso git rev-parse HEAD</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Authorization: Bearer {HMAC-SHA256(token)} X-Hub-Signature: sha1=...</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">gpg --sign documento.pdf Authenticode para .exe</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">RFC 3161 (Time-Stamp Protocol) Documentos notarizados digitalmente</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Vulnerabilidades Comunes</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Colisiones, extensión (si Merkle-Damgård)</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Fuga de clave, ataques de timing, reutilización nonce</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Clave privada comprometida, PKI vulnerada, ataques de cumplimiento</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Autoridad de tiempo comprometida, ataque de pre-firmado</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Algoritmos Estándar</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">SHA-256, SHA-3, BLAKE2/3</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">HMAC-SHA256, HMAC-SHA3, HMAC-BLAKE2</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">RSA-PSS, ECDSA, EdDSA</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">RSA/ECDSA + TSP, X.509 Time-Stamp</td></tr></tbody></table></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">💡 Reglas Prácticas para Selección:</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Usa Hash Simple cuando:</strong> Solo necesitas verificar integridad y no hay adversario activo (ej: checksum de descarga desde fuente confiable).</li><li style="margin:6px 0;"><strong>Usa HMAC cuando:</strong> Ambas partes comparten una clave secreta y necesitas autenticidad + integridad (ej: API interna, comunicación servicio a servicio).</li><li style="margin:6px 0;"><strong>Usa Firma Digital cuando:</strong> Necesitas no repudio, escalabilidad a muchos verificadores, o integración con PKI (ej: software distribuido, contratos electrónicos).</li><li style="margin:6px 0;"><strong>Usa Firma con Tiempo cuando:</strong> La temporalidad es crítica legalmente (ej: patentes, evidencias forenses digitales).</li></ul></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">⚙️ Implementación de HMAC: Profundización Técnica</div>
+<p style="margin:0 0 10px 0;">HMAC se define como:</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">HMAC</p>
+(K, m) = H((K ⊕ opad) || H((K ⊕ ipad) || m))</div>
+<p style="margin:0 0 10px 0;">Donde:</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>K:</strong> Clave secreta (rellenada/truncada a tamaño de bloque)</li><li style="margin:6px 0;"><strong>opad:</strong> Constante externa (0x5c repetido)</li><li style="margin:6px 0;"><strong>ipad:</strong> Constante interna (0x36 repetido)</li><li style="margin:6px 0;"><strong>H:</strong> Función hash subyacente (ej: SHA-256)</li></ul>
+<p style="margin:0 0 10px 0;"><strong>Propiedades de seguridad:</strong></p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Resistencia a extensión:</strong> La aplicación externa de H previene ataques de extensión incluso si H usa Merkle-Damgård.</li><li style="margin:6px 0;"><strong>Independencia de clave:</strong> Las constantes opad/ipad garantizan que las dos aplicaciones de H sean computacionalmente independientes.</li><li style="margin:6px 0;"><strong>Reducción a seguridad de H:</strong> Si H es un PRF, HMAC es también un PRF.</li></ol>
+<p style="margin:0 0 10px 0;"><strong>Implementación en Python:</strong></p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">import</p>
+hashlib
+<p style="margin:0 0 10px 0;">import</p>
+hmac
+<p style="margin:0 0 10px 0;"># Método recomendado (usando librería estándar)</p>
+<p style="margin:0 0 10px 0;">def</p>
+<p style="margin:0 0 10px 0;">generate_hmac</p>
+(key, message):
+<p style="margin:0 0 10px 0;">return</p>
+hmac.
+<p style="margin:0 0 10px 0;">new</p>
+(
+key.
+<p style="margin:0 0 10px 0;">encode</p>
+(),
+message.
+<p style="margin:0 0 10px 0;">encode</p>
+(),
+hashlib.sha256
+).
+<p style="margin:0 0 10px 0;">hexdigest</p>
+()
+<p style="margin:0 0 10px 0;"># Método manual (para comprensión educativa)</p>
+<p style="margin:0 0 10px 0;">def</p>
+<p style="margin:0 0 10px 0;">hmac_sha256_manual</p>
+(key, message):
+block_size =
+<p style="margin:0 0 10px 0;">64</p>
+<p style="margin:0 0 10px 0;"># bytes para SHA-256</p>
+<p style="margin:0 0 10px 0;"># Paso 1: Preparar clave</p>
+<p style="margin:0 0 10px 0;">if</p>
+<p style="margin:0 0 10px 0;">len</p>
+(key) &gt; block_size:
+key = hashlib.
+<p style="margin:0 0 10px 0;">sha256</p>
+(key).
+<p style="margin:0 0 10px 0;">digest</p>
+()
+<p style="margin:0 0 10px 0;">if</p>
+<p style="margin:0 0 10px 0;">len</p>
+(key) &lt; block_size:
+key = key +
+<p style="margin:0 0 10px 0;">b'\x00'</p>
+* (block_size -
+<p style="margin:0 0 10px 0;">len</p>
+(key))
+<p style="margin:0 0 10px 0;"># Paso 2: Calcular inner/outer pads</p>
+opad =
+<p style="margin:0 0 10px 0;">bytes</p>
+([x ^
+<p style="margin:0 0 10px 0;">0x5c</p>
+<p style="margin:0 0 10px 0;">for</p>
+x
+<p style="margin:0 0 10px 0;">in</p>
+key])
+ipad =
+<p style="margin:0 0 10px 0;">bytes</p>
+([x ^
+<p style="margin:0 0 10px 0;">0x36</p>
+<p style="margin:0 0 10px 0;">for</p>
+x
+<p style="margin:0 0 10px 0;">in</p>
+key])
+<p style="margin:0 0 10px 0;"># Paso 3: HMAC = H(opad || H(ipad || message))</p>
+inner_hash = hashlib.
+<p style="margin:0 0 10px 0;">sha256</p>
+(ipad + message).
+<p style="margin:0 0 10px 0;">digest</p>
+()
+<p style="margin:0 0 10px 0;">return</p>
+hashlib.
+<p style="margin:0 0 10px 0;">sha256</p>
+(opad + inner_hash).
+<p style="margin:0 0 10px 0;">hexdigest</p>
+()</div></div></div>
+SECCIÓN: Ataques Comunes Expandida
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">⚠️ Ataques Comunes contra Funciones Hash: Análisis y Mitigaciones</div>
+<p style="margin:0 0 10px 0;">El criptoanálisis de funciones hash es un campo activo de investigación. Comprender estos ataques no solo es esencial para defensores, sino que también ilustra por qué ciertas propiedades son necesarias y cómo los algoritmos evolucionan en respuesta a vulnerabilidades descubiertas.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Ataques de Colisión: Desde Teoría a Práctica</div>
+<p style="margin:0 0 10px 0;"><strong>Objetivo:</strong> Encontrar dos mensajes distintos M₁ ≠ M₂ tales que hash(M₁) = hash(M₂).</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>Técnicas avanzadas:</strong></p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Ataques diferenciales:</strong> Explotan patrones en diferencias entre mensajes que producen diferencias controladas en el hash.</li><li style="margin:6px 0;"><strong>Ataques de cumpleaños:</strong> Aplicación práctica de la paradoja: con 2^(n/2) intentos, probabilidad significativa de colisión.</li><li style="margin:6px 0;"><strong>Chosen-prefix attacks:</strong> Encontrar colisiones donde se puede elegir parte de ambos mensajes.</li></ul>
+<p style="margin:0 0 10px 0;"><strong>Ejemplos históricos:</strong></p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>MD5 (2004):</strong> Wang et al. demostraron colisiones en segundos usando ataques diferenciales.</li><li style="margin:6px 0;"><strong>SHA-1 (2017):</strong> Google SHAttered - primera colisión pública, costo ~$110,000 USD.</li><li style="margin:6px 0;"><strong>SHA-1 chosen-prefix (2020):</strong> Colisión donde ambos mensajes comienzan con contenido elegido.</li></ul>
+<p style="margin:0 0 10px 0;"><strong>Impacto real:</strong> Certificados SSL falsos, documentos PDF con diferente contenido pero mismo hash, compromiso de sistemas de control de versiones.</p>
+<p style="margin:0 0 10px 0;"><strong>Defensas:</strong></p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">Usar algoritmos con suficiente longitud (SHA-256 o superior).</li><li style="margin:6px 0;">Implementar salting para romper ataques precomputados.</li><li style="margin:6px 0;">Usar HMAC en lugar de hash simple cuando haya adversario activo.</li><li style="margin:6px 0;">Monitorear avances en criptoanálisis y planificar migraciones.</li></ol></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Tablas Rainbow y Ataques de Diccionario: Escalando Fuerza Bruta</div>
+<p style="margin:0 0 10px 0;"><strong>Objetivo:</strong> Recuperar contraseñas a partir de hashes utilizando estructuras de datos precomputadas.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>Evolución de técnicas:</strong></p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Tablas simples (1970s):</strong> Hash → contraseña para diccionario común.</li><li style="margin:6px 0;"><strong>Rainbow tables (2003):</strong> Philippe Oechslin - cadena de reducciones para cubrir espacio mayor con menor almacenamiento.</li><li style="margin:6px 0;"><strong>GPUs/ASICs (2010s):</strong> Aceleración masivamente paralela para fuerza bruta.</li><li style="margin:6px 0;"><strong>Bases de datos online:</strong> Crackstation (1.5B entries), HaveIBeenPwned (500M+ hashes).</li></ul>
+<p style="margin:0 0 10px 0;"><strong>Ejemplo concreto - Filtración de LinkedIn (2012):</strong></p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">6.5 millones de hashes SHA-1 sin salt filtrados.</li><li style="margin:6px 0;">90% crackeados en días usando rainbow tables y GPUs.</li><li style="margin:6px 0;">Contraseñas comunes: "link123", "password", "123456", "linkedin".</li></ul>
+<p style="margin:0 0 10px 0;"><strong>Defensas modernas:</strong></p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Salting único:</strong> Cada contraseña tiene salt diferente → imposibilita tablas precomputadas.</li><li style="margin:6px 0;"><strong>Funciones lentas:</strong> Argon2, bcrypt, scrypt - aumentan costo computacional.</li><li style="margin:6px 0;"><strong>Pepper (clave secreta):</strong> Hash adicional con clave secreta del servidor.</li><li style="margin:6px 0;"><strong>Trabajo adaptativo:</strong> Aumentar parámetros de costo con el tiempo.</li><li style="margin:6px 0;"><strong>Verificación de fugas:</strong> APIs como HaveIBeenPwned para detectar contraseñas comprometidas.</li></ol></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Ataques de Extensión de Longitud: Vulnerabilidad de Merkle-Damgård</div>
+<p style="margin:0 0 10px 0;"><strong>Objetivo:</strong> Extender un mensaje cuando se conoce hash(original) y su longitud, en algoritmos con construcción Merkle-Damgård.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>Mecanismo del ataque:</strong></p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">Conocer hash(M) y longitud(M) para mensaje M (posiblemente secreto).</li><li style="margin:6px 0;">Calcular padding P apropiado para M.</li><li style="margin:6px 0;">Para cualquier extensión E, computar hash(M || P || E) sin conocer M.</li><li style="margin:6px 0;">Esto es posible porque el estado interno después de procesar M es exactamente hash(M).</li></ol>
+<p style="margin:0 0 10px 0;"><strong>Implicaciones prácticas:</strong></p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>APIs web:</strong> Si usan hash(secreto || mensaje) en lugar de HMAC, atacante puede agregar parámetros.</li><li style="margin:6px 0;"><strong>Sistemas de archivos:</strong> Extender archivos firmados digitalmente.</li><li style="margin:6px 0;"><strong>Protocolos de red:</strong> Modificar paquetes autenticados.</li></ul>
+<p style="margin:0 0 10px 0;"><strong>Ejemplo - API vulnerable:</strong></p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"># VULNERABLE: hash(secret || message)</p>
+signature =
+<p style="margin:0 0 10px 0;">md5</p>
+(secret +
+<p style="margin:0 0 10px 0;">"user=alice&amp;action=view"</p>
+)
+<p style="margin:0 0 10px 0;"># Atacante conoce length(secret) puede calcular:</p>
+new_sig =
+<p style="margin:0 0 10px 0;">md5</p>
+(secret +
+<p style="margin:0 0 10px 0;">"user=alice&amp;action=view"</p>
++ padding +
+<p style="margin:0 0 10px 0;">"&amp;action=delete"</p>
+)</div>
+<p style="margin:0 0 10px 0;"><strong>Defensas:</strong></p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Usar HMAC:</strong> Diseñado específicamente para resistir extensión.</li><li style="margin:6px 0;"><strong>Algoritmos resistentes:</strong> SHA-3 (sponge) o BLAKE2 no son vulnerables.</li><li style="margin:6px 0;"><strong>Longitud incluida:</strong> SHA-512/256 trunca salida, rompiendo extensión.</li><li style="margin:6px 0;"><strong>Doble hash:</strong> hash(hash(secret || message)) mitiga pero no elimina.</li></ol></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Paradoja del Cumpleaños: Implicaciones Cuantitativas</div>
+<p style="margin:0 0 10px 0;"><strong>Concepto:</strong> En un grupo de 23 personas, probabilidad &gt;50% de que dos compartan cumpleaños. Para hashes de n bits, probabilidad significativa de colisión después de ~2^(n/2) intentos.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>Cálculos específicos:</strong></p>
+<div style="overflow:visible;margin:10px 0;"><table style="width:100%;border-collapse:collapse;border:1px solid #dfe7ee;"><thead><tr><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Algoritmo</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Longitud (bits)</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Seguridad contra colisiones</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Operaciones para colisión (50%)</th></tr></thead><tbody><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">MD5</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">128</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">64 bits</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">2⁶⁴ ≈ 1.8×10¹⁹</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">SHA-1</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">160</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">80 bits</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">2⁸⁰ ≈ 1.2×10²⁴</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">SHA-256</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">256</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">128 bits</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">2¹²⁸ ≈ 3.4×10³⁸</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">SHA-512</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">512</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">256 bits</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">2²⁵⁶ ≈ 1.2×10⁷⁷</td></tr></tbody></table></div>
+<p style="margin:0 0 10px 0;"><strong>Implicación práctica:</strong> La seguridad efectiva contra colisiones es la mitad de la longitud del hash. Por eso NIST recomienda al menos 256 bits para seguridad a largo plazo (128 bits contra colisiones).</p>
+<p style="margin:0 0 10px 0;"><strong>Contramedidas:</strong></p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">Seleccionar longitud adecuada para vida útil esperada del sistema.</li><li style="margin:6px 0;">Considerar seguridad post-cuántica: algoritmo de Grover reduce seguridad a n/2, por lo que SHA-256 ofrece solo 128 bits contra atacante cuántico.</li><li style="margin:6px 0;">Usar truncamiento estratégico: SHA-512/256 ofrece 128 bits de seguridad pero sin vulnerabilidad de extensión.</li></ol></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Ataques de Canal Lateral: Más Allá de la Matemática</div>
+<p style="margin:0 0 10px 0;"><strong>Objetivo:</strong> Extraer información secreta mediante análisis de implementación física, no vulnerabilidades matemáticas.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"><strong>Tipos de ataques:</strong></p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Timing attacks:</strong> Medir tiempo de ejecución para inferir datos (ej: comparación de hashes que sale temprano en diferencia).</li><li style="margin:6px 0;"><strong>Power analysis:</strong> Analizar consumo de energía para deducir operaciones.</li><li style="margin:6px 0;"><strong>Cache attacks:</strong> Explotar patrones de acceso a cache para obtener información.</li><li style="margin:6px 0;"><strong>Electromagnetic emissions:</strong> Capturar radiación electromagnética del dispositivo.</li></ul>
+<p style="margin:0 0 10px 0;"><strong>Ejemplo - Comparación de hashes insegura:</strong></p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"># VULNERABLE a timing attack</p>
+<p style="margin:0 0 10px 0;">def</p>
+<p style="margin:0 0 10px 0;">insecure_compare</p>
+(a, b):
+<p style="margin:0 0 10px 0;">for</p>
+i
+<p style="margin:0 0 10px 0;">in</p>
+<p style="margin:0 0 10px 0;">range</p>
+(
+<p style="margin:0 0 10px 0;">len</p>
+(a)):
+<p style="margin:0 0 10px 0;">if</p>
+a[i] != b[i]:
+<p style="margin:0 0 10px 0;">return</p>
+<p style="margin:0 0 10px 0;">False</p>
+<p style="margin:0 0 10px 0;"># Sale temprano en primer byte diferente</p>
+<p style="margin:0 0 10px 0;">return</p>
+<p style="margin:0 0 10px 0;">True</p>
+<p style="margin:0 0 10px 0;"># SEGURO: comparación tiempo constante</p>
+<p style="margin:0 0 10px 0;">def</p>
+<p style="margin:0 0 10px 0;">constant_time_compare</p>
+(a, b):
+result =
+<p style="margin:0 0 10px 0;">0</p>
+<p style="margin:0 0 10px 0;">for</p>
+x, y
+<p style="margin:0 0 10px 0;">in</p>
+<p style="margin:0 0 10px 0;">zip</p>
+(a, b):
+result |= x ^ y
+<p style="margin:0 0 10px 0;"># OR acumulativo de XOR</p>
+<p style="margin:0 0 10px 0;">return</p>
+result ==
+<p style="margin:0 0 10px 0;">0</p></div>
+<p style="margin:0 0 10px 0;"><strong>Defensas:</strong></p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;">Implementaciones tiempo-constante para operaciones críticas.</li><li style="margin:6px 0;">Randomización de ejecución (insertar delays aleatorios).</li><li style="margin:6px 0;">Shielding físico para dispositivos de alta seguridad.</li><li style="margin:6px 0;">Usar librerías probadas contra canales laterales (libsodium).</li></ol></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">⚠️ Alerta de Seguridad Ampliada:</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>NUNCA uses MD5 o SHA-1 para seguridad.</strong> MD5 tiene colisiones en segundos, SHA-1 en horas/días con recursos adecuados.</li><li style="margin:6px 0;"><strong>SHA-256 podría ser vulnerable a ataques cuánticos</strong> (algoritmo de Grover reduce seguridad a 128 bits). Para seguridad a largo plazo (&gt;2030), considera SHA-384 o SHA-3-512.</li><li style="margin:6px 0;"><strong>HMAC es esencial para autenticación.</strong> Nunca uses hash(secreto||mensaje) o hash(mensaje||secreto).</li><li style="margin:6px 0;"><strong>Los salts deben ser únicos y aleatorios</strong> para contraseñas. Pepper (clave secreta) añade defensa en profundidad.</li><li style="margin:6px 0;"><strong>Monitoriza avances en criptoanálisis.</strong> Lo seguro hoy puede no serlo mañana. Planifica ciclos de actualización de 5-10 años.</li></ul></div></div>
+SECCIÓN: Aplicaciones Avanzadas Expandida
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🌍 Aplicaciones Avanzadas de Funciones Hash: Más Allá de la Integridad Básica</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Blockchain y Criptomonedas</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">SHA-256 en Bitcoin para Proof of Work, Keccak-256 en Ethereum, direcciones como RIPEMD-160(SHA-256(public key)). Hashes garantizan inmutabilidad del ledger, vinculan bloques (hash de bloque anterior), y generan identificadores únicos para transacciones.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Árboles de Merkle</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Estructura de árbol donde cada nodo es hash de sus hijos. Permite verificación eficiente de pertenencia y consistencia en conjuntos grandes. Usado en Git (commits), Bitcoin (transacciones en bloque), sistemas de archivos distribuidos (IPFS, Btrfs), y certificados transparentes (Certificate Transparency).</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Timestamping Criptográfico</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Pruebas verificables de que un documento existía en un momento específico. Hash del documento se incluye en transacción blockchain o se envía a servicio de timestamping (RFC 3161). Aplicaciones en patentes, evidencias legales, registros contables y notarización digital.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Deduplicación y Almacenamiento</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Sistemas como Dropbox, ZFS y sistemas de backup usan hashes para identificar archivos idénticos, almacenando solo una copia. Content-addressable storage (IPFS, Git) usa hash del contenido como identificador, garantizando integridad y permitiendo caching distribuido.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Identificadores Únicos Deterministas</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Git usa SHA-1 para commits (aunque inseguro, suficiente para identificación). Torrents usan SHA-1 para identificar piezas. UUID v5 usa SHA-1 para generar UUIDs a partir de namespace y nombre. IPFS usa multihash para contenido direccionable.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🔒
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Derivación de Claves (KDF)</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">HKDF usa HMAC para derivar múltiples claves criptográficas fuertes de una clave maestra o material de entrada de baja entropía. PBKDF2 usa miles de iteraciones de HMAC para convertir contraseñas en claves. Scrypt y Argon2 son KDFs memory-hard para contraseñas.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Consenso Distribuido</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Proof of Work (Bitcoin) requiere encontrar nonce tal que SHA-256(block header) &lt; target. Proof of Stake (Ethereum 2.0) usa hashes para seleccionar validadores. Raft y Paxos usan hashes para verificar consistencia de logs en sistemas distribuidos.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Filtros de Bloom y Sketching</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Estructuras de datos probabilísticas que usan múltiples funciones hash para test de pertenencia en conjuntos grandes con espacio mínimo. Aplicaciones en bases de datos, routers (para detección de duplicados), y sistemas de recomendación.</div></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🔍 Ejemplo Detallado: Merkle Tree en Bitcoin</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">// Estructura de datos simplificada</p>
+Transacciones en bloque: T1, T2, T3, T4
+<p style="margin:0 0 10px 0;">// Paso 1: Hash de transacciones individuales (hojas)</p>
+H1 = SHA256(SHA256(T1))
+<p style="margin:0 0 10px 0;">// Double-SHA-256</p>
+H2 = SHA256(SHA256(T2))
+H3 = SHA256(SHA256(T3))
+H4 = SHA256(SHA256(T4))
+<p style="margin:0 0 10px 0;">// Paso 2: Construcción del árbol (nivel 1)</p>
+H12 = SHA256(SHA256(H1 + H2))
+H34 = SHA256(SHA256(H3 + H4))
+<p style="margin:0 0 10px 0;">// Paso 3: Raíz Merkle</p>
+Raíz = SHA256(SHA256(H12 + H34))
+<p style="margin:0 0 10px 0;">// Verificación de inclusión (Merkle Proof para T3):</p>
+Dados: T3, H4, H12, Raíz
+1. Calcular H3' = SHA256(SHA256(T3))
+2. Calcular H34' = SHA256(SHA256(H3' + H4))
+3. Calcular Raíz' = SHA256(SHA256(H12 + H34'))
+4. Verificar Raíz' == Raíz (almacenada en header del bloque)
+<p style="margin:0 0 10px 0;">La raíz Merkle en el header del bloque (80 bytes) prueba la integridad de todas las transacciones (~4000 por bloque) sin necesidad de descargarlas todas.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">🧩 Aplicaciones Innovadoras y Emergentes</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Proofs of Storage</div>
+<p style="margin:0 0 10px 0;">Sistemas como Filecoin usan Proofs of Replication (PoRep) y Proofs of Space-Time (PoST) que combinan hashing con cifrado para demostrar que un almacenamiento contiene datos específicos sin transferirlos completamente. Basado en construir Merkle trees sobre datos cifrados.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Votación Electrónica Verificable</div>
+<p style="margin:0 0 10px 0;">Sistemas como Helios usan hashes para garantizar integridad de votos mientras preservan anonimato. Cada voto se hashea y publica en un bulletin board. Votantes pueden verificar que su voto fue incluido correctamente mediante proofs criptográficos basados en hashes.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Cadena de Frío para Medicamentos</div>
+<p style="margin:0 0 10px 0;">Sistemas IoT para monitorear temperatura de vacunas durante transporte. Cada lectura de sensor se hashea y registra en blockchain. Cambios no autorizados en temperatura se detectan como inconsistencias en la cadena de hashes, invalidando el lote.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Certificados de Propiedad NFT</div>
+<p style="margin:0 0 10px 0;">NFTs en Ethereum usan Keccak-256 para identificar activos únicos. La propiedad se prueba mediante firmas digitales, pero la identidad del activo se determina por hash de sus metadatos. Sistemas de royalty usan hashes para verificar autenticidad de obras derivadas.</p></div></div></div></div>
+SECCIÓN: Ejercicios Prácticos Expandidos
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">💻 Ejercicio Práctico 1: Demostración Experimental del Efecto Avalancha</div>
+<p style="margin:0 0 10px 0;"><strong>Objetivo:</strong> Comprobar empíricamente y cuantitativamente que un cambio mínimo en la entrada produce un cambio drástico en la salida, y entender las implicaciones de esta propiedad.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">📊 Contexto Teórico:</p>
+El efecto avalancha es esencial para seguridad porque garantiza que mensajes similares produzcan hashes completamente diferentes, evitando que atacantes puedan inferir relaciones entre entradas basándose en sus hashes.</div>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Preparación de archivos de prueba:</strong>
+<ul>
+<li>Crea <code>texto1.txt</code> con contenido: <code>"Este es un mensaje secreto para proteger con hash."</code></li>
+<li>Crea <code>texto2.txt</code> con: <code>"Este es un mensaje secreto para proteger con hash!"</code> (solo cambia . por !)</li>
+<li>Crea <code>texto3.txt</code> con: <code>"Este es un mensaje secreto para proteger con hash."</code> (idéntico a texto1 pero con espacio extra al final)</li>
+<li>Crea <code>texto4.txt</code> con: <code>"Este es un mensaje secreto para proteger con hash."</code> (mismo contenido pero codificado en UTF-16)</li>
+</ul>
+</li><li style="margin:6px 0;"><strong>Cálculo de hashes:</strong>
+<pre style="background: #263238; color: #e0e0e0; padding: 15px; border-radius: 8px;">
+# Usando OpenSSL (Linux/macOS) o PowerShell (Windows)
+openssl dgst -sha256 texto1.txt
+openssl dgst -sha256 texto2.txt
+openssl dgst -sha256 texto3.txt
+openssl dgst -sha256 texto4.txt
+
+# Alternativa con Python
+python3 -c "import hashlib; data=open('texto1.txt','rb').read(); print(hashlib.sha256(data).hexdigest())"</pre>
+</li><li style="margin:6px 0;"><strong>Análisis cuantitativo:</strong>
+<ul>
+<li>Convierte los hashes hexadecimales a binario</li>
+<li>Calcula distancia de Hamming (bits diferentes) entre cada par de hashes</li>
+<li>Calcula porcentaje de bits diferentes para cada comparación</li>
+<li>Teóricamente, debería ser ~50% para cambios mínimos (efecto avalancha ideal)</li>
+</ul>
+</li><li style="margin:6px 0;"><strong>Implementación en Python para análisis automático:</strong>
+<div style="margin: 15px 0;">
+<span>import</span> hashlib<br/>
+<span>import</span> binascii<br/><br/>
+<span>def</span> <span>hamming_distance</span>(hex1, hex2):<br/>
+                        <span># Calcula distancia de Hamming entre dos strings hexadecimales</span><br/>
+                        bytes1 = binascii.<span>unhexlify</span>(hex1)<br/>
+                        bytes2 = binascii.<span>unhexlify</span>(hex2)<br/>
+                        <span>return</span> <span>sum</span>(<span>bin</span>(b1 ^ b2).<span>count</span>(<span>'1'</span>) <span>for</span> b1, b2 <span>in</span> <span>zip</span>(bytes1, bytes2))<br/><br/>
+<span>def</span> <span>avalanche_effect_test</span>():<br/>
+                        messages = [<br/>
+                            <span>"Este es un mensaje secreto para proteger con hash."</span>,<br/>
+                            <span>"Este es un mensaje secreto para proteger con hash!"</span>,<br/>
+                            <span>"Este es un mensaje secreto para proteger con hash. "</span> <span># espacio extra</span><br/>
+                        ]<br/>
+                        <br/>
+                        hashes = [hashlib.<span>sha256</span>(m.<span>encode</span>()).<span>hexdigest</span>() <span>for</span> m <span>in</span> messages]<br/>
+                        <br/>
+                        <span>print</span>(<span>"Hash de mensaje original:"</span>, hashes[<span>0</span>])<br/>
+                        <span>print</span>(<span>"Hash con punto cambiado por exclamación:"</span>, hashes[<span>1</span>])<br/>
+                        <br/>
+                        dist = <span>hamming_distance</span>(hashes[<span>0</span>], hashes[<span>1</span>])<br/>
+                        total_bits = <span>len</span>(hashes[<span>0</span>]) * <span>4</span> <span># 4 bits por carácter hex</span><br/>
+                        percentage = (dist / total_bits) * <span>100</span><br/>
+                        <br/>
+                        <span>print</span>(<span>f"Bits diferentes: {dist}/{total_bits} ({percentage:.2f}%)"</span>)<br/>
+                        <span>print</span>(<span>f"¿Efecto avalancha? {percentage &gt; 45 and percentage &lt; 55}"</span>)<br/><br/>
+<span>if</span> __name__ == <span>"__main__"</span>:<br/>
+                        <span>avalanche_effect_test</span>()<br/>
+</div>
+</li><li style="margin:6px 0;"><strong>Preguntas de reflexión:</strong>
+<ol type="a">
+<li>¿Qué porcentaje de bits cambió entre texto1 y texto2? ¿Se acerca al 50% esperado?</li>
+<li>¿Cambió más entre texto1 y texto2 o entre texto1 y texto3? ¿Por qué?</li>
+<li>¿Por qué es importante el efecto avalancha para almacenamiento seguro de contraseñas?</li>
+<li>¿Cómo afectaría a la seguridad si cambiar un bit en la entrada cambiara solo unos pocos bits en la salida?</li>
+</ol>
+</li></ol></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">💻 Ejercicio Práctico 2: Implementación y Análisis de HMAC</div>
+<p style="margin:0 0 10px 0;"><strong>Objetivo:</strong> Implementar HMAC manualmente para comprender su construcción interna, analizar sus propiedades de seguridad y comparar con alternativas inseguras.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🔐 Contexto de Seguridad:</p>
+HMAC fue diseñado específicamente para resistir ataques de extensión de longitud a los que son vulnerables construcciones simples como hash(secreto||mensaje) cuando se usa Merkle-Damgård.</div>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Implementación completa de HMAC-SHA256:</strong>
+<div>
+<span>import</span> hashlib<br/>
+<span>import</span> hmac<br/>
+<span>import</span> os<br/><br/>
+<span># 1. Implementación manual para comprensión</span><br/>
+<span>def</span> <span>hmac_sha256_manual</span>(key, message):<br/>
+                        <span>"""Implementación manual de HMAC-SHA256 para fines educativos"""</span><br/>
+                        block_size = <span>64</span> <span># Tamaño de bloque para SHA-256 (bytes)</span><br/>
+                        <br/>
+                        <span># Paso 1: Preparar clave</span><br/>
+                        <span>if</span> <span>len</span>(key) &gt; block_size:<br/>
+                            <span># Si clave es más larga, hashearla primero</span><br/>
+                            key = hashlib.<span>sha256</span>(key).<span>digest</span>()<br/>
+                        <br/>
+                        <span>if</span> <span>len</span>(key) &lt; block_size:<br/>
+                            <span># Rellenar con ceros si es más corta</span><br/>
+                            key = key + <span>b'\x00'</span> * (block_size - <span>len</span>(key))<br/>
+                        <br/>
+                        <span># Paso 2: Crear pads interno y externo</span><br/>
+                        opad = <span>bytes</span>([x ^ <span>0x5c</span> <span>for</span> x <span>in</span> key])  <span># Outer pad</span><br/>
+                        ipad = <span>bytes</span>([x ^ <span>0x36</span> <span>for</span> x <span>in</span> key])  <span># Inner pad</span><br/>
+                        <br/>
+                        <span># Paso 3: Calcular inner hash</span><br/>
+                        inner_hash = hashlib.<span>sha256</span>(ipad + message).<span>digest</span>()<br/>
+                        <br/>
+                        <span># Paso 4: Calcular outer hash</span><br/>
+                        outer_hash = hashlib.<span>sha256</span>(opad + inner_hash)<br/>
+                        <br/>
+                        <span>return</span> outer_hash.<span>hexdigest</span>()<br/><br/>
+<span># 2. Función vulnerable para comparación</span><br/>
+<span>def</span> <span>insecure_hash_secret_message</span>(key, message):<br/>
+                        <span>"""INSECURO: hash(secreto||mensaje) - vulnerable a extensión"""</span><br/>
+                        <span>return</span> hashlib.<span>sha256</span>(key + message).<span>hexdigest</span>()<br/><br/>
+<span># 3. Función para demostrar ataque de extensión</span><br/>
+<span>def</span> <span>demonstrate_length_extension</span>():<br/>
+                        <span>"""Demuestra ataque de extensión en construcción insegura"""</span><br/>
+                        secret_key = <span>b"supersecretkey123"</span><br/>
+                        original_msg = <span>b"user=alice&amp;action=view"</span><br/>
+                        extension = <span>b"&amp;action=delete&amp;admin=true"</span><br/>
+                        <br/>
+                        <span># Atacante conoce solo el hash y longitud del mensaje original</span><br/>
+                        original_hash = insecure_hash_secret_message(secret_key, original_msg)<br/>
+                        original_len = <span>len</span>(original_msg)<br/>
+                        <br/>
+                        <span>print</span>(<span>f"[INFO] Atacante conoce: hash='{original_hash}', len={original_len}"</span>)<br/>
+                        <br/>
+                        <span># Simular ataque de extensión (simplificado para SHA-256)</span><br/>
+                        <span># En realidad requeriría implementar SHA-256 interno</span><br/>
+                        <span>print</span>(<span>"[WARNING] Construcción vulnerable a extensión de longitud!"</span>)<br/>
+                        <span>print</span>(<span>"Atacante podría calcular hash(secret||original||padding||extension)"</span>)<br/>
+                        <span>print</span>(<span>"sin conocer el secreto, si usa algoritmo Merkle-Damgård como SHA-256"</span>)<br/><br/>
+<span>if</span> __name__ == <span>"__main__"</span>:<br/>
+                        <span># Test básico</span><br/>
+                        key = <span>b"mi_clave_secreta"</span><br/>
+                        msg = <span>b"transferir $100 a cuenta 123"</span><br/>
+                        <br/>
+                        <span># Comparar implementaciones</span><br/>
+                        manual_hmac = <span>hmac_sha256_manual</span>(key, msg)<br/>
+                        library_hmac = hmac.<span>new</span>(key, msg, hashlib.sha256).<span>hexdigest</span>()<br/>
+                        <br/>
+                        <span>print</span>(<span>f"HMAC manual:     {manual_hmac}"</span>)<br/>
+                        <span>print</span>(<span>f"HMAC librería:   {library_hmac}"</span>)<br/>
+                        <span>print</span>(<span>f"¿Coinciden? {manual_hmac == library_hmac}"</span>)<br/>
+                        <br/>
+                        <span># Demostrar sensibilidad</span><br/>
+                        msg_modified = <span>b"transferir $100 a cuenta 124"</span> <span># Cambio de 123 a 124</span><br/>
+                        hmac_modified = <span>hmac_sha256_manual</span>(key, msg_modified)<br/>
+                        <span>print</span>(<span>f"\nHMAC con mensaje modificado: {hmac_modified}"</span>)<br/>
+                        <span>print</span>(<span>f"Bits diferentes: ~50% (efecto avalancha)"</span>)<br/>
+                        <br/>
+                        <span># Demostrar vulnerabilidad de construcción alternativa</span><br/>
+                        <span>demonstrate_length_extension</span>()<br/>
+</div>
+</li><li style="margin:6px 0;"><strong>Preguntas de análisis:</strong>
+<ol type="a">
+<li>¿Por qué HMAC aplica la clave dos veces (ipad y opad) en lugar de una?</li>
+<li>¿Qué protege específicamente esta construcción contra ataques de extensión de longitud?</li>
+<li>Si un atacante obtiene el HMAC de un mensaje, ¿puede calcular el HMAC de una extensión de ese mensaje?</li>
+<li>¿Cómo se compara el rendimiento de HMAC con un hash simple?</li>
+<li>¿Por qué es importante usar una implementación de librería en producción en lugar de código propio?</li>
+</ol>
+</li><li style="margin:6px 0;"><strong>Extensión avanzada: Implementar ataque de extensión real:</strong>
+<p>Para SHA-256, implementar el cálculo de estado interno después de procesar el mensaje original, y usar ese estado para continuar procesando la extensión. Comparar con la salida de <code>hash(secreto||original||padding||extension)</code>.</p>
+</li></ol>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">💡 Reflexión Crítica:</p>
+¿Por qué HMAC es considerado seguro incluso si el hash subyacente (como SHA-256) es vulnerable a extensión de longitud? La clave está en que el hash externo adicional rompe la propiedad de extensión, ya que el atacante necesitaría la clave para continuar el cálculo desde el estado interno.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">💻 Ejercicio Práctico 3: Sistema de Verificación de Integridad con Firmas</div>
+<p style="margin:0 0 10px 0;"><strong>Objetivo:</strong> Diseñar e implementar un sistema completo de verificación de integridad para directorios, combinando hashes, HMAC y firmas digitales.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🏗️ Contexto Arquitectónico:</p>
+Sistemas reales como apt (Debian/Ubuntu), yum (RHEL) y sistemas de actualización de software usan esquemas similares para garantizar que paquetes no han sido modificados entre el desarrollador y el usuario final.</div>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Diseño del sistema:</strong>
+<ul>
+<li><strong>Componente 1:</strong> Generador de manifiesto - calcula SHA-256 de todos los archivos en un directorio</li>
+<li><strong>Componente 2:</strong> Firmador - firma el manifiesto con clave privada (simulado o real)</li>
+<li><strong>Componente 3:</strong> Verificador - verifica firma con clave pública y comprueba hashes de archivos</li>
+<li><strong>Componente 4:</strong> Monitor - detecta cambios en tiempo real y alerta</li>
+</ul>
+</li><li style="margin:6px 0;"><strong>Implementación básica:</strong>
+<div>
+<span>import</span> hashlib<br/>
+<span>import</span> os<br/>
+<span>import</span> json<br/>
+<span>from</span> pathlib <span>import</span> Path<br/>
+<span>import</span> hmac<br/>
+<span>import</span> base64<br/><br/>
+<span>class</span> <span>IntegrityVerificationSystem</span>:<br/>
+                        <span>def</span> <span>__init__</span>(<span>self</span>, secret_key=None):<br/>
+                            <span>self</span>.secret_key = secret_key <span>or</span> os.<span>urandom</span>(<span>32</span>)<br/>
+                            <span>self</span>.manifest_file = <span>"integrity_manifest.json"</span><br/>
+                            <span>self</span>.signature_file = <span>"manifest_signature.sig"</span><br/>
+                        <br/>
+                        <span>def</span> <span>calculate_file_hash</span>(<span>self</span>, filepath, algorithm=<span>"sha256"</span>):<br/>
+                            <span>"""Calcula hash de un archivo"""</span><br/>
+                            hash_func = <span>getattr</span>(hashlib, algorithm)()<br/>
+                            <span>with</span> <span>open</span>(filepath, <span>"rb"</span>) <span>as</span> f:<br/>
+                                <span>for</span> chunk <span>in</span> <span>iter</span>(<span>lambda</span>: f.<span>read</span>(<span>4096</span>), <span>b""</span>):<br/>
+                                    hash_func.<span>update</span>(chunk)<br/>
+                            <span>return</span> hash_func.<span>hexdigest</span>()<br/>
+                        <br/>
+                        <span>def</span> <span>generate_manifest</span>(<span>self</span>, directory):<br/>
+                            <span>"""Genera manifiesto con hashes de todos los archivos"""</span><br/>
+                            manifest = {<br/>
+                                <span>"directory"</span>: directory,<br/>
+                                <span>"timestamp"</span>: <span>str</span>(<span>int</span>(os.<span>stat</span>(directory).st_mtime)),<br/>
+                                <span>"files"</span>: {}<br/>
+                            }<br/>
+                            <br/>
+                            <span>for</span> root, _, files <span>in</span> os.<span>walk</span>(directory):<br/>
+                                <span>for</span> filename <span>in</span> files:<br/>
+                                    filepath = os.<span>path</span>.<span>join</span>(root, filename)<br/>
+                                    relative_path = os.<span>path</span>.<span>relpath</span>(filepath, directory)<br/>
+                                    <br/>
+                                    <span># Calcular hash y otros metadatos</span><br/>
+                                    file_hash = <span>self</span>.<span>calculate_file_hash</span>(filepath)<br/>
+                                    file_stat = os.<span>stat</span>(filepath)<br/>
+                                    <br/>
+                                    manifest[<span>"files"</span>][relative_path] = {<br/>
+                                        <span>"hash"</span>: file_hash,<br/>
+                                        <span>"size"</span>: file_stat.st_size,<br/>
+                                        <span>"modified"</span>: file_stat.st_mtime,<br/>
+                                        <span>"algorithm"</span>: <span>"sha256"</span><br/>
+                                    }<br/>
+                            <br/>
+                            <span># Guardar manifiesto</span><br/>
+                            <span>with</span> <span>open</span>(<span>self</span>.manifest_file, <span>"w"</span>) <span>as</span> f:<br/>
+                                json.<span>dump</span>(manifest, f, indent=<span>2</span>)<br/>
+                            <br/>
+                            <span>return</span> manifest<br/>
+                        <br/>
+                        <span>def</span> <span>sign_manifest</span>(<span>self</span>):<br/>
+                            <span>"""Firma el manifiesto con HMAC (simulación de firma digital)"""</span><br/>
+                            <span>with</span> <span>open</span>(<span>self</span>.manifest_file, <span>"rb"</span>) <span>as</span> f:<br/>
+                                manifest_data = f.<span>read</span>()<br/>
+                            <br/>
+                            <span># En sistema real, usaría criptografía asimétrica</span><br/>
+                            <span># Aquí usamos HMAC como ejemplo simplificado</span><br/>
+                            signature = hmac.<span>new</span>(<br/>
+                                <span>self</span>.secret_key,<br/>
+                                manifest_data,<br/>
+                                hashlib.sha256<br/>
+                            ).<span>hexdigest</span>()<br/>
+                            <br/>
+                            <span>with</span> <span>open</span>(<span>self</span>.signature_file, <span>"w"</span>) <span>as</span> f:<br/>
+                                f.<span>write</span>(signature)<br/>
+                            <br/>
+                            <span>return</span> signature<br/>
+                        <br/>
+                        <span>def</span> <span>verify_integrity</span>(<span>self</span>, directory):<br/>
+                            <span>"""Verifica integridad del directorio"""</span><br/>
+                            issues = []<br/>
+                            <br/>
+                            <span># 1. Verificar firma del manifiesto</span><br/>
+                            <span>try</span>:<br/>
+                                <span>with</span> <span>open</span>(<span>self</span>.manifest_file, <span>"rb"</span>) <span>as</span> f:<br/>
+                                    manifest_data = f.<span>read</span>()<br/>
+                                <br/>
+                                <span>with</span> <span>open</span>(<span>self</span>.signature_file, <span>"r"</span>) <span>as</span> f:<br/>
+                                    stored_signature = f.<span>read</span>().<span>strip</span>()<br/>
+                            <br/>
+                                expected_signature = hmac.<span>new</span>(<br/>
+                                    <span>self</span>.secret_key,<br/>
+                                    manifest_data,<br/>
+                                    hashlib.sha256<br/>
+                                ).<span>hexdigest</span>()<br/>
+                            <br/>
+                                <span>if</span> stored_signature != expected_signature:<br/>
+                                    issues.<span>append</span>(<span>"FIRMA_INVALIDA: Manifiesto ha sido modificado"</span>)<br/>
+                                    <span>return</span> <span>False</span>, issues<br/>
+                            <br/>
+                                manifest = json.<span>loads</span>(manifest_data)<br/>
+                            <span>except</span> (FileNotFoundError, json.JSONDecodeError) <span>as</span> e:<br/>
+                                issues.<span>append</span>(<span>f"ERROR_LECTURA: {e}"</span>)<br/>
+                                <span>return</span> <span>False</span>, issues<br/>
+                        <br/>
+                            <span># 2. Verificar cada archivo</span><br/>
+                            <span>for</span> relative_path, file_info <span>in</span> manifest[<span>"files"</span>].<span>items</span>():<br/>
+                                filepath = os.<span>path</span>.<span>join</span>(directory, relative_path)<br/>
+                            <br/>
+                                <span>if</span> <span>not</span> os.<span>path</span>.<span>exists</span>(filepath):<br/>
+                                    issues.<span>append</span>(<span>f"ARCHIVO_ELIMINADO: {relative_path}"</span>)<br/>
+                                    <span>continue</span><br/>
+                            <br/>
+                                current_hash = <span>self</span>.<span>calculate_file_hash</span>(filepath)<br/>
+                                <span>if</span> current_hash != file_info[<span>"hash"</span>]:<br/>
+                                    issues.<span>append</span>(<span>f"ARCHIVO_MODIFICADO: {relative_path}"</span>)<br/>
+                            <br/>
+                            <span># 3. Detectar archivos nuevos no en el manifiesto</span><br/>
+                            manifest_files = <span>set</span>(manifest[<span>"files"</span>].<span>keys</span>())<br/>
+                            current_files = <span>set</span>()<br/>
+                        <br/>
+                            <span>for</span> root, _, files <span>in</span> os.<span>walk</span>(directory):<br/>
+                                <span>for</span> filename <span>in</span> files:<br/>
+                                    filepath = os.<span>path</span>.<span>join</span>(root, filename)<br/>
+                                    relative_path = os.<span>path</span>.<span>relpath</span>(filepath, directory)<br/>
+                                    current_files.<span>add</span>(relative_path)<br/>
+                            <br/>
+                            new_files = current_files - manifest_files<br/>
+                            <span>for</span> new_file <span>in</span> new_files:<br/>
+                                issues.<span>append</span>(<span>f"ARCHIVO_NUEVO: {new_file}"</span>)<br/>
+                        <br/>
+                            <span>return</span> <span>len</span>(issues) == <span>0</span>, issues<br/><br/>
+<span># Uso del sistema</span><br/>
+<span>if</span> __name__ == <span>"__main__"</span>:<br/>
+                        ivs = <span>IntegrityVerificationSystem</span>()<br/>
+                        <br/>
+                        <span># Generar manifiesto y firmarlo</span><br/>
+                        target_dir = <span>"./datos_importantes"</span><br/>
+                        <span>print</span>(<span>"Generando manifiesto..."</span>)<br/>
+                        manifest = ivs.<span>generate_manifest</span>(target_dir)<br/>
+                        <span>print</span>(<span>f"Manifiesto generado con {len(manifest['files'])} archivos"</span>)<br/>
+                        <br/>
+                        <span>print</span>(<span>"Firmando manifiesto..."</span>)<br/>
+                        signature = ivs.<span>sign_manifest</span>()<br/>
+                        <span>print</span>(<span>f"Firma generada: {signature[:16]}..."</span>)<br/>
+                        <br/>
+                        <span># Verificar integridad (debería pasar)</span><br/>
+                        <span>print</span>(<span>"\nVerificando integridad..."</span>)<br/>
+                        is_valid, issues = ivs.<span>verify_integrity</span>(target_dir)<br/>
+                        <span>if</span> is_valid:<br/>
+                            <span>print</span>(<span>"✓ Integridad verificada correctamente"</span>)<br/>
+                        <span>else</span>:<br/>
+                            <span>print</span>(<span>"✗ Problemas de integridad encontrados:"</span>)<br/>
+                            <span>for</span> issue <span>in</span> issues:<br/>
+                                <span>print</span>(<span>f"  - {issue}"</span>)<br/>
+                        <br/>
+                        <span># Simular ataque: modificar manifiesto</span><br/>
+                        <span>print</span>(<span>"\n--- Simulación de ataque ---"</span>)<br/>
+                        <span>with</span> <span>open</span>(ivs.manifest_file, <span>"r+"</span>) <span>as</span> f:<br/>
+                            manifest_data = json.<span>load</span>(f)<br/>
+                            <span># Modificar un hash en el manifiesto</span><br/>
+                            <span>if</span> manifest_data[<span>"files"</span>]:<br/>
+                                first_file = <span>next</span>(<span>iter</span>(manifest_data[<span>"files"</span>].<span>keys</span>()))<br/>
+                                manifest_data[<span>"files"</span>][first_file][<span>"hash"</span>] = <span>"0"</span> * <span>64</span> <span># Hash falso</span><br/>
+                                f.<span>seek</span>(<span>0</span>)<br/>
+                                json.<span>dump</span>(manifest_data, f, indent=<span>2</span>)<br/>
+                                f.<span>truncate</span>()<br/>
+                        <br/>
+                        <span>print</span>(<span>"Manifiesto modificado por atacante"</span>)<br/>
+                        <span>print</span>(<span>"Verificando integridad nuevamente..."</span>)<br/>
+                        is_valid, issues = ivs.<span>verify_integrity</span>(target_dir)<br/>
+                        <span>if</span> <span>not</span> is_valid <span>and</span> <span>"FIRMA_INVALIDA"</span> <span>in</span> <span>str</span>(issues):<br/>
+                            <span>print</span>(<span>"✓ Sistema detectó manipulación del manifiesto!"</span>)<br/>
+</div>
+</li><li style="margin:6px 0;"><strong>Mejoras y extensiones sugeridas:</strong>
+<ol type="a">
+<li>Implementar firma digital real con RSA o ECDSA usando la librería <code>cryptography</code></li>
+<li>Añadir soporte para múltiples algoritmos hash (SHA-256, SHA-3, BLAKE2)</li>
+<li>Implementar verificación incremental (solo archivos modificados desde última verificación)</li>
+<li>Añadir logging detallado y alertas por email/API cuando se detecten cambios</li>
+<li>Implementar sistema de whitelist para archivos que pueden cambiar (logs, caché)</li>
+<li>Crear interfaz web o CLI para gestión del sistema</li>
+</ol>
+</li><li style="margin:6px 0;"><strong>Preguntas de diseño:</strong>
+<ol type="a">
+<li>¿Por qué es importante firmar el manifiesto en lugar de solo calcular hashes?</li>
+<li>¿Cómo manejarías archivos que cambian legítimamente (como logs)?</li>
+<li>¿Qué ventajas tendría usar un árbol de Merkle en lugar de una lista plana?</li>
+<li>¿Cómo escalaría este sistema para directorios con millones de archivos?</li>
+<li>¿Qué medidas adicionales protegerían contra ataques de replay (usar manifiesto antiguo)?</li>
+</ol>
+</li></ol></div>
+SECCIÓN: Checklist de Dominio Expandida
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">✅ Checklist de Dominio Extendido (Evaluación de Competencia)</div>
+<p style="margin:0 0 10px 0;">Al completar este tema, debes poder demostrar competencia en las siguientes áreas. Marca cada ítem cuando puedas realizarlo sin consultar materiales.</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">1</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Propiedades Fundamentales Avanzadas</div>
+<p style="margin:0 0 10px 0;">Puedo explicar matemáticamente las 6 propiedades de un hash criptográfico, demostrar sus relaciones jerárquicas (colisiones ⇒ 2ª preimagen ⇒ preimagen), proporcionar ejemplos concretos de violaciones de cada propiedad, y explicar por qué la resistencia a colisiones es la propiedad más difícil de garantizar en la práctica.</p>
+<p style="margin:0 0 10px 0;"><strong>Evidencia requerida:</strong> Explicación oral/written de por qué un ataque de colisiones compromete todas las propiedades pero un ataque de preimagen no necesariamente compromete resistencia a colisiones.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Selección de Algoritmos y Evaluación de Seguridad</div>
+<p style="margin:0 0 10px 0;">Sé seleccionar algoritmos apropiados para cada contexto: SHA-256 para integridad general, Argon2 para contraseñas, HMAC-SHA256 para APIs, BLAKE3 para máximo rendimiento. Puedo justificar mis elecciones basándome en longitud de hash, resistencia post-cuántica, rendimiento y compatibilidad. Evito completamente MD5/SHA-1 en contextos de seguridad.</p>
+<p style="margin:0 0 10px 0;"><strong>Evidencia requerida:</strong> Matriz de decisión para 5 escenarios diferentes (contraseñas, blockchain, API REST, checksums de archivos, sistemas embebidos) con justificación para cada elección.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">3</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">HMAC vs Firmas Digitales: Diseño Arquitectónico</div>
+<p style="margin:0 0 10px 0;">Puedo explicar las diferencias arquitectónicas entre HMAC y firmas digitales, diseñar sistemas que usen cada uno apropiadamente, implementar HMAC correctamente (incluyendo manejo de claves), y seleccionar entre ambos basándome en requisitos de escalabilidad, rendimiento, no repudio y modelo de confianza.</p>
+<p style="margin:0 0 10px 0;"><strong>Evidencia requerida:</strong> Diseño de dos sistemas: uno cliente-servidor con HMAC y otro de distribución de software con firmas digitales, explicando por qué cada esquema es apropiado.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">4</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Ataques y Defensas: Análisis Profundo</div>
+<p style="margin:0 0 10px 0;">Reconozco y puedo explicar 10+ ataques contra funciones hash (colisiones, rainbow tables, extensión de longitud, side-channel, birthday, length-extension, etc.). Sé implementar defensas apropiadas para cada ataque y puedo evaluar la seguridad de implementaciones existentes identificando vulnerabilidades comunes.</p>
+<p style="margin:0 0 10px 0;"><strong>Evidencia requerida:</strong> Análisis de seguridad de un fragmento de código que usa hashing, identificando al menos 3 vulnerabilidades y proponiendo correcciones.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">5</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Aplicaciones Avanzadas y Sistemas Complejos</div>
+<p style="margin:0 0 10px 0;">Puedo explicar y diseñar sistemas que usen hashes en aplicaciones avanzadas: Merkle Trees para bases de datos inmutables, Proof of Work/Stake para consenso, timestamping criptográfico, deduplicación a escala, y estructuras de datos probabilísticas. Comprendo el papel fundamental de SHA-256 en Bitcoin y Keccak en Ethereum.</p>
+<p style="margin:0 0 10px 0;"><strong>Evidencia requerida:</strong> Diseño de un sistema de timestamping usando blockchain o servicio centralizado, explicando cómo los hashes garantizan integridad temporal.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">6</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Implementación Práctica y Código Seguro</div>
+<p style="margin:0 0 10px 0;">Puedo implementar funciones hash, HMAC y verificación de firmas en al menos dos lenguajes de programación, usando librerías estándar apropiadamente. Escribo código resistente a timing attacks, uso salts únicos para contraseñas, y sigo mejores prácticas para gestión de claves. Nunca implemento mi propia criptografía desde cero.</p>
+<p style="margin:0 0 10px 0;"><strong>Evidencia requerida:</strong> Repositorio de código con implementaciones seguras en Python y otro lenguaje, incluyendo tests unitarios y documentación de decisiones de seguridad.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">7</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">Evaluación Post-Cuántica y Futuro</div>
+<p style="margin:0 0 10px 0;">Comprendo las implicaciones de la computación cuántica para funciones hash (algoritmo de Grover), puedo evaluar la seguridad post-cuántica de algoritmos actuales, y sé recomendar algoritmos y longitudes apropiadas para seguridad a largo plazo (más allá de 2030).</p>
+<p style="margin:0 0 10px 0;"><strong>Evidencia requerida:</strong> Análisis de seguridad post-cuántica para SHA-256, SHA-512 y SHA-3, con recomendaciones para sistemas que deban mantenerse seguros por 20+ años.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🏆 Meta Final Extendida:</p>
+Al completar este tema, debes ser capaz de diseñar, implementar y auditar sistemas de integridad para aplicaciones reales en producción. Debes poder tomar decisiones informadas sobre algoritmos, implementar soluciones seguras, defenderte de ataques conocidos, y planificar para amenazas futuras. La integridad no es una característica opcional sino la base de la confianza en todos los sistemas digitales modernos.</div></div>
+SECCIÓN: Herramientas y Recursos Expandidos
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🔧 Herramientas Profesionales para Implementación y Análisis</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">OpenSSL CLI</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;border:1px solid #dfe7ee;border-radius:10px;background:#fbfdff;padding:12px;overflow:auto;font-family:Courier New,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;">openssl dgst -sha256 archivo</div>
+,
+<div style="margin:12px 0;border:1px solid #dfe7ee;border-radius:10px;background:#fbfdff;padding:12px;overflow:auto;font-family:Courier New,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;">openssl dgst -hmac "clave" -sha256 archivo</div>
+,
+<div style="margin:12px 0;border:1px solid #dfe7ee;border-radius:10px;background:#fbfdff;padding:12px;overflow:auto;font-family:Courier New,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;">openssl rand -hex 32</div>
+para salts,
+<div style="margin:12px 0;border:1px solid #dfe7ee;border-radius:10px;background:#fbfdff;padding:12px;overflow:auto;font-family:Courier New,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;">openssl genrsa</div>
+para claves. Suite completa para operaciones criptográficas desde línea de comandos.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Python Cryptography</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;border:1px solid #dfe7ee;border-radius:10px;background:#fbfdff;padding:12px;overflow:auto;font-family:Courier New,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;">hashlib.sha256()</div>
+,
+<div style="margin:12px 0;border:1px solid #dfe7ee;border-radius:10px;background:#fbfdff;padding:12px;overflow:auto;font-family:Courier New,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;">hmac.new()</div>
+,
+<div style="margin:12px 0;border:1px solid #dfe7ee;border-radius:10px;background:#fbfdff;padding:12px;overflow:auto;font-family:Courier New,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;">cryptography.hazmat</div>
+para operaciones avanzadas,
+<div style="margin:12px 0;border:1px solid #dfe7ee;border-radius:10px;background:#fbfdff;padding:12px;overflow:auto;font-family:Courier New,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;">passlib</div>
+para contraseñas (Argon2, bcrypt),
+<div style="margin:12px 0;border:1px solid #dfe7ee;border-radius:10px;background:#fbfdff;padding:12px;overflow:auto;font-family:Courier New,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;">secrets</div>
+para randomness seguro. Librería estándar y de terceros para implementaciones robustas.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Hashcat &amp; John the Ripper</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Herramientas profesionales para probar resistencia de hashes de contraseñas. Hashcat soporta 300+ algoritmos, optimizado para GPU. John incluye múltiples modos de ataque.
+<p style="margin:0 0 10px 0;">Solo usar en entornos controlados y con autorización.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🛡️
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Libsodium (NaCl)</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Librería criptográfica moderna y fácil de usar. Incluye Argon2, BLAKE2, generación segura de números aleatorios, y primitivas de alto nivel. Bindings para múltiples lenguajes. Diseñada para evitar errores comunes.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">🕸️
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Wireshark con Dissectores</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Analizar tráfico de red que usa HMAC o firmas digitales. Dissectores para TLS, SSH, IPsec. Permite ver implementaciones reales de protocolos que usan hashing para autenticación e integridad.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">💻
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Online Tools (Solo Desarrollo)</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Cryptii.com para conversiones y pruebas, CyberChef de GCHQ para operaciones criptográficas, MD5Hashing.net para pruebas rápidas.
+<p style="margin:0 0 10px 0;">Nunca usar para datos reales o sensibles.</p>
+Solo para aprendizaje y debugging.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Hardware Security Modules (HSM)</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Dispositivos físicos para gestión segura de claves. AWS CloudHSM, Google Cloud HSM, Azure Key Vault. Para entornos de producción de alta seguridad donde las claves no deben exponerse en memoria del servidor.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Benchmarking Tools</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;border:1px solid #dfe7ee;border-radius:10px;background:#fbfdff;padding:12px;overflow:auto;font-family:Courier New,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;">cryptography</div>
+benchmarks,
+<div style="margin:12px 0;border:1px solid #dfe7ee;border-radius:10px;background:#fbfdff;padding:12px;overflow:auto;font-family:Courier New,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;">openssl speed</div>
+, scripts personalizados para medir rendimiento de algoritmos en diferentes hardware. Esencial para seleccionar algoritmos basándose en métricas cuantitativas.</div></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">📚 Recursos Adicionales para Estudio Profundo</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">📖 Libros Especializados</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>"Handbook of Applied Cryptography"</strong> - Menezes et al. (Referencia técnica exhaustiva)</li><li style="margin:6px 0;"><strong>"The Hash Function Lounge"</strong> - Compilación de investigación actual</li><li style="margin:6px 0;"><strong>"Cryptographic Engineering"</strong> - Koc (Implementación segura)</li><li style="margin:6px 0;"><strong>"Serious Cryptography"</strong> - Aumasson (Enfoque práctico moderno)</li></ul></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🎥 Videos y Cursos</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>"How SHA-256 Works"</strong> - Computerphile (YouTube)</li><li style="margin:6px 0;"><strong>"Cryptography I"</strong> - Stanford (Coursera, Dan Boneh)</li><li style="margin:6px 0;"><strong>"HMAC and the Birthday Attack"</strong> - Khan Academy</li><li style="margin:6px 0;"><strong>"Merkle Trees and Blockchain"</strong> - 3Blue1Brown</li></ul></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🌐 Recursos en Línea</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>NIST FIPS 180-4</strong> - Estándar SHA oficial</li><li style="margin:6px 0;"><strong>NIST FIPS 202</strong> - Estándar SHA-3</li><li style="margin:6px 0;"><strong>RFC 2104</strong> - HMAC especificación</li><li style="margin:6px 0;"><strong>Cryptopals Challenges</strong> - Ejercicios prácticos</li><li style="margin:6px 0;"><strong>HaveIBeenPwned API</strong> - Para verificar contraseñas comprometidas</li></ul></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🔬 Investigación Actual</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>NIST Post-Quantum Cryptography</strong> - Proyecto actual</li><li style="margin:6px 0;"><strong>SHA-3 Competition Papers</strong> - Análisis de finalistas</li><li style="margin:6px 0;"><strong>IACR Cryptology ePrint Archive</strong> - Papers de investigación</li><li style="margin:6px 0;"><strong>Real World Crypto Conference</strong> - Presentaciones anuales</li></ul></div></div></div></div>
+SECCIÓN: Evaluación Expandida
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">📊 Evaluación Integral del Tema 1.3</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Tarea Práctica Integral</div>
+<p style="margin:0 0 10px 0;"><strong>Diseño e Implementación de Sistema de Integridad Empresarial:</strong></p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Fase 1 - Análisis de Requisitos:</strong> Identificar 3 casos de uso reales (ej: actualizaciones de software, documentos legales, logs de auditoría) con diferentes requisitos de seguridad.</li><li style="margin:6px 0;"><strong>Fase 2 - Diseño Arquitectónico:</strong> Diseñar arquitectura que combine hashes, HMAC y firmas digitales apropiadamente para cada caso.</li><li style="margin:6px 0;"><strong>Fase 3 - Implementación:</strong> Implementar en Python o Java:
+                        <ul>
+<li>Generación y verificación de hashes SHA-256 y SHA-3</li>
+<li>HMAC con rotación de claves</li>
+<li>Firmas digitales con ECDSA</li>
+<li>Sistema de timestamping con blockchain simulado</li>
+</ul>
+</li><li style="margin:6px 0;"><strong>Fase 4 - Pruebas de Seguridad:</strong>
+<ul>
+<li>Tests unitarios para verificar propiedades criptográficas</li>
+<li>Pruebas de resistencia a ataques conocidos</li>
+<li>Benchmark de rendimiento</li>
+<li>Análisis de canales laterales (timing attacks)</li>
+</ul>
+</li><li style="margin:6px 0;"><strong>Fase 5 - Documentación:</strong> Documentar decisiones de diseño, análisis de seguridad y procedimientos operativos.</li></ol></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Preguntas de Evaluación Integral</div>
+<p style="margin:0 0 10px 0;"><strong>Debes poder responder con profundidad:</strong></p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Fundamentos:</strong> ¿Por qué SHA-256 es considerado seguro para integridad pero no apropiado para almacenamiento de contraseñas directamente? Explica las propiedades faltantes y alternativas apropiadas.</li><li style="margin:6px 0;"><strong>Diseño:</strong> ¿Qué ventaja tiene HMAC sobre hash(mensaje || clave) o hash(clave || mensaje)? Explica con detalle técnico incluyendo resistencia a ataques de extensión.</li><li style="margin:6px 0;"><strong>Seguridad:</strong> ¿Cómo protege un salt único contra rainbow tables y por qué no es suficiente para contraseñas? Explica la diferencia entre salt, pepper y funciones de key stretching.</li><li style="margin:6px 0;"><strong>Aplicaciones:</strong> ¿Por qué Git puede usar SHA-1 aunque está roto para seguridad criptográfica? ¿Qué propiedades de SHA-1 son suficientes para Git y cuáles no son necesarias?</li><li style="margin:6px 0;"><strong>Matemáticas:</strong> Explica la paradoja del cumpleaños y sus implicaciones para longitud de hash. Calcula la seguridad efectiva contra colisiones de SHA-512 y SHA-3-512.</li><li style="margin:6px 0;"><strong>Post-cuántica:</strong> ¿Cómo afecta el algoritmo de Grover a la seguridad de SHA-256? ¿Qué longitud mínima de hash recomendarías para sistemas que deben mantenerse seguros hasta 2050?</li><li style="margin:6px 0;"><strong>Implementación:</strong> Identifica al menos 5 vulnerabilidades comunes en implementaciones de funciones hash y explica cómo mitigarlas.</li><li style="margin:6px 0;"><strong>Escalabilidad:</strong> Diseña un sistema de verificación de integridad para un repositorio con 10 millones de archivos. ¿Usarías lista plana o árbol de Merkle? Justifica.</li></ol></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🏆 Meta Final Integral:</p>
+Al completar este tema exhaustivo, debes transformarte de un usuario de funciones hash a un diseñador de sistemas de integridad. Debes poder tomar decisiones arquitectónicas informadas, implementar soluciones seguras y escalables, auditar sistemas existentes, y anticipar evoluciones futuras en criptografía. La integridad es la base sobre la que se construye la confianza digital, y dominar estos conceptos es esencial para cualquier profesional de seguridad, desarrollo o arquitectura de sistemas.</div></div>
+SECCIÓN: Temas Avanzados y Futuro
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">🚀 Temas Avanzados y Futuro de las Funciones Hash</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Criptografía Post-Cuántica y Hashes</div>
+<p style="margin:0 0 10px 0;"><strong>Algoritmo de Grover:</strong> Reduce la seguridad de funciones hash de n bits a n/2 bits. SHA-256 ofrece 128 bits de seguridad post-cuántica, SHA-512 ofrece 256 bits. Para seguridad a largo plazo contra computación cuántica, se recomiendan hashes de al menos 256 bits de seguridad post-cuántica (SHA-512 o SHA-3-512).</p>
+<p style="margin:0 0 10px 0;"><strong>Hash-based signatures:</strong> Esquemas como XMSS y SPHINCS+ usan árboles de Merkle de hashes para firmas digitales resistentes a cuánticos. Son más lentos y producen firmas más grandes que ECDSA/RSA pero ofrecen seguridad post-cuántica comprobada.</p>
+<p style="margin:0 0 10px 0;"><strong>Recomendaciones NIST:</strong> Para nueva implementaciones que deban mantenerse seguras más allá de 2030, usar SHA-384 o SHA-512 como mínimo.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Optimizaciones de Hardware y Nuevos Algoritmos</div>
+<p style="margin:0 0 10px 0;"><strong>SHA-NI Extensiones:</strong> Intel SHA Extensions (desde Ice Lake) aceleran SHA-256 hasta 10x. Similar a cómo AES-NI aceleró AES. Importante considerar para aplicaciones de alto rendimiento.</p>
+<p style="margin:0 0 10px 0;"><strong>BLAKE3 y Paralelismo:</strong> BLAKE3 está diseñado para paralelismo extremo, aprovechando múltiples núcleos CPU y pipeline profundo. Hasta 10x más rápido que SHA-256 en CPUs modernas.</p>
+<p style="margin:0 0 10px 0;"><strong>Argon2 y Memory-hardness:</strong> Diseñado específicamente para ser costoso en memoria, dificultando ataques con ASICs/GPUs. Parámetros ajustables para balance entre seguridad y rendimiento.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:14px;line-height:1.25;">• Aplicaciones Emergentes y Tendencias</div>
+<p style="margin:0 0 10px 0;"><strong>Zero-Knowledge Proofs:</strong> Sistemas como zk-SNARKs y zk-STARKs usan funciones hash para compromisos y desafíos. Hashes eficientes son críticos para rendimiento de estos sistemas.</p>
+<p style="margin:0 0 10px 0;"><strong>Blockchain Beyond Bitcoin:</strong> Ethereum usa Keccak-256, otras blockchains experimentan con BLAKE2/3. Tendencias hacia algoritmos más eficientes energéticamente.</p>
+<p style="margin:0 0 10px 0;"><strong>Internet of Things (IoT):</strong> Algoritmos optimizados para recursos limitados. Compromiso entre seguridad, tamaño de código y consumo energético.</p>
+<p style="margin:0 0 10px 0;"><strong>Homomorphic Hashing:</strong> Investigación en hashes que permiten operaciones sobre datos hasheados. Aplicaciones en privacidad-preserving analytics.</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🔮 Visión Futura:</p>
+Las funciones hash continuarán evolucionando para enfrentar nuevos desafíos: resistencia cuántica, eficiencia energética, paralelismo masivo y nuevas aplicaciones en privacidad y descentralización. La comprensión profunda de los principios fundamentales te preparará para adaptarte a estos cambios y tomar decisiones informadas en el futuro.</div></div>
+</div>
+<div style="padding:14px 18px;border-top:1px solid #e6ebef;color:#6a7882;font-size:12px;">
+<div style="margin:0;">Optimizado para Q10: sin scripts, sin estilos externos y sin dependencias bloqueables.</div>
+</div>
+</div>
+</body>
+</html>

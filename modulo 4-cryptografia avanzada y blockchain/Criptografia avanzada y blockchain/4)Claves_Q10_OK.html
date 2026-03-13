@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tema 2.2: Gestión de Claves y Secretos</title>
+</head>
+<body style="margin:0;padding:18px;background:#f4f6f8;color:#24323a;font-family:Arial,Helvetica,sans-serif;line-height:1.55;">
+<div style="max-width:1000px;margin:0 auto;background:#ffffff;border:1px solid #e6ebef;border-radius:10px;overflow:visible;">
+<div style="padding:18px 18px 0 18px;text-align:right;">
+<img alt="Logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1" style="max-width:160px;height:auto;border:0;display:inline-block;"/>
+</div>
+<div style="padding:0 18px 18px 18px;border-bottom:4px solid #0d47a1;">
+<div style="padding:10px 0 0 0;">
+<div style="display:inline-block;background:#0d47a1;color:#fff;padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:.2px;">
+          Q10 • Contenido compatible
+        </div>
+</div>
+<h1 style="margin:10px 0 6px 0;color:#0d47a1;font-size:26px;line-height:1.2;">Tema 2.2: Gestión de Claves y Secretos</h1>
+<div style="margin:0;color:#54626b;font-size:14px;">Tema 2.2 • Gestión de claves y secretos — versión Q10-safe</div>
+</div>
+<div style="padding:18px;">
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:26px;line-height:1.25;">Tema 2.2: Gestión de Claves y Secretos</div>
+<p style="margin:0 0 10px 0;">El secreto de la seguridad está en proteger los secretos</p></div>
+<p style="margin:0 0 10px 0;">
+        La criptografía transforma el problema de proteger datos en el problema de proteger claves. <strong>Si un atacante obtiene tu clave, todo el cifrado es inútil.</strong> La gestión adecuada de claves es lo que separa sistemas seguros de aquellos que solo parecen seguros.
+    </p>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">• Ciclo de Vida Completo de una Clave</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">1</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🔑 Generación Segura</p>
+<p style="margin:0 0 10px 0;">Debe hacerse con CSPRNG (Cryptographically Secure Pseudo-Random Number Generator). <strong>Nunca</strong> usar rand(), random() o funciones no criptográficas. Longitudes mínimas: AES-128 bits, RSA-2048 bits, ECC-256 bits.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🗄️ Almacenamiento Seguro</p>
+<p style="margin:0 0 10px 0;"><strong>NUNCA en código fuente, nunca en repositorios.</strong> Usar variables de entorno, sistemas de gestión de secretos (KMS), o HSMs. Las claves deben estar cifradas en reposo y accesibles solo por aplicaciones autorizadas.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">3</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">• Rotación Periódica</p>
+<p style="margin:0 0 10px 0;">Cambiar claves regularmente limita el daño si una es comprometida. Frecuencias típicas: claves de sesión (diarias), claves de aplicación (30-90 días), claves maestras (1-2 años). Implementar sin interrupción del servicio.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">4</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">• Revocación y Destrucción</p>
+<p style="margin:0 0 10px 0;">Borrado seguro cuando la clave ya no es necesaria, ha expirado o ha sido comprometida. No solo eliminación lógica; sobrescribir almacenamiento físico. Mantener registro de claves destruidas para auditoría.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">5</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">📋 Auditoría y Monitoreo</p>
+<p style="margin:0 0 10px 0;">Registrar todo acceso a claves: quién, cuándo, para qué. Alertar sobre accesos inusuales o fuera de horario. Revisar periódicamente permisos y eliminar accesos innecesarios.</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">6</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">• Políticas y Gobernanza</p>
+<p style="margin:0 0 10px 0;">Documentar políticas claras: quién puede generar claves, rotación obligatoria, procedimientos de recuperación. Separación de responsabilidades: diferentes personas para generación, almacenamiento y uso.</p></div></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🛡️ Herramientas de Gestión de Secretos (KMS):</p>
+<p style="margin:0 0 10px 0;">Usa servicios profesionales para manejar tus secretos. Estas herramientas proveen:</p>
+<ul style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Cifrado automático</strong> en reposo y en tránsito</li><li style="margin:6px 0;"><strong>Control de acceso</strong> granular (IAM, RBAC)</li><li style="margin:6px 0;"><strong>Rotación automática</strong> de claves</li><li style="margin:6px 0;"><strong>Auditoría completa</strong> de todos los accesos</li><li style="margin:6px 0;"><strong>HSM integrado</strong> para máxima seguridad</li></ul>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">⚠️
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">¡NUNCA subas secretos a GitHub/GitLab!</p>
+Usa .gitignore para archivos con claves y sistemas de secretos para entornos de producción.</div></div></div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">• Sistemas KMS Recomendados</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">AWS Key Management Service</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Integración nativa con servicios AWS. Soporte para CMKs (Customer Master Keys), envelope encryption, y rotación automática. Costo: ~$1/mes por clave.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Azure Key Vault</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Soporte para claves, secretos y certificados. Integración con Azure Active Directory. Políticas de acceso granular y logging detallado.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">HashiCorp Vault</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Open-source y self-hosted. Dinámico secret generation, lease management, y políticas flexibles. Ideal para entornos híbridos o on-premise.</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">Google Cloud KMS</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">HSM como servicio, importación de claves externas. Integración con Cloud IAM y Cloud Audit Logs. Soporte para múltiples algoritmos.</div></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🔑 KMS en una frase:</p>
+Es un sistema para
+<p style="margin:0 0 10px 0;">generar</p>
+,
+<p style="margin:0 0 10px 0;">guardar</p>
+,
+<p style="margin:0 0 10px 0;">controlar acceso</p>
+,
+<p style="margin:0 0 10px 0;">rotar</p>
+y
+<p style="margin:0 0 10px 0;">auditar</p>
+llaves, sin exponerlas directamente a tus aplicaciones.
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">Principio de mínimo privilegio:</p>
+Tu aplicación
+<p style="margin:0 0 10px 0;">no debería</p>
+ver la "llave maestra"; debería pedirle al KMS que cifre/descifre o que entregue una llave derivada temporal con permisos limitados.</div></div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">• Modelo Práctico: Envelope Encryption</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">El patrón más usado en entornos cloud para balancear seguridad y rendimiento:</p>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">1. Data Key (DEK)
+<p style="margin:0 0 10px 0;">Generada localmente</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">→</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">2. Cifrar Datos
+<p style="margin:0 0 10px 0;">Con DEK (rápido)</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">→</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">3. Cifrar DEK
+<p style="margin:0 0 10px 0;">Con KEK del KMS</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">→</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">4. Almacenar
+<p style="margin:0 0 10px 0;">Datos cifrados + DEK cifrada</p></div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"># Ejemplo simplificado de Envelope Encryption</p>
+<p style="margin:0 0 10px 0;">import</p>
+os
+<p style="margin:0 0 10px 0;">from</p>
+cryptography.hazmat.primitives.ciphers.aead
+<p style="margin:0 0 10px 0;">import</p>
+AESGCM
+<p style="margin:0 0 10px 0;"># 1. Generar Data Encryption Key (DEK)</p>
+dek = os.urandom(32)
+<p style="margin:0 0 10px 0;"># AES-256 key</p>
+<p style="margin:0 0 10px 0;"># 2. Cifrar datos con DEK (local, rápido)</p>
+aesgcm = AESGCM(dek)
+nonce = os.urandom(12)
+ciphertext = aesgcm.encrypt(nonce, plaintext,
+<p style="margin:0 0 10px 0;">None</p>
+)
+<p style="margin:0 0 10px 0;"># 3. Cifrar DEK con KEK del KMS (servicio externo)</p>
+<p style="margin:0 0 10px 0;"># En la práctica, usarías: aws_kms.encrypt(KeyId=key_id, Plaintext=dek)</p>
+encrypted_dek = kms_client.encrypt(KeyId=
+<p style="margin:0 0 10px 0;">"alias/my-key"</p>
+, Plaintext=dek)
+<p style="margin:0 0 10px 0;"># 4. Almacenar: ciphertext + encrypted_dek + nonce</p>
+<p style="margin:0 0 10px 0;"># La KEK nunca sale del KMS</p></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">💡 Ventaja principal:</p>
+Si necesitas rotar la KEK (Key Encryption Key),
+<p style="margin:0 0 10px 0;">no necesitas recifrar todos los datos</p>
+(que podrían ser terabytes). Solo recifras las DEKs (pequeñas). Esto hace viable la rotación regular de claves.</div></div>
+<div style="margin:18px 0 10px 0;color:#0d47a1;font-weight:800;font-size:16px;line-height:1.25;">⚠️ Riesgos Comunes y Mitigaciones</div>
+<div style="overflow:visible;margin:10px 0;"><table style="width:100%;border-collapse:collapse;border:1px solid #dfe7ee;"><thead><tr><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Riesgo</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Consecuencia</th><th style="text-align:left;padding:10px;border:1px solid #dfe7ee;background:#0d47a1;color:#fff;font-size:13px;">Mitigación</th></tr></thead><tbody><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Claves en código fuente</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Exposión en repositorios públicos, historial de Git</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Usar variables de entorno, secret managers, git-crypt para archivos .env</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Acceso excesivo</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Ampliación de impacto si una app es comprometida</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Principio de mínimo privilegio, separación de roles, acceso temporal</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Sin rotación</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Claves comprometidas permanecen activas indefinidamente</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Política obligatoria de rotación (30-90 días), automatización</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Backups sin cifrar</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Exposición de datos si se pierde el medio de backup</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Cifrar en reposo, control de acceso al backup, verificar integridad</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Claves compartidas</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Sin accountability, difícil revocación individual</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Claves únicas por servicio/usuario, identidad de servicio</td></tr><tr><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Logs que exponen secretos</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Información sensible en logs accesibles</td><td style="vertical-align:top;padding:10px;border:1px solid #dfe7ee;font-size:13px;color:#2b3a42;">Filtrar secretos en logs, usar placeholders, nivel de log adecuado</td></tr></tbody></table></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">•
+Política de Gestión de Claves (Modelo)</div>
+<p style="margin:0 0 10px 0;"><strong>Una política efectiva debe incluir estos 6 puntos esenciales:</strong></p>
+<ol style="margin:8px 0 12px 18px;padding:0;"><li style="margin:6px 0;"><strong>Generación:</strong> Usar solo CSPRNG, longitudes mínimas según estándares, validar calidad de entropía.</li><li style="margin:6px 0;"><strong>Almacenamiento:</strong> NUNCA en código, usar KMS/HSM, cifrado en reposo, acceso por identidad de servicio.</li><li style="margin:6px 0;"><strong>Acceso:</strong> Principio de mínimo privilegio, autenticación fuerte, registro de todos los accesos.</li><li style="margin:6px 0;"><strong>Rotación:</strong> Automática cada 90 días máximo, notificación antes de expiración, soporte para versiones.</li><li style="margin:6px 0;"><strong>Revocación:</strong> Procedimiento inmediato por incidente, destrucción segura, lista de revocación.</li><li style="margin:6px 0;"><strong>Auditoría:</strong> Revisión trimestral de accesos, verificación de políticas, reporte de cumplimiento.</li></ol>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;"># Ejemplo de política en código (pseudocódigo)</p>
+POLICY = {
+<p style="margin:0 0 10px 0;">"key_generation"</p>
+: {
+<p style="margin:0 0 10px 0;">"algorithm"</p>
+:
+<p style="margin:0 0 10px 0;">"AES-256"</p>
+,
+<p style="margin:0 0 10px 0;">"random_source"</p>
+:
+<p style="margin:0 0 10px 0;">"os.urandom() o /dev/urandom"</p>
+,
+<p style="margin:0 0 10px 0;">"min_length"</p>
+: 256
+},
+<p style="margin:0 0 10px 0;">"rotation"</p>
+: {
+<p style="margin:0 0 10px 0;">"interval_days"</p>
+: 90,
+<p style="margin:0 0 10px 0;">"warning_days"</p>
+: 7,
+<p style="margin:0 0 10px 0;">"auto_rotate"</p>
+:
+<p style="margin:0 0 10px 0;">True</p>
+},
+<p style="margin:0 0 10px 0;">"access_control"</p>
+: {
+<p style="margin:0 0 10px 0;">"require_mfa"</p>
+:
+<p style="margin:0 0 10px 0;">True</p>
+,
+<p style="margin:0 0 10px 0;">"audit_logging"</p>
+:
+<p style="margin:0 0 10px 0;">True</p>
+,
+<p style="margin:0 0 10px 0;">"max_failed_attempts"</p>
+: 3
+}
+}</div></div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">🧪 Desafío Práctico:</p>
+Redacta una política completa de gestión de llaves para una aplicación web con 3 microservicios. Debe incluir: generación, almacenamiento, rotación automática, procedimiento de emergencia y plantilla de auditoría.</div>
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;">💡
+<div style="margin:12px 0;padding:14px;border:1px solid #e6ebef;border-radius:10px;background:#ffffff;"><p style="margin:0 0 10px 0;">📊 Métrica de Éxito:</p>
+Un sistema de gestión de claves es efectivo cuando puedes responder afirmativamente a:
+1. ¿Sabes dónde están TODAS tus claves?
+2. ¿Sabes QUIÉN puede acceder a cada una?
+3. ¿Cuándo fue la última vez que se rotaron?
+4. ¿Qué pasaría si una clave se compromete HOY?</div></div>
+</div>
+<div style="padding:14px 18px;border-top:1px solid #e6ebef;color:#6a7882;font-size:12px;">
+<div style="margin:0;">Optimizado para Q10: sin scripts, sin estilos externos y sin dependencias bloqueables.</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 3.6: Diseño de Solución</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .arch-step {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; margin-bottom: 20px; border-radius: 12px;
+        display: flex; gap: 20px; align-items: start;
+    }
+    .step-icon { font-size: 2rem; color: #1565c0; min-width: 50px; text-align: center; }
+    .step-title { font-weight: 700; color: #0d47a1; font-size: 1.2rem; margin-bottom: 5px; display: block; font-family: 'Montserrat', sans-serif; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* ===== Complementos de contenido (sin cambiar look & feel) ===== */
+    .section-title{
+        font-family:'Montserrat',sans-serif;
+        font-weight:800;
+        color:#0d47a1;
+        margin: 26px 0 10px 0;
+        font-size: 1.25rem;
+    }
+    .note-box{
+        background:#f5faff;
+        border:1px dashed #bbdefb;
+        padding:18px 18px;
+        border-radius:12px;
+        color:#37474f;
+        margin:14px 0 18px 0;
+    }
+    .note-box strong{ color:#0d47a1; }
+    .pill-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    .pill{
+        display:inline-block;
+        font-size:0.82rem;
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid #e3f2fd;
+        background:#ffffff;
+        color:#1565c0;
+        font-weight:800;
+    }
+    .two-col{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 12px;
+    }
+    .mini-card{
+        background:#ffffff;
+        border:1px solid #e0e0e0;
+        border-left:6px solid #1565c0;
+        border-radius:12px;
+        padding:16px;
+    }
+    .mini-card h4{
+        margin:0 0 8px 0;
+        font-family:'Montserrat',sans-serif;
+        font-weight:800;
+        color:#0d47a1;
+        font-size: 1rem;
+    }
+    .mini-card ul{ margin: 0 0 0 18px; }
+    .micro-code{
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        background:#0b1020;
+        color:#e6edf3;
+        border-radius:12px;
+        padding:14px;
+        overflow:auto;
+        border:1px solid rgba(187,222,251,0.25);
+        margin-top: 10px;
+        font-size: 0.92rem;
+        line-height: 1.5;
+    }
+    @media (max-width: 768px){
+        .two-col{ grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 3.6: Diseño de Arquitectura</h1>
+        <p>Creando la solución conceptual.</p>
+    </div>
+
+    <div class="arch-step">
+        <div class="step-icon"><i class="fa-solid fa-sitemap"></i></div>
+        <div>
+            <span class="step-title">1. Arquitectura Híbrida</span>
+            <p>La mayoría de las soluciones reales son híbridas. Usan una base de datos tradicional para velocidad y datos privados, y una blockchain solo para anclar "pruebas" (hashes) públicas.</p>
+        </div>
+    </div>
+
+    <div class="arch-step">
+        <div class="step-icon"><i class="fa-solid fa-key"></i></div>
+        <div>
+            <span class="step-title">2. Gestión de Identidad (IAM)</span>
+            <p>¿Quién tiene las llaves? Diseña un sistema donde el usuario final no tenga que gestionar claves privadas complejas directamente (Custodial Wallet) o usa soluciones de identidad soberana (Non-Custodial) si el usuario es técnico.</p>
+        </div>
+    </div>
+
+    <div class="arch-step">
+        <div class="step-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        <div>
+            <span class="step-title">3. Plan de Despliegue</span>
+            <p>Fase 1: Piloto en Testnet (Costo cero). <br>Fase 2: Auditoría de Seguridad del Smart Contract. <br>Fase 3: Despliegue en Mainnet.</p>
+        </div>
+    </div>
+
+
+
+<section style="margin-top:40px;">
+<h3 style="color:#0d47a1;">🏗️ Arquitectura orientada a riesgo</h3>
+<p>Diseñar arquitectura es diseñar límites de daño. El objetivo es que un fallo no comprometa todo.</p>
+<ul>
+<li>Capas independientes.</li>
+<li>Gestión de claves separada.</li>
+<li>Auditoría desacoplada.</li>
+</ul>
+</section>
+
+
+<section style="margin-top:34px;">
+  <h3 class="section-title">🧩 Componentes mínimos de una arquitectura híbrida (vista por capas)</h3>
+  <p>Una arquitectura “bien pensada” se entiende en capas: <strong>interfaz</strong>, <strong>servicios</strong>, <strong>datos</strong> y <strong>seguridad</strong>. Así reduces el radio de daño si algo falla.</p>
+
+  <div class="two-col">
+    <div class="mini-card">
+      <h4>1) Capa de Aplicación</h4>
+      <ul>
+        <li>Web / Móvil / API Gateway</li>
+        <li>Validación de entrada y control de tasa (rate limiting)</li>
+        <li>Separación de endpoints públicos vs internos</li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <h4>2) Capa de Servicios</h4>
+      <ul>
+        <li>Servicio de negocio (módulos por dominio)</li>
+        <li>Servicio de auditoría (eventos + evidencias)</li>
+        <li>Cola de mensajes para tareas pesadas</li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <h4>3) Capa de Datos</h4>
+      <ul>
+        <li>SQL (privado): entidades, usuarios, transacciones internas</li>
+        <li>Objeto/Blob: adjuntos y evidencias (cifrado)</li>
+        <li>Blockchain: <strong>anclaje</strong> de pruebas (hashes), no datos sensibles</li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <h4>4) Capa de Seguridad</h4>
+      <ul>
+        <li>IAM (roles, permisos, MFA)</li>
+        <li>Gestión de secretos (KMS/Vault)</li>
+        <li>Monitoreo y alertas (SIEM / logs)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>Regla práctica:</strong> si algo contiene PII, secretos o información operativa crítica, <strong>no</strong> va a blockchain pública.
+    Se guarda en almacenamiento privado y se ancla su hash.
+    <div class="pill-row">
+      <span class="pill">Privacidad primero</span>
+      <span class="pill">Hash como prueba</span>
+      <span class="pill">Minimización</span>
+      <span class="pill">Trazabilidad</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3 class="section-title">🔁 Flujo de datos recomendado (de “evento” a “prueba”)</h3>
+  <p>Este flujo te ayuda a diseñar una solución que sea auditable y eficiente sin sacrificar privacidad.</p>
+  <div class="micro-code">1) La app genera un EVENTO (ej. “se aprobó solicitud #123”)
+2) Se arma un paquete de evidencia: payload + metadata + timestamp + actor
+3) Se calcula HASH = SHA-256(evidencia_normalizada)
+4) Se guarda evidencia completa en almacenamiento privado (cifrada) + control de acceso
+5) Se ancla el HASH en blockchain (prueba pública de integridad / fecha)
+6) Se registra el vínculo: evento → hash → ubicación de evidencia → responsable → retesteo</div>
+
+  <div class="note-box">
+    <strong>Mini‑reto (15 min):</strong> elige un evento de tu sistema (registro, pago, aprobación, entrega) y define:
+    <ul style="margin:10px 0 0 18px;">
+      <li>¿Qué campos van en la evidencia? (mínimos)</li>
+      <li>¿Qué se cifra y dónde se guarda?</li>
+      <li>¿Qué se ancla en blockchain? (solo el hash)</li>
+      <li>¿Quién puede verificar y con qué permiso?</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h3 class="section-title">🛡️ Controles de seguridad por diseño (checklist)</h3>
+  <ul>
+    <li><strong>Gestión de claves:</strong> llaves fuera del código (KMS/Vault), rotación y privilegio mínimo.</li>
+    <li><strong>Firmas y permisos:</strong> firma de transacciones con roles claros; evita “admin omnipotente”.</li>
+    <li><strong>Observabilidad:</strong> logs estructurados + correlación (traceId) + alertas por anomalías.</li>
+    <li><strong>Separación de ambientes:</strong> dev/test/prod con credenciales distintas y datos sintéticos.</li>
+    <li><strong>Auditoría del smart contract:</strong> revisión de lógica, controles de acceso y eventos.</li>
+    <li><strong>Plan de respuesta:</strong> qué hacer si se filtra un secreto o si hay un bug crítico (pausa/rotación/retest).</li>
+  </ul>
+</section>
+
+<section>
+  <h3 class="section-title">📦 Entregables que demuestran arquitectura (lo que evalúa un auditor)</h3>
+  <div class="two-col">
+    <div class="mini-card">
+      <h4>Documentación</h4>
+      <ul>
+        <li>Diagrama de componentes + flujo de datos</li>
+        <li>Modelo de amenazas (qué puede fallar y cómo lo contienes)</li>
+        <li>Matriz de riesgos + controles</li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <h4>Evidencia técnica</h4>
+      <ul>
+        <li>Checklist de IAM (roles, MFA, permisos)</li>
+        <li>Plan de despliegue (testnet → auditoría → mainnet)</li>
+        <li>Registro de pruebas (hashes + ubicación cifrada)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+</div>
+
+</body>
+</html>
