@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .iso27001-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1976d2; /* Azul ISO */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #0d47a1;
+        margin: 0 auto 20px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        color: #1976d2;
+        text-align: center;
+        margin-bottom: 30px;
+        font-style: italic;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul {
+        padding-left: 20px;
+        margin-bottom: 20px;
+        list-style-type: none;
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '📌';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Sub-listas */
+    .sub-list {
+        margin-top: 5px;
+        padding-left: 20px;
+        list-style: circle;
+        color: #546e7a;
+    }
+    .sub-list li::before { content: none; }
+    .sub-list li { padding-left: 0; list-style-type: circle; }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #1976d2;
+        border-bottom: 2px solid #bbdefb;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #e3f2fd;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #1976d2;
+    }
+
+    .intro-highlight {
+        font-weight: 700;
+        color: #0d47a1;
+        font-style: italic;
+        text-align: center;
+        display: block;
+        margin: 20px 0;
+        font-size: 1.1rem;
+        background: #ffffffb3;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    /* --- MÓDULOS (GRID) --- */
+    .module-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .module-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+    }
+
+    .module-card:hover { transform: translateY(-5px); border-color: #1976d2; }
+
+    .module-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #0d47a1;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .reading-list {
+        margin-top: 10px;
+        padding-left: 0;
+        list-style-type: none;
+    }
+    .reading-list li {
+        padding-left: 0;
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+    .reading-list li::before {
+        content: '📄';
+        margin-right: 8px;
+        font-size: 0.9rem;
+        position: relative;
+        left: auto;
+        top: auto;
+    }
+    .reading-list .sub-list {
+        margin-top: 5px;
+        padding-left: 30px;
+    }
+    .reading-list .sub-list li {
+        padding-left: 0;
+        list-style-type: circle;
+    }
+    .reading-list .sub-list li::before { content: none; }
+
+    .guide-questions {
+        margin-top: 15px;
+        padding-left: 20px;
+        list-style-type: none;
+    }
+    .guide-questions li {
+        font-size: 0.9rem;
+        color: #455a64;
+        padding-left: 25px;
+        margin-bottom: 12px;
+    }
+    .guide-questions li::before {
+        content: '❓';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    .note-box {
+        background: #fff9c4;
+        padding: 15px 20px;
+        border-radius: 8px;
+        border-left: 4px solid #fbc02d;
+        margin-top: 20px;
+        font-size: 0.95rem;
+    }
+    .note-box strong { color: #f57f17; }
+
+    .tip-box {
+        background: #e3f2fd;
+        border-left: 5px solid #1976d2;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 0 8px 8px 0;
+    }
+    .tip-box strong { color: #0d47a1; }
+
+    /* --- TABLA DE CONTROLES --- */
+    .controls-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 0.9rem;
+        border: 1px solid #bbdefb;
+    }
+    .controls-table th {
+        background-color: #1976d2;
+        color: white;
+        padding: 12px;
+        text-align: left;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+    }
+    .controls-table td {
+        padding: 12px;
+        border: 1px solid #bbdefb;
+        vertical-align: top;
+    }
+    .controls-table tr:hover { background-color: #f5f5f5; }
+    .control-cat {
+        background-color: #e3f2fd;
+        font-weight: 700;
+        color: #0d47a1;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .header-box { padding-top: 0; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="iso27001-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">📘 Guía de Lectura: ISO/IEC 27001:2022</h1>
+        <div class="subtitle">Sistemas de Gestión de la Seguridad de la Información (SGSI) — Requisitos</div>
+    </div>
+
+    <div class="intro-box">
+        <p><strong>¡Bienvenido/a al mundo de la gestión de la seguridad de la información!</strong> La norma ISO/IEC 27001:2022 es el estándar internacional más importante para establecer, implementar, mantener y mejorar un Sistema de Gestión de Seguridad de la Información (SGSI). Es la base sobre la que se construye la gestión de riesgos y la protección de la información en organizaciones de todo el mundo.</p>
+        <span class="intro-highlight">Esta guía de lectura está diseñada para ayudarte a navegar la estructura de la norma, entender sus requisitos obligatorios (Cláusulas 4 a 10) y familiarizarte con los 93 controles del Anexo A. El objetivo es que puedas comprender el "qué" de la norma, sabiendo que el "cómo" se detalla en su complemento, la ISO/IEC 27002.</span>
+    </div>
+
+    <!-- PARTE 1: INTRODUCCIÓN Y FUNDAMENTOS -->
+    <div class="content-block">
+        <h2 class="section-title">📌 Parte 1: Introducción y Fundamentos</h2>
+        <p>Esta sección establece el propósito de la norma, su contexto y los términos clave. Esencial para entender la filosofía del SGSI.</p>
+
+        <div class="module-grid">
+            <div class="module-card">
+                <span class="module-title">📖 Lectura Esencial</span>
+                <ul class="reading-list">
+                    <li><strong>Prefacio (Pág. 4)</strong> - Contexto de la publicación y cambios principales respecto a 2013.</li>
+                    <li><strong>0. Introducción (Págs. 5)</strong>
+                        <ul class="sub-list">
+                            <li>0.1 General</li>
+                            <li>0.2 Compatibilidad con otros estándares</li>
+                        </ul>
+                    </li>
+                    <li><strong>1. Alcance (Pág. 6)</strong></li>
+                    <li><strong>3. Términos y definiciones (Pág. 6)</strong> - Remite a ISO/IEC 27000.</li>
+                </ul>
+                <div class="note-box">
+                    <strong>🔑 Clave:</strong> La norma es de <strong>requisitos</strong> (lo que hay que hacer), no de "cómo hacerlo". El "cómo" está en la 27002.
+                </div>
+            </div>
+            <div class="module-card">
+                <span class="module-title">❓ Preguntas Guía</span>
+                <ul class="guide-questions">
+                    <li>¿Cuál es el principal cambio de la versión 2022 respecto a la de 2013? (Pág. 4, Prefacio)</li>
+                    <li>¿Qué significa que la norma sea "compatible con otros estándares de sistemas de gestión"? (Pág. 5, 0.2)</li>
+                    <li>¿Qué tipo de organizaciones pueden aplicar esta norma? (Pág. 6, Alcance)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PARTE 2: EL CORAZÓN DEL SGSI (CLÁUSULAS 4 A 10) -->
+    <div class="content-block">
+        <h2 class="section-title">⚙️ Parte 2: El Corazón del SGSI (Cláusulas 4 a 10)</h2>
+        <p>Estas cláusulas contienen los requisitos <strong>OBLIGATORIOS</strong> para un SGSI. Una organización no puede excluir ninguna de ellas si quiere estar conforme con la norma.</p>
+
+        <div class="module-grid">
+            <div class="module-card">
+                <span class="module-title">📋 Cláusula 4: Contexto de la organización</span>
+                <ul class="reading-list">
+                    <li>4.1 Comprensión de la organización y su contexto</li>
+                    <li>4.2 Comprensión de las necesidades de las partes interesadas</li>
+                    <li>4.3 Determinación del alcance del SGSI</li>
+                </ul>
+                <div class="note-box"><strong>🎯 Objetivo:</strong> Entender el entorno (interno/externo) y definir los límites del SGSI.</div>
+            </div>
+            <div class="module-card">
+                <span class="module-title">👑 Cláusula 5: Liderazgo</span>
+                <ul class="reading-list">
+                    <li>5.1 Liderazgo y compromiso</li>
+                    <li>5.2 Política</li>
+                    <li>5.3 Roles, responsabilidades y autoridades</li>
+                </ul>
+                <div class="note-box"><strong>🎯 Objetivo:</strong> La alta dirección debe demostrar compromiso activo y establecer una política de seguridad.</div>
+            </div>
+            <div class="module-card">
+                <span class="module-title">📝 Cláusula 6: Planificación</span>
+                <ul class="reading-list">
+                    <li>6.1 Acciones para abordar riesgos y oportunidades</li>
+                    <li>6.1.2 Evaluación de riesgos de seguridad</li>
+                    <li>6.1.3 Tratamiento de riesgos de seguridad</li>
+                    <li>6.2 Objetivos de seguridad y planificación</li>
+                </ul>
+                <div class="note-box"><strong>⚠️ ATENCIÓN:</strong> Esta es la cláusula más compleja. Define el proceso de gestión de riesgos.</div>
+            </div>
+            <div class="module-card">
+                <span class="module-title">🛠️ Cláusula 7: Apoyo</span>
+                <ul class="reading-list">
+                    <li>7.1 Recursos</li>
+                    <li>7.2 Competencia</li>
+                    <li>7.3 Toma de conciencia</li>
+                    <li>7.4 Comunicación</li>
+                    <li>7.5 Información documentada</li>
+                </ul>
+                <div class="note-box"><strong>🎯 Objetivo:</strong> Asegurar que la organización tiene los medios (personas, recursos, documentación) para que el SGSI funcione.</div>
+            </div>
+            <div class="module-card">
+                <span class="module-title">⚙️ Cláusula 8: Operación</span>
+                <ul class="reading-list">
+                    <li>8.1 Planificación y control operacional</li>
+                    <li>8.2 Evaluación de riesgos de seguridad</li>
+                    <li>8.3 Tratamiento de riesgos de seguridad</li>
+                </ul>
+                 <div class="note-box"><strong>🎯 Objetivo:</strong> Poner en práctica lo planificado (los planes de tratamiento de riesgos).</div>
+            </div>
+            <div class="module-card">
+                <span class="module-title">📊 Cláusula 9: Evaluación del desempeño</span>
+                <ul class="reading-list">
+                    <li>9.1 Seguimiento, medición, análisis y evaluación</li>
+                    <li>9.2 Auditoría interna</li>
+                    <li>9.3 Revisión por la dirección</li>
+                </ul>
+                <div class="note-box"><strong>🎯 Objetivo:</strong> Verificar que el SGSI funciona y es eficaz (el ciclo "Check" del PDCA).</div>
+            </div>
+            <div class="module-card">
+                <span class="module-title">🔄 Cláusula 10: Mejora</span>
+                <ul class="reading-list">
+                    <li>10.1 Mejora continua</li>
+                    <li>10.2 No conformidad y acción correctiva</li>
+                </ul>
+                <div class="note-box"><strong>🎯 Objetivo:</strong> Corregir problemas y mejorar continuamente el sistema (el ciclo "Act" del PDCA).</div>
+            </div>
+        </div>
+        <div class="tip-box">
+            <strong>🔄 CICLO PHVA (Planificar-Hacer-Verificar-Actuar):</strong> Las cláusulas 4,5,6 (Planificar); 7,8 (Hacer); 9 (Verificar); 10 (Actuar).
+        </div>
+    </div>
+
+    <!-- PARTE 3: EL ANEXO A - LOS CONTROLES -->
+    <div class="content-block">
+        <h2 class="section-title">📋 Parte 3: Anexo A - Referencia de Controles de Seguridad de la Información</h2>
+        <p>El Anexo A (Págs. 16-22) enumera 93 controles agrupados en 4 categorías. Es importante recordar que <strong>no son obligatorios</strong> per se; la organización, a través de su proceso de tratamiento de riesgos (6.1.3), decide qué controles son necesarios y justifica su inclusión o exclusión en la Declaración de Aplicabilidad (SoA).</p>
+
+        <table class="controls-table">
+            <thead><tr><th>Categoría</th><th>Controles Clave (Ejemplos)</th></tr></thead>
+            <tbody>
+                <tr><td class="control-cat">5. Controles Organizativos (37 controles)</td><td>Políticas, roles, gestión de activos, control de acceso, seguridad en proveedores, gestión de incidentes, continuidad del negocio, cumplimiento legal.</td></tr>
+                <tr><td class="control-cat">6. Controles de Personas (8 controles)</td><td>Selección de personal, términos de empleo, concienciación, trabajo remoto, reporte de incidentes.</td></tr>
+                <tr><td class="control-cat">7. Controles Físicos (14 controles)</td><td>Perímetros de seguridad, control de acceso físico, protección contra amenazas, seguridad de equipos, eliminación segura.</td></tr>
+                <tr><td class="control-cat">8. Controles Tecnológicos (34 controles)</td><td>Protección de endpoints, control de accesos privilegiados, gestión de vulnerabilidades, copias de seguridad, registro y monitorización, seguridad en redes, desarrollo seguro.</td></tr>
+            </tbody>
+        </table>
+        <div class="note-box">
+            <strong>📌 Declaración de Aplicabilidad (SoA):</strong> Documento clave (requerido en 6.1.3 d) que lista los controles necesarios, justifica su inclusión y explica por qué se excluyen los del Anexo A que no aplican.
+        </div>
+    </div>
+
+    <!-- PARTE 4: PREGUNTAS DE REFLEXIÓN -->
+    <div class="content-block">
+        <h2 class="section-title">✅ Preguntas para la Reflexión Final</h2>
+        <p>Integrando todo lo aprendido:</p>
+
+        <ul class="guide-questions" style="list-style-type: none; padding-left: 0;">
+            <li style="padding-left: 25px;"><strong>❓</strong> ¿Cuál es la diferencia fundamental entre las cláusulas 4-10 (requisitos del SGSI) y el Anexo A (controles)?</li>
+            <li style="padding-left: 25px;"><strong>❓</strong> Una organización decide no implementar un control del Anexo A porque su análisis de riesgos determinó que no es necesario. ¿Puede seguir estando conforme a la ISO 27001? ¿Qué documento debe reflejar y justificar esta decisión? (Pág. 9-10, 6.1.3 d)</li>
+            <li style="padding-left: 25px;"><strong>❓</strong> ¿Qué papel juega la "Revisión por la Dirección" (Cláusula 9.3) en el ciclo de mejora continua del SGSI?</li>
+            <li style="padding-left: 25px;"><strong>❓</strong> Explica la relación entre la "Evaluación de Riesgos" (6.1.2), el "Tratamiento de Riesgos" (6.1.3) y la selección de controles del Anexo A.</li>
+        </ul>
+
+        <div class="tip-box">
+            <p style="margin-bottom: 0;"><strong>🎓 Conclusión:</strong> La ISO/IEC 27001:2022 proporciona un marco basado en riesgos para proteger la información. Dominar sus cláusulas y la lógica del Anexo A es fundamental para cualquier profesional de la ciberseguridad.</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

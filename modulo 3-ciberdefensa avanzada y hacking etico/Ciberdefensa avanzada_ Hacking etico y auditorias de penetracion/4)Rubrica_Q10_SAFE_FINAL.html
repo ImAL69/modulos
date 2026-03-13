@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rúbrica: Actividad 1</title>
+</head>
+<body><style>/* Q10-SAFE PATCH: prevent scroll traps + keep content visible */
+html,body{height:auto !important; min-height:0 !important; overflow:visible !important;}
+/* tables: horizontal scroll without locking vertical scroll */
+.table-scroll{overflow-x:auto; overflow-y:visible; -webkit-overflow-scrolling:touch;}
+/* hide any floating quick actions that can trap scroll in LMS */
+.quick-actions,.fab,.floating-actions,[data-fab],[data-floating]{display:none !important;}
+
+body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #1565c0;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .rubric-table {
+        width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem;
+    }
+    .rubric-table th { background: #1565c0; color: white; padding: 15px; text-align: left; font-weight: 600; }
+    .rubric-table td { border: 1px solid #bbdefb; padding: 15px; vertical-align: top; }
+    .level-high { background: #e3f2fd; color: #0d47a1; font-weight:bold; }
+    
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .rubric-table { font-size: 0.8rem; }
+    }
+
+
+/* ===== Animaciones PRO (seguras: no dejan espacios en blanco si JS falla) ===== */
+html.reveal-anim.js [data-reveal]{opacity:0; transform: translateY(16px) scale(.99); filter: blur(2px);}
+html.reveal-anim.js [data-reveal].is-visible{opacity:1; transform:none; filter:none; transition: opacity .55s ease, transform .55s cubic-bezier(.2,.8,.2,1), filter .55s ease;}
+@media (prefers-reduced-motion: reduce){
+  html.reveal-anim.js [data-reveal], html.reveal-anim.js [data-reveal].is-visible{transition:none; transform:none; filter:none;}
+}
+
+
+/* ===== Componentes PRO adicionales (mantienen estética del módulo) ===== */
+.section-title{
+  font-family:'Montserrat',sans-serif;
+  color:#0d47a1;
+  margin:40px 0 12px;
+  font-size:1.35rem;
+  font-weight:800;
+}
+.lead{
+  font-size:1.05rem;
+  color:#455a64;
+  margin:10px 0 18px;
+}
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+  margin:18px 0 10px;
+}
+.info-card{
+  background:linear-gradient(180deg,#f5faff,#ffffff);
+  border:1px solid #bbdefb;
+  border-radius:14px;
+  padding:18px 18px;
+  box-shadow:0 8px 24px rgba(13,71,161,0.06);
+}
+.info-card h4{
+  margin:0 0 8px;
+  font-family:'Montserrat',sans-serif;
+  color:#0d47a1;
+  font-weight:800;
+  font-size:1.05rem;
+}
+.info-card p{margin:0; color:#455a64;}
+.kpi-row{
+  display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;
+}
+.kpi-pill{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 10px;
+  border-radius:999px;
+  background:#e3f2fd;
+  border:1px solid #bbdefb;
+  color:#0d47a1;
+  font-weight:700;
+  font-size:0.9rem;
+}
+.kpi-pill i{opacity:.9}
+.table-pro{
+  width:100%;
+  border-collapse:collapse;
+  margin:14px 0 6px;
+  font-size:0.95rem;
+}
+.table-pro th{
+  background:#1565c0;
+  color:#fff;
+  padding:12px;
+  text-align:left;
+}
+.table-pro td{
+  border:1px solid #bbdefb;
+  padding:12px;
+  vertical-align:top;
+  color:#37474f;
+}
+.callout{
+  margin-top:18px;
+  background:#f5faff;
+  border:1px solid #bbdefb;
+  border-left:6px solid #1976d2;
+  padding:18px;
+  border-radius:12px;
+  color:#455a64;
+}
+.callout.warn{
+  background:#fff3e0;
+  border-color:#ffe0b2;
+  border-left-color:#ff9800;
+  color:#e65100;
+}
+.mini-checklist{
+  margin:12px 0 0;
+  display:grid;
+  gap:10px;
+}
+.chk{
+  display:flex; gap:10px; align-items:flex-start;
+  background:#ffffff;
+  border:1px dashed #bbdefb;
+  border-radius:12px;
+  padding:12px;
+}
+.chk input{margin-top:3px}
+.chk label{color:#455a64}
+.codebox{
+  margin-top:12px;
+  background:#0b1b2b;
+  color:#e3f2fd;
+  border-radius:12px;
+  padding:14px;
+  font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size:0.88rem;
+  overflow:auto;
+  border:1px solid rgba(21,101,192,.35);
+}
+.footer-pro{
+  margin-top:42px;
+  padding:20px 18px;
+  border-top:2px solid #e0e0e0;
+  color:#546e7a;
+  font-size:0.95rem;
+}
+.footer-pro strong{color:#0d47a1}
+
+/* ===== Q10 SAFE PATCH ===== */
+:root{color-scheme:light;}
+html,body{height:auto !important; overflow:visible !important;}
+body{margin:0; padding:0; max-width:100%; overflow-x:hidden;}
+.container-extended{max-width:1100px; margin:0 auto; padding:16px;}
+.table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:12px;}
+.table-scroll table{min-width:860px;}
+details.acc{border:1px solid #e5e7eb; border-radius:14px; padding:10px 12px; background:#fff; margin:10px 0;}
+details.acc>summary{cursor:pointer; font-weight:800; list-style:none;}
+details.acc>summary::-webkit-details-marker{display:none;}
+.acc-body{padding-top:10px;}
+/* prevent Q10 iframe scroll trap */
+*[style*="height:"], *[style*="min-height:"]{height:auto !important; min-height:0 !important;}
+/* hide any floating quick actions (often breaks Q10) */
+.quick-actions,.fab,.floating-actions,[data-fab],[data-floating]{display:none !important;}</style>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box" data-reveal="">
+<h1 class="main-title">Rúbrica de Evaluación (15%)</h1>
+<p>Criterios de calificación para el Foro de Análisis de Vulnerabilidades.</p>
+</div>
+<div data-reveal="" style="overflow-x:auto;">
+<div class="table-scroll"><table class="rubric-table" data-reveal="">
+<thead>
+<tr>
+<th style="width: 25%;">Criterio</th>
+<th style="width: 25%;">Excelente (5.0)</th>
+<th style="width: 25%;">Aceptable (3.0 - 4.0)</th>
+<th style="width: 25%;">Insuficiente (0 - 2.9)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Identificación de Vectores</strong><br/>Profundidad técnica del análisis.</td>
+<td class="level-high">Identifica correctamente ≥3 vectores de ataque realistas y coherentes con el escenario, usando terminología técnica precisa (puerto, servicio, CVE).</td>
+<td>Identifica 1-2 vectores, pero son genéricos ("hacker entra") sin especificar el método técnico o puerto.</td>
+<td>No identifica vectores claros o confunde conceptos básicos (ej. confunde virus con exploit).</td>
+</tr>
+<tr>
+<td><strong>Análisis de Impacto</strong><br/>Evaluación del riesgo.</td>
+<td class="level-high">Describe claramente el impacto en el negocio (Pérdida de datos, caída de servicio, reputación) para cada vulnerabilidad.</td>
+<td>Menciona que "es malo" pero no explica las consecuencias específicas para la organización.</td>
+<td>No menciona el impacto o minimiza riesgos críticos.</td>
+</tr>
+<tr>
+<td><strong>Debate y Aporte</strong><br/>Interacción con compañeros.</td>
+<td class="level-high">Realiza 2 réplicas constructivas proponiendo soluciones técnicas específicas (ej. "Usa Fail2Ban para mitigar fuerza bruta").</td>
+<td>Responde a compañeros pero se limita a validar ("Buen aporte") sin agregar valor técnico.</td>
+<td>No interactúa con otros participantes.</td>
+</tr>
+<tr>
+<td><strong>Mitigación Propuesta</strong><br/>Calidad de controles sugeridos.</td>
+<td class="level-high">Propone mitigaciones específicas y viables por vector (ej. MFA, segmentación, hardening, parcheo, WAF) y justifica por qué reducen el riesgo.</td>
+<td>Propone mitigaciones generales (“mejorar seguridad”) sin detalle técnico o sin relación clara con el vector.</td>
+<td>No propone mitigación o sugiere acciones incorrectas/irrelevantes.</td>
+</tr>
+<tr>
+<td><strong>Soporte y Evidencia</strong><br/>Claridad y verificabilidad.</td>
+<td class="level-high">Incluye evidencias o referencias conceptuales (puerto/servicio/versionado) y un texto claro y ordenado que permite entender el razonamiento.</td>
+<td>El análisis es entendible pero le falta evidencia o precisión técnica en algunos puntos.</td>
+<td>El texto es confuso, desordenado o sin elementos verificables.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div data-reveal="" style="margin-top:28px; background:#f5faff; border:1px solid #bbdefb; padding:18px; border-radius:12px; color:#455a64;">
+<strong>Nota de evaluación:</strong> se valora la coherencia del análisis (activo → vulnerabilidad → amenaza → impacto → mitigación). Respuestas “plantilla” sin adaptación al escenario pueden bajar la calificación.
+    </div>
+</div>
+<div data-reveal="" style="margin-top:28px;">
+<h2 style="font-family:'Montserrat',sans-serif; color:#0d47a1; margin:0 0 12px;">📊 Guía de interpretación de la rúbrica (nivel profesional)</h2>
+<p style="color:#455a64; margin:0 0 14px; line-height:1.7;">
+    La rúbrica no solo califica “si pusiste una tabla”, sino la <strong>calidad del razonamiento</strong> y la <strong>verificabilidad</strong>.
+    La nota más alta exige precisión técnica y propuestas de mitigación accionables.
+  </p>
+<div style="overflow-x:auto;">
+<div class="table-scroll"><table class="rubric-table">
+<thead>
+<tr>
+<th style="width:22%;">Criterio</th>
+<th style="width:16%;">Peso sugerido</th>
+<th>Ejemplos de evidencia (qué suma puntos)</th>
+<th>Errores comunes (qué resta puntos)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Identificación de Vectores</strong></td>
+<td class="level-high">30%</td>
+<td>Vector atado a activo concreto (endpoint/servicio), tecnología plausible, descripción técnica específica.</td>
+<td>Vector genérico (“un hacker entra”), confusión de conceptos, ausencia de activo verificable.</td>
+</tr>
+<tr>
+<td><strong>Análisis de Impacto</strong></td>
+<td class="level-high">20%</td>
+<td>Impacto con consecuencias en negocio: datos, operación, cumplimiento, reputación. Priorización razonada.</td>
+<td>Impacto ambiguo (“es malo”), exageración sin sustento o sin relación al activo.</td>
+</tr>
+<tr>
+<td><strong>Mitigación Propuesta</strong></td>
+<td class="level-high">25%</td>
+<td>Controles concretos por vector: MFA, hardening, segmentación, WAF, parcheo, monitoreo. Justificación breve.</td>
+<td>Mitigación genérica (“mejorar seguridad”), controles irrelevantes o desconectados del vector.</td>
+</tr>
+<tr>
+<td><strong>Soporte y Evidencia</strong></td>
+<td class="level-high">15%</td>
+<td>Fuente/indicio: cabeceras, tecnología, endpoint, “huella” o referencia conceptual; texto ordenado y verificable.</td>
+<td>Sin evidencia, texto desordenado, afirmaciones sin sustento.</td>
+</tr>
+<tr>
+<td><strong>Debate y Aporte</strong></td>
+<td class="level-high">10%</td>
+<td>Réplicas con recomendación técnica + pregunta; aporta valor y mejora el análisis del compañero.</td>
+<td>Respuestas de validación (“bien”) sin contenido técnico.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div data-reveal="" style="margin-top:18px; background:#f5faff; border:1px solid #bbdefb; border-left:6px solid #1976d2; padding:18px; border-radius:12px; color:#455a64;">
+<strong>Checklist final (antes de publicar):</strong>
+<ul style="margin:10px 0 0; padding-left:18px;">
+<li>¿Cada fila tiene activo verificable (no genérico)?</li>
+<li>¿La amenaza está descrita como actor/método (no “hacker” sin más)?</li>
+<li>¿El impacto se explica en negocio y no solo en términos técnicos?</li>
+<li>¿La mitigación es accionable y coherente con el vector?</li>
+<li>¿Tus réplicas aportan valor técnico + pregunta?</li>
+</ul>
+</div>
+<div data-reveal="" style="margin-top:16px; background:#fff3e0; border-left:6px solid #ff9800; padding:18px; border-radius:10px; color:#e65100;">
+<strong>Nota:</strong> respuestas plantilla y sin adaptación al escenario (mismos activos/mitigaciones para todos) tienden a bajar el desempeño en “coherencia y evidencia”.
+  </div>
+</div>
+<div data-reveal="" style="margin-top:22px; background:#ffffff; border:1px solid #bbdefb; border-radius:12px; padding:18px; color:#455a64;">
+<h3 style="color:#0d47a1; margin-top:0; font-family:'Montserrat',sans-serif;">🧠 Cómo se asigna la nota (traducción práctica)</h3>
+<p style="margin:0 0 10px;">
+    Para alcanzar 5.0, no basta con tener 3 filas: se espera <strong>precisión</strong>, <strong>evidencia</strong> y <strong>mitigación accionable</strong>.
+  </p>
+<ul style="margin:0; padding-left:18px;">
+<li><strong>5.0:</strong> análisis técnico consistente + impacto realista + controles concretos + participación valiosa.</li>
+<li><strong>4.0:</strong> buen análisis pero falta evidencia o detalle en mitigación.</li>
+<li><strong>3.0:</strong> cumple formato con generalidades; poca profundidad técnica.</li>
+<li><strong>&lt;3.0:</strong> confusiones conceptuales, sin mitigación o sin participación.</li>
+</ul>
+</div>
+<div data-reveal="" style="margin-top:16px; background:#e3f2fd; border-left:6px solid #1565c0; padding:18px; border-radius:10px; color:#0d47a1;">
+<strong>💬 Recomendación para réplicas (lo que el docente busca):</strong>
+  tu réplica debe mejorar el análisis del compañero. Por ejemplo:
+  “Tu vector es plausible. Yo agregaría MFA y monitoreo. ¿Cómo controlarían intentos repetidos? ¿Tienen segmentación?”
+</div>
+<div data-reveal="" style="margin-top:22px;">
+<h3 style="font-family:'Montserrat',sans-serif; color:#0d47a1; margin:0 0 12px;">🧾 Banco de ejemplos (qué se considera “mitigación concreta”)</h3>
+<div style="overflow-x:auto;">
+<div class="table-scroll"><table class="rubric-table">
+<thead>
+<tr>
+<th>Vector</th>
+<th>Mitigación rápida (quick win)</th>
+<th>Mitigación estructural</th>
+<th>Indicador de verificación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fuerza bruta en autenticación</td>
+<td>MFA + bloqueo por intentos + rate limiting</td>
+<td>SSO/IAM centralizado + monitoreo + políticas robustas</td>
+<td>Logs de intentos, alertas, configuración de MFA</td>
+</tr>
+<tr>
+<td>Configuración insegura / hardening</td>
+<td>Deshabilitar servicios innecesarios + reglas básicas</td>
+<td>Baseline de hardening + gestión de configuración</td>
+<td>Checklist de hardening aplicado</td>
+</tr>
+<tr>
+<td>Exposición de paneles administrativos</td>
+<td>Restringir acceso (allowlist/VPN) + MFA</td>
+<td>Segmentación + ZTNA + monitoreo continuo</td>
+<td>Acceso limitado por red/identidad</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div data-reveal="" style="margin-top:16px; background:#f5faff; border:1px solid #bbdefb; border-radius:12px; padding:18px; color:#455a64;">
+<strong>Retroalimentación típica del docente (para mejorar):</strong>
+<ul style="margin:10px 0 0; padding-left:18px;">
+<li>“Buen vector, pero falta evidencia: ¿qué activo exacto lo soporta?”</li>
+<li>“El impacto es técnico; agrega consecuencia en negocio (operación/datos).”</li>
+<li>“Mitigación genérica: especifica control (MFA, hardening, segmentación) y por qué.”</li>
+</ul>
+</div>
+</div>
+<div data-reveal="" style="margin-top:22px;">
+<h3 style="font-family:'Montserrat',sans-serif; color:#0d47a1; margin:0 0 12px;">🗣️ Rúbrica corta para las réplicas (participación)</h3>
+<div style="overflow-x:auto;">
+<div class="table-scroll"><table class="rubric-table">
+<thead>
+<tr>
+<th style="width:28%;">Elemento</th>
+<th>Excelente</th>
+<th>Aceptable</th>
+<th>Insuficiente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Aporte técnico</strong></td>
+<td class="level-high">Corrige o mejora el análisis con precisión (control, coherencia, evidencia).</td>
+<td>Comenta el análisis pero sin detalle técnico.</td>
+<td>Solo valida (“bien”) o no responde.</td>
+</tr>
+<tr>
+<td><strong>Mitigación</strong></td>
+<td class="level-high">Propone control concreto y viable, ligado al vector.</td>
+<td>Mitigación general sin detalle.</td>
+<td>No propone mitigación o es irrelevante.</td>
+</tr>
+<tr>
+<td><strong>Pregunta</strong></td>
+<td class="level-high">Abre debate con una pregunta verificable (logs, MFA, segmentación, WAF).</td>
+<td>Pregunta vaga o poco relacionada.</td>
+<td>No pregunta.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div data-reveal="" style="margin-top:16px; background:#fff3e0; border-left:6px solid #ff9800; padding:18px; border-radius:10px; color:#e65100;">
+<strong>Penalizaciones típicas:</strong> copiar tablas idénticas, usar lenguaje no técnico (“un hacker entra”), o no incluir mitigación por vector.
+  </div>
+</div>
+<div data-reveal="" style="margin-top:22px; background:#ffffff; border:1px solid #bbdefb; border-radius:12px; padding:18px; color:#455a64;">
+<h3 style="color:#0d47a1; margin-top:0; font-family:'Montserrat',sans-serif;">🧮 Ejemplo de calificación (cómo se ve un 5.0)</h3>
+<p style="margin:0 0 10px;">
+    Ejemplo ilustrativo: un estudiante entrega 4 vectores bien atados a activos, impacto realista, mitigación concreta y 2 réplicas con aporte.
+    En ese caso, suele lograr desempeño “Excelente” en la mayoría de criterios.
+  </p>
+<div class="table-scroll"><table class="rubric-table">
+<thead><tr><th>Criterio</th><th>Resultado</th><th>Comentario típico</th></tr></thead>
+<tbody>
+<tr><td>Vectores</td><td class="level-high">Excelente</td><td>“Activos claros y vectores plausibles con lenguaje técnico.”</td></tr>
+<tr><td>Impacto</td><td class="level-high">Excelente</td><td>“Impacto expresado en negocio (datos/operación).”</td></tr>
+<tr><td>Mitigación</td><td class="level-high">Excelente</td><td>“Controles concretos y viables por vector.”</td></tr>
+<tr><td>Evidencia</td><td class="level-high">Excelente</td><td>“Incluye indicios verificables y texto ordenado.”</td></tr>
+<tr><td>Debate</td><td class="level-high">Excelente</td><td>“Réplicas con aporte + pregunta.”</td></tr>
+</tbody>
+</table></div>
+</div>
+<div data-reveal="" style="margin-top:22px;">
+<h3 style="font-family:'Montserrat',sans-serif; color:#0d47a1; margin:0 0 12px;">📌 Descriptores ampliados (qué se espera ver)</h3>
+<div class="info-grid">
+<div class="info-card">
+<h4>Vectores (Excelente)</h4>
+<p>Activos específicos, vector plausible, terminología precisa. Incluye al menos un control por vector.</p>
+</div>
+<div class="info-card">
+<h4>Impacto (Excelente)</h4>
+<p>Explica consecuencias en negocio usando CIA y contexto del escenario. Evita exageración.</p>
+</div>
+<div class="info-card">
+<h4>Mitigación (Excelente)</h4>
+<p>Quick win + estructural, coherentes con el vector. Justificación breve y viable.</p>
+</div>
+<div class="info-card">
+<h4>Evidencia (Excelente)</h4>
+<p>Incluye indicios verificables: endpoint/servicio/stack/política del escenario. Redacción ordenada.</p>
+</div>
+</div>
+<div class="callout" data-reveal="">
+<strong>Cómo subir de 4.0 a 5.0:</strong> agrega evidencia, mejora la priorización y convierte mitigaciones genéricas en controles concretos.
+  </div>
+</div>
+<div data-reveal="" style="margin-top:22px; background:#ffffff; border:1px solid #bbdefb; border-radius:12px; padding:18px; color:#455a64;">
+<h3 style="color:#0d47a1; margin-top:0; font-family:'Montserrat',sans-serif;">📌 Penalizaciones y buenas prácticas</h3>
+<ul style="margin:0; padding-left:18px;">
+<li><strong>Copiar/pegar</strong> (misma tabla que otros): baja significativamente el criterio de evidencia y coherencia.</li>
+<li><strong>Sin mitigación</strong>: el criterio de mitigación no puede ser “Excelente”.</li>
+<li><strong>Sin réplicas</strong>: el criterio de debate queda en “Insuficiente”.</li>
+<li><strong>Lenguaje no técnico</strong>: afecta coherencia y vectores (ej. “un hacker entra”).</li>
+</ul>
+<p style="margin:10px 0 0;">
+<strong>Mejor práctica:</strong> adapta el escenario y explica decisiones (por qué ese vector, por qué ese control).
+  </p>
+</div>
+<div data-reveal="" style="margin-top:22px;">
+<h3 style="font-family:'Montserrat',sans-serif; color:#0d47a1; margin:0 0 12px;">🧩 Ejemplos de redacción que suman puntos</h3>
+<div style="overflow-x:auto;">
+<div class="table-scroll"><table class="rubric-table">
+<thead>
+<tr>
+<th style="width:34%;">En vez de decir…</th>
+<th>Di esto…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“Hay una vulnerabilidad en la web”</td>
+<td>“El portal expone un panel administrativo público; sin MFA aumenta el riesgo de toma de cuentas.”</td>
+</tr>
+<tr>
+<td>“Es un riesgo alto”</td>
+<td>“Impacto alto por posible exposición de PII y afectación de integridad (cambios de notas/pedidos).”</td>
+</tr>
+<tr>
+<td>“Hay que mejorar la seguridad”</td>
+<td>“Quick win: MFA + bloqueo por intentos. Estructural: IAM/SSO + monitoreo centralizado.”</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="callout warn" data-reveal="">
+<strong>Clave:</strong> el lenguaje profesional es verificable, concreto y conectado a un activo y un control.
+  </div>
+</div>
+<div data-reveal="" style="margin-top:22px; background:#ffffff; border:1px solid #bbdefb; border-radius:12px; padding:18px; color:#455a64;">
+<h3 style="color:#0d47a1; margin-top:0; font-family:'Montserrat',sans-serif;">🧷 Guía de revisión (para el evaluador y para ti)</h3>
+<p style="margin:0 0 10px;">
+    Esta guía resume cómo revisar rápidamente un post y detectar si cumple calidad profesional.
+  </p>
+<ul style="margin:0; padding-left:18px;">
+<li><strong>Consistencia:</strong> ¿los activos “existen” en el escenario y tienen sentido?</li>
+<li><strong>Razonamiento:</strong> ¿la vulnerabilidad está explicada como debilidad técnica o control ausente?</li>
+<li><strong>Amenaza:</strong> ¿se describe actor/método plausible (bot, phishing, insider, abuso de API)?</li>
+<li><strong>Impacto:</strong> ¿explica CIA y efecto en negocio?</li>
+<li><strong>Mitigación:</strong> ¿control concreto + justificación + prioridad?</li>
+<li><strong>Participación:</strong> ¿réplicas con aporte y pregunta?</li>
+</ul>
+</div>
+<div data-reveal="" style="margin-top:16px; background:#e3f2fd; border-left:6px solid #1565c0; padding:18px; border-radius:10px; color:#0d47a1;">
+<strong>Bonificación (si el docente la usa):</strong> agregar una mini‑priorización (impacto/probabilidad) o una mitigación estructural bien razonada
+  puede mejorar el criterio de mitigación y evidencia.
+</div>
+<div data-reveal="" style="margin-top:22px;">
+<h3 style="font-family:'Montserrat',sans-serif; color:#0d47a1; margin:0 0 12px;">🔢 Conversión sugerida a escala 1.0–5.0</h3>
+<div style="overflow-x:auto;">
+<div class="table-scroll"><table class="rubric-table">
+<thead>
+<tr><th>Desempeño global</th><th>Descripción</th><th>Rango sugerido</th></tr>
+</thead>
+<tbody>
+<tr><td class="level-high"><strong>Excelente</strong></td><td>Precisión técnica + evidencia + mitigación concreta + debate valioso.</td><td><strong>4.6 – 5.0</strong></td></tr>
+<tr><td><strong>Bueno</strong></td><td>Buen análisis pero con faltas menores (evidencia o detalle en controles).</td><td><strong>4.0 – 4.5</strong></td></tr>
+<tr><td><strong>Aceptable</strong></td><td>Cumple formato, generalidades, poca profundidad o mitigación débil.</td><td><strong>3.0 – 3.9</strong></td></tr>
+<tr><td><strong>Insuficiente</strong></td><td>Confusiones conceptuales, sin mitigación o sin participación.</td><td><strong>1.0 – 2.9</strong></td></tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div data-reveal="" style="margin-top:14px; font-size:0.95rem; color:#546e7a;">
+<strong>Nota final:</strong> la rúbrica premia pensamiento crítico y comunicación técnica. Un post “bonito” sin coherencia técnica no alcanza desempeño excelente.
+</div>
+</body>
+</html>

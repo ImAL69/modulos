@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist de Entrega Final</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .checklist-container {
+        background: #f5faff; padding: 30px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+
+    .check-item {
+        display: flex; align-items: center; margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;
+    }
+    .check-item input { width: 25px; height: 25px; margin-right: 15px; cursor: pointer; accent-color: #1565c0; }
+    .check-label { font-size: 1.1rem; cursor: pointer; flex: 1; }
+
+    .upload-btn {
+        display: block; width: 100%; padding: 20px; background: #2e7d32; color: white; text-align: center; border: none; border-radius: 50px; font-weight: bold; font-size: 1.2rem; margin-top: 30px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .upload-btn:hover { background: #1b5e20; transform: scale(1.02); }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body style="margin:0;background:#f0f2f5;">
+<style>
+/* Q10 BODYSCR: forzar scroll en body (Q10 puede bloquear scroll interno) */
+html,body{height:auto !important; min-height:100% !important; max-height:none !important;}
+body{margin:0 !important; background:#f0f2f5; overflow:auto !important; overflow-x:hidden !important; -webkit-overflow-scrolling:touch !important;}
+/* Neutralizar recortes por contenedores */
+.container-extended, main,.wrapper,.content,.container{height:auto !important; max-height:none !important; overflow:visible !important;}
+.tablewrap, .rubric-wrap, .mini-code, pre, code{overflow:auto !important; max-height:none !important;}
+</style>
+
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Checklist de Entrega Final</h1>
+        <p>Asegura tu 50% antes de subir los archivos.</p>
+    </div>
+
+    <div class="checklist-container">
+        <div class="check-item">
+            <input type="checkbox" id="c1">
+            <label for="c1" class="check-label">El Informe Ejecutivo tiene máximo 3 páginas y lenguaje de negocio.</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="c2">
+            <label for="c2" class="check-label">El Informe Técnico incluye TODAS las evidencias gráficas necesarias.</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="c3">
+            <label for="c3" class="check-label">La Presentación (PPTX/PDF) tiene entre 8 y 10 diapositivas.</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="c4">
+            <label for="c4" class="check-label">He revisado la ortografía y el formato de los documentos.</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="c5">
+            <label for="c5" class="check-label">He anonimizado cualquier dato personal real (si aplica).</label>
+        </div>
+
+        </div>
+
+
+
+    <div class="lessons-box" style="margin-top:26px;">
+        <strong>🧭 Guía para tu reunión de cierre (15 minutos):</strong>
+        <ul style="margin:10px 0 0 18px;">
+            <li><strong>Min 0–2:</strong> Contexto y alcance (qué se probó, qué no).</li>
+            <li><strong>Min 2–7:</strong> Hallazgos top (3–5) con impacto claro y prioridad.</li>
+            <li><strong>Min 7–12:</strong> Plan de mitigación (quick wins vs mediano plazo) y responsables.</li>
+            <li><strong>Min 12–15:</strong> Lecciones aprendidas + próximos pasos (retest, hardening, monitoreo).</li>
+        </ul>
+    </div>
+
+    <div class="final-card" style="border-bottom-color:#ff6f00;">
+        <i class="fa-solid fa-clipboard-list final-icon" style="color:#ff6f00;"></i>
+        <h3 class="final-title" style="color:#e65100;">Plantilla corta de Lecciones Aprendidas</h3>
+        <p style="margin-bottom:0;">Copia este formato y responde con frases cortas (máximo 8–10 líneas):</p>
+        <div style="text-align:left; margin-top:14px; background:#fff; border:1px solid #ffe0b2; padding:16px; border-radius:10px;">
+            <ul style="margin:0 0 0 18px; color:#5d4037;">
+                <li><strong>Qué funcionó bien:</strong> (herramientas, comunicación, preparación)</li>
+                <li><strong>Qué salió mal:</strong> (bloqueos, accesos, fallos de laboratorio)</li>
+                <li><strong>Qué haría diferente:</strong> (pasos, evidencia, enfoque)</li>
+                <li><strong>Control preventivo recomendado:</strong> (hardening, monitoreo, proceso)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="final-card" style="border-bottom-color:#2e7d32;">
+        <i class="fa-solid fa-circle-check final-icon" style="color:#2e7d32;"></i>
+        <h3 class="final-title" style="color:#1b5e20;">Cierre Profesional</h3>
+        <p style="margin-bottom:0;">
+            Si tu informe permite que un equipo de TI <strong>reproduzca</strong> el hallazgo y <strong>aplique</strong> la corrección sin preguntarte,
+            entonces tu auditoría está lista para el mundo real.
+        </p>
+    </div>
+
+
+<!-- ====== EXPANSION PRO: FINAL / CIERRE ====== -->
+<div style="margin-top:22px; background:#fff; border:1px solid #e0e0e0; padding:26px; border-radius:12px;">
+  <h2 style="margin:0 0 10px 0; color:#37474f; font-family:'Montserrat',sans-serif;">
+    <i class="fa-solid fa-microphone-lines"></i> Guion de cierre (lista para exponer)
+  </h2>
+  <p style="margin:0 0 12px 0; color:#546e7a;">
+    Usa este guion para tu presentación de 15 minutos. Mantiene ritmo, evita divagar y asegura cobertura de lo evaluable.
+  </p>
+  <ol style="margin:0 0 0 18px; color:#546e7a;">
+    <li><strong>Contexto (1 min):</strong> “Probamos X activos bajo estas restricciones…”</li>
+    <li><strong>Hallazgos top (5 min):</strong> 3–5 hallazgos con impacto claro y prioridad.</li>
+    <li><strong>Riesgo e impacto (3 min):</strong> “Si se explota, puede ocurrir…” (técnico + negocio).</li>
+    <li><strong>Plan 30/60/90 (4 min):</strong> quick wins vs acciones estructurales (dueños y plazos).</li>
+    <li><strong>Lecciones aprendidas (2 min):</strong> 2 cosas que funcionaron y 2 mejoras para la siguiente auditoría.</li>
+  </ol>
+</div>
+
+<div style="margin-top:16px; background:#e3f2fd; border:1px solid #90caf9; padding:22px; border-radius:12px;">
+  <h2 style="margin:0 0 10px 0; color:#0d47a1; font-family:'Montserrat',sans-serif;">
+    <i class="fa-solid fa-shield"></i> Cierre con controles: qué recomendar al final (sin inventar)
+  </h2>
+  <ul style="margin:0 0 0 18px; color:#0d47a1;">
+    <li><strong>Hardening baseline:</strong> configurar mínimos (puertos, headers, TLS, permisos) y auditar cumplimiento.</li>
+    <li><strong>Gestión de parches:</strong> MTTR por severidad y activos críticos; retest obligatorio para cierre.</li>
+    <li><strong>IAM:</strong> MFA, mínimo privilegio, offboarding en &lt;24h para cuentas críticas.</li>
+    <li><strong>Monitoreo:</strong> logs centralizados y alertas por scanning, fuerza bruta, anomalías.</li>
+    <li><strong>Proceso:</strong> checklist de seguridad en despliegues (SDLC seguro) para evitar reincidencia.</li>
+  </ul>
+</div>
+
+<div style="margin-top:16px; background:#263238; color:#fff; padding:22px; border-radius:12px; border:2px solid #1565c0;">
+  <h2 style="margin:0 0 10px 0; color:#90caf9; font-family:'Montserrat',sans-serif;">
+    <i class="fa-solid fa-circle-check"></i> “Definición de Cierre” (Definition of Done) para auditorías
+  </h2>
+  <ul style="margin:0 0 0 18px; color:#eceff1;">
+    <li>Hallazgo corregido + evidencia de cambio (config/versión/commit).</li>
+    <li>Retest confirma que el vector ya no funciona (antes/después).</li>
+    <li>Controles preventivos/documentación actualizados para evitar recurrencia.</li>
+    <li>Responsable asignado y seguimiento (si queda riesgo residual, se documenta).</li>
+  </ul>
+</div>
+
+
+<!-- ====== EXPANSION ULTRA: CIERRE PROFESIONAL ====== -->
+<div style="margin-top:22px; background:#ffffff; border:1px solid #e0e0e0; padding:28px; border-radius:14px;">
+  <h2 style="margin:0 0 12px 0; color:#0d47a1; font-family:'Montserrat',sans-serif;">
+    <i class="fa-solid fa-chart-line"></i> Evaluación final: cómo se decide la nota (criterios transparentes)
+  </h2>
+  <p style="margin:0 0 14px 0; color:#546e7a;">
+    La calificación final se determina con base en criterios verificables. Este apartado explica exactamente
+    <b>qué se revisa</b> y <b>cómo se evidencia</b> cada punto.
+  </p>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;">
+    <div style="border:1px solid #e3f2fd; border-radius:12px; padding:16px;">
+      <b style="color:#1565c0;">Calidad técnica</b>
+      <ul style="margin:8px 0 0 18px; color:#546e7a;">
+        <li>Reproducibilidad total de los hallazgos.</li>
+        <li>Causa raíz claramente explicada.</li>
+        <li>Mitigaciones viables y priorizadas.</li>
+      </ul>
+    </div>
+    <div style="border:1px solid #e3f2fd; border-radius:12px; padding:16px;">
+      <b style="color:#1565c0;">Claridad ejecutiva</b>
+      <ul style="margin:8px 0 0 18px; color:#546e7a;">
+        <li>Lenguaje comprensible para directivos.</li>
+        <li>Relación riesgo–impacto–decisión.</li>
+        <li>Conclusiones accionables.</li>
+      </ul>
+    </div>
+    <div style="border:1px solid #e3f2fd; border-radius:12px; padding:16px;">
+      <b style="color:#1565c0;">Gestión y profesionalismo</b>
+      <ul style="margin:8px 0 0 18px; color:#546e7a;">
+        <li>Formato, ortografía y coherencia.</li>
+        <li>Evidencias organizadas.</li>
+        <li>Cumplimiento de tiempos.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:18px; background:#e8f5e9; border:1px solid #a5d6a7; padding:24px; border-radius:14px;">
+  <h2 style="margin:0 0 10px 0; color:#1b5e20; font-family:'Montserrat',sans-serif;">
+    <i class="fa-solid fa-seedling"></i> Reflexión final del estudiante (obligatoria)
+  </h2>
+  <p style="margin:0 0 12px 0; color:#2e7d32;">
+    Incluye una reflexión personal (1 página máximo) respondiendo con honestidad profesional:
+  </p>
+  <ul style="margin:0 0 0 18px; color:#2e7d32;">
+    <li>¿Qué aprendiste técnicamente que antes no dominabas?</li>
+    <li>¿Qué error repetirías menos la próxima vez?</li>
+    <li>¿Qué habilidad profesional fortaleciste más?</li>
+    <li>¿Cómo aplicarías este proceso en un entorno real?</li>
+  </ul>
+</div>
+
+<div style="margin-top:18px; background:#263238; color:#ffffff; padding:24px; border-radius:14px; border:2px solid #1565c0;">
+  <h2 style="margin:0 0 10px 0; color:#90caf9; font-family:'Montserrat',sans-serif;">
+    <i class="fa-solid fa-flag-checkered"></i> Mensaje final
+  </h2>
+  <p style="margin:0; color:#eceff1;">
+    Este proyecto no evalúa solo conocimientos técnicos. Evalúa tu capacidad de
+    <b>pensar como profesional</b>, comunicar riesgos y proponer soluciones reales.
+    Si tu entrega puede ser usada por un equipo de TI sin preguntarte nada adicional,
+    entonces has alcanzado el estándar esperado.
+  </p>
+</div>
+</div>
+</body>
+</html>

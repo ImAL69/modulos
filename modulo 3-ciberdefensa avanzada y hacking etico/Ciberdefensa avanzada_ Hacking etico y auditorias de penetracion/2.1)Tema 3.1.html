@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 6: Análisis y Priorización</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .risk-matrix {
+        background: #fff; padding: 20px; border-radius: 12px; border: 1px solid #ddd; margin-top: 20px; text-align: center;
+    }
+    .risk-title { font-weight: bold; color: #37474f; display: block; margin-bottom: 10px; }
+
+    .cvss-card {
+        background: #f5faff; border-left: 6px solid #ff9800; padding: 25px; margin-bottom: 25px; border-radius: 8px;
+    }
+    .cvss-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .cvss-title { font-size: 1.3rem; font-weight: 700; color: #e65100; font-family: 'Montserrat', sans-serif; }
+
+    .formula-box {
+        background: #263238; color: #fff; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; text-align: center; font-size: 1.1rem; margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+
+
+/* ===== Animaciones GOD (Q10-safe, sin librerías externas) ===== */
+@keyframes fadeUp { from { opacity:0; transform: translateY(12px);} to { opacity:1; transform: translateY(0);} }
+@keyframes floaty { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-6px);} }
+@keyframes glowPulse { 0%,100%{ box-shadow:0 10px 40px rgba(0,0,0,0.08);} 50%{ box-shadow:0 16px 56px rgba(21,101,192,0.18);} }
+.reveal { animation: fadeUp .6s ease both; }
+.stagger > * { animation: fadeUp .6s ease both; }
+.stagger > *:nth-child(2){ animation-delay:.06s }
+.stagger > *:nth-child(3){ animation-delay:.12s }
+.stagger > *:nth-child(4){ animation-delay:.18s }
+.stagger > *:nth-child(5){ animation-delay:.24s }
+.stagger > *:nth-child(6){ animation-delay:.30s }
+.container-extended { animation: glowPulse 3.6s ease-in-out infinite; }
+.value-icon { animation: floaty 2.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce){
+  .reveal, .stagger > * , .container-extended, .value-icon { animation:none !important; }
+}
+
+/* ===== Q10 safe scroll (no recortar contenido) ===== */
+html, body { height:auto !important; overflow:auto !important; }
+.container-extended { height:auto !important; max-height:none !important; overflow:visible !important; }
+
+/* ===== Componentes PRO para Unidad 3 ===== */
+.section-title{margin-top:44px;color:#1565c0;font-weight:900;font-size:1.55rem;text-align:center;font-family:'Montserrat',sans-serif}
+.subnote{color:#546e7a;font-size:1.05rem;margin:10px 0 0;text-align:center}
+.doc-card{background:#f5faff;border:1px solid #bbdefb;padding:24px;border-radius:14px;margin:18px 0;border-left:6px solid #1565c0;transition:transform .2s ease, box-shadow .2s ease}
+.doc-card:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(13,71,161,.10)}
+.doc-title{font-size:1.18rem;font-weight:900;color:#0d47a1;margin:0 0 10px;font-family:'Montserrat',sans-serif}
+.kpi{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.kpi .pill{background:#fff;border:1px solid #bbdefb;color:#1565c0;padding:6px 10px;border-radius:999px;font-weight:900;font-size:.86rem}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #e0e0e0;border-radius:14px;margin:14px 0}
+.tablewrap table{width:100%;border-collapse:collapse;min-width:900px}
+.tablewrap th{background:#1565c0;color:#fff;padding:12px 10px;text-align:left}
+.tablewrap td{border-top:1px solid #eee;padding:12px 10px;vertical-align:top}
+.callout{background:#fff3e0;border:1px solid #ffe0b2;border-left:6px solid #fb8c00;padding:18px;border-radius:14px;margin:16px 0}
+.callout b{color:#e65100}
+.mini-code{background:#263238;color:#fff;padding:16px;border-radius:12px;font-family:'Courier New',monospace;font-size:.96rem;overflow:auto}
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 3.1: Análisis y Priorización</h1>
+        <p>No todo es urgente. Aprendiendo a clasificar la criticidad.</p>
+    </div>
+
+    <p style="margin-bottom: 30px; font-size: 1.1rem;">
+        Si reportas 50 vulnerabilidades como "Críticas", el cliente no arreglará ninguna. El arte del reporte es la <strong>priorización</strong>. Debemos distinguir entre lo que es teóricamente posible y lo que representa un riesgo inminente.
+    </p>
+
+    <div class="formula-box">
+        Riesgo = Impacto × Probabilidad
+    </div>
+
+    <div class="cvss-card">
+        <div class="cvss-header">
+            <span class="cvss-title">El Estándar CVSS (Common Vulnerability Scoring System)</span>
+            <i class="fa-solid fa-calculator" style="font-size: 1.5rem; color: #ff9800;"></i>
+        </div>
+        <p>Aprenderemos a usar la calculadora CVSS v3.1 para asignar un puntaje objetivo (0.0 a 10.0) a cada hallazgo, basándonos en:</p>
+        <ul style="color: #546e7a;">
+            <li><strong>Vector de Ataque:</strong> ¿Se puede explotar remoto o requiere acceso físico?</li>
+            <li><strong>Complejidad:</strong> ¿Es fácil (script kiddie) o difícil (experto)?</li>
+            <li><strong>Impacto CIA:</strong> ¿Afecta Confidencialidad, Integridad o Disponibilidad?</li>
+        </ul>
+    </div>
+
+    <div class="cvss-card" style="border-left-color: #f44336;">
+        <span class="cvss-title" style="color: #b71c1c;">Enfoque Basado en Riesgo de Negocio</span>
+        <p>Un puntaje CVSS de 9.0 en un servidor de pruebas aislado puede ser <strong>menos prioritario</strong> que un CVSS de 5.0 en el servidor principal de facturación. El contexto del negocio manda.</p>
+    </div>
+
+
+    <div class="cvss-card" style="border-left-color:#1976d2;">
+        <div class="cvss-header">
+            <span class="cvss-title" style="color:#0d47a1;">Objetivo de la Semana: priorizar con criterio</span>
+            <i class="fa-solid fa-layer-group" style="font-size: 1.5rem; color: #1976d2;"></i>
+        </div>
+        <p>Tu meta no es producir una lista larga, sino una lista <strong>accionable</strong>. Para cada hallazgo debes contestar:</p>
+        <ul style="color:#546e7a;">
+            <li><strong>¿Qué evidencia lo prueba?</strong> (captura, respuesta HTTP, log, comando y salida).</li>
+            <li><strong>¿Cuál es el impacto real?</strong> (datos, dinero, operación, reputación).</li>
+            <li><strong>¿Qué tan probable es?</strong> (expuesto a internet, requiere credenciales, requiere condiciones raras).</li>
+            <li><strong>¿Qué se hace primero?</strong> (quick win vs mejora estructural).</li>
+        </ul>
+    </div>
+
+    <div class="cvss-card">
+        <div class="cvss-header">
+            <span class="cvss-title">CVSS en 60 segundos (lo mínimo para usarlo bien)</span>
+            <i class="fa-solid fa-gauge-high" style="font-size: 1.5rem; color: #ff9800;"></i>
+        </div>
+        <p><strong>CVSS</strong> te da un número objetivo (0.0 a 10.0), pero no decide por ti. Úsalo como “base” y luego ajusta por contexto.</p>
+        <div class="formula-box" style="background:#1b2a33;">
+            Prioridad final = CVSS + Contexto del negocio
+        </div>
+        <p style="margin-top:0; color:#546e7a;">Ejemplo rápido: un CVSS 7.5 en un servidor interno aislado puede bajar de prioridad; un CVSS 5.3 en el servidor de pagos puede subir.</p>
+    </div>
+
+    <div class="cvss-card" style="border-left-color:#4caf50;">
+        <span class="cvss-title" style="color:#1b5e20;">Marco de priorización (simple y efectivo)</span>
+        <ul style="color:#546e7a;">
+            <li><strong>P0 – Acción inmediata (24–72h):</strong> RCE, credenciales expuestas, acceso a datos sensibles, administración pública expuesta.</li>
+            <li><strong>P1 – Urgente (1–2 semanas):</strong> escalamiento de privilegios probable, bypass de autenticación, datos internos accesibles.</li>
+            <li><strong>P2 – Planificado (2–6 semanas):</strong> hardening, mejoras de configuración, reducción de superficie de ataque.</li>
+            <li><strong>P3 – Mejora continua:</strong> hallazgos informativos, recomendaciones de buenas prácticas, higiene de seguridad.</li>
+        </ul>
+    </div>
+
+    <div class="risk-matrix">
+        <span class="risk-title">Plantilla mínima de tabla de hallazgos (para tu reporte)</span>
+        <p style="margin:0; color:#546e7a;">
+            <strong>Hallazgo</strong> | <strong>Activo</strong> | <strong>Evidencia</strong> | <strong>Impacto</strong> | <strong>Probabilidad</strong> | <strong>CVSS</strong> | <strong>Prioridad</strong> | <strong>Mitigación</strong>
+        </p>
+        <p style="margin:10px 0 0 0; font-size:0.95rem; color:#607d8b;">
+            Consejo: si no puedes llenar “Evidencia” y “Mitigación”, el hallazgo aún no está listo.
+        </p>
+    </div>
+
+    <div class="cvss-card" style="border-left-color:#9c27b0;">
+        <span class="cvss-title" style="color:#6a1b9a;">Ejercicio guiado (sin herramientas)</span>
+        <p>Clasifica estos 3 casos (P0/P1/P2/P3) y justifica en 2 líneas:</p>
+        <ol style="color:#546e7a;">
+            <li>Panel de administración accesible desde internet sin MFA.</li>
+            <li>Servidor con versión antigua, pero aislado y sin acceso externo.</li>
+            <li>Endpoint que permite enumerar usuarios por mensajes de error.</li>
+        </ol>
+    </div>
+
+
+<h2 class="section-title">De “severidad” a “prioridad”: el salto profesional</h2>
+<p class="subnote">Priorizar no es poner colores: es justificar decisiones con evidencia y contexto.</p>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">1) Severidad ≠ Prioridad (con ejemplo realista)</h3>
+  <p><b>Severidad</b> describe el “tamaño” técnico del problema (por ejemplo, CVSS). <b>Prioridad</b> define qué arreglar primero según el activo y su valor para el negocio.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Hallazgo</th><th>CVSS</th><th>Contexto</th><th>Prioridad</th><th>Decisión</th></tr></thead>
+      <tbody>
+        <tr><td>RCE en servidor de pruebas aislado</td><td>9.8</td><td>No expuesto, sin datos reales</td><td>P2</td><td>Planificar parche + segmentación</td></tr>
+        <tr><td>Enumeración de usuarios en portal de pagos</td><td>5.3</td><td>Exposición alta + ataques dirigidos</td><td>P1</td><td>Mitigar mensajes + rate limit</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">2) Probabilidad: cómo estimarla sin inventar</h3>
+  <p>La probabilidad sube cuando: está expuesto a internet, el exploit es público, no requiere credenciales, y hay poca fricción.</p>
+  <div class="mini-code">Checklist rápido:
+- ¿Se explota remoto? (sí/no)
+- ¿Requiere autenticación? (sí/no)
+- ¿Exploit público confiable? (sí/no)
+- ¿Exposición real? (internet/interno/segmentado)
+- ¿Controles presentes? (WAF/MFA/rate limit/IDS)</div>
+  <div class="kpi"><span class="pill">Exposición</span><span class="pill">Fricción</span><span class="pill">Exploit</span><span class="pill">Controles</span></div>
+</div>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">3) Impacto (CIA) traducido a negocio</h3>
+  <ul>
+    <li><b>Confidencialidad:</b> fuga de PII, secretos, credenciales.</li>
+    <li><b>Integridad:</b> cambios no autorizados (facturas, notas, inventarios).</li>
+    <li><b>Disponibilidad:</b> caída del servicio (ventas, operación, clientes).</li>
+  </ul>
+  <div class="callout"><b>Tip:</b> escribe el impacto como “pérdida” (dinero/tiempo/clientes) y “consecuencia” (sanción/daño reputacional).</div>
+</div>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">4) Prioridad P0–P3 (con criterios concretos)</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Nivel</th><th>Ventana</th><th>Señales típicas</th><th>Qué debes entregar</th></tr></thead>
+      <tbody>
+        <tr><td><b>P0</b></td><td>24–72h</td><td>RCE, credenciales expuestas, admin sin MFA, datos sensibles</td><td>Acción inmediata + verificación</td></tr>
+        <tr><td><b>P1</b></td><td>1–2 semanas</td><td>Escalamiento probable, bypass auth, datos internos accesibles</td><td>Plan corto + responsables</td></tr>
+        <tr><td><b>P2</b></td><td>2–6 semanas</td><td>Hardening, configuración, superficie de ataque</td><td>Roadmap + quick wins</td></tr>
+        <tr><td><b>P3</b></td><td>Mejora continua</td><td>Informativos, higiene, buenas prácticas</td><td>Medidas medibles</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">5) Mitigación verificable (lo que separa un 3.5 de un 5.0)</h3>
+  <p>Una mitigación pro responde: <b>qué cambiar</b>, <b>dónde</b>, <b>quién</b>, <b>cuándo</b> y <b>cómo comprobar</b>.</p>
+  <div class="mini-code">Ejemplo:
+- Cambio: cerrar puerto 445 externo
+- Dónde: firewall perimetral + SG del servidor
+- Responsable: Infra/Redes
+- Verificación: re-scan (nmap) + evidencia “puerto cerrado”</div>
+</div>
+
+<div class="value-prop" style="text-align:left;">
+  <p class="value-text" style="margin:0 0 10px 0;">Checklist PRO (antes de entregar)</p>
+  <ul style="margin:0; padding-left:20px;">
+    <li>Cada hallazgo tiene evidencia mínima (comando + salida/captura).</li>
+    <li>CVSS calculado o justificado si no aplica.</li>
+    <li>Prioridad P0–P3 explicada en 2–4 líneas.</li>
+    <li>Mitigación concreta + verificación (re-test).</li>
+    <li>Resumen ejecutivo sin jerga (impacto + acciones).</li>
+  </ul>
+</div>
+<!-- ===================== CONTENIDO PRO (AMPLIACIÓN TEMA 3.1) ===================== -->
+
+<div class="cvss-card" style="border-left-color:#00acc1;">
+  <div class="cvss-header">
+    <span class="cvss-title" style="color:#006064;">CVSS v3.1 a fondo: qué mide y qué NO mide</span>
+    <i class="fa-solid fa-circle-info" style="font-size: 1.5rem; color:#00acc1;"></i>
+  </div>
+  <p>
+    CVSS es un <b>estándar de puntuación</b> que busca consistencia al describir la severidad técnica. Sirve para comparar hallazgos,
+    pero <b>no reemplaza</b> el juicio profesional ni el contexto del negocio. Por eso, en un reporte serio se combina con
+    <b>exposición real</b>, <b>valor del activo</b> y <b>controles existentes</b>.
+  </p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th>CVSS sí ayuda a</th>
+          <th>CVSS no resuelve</th>
+          <th>Qué agregas tú (profesional)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cuantificar severidad técnica (0.0–10.0)</td>
+          <td>Priorizar por negocio automáticamente</td>
+          <td>Impacto operativo/financiero + criticidad del proceso</td>
+        </tr>
+        <tr>
+          <td>Estandarizar lenguaje entre equipos</td>
+          <td>Medir “daño reputacional” real</td>
+          <td>Escenarios + consecuencias + stakeholders</td>
+        </tr>
+        <tr>
+          <td>Comparar hallazgos similares</td>
+          <td>Decidir ventana de remediación</td>
+          <td>P0–P3 + plan (quick wins / estructural)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">Desglose rápido del Vector Base (AV/AC/PR/UI/S/C/I/A)</h3>
+  <p>
+    El vector base describe <b>cómo</b> se explota y <b>qué tan fuerte</b> es el impacto. A continuación tienes interpretaciones
+    en lenguaje claro (lo que se espera en un informe con calidad profesional).
+  </p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Métrica</th>
+          <th>Pregunta</th>
+          <th>Qué significa “alto riesgo”</th>
+          <th>Ejemplo típico</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>AV</b> Attack Vector</td>
+          <td>¿Desde dónde se explota?</td>
+          <td>Remoto por red (internet)</td>
+          <td>RCE vía HTTP en un servidor público</td>
+        </tr>
+        <tr>
+          <td><b>AC</b> Attack Complexity</td>
+          <td>¿Qué tan difícil es?</td>
+          <td>Baja (sin condiciones raras)</td>
+          <td>Exploit “one‑click” o PoC estable</td>
+        </tr>
+        <tr>
+          <td><b>PR</b> Privileges Required</td>
+          <td>¿Requiere credenciales?</td>
+          <td>Ninguna / bajas</td>
+          <td>IDOR / bypass auth / endpoint expuesto</td>
+        </tr>
+        <tr>
+          <td><b>UI</b> User Interaction</td>
+          <td>¿Depende del usuario?</td>
+          <td>No (se explota sin engaño)</td>
+          <td>SQLi directa vs phishing</td>
+        </tr>
+        <tr>
+          <td><b>S</b> Scope</td>
+          <td>¿Rompe el “límite” de seguridad?</td>
+          <td>Changed (impacta componentes externos)</td>
+          <td>Escala de app → host / dominio</td>
+        </tr>
+        <tr>
+          <td><b>C/I/A</b> CIA Impact</td>
+          <td>¿Qué se daña?</td>
+          <td>Alto (datos críticos / caída)</td>
+          <td>Exfiltración PII / corrupción DB / DoS</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><b>Tip pro:</b> escribe el vector completo (ej. <code>AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</code>) y luego tradúcelo a “negocio”.</div>
+</div>
+
+<div class="cvss-card" style="border-left-color:#7e57c2;">
+  <div class="cvss-header">
+    <span class="cvss-title" style="color:#4527a0;">De CVSS a Prioridad: algoritmo práctico (sin inventar)</span>
+    <i class="fa-solid fa-route" style="font-size: 1.5rem; color:#7e57c2;"></i>
+  </div>
+  <p>
+    Una forma práctica de priorizar (simple, defendible y fácil de explicar) es usar un ajuste por contexto:
+    <b>Prioridad = Severidad técnica (CVSS) + Exposición + Valor del activo − Controles</b>.
+    No es matemático exacto: es un <b>marco</b> para argumentar.
+  </p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Factor</th><th>Indicadores</th><th>Cómo lo justificas en el reporte</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Exposición</b></td>
+          <td>Internet / VPN / interno / segmentado</td>
+          <td>“El servicio está publicado y responde a internet; riesgo de explotación masiva.”</td>
+        </tr>
+        <tr>
+          <td><b>Valor del activo</b></td>
+          <td>Pagos, notas, datos personales, operación</td>
+          <td>“Afecta proceso crítico (facturación / matrículas / nómina).”</td>
+        </tr>
+        <tr>
+          <td><b>Controles</b></td>
+          <td>MFA, WAF, rate limit, EDR, segmentación</td>
+          <td>“Existe WAF y MFA; reduce probabilidad, pero no elimina impacto.”</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">Plantillas copiables: lo que un evaluador espera ver</h3>
+  <p>Estas plantillas hacen que tu entrega se vea “de consultoría” (clara, verificable y accionable).</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Sección</th><th>Plantilla</th><th>Ejemplo breve</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Resumen ejecutivo</b></td>
+          <td>“Se identificaron X hallazgos. Los Top 3 (P0/P1) impactan [proceso] y podrían causar [consecuencia]. Se recomienda [acción].”</td>
+          <td>“Top 3: admin sin MFA, servicio expuesto con versión vulnerable, fuga de usuarios.”</td>
+        </tr>
+        <tr>
+          <td><b>Hallazgo</b></td>
+          <td>“[Qué] en [activo] permite [impacto]. Evidencia: [prueba]. Riesgo: [impacto×prob].”</td>
+          <td>“Login filtra usuarios válidos → facilita ataques dirigidos.”</td>
+        </tr>
+        <tr>
+          <td><b>Mitigación</b></td>
+          <td>“Cambiar [config/parche] en [lugar]. Responsable: [rol]. Verificación: [re-test].”</td>
+          <td>“Activar MFA + rate limit; re-test sin enumeración.”</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mini-code">Checklist de evidencia mínima por hallazgo:
+1) comando + salida / captura
+2) endpoint o ruta exacta
+3) impacto (qué se logra)
+4) mitigación concreta
+5) verificación (cómo pruebas el cierre)</div>
+</div>
+
+<div class="cvss-card" style="border-left-color:#43a047;">
+  <div class="cvss-header">
+    <span class="cvss-title" style="color:#1b5e20;">Casos típicos y cómo priorizarlos (con criterio)</span>
+    <i class="fa-solid fa-shield-halved" style="font-size: 1.5rem; color:#43a047;"></i>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Caso</th><th>Señales</th><th>Prioridad sugerida</th><th>Por qué</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Panel admin sin MFA</td>
+          <td>Expuesto + cuentas privilegiadas</td>
+          <td><b>P0/P1</b></td>
+          <td>Alta probabilidad + impacto total (toma de control).</td>
+        </tr>
+        <tr>
+          <td>Enumeración de usuarios</td>
+          <td>Mensajes de error distintos</td>
+          <td><b>P1/P2</b></td>
+          <td>Facilita fuerza bruta/phishing/ataques dirigidos.</td>
+        </tr>
+        <tr>
+          <td>Versión vieja interna</td>
+          <td>Sin exposición + segmentación</td>
+          <td><b>P2</b></td>
+          <td>Riesgo existe, pero baja probabilidad inmediata.</td>
+        </tr>
+        <tr>
+          <td>Información sensible en logs</td>
+          <td>Tokens/PII en trazas</td>
+          <td><b>P1</b></td>
+          <td>Fuga silenciosa + cumplimiento + acceso lateral.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">Mini‑quiz (auto‑evaluación rápida)</h3>
+  <ol style="margin-top:8px;">
+    <li><b>Severidad 9.8 pero sin exposición:</b> ¿sigue siendo P0? Justifica en 2 líneas.</li>
+    <li><b>CVSS 5.3 en servidor de pagos:</b> ¿puede volverse P1? ¿qué factor lo sube?</li>
+    <li><b>Controles existentes:</b> ¿qué control reduce probabilidad pero no impacto? Da un ejemplo.</li>
+    <li><b>Verificación:</b> escribe un método de re-test para “puerto cerrado” y otro para “enumeración mitigada”.</li>
+  </ol>
+  <div class="callout"><b>Tip:</b> si respondes con frases genéricas (“parchar y ya”), te falta nivel. Debe ser <b>qué/cómo/dónde/verificar</b>.</div>
+</div>
+
+<div class="cvss-card" style="border-left-color:#ef6c00;">
+  <div class="cvss-header">
+    <span class="cvss-title" style="color:#e65100;">Errores comunes que bajan nota (evítalos)</span>
+    <i class="fa-solid fa-triangle-exclamation" style="font-size: 1.5rem; color:#ef6c00;"></i>
+  </div>
+  <ul style="color:#546e7a;">
+    <li><b>“Todo es crítico”:</b> sin priorización real, el reporte se vuelve inútil.</li>
+    <li><b>Sin evidencia:</b> un hallazgo sin prueba es una opinión, no un hallazgo.</li>
+    <li><b>Mitigación genérica:</b> “actualizar” sin versión, sin responsable, sin verificación.</li>
+    <li><b>No traducir a negocio:</b> solo jerga técnica sin impacto (CIA → pérdida).</li>
+    <li><b>Sin re-test:</b> no demuestras reducción de riesgo.</li>
+  </ul>
+</div>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">Glosario express (para escribir como pro)</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Término</th><th>Significado</th><th>Cómo usarlo en el reporte</th></tr></thead>
+      <tbody>
+        <tr><td><b>Explotabilidad</b></td><td>Qué tan fácil es explotar</td><td>“Exploit público + sin auth → alta explotabilidad.”</td></tr>
+        <tr><td><b>Riesgo residual</b></td><td>Riesgo que queda tras mitigar</td><td>“Con WAF baja probabilidad, pero impacto sigue alto.”</td></tr>
+        <tr><td><b>Control compensatorio</b></td><td>Mitiga sin arreglar la causa</td><td>“Rate limit mientras se aplica parche.”</td></tr>
+        <tr><td><b>Re-test</b></td><td>Revalidación del cierre</td><td>“Re-scan + evidencia de puerto cerrado.”</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===================== FIN AMPLIACIÓN ===================== -->
+
+</div>
+
+</body>
+</html>

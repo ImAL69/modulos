@@ -1,0 +1,551 @@
+<div class="q10-fragment-root">
+<style>
+/* Q10-SAFE: estilos embebidos dentro del contenido (sin HEAD) */
+
+
+:root{
+  --bg:#f0f2f5;
+  --ink:#263238;
+  --muted:#546e7a;
+  --primary:#1565c0;
+  --primary2:#0d47a1;
+  --card:#ffffff;
+  --soft:#e3f2fd;
+  --line:#e0e0e0;
+  --shadow:0 10px 40px rgba(0,0,0,0.08);
+  --radius:20px;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg);
+  margin:0;
+  padding:40px 20px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color:var(--ink);
+  line-height:1.8;
+}
+.container-extended{
+  max-width:1000px;
+  margin:0 auto;
+  padding:60px 50px;
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+  border-top:8px solid var(--primary);
+}
+.uni-logo{
+  position:absolute; top:30px; right:40px;
+  width:150px; height:auto; z-index:10;
+  background:rgba(255,255,255,0.95);
+  padding:6px; border-radius:10px;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.uni-logo:hover{ transform:translateY(-2px) scale(1.02); box-shadow:0 8px 24px rgba(0,0,0,.15); }
+.header-box{
+  text-align:left; margin-bottom:42px;
+  padding-top:30px; padding-right:180px;
+  border-bottom:2px solid var(--line);
+  padding-bottom:18px;
+}
+.main-title{
+  font-size:2.15rem; font-weight:900; letter-spacing:.2px;
+  color:var(--primary); margin:0 0 10px 0;
+}
+.subtitle{
+  font-size:1.15rem; color:var(--muted);
+  border-left:4px solid #1976d2;
+  padding-left:15px;
+}
+.section-title{
+  margin-top:44px;
+  color:var(--primary);
+  font-weight:900;
+  font-size:1.35rem;
+  text-align:center;
+}
+.subnote{ color:var(--muted); font-size:1.02rem; margin:10px 0 0; text-align:center; }
+.content-block{ margin-bottom:34px; text-align:justify; }
+
+.grid{ display:grid; gap:18px; }
+.two-col{ grid-template-columns: 1fr 1fr; }
+@media (max-width: 900px){ .two-col{ grid-template-columns:1fr; } }
+
+.card-lite{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px 18px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.05);
+}
+.card-lite h4{ margin:0 0 8px 0; color:var(--primary2); font-size:1.05rem; font-weight:900; }
+.info-box{
+  background:var(--soft);
+  border:1px solid #bbdefb;
+  border-left:6px solid var(--primary);
+  padding:18px;
+  border-radius:14px;
+  margin:22px 0;
+}
+.info-box strong{ color:var(--primary2); }
+.warning-box{
+  background:#ffebee;
+  border:1px solid #ef9a9a;
+  border-left:6px solid #c62828;
+  color:#b71c1c;
+  padding:16px 18px;
+  border-radius:14px;
+  margin:22px 0;
+  font-weight:800;
+}
+.pill-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+.pill{
+  background:#fff;
+  border:1px solid #bbdefb;
+  color:var(--primary);
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:.85rem;
+  font-weight:800;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.checklist{ list-style:none; padding:0; margin:12px 0 0; }
+.checklist li{ margin:8px 0; padding-left:28px; position:relative; }
+.checklist li::before{ content:"✅"; position:absolute; left:0; top:0; }
+
+.codebox{
+  background:#263238;
+  color:#eceff1;
+  padding:16px;
+  border-radius:14px;
+  overflow:auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size:.92rem;
+  line-height:1.6;
+  margin-top:10px;
+}
+
+table.compare-table{ width:100%; border-collapse:collapse; margin-top:12px; font-size:.95rem; }
+.compare-table th{ background:var(--primary); color:#fff; padding:10px; text-align:left; }
+.compare-table td{ border:1px solid #ddd; padding:10px; vertical-align:top; }
+.table-wrap{ overflow-x:auto; border-radius:12px; }
+
+details{ background:#f5faff; margin-bottom:18px; border-radius:14px; border:1px solid #bbdefb; }
+summary{
+  padding:18px 18px;
+  cursor:pointer;
+  font-weight:900;
+  color:var(--primary);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:1.05rem;
+}
+summary:hover{ background:#e3f2fd; }
+.details-content{ padding:22px; background:#fff; border-top:1px solid #bbdefb; border-radius:0 0 14px 14px; }
+
+.footer-pro{
+  margin-top:44px;
+  padding:22px;
+  border-top:1px solid #e5e7eb;
+  background:linear-gradient(180deg,#f9fafb,#ffffff);
+  text-align:center;
+  color:#374151;
+  font-size:14px;
+  border-radius:14px;
+}
+.footer-pro strong{ color:#111827; }
+
+/* ===== Animaciones “god” (solo CSS / Q10-safe) ===== */
+@keyframes fadeUp{ from{ opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;} }
+@keyframes pop{ from{ transform:scale(.98); opacity:.0;} to{transform:none; opacity:1;} }
+.anim{ animation: fadeUp .55s ease both; }
+.anim.d2{ animation-delay:.08s; }
+.anim.d3{ animation-delay:.16s; }
+.anim.d4{ animation-delay:.24s; }
+.card-lite, .info-box, .warning-box, details{ animation: pop .6s ease both; }
+@media (prefers-reduced-motion: reduce){
+  .anim, .card-lite, .info-box, .warning-box, details{ animation:none !important; }
+}
+@media (max-width:768px){
+  .uni-logo{ position:static; display:block; margin:0 auto 18px; }
+  .header-box{ padding-right:0; text-align:center; }
+}
+
+
+
+.q10-fragment-root{max-width:1100px;margin:0 auto;}
+.q10-fragment-root *{scroll-margin-top:16px}
+</style>
+
+<div class="container-extended">
+<img alt="Logo" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box anim">
+<h1 class="main-title">Tema 2.1: Metodologías de Pentesting</h1>
+<div class="subtitle">Estándares globales para ejecución profesional y auditable</div>
+</div>
+<div class="content-block anim d2">
+<p>
+    Un pentest profesional no es “probar herramientas”: es ejecutar un <strong>proceso estandarizado</strong> que
+    genere resultados <strong>reproducibles</strong>, <strong>auditables</strong> y <strong>accionables</strong>.
+    Las metodologías te ayudan a responder tres preguntas clave: <em>¿qué probar?</em>, <em>¿en qué orden?</em> y
+    <em>¿cómo demostrarlo?</em>
+</p>
+</div>
+<div class="info-box anim d3">
+<strong>🎯 Objetivo del tema:</strong> elegir y aplicar un marco (o combinación de marcos) para ejecutar una prueba
+  con criterio técnico y entregables claros.
+  <div class="pill-row">
+<span class="pill">🧱 PTES (ciclo completo)</span>
+<span class="pill">🌐 OWASP (web/APIs)</span>
+<span class="pill">📏 OSSTMM (métricas)</span>
+<span class="pill">🏛️ NIST (procedimiento)</span>
+</div>
+</div>
+<h3 class="section-title anim">Los 4 marcos que debes dominar</h3>
+<details open="">
+<summary>🧱 PTES — Penetration Testing Execution Standard</summary>
+<div class="details-content">
+<p><b>Qué es:</b> un estándar práctico para ejecutar pentests de punta a punta (infra, apps, etc.).</p>
+<p><b>Cómo se usa:</b> úsalo como “esqueleto” del proyecto: define fases, evidencia y entregables.</p>
+<div class="table-wrap">
+<table class="compare-table">
+<thead>
+<tr><th>Fase</th><th>Qué haces</th><th>Evidencia mínima</th></tr>
+</thead>
+<tbody>
+<tr><td><b>Pre‑engagement</b></td><td>Alcance, RoE, riesgos, ventana de pruebas</td><td>SOW/RoE aprobado</td></tr>
+<tr><td><b>Intel</b></td><td>Descubrimiento, OSINT/activo, enumeración inicial</td><td>Targets + notas/outputs</td></tr>
+<tr><td><b>Threat modeling</b></td><td>Qué amenazas tienen sentido en este contexto</td><td>Hipótesis de ataque</td></tr>
+<tr><td><b>Vuln analysis</b></td><td>Validación (evitar falsos positivos)</td><td>Prueba reproducible</td></tr>
+<tr><td><b>Exploitation</b></td><td>Demostración controlada del impacto</td><td>PoC + trazabilidad</td></tr>
+<tr><td><b>Post‑exploitation</b></td><td>Escalamiento, pivoteo (si está permitido)</td><td>Prueba + límites RoE</td></tr>
+<tr><td><b>Reporting</b></td><td>Reporte técnico y ejecutivo</td><td>Hallazgos + mitigación</td></tr>
+</tbody>
+</table>
+</div>
+<div class="info-box"><strong>Tip:</strong> PTES no compite con OWASP; lo complementa. PTES define el “cómo” del proyecto y OWASP profundiza el “qué” en web.</div>
+</div>
+</details>
+<details>
+<summary>🌐 OWASP — Testing Guide &amp; Top 10 (Web / APIs)</summary>
+<div class="details-content">
+<p><b>Qué es:</b> el marco más usado para evaluar seguridad en aplicaciones web, APIs y componentes.</p>
+<p><b>Cómo se usa:</b> define categorías de pruebas y te sugiere técnicas para validar fallos (auth, sesiones, inyecciones, etc.).</p>
+<div class="grid two-col" style="margin-top:10px;">
+<div class="card-lite">
+<h4>Pruebas típicas (ejemplos)</h4>
+<ul class="checklist">
+<li>Autenticación y sesiones (tokens, expiración, MFA).</li>
+<li>Control de acceso (IDOR, rutas protegidas).</li>
+<li>Inyecciones (SQL/NoSQL, command injection).</li>
+<li>Seguridad en API (rate limits, auth, scope).</li>
+<li>Headers/seguridad del navegador (CSP, HSTS).</li>
+</ul>
+</div>
+<div class="card-lite">
+<h4>Evidencia defendible</h4>
+<ul class="checklist">
+<li>Request/response recortado (lo mínimo necesario).</li>
+<li>Pasos exactos de reproducción (numerados).</li>
+<li>Impacto: qué datos o funciones quedan expuestas.</li>
+<li>Mitigación: control + validación + hardening.</li>
+</ul>
+</div>
+</div>
+</div>
+</details>
+<details>
+<summary>📏 OSSTMM — Enfoque científico y métricas verificables</summary>
+<div class="details-content">
+<p><b>Qué es:</b> un manual centrado en medición (no opiniones). Busca hechos verificables y rastreables.</p>
+<p><b>Cuándo conviene:</b> cuando el cliente pide <b>métricas</b> (comparación en el tiempo) y verificación objetiva.</p>
+<div class="info-box"><strong>Idea clave:</strong> “Seguro / inseguro” sin métrica es discutible. Con métricas, puedes comparar antes/después de una mitigación.</div>
+</div>
+</details>
+<details>
+<summary>🏛️ NIST SP 800‑115 — Procedimiento, gobernanza y cumplimiento</summary>
+<div class="details-content">
+<p><b>Qué es:</b> guía de pruebas técnicas con enfoque procedimental, usada en entornos regulados.</p>
+<p><b>Cuándo conviene:</b> sector público, compliance, auditorías formales donde el proceso importa tanto como el hallazgo.</p>
+<div class="warning-box">⚠️ En entornos regulados, documentar el “por qué” y el “cómo” es tan importante como el exploit.</div>
+</div>
+</details>
+<h3 class="section-title anim">Cómo elegir sin confundirte</h3>
+<p class="subnote anim">Regla práctica: el marco se elige por el <b>sistema</b> y por el <b>entregable</b>.</p>
+<div class="card-lite" style="margin-top:18px;">
+<div class="table-wrap">
+<table class="compare-table">
+<thead>
+<tr><th>Escenario</th><th>Marco recomendado</th><th>Por qué</th></tr>
+</thead>
+<tbody>
+<tr><td>App web / API</td><td><b>OWASP</b> + PTES</td><td>Profundidad técnica + ciclo de proyecto</td></tr>
+<tr><td>Infra / red interna</td><td><b>PTES</b></td><td>Fases claras, evidencia y reporte</td></tr>
+<tr><td>Necesitas métricas</td><td><b>OSSTMM</b></td><td>Medición verificable y comparable</td></tr>
+<tr><td>Entorno regulado</td><td><b>NIST</b> (+ PTES)</td><td>Procedimiento y compliance</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<h3 class="section-title anim">Mini‑quiz (sin trampas)</h3>
+<div class="grid two-col" style="margin-top:18px;">
+<details>
+<summary>❓ 1) ¿Por qué un pentest “sin metodología” pierde valor?</summary>
+<div class="details-content">
+      Porque no es reproducible ni auditable: no hay trazabilidad (pasos, evidencia, límites), aumenta el riesgo operativo y el reporte se vuelve opinativo.
+    </div>
+</details>
+<details>
+<summary>❓ 2) Si el objetivo es una API con auth y rate limits, ¿qué priorizas?</summary>
+<div class="details-content">
+      OWASP Testing Guide (API Security) para pruebas de auth/authorization, rate limit, validación de input, y PTES para estructurar fases y reporte.
+    </div>
+</details>
+</div>
+<h3 class="section-title anim">Mapa mental: metodología ≠ checklist de herramientas</h3>
+<p class="content-block anim d2">
+  En un entorno profesional, la metodología funciona como una <strong>arquitectura de decisión</strong>:
+  define <em>qué evidencias</em> necesitas, <em>qué riesgos</em> estás autorizado a asumir, y <em>qué límites</em> no debes cruzar.
+  Esto evita dos fallos clásicos: (1) producir hallazgos sin contexto y (2) “perseguir exploits” sin valor para el negocio.
+</p>
+<div class="grid two-col" style="margin-top:18px;">
+<div class="card-lite">
+<h4>Entregables mínimos por fase (auditables)</h4>
+<ul class="checklist">
+<li><b>Pre‑engagement:</b> Scope, RoE, matriz de riesgos operativos, plan de comunicación.</li>
+<li><b>Descubrimiento:</b> inventario de activos (con fuente) y supuestos explícitos.</li>
+<li><b>Análisis:</b> lista depurada de hallazgos (sin falsos positivos) + trazabilidad.</li>
+<li><b>Explotación controlada:</b> demostración del impacto dentro del RoE (mínimo necesario).</li>
+<li><b>Reporte:</b> resumen ejecutivo + anexo técnico + plan de remediación priorizado.</li>
+</ul>
+</div>
+<div class="card-lite">
+<h4>Errores que destruyen la calidad</h4>
+<ul class="checklist">
+<li>No documentar supuestos (el cliente no puede reproducir ni validar).</li>
+<li>Confundir “se encontró” con “se probó” (falso positivo).</li>
+<li>Impacto sin evidencia (no hay decisión de negocio posible).</li>
+<li>Mitigación vaga (sin control concreto ni verificación).</li>
+<li>Reporte sin priorización (todo “alto” = nada es alto).</li>
+</ul>
+</div>
+</div>
+<h3 class="section-title anim">Profundización: PTES aplicado (guía de decisiones)</h3>
+<details>
+<summary>🧩 Pre‑engagement: cómo evitar el “pentest que rompe producción”</summary>
+<div class="details-content">
+<p class="content-block">
+      En proyectos reales, la mayor falla no es técnica: es de <strong>gestión del riesgo operativo</strong>.
+      Antes de ejecutar pruebas, debes acordar: (a) ventanas, (b) límites de carga, (c) criterios de “stop”,
+      (d) contacto de contingencia y (e) manejo de datos.
+    </p>
+<div class="info-box"><strong>Control recomendado:</strong> establece un “cinturón de seguridad”:
+      límite de concurrencia, exclusión de endpoints críticos y reglas de reintento. Esto reduce incidentes por carga.
+    </div>
+<div class="table-wrap">
+<table class="compare-table">
+<thead><tr><th>Decisión</th><th>Pregunta clave</th><th>Salida (documento)</th></tr></thead>
+<tbody>
+<tr><td>Ventana</td><td>¿Cuándo un impacto es tolerable?</td><td>Calendario de pruebas</td></tr>
+<tr><td>Límites</td><td>¿Qué pruebas pueden degradar servicios?</td><td>RoE (técnicas prohibidas)</td></tr>
+<tr><td>Datos</td><td>¿Cómo evitar exposición de PII?</td><td>Política de evidencia</td></tr>
+<tr><td>Críticos</td><td>¿Cómo reportar 0‑day interno?</td><td>Protocolo de notificación</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<details>
+<summary>🧠 Threat Modeling: convertir “escaneo” en hipótesis</summary>
+<div class="details-content">
+<p class="content-block">
+      Modelar amenazas significa proponer <strong>caminos plausibles</strong> de ataque según arquitectura y exposición:
+      activos → superficie → controles → rutas de abuso. En lugar de “probar todo”, priorizas lo que tiene sentido.
+    </p>
+<div class="grid two-col">
+<div class="card-lite">
+<h4>Plantilla de hipótesis (usable en informe)</h4>
+<div class="codebox">H1: Si un actor obtiene [vector], entonces puede [impacto] porque [control faltante].
+Evidencia esperada: [artefacto verificable].
+Mitigación: [control técnico + validación].</div>
+</div>
+<div class="card-lite">
+<h4>Ejemplos de rutas (sin explotación)</h4>
+<ul class="checklist">
+<li>Falla de autenticación → acceso no autorizado → extracción limitada de datos.</li>
+<li>Control de acceso débil → acción privilegiada → impacto sobre integridad.</li>
+<li>Exposición de servicio → enumeración → escalamiento por configuración.</li>
+</ul>
+</div>
+</div>
+</div>
+</details>
+<details>
+<summary>🧾 Reporting: cómo escribir un hallazgo “accionable”</summary>
+<div class="details-content">
+<p class="content-block">
+      Un hallazgo accionable responde: <strong>qué</strong> (vulnerabilidad), <strong>dónde</strong> (activo),
+      <strong>cómo se valida</strong> (pasos reproducibles), <strong>impacto</strong> (riesgo real), y <strong>qué hacer</strong> (remediación verificable).
+    </p>
+<div class="table-wrap">
+<table class="compare-table">
+<thead><tr><th>Campo</th><th>Bueno</th><th>Malo</th></tr></thead>
+<tbody>
+<tr><td>Descripción</td><td>Precisa y contextualizada</td><td>Genérica (“hay una vulnerabilidad”)</td></tr>
+<tr><td>Evidencia</td><td>Verificable y mínima</td><td>Captura sin contexto</td></tr>
+<tr><td>Impacto</td><td>Ligado a CIA y negocio</td><td>“Crítico” sin justificar</td></tr>
+<tr><td>Mitigación</td><td>Control concreto + verificación</td><td>“Actualizar” sin detalle</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<h3 class="section-title anim">Caso guiado (laboratorio) — criterio profesional</h3>
+<div class="info-box anim">
+<strong>Escenario:</strong> tienes una aplicación interna con API y un servidor de archivos. El objetivo del pentest es
+  validar <b>exposición</b>, <b>autorización</b> y <b>configuración</b> sin afectar disponibilidad.
+  <div class="pill-row">
+<span class="pill">📌 Alcance acotado</span>
+<span class="pill">🧪 Evidencia mínima</span>
+<span class="pill">🧭 Prioridad por riesgo</span>
+</div>
+</div>
+<div class="grid two-col" style="margin-top:18px;">
+<div class="card-lite">
+<h4>Qué haría un pentester senior</h4>
+<ul class="checklist">
+<li>Define hipótesis (amenazas plausibles) antes de probar.</li>
+<li>Valida controles clave (auth, permisos, exposición) con evidencia.</li>
+<li>Evita “ruido” y falsos positivos; depura antes de reportar.</li>
+<li>Propone remediación con verificación (cómo saber que quedó fijo).</li>
+</ul>
+</div>
+<div class="card-lite">
+<h4>Qué NO haría</h4>
+<ul class="checklist">
+<li>Ejecutar técnicas fuera del RoE “para ver qué pasa”.</li>
+<li>Recolectar datos sensibles innecesarios.</li>
+<li>Reportar sin reproducibilidad.</li>
+<li>Entregar “lista de CVEs” sin contexto.</li>
+</ul>
+</div>
+</div>
+<h3 class="section-title anim">Checklist final de calidad (antes de entregar)</h3>
+<div class="card-lite" style="margin-top:18px;">
+<ul class="checklist">
+<li>Cada hallazgo tiene <b>activo</b>, <b>evidencia</b>, <b>impacto</b> y <b>mitigación verificable</b>.</li>
+<li>No hay hallazgos “plantilla”: todo está adaptado al escenario.</li>
+<li>La priorización explica <b>por qué</b> (exposición + impacto + probabilidad).</li>
+<li>Los límites del RoE se respetaron y quedan registrados.</li>
+<li>El informe se puede auditar: un tercero puede repetir la validación.</li>
+</ul>
+</div>
+<h3 class="section-title anim">Framework híbrido: cómo combinar sin perder trazabilidad</h3>
+<div class="grid two-col" style="margin-top:18px;">
+<div class="card-lite">
+<h4>Receta práctica (infra + web + API)</h4>
+<ul class="checklist">
+<li><b>PTES</b> como columna vertebral (fases y entregables).</li>
+<li><b>OWASP</b> para el catálogo de pruebas (web/APIs) y evidencia.</li>
+<li><b>NIST</b> para gobernanza: aprobaciones, gestión de riesgos, auditoría.</li>
+<li><b>OSSTMM</b> si se requiere medición comparativa (baseline vs post‑fix).</li>
+</ul>
+</div>
+<div class="card-lite">
+<h4>Cómo documentarlo en una sola bitácora</h4>
+<ul class="checklist">
+<li>Bitácora por <b>activo</b> (no por herramienta).</li>
+<li>Cada entrada: objetivo → método → evidencia → resultado → siguiente decisión.</li>
+<li>Señala la referencia del marco: “PTES‑VulnAnalysis”, “OWASP‑A01”, etc.</li>
+<li>Evita duplicidad: una evidencia puede soportar varios controles si está bien descrita.</li>
+</ul>
+</div>
+</div>
+<h3 class="section-title anim">Estructura de reporte (plantilla PRO)</h3>
+<div class="card-lite" style="margin-top:18px;">
+<div class="codebox">1. Resumen ejecutivo (impacto, tendencia, priorización)
+2. Alcance y reglas (Scope/RoE, supuestos, limitaciones)
+3. Metodología (marcos usados y por qué)
+4. Hallazgos (por severidad, con evidencia y mitigación)
+5. Recomendaciones estratégicas (roadmap 30/60/90 días)
+6. Anexos técnicos (capturas, bitácora resumida, tablas)</div>
+</div>
+<details>
+<summary>🔍 Cómo escribir mitigaciones “verificables”</summary>
+<div class="details-content">
+<p class="content-block">
+      Una mitigación es verificable si define <b>qué control se implementa</b> y <b>cómo se confirma</b>.
+      Ejemplo: “activar MFA” debe incluir: método, cobertura, excepción, y prueba posterior.
+    </p>
+<div class="table-wrap">
+<table class="compare-table">
+<thead><tr><th>Mitigación</th><th>Control concreto</th><th>Verificación</th></tr></thead>
+<tbody>
+<tr><td>Parche</td><td>Actualizar componente a versión segura</td><td>Validar versión + repetir prueba</td></tr>
+<tr><td>Hardening</td><td>Deshabilitar servicios no usados</td><td>Inventario post‑fix + evidencia</td></tr>
+<tr><td>Control compensatorio</td><td>WAF / segmentación / rate limit</td><td>Prueba de bypass fallida + logs</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<h3 class="section-title anim">Glosario esencial (para nivel profesional)</h3>
+<div class="grid two-col" style="margin-top:18px;">
+<div class="card-lite">
+<h4>Términos de metodología</h4>
+<ul class="checklist">
+<li><b>Reproducibilidad:</b> otra persona puede repetir y obtener el mismo resultado.</li>
+<li><b>Trazabilidad:</b> cada hallazgo se liga a evidencia y decisiones del proceso.</li>
+<li><b>Falso positivo:</b> alerta que no representa una vulnerabilidad real al validar.</li>
+<li><b>Control compensatorio:</b> reduce riesgo sin eliminar la causa raíz.</li>
+<li><b>Riesgo operativo:</b> posibilidad de afectar disponibilidad por la prueba.</li>
+</ul>
+</div>
+<div class="card-lite">
+<h4>Términos de reporte</h4>
+<ul class="checklist">
+<li><b>Severidad:</b> combinación de impacto + probabilidad (contextual).</li>
+<li><b>Recomendación:</b> control concreto orientado a remediación.</li>
+<li><b>Evidencia mínima:</b> prueba suficiente evitando exposición de datos.</li>
+<li><b>Roadmap:</b> plan de remediación priorizado por tiempo/beneficio.</li>
+<li><b>Riesgo residual:</b> riesgo que queda tras aplicar mitigaciones.</li>
+</ul>
+</div>
+</div>
+<h3 class="section-title anim">Preguntas tipo examen (para consolidar)</h3>
+<details>
+<summary>🧠 Pregunta 1 — Metodología y auditoría</summary>
+<div class="details-content">
+    Explica por qué un pentest sin trazabilidad puede ser técnicamente correcto pero profesionalmente inútil. Incluye al menos 3 consecuencias para el cliente.
+  </div>
+</details>
+<details>
+<summary>🧠 Pregunta 2 — Priorización defendible</summary>
+<div class="details-content">
+    Describe un criterio de priorización que combine exposición, impacto (CIA) y probabilidad. ¿Cómo evitarías caer en “todo es crítico”?
+  </div>
+</details>
+<details>
+<summary>🧠 Pregunta 3 — Mitigación verificable</summary>
+<div class="details-content">
+    Redacta una mitigación verificable para un hallazgo de control de acceso débil, incluyendo pasos de verificación posterior.
+  </div>
+</details>
+<h3 class="section-title anim">Lecturas y estándares para profundizar (sin salirte del marco)</h3>
+<div class="card-lite" style="margin-top:18px;">
+<ul class="checklist">
+<li>Comparar “proceso” (PTES/NIST) vs “catálogo de pruebas” (OWASP) y documentar cuándo usar cada uno.</li>
+<li>Practicar redacción de hallazgos: 1 página ejecutiva + 1 anexo técnico por hallazgo.</li>
+<li>Construir un roadmap 30/60/90 días: quick wins, hardening, controles estructurales.</li>
+</ul>
+</div>
+<div class="footer-pro anim">
+<strong>Salida esperada:</strong> al terminar 2.1 debes poder justificar por qué elegiste un marco, qué pruebas harás y qué evidencia entregarás.
+</div>
+</div>
+
+</div>

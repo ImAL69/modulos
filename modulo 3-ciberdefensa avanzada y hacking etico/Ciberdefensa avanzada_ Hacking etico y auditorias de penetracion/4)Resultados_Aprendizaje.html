@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resultados de Aprendizaje (RA)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .ra-card {
+        background: #f5faff; border: 1px solid #bbdefb; border-radius: 12px;
+        padding: 30px; margin-bottom: 30px; transition: transform 0.2s;
+        border-left: 6px solid #1565c0;
+    }
+    .ra-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+    .ra-header {
+        display: flex; align-items: center; margin-bottom: 20px;
+    }
+    .ra-badge {
+        background: #1565c0; color: white; padding: 5px 15px; border-radius: 50px;
+        font-weight: bold; margin-right: 15px; font-family: 'Montserrat', sans-serif;
+    }
+    .ra-title { font-size: 1.4rem; font-weight: 700; color: #0d47a1; }
+    
+    .ra-details ul { margin: 0; padding-left: 20px; color: #546e7a; margin-top: 15px; line-height: 1.7; }
+    .ra-details li { margin-bottom: 10px; }
+    .ra-details strong { color: #0d47a1; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* ====== GOD EXTENSIONS (contenido ampliado + animaciones suaves) ====== */
+    .god-section{ margin-top:34px; padding:26px; border-radius:16px; border:1px solid #e3f2fd; background: linear-gradient(180deg,#ffffff 0%, #f7fbff 100%); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .god-head{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:12px;}
+    .god-chip{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#0d47a1; color:#fff; font-weight:800; font-family:'Montserrat',sans-serif; font-size:0.9rem; }
+    .god-head h3{ margin:0; color:#0d47a1; font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.25rem; }
+    .god-lead{ margin: 0 0 14px 0; font-size:1.04rem; color:#37474f; }
+    .god-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin-top:14px; }
+    .god-card{ background:#fff; border:1px solid #bbdefb; border-radius:14px; padding:16px; transition: transform .18s ease, box-shadow .18s ease; }
+    .god-card:hover{ transform: translateY(-4px); box-shadow: 0 14px 28px rgba(13,71,161,0.12); border-color:#1565c0; }
+    .god-card h4{ margin:0 0 6px 0; color:#0d47a1; font-family:'Montserrat',sans-serif; font-weight:800; }
+    .god-note{ margin:12px 0 0 0; color:#607d8b; }
+    .god-callout{ margin-top:14px; padding:14px 16px; border-radius:14px; background:#e3f2fd; border-left:6px solid #1565c0; }
+    .god-check{ list-style:none; padding:0; margin: 10px 0 0 0; }
+    .god-check li{ display:flex; align-items:flex-start; gap:10px; padding:10px 10px; border-radius:12px; background:#fff; border:1px dashed #bbdefb; margin-bottom:10px; }
+    .god-check input{ transform: translateY(4px) scale(1.05); }
+    .god-steps{ margin:10px 0 0 18px; }
+    .god-bullets{ margin:10px 0 0 18px; }
+    .god-links{ list-style:none; padding:0; margin: 10px 0 0 0; }
+    .god-links li{ display:flex; gap:10px; align-items:center; padding:10px 12px; border-radius:12px; background:#fff; border:1px solid #e3f2fd; margin-bottom:10px; }
+    .tag{ display:inline-flex; padding:4px 10px; border-radius:999px; background:#0d47a1; color:#fff; font-weight:800; font-size:0.82rem; }
+    .god-timeline{ margin-top:10px; border-left:3px solid #bbdefb; padding-left:16px;}
+    .tl-item{ display:flex; gap:12px; margin:14px 0;}
+    .tl-dot{ width:12px; height:12px; border-radius:50%; background:#0d47a1; margin-top:6px; flex:0 0 auto;}
+    /* entrance animation */
+    @media (prefers-reduced-motion: no-preference){
+        .container-extended{ animation: godFadeUp .55s ease both; }
+        .god-section{ animation: godFadeUp .55s ease both; }
+        @keyframes godFadeUp{ from{ opacity:0; transform: translateY(10px);} to{ opacity:1; transform: translateY(0);} }
+    }
+    
+
+/* ===== GOD+ Animations & UX (no rompe estructura) ===== */
+[data-reveal]{ opacity:0; transform: translateY(10px); transition: opacity .55s ease, transform .55s ease; }
+[data-reveal].is-visible{ opacity:1; transform: translateY(0); }
+
+.god-mini-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-top:12px; }
+.god-pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid #bbdefb; background:#fff; font-weight:800; color:#0d47a1; font-size:.92rem; }
+.god-kpi{ background:#ffffff; border:1px solid #e3f2fd; border-radius:14px; padding:14px; }
+.god-kpi strong{ font-family:'Montserrat',sans-serif; color:#0d47a1; font-weight:900; font-size:1.05rem; }
+.god-kpi span{ display:block; color:#546e7a; margin-top:6px; }
+.god-code{ background:#0b1b2b; color:#e3f2fd; padding:14px 16px; border-radius:14px; overflow:auto; border:1px solid rgba(187,222,251,.35); box-shadow: 0 10px 26px rgba(0,0,0,.10); }
+.god-code code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:.92rem; line-height:1.55; }
+.god-faq details{ background:#fff; border:1px solid #bbdefb; border-radius:14px; margin:10px 0; overflow:hidden; }
+.god-faq summary{ padding:14px 16px; cursor:pointer; font-weight:900; color:#1565c0; font-family:'Montserrat',sans-serif; }
+.god-faq .details-content{ padding:16px; border-top:1px solid #e3f2fd; }
+.god-progress{ height:10px; border-radius:999px; background:#e3f2fd; overflow:hidden; border:1px solid #bbdefb; }
+.god-progress > div{ height:100%; width:0%; background:#1565c0; transition: width .7s ease; }
+
+@media (prefers-reduced-motion: reduce){
+  [data-reveal]{ opacity:1; transform:none; transition:none; }
+}
+
+</style>
+</head>
+<body><div class="god-section" data-reveal="">
+
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Resultados de Aprendizaje (RA)</h1>
+<p>Competencias verificables al finalizar el módulo.</p>
+</div>
+<div class="ra-card">
+<div class="ra-header">
+<span class="ra-badge">RA1</span>
+<span class="ra-title">Evaluación de Vulnerabilidades y Riesgos</span>
+</div>
+<div class="ra-details">
+<p><strong>Competencia:</strong> Capacidad para auditar una infraestructura tecnológica, identificar debilidades de configuración o software, y clasificarlas según su nivel de riesgo y criticidad.</p>
+<ul>
+<li><strong>Saber (Conocimiento):</strong> Protocolos de red, arquitectura de seguridad, CVEs, CVSS (Scoring System) y normativas legales.</li>
+<li><strong>Hacer (Habilidad):</strong> Ejecución de escaneos de vulnerabilidades, verificación manual de falsos positivos y mapeo de superficie de ataque.</li>
+<li><strong>Ser (Actitud):</strong> Meticulosidad, ética profesional y responsabilidad legal en el manejo de información sensible.</li>
+</ul>
+</div>
+</div>
+<div class="ra-card">
+<div class="ra-header">
+<span class="ra-badge">RA2</span>
+<span class="ra-title">Ejecución Controlada de Pruebas de Penetración</span>
+</div>
+<div class="ra-details">
+<p><strong>Competencia:</strong> Capacidad para explotar vulnerabilidades identificadas en un entorno autorizado, demostrando el impacto real de un ataque exitoso.</p>
+<ul>
+<li><strong>Saber (Conocimiento):</strong> Funcionamiento de exploits, payloads, shellcodes, técnicas de evasión y escalada de privilegios.</li>
+<li><strong>Hacer (Habilidad):</strong> Uso de Metasploit, explotación manual de inyecciones SQL/XSS, y movimiento lateral en redes.</li>
+<li><strong>Ser (Actitud):</strong> Disciplina operativa para respetar el alcance (Scope) y no causar denegación de servicio (DoS) accidental.</li>
+</ul>
+</div>
+</div>
+<div class="ra-card">
+<div class="ra-header">
+<span class="ra-badge">RA3</span>
+<span class="ra-title">Comunicación de Hallazgos y Mitigación</span>
+</div>
+<div class="ra-details">
+<p><strong>Competencia:</strong> Capacidad para comunicar eficazmente los riesgos técnicos a audiencias ejecutivas y proponer planes de remediación viables.</p>
+<ul>
+<li><strong>Saber (Conocimiento):</strong> Estructura de informes de auditoría, cálculo de impacto financiero, controles compensatorios y hardening.</li>
+<li><strong>Hacer (Habilidad):</strong> Redacción de informes técnicos y ejecutivos, diseño de planes de acción para cerrar brechas.</li>
+<li><strong>Ser (Actitud):</strong> Comunicación asertiva, orientada a soluciones y al negocio, no solo al problema técnico.</li>
+</ul>
+</div>
+</div>
+<div class="ra-card">
+<div class="ra-header">
+<span class="ra-badge">✔</span>
+<span class="ra-title">Cómo demostrar cada RA (evidencias mínimas)</span>
+</div>
+<div class="ra-details">
+<p>Estos resultados se evidencian con productos concretos. Si tu entrega incluye esto, vas en ruta:</p>
+<ul>
+<li><strong>RA1:</strong> mapa de superficie de ataque (hosts/puertos/servicios) + validación de hallazgos (no solo escáner) + priorización.</li>
+<li><strong>RA2:</strong> prueba controlada (POC) + evidencia de acceso/impacto + respeto al alcance (sin DoS, sin improvisar).</li>
+<li><strong>RA3:</strong> informe técnico + resumen ejecutivo + recomendaciones accionables + plan de remediación por prioridad.</li>
+</ul>
+</div>
+</div>
+<div class="ra-card">
+<div class="ra-header">
+<span class="ra-badge">★</span>
+<span class="ra-title">Criterios de desempeño (lo que distingue un trabajo excelente)</span>
+</div>
+<div class="ra-details">
+<ul>
+<li><strong>Precisión:</strong> hallazgos confirmados y explicados con claridad.</li>
+<li><strong>Orden:</strong> bitácora limpia, comandos y capturas con contexto.</li>
+<li><strong>Priorización:</strong> severidad argumentada (impacto + probabilidad).</li>
+<li><strong>Enfoque ético:</strong> respeto del scope y cuidado del entorno.</li>
+<li><strong>Comunicación:</strong> recomendaciones específicas (qué cambiar, dónde y por qué).</li>
+</ul>
+</div>
+</div>
+<div class="ra-card">
+<div class="ra-header">
+<span class="ra-badge">🧾</span>
+<span class="ra-title">Checklist final (auto‑control antes de entregar)</span>
+</div>
+<div class="ra-details">
+<ul>
+<li>Incluí <strong>objetivo</strong> y <strong>alcance</strong> de la práctica.</li>
+<li>Documenté <strong>comandos</strong> y <strong>resultados</strong> (reproducible).</li>
+<li>Agregué <strong>evidencia</strong> (capturas/logs) para cada hallazgo.</li>
+<li>Expliqué <strong>impacto</strong> real y <strong>recomendación</strong> accionable.</li>
+<li>Priorizé con lógica (no todo es crítico).</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">🎓 Evidencias por RA</span><h3>Cómo demostrar cada resultado</h3></div>
+<div class="god-grid">
+<div class="god-card">
+<h4>RA1 – Diagnóstico</h4>
+<p><strong>Evidencia:</strong> matriz de superficie de ataque + riesgos priorizados (con criterio).</p>
+<p><strong>Se ve bien si:</strong> justificas impacto y validas falsos positivos.</p>
+</div>
+<div class="god-card">
+<h4>RA2 – Ejecución</h4>
+<p><strong>Evidencia:</strong> bitácora de explotación en lab (pasos, capturas, logs).</p>
+<p><strong>Se ve bien si:</strong> respetas scope y controlas el impacto.</p>
+</div>
+<div class="god-card">
+<h4>RA3 – Comunicación</h4>
+<p><strong>Evidencia:</strong> informe ejecutivo + plan de remediación (responsables y fechas).</p>
+<p><strong>Se ve bien si:</strong> hay decisión clara y KPI de seguimiento.</p>
+</div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">💡 Idea clave</span><h3>Lo esencial que no puedes olvidar</h3></div>
+<p class="god-lead">En hacking ético y auditorías, el valor no está en “hacer ruido”, sino en <strong>reducir incertidumbre</strong>: demostrar con evidencia qué puede pasar, cuánto duele y qué lo evita.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4>1) Evidencia</h4>
+<p>Todo hallazgo debe tener <strong>prueba reproducible</strong>: comando, captura, log, timestamp y contexto del activo.</p>
+</div>
+<div class="god-card">
+<h4>2) Riesgo</h4>
+<p>Conecta lo técnico con impacto: <strong>confidencialidad</strong>, <strong>integridad</strong>, <strong>disponibilidad</strong> y continuidad.</p>
+</div>
+<div class="god-card">
+<h4>3) Remediación</h4>
+<p>Propón controles y plazos. Un informe sin plan de acción es solo “miedo” con formato bonito.</p>
+</div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">🎯 Mini‑reto</span><h3>10–15 minutos para “subir de nivel”</h3></div>
+<ol class="god-steps">
+<li>Elige un activo de ejemplo (servidor web, base de datos, endpoint).</li>
+<li>Escribe 3 riesgos: <em>amenaza + vulnerabilidad + impacto</em>.</li>
+<li>Define 1 KPI por riesgo (ej. MTTD, MTTR, Patch SLA, phishing rate).</li>
+<li>Redacta una recomendación en formato: <strong>Acción → Responsable → Fecha → Evidencia</strong>.</li>
+</ol>
+<div class="god-callout">
+<strong>Entrega rápida:</strong> 1 tabla (riesgo / evidencia / KPI / decisión) y un párrafo ejecutivo.
+  </div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">⚠️ Errores comunes</span><h3>Lo que más hace perder puntos</h3></div>
+<div class="god-grid">
+<div class="god-card">
+<h4>“Herramientitis”</h4>
+<p>Usar 10 herramientas sin entender resultados. Prioriza: <strong>pregunta → técnica → evidencia</strong>.</p>
+</div>
+<div class="god-card">
+<h4>Hallazgos sin validar</h4>
+<p>No confirmas falsos positivos. Si no lo validas, no es hallazgo: es sospecha.</p>
+</div>
+<div class="god-card">
+<h4>Reporte “sin negocio”</h4>
+<p>Mucho tecnicismo y cero impacto. Los directivos deciden con <strong>riesgo, costo y tiempo</strong>.</p>
+</div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">📚 Recursos</span><h3>Para reforzar (sin perderte)</h3></div>
+<ul class="god-links">
+<li><span class="tag">Concepto</span> Tríada CIA, CVE, CVSS, superficie de ataque, riesgo residual.</li>
+<li><span class="tag">Práctica</span> Nmap básico → servicios → versión → scripts NSE (con ética).</li>
+<li><span class="tag">Reporte</span> Estructura: resumen ejecutivo, metodología, hallazgos, evidencia, remediación.</li>
+</ul>
+</div>
+<script>
+(() => {
+  // Reveal on scroll
+  const els = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('is-visible');
+        const bar = e.target.querySelector('.god-progress > div');
+        if(bar && !bar.dataset.filled){
+          bar.dataset.filled = '1';
+          bar.style.width = bar.getAttribute('data-pct') || '85%';
+        }
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+
+  // Persist checklist
+  document.querySelectorAll('[data-checklist]').forEach((ul, idx) => {
+    const key = 'godChecklist:' + location.pathname + ':' + idx;
+    const boxes = ul.querySelectorAll('input[type="checkbox"]');
+    try{
+      const saved = JSON.parse(localStorage.getItem(key) || '[]');
+      boxes.forEach((b,i)=> b.checked = !!saved[i]);
+    }catch(e){}
+    boxes.forEach((b,i)=>{
+      b.addEventListener('change', () => {
+        const arr = Array.from(boxes).map(x => x.checked);
+        localStorage.setItem(key, JSON.stringify(arr));
+      });
+    });
+  });
+})();
+</script>
+<!-- GOD-PLUS START: RA -->
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> RAs en profundidad</span>
+<h3>Cómo se ve un Resultado de Aprendizaje ‘bien logrado’</h3>
+</div>
+<p class="god-lead">Un RA no es ‘sé qué es’. Es ‘puedo demostrarlo’. Aquí tienes criterios observables (evidencia) que marcan el logro.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4><i class="fa-solid fa-seedling"></i> Nivel básico</h4>
+<p>Explicas conceptos con ejemplos, identificas controles básicos y describes riesgos sin confundir términos.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-person-rays"></i> Nivel intermedio</h4>
+<p>Configuras controles en laboratorio, interpretas logs y justificas decisiones con evidencia.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-crown"></i> Nivel avanzado</h4>
+<p>Diseñas arquitectura/controles, detectas comportamientos, ejecutas IR con reportes y mejoras verificables.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-briefcase"></i> Nivel profesional</h4>
+<p>Prioriza por riesgo y negocio, comunica hallazgos a múltiples audiencias y automatiza tareas repetibles.</p>
+</div>
+</div>
+<div class="god-callout">
+  El objetivo de este curso es que llegues al menos a <strong>intermedio–avanzado</strong> en los RAs clave.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Indicadores</span>
+<h3>Señales de que vas por buen camino (y de que debes ajustar)</h3>
+</div>
+<p class="god-lead">Usa estos indicadores como ‘sensores’ de tu aprendizaje.</p>
+<ul class="god-bullets">
+<li>Puedes repetir un lab **sin tutorial** y obtener el mismo resultado.</li>
+<li>Tus notas se leen como un procedimiento claro (otro podría replicarlo).</li>
+<li>Cuando aparece un error, lo diagnosticas por hipótesis (no por suerte).</li>
+<li>Identificas qué dato falta (log, tráfico, config) para confirmar una sospecha.</li>
+<li>Sabes explicar un hallazgo a alguien no técnico en 60 segundos.</li>
+</ul>
+<div class="god-callout">
+<strong>Alerta:</strong> si solo ‘sigues pasos’ y no puedes explicar por qué funcionan, aún no dominas el RA.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Rúbrica rápida</span>
+<h3>Cómo se califica una entrega técnica (para que apuntes a 5.0)</h3>
+</div>
+<p class="god-lead">Esta rúbrica te ayuda a autoevaluarte antes de entregar. No es ‘más texto’: es más <strong>claridad y evidencia</strong>.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4><i class="fa-solid fa-table-list"></i> Estructura (20%)</h4>
+<p>Orden, títulos, contexto, alcance, pasos. Nada queda ambiguo.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-camera"></i> Evidencia (30%)</h4>
+<p>Capturas/logs precisos, comandos, timestamps, y consistencia con el relato.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-microscope"></i> Análisis (25%)</h4>
+<p>Impacto, causa, hipótesis, por qué es importante. Conecta con CIA/risks.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-shield"></i> Mitigación (25%)</h4>
+<p>Fix concreto y verificable: configuración, control o proceso; incluye validación.</p>
+</div>
+</div>
+<div class="god-callout">
+  Si tu entrega tiene solo pasos pero no análisis/mitigación, se queda en ‘taller’. Si tiene análisis y fix, es ‘profesional’.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Mini‑reto RA</span>
+<h3>Convierte un hallazgo en detección + mitigación</h3>
+</div>
+<p class="god-lead">Ejercicio clave: no te quedes en ‘encontré esto’. Llévalo a defensa.</p>
+<ol class="god-steps">
+<li><strong>1)</strong> Elige un hallazgo común: contraseñas débiles / permisos excesivos / puerto expuesto / servicio desactualizado.</li>
+<li><strong>2)</strong> Describe el impacto (CIA) y un escenario de ataque breve.</li>
+<li><strong>3)</strong> Define una detección: ¿qué evento/log/alerta lo evidenciaría?</li>
+<li><strong>4)</strong> Define mitigación: configuración, política o control técnico.</li>
+<li><strong>5)</strong> Verifica: ¿cómo compruebas que quedó mitigado (prueba de control)?</li>
+</ol>
+<div class="god-callout">
+  Este patrón (hallazgo → detección → mitigación → verificación) es el corazón del trabajo en seguridad.
+</div>
+</section>
+<!-- GOD-PLUS END: RA -->
+<div class="god-section" data-reveal="">
+<div class="god-head"><span class="god-chip">🏁 Evidencias</span><h3>Cómo se ‘ve’ un RA cumplido (evidencias concretas)</h3></div>
+<p class="god-lead">Los Resultados de Aprendizaje no son frases bonitas: son criterios verificables. Aquí tienes ejemplos de evidencia que un auditor profesional entregaría.</p><p>Si dudas, recuerda: <strong>si no está documentado, no existe</strong> como evidencia.</p>
+<ul class="god-bullets"><li><strong>RA1:</strong> matriz de activos + exposición + riesgos priorizados + justificación.</li><li><strong>RA2:</strong> bitácora de laboratorio con comandos, capturas, logs y control de impacto.</li><li><strong>RA3:</strong> informe ejecutivo (lenguaje de negocio) + plan de mitigación con responsables, fechas y KPIs.</li></ul>
+<div class="god-callout"><strong>🎯 Mini‑reto:</strong> Crea una tabla ‘Hallazgos’ con 5 columnas (Activo, Evidencia, Impacto, Severidad, Recomendación) y llénala con un ejemplo hipotético.</div>
+</div>
+<div class="god-section" data-reveal="">
+<div class="god-head"><span class="god-chip">📐 Rúbrica</span><h3>Rúbrica mental (cómo te evalúo sin que te lo diga)</h3></div>
+<p class="god-lead">Aunque haya porcentajes formales, en la práctica te evalúo con una rúbrica mental: criterio técnico + evidencia + claridad + ética.</p><p>Un estudiante ‘top’ no es quien encuentra más fallas: es quien explica mejor, prioriza con criterio y propone remediación aplicable.</p>
+<ul class="god-bullets"><li><strong>Excelente:</strong> evidencia sólida, impacto claro, recomendaciones accionables, límites éticos impecables.</li><li><strong>Bien:</strong> hallazgos correctos pero falta claridad o priorización.</li><li><strong>En riesgo:</strong> herramienta sin interpretación, sin evidencia o con prácticas inseguras.</li></ul>
+</div>
+</body>
+</html>

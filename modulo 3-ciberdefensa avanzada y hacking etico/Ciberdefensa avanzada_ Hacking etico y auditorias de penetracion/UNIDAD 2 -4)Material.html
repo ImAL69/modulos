@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico: Bloque 1 (U2)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    /* ACORDEONES DIDÁCTICOS */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #1565c0; font-family: 'Montserrat', sans-serif;
+        display: flex; align-items: center; gap: 15px; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; }
+
+    .compare-table {
+        width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem;
+    }
+    .compare-table th { background: #1565c0; color: white; padding: 10px; }
+    .compare-table td { border: 1px solid #ddd; padding: 10px; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .compare-table { display: block; overflow-x: auto; }
+    }
+
+    /* === BLOQUES EXTRA (complemento) === */
+    .section-title{
+        margin-top: 45px;
+        color:#1565c0;
+        font-family:'Montserrat', sans-serif;
+        font-weight:800;
+        font-size:1.45rem;
+        text-align:center;
+    }
+    .subnote{
+        color:#546e7a;
+        font-size:1.05rem;
+        margin: 10px 0 0 0;
+        text-align:center;
+    }
+    .info-box{
+        background:#e3f2fd;
+        border:1px solid #bbdefb;
+        border-left:6px solid #1565c0;
+        padding:18px 18px;
+        border-radius:12px;
+        margin:22px 0;
+    }
+    .info-box strong{ color:#0d47a1; }
+    .pill-row{
+        display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;
+    }
+    .pill{
+        background:#ffffff;
+        border:1px solid #bbdefb;
+        color:#1565c0;
+        padding:6px 10px;
+        border-radius:999px;
+        font-size:0.85rem;
+        font-weight:700;
+        display:inline-flex; align-items:center; gap:8px;
+    }
+    .two-col{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap:18px;
+        margin-top:18px;
+    }
+    .card-lite{
+        background:#ffffff;
+        border:1px solid #e0e0e0;
+        border-radius:12px;
+        padding:18px 18px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    }
+    .card-lite h4{
+        margin:0 0 8px 0;
+        font-family:'Montserrat', sans-serif;
+        color:#0d47a1;
+        font-size:1.05rem;
+    }
+    .checklist{
+        list-style:none;
+        padding:0;
+        margin:12px 0 0 0;
+    }
+    .checklist li{
+        margin:8px 0;
+        padding-left:28px;
+        position:relative;
+    }
+    .checklist li::before{
+        content:"✅";
+        position:absolute;
+        left:0;
+        top:0;
+    }
+    .warning-box{
+        background:#ffebee;
+        border:1px solid #ef9a9a;
+        border-left:6px solid #c62828;
+        color:#b71c1c;
+        padding:16px 18px;
+        border-radius:12px;
+        margin:22px 0;
+        font-weight:700;
+    }
+    .codebox{
+        background:#263238;
+        color:#eceff1;
+        padding:16px 16px;
+        border-radius:12px;
+        overflow:auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size:0.92rem;
+        line-height:1.6;
+        margin-top:10px;
+    }
+    .mini-grid{
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap:14px;
+        margin-top:18px;
+    }
+    .mini-card{
+        background:#f5faff;
+        border:1px solid #bbdefb;
+        border-radius:12px;
+        padding:16px 16px;
+    }
+    .mini-card .k{
+        font-weight:800;
+        color:#1565c0;
+        font-family:'Montserrat', sans-serif;
+        margin-bottom:6px;
+        display:block;
+    }
+    .qa{
+        margin-top:14px;
+        padding:12px 14px;
+        border-radius:12px;
+        border:1px dashed #bbdefb;
+        background:#ffffff;
+    }
+    .qa b{ color:#0d47a1; }
+    @media (max-width: 768px) {
+        .two-col{ grid-template-columns: 1fr; }
+    }
+
+    .compare-table{
+        width:100%;
+        border-collapse:collapse;
+        margin-top:12px;
+        font-size:0.95rem;
+    }
+    .compare-table th{
+        background:#1565c0;
+        color:#ffffff;
+        padding:10px;
+        text-align:left;
+    }
+    .compare-table td{
+        border:1px solid #ddd;
+        padding:10px;
+        vertical-align:top;
+    }
+
+
+    /* ===== Video-card (sin iframe, miniatura limpia) ===== */
+    .video-card {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 18px;
+        background: #ffffff;
+        border: 1px solid #bbdefb;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(13,71,161,.08);
+        margin: 10px 0 34px 0;
+    }
+    .video-thumb {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+        background: #fff;
+    }
+    .video-info {
+        padding: 18px 18px 18px 0;
+    }
+    .video-info h4 {
+        margin: 0 0 8px;
+        font-family: 'Montserrat', sans-serif;
+        color: #1565c0;
+        font-weight: 800;
+    }
+    .video-info p { margin: 0 0 10px; }
+    .video-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-weight: 800;
+        text-decoration: none;
+        background: #1565c0;
+        color: #fff;
+        border: 1px solid #1565c0;
+        transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .video-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 26px rgba(21,101,192,.25);
+    }
+    .video-tasks {
+        margin-top: 12px;
+        background: #f5faff;
+        border: 1px solid #bbdefb;
+        border-radius: 12px;
+        padding: 12px 14px;
+    }
+    .video-tasks ul { margin: 8px 0 0 18px; }
+
+    /* ===== Distintivo al fondo (abajo-derecha) ===== */
+    .container-extended::after {
+        content: "";
+        position: absolute;
+        right: -150px;
+        bottom: -175px;
+        width: 660px;
+        height: 370px;
+        background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'%3E %3Cdefs%3E %3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E %3Cstop offset='0' stop-color='%230d47a1'/%3E %3Cstop offset='0.55' stop-color='%231565c0'/%3E %3Cstop offset='1' stop-color='%2300b8d4'/%3E %3C/linearGradient%3E %3CradialGradient id='r' cx='28%' cy='30%' r='75%'%3E %3Cstop offset='0' stop-color='%23fff' stop-opacity='0.22'/%3E %3Cstop offset='1' stop-color='%23fff' stop-opacity='0'/%3E %3C/radialGradient%3E %3C/defs%3E %3Crect width='1200' height='675' fill='url(%23g)'/%3E %3Crect width='1200' height='675' fill='url(%23r)'/%3E %3Cg opacity='0.14'%3E %3Cpath d='M0 540H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 420H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 300H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 180H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M240 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M480 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M720 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M960 0V675' stroke='%23fff' stroke-width='2'/%3E %3C/g%3E %3Cg transform='translate(95,130)'%3E %3Crect x='0' y='0' rx='26' ry='26' width='650' height='122' fill='rgba(255,255,255,0.12)' stroke='rgba(255,255,255,0.22)'/%3E %3Ctext x='34' y='78' font-family='Montserrat, Arial, sans-serif' font-size='46' fill='%23fff' font-weight='800'%3E Metodologías de Pentest %3C/text%3E %3C/g%3E %3Cg transform='translate(95,300)'%3E %3Ctext x='0' y='0' font-family='Roboto, Arial, sans-serif' font-size='30' fill='rgba(255,255,255,0.92)' font-weight='500'%3E PTES • OSSTMM • OWASP %3C/text%3E %3Ctext x='0' y='52' font-family='Roboto, Arial, sans-serif' font-size='24' fill='rgba(255,255,255,0.86)'%3E Alcance (SOW) • Reglas (RoE) • Priorización %3C/text%3E %3C/g%3E %3Cg transform='translate(930,505)'%3E %3Ccircle cx='70' cy='70' r='70' fill='rgba(255,255,255,0.18)'/%3E %3Ccircle cx='70' cy='70' r='54' fill='rgba(13,71,161,0.95)'/%3E %3Cpath d='M60 45 L105 70 L60 95 Z' fill='%23fff'/%3E %3C/g%3E %3C/svg%3E');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.10;
+        transform: rotate(-6deg);
+        pointer-events: none;
+        filter: saturate(1.05) contrast(1.02);
+    }
+
+    @media (max-width: 768px) {
+        .video-card { grid-template-columns: 1fr; }
+        .video-info { padding: 16px; }
+        .video-thumb { height: 200px; }
+        .container-extended::after {
+            right: -220px;
+            bottom: -210px;
+            width: 560px;
+            height: 315px;
+            opacity: 0.08;
+        }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Unidad 2</h1>
+        <p>Metodologías y Planeación del Pentest.</p>
+    </div>
+
+    
+
+<!-- ===== Video recomendado (sin iframe) ===== -->
+<div class="video-card">
+  <img class="video-thumb" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'%3E %3Cdefs%3E %3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E %3Cstop offset='0' stop-color='%230d47a1'/%3E %3Cstop offset='0.55' stop-color='%231565c0'/%3E %3Cstop offset='1' stop-color='%2300b8d4'/%3E %3C/linearGradient%3E %3CradialGradient id='r' cx='28%' cy='30%' r='75%'%3E %3Cstop offset='0' stop-color='%23fff' stop-opacity='0.22'/%3E %3Cstop offset='1' stop-color='%23fff' stop-opacity='0'/%3E %3C/radialGradient%3E %3C/defs%3E %3Crect width='1200' height='675' fill='url(%23g)'/%3E %3Crect width='1200' height='675' fill='url(%23r)'/%3E %3Cg opacity='0.14'%3E %3Cpath d='M0 540H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 420H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 300H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 180H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M240 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M480 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M720 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M960 0V675' stroke='%23fff' stroke-width='2'/%3E %3C/g%3E %3Cg transform='translate(95,130)'%3E %3Crect x='0' y='0' rx='26' ry='26' width='650' height='122' fill='rgba(255,255,255,0.12)' stroke='rgba(255,255,255,0.22)'/%3E %3Ctext x='34' y='78' font-family='Montserrat, Arial, sans-serif' font-size='46' fill='%23fff' font-weight='800'%3E Metodologías de Pentest %3C/text%3E %3C/g%3E %3Cg transform='translate(95,300)'%3E %3Ctext x='0' y='0' font-family='Roboto, Arial, sans-serif' font-size='30' fill='rgba(255,255,255,0.92)' font-weight='500'%3E PTES • OSSTMM • OWASP %3C/text%3E %3Ctext x='0' y='52' font-family='Roboto, Arial, sans-serif' font-size='24' fill='rgba(255,255,255,0.86)'%3E Alcance (SOW) • Reglas (RoE) • Priorización %3C/text%3E %3C/g%3E %3Cg transform='translate(930,505)'%3E %3Ccircle cx='70' cy='70' r='70' fill='rgba(255,255,255,0.18)'/%3E %3Ccircle cx='70' cy='70' r='54' fill='rgba(13,71,161,0.95)'/%3E %3Cpath d='M60 45 L105 70 L60 95 Z' fill='%23fff'/%3E %3C/g%3E %3C/svg%3E" alt="Miniatura del video recomendado (sin logos)">
+  <div class="video-info">
+    <h4>Video recomendado: Metodologías y planeación del Pentest (PTES/OSSTMM/OWASP)</h4>
+    <p>
+      Úsalo para amarrar el “mapa mental” del pentesting profesional: <strong>estándares</strong>, <strong>alcance</strong> (SOW),
+      <strong>reglas</strong> (RoE) y cómo priorizar hallazgos para reportar con criterio.
+    </p>
+    <a class="video-btn" href="https://www.youtube.com/watch?v=ZK1133Ub3fU" target="_blank" rel="noopener">▶ Ver en YouTube (nueva pestaña)</a>
+
+    <div class="video-tasks">
+      <strong>🎯 Tarea rápida (para tu bitácora):</strong>
+      <ul>
+        <li>Escribe las fases del pentest en 7–10 bullets (orden lógico).</li>
+        <li>Redacta 3 líneas de “alcance” (qué sí / qué no) como si fuera un SOW real.</li>
+        <li>Define 3 RoE críticas (horarios, manejo de datos, notificación de críticos).</li>
+        <li>Prioriza 2 hallazgos ficticios: uno CVSS alto pero poco expuesto vs uno medio pero internet‑facing (justifica).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<details open>
+        <summary><i class="fa-solid fa-book-atlas"></i> 1. Estándares Internacionales (La Biblia del Pentester)</summary>
+        <div class="details-content">
+            <p>No inventes el proceso; sigue los estándares probados:</p>
+            <ul>
+                <li><strong>PTES (Penetration Testing Execution Standard):</strong> La guía más completa. Cubre desde la negociación comercial hasta el reporte técnico. Fases: Pre-compromiso, Recolección de Inteligencia, Modelado de Amenazas, Análisis de Vulnerabilidad, Explotación, Post-Explotación y Reporte.</li>
+                <li><strong>OSSTMM (Open Source Security Testing Methodology Manual):</strong> Se centra en métricas científicas y verificables de seguridad (RAV - Risk Assessment Value).</li>
+                <li><strong>OWASP (Open Web Application Security Project):</strong> El estándar de facto para seguridad web. Debes conocer el "OWASP Top 10" de memoria.</li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-handshake"></i> 2. Planeación: El Documento de Alcance (SOW)</summary>
+        <div class="details-content">
+            <p>El "Statement of Work" define el éxito del proyecto. Debe incluir:</p>
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Elemento</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Objetivo</strong></td>
+                        <td>¿Qué se va a probar?</td>
+                        <td>Direcciones IP: 192.168.10.0/24</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tipo de Caja</strong></td>
+                        <td>Nivel de información previa.</td>
+                        <td>Caja Negra (Ciego) / Caja Blanca (Con credenciales)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Exclusiones</strong></td>
+                        <td>¿Qué NO se puede tocar?</td>
+                        <td>Servidores de Nómina y Base de Datos de Producción.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-traffic-light"></i> 3. Reglas de Compromiso (RoE)</summary>
+        <div class="details-content">
+            <p>Las "Rules of Engagement" protegen al pentester y al cliente. Define:</p>
+            <ul>
+                <li><strong>Horarios:</strong> ¿Solo de 8PM a 6AM para no afectar la operación?</li>
+                <li><strong>Manejo de Datos:</strong> ¿Si encuentro la BD de clientes, puedo descargar una muestra? (Generalmente NO, o solo datos "dummy").</li>
+                <li><strong>Notificación de Críticos:</strong> Si encuentras un fallo RCE (Remote Code Execution), ¿llamas al cliente a las 3 AM? (Sí, deberías).</li>
+            </ul>
+        </div>
+    </details>
+
+
+    <details>
+        <summary><i class="fa-solid fa-chart-line"></i> 4. Prioridad: CVSS vs Riesgo Real</summary>
+        <div class="details-content">
+            <p>CVSS ayuda, pero el riesgo real depende del contexto. Prioriza con estas 3 preguntas:</p>
+            <ul>
+                <li><strong>Explotabilidad:</strong> ¿se puede explotar sin credenciales? ¿es remoto? ¿es fácil?</li>
+                <li><strong>Impacto:</strong> ¿exfiltración de datos, RCE, escalamiento, indisponibilidad?</li>
+                <li><strong>Exposición:</strong> ¿está internet‑facing o solo interno?</li>
+            </ul>
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Severidad</th>
+                        <th>Señales típicas</th>
+                        <th>Acción recomendada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Crítico</strong></td>
+                        <td>RCE, credenciales expuestas, acceso a BD sensible</td>
+                        <td>Mitigación inmediata + notificación</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alto</strong></td>
+                        <td>Escalamiento de privilegios, auth rota, datos accesibles parcialmente</td>
+                        <td>Corregir en corto plazo + control compensatorio</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Medio</strong></td>
+                        <td>Información excesiva, configuraciones débiles, versiones antiguas</td>
+                        <td>Plan de hardening + seguimiento</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bajo</strong></td>
+                        <td>Mejoras de seguridad, banners, headers faltantes</td>
+                        <td>Backlog + buenas prácticas</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-clipboard-list"></i> 5. Plantillas listas para usar (bitácora y evidencia)</summary>
+        <div class="details-content">
+            <p>Usa estas plantillas para documentar como profesional (reproducible y defendible).</p>
+            <div class="info-box">
+                <strong>Bitácora mínima (copiable):</strong>
+                <div class="codebox">Objetivo:
+Alcance (Scope):
+Restricciones (RoE):
+Herramientas:
+
+Pasos (con comandos):
+1)
+2)
+
+Resultados:
+- 
+
+Evidencias (archivo/captura):
+- 
+
+Aprendizajes / Próximo paso:</div>
+            </div>
+            <div class="info-box">
+                <strong>Formato de hallazgo (copiable):</strong>
+                <div class="codebox">Título del hallazgo:
+Descripción:
+Evidencia:
+Impacto:
+Condición para explotar:
+Recomendación:
+Severidad (Crítico/Alto/Medio/Bajo):</div>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-flask"></i> 6. Mini‑laboratorio seguro (solo entorno autorizado)</summary>
+        <div class="details-content">
+            <p><strong>Objetivo:</strong> practicar el flujo sin dañar nada: identificar servicios, enumerar y registrar evidencia.</p>
+            <div class="warning-box" style="margin: 0 0 16px 0;">
+                <i class="fa-solid fa-triangle-exclamation"></i> Solo ejecuta esto en tu laboratorio autorizado. Nada de objetivos reales o redes externas.
+            </div>
+            <ol>
+                <li><strong>Recon/servicios:</strong> identifica puertos abiertos y guarda la salida.</li>
+                <li><strong>Enumeración:</strong> profundiza en 1 servicio (HTTP o SSH, por ejemplo) y documenta.</li>
+                <li><strong>Conclusión:</strong> escribe 5 líneas: qué encontraste y qué probarías después (sin ejecutar todavía).</li>
+            </ol>
+            <div class="codebox"># Ejemplo (ajusta IP/host del LAB)
+# 1) Escaneo inicial
+nmap -sV -oN evidencias_nmap.txt 10.10.10.10
+
+# 2) Si hay HTTP, enumera con cuidado
+# (solo lectura, sin ataques)
+curl -I http://10.10.10.10/
+
+# 3) Registro rápido
+echo "Hallazgo: servicio X versión Y" >> bitacora.txt</div>
+        </div>
+    </details>
+
+</div>
+
+</body>
+</html>

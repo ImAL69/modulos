@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>7. Conocimientos Previos</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    .skill-card {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 25px; border-radius: 12px; margin-bottom: 25px;
+        border-left: 6px solid #1565c0; transition: transform 0.2s;
+    }
+    .skill-card:hover { transform: translateY(-3px); }
+
+    .skill-title { font-size: 1.3rem; font-weight: 700; color: #0d47a1; margin-bottom: 10px; display: block; font-family: 'Montserrat', sans-serif; }
+    
+    .skill-list { list-style: none; padding: 0; }
+    .skill-list li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+    .skill-list li::before { content: '•'; color: #1565c0; font-weight: bold; position: absolute; left: 0; }
+
+    .alert-box {
+        background: #fff3e0; border-left: 6px solid #ff9800; padding: 20px; margin-top: 30px; border-radius: 8px; color: #e65100;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* ====== GOD EXTENSIONS (contenido ampliado + animaciones suaves) ====== */
+    .god-section{ margin-top:34px; padding:26px; border-radius:16px; border:1px solid #e3f2fd; background: linear-gradient(180deg,#ffffff 0%, #f7fbff 100%); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .god-head{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:12px;}
+    .god-chip{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#0d47a1; color:#fff; font-weight:800; font-family:'Montserrat',sans-serif; font-size:0.9rem; }
+    .god-head h3{ margin:0; color:#0d47a1; font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.25rem; }
+    .god-lead{ margin: 0 0 14px 0; font-size:1.04rem; color:#37474f; }
+    .god-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin-top:14px; }
+    .god-card{ background:#fff; border:1px solid #bbdefb; border-radius:14px; padding:16px; transition: transform .18s ease, box-shadow .18s ease; }
+    .god-card:hover{ transform: translateY(-4px); box-shadow: 0 14px 28px rgba(13,71,161,0.12); border-color:#1565c0; }
+    .god-card h4{ margin:0 0 6px 0; color:#0d47a1; font-family:'Montserrat',sans-serif; font-weight:800; }
+    .god-note{ margin:12px 0 0 0; color:#607d8b; }
+    .god-callout{ margin-top:14px; padding:14px 16px; border-radius:14px; background:#e3f2fd; border-left:6px solid #1565c0; }
+    .god-check{ list-style:none; padding:0; margin: 10px 0 0 0; }
+    .god-check li{ display:flex; align-items:flex-start; gap:10px; padding:10px 10px; border-radius:12px; background:#fff; border:1px dashed #bbdefb; margin-bottom:10px; }
+    .god-check input{ transform: translateY(4px) scale(1.05); }
+    .god-steps{ margin:10px 0 0 18px; }
+    .god-bullets{ margin:10px 0 0 18px; }
+    .god-links{ list-style:none; padding:0; margin: 10px 0 0 0; }
+    .god-links li{ display:flex; gap:10px; align-items:center; padding:10px 12px; border-radius:12px; background:#fff; border:1px solid #e3f2fd; margin-bottom:10px; }
+    .tag{ display:inline-flex; padding:4px 10px; border-radius:999px; background:#0d47a1; color:#fff; font-weight:800; font-size:0.82rem; }
+    .god-timeline{ margin-top:10px; border-left:3px solid #bbdefb; padding-left:16px;}
+    .tl-item{ display:flex; gap:12px; margin:14px 0;}
+    .tl-dot{ width:12px; height:12px; border-radius:50%; background:#0d47a1; margin-top:6px; flex:0 0 auto;}
+    /* entrance animation */
+    @media (prefers-reduced-motion: no-preference){
+        .container-extended{ animation: godFadeUp .55s ease both; }
+        .god-section{ animation: godFadeUp .55s ease both; }
+        @keyframes godFadeUp{ from{ opacity:0; transform: translateY(10px);} to{ opacity:1; transform: translateY(0);} }
+    }
+    
+
+/* ===== GOD+ Animations & UX (no rompe estructura) ===== */
+[data-reveal]{ opacity:0; transform: translateY(10px); transition: opacity .55s ease, transform .55s ease; }
+[data-reveal].is-visible{ opacity:1; transform: translateY(0); }
+
+.god-mini-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-top:12px; }
+.god-pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid #bbdefb; background:#fff; font-weight:800; color:#0d47a1; font-size:.92rem; }
+.god-kpi{ background:#ffffff; border:1px solid #e3f2fd; border-radius:14px; padding:14px; }
+.god-kpi strong{ font-family:'Montserrat',sans-serif; color:#0d47a1; font-weight:900; font-size:1.05rem; }
+.god-kpi span{ display:block; color:#546e7a; margin-top:6px; }
+.god-code{ background:#0b1b2b; color:#e3f2fd; padding:14px 16px; border-radius:14px; overflow:auto; border:1px solid rgba(187,222,251,.35); box-shadow: 0 10px 26px rgba(0,0,0,.10); }
+.god-code code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:.92rem; line-height:1.55; }
+.god-faq details{ background:#fff; border:1px solid #bbdefb; border-radius:14px; margin:10px 0; overflow:hidden; }
+.god-faq summary{ padding:14px 16px; cursor:pointer; font-weight:900; color:#1565c0; font-family:'Montserrat',sans-serif; }
+.god-faq .details-content{ padding:16px; border-top:1px solid #e3f2fd; }
+.god-progress{ height:10px; border-radius:999px; background:#e3f2fd; overflow:hidden; border:1px solid #bbdefb; }
+.god-progress > div{ height:100%; width:0%; background:#1565c0; transition: width .7s ease; }
+
+@media (prefers-reduced-motion: reduce){
+  [data-reveal]{ opacity:1; transform:none; transition:none; }
+}
+
+</style>
+</head>
+<body><div class="god-section" data-reveal="">
+
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Conocimientos Previos</h1>
+<p>Requisitos fundamentales para el éxito en el módulo.</p>
+</div>
+<p style="margin-bottom: 30px; font-size: 1.1rem;">
+        Para aprovechar al máximo este curso de Ciberdefensa Avanzada, es indispensable contar con una base técnica sólida en las siguientes áreas. El hacking no es magia; es el conocimiento profundo de cómo funcionan los sistemas para hacer que hagan algo para lo que no fueron diseñados.
+    </p>
+<div class="skill-card">
+<span class="skill-title"><i class="fa-solid fa-network-wired"></i> 1. Redes de Computadoras</span>
+<ul class="skill-list">
+<li><strong>Modelo OSI y TCP/IP:</strong> Comprensión profunda de las capas, encapsulamiento y flujo de datos.</li>
+<li><strong>Direccionamiento IP:</strong> IPv4, máscaras de subred (CIDR), puertas de enlace y enrutamiento básico.</li>
+<li><strong>Servicios de Red:</strong> Funcionamiento de DNS, DHCP, HTTP/HTTPS, FTP y SSH.</li>
+<li><strong>Análisis de Tráfico:</strong> Capacidad básica para leer una captura de paquetes (Wireshark).</li>
+</ul>
+</div>
+<div class="skill-card">
+<span class="skill-title"><i class="fa-brands fa-linux"></i> 2. Sistemas Operativos (Linux/Windows)</span>
+<ul class="skill-list">
+<li><strong>Línea de Comandos (CLI):</strong> Navegación de directorios, gestión de archivos y permisos (chmod, chown).</li>
+<li><strong>Gestión de Usuarios y Procesos:</strong> Identificación de procesos activos, matar tareas, creación de usuarios.</li>
+<li><strong>Virtualización:</strong> Manejo básico de máquinas virtuales (VMware/VirtualBox) y configuración de redes virtuales (NAT vs Bridge).</li>
+</ul>
+</div>
+<div class="skill-card">
+<span class="skill-title"><i class="fa-solid fa-book"></i> 3. Fundamentos de Seguridad y Documentación</span>
+<ul class="skill-list">
+<li><strong>Terminología Base:</strong> Diferencia clara entre Vulnerabilidad, Amenaza, Riesgo y Exploit.</li>
+<li><strong>Tríada CIA:</strong> Conceptos de Confidencialidad, Integridad y Disponibilidad.</li>
+<li><strong>Inglés Técnico:</strong> Capacidad para leer documentación oficial, manuales (man pages) y reportes de vulnerabilidades (CVEs) en inglés.</li>
+</ul>
+</div>
+<div class="alert-box">
+<strong>⚠️ Nota Importante:</strong> Si detectas vacíos en alguno de estos conocimientos, te recomendamos encarecidamente revisar el material de apoyo en la biblioteca virtual antes de la Semana 1. Este módulo asume que ya dominas estos conceptos base.
+    </div>
+<div class="skill-card">
+<span class="skill-title"><i class="fa-solid fa-spell-check"></i> 4. Glosario mínimo (para no perderte)</span>
+<ul class="skill-list">
+<li><strong>Activo:</strong> lo que tiene valor (servidor, app, base de datos).</li>
+<li><strong>Vector de ataque:</strong> camino por donde entra el ataque (web, correo, RDP).</li>
+<li><strong>Exposición:</strong> algo accesible desde donde no debería (puerto abierto, panel público).</li>
+<li><strong>Enumeración:</strong> obtener detalles útiles (usuarios, versiones, rutas, endpoints).</li>
+<li><strong>Falso positivo:</strong> “parece vulnerable” pero no aplica al validar.</li>
+</ul>
+</div>
+<div class="skill-card">
+<span class="skill-title"><i class="fa-solid fa-list-check"></i> 5. Autoevaluación rápida</span>
+<ul class="skill-list">
+<li>¿Puedes explicar qué hace <strong>DNS</strong> y por qué es crítico?</li>
+<li>¿Entiendes <strong>NAT vs Bridge</strong> en máquinas virtuales?</li>
+<li>¿Sabes leer permisos Linux (<strong>rwx</strong>) y por qué importan?</li>
+<li>¿Puedes leer un <strong>CVE</strong> y entender qué afecta y cómo se explota?</li>
+</ul>
+<p style="margin:10px 0 0 0; color:#546e7a;">
+            Si marcaste “no” en varios puntos, repasa antes de Semana 1: te ahorrará frustración y te hará avanzar más rápido.
+        </p>
+</div>
+<div class="alert-box">
+<strong>✅ Recomendación práctica:</strong> 20 minutos diarios de práctica básica (CLI Linux + lectura de escaneos + documentación). La constancia vale más que “maratones” de una sola noche.
+    </div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">🧰 Kit mínimo</span><h3>Lo que debes poder hacer “sin pensar”</h3></div>
+<div class="god-grid">
+<div class="god-card"><h4>Redes</h4><p>Subredes, puertos, DNS, rutas, HTTP/HTTPS y lectura básica de PCAP.</p></div>
+<div class="god-card"><h4>Linux</h4><p>Permisos, procesos, usuarios, piping, grep/awk/sed, servicios y logs.</p></div>
+<div class="god-card"><h4>Documentación</h4><p>Tomar notas técnicas, evidencia, y redactar en 2 niveles: técnico y ejecutivo.</p></div>
+</div>
+<div class="god-callout"><strong>Prueba rápida:</strong> si no puedes explicar “qué es un puerto” y “qué es un CVE” en 30 segundos, refuerza antes del lab.</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">💡 Idea clave</span><h3>Lo esencial que no puedes olvidar</h3></div>
+<p class="god-lead">En hacking ético y auditorías, el valor no está en “hacer ruido”, sino en <strong>reducir incertidumbre</strong>: demostrar con evidencia qué puede pasar, cuánto duele y qué lo evita.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4>1) Evidencia</h4>
+<p>Todo hallazgo debe tener <strong>prueba reproducible</strong>: comando, captura, log, timestamp y contexto del activo.</p>
+</div>
+<div class="god-card">
+<h4>2) Riesgo</h4>
+<p>Conecta lo técnico con impacto: <strong>confidencialidad</strong>, <strong>integridad</strong>, <strong>disponibilidad</strong> y continuidad.</p>
+</div>
+<div class="god-card">
+<h4>3) Remediación</h4>
+<p>Propón controles y plazos. Un informe sin plan de acción es solo “miedo” con formato bonito.</p>
+</div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">🎯 Mini‑reto</span><h3>10–15 minutos para “subir de nivel”</h3></div>
+<ol class="god-steps">
+<li>Elige un activo de ejemplo (servidor web, base de datos, endpoint).</li>
+<li>Escribe 3 riesgos: <em>amenaza + vulnerabilidad + impacto</em>.</li>
+<li>Define 1 KPI por riesgo (ej. MTTD, MTTR, Patch SLA, phishing rate).</li>
+<li>Redacta una recomendación en formato: <strong>Acción → Responsable → Fecha → Evidencia</strong>.</li>
+</ol>
+<div class="god-callout">
+<strong>Entrega rápida:</strong> 1 tabla (riesgo / evidencia / KPI / decisión) y un párrafo ejecutivo.
+  </div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">⚠️ Errores comunes</span><h3>Lo que más hace perder puntos</h3></div>
+<div class="god-grid">
+<div class="god-card">
+<h4>“Herramientitis”</h4>
+<p>Usar 10 herramientas sin entender resultados. Prioriza: <strong>pregunta → técnica → evidencia</strong>.</p>
+</div>
+<div class="god-card">
+<h4>Hallazgos sin validar</h4>
+<p>No confirmas falsos positivos. Si no lo validas, no es hallazgo: es sospecha.</p>
+</div>
+<div class="god-card">
+<h4>Reporte “sin negocio”</h4>
+<p>Mucho tecnicismo y cero impacto. Los directivos deciden con <strong>riesgo, costo y tiempo</strong>.</p>
+</div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">📚 Recursos</span><h3>Para reforzar (sin perderte)</h3></div>
+<ul class="god-links">
+<li><span class="tag">Concepto</span> Tríada CIA, CVE, CVSS, superficie de ataque, riesgo residual.</li>
+<li><span class="tag">Práctica</span> Nmap básico → servicios → versión → scripts NSE (con ética).</li>
+<li><span class="tag">Reporte</span> Estructura: resumen ejecutivo, metodología, hallazgos, evidencia, remediación.</li>
+</ul>
+</div>
+<script>
+(() => {
+  // Reveal on scroll
+  const els = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('is-visible');
+        const bar = e.target.querySelector('.god-progress > div');
+        if(bar && !bar.dataset.filled){
+          bar.dataset.filled = '1';
+          bar.style.width = bar.getAttribute('data-pct') || '85%';
+        }
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+
+  // Persist checklist
+  document.querySelectorAll('[data-checklist]').forEach((ul, idx) => {
+    const key = 'godChecklist:' + location.pathname + ':' + idx;
+    const boxes = ul.querySelectorAll('input[type="checkbox"]');
+    try{
+      const saved = JSON.parse(localStorage.getItem(key) || '[]');
+      boxes.forEach((b,i)=> b.checked = !!saved[i]);
+    }catch(e){}
+    boxes.forEach((b,i)=>{
+      b.addEventListener('change', () => {
+        const arr = Array.from(boxes).map(x => x.checked);
+        localStorage.setItem(key, JSON.stringify(arr));
+      });
+    });
+  });
+})();
+</script>
+<!-- GOD-PLUS START: Conocimientos Previos -->
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Autodiagnóstico</span>
+<h3>Checklist de base técnica (para ubicarte sin frustración)</h3>
+</div>
+<p class="god-lead">No se trata de ‘saberlo todo’. Se trata de saber qué reforzar. Marca lo que ya dominas y lo que debes practicar.</p>
+
+<div class="god-callout">
+  Si marcaste pocas, tranquilo: el curso también refuerza bases, pero debes dedicar práctica adicional.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Refuerzo express</span>
+<h3>5 micro‑tareas para ponerte al día (sin tutorial eterno)</h3>
+</div>
+<p class="god-lead">Haz estas prácticas cortas y sube evidencia a tu bitácora. Son pequeñas, pero te suben el piso técnico.</p>
+<ol class="god-steps">
+<li><strong>1) Redes:</strong> captura 2 minutos de tráfico con Wireshark y explica 3 cosas que veas (DNS, TLS, HTTP).</li>
+<li><strong>2) Linux:</strong> encuentra los 10 procesos más pesados y registra el comando + salida.</li>
+<li><strong>3) Logs:</strong> identifica 5 eventos de seguridad en Windows (login, fallo, admin) y qué significan.</li>
+<li><strong>4) Web:</strong> inspecciona una request con DevTools y explica headers clave (Host, Cookie, Authorization).</li>
+<li><strong>5) Permisos:</strong> crea un archivo, cambia permisos y explica qué puede hacer cada rol.</li>
+</ol>
+<div class="god-callout">
+  Estas micro‑tareas son la diferencia entre ‘seguir un lab’ y ‘entender un lab’.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Mapa mental</span>
+<h3>Conexiones clave que debes tener claras</h3>
+</div>
+<p class="god-lead">Si entiendes estas conexiones, el resto se vuelve más fácil.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4><i class="fa-solid fa-user-lock"></i> Identidad → Acceso</h4>
+<p>Usuarios/roles/permisos determinan qué puede hacer alguien. La mayoría de incidentes empiezan por identidad.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-signal"></i> Acceso → Telemetría</h4>
+<p>Si no registras accesos, no detectas abuso. Logs útiles dependen de buen diseño.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-tower-broadcast"></i> Telemetría → Respuesta</h4>
+<p>Sin datos, no hay IR. Con datos, hay timeline y contención con criterio.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-arrow-up-right-dots"></i> Respuesta → Mejora</h4>
+<p>Cada incidente deja lecciones para hardening, detección y entrenamiento.</p>
+</div>
+</div>
+</section>
+<!-- GOD-PLUS END: Conocimientos Previos -->
+<div class="god-section" data-reveal="">
+<div class="god-head"><span class="god-chip">🧰 Nivelación</span><h3>Ruta de nivelación (si te falta base, esto te salva)</h3></div>
+<p class="god-lead">Si sientes que te falta base, no te preocupes: lo importante es ser estratégico. Aquí tienes una ruta práctica para ponerte al día sin perderte.</p><p>El objetivo no es memorizar, es entender lo suficiente para interpretar evidencia y no depender de ‘magia’ de herramientas.</p>
+<ul class="god-bullets"><li><strong>Redes (2h):</strong> TCP handshake, puertos, DNS, HTTP, diferencias UDP/TCP.</li><li><strong>Linux (2h):</strong> permisos, procesos, pipes, grep/awk/sed, systemctl.</li><li><strong>Web (2h):</strong> cookies, sesiones, headers, métodos HTTP, auth básica.</li><li><strong>Seguridad (1h):</strong> CIA, threat modeling básico, OWASP Top 10 (visión general).</li></ul>
+<div class="god-callout"><strong>🎯 Mini‑reto:</strong> Abre una página cualquiera, inspecciona headers (DevTools) y escribe 5 headers y para qué sirven.</div>
+</div>
+</body>
+</html>

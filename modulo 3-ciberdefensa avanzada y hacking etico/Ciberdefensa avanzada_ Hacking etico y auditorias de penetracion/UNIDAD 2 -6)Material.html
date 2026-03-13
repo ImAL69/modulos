@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Didáctico: Bloque 2 (U2)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    /* ACORDEONES DIDÁCTICOS */
+    details {
+        background: #f5faff; margin-bottom: 25px; border-radius: 12px; border: 1px solid #bbdefb;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #1565c0; font-family: 'Montserrat', sans-serif;
+        display: flex; align-items: center; gap: 15px; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 30px; background: #fff; border-top: 1px solid #bbdefb; }
+
+    .example-code {
+        background: #263238; color: #80cbc4; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.9rem; margin: 15px 0;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* ===== Video-card (sin iframe, miniatura limpia) ===== */
+    .video-card {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 18px;
+        background: #ffffff;
+        border: 1px solid #bbdefb;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(13,71,161,.08);
+        margin: 10px 0 34px 0;
+    }
+    .video-thumb {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+        background: #fff;
+    }
+    .video-info { padding: 18px 18px 18px 0; }
+    .video-info h4 {
+        margin: 0 0 8px;
+        font-family: 'Montserrat', sans-serif;
+        color: #1565c0;
+        font-weight: 800;
+    }
+    .video-info p { margin: 0 0 10px; }
+    .video-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-weight: 800;
+        text-decoration: none;
+        background: #1565c0;
+        color: #fff;
+        border: 1px solid #1565c0;
+        transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .video-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 26px rgba(21,101,192,.25);
+    }
+    .video-tasks {
+        margin-top: 12px;
+        background: #f5faff;
+        border: 1px solid #bbdefb;
+        border-radius: 12px;
+        padding: 12px 14px;
+    }
+    .video-tasks ul { margin: 8px 0 0 18px; }
+
+    /* ===== Distintivo al fondo (abajo-derecha) ===== */
+    .container-extended::after {
+        content: "";
+        position: absolute;
+        right: -150px;
+        bottom: -175px;
+        width: 660px;
+        height: 370px;
+        background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'%3E %3Cdefs%3E %3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E %3Cstop offset='0' stop-color='%230d47a1'/%3E %3Cstop offset='0.55' stop-color='%231565c0'/%3E %3Cstop offset='1' stop-color='%2300b8d4'/%3E %3C/linearGradient%3E %3CradialGradient id='r' cx='30%' cy='30%' r='75%'%3E %3Cstop offset='0' stop-color='%23fff' stop-opacity='0.22'/%3E %3Cstop offset='1' stop-color='%23fff' stop-opacity='0'/%3E %3C/radialGradient%3E %3C/defs%3E %3Crect width='1200' height='675' fill='url(%23g)'/%3E %3Crect width='1200' height='675' fill='url(%23r)'/%3E %3Cg opacity='0.14'%3E %3Cpath d='M0 540H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 420H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 300H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 180H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M240 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M480 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M720 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M960 0V675' stroke='%23fff' stroke-width='2'/%3E %3C/g%3E %3Cg transform='translate(95,140)'%3E %3Crect x='0' y='0' rx='26' ry='26' width='710' height='120' fill='rgba(255,255,255,0.12)' stroke='rgba(255,255,255,0.22)'/%3E %3Ctext x='34' y='78' font-family='Montserrat, Arial, sans-serif' font-size='46' fill='%23fff' font-weight='800'%3E Evidencia + Reporte Pentest %3C/text%3E %3C/g%3E %3Cg transform='translate(95,305)'%3E %3Ctext x='0' y='0' font-family='Roboto, Arial, sans-serif' font-size='30' fill='rgba(255,255,255,0.92)' font-weight='500'%3E PoC inocua • Contexto • Recomendación %3C/text%3E %3Ctext x='0' y='52' font-family='Roboto, Arial, sans-serif' font-size='24' fill='rgba(255,255,255,0.86)'%3E Del hallazgo a un informe claro y replicable. %3C/text%3E %3C/g%3E %3Cg transform='translate(930,505)'%3E %3Ccircle cx='70' cy='70' r='70' fill='rgba(255,255,255,0.18)'/%3E %3Ccircle cx='70' cy='70' r='54' fill='rgba(13,71,161,0.95)'/%3E %3Cpath d='M60 45 L105 70 L60 95 Z' fill='%23fff'/%3E %3C/g%3E %3C/svg%3E');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.10;
+        transform: rotate(-6deg);
+        pointer-events: none;
+        filter: saturate(1.05) contrast(1.02);
+    }
+
+    @media (max-width: 768px) {
+        .video-card { grid-template-columns: 1fr; }
+        .video-info { padding: 16px; }
+        .video-thumb { height: 200px; }
+        .container-extended::after {
+            right: -220px;
+            bottom: -210px;
+            width: 560px;
+            height: 315px;
+            opacity: 0.08;
+        }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Material Didáctico - Bloque 2 (U2)</h1>
+        <p>Buenas Prácticas de Validación y Evidencia.</p>
+    </div>
+
+    
+
+<!-- ===== Video recomendado (sin iframe) ===== -->
+<div class="video-card">
+  <img class="video-thumb" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'%3E %3Cdefs%3E %3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E %3Cstop offset='0' stop-color='%230d47a1'/%3E %3Cstop offset='0.55' stop-color='%231565c0'/%3E %3Cstop offset='1' stop-color='%2300b8d4'/%3E %3C/linearGradient%3E %3CradialGradient id='r' cx='30%' cy='30%' r='75%'%3E %3Cstop offset='0' stop-color='%23fff' stop-opacity='0.22'/%3E %3Cstop offset='1' stop-color='%23fff' stop-opacity='0'/%3E %3C/radialGradient%3E %3C/defs%3E %3Crect width='1200' height='675' fill='url(%23g)'/%3E %3Crect width='1200' height='675' fill='url(%23r)'/%3E %3Cg opacity='0.14'%3E %3Cpath d='M0 540H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 420H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 300H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 180H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M240 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M480 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M720 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M960 0V675' stroke='%23fff' stroke-width='2'/%3E %3C/g%3E %3Cg transform='translate(95,140)'%3E %3Crect x='0' y='0' rx='26' ry='26' width='710' height='120' fill='rgba(255,255,255,0.12)' stroke='rgba(255,255,255,0.22)'/%3E %3Ctext x='34' y='78' font-family='Montserrat, Arial, sans-serif' font-size='46' fill='%23fff' font-weight='800'%3E Evidencia + Reporte Pentest %3C/text%3E %3C/g%3E %3Cg transform='translate(95,305)'%3E %3Ctext x='0' y='0' font-family='Roboto, Arial, sans-serif' font-size='30' fill='rgba(255,255,255,0.92)' font-weight='500'%3E PoC inocua • Contexto • Recomendación %3C/text%3E %3Ctext x='0' y='52' font-family='Roboto, Arial, sans-serif' font-size='24' fill='rgba(255,255,255,0.86)'%3E Del hallazgo a un informe claro y replicable. %3C/text%3E %3C/g%3E %3Cg transform='translate(930,505)'%3E %3Ccircle cx='70' cy='70' r='70' fill='rgba(255,255,255,0.18)'/%3E %3Ccircle cx='70' cy='70' r='54' fill='rgba(13,71,161,0.95)'/%3E %3Cpath d='M60 45 L105 70 L60 95 Z' fill='%23fff'/%3E %3C/g%3E %3C/svg%3E" alt="Miniatura del video recomendado (sin logos)">
+  <div class="video-info">
+    <h4>Video recomendado: Cómo estructurar evidencia y un reporte de Pentest (claro y replicable)</h4>
+    <p>
+      Úsalo para transformar un hallazgo en un entregable profesional: <strong>pasos reproducibles</strong>,
+      <strong>PoC inocua</strong>, <strong>impacto contextual</strong> y <strong>recomendación accionable</strong>.
+    </p>
+    <a class="video-btn" href="https://www.youtube.com/watch?v=vW3C_0BFtAU" target="_blank" rel="noopener">▶ Ver en YouTube (nueva pestaña)</a>
+
+    <div class="video-tasks">
+      <strong>🎯 Al terminar (para tu bitácora):</strong>
+      <ul>
+        <li>Redacta un hallazgo en 6 líneas: activo, prueba, evidencia, impacto, recomendación, prioridad.</li>
+        <li>Incluye 1 PoC inocua (XSS con <code>alert</code> / SQLi con <code>sleep</code>).</li>
+        <li>Explica el “riesgo real” con 2 variables: exposición + impacto en negocio.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<details open>
+        <summary><i class="fa-solid fa-camera"></i> 1. La Evidencia Perfecta</summary>
+        <div class="details-content">
+            <p>Al reportar un hallazgo, el cliente debe poder replicarlo. Tu evidencia debe incluir:</p>
+            <ul>
+                <li><strong>URL o IP Afectada:</strong> Exactamente dónde ocurrió.</li>
+                <li><strong>Payload Usado:</strong> El código exacto que inyectaste.</li>
+                <li><strong>Respuesta del Servidor:</strong> Screenshot o log que demuestra el éxito (ej. el archivo `/etc/passwd` visible).</li>
+                <li><strong>Timestamp:</strong> Fecha y hora exacta para correlacionar con los logs del cliente.</li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-skull-crossbones"></i> 2. Payloads Seguros vs Destructivos</summary>
+        <div class="details-content">
+            <p>Al validar una vulnerabilidad, elige siempre el camino menos destructivo:</p>
+            <p><strong>❌ MAL (Destructivo):</strong><br> `DROP TABLE usuarios;` (Borra la base de datos).</p>
+            <p><strong>✅ BIEN (Inocuo):</strong><br> `' OR 1=1 --` (Bypass de login simple) o `sleep(5)` (Si la web tarda 5 segundos en responder, es vulnerable a Blind SQLi).</p>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-terminal"></i> 3. Ejemplo: Validación de XSS (Cross Site Scripting)</summary>
+        <div class="details-content">
+            <p>Si crees que hay un XSS, no uses un script que robe cookies a los usuarios reales.</p>
+            <div class="example-code">
+                &lt;script&gt;alert('PoC: XSS Validado por [TuNombre]')&lt;/script&gt;
+            </div>
+            <p>Esto demuestra que puedes ejecutar código JavaScript en el navegador de la víctima, sin dañar a nadie. Es la prueba definitiva.</p>
+        </div>
+    </details>
+
+
+    <h2 style="color:#1565c0; margin-top:50px; font-family:'Montserrat', sans-serif;">Complemento: Validación con criterio profesional</h2>
+    <p style="font-size:1.05rem;">
+        En validación, tu meta es reducir el “ruido” (falsos positivos) y aumentar la confianza del hallazgo.
+        Piensa como auditor: <strong>prueba → evidencia → impacto → recomendación</strong>.
+    </p>
+
+    <details>
+        <summary><i class="fa-solid fa-scale-balanced"></i> 4. CVSS vs Riesgo Real (en 60 segundos)</summary>
+        <div class="details-content">
+            <p><strong>CVSS</strong> ayuda a estandarizar severidad técnica, pero el <strong>riesgo real</strong> depende del contexto:</p>
+            <ul>
+                <li><strong>Exposición:</strong> ¿es internet-facing o interno?</li>
+                <li><strong>Privilegios:</strong> ¿requiere credenciales?</li>
+                <li><strong>Impacto:</strong> ¿hay datos sensibles, control del sistema o interrupción del servicio?</li>
+                <li><strong>Controles:</strong> WAF, segmentación, MFA, monitoreo, backups…</li>
+            </ul>
+            <p><em>Regla práctica:</em> Si puedes demostrar impacto con PoC inocua, tu reporte gana autoridad.</p>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-clipboard-check"></i> 5. Plantilla de evidencia (copia y pega)</summary>
+        <div class="details-content">
+            <p>Usa este formato para que cualquiera pueda replicar tu prueba:</p>
+            <div class="example-code" style="white-space:pre-wrap;">
+HALLAZGO:
+- Tipo: (SQLi / XSS / Misconfig / etc.)
+- Activo: (IP/URL/Servicio)
+- Evidencia (payload/comando):
+- Respuesta del sistema (qué se observa):
+- Timestamp:
+- Impacto (qué permite hacer):
+- Recomendación (qué cambiar):
+- Prioridad (Alta/Media/Baja) y por qué:
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-filter"></i> 6. Cómo detectar falsos positivos</summary>
+        <div class="details-content">
+            <ul>
+                <li><strong>Versiones “genéricas”:</strong> el banner no siempre coincide con la versión real.</li>
+                <li><strong>Rutas por defecto:</strong> un panel puede existir pero estar protegido (401/403).</li>
+                <li><strong>Dependencias no explotables:</strong> CVE aplicable solo a cierta configuración.</li>
+                <li><strong>Condiciones del entorno:</strong> WAF/IDS puede alterar respuestas y confundir al scanner.</li>
+            </ul>
+            <p><strong>Tip:</strong> confirma con una prueba manual mínima antes de reportar.</p>
+        </div>
+    </details>
+
+    <details>
+        <summary><i class="fa-solid fa-screwdriver-wrench"></i> 7. Buenas prácticas con Burp/cURL</summary>
+        <div class="details-content">
+            <ul>
+                <li>Repite la misma solicitud cambiando <strong>un solo parámetro</strong> por vez.</li>
+                <li>Guarda una solicitud “baseline” (normal) para comparar.</li>
+                <li>Evita payloads destructivos: prioriza <strong>confirmación</strong>, no “explotar por explotar”.</li>
+                <li>Si un hallazgo depende de timing (Blind SQLi), repite 3 veces y registra tiempos.</li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+</body>
+</html>

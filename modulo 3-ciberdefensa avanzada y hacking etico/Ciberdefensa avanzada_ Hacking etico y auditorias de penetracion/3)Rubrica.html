@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rúbrica: Actividad 2</title>
+<style>
+body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative;
+        border-top: 8px solid #1565c0;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .rubric-table {
+        width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9rem;
+    }
+    .rubric-table th { background: #1565c0; color: white; padding: 15px; text-align: left; font-weight: 600; }
+    .rubric-table td { border: 1px solid #bbdefb; padding: 15px; vertical-align: top; }
+    .level-high { background: #e3f2fd; color: #0d47a1; font-weight:bold; }
+    
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .rubric-table { font-size: 0.8rem; }
+    }
+
+
+
+.checklist-box{
+  background:#fff8e1;
+  border:1px solid #ffe082;
+  padding:22px;
+  border-radius:12px;
+  margin:22px 0;
+  border-left:6px solid #ffca28;
+}
+.checklist-box h3{margin:0 0 10px 0; font-family:'Montserrat', sans-serif; color:#5d4037;}
+.checklist-box ul{margin:0; padding-left:22px;}
+.mini-code{
+  background:#263238; color:#eceff1; padding:14px 16px; border-radius:10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size:0.92rem; overflow-x:auto; margin:10px 0;
+}
+.tip-box{
+  background:#e8f5e9; border:1px solid #a5d6a7; padding:20px; border-radius:12px; margin:20px 0;
+  border-left:6px solid #2e7d32;
+}
+.tip-box h3{margin:0 0 10px 0; font-family:'Montserrat', sans-serif; color:#1b5e20;}
+.badge{
+  display:inline-block; padding:2px 10px; border-radius:999px; font-weight:700; font-size:0.78rem; margin-right:6px;
+  background:#e3f2fd; border:1px solid #90caf9; color:#0d47a1;
+}
+
+
+
+/* ===== Fix logo visible ===== */
+.uni-logo{ max-width:150px; width:150px; height:auto; object-fit:contain; background:#ffffff; border:1px solid #e3f2fd; }
+
+
+/* ===== Animaciones PRO (solo CSS, seguro) ===== */
+@keyframes fadeUp { from {opacity:0; transform: translateY(10px);} to {opacity:1; transform: translateY(0);} }
+@keyframes floaty { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-3px);} }
+.reveal { animation: fadeUp .55s ease both; }
+.stagger > * { animation: fadeUp .55s ease both; }
+.stagger > *:nth-child(2){ animation-delay:.06s }
+.stagger > *:nth-child(3){ animation-delay:.12s }
+.stagger > *:nth-child(4){ animation-delay:.18s }
+.stagger > *:nth-child(5){ animation-delay:.24s }
+.uni-logo { animation: floaty 3.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce){
+  .reveal, .stagger > * { animation:none; }
+  .uni-logo { animation:none; }
+}
+
+
+
+.doc-card{background:#f5faff;border:1px solid #bbdefb;padding:25px;border-radius:12px;margin:18px 0;border-left:6px solid #1565c0;transition:transform .2s ease, box-shadow .2s ease;}
+.doc-card:hover{transform:translateX(4px);box-shadow:0 10px 28px rgba(13,71,161,.10);border-color:#90caf9;}
+.doc-title{font-size:1.18rem;font-weight:900;color:#0d47a1;margin-bottom:8px;display:block;}
+.quote-box{background:#263238;color:#eceff1;padding:22px;border-radius:12px;margin:20px 0;border-left:6px solid #ffca28;font-weight:800;}
+.small{font-size:.95rem;color:#546e7a}
+
+
+/* Rubrica extras */
+.section-title{margin-top:45px;color:#1565c0;font-weight:900;font-size:1.45rem;text-align:center}
+.subnote{color:#546e7a;font-size:1.05rem;margin:10px 0 0 0;text-align:center}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #e0e0e0;border-radius:12px;margin:12px 0}
+table.rubric-table{min-width:840px}
+kbd{background:#263238;color:#eceff1;padding:2px 8px;border-radius:7px;font-weight:900}
+details{background:#f5faff;margin:14px 0;border-radius:12px;border:1px solid #bbdefb;overflow:hidden}
+summary{padding:16px 18px;cursor:pointer;font-weight:900;color:#1565c0;list-style:none}
+summary::-webkit-details-marker{display:none}
+.details-content{padding:18px;background:#fff;border-top:1px solid #bbdefb}
+
+
+
+
+
+/* ===== Q10 ULTRA-SAFE (sin cambiar diseño ni contenido) ===== */
+html, body { height: auto !important; min-height: 0 !important; max-height: none !important; overflow: auto !important; }
+body { display: block !important; position: static !important; }
+
+/* Q10 a veces mete wrappers con height fija / overflow hidden */
+* { max-height: none !important; }
+.container-extended, .header-box, .doc-card, .tip-box, .checklist-box, .quote-box,
+.tablewrap, .rubric-wrapper, .rubric-table-container, .content, .page, .wrapper, .main, .inner {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Tablas y wrappers: nunca recortar */
+.tablewrap, .rubric-wrapper, .rubric-table-container {
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+}
+
+/* Evitar que algún contenedor quede “pegado” a un alto de iframe */
+.q10-root { display:block !important; height:auto !important; min-height:0 !important; max-height:none !important; overflow:visible !important; }
+
+/* Asegurar que el final sea alcanzable */
+.q10-spacer { height: 1px !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; }
+
+</style>
+</head>
+<body>
+<div class="container-extended reveal">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Rúbrica de Evaluación (35%)</h1>
+<p>Criterios de calificación para el Informe Técnico de Pentest.</p>
+</div>
+<div style="overflow-x:auto;">
+<table class="rubric-table">
+<thead>
+<tr>
+<th style="width: 25%;">Criterio</th>
+<th style="width: 25%;">Excelente (5.0)</th>
+<th style="width: 25%;">Aceptable (3.0 - 4.0)</th>
+<th style="width: 25%;">Insuficiente (0 - 2.9)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ejecución Técnica</strong><br/>Éxito del exploit.</td>
+<td class="level-high">Logra comprometer el objetivo y obtener acceso verificado (Shell), demostrando dominio de la herramienta.</td>
+<td>Logra el acceso pero el proceso es confuso o requirió ayuda excesiva.</td>
+<td>No logra explotar la vulnerabilidad o rompe el servicio (DoS).</td>
+</tr>
+<tr>
+<td><strong>Calidad de la Evidencia</strong><br/>Documentación.</td>
+<td class="level-high">Capturas de pantalla nítidas, con timestamps y comandos visibles. Logs adjuntos. Irrefutable.</td>
+<td>Capturas borrosas, recortadas o faltan pasos intermedios clave.</td>
+<td>Sin evidencia gráfica o evidencia genérica no atribuible al estudiante.</td>
+</tr>
+<tr>
+<td><strong>Análisis y Mitigación</strong><br/>Valor agregado.</td>
+<td class="level-high">Explica técnicamente POR QUÉ ocurrió el fallo y ofrece una solución concreta y aplicable.</td>
+<td>La explicación es superficial ("estaba abierto") y la solución genérica ("actualizar").</td>
+<td>No ofrece análisis ni solución, solo muestra el hackeo.</td>
+</tr>
+<tr><td><strong>Estructura del Informe</strong><br/>Orden y claridad.</td><td class="level-high">Secciones completas (resumen, alcance, pasos, evidencia, mitigación). Flujo lógico y fácil de seguir.</td><td>Faltan secciones menores o el orden confunde por momentos.</td><td>Documento desordenado o incompleto; no se entiende el proceso.</td></tr><tr><td><strong>Resumen Ejecutivo</strong><br/>Comunicación a no técnicos.</td><td class="level-high">Describe riesgo e impacto en lenguaje simple, sin jerga excesiva, y con conclusión accionable.</td><td>Existe, pero es muy técnico o demasiado corto; no explica impacto.</td><td>No hay resumen ejecutivo o no comunica el riesgo.</td></tr><tr><td><strong>Ética y Alcance</strong><br/>Buenas prácticas.</td><td class="level-high">Respeta el scope, evita acciones destructivas, y documenta decisiones responsables.</td><td>Pequeñas omisiones (no menciona alcance) pero no hay acciones riesgosas.</td><td>Acciones fuera de alcance, destructivas o sin control (DoS / prácticas inseguras).</td></tr><tr><td><strong>Priorización y Mitigación</strong><br/>Plan aplicable.</td><td class="level-high">Propone mitigación específica (qué cambiar) y controles compensatorios. Prioriza por impacto/probabilidad.</td><td>Mitigación parcialmente específica; priorización poco justificada.</td><td>Mitigación genérica o inexistente; no hay prioridad.</td></tr></tbody>
+</table>
+</div><div class="checklist-box"><h3>Nota importante sobre evidencia y originalidad</h3>
+
+
+</div>
+
+<div class="checklist-box stagger"><h3>Reglas de evidencia válida</h3>
+<ul>
+<li>IP atacante + IP objetivo + comando + salida visible.</li>
+<li>Timestamp y nombres coherentes.</li>
+<li>Sanitización correcta (sin tokens/PII).</li>
+<li>Validación manual para evitar falsos positivos.</li>
+</ul></div>
+
+<div class="doc-card stagger"><span class="doc-title">🧮 Cómo llega a 5.0</span>
+<p>Evidencia sólida + análisis + mitigación concreta. “Entrar” sin evidencia o explicación rara vez supera 3.5.</p></div>
+
+
+<h2 class="section-title">Cómo usar la rúbrica para sacar 5.0</h2>
+<p class="subnote">Una guía práctica para construir un informe defendible como en industria.</p>
+
+<div class="doc-card stagger">
+  <span class="doc-title">📌 Interpretación de criterios (qué espera el docente)</span>
+  <ul>
+    <li><b>Ejecución técnica:</b> control del proceso y comprensión de la causa del fallo.</li>
+    <li><b>Evidencia:</b> capturas legibles, con contexto, y referenciadas a tu log.</li>
+    <li><b>Análisis/mitigación:</b> causa raíz + solución concreta + verificación.</li>
+    <li><b>Estructura:</b> flujo lógico; se entiende sin preguntarte.</li>
+    <li><b>Resumen ejecutivo:</b> impacto en lenguaje simple + prioridades.</li>
+    <li><b>Ética/scope:</b> sin DoS, sin salir del alcance, decisiones responsables.</li>
+  </ul>
+</div>
+
+<div class="checklist-box stagger">
+  <h3>Checklist de “entregable excelente”</h3>
+  <ul>
+    <li>1 hallazgo principal con reproducción completa.</li>
+    <li>3–6 capturas nítidas + extracto de log (comandos clave).</li>
+    <li>Severidad P×I justificada + prioridad.</li>
+    <li>Mitigación específica + <b>verificación</b> (re-test).</li>
+    <li>Sanitización completa (tokens/PII/credenciales).</li>
+  </ul>
+</div>
+
+<div class="doc-card stagger">
+  <span class="doc-title">🧮 Cómo subir puntos (ejemplo realista)</span>
+  <p>Si tu informe es técnico pero sin mitigación verificable, suele quedar entre <b>3.0–4.0</b>. Para llegar a <b>5.0</b>, añade:</p>
+  <ul>
+    <li><b>Mitigación verificable:</b> qué cambiaste + evidencia del re-test.</li>
+    <li><b>Priorización:</b> Top 3 acciones con riesgo y esfuerzo.</li>
+    <li><b>Resumen ejecutivo:</b> 10 líneas claras, sin jerga.</li>
+  </ul>
+  <div class="mini-code">Pregunta clave:
+¿Tu informe responde con evidencia a:
+1) ¿Qué pasó?
+2) ¿Por qué pasó?
+3) ¿Qué hago mañana para corregirlo y cómo lo verifico?</div>
+</div>
+
+<details class="reveal">
+  <summary>🧾 Plantilla de tabla de hallazgos (recomendada)</summary>
+  <div class="details-content">
+    <div class="mini-code">| ID | Hallazgo | Evidencia | Impacto | Mitigación | Verificación | Severidad |
+| H-01 | ... | captura/log | ... | ... | re-test | Alta |</div>
+  </div>
+</details>
+</div>
+</body>
+</html>

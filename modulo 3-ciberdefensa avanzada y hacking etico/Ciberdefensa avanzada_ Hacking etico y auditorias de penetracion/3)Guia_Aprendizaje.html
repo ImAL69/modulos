@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Guía de Aprendizaje: Hoja de Ruta</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    
+    body { background-color: #f0f2f5; margin: 0; padding: 40px 20px; font-family: 'Roboto', sans-serif; color: #37474f; }
+    
+    .container-extended {
+        max-width: 1000px; margin: 0 auto; padding: 60px 50px; background: #ffffff;
+        border-radius: 20px; position: relative; overflow: hidden;
+        border-top: 8px solid #0d47a1;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        padding: 5px; background: #fff; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #0d47a1; margin: 0 0 10px 0; }
+    
+    /* ACORDEÓN MEJORADO */
+    details {
+        background: #f5faff; margin-bottom: 20px; border-radius: 12px; border: 1px solid #bbdefb;
+        transition: all 0.3s ease;
+    }
+    summary {
+        padding: 20px; cursor: pointer; font-weight: 700; color: #1565c0; font-family: 'Montserrat', sans-serif;
+        display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem;
+    }
+    summary:hover { background: #e3f2fd; }
+    .details-content { padding: 25px; background: #fff; border-top: 1px solid #bbdefb; line-height: 1.6; }
+
+    /* TABLA DE EVALUACIÓN */
+    .eval-table {
+        width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem;
+    }
+    .eval-table th { background: #1565c0; color: white; padding: 15px; text-align: left; font-weight: 600; }
+    .eval-table td { border: 1px solid #bbdefb; padding: 15px; vertical-align: top; }
+    .eval-table tr:nth-child(even) { background: #f5faff; }
+
+    .highlight-yellow { background-color: #fff9c4; padding: 2px 5px; border-radius: 4px; font-weight: bold; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* ====== GOD EXTENSIONS (contenido ampliado + animaciones suaves) ====== */
+    .god-section{ margin-top:34px; padding:26px; border-radius:16px; border:1px solid #e3f2fd; background: linear-gradient(180deg,#ffffff 0%, #f7fbff 100%); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .god-head{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:12px;}
+    .god-chip{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#0d47a1; color:#fff; font-weight:800; font-family:'Montserrat',sans-serif; font-size:0.9rem; }
+    .god-head h3{ margin:0; color:#0d47a1; font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.25rem; }
+    .god-lead{ margin: 0 0 14px 0; font-size:1.04rem; color:#37474f; }
+    .god-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin-top:14px; }
+    .god-card{ background:#fff; border:1px solid #bbdefb; border-radius:14px; padding:16px; transition: transform .18s ease, box-shadow .18s ease; }
+    .god-card:hover{ transform: translateY(-4px); box-shadow: 0 14px 28px rgba(13,71,161,0.12); border-color:#1565c0; }
+    .god-card h4{ margin:0 0 6px 0; color:#0d47a1; font-family:'Montserrat',sans-serif; font-weight:800; }
+    .god-note{ margin:12px 0 0 0; color:#607d8b; }
+    .god-callout{ margin-top:14px; padding:14px 16px; border-radius:14px; background:#e3f2fd; border-left:6px solid #1565c0; }
+    .god-check{ list-style:none; padding:0; margin: 10px 0 0 0; }
+    .god-check li{ display:flex; align-items:flex-start; gap:10px; padding:10px 10px; border-radius:12px; background:#fff; border:1px dashed #bbdefb; margin-bottom:10px; }
+    .god-check input{ transform: translateY(4px) scale(1.05); }
+    .god-steps{ margin:10px 0 0 18px; }
+    .god-bullets{ margin:10px 0 0 18px; }
+    .god-links{ list-style:none; padding:0; margin: 10px 0 0 0; }
+    .god-links li{ display:flex; gap:10px; align-items:center; padding:10px 12px; border-radius:12px; background:#fff; border:1px solid #e3f2fd; margin-bottom:10px; }
+    .tag{ display:inline-flex; padding:4px 10px; border-radius:999px; background:#0d47a1; color:#fff; font-weight:800; font-size:0.82rem; }
+    .god-timeline{ margin-top:10px; border-left:3px solid #bbdefb; padding-left:16px;}
+    .tl-item{ display:flex; gap:12px; margin:14px 0;}
+    .tl-dot{ width:12px; height:12px; border-radius:50%; background:#0d47a1; margin-top:6px; flex:0 0 auto;}
+    /* entrance animation */
+    @media (prefers-reduced-motion: no-preference){
+        .container-extended{ animation: godFadeUp .55s ease both; }
+        .god-section{ animation: godFadeUp .55s ease both; }
+        @keyframes godFadeUp{ from{ opacity:0; transform: translateY(10px);} to{ opacity:1; transform: translateY(0);} }
+    }
+    
+
+/* ===== GOD+ Animations & UX (no rompe estructura) ===== */
+[data-reveal]{ opacity:0; transform: translateY(10px); transition: opacity .55s ease, transform .55s ease; }
+[data-reveal].is-visible{ opacity:1; transform: translateY(0); }
+
+.god-mini-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-top:12px; }
+.god-pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid #bbdefb; background:#fff; font-weight:800; color:#0d47a1; font-size:.92rem; }
+.god-kpi{ background:#ffffff; border:1px solid #e3f2fd; border-radius:14px; padding:14px; }
+.god-kpi strong{ font-family:'Montserrat',sans-serif; color:#0d47a1; font-weight:900; font-size:1.05rem; }
+.god-kpi span{ display:block; color:#546e7a; margin-top:6px; }
+.god-code{ background:#0b1b2b; color:#e3f2fd; padding:14px 16px; border-radius:14px; overflow:auto; border:1px solid rgba(187,222,251,.35); box-shadow: 0 10px 26px rgba(0,0,0,.10); }
+.god-code code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:.92rem; line-height:1.55; }
+.god-faq details{ background:#fff; border:1px solid #bbdefb; border-radius:14px; margin:10px 0; overflow:hidden; }
+.god-faq summary{ padding:14px 16px; cursor:pointer; font-weight:900; color:#1565c0; font-family:'Montserrat',sans-serif; }
+.god-faq .details-content{ padding:16px; border-top:1px solid #e3f2fd; }
+.god-progress{ height:10px; border-radius:999px; background:#e3f2fd; overflow:hidden; border:1px solid #bbdefb; }
+.god-progress > div{ height:100%; width:0%; background:#1565c0; transition: width .7s ease; }
+
+@media (prefers-reduced-motion: reduce){
+  [data-reveal]{ opacity:1; transform:none; transition:none; }
+}
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Guía de Aprendizaje</h1>
+<p>Cronograma, Hitos Evaluativos y Estrategia</p>
+</div>
+<div class="content-block">
+<h2 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">📊 Sistema de Evaluación (Assessment)</h2>
+<p>En este módulo, la teoría sin práctica es irrelevante. La evaluación se centra en la entrega de productos tangibles que demuestren competencia técnica y capacidad de comunicación.</p>
+<table class="eval-table">
+<thead>
+<tr>
+<th>Actividad</th>
+<th>Fase del Hacking</th>
+<th>Producto Esperado (Evidencia)</th>
+<th>Peso (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Actividad 1: Foro Técnico</strong></td>
+<td>Reconocimiento (Unidad 1)</td>
+<td>Análisis de Superficie de Ataque + Identificación de Riesgos (Matriz).</td>
+<td>15%</td>
+</tr>
+<tr>
+<td><strong>Actividad 2: Laboratorio (CTF)</strong></td>
+<td>Explotación (Unidad 2)</td>
+<td>Informe Técnico de Intrusión (Captura de evidencias, screenshots, logs).</td>
+<td>35%</td>
+</tr>
+<tr>
+<td><strong>Actividad 3: Proyecto Final</strong></td>
+<td>Reporte y Cierre (Unidad 3)</td>
+<td>Informe Ejecutivo + Plan de Mitigación y Remediación.</td>
+<td>50%</td>
+</tr>
+</tbody>
+</table>
+<h2 style="color:#0d47a1; margin-top:40px; font-family:'Montserrat', sans-serif;">📅 Cronograma Táctico (9 Semanas)</h2>
+<details open="">
+<summary>Unidad 1: Análisis de Vulnerabilidades (Semanas 1-2)</summary>
+<div class="details-content">
+<p><strong>Misión:</strong> Mapear el terreno sin ser detectados. Entender el alcance legal.</p>
+<ul>
+<li><strong>Semana 1:</strong> Fundamentos Legales, Ética, Tipos de Pentest (White/Grey/Black Box).</li>
+<li><strong>Semana 2:</strong> Reconocimiento Activo y Pasivo (OSINT), Google Dorks, Shodan, Escaneo con Nmap y Nessus.</li>
+<li><strong>Hito:</strong> Foro Evaluativo "Superficie de Ataque".</li>
+</ul>
+</div>
+</details>
+<details>
+<summary>Unidad 2: Metodologías y Ejecución (Semanas 3-5)</summary>
+<div class="details-content">
+<p><strong>Misión:</strong> Obtener acceso inicial y escalar privilegios.</p>
+<ul>
+<li><strong>Semana 3:</strong> Framework Metasploit, Payloads, Exploits Web (SQLi, XSS).</li>
+<li><strong>Semana 4:</strong> Post-Explotación, Escalada de Privilegios (Linux/Windows), Persistencia.</li>
+<li><strong>Semana 5:</strong> Movimiento Lateral y Pivoting en redes corporativas.</li>
+<li><strong>Hito:</strong> Laboratorio práctico de intrusión controlada.</li>
+</ul>
+</div>
+</details>
+<details>
+<summary>Unidad 3: Mitigación y Reporte (Semanas 6-9)</summary>
+<div class="details-content">
+<p><strong>Misión:</strong> Traducir el daño técnico en riesgo de negocio y proponer soluciones.</p>
+<ul>
+<li><strong>Semana 6:</strong> Puntuación de Vulnerabilidades (CVSS v3.1), Priorización de Riesgos.</li>
+<li><strong>Semana 7:</strong> Avance del Informe Ejecutivo (Lenguaje de negocio).</li>
+<li><strong>Semana 8:</strong> Estrategias de Hardening, Parches y Defensa en Profundidad.</li>
+<li><strong>Semana 9:</strong> Entrega Final y Lecciones Aprendidas.</li>
+</ul>
+</div>
+</details>
+</div>
+<div class="content-block" style="margin-top:35px;">
+<h2 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">✅ Criterios de calidad (qué hace que una evidencia sea “profesional”)</h2>
+<p>Una entrega sólida no es “corrí Nmap y ya”. Se evalúa tu capacidad de <strong>pensar, validar y comunicar</strong> como auditor.</p>
+<div class="details-content" style="border:1px solid #bbdefb; border-radius:12px;">
+<ul style="margin:0; padding-left:20px;">
+<li><strong>Reproducible:</strong> otra persona puede repetir tus pasos y obtener resultados similares.</li>
+<li><strong>Trazable:</strong> cada hallazgo tiene evidencia (captura, log, comando, timestamp).</li>
+<li><strong>Priorizado:</strong> justificas severidad (impacto + probabilidad), no “todo es crítico”.</li>
+<li><strong>Accionable:</strong> la recomendación se puede ejecutar (parche, hardening, control compensatorio).</li>
+<li><strong>Claro:</strong> lenguaje técnico para técnicos y resumen para negocio.</li>
+</ul>
+</div>
+</div>
+<div class="content-block">
+<h2 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">📄 Plantilla rápida de reporte (te ahorra tiempo)</h2>
+<p>Puedes usar esta estructura para el laboratorio y el proyecto final:</p>
+<div class="details-content" style="border:1px solid #bbdefb; border-radius:12px;">
+<ol style="margin:0; padding-left:22px;">
+<li><strong>Objetivo</strong> (qué intentas comprobar y por qué).</li>
+<li><strong>Alcance / Reglas</strong> (qué sí / qué no; restricciones, ventana de pruebas).</li>
+<li><strong>Metodología</strong> (recon → enumeración → validación → prueba controlada).</li>
+<li><strong>Hallazgos</strong> (tabla: hallazgo → evidencia → impacto → recomendación → severidad).</li>
+<li><strong>Conclusión</strong> (lecciones, riesgos clave y próximos pasos).</li>
+</ol>
+</div>
+<p style="margin-top:15px;"><span class="highlight-yellow">Tip:</span> si un hallazgo no tiene evidencia, no lo incluyas como “confirmado”. Déjalo como “observación” o “hipótesis”.</p>
+</div>
+<div class="content-block">
+<h2 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">⏱️ Plan semanal recomendado</h2>
+<div class="details-content" style="border:1px solid #bbdefb; border-radius:12px;">
+<ul style="margin:0; padding-left:20px;">
+<li><strong>15–20 min</strong> lectura previa (conceptos + glosario).</li>
+<li><strong>2–4 horas</strong> laboratorio (con bitácora en vivo).</li>
+<li><strong>30–45 min</strong> consolidación (reporte + evidencias).</li>
+<li><strong>Regla de oro:</strong> si no está documentado, “no existe” como evidencia.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">🗺️ Plan táctico</span><h3>Cómo estudiar sin ahogarte</h3></div>
+<div class="god-grid">
+<div class="god-card"><h4>Sesión 1 (45–60 min)</h4><p>Lee teoría mínima + glosario. Escribe 5 términos y un ejemplo.</p></div>
+<div class="god-card"><h4>Sesión 2 (60–90 min)</h4><p>Laboratorio guiado: 1 objetivo, 3 comandos, 3 evidencias.</p></div>
+<div class="god-card"><h4>Sesión 3 (30 min)</h4><p>Reporte: resume hallazgo en 6 líneas + recomendación.</p></div>
+</div>
+<p class="god-note">Regla de oro: <strong>menos herramientas, más criterio</strong>. Cada práctica debe producir evidencia útil.</p>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">💡 Idea clave</span><h3>Lo esencial que no puedes olvidar</h3></div>
+<p class="god-lead">En hacking ético y auditorías, el valor no está en “hacer ruido”, sino en <strong>reducir incertidumbre</strong>: demostrar con evidencia qué puede pasar, cuánto duele y qué lo evita.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4>1) Evidencia</h4>
+<p>Todo hallazgo debe tener <strong>prueba reproducible</strong>: comando, captura, log, timestamp y contexto del activo.</p>
+</div>
+<div class="god-card">
+<h4>2) Riesgo</h4>
+<p>Conecta lo técnico con impacto: <strong>confidencialidad</strong>, <strong>integridad</strong>, <strong>disponibilidad</strong> y continuidad.</p>
+</div>
+<div class="god-card">
+<h4>3) Remediación</h4>
+<p>Propón controles y plazos. Un informe sin plan de acción es solo “miedo” con formato bonito.</p>
+</div>
+</div>
+</div>
+
+<div class="god-section">
+<div class="god-head"><span class="god-chip">🎯 Mini‑reto</span><h3>10–15 minutos para “subir de nivel”</h3></div>
+<ol class="god-steps">
+<li>Elige un activo de ejemplo (servidor web, base de datos, endpoint).</li>
+<li>Escribe 3 riesgos: <em>amenaza + vulnerabilidad + impacto</em>.</li>
+<li>Define 1 KPI por riesgo (ej. MTTD, MTTR, Patch SLA, phishing rate).</li>
+<li>Redacta una recomendación en formato: <strong>Acción → Responsable → Fecha → Evidencia</strong>.</li>
+</ol>
+<div class="god-callout">
+<strong>Entrega rápida:</strong> 1 tabla (riesgo / evidencia / KPI / decisión) y un párrafo ejecutivo.
+  </div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">⚠️ Errores comunes</span><h3>Lo que más hace perder puntos</h3></div>
+<div class="god-grid">
+<div class="god-card">
+<h4>“Herramientitis”</h4>
+<p>Usar 10 herramientas sin entender resultados. Prioriza: <strong>pregunta → técnica → evidencia</strong>.</p>
+</div>
+<div class="god-card">
+<h4>Hallazgos sin validar</h4>
+<p>No confirmas falsos positivos. Si no lo validas, no es hallazgo: es sospecha.</p>
+</div>
+<div class="god-card">
+<h4>Reporte “sin negocio”</h4>
+<p>Mucho tecnicismo y cero impacto. Los directivos deciden con <strong>riesgo, costo y tiempo</strong>.</p>
+</div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">📚 Recursos</span><h3>Para reforzar (sin perderte)</h3></div>
+<ul class="god-links">
+<li><span class="tag">Concepto</span> Tríada CIA, CVE, CVSS, superficie de ataque, riesgo residual.</li>
+<li><span class="tag">Práctica</span> Nmap básico → servicios → versión → scripts NSE (con ética).</li>
+<li><span class="tag">Reporte</span> Estructura: resumen ejecutivo, metodología, hallazgos, evidencia, remediación.</li>
+</ul>
+</div>
+<script>
+(() => {
+  // Reveal on scroll
+  const els = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('is-visible');
+        const bar = e.target.querySelector('.god-progress > div');
+        if(bar && !bar.dataset.filled){
+          bar.dataset.filled = '1';
+          bar.style.width = bar.getAttribute('data-pct') || '85%';
+        }
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+
+  // Persist checklist
+  document.querySelectorAll('[data-checklist]').forEach((ul, idx) => {
+    const key = 'godChecklist:' + location.pathname + ':' + idx;
+    const boxes = ul.querySelectorAll('input[type="checkbox"]');
+    try{
+      const saved = JSON.parse(localStorage.getItem(key) || '[]');
+      boxes.forEach((b,i)=> b.checked = !!saved[i]);
+    }catch(e){}
+    boxes.forEach((b,i)=>{
+      b.addEventListener('change', () => {
+        const arr = Array.from(boxes).map(x => x.checked);
+        localStorage.setItem(key, JSON.stringify(arr));
+      });
+    });
+  });
+})();
+</script>
+<!-- GOD-PLUS START: Guía -->
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Hoja de ruta</span>
+<h3>Cómo estudiar este curso sin morir en el intento (y sacarle provecho)</h3>
+</div>
+<p class="god-lead">Esta guía te da una estrategia operativa: qué hacer antes, durante y después de cada tema. Piensa en esto como tu ‘pipeline’ de aprendizaje.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4><i class="fa-solid fa-route"></i> Antes del tema</h4>
+<p>Lee el objetivo y arma un mapa rápido: ¿qué problema resuelve esto? ¿qué conceptos necesito? Define 2 preguntas guía para responder al final.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-person-chalkboard"></i> Durante</h4>
+<p>Toma notas en forma de decisiones: ‘Si pasa X, entonces hago Y’. Captura comandos, rutas de logs y señales. Evita copiar: entiende.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-floppy-disk"></i> Después</h4>
+<p>Convierte lo aprendido en un artefacto: checklist, diagrama o mini reporte. Así creas portafolio y retención real.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-arrows-rotate"></i> Cada dos semanas</h4>
+<p>Repite un laboratorio desde cero sin mirar tus notas. Si no puedes, la habilidad aún no está sólida; mejora la documentación.</p>
+</div>
+</div>
+<div class="god-callout">
+<strong>Regla 80/20:</strong> 20% de conceptos produce 80% del valor: identidad, permisos, logs, redes, hardening, backups, respuesta.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Plan semanal</span>
+<h3>Rutina recomendada de 5 pasos (adaptable a tu tiempo)</h3>
+</div>
+<p class="god-lead">No importa si estudias 2 horas o 10: mantén el orden. La consistencia le gana al ‘maratón’.</p>
+<ol class="god-steps">
+<li><strong>1) Prep (10–15 min):</strong> revisa objetivo, glosario y prerequisitos.</li>
+<li><strong>2) Input (30–60 min):</strong> lectura/video + notas enfocadas en decisiones y señales.</li>
+<li><strong>3) Lab (45–120 min):</strong> práctica guiada. Usa snapshots. Registra evidencia (capturas/logs).</li>
+<li><strong>4) Output (20–40 min):</strong> resume en 1 artefacto: checklist, diagrama o reporte breve.</li>
+<li><strong>5) Review (10 min):</strong> escribe 3 ‘lecciones aprendidas’ y 1 duda técnica para el foro.</li>
+</ol>
+<div class="god-callout">
+  Si una semana estás corto de tiempo, no elimines el paso 4: el <strong>output</strong> es lo que fija el aprendizaje.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Evidencias y evaluación</span>
+<h3>Qué se valora: ingeniería + criterio + claridad</h3>
+</div>
+<p class="god-lead">La nota no es por ‘hacer clic’. Es por pensar como profesional y comunicar como profesional.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4><i class="fa-solid fa-file-lines"></i> Evidencia técnica</h4>
+<p>Capturas, logs, comandos, config. Debe ser reproducible y ordenado.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-brain"></i> Análisis</h4>
+<p>Interpretación: ¿qué significa el hallazgo? ¿cuál es el impacto? ¿qué hipótesis descartaste?</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-screwdriver-wrench"></i> Mitigación</h4>
+<p>Recomendación concreta: configuración, control, proceso. Idealmente con verificación.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-comments"></i> Comunicación</h4>
+<p>Redacción clara, estructura, títulos, síntesis ejecutiva. Esto diferencia a un junior de un pro.</p>
+</div>
+</div>
+<div class="god-callout">
+<strong>Consejo:</strong> usa una plantilla fija para tus reportes (Objetivo → Entorno → Pasos → Evidencia → Hallazgo → Riesgo → Fix → Verificación).
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Recursos base</span>
+<h3>Herramientas y recursos que vas a usar (sin instalar 100 cosas)</h3>
+</div>
+<p class="god-lead">Mantendremos un stack práctico y realista. No necesitas 50 herramientas: necesitas 10 bien dominadas.</p>
+<ul class="god-bullets">
+<li><strong>VMs:</strong> una Linux (Kali/Ubuntu), una Windows, y una máquina objetivo vulnerable (solo en red aislada).</li>
+<li><strong>Red:</strong> Wireshark/tcpdump para ver tráfico y entender qué está pasando.</li>
+<li><strong>Logs:</strong> visor de eventos en Windows, journalctl/rsyslog en Linux.</li>
+<li><strong>Web:</strong> navegador con DevTools, proxy (si aplica) y comprensión de HTTP.</li>
+<li><strong>Documentación:</strong> tu bitácora (Markdown o documento) + capturas bien nombradas.</li>
+</ul>
+<div class="god-callout">
+<strong>Seguridad:</strong> nada de prácticas ofensivas fuera del laboratorio. Siempre entorno controlado, alcance definido y autorización.
+</div>
+</section>
+<!-- GOD-PLUS END: Guía -->
+
+
+<div class="god-section" id="checklists-hub" data-reveal>
+  <div class="god-head"><span class="god-chip">✅ Checklist Hub</span><h3>Checklists únicos del Módulo 0 (y puente a Unidad 1)</h3></div>
+  <p class="god-lead">Marca tu progreso aquí. Se guarda en tu navegador (localStorage) para que puedas volver y continuar.</p>
+
+  <details open>
+    <summary><strong>Checklist 0 — Ética, legalidad y alcance (RoE)</strong></summary>
+    <div class="details-content">
+      <ul class="god-check" data-checklist>
+        <li><input type="checkbox"/> Tengo claro el <strong>objetivo</strong> de la prueba (qué se quiere verificar).</li>
+        <li><input type="checkbox"/> Entiendo <strong>alcance</strong>: IPs/URLs/Apps incluidas y explícitamente excluidas.</li>
+        <li><input type="checkbox"/> Tengo <strong>autorización</strong> (o documento de práctica) y sé a quién reportar incidentes.</li>
+        <li><input type="checkbox"/> Identifiqué acciones <strong>prohibidas</strong> (DoS, fuerza bruta masiva, malware fuera de sandbox).</li>
+        <li><input type="checkbox"/> Definí ventana de pruebas, límites y criterio de “alto impacto” para detenerme.</li>
+        <li><input type="checkbox"/> Puedo explicar en 60s la diferencia entre <em>reconocimiento</em>, <em>enumeración</em> y <em>explotación</em>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary><strong>Checklist 1 — Setup de laboratorio (seguro y reproducible)</strong></summary>
+    <div class="details-content">
+      <ul class="god-check" data-checklist>
+        <li><input type="checkbox"/> Tengo VM ofensiva (Kali/Parrot) y VM(s) objetivo (Metasploitable, DVWA, etc.) o entorno provisto.</li>
+        <li><input type="checkbox"/> Red configurada (NAT/Host‑Only/Bridge según guía) y <strong>aislamiento</strong> confirmado.</li>
+        <li><input type="checkbox"/> Creé <strong>snapshots</strong> antes de empezar y sé restaurar en 2 minutos.</li>
+        <li><input type="checkbox"/> Hora/sincronización lista (timestamps coherentes para evidencia).</li>
+        <li><input type="checkbox"/> Carpeta de evidencias creada (capturas, logs, comandos, reporte).</li>
+        <li><input type="checkbox"/> Herramientas mínimas listas: <strong>nmap</strong>, <strong>curl</strong>, <strong>nikto</strong> (o equivalente), editor y capturas.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary><strong>Checklist 2 — Evidencias (lo que “vale” en una auditoría)</strong></summary>
+    <div class="details-content">
+      <ul class="god-check" data-checklist>
+        <li><input type="checkbox"/> Cada hallazgo tiene <strong>pasos reproducibles</strong> (comandos y parámetros).</li>
+        <li><input type="checkbox"/> Incluí <strong>prueba</strong> (captura/log) + <strong>contexto</strong> (host/servicio/puerto/URL).</li>
+        <li><input type="checkbox"/> Separé <strong>hipótesis</strong> vs <strong>confirmado</strong> (evito falsos positivos).</li>
+        <li><input type="checkbox"/> Clasifiqué severidad con criterio (impacto + probabilidad; si uso CVSS, explico por qué).</li>
+        <li><input type="checkbox"/> Recomendación accionable: <strong>qué</strong> hacer + <strong>quién</strong> + <strong>cuándo</strong> + <strong>cómo verificar</strong>.</li>
+        <li><input type="checkbox"/> Puedo traducir el hallazgo a riesgo de negocio (CIA + continuidad) sin jerga.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary><strong>Checklist 3 — Puente a Unidad 1 (Semanas 1–2)</strong></summary>
+    <div class="details-content">
+      <ul class="god-check" data-checklist>
+        <li><input type="checkbox"/> Identifiqué <strong>superficie de ataque</strong>: dominios, IPs, puertos, endpoints, tecnologías.</li>
+        <li><input type="checkbox"/> Hice <strong>OSINT</strong> básico (huella digital) y documenté fuentes y hallazgos.</li>
+        <li><input type="checkbox"/> Ejecuté escaneo de puertos/servicios con buen criterio (top ports → full scan → scripts selectivos).</li>
+        <li><input type="checkbox"/> Enumeré tecnologías (cabeceras HTTP, versiones, banners, fingerprints) sin “adivinar”.</li>
+        <li><input type="checkbox"/> Construí un mapa simple: <strong>activo → exposición → posible vector</strong>.</li>
+        <li><input type="checkbox"/> Puedo explicar qué es <strong>amenaza</strong> vs <strong>vulnerabilidad</strong> vs <strong>riesgo</strong> con un ejemplo real.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="god-callout">
+    <strong>Tip pro:</strong> Si un ítem te falta, conviértelo en objetivo semanal. “Marcar casillas” no es el fin; el fin es <em>reducir incertidumbre con evidencia</em>.
+  </div>
+</div>
+
+
+
+
+<div class="god-section" data-reveal>
+  <div class="god-head"><span class="god-chip">🧩 Mapa mental</span><h3>Ruta del Módulo 0 → Unidad 1: cómo se conectan las piezas</h3></div>
+  <p class='god-lead'>Este Módulo 0 no es “introducción suave”: es la rampa de lanzamiento para que en la Unidad 1 puedas reconocer, enumerar y mapear superficie de ataque con criterio (Semanas 1–2).</p><p>La idea es que llegues a la Semana 1 con lenguaje común: qué es alcance, qué es evidencia, y cómo se ve un hallazgo bien documentado.</p>
+  <ul class='god-bullets'><li><strong>Bienvenida</strong> te da el marco y el porqué (valor real del pentesting).</li><li><strong>Justificación</strong> aterriza riesgos, roles y expectativas del entorno controlado.</li><li><strong>RA</strong> define el “contrato de aprendizaje”: qué debes poder demostrar.</li><li><strong>Conocimientos previos</strong> te dice qué repasar para no frenarte en laboratorio.</li><li><strong>Cuestionario</strong> te revela brechas: lo que no se mide, no mejora.</li><li><strong>Reglas</strong> te protegen (técnica y legalmente) y evitan incidentes.</li></ul>
+  <div class='god-callout'><strong>🎯 Mini‑reto:</strong> Escribe un mapa de 1 página: Activo → Superficie de ataque → Amenaza → Vulnerabilidad → Impacto → Evidencia → Mitigación. Usa un ejemplo sencillo (una web con login).</div>
+  
+</div>
+
+<div class="god-section" data-reveal>
+  <div class="god-head"><span class="god-chip">📝 Plantillas</span><h3>Plantillas rápidas (listas para copiar en tu bitácora)</h3></div>
+  <p class='god-lead'>Para que tu evidencia sea ‘auditable’, usa formatos consistentes. Esto mejora tu evaluación y también te entrena como pentester real.</p><p>Copia y pega estas plantillas en tu cuaderno/archivo de reporte y completa cada campo durante la práctica.</p>
+  <ul class='god-bullets'><li><strong>Registro de comando:</strong> Fecha/Hora | Host | Objetivo | Comando | Resultado clave | Archivo evidencia</li><li><strong>Hallazgo:</strong> Título | Activo afectado | Evidencia | Impacto | Probabilidad | Severidad | Recomendación | Validación de fix (retest)</li><li><strong>Diario de decisiones:</strong> Qué intenté | Qué funcionó | Qué falló | Hipótesis | Próximo paso | Riesgo</li></ul>
+  <div class='god-callout'><strong>🎯 Mini‑reto:</strong> En 10 minutos, crea una carpeta ‘Evidencias’ y un archivo ‘bitacora.md’ con estas plantillas. En la Unidad 1 lo vas a agradecer.</div>
+  
+</div>
+
+
+</body>
+</html>

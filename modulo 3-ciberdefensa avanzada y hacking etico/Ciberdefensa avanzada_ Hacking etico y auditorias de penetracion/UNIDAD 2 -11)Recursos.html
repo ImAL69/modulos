@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Recursos Complementarios U2</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        }
+
+.checklist-box{
+  background:#fff8e1;
+  border:1px solid #ffe082;
+  padding:22px;
+  border-radius:12px;
+  margin:22px 0;
+  border-left:6px solid #ffca28;
+}
+.checklist-box h3{margin:0 0 10px 0; font-family:'Montserrat', sans-serif; color:#5d4037;}
+.checklist-box ul{margin:0; padding-left:22px;}
+.mini-code{
+  background:#263238; color:#eceff1; padding:14px 16px; border-radius:10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size:0.92rem; overflow-x:auto; margin:10px 0;
+}
+.tip-box{
+  background:#e8f5e9; border:1px solid #a5d6a7; padding:20px; border-radius:12px; margin:20px 0;
+  border-left:6px solid #2e7d32;
+}
+.tip-box h3{margin:0 0 10px 0; font-family:'Montserrat', sans-serif; color:#1b5e20;}
+.badge{
+  display:inline-block; padding:2px 10px; border-radius:999px; font-weight:700; font-size:0.78rem; margin-right:6px;
+  background:#e3f2fd; border:1px solid #90caf9; color:#0d47a1;
+}
+
+.doc-card{
+  background:#f7fbff;
+  border:1px solid #cfe3ff;
+  padding:26px 24px;
+  border-radius:14px;
+  margin:22px 0;
+  border-left:6px solid #1565c0;
+}
+.doc-title{
+  display:block;
+  font-family:'Montserrat', sans-serif;
+  font-weight:800;
+  color:#0d47a1;
+  margin-bottom:12px;
+  font-size:1.05rem;
+}
+.doc-card p{ margin:10px 0; }
+.kv{
+  display:grid;
+  grid-template-columns: 180px 1fr;
+  gap:10px 18px;
+  margin:12px 0 0 0;
+}
+.kv div{ padding:8px 10px; background:#ffffff; border:1px solid #e3f2fd; border-radius:10px; }
+.kv .k{ font-weight:800; color:#0d47a1; font-family:'Montserrat', sans-serif; }
+
+
+/* ===== Video-card (sin iframe, miniatura limpia) ===== */
+.video-card {
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap:18px;
+  background:#ffffff;
+  border:1px solid #bbdefb;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(13,71,161,.08);
+  margin: 10px 0 34px 0;
+}
+.video-thumb {
+  width:100%;
+  height: 220px;
+  object-fit: cover;
+  display:block;
+  background:#fff;
+}
+.video-info{ padding:18px 18px 18px 0; }
+.video-info h4 {
+  margin:0 0 8px;
+  font-family:'Montserrat',sans-serif;
+  color:#1565c0;
+  font-weight:800;
+}
+.video-info p{ margin:0 0 10px; color:#37474f; }
+.video-btn {
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 14px; border-radius:12px;
+  font-weight:800; text-decoration:none;
+  background:#1565c0; color:#fff; border:1px solid #1565c0;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.video-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:0 12px 26px rgba(21,101,192,.25);
+}
+.video-tasks {
+  margin-top:12px;
+  background:#f5faff; border:1px solid #bbdefb;
+  border-radius:12px; padding:12px 14px;
+}
+.video-tasks ul{ margin:8px 0 0 18px; }
+
+/* ===== Distintivo al fondo (abajo-derecha) ===== */
+.container-extended::after {
+  content:"";
+  position:absolute;
+  right:-150px; bottom:-175px;
+  width:660px; height:370px;
+  background-image:url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'%3E %3Cdefs%3E %3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E %3Cstop offset='0' stop-color='%230d47a1'/%3E %3Cstop offset='0.55' stop-color='%231565c0'/%3E %3Cstop offset='1' stop-color='%2300b8d4'/%3E %3C/linearGradient%3E %3CradialGradient id='r' cx='28%' cy='30%' r='75%'%3E %3Cstop offset='0' stop-color='%23fff' stop-opacity='0.22'/%3E %3Cstop offset='1' stop-color='%23fff' stop-opacity='0'/%3E %3C/radialGradient%3E %3C/defs%3E %3Crect width='1200' height='675' fill='url(%23g)'/%3E %3Crect width='1200' height='675' fill='url(%23r)'/%3E %3Cg opacity='0.14'%3E %3Cpath d='M0 540H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 420H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 300H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 180H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M240 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M480 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M720 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M960 0V675' stroke='%23fff' stroke-width='2'/%3E %3C/g%3E %3Cg transform='translate(95,135)'%3E %3Crect x='0' y='0' rx='26' ry='26' width='740' height='122' fill='rgba(255,255,255,0.12)' stroke='rgba(255,255,255,0.22)'/%3E %3Ctext x='34' y='78' font-family='Montserrat, Arial, sans-serif' font-size='46' fill='%23fff' font-weight='800'%3E Redacción de Reportes %3C/text%3E %3C/g%3E %3Cg transform='translate(95,302)'%3E %3Ctext x='0' y='0' font-family='Roboto, Arial, sans-serif' font-size='30' fill='rgba(255,255,255,0.92)' font-weight='500'%3E Hallazgos • Evidencias • Recomendaciones %3C/text%3E %3Ctext x='0' y='52' font-family='Roboto, Arial, sans-serif' font-size='24' fill='rgba(255,255,255,0.86)'%3E Plantillas + buenas prácticas para entregar PRO. %3C/text%3E %3C/g%3E %3Cg transform='translate(930,505)'%3E %3Ccircle cx='70' cy='70' r='70' fill='rgba(255,255,255,0.18)'/%3E %3Ccircle cx='70' cy='70' r='54' fill='rgba(13,71,161,0.95)'/%3E %3Cpath d='M60 45 L105 70 L60 95 Z' fill='%23fff'/%3E %3C/g%3E %3C/svg%3E');
+  background-size:cover;
+  background-position:center;
+  opacity:0.10;
+  transform: rotate(-6deg);
+  pointer-events:none;
+  filter:saturate(1.05) contrast(1.02);
+}
+
+@media (max-width: 768px) {
+  .video-card{ grid-template-columns:1fr; }
+  .video-info{ padding:16px; }
+  .video-thumb{ height:200px; }
+  .container-extended::after {
+    right:-220px; bottom:-210px;
+    width:560px; height:315px;
+    opacity:0.08;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Recursos Complementarios</h1>
+<p>Herramientas y plantillas para profesionalizar tu trabajo.</p>
+</div>
+
+
+
+<!-- ===== Video recomendado (sin iframe) ===== -->
+<div class="video-card">
+  <img class="video-thumb" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'%3E %3Cdefs%3E %3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E %3Cstop offset='0' stop-color='%230d47a1'/%3E %3Cstop offset='0.55' stop-color='%231565c0'/%3E %3Cstop offset='1' stop-color='%2300b8d4'/%3E %3C/linearGradient%3E %3CradialGradient id='r' cx='28%' cy='30%' r='75%'%3E %3Cstop offset='0' stop-color='%23fff' stop-opacity='0.22'/%3E %3Cstop offset='1' stop-color='%23fff' stop-opacity='0'/%3E %3C/radialGradient%3E %3C/defs%3E %3Crect width='1200' height='675' fill='url(%23g)'/%3E %3Crect width='1200' height='675' fill='url(%23r)'/%3E %3Cg opacity='0.14'%3E %3Cpath d='M0 540H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 420H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 300H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M0 180H1200' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M240 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M480 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M720 0V675' stroke='%23fff' stroke-width='2'/%3E %3Cpath d='M960 0V675' stroke='%23fff' stroke-width='2'/%3E %3C/g%3E %3Cg transform='translate(95,135)'%3E %3Crect x='0' y='0' rx='26' ry='26' width='740' height='122' fill='rgba(255,255,255,0.12)' stroke='rgba(255,255,255,0.22)'/%3E %3Ctext x='34' y='78' font-family='Montserrat, Arial, sans-serif' font-size='46' fill='%23fff' font-weight='800'%3E Redacción de Reportes %3C/text%3E %3C/g%3E %3Cg transform='translate(95,302)'%3E %3Ctext x='0' y='0' font-family='Roboto, Arial, sans-serif' font-size='30' fill='rgba(255,255,255,0.92)' font-weight='500'%3E Hallazgos • Evidencias • Recomendaciones %3C/text%3E %3Ctext x='0' y='52' font-family='Roboto, Arial, sans-serif' font-size='24' fill='rgba(255,255,255,0.86)'%3E Plantillas + buenas prácticas para entregar PRO. %3C/text%3E %3C/g%3E %3Cg transform='translate(930,505)'%3E %3Ccircle cx='70' cy='70' r='70' fill='rgba(255,255,255,0.18)'/%3E %3Ccircle cx='70' cy='70' r='54' fill='rgba(13,71,161,0.95)'/%3E %3Cpath d='M60 45 L105 70 L60 95 Z' fill='%23fff'/%3E %3C/g%3E %3C/svg%3E" alt="Miniatura del video recomendado (sin logos)">
+  <div class="video-info">
+    <h4>Video recomendado: Redacción de reportes de Pentesting (cómo presentar hallazgos con evidencia)</h4>
+    <p>
+      Este video te ayuda a usar bien estos recursos: cómo escribir <strong>hallazgos</strong>, adjuntar <strong>evidencia</strong>,
+      explicar <strong>impacto</strong> y proponer <strong>recomendaciones accionables</strong> sin “relleno”.
+    </p>
+    <a class="video-btn" href="https://www.youtube.com/watch?v=zEhE2lxBsV8" target="_blank" rel="noopener">▶ Ver en YouTube (nueva pestaña)</a>
+
+    <div class="video-tasks">
+      <strong>🎯 Tarea rápida (aplicación directa a tus plantillas):</strong>
+      <ul>
+        <li>Convierte 1 salida técnica (nmap/http) en un hallazgo con: evidencia + impacto + recomendación.</li>
+        <li>Redacta un “Resumen Ejecutivo” de 8 líneas máximo (qué, qué tan crítico, qué hacer primero).</li>
+        <li>Define 2 criterios de “evidencia válida” vs “evidencia débil” (con ejemplo).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="doc-card" id="contenidos">
+  <span class="doc-title"><i class="fa-solid fa-layer-group"></i> Contenido de los recursos (todo dentro de esta página)</span>
+  <p>En esta sección encontrarás versiones listas para usar de los recursos listados arriba: plantillas en texto, checklists, ejemplos y guías rápidas. La idea es que no necesites descargar nada para avanzar y documentar tu trabajo con estándares profesionales.</p>
+  <p><span class="badge">Tip</span> Si estás haciendo laboratorio, abre esta página a un lado y copia/pega las plantillas en tu bitácora.</p>
+</div>
+
+<div class="doc-card" id="plantilla-informe">
+  <span class="doc-title"><i class="fa-solid fa-file-lines"></i> 1) Plantilla de Informe Técnico v2.0 (estructura recomendada)</span>
+  <p><strong>Uso:</strong> copia esta estructura en tu documento final. Mantén títulos y orden; completa con tu evidencia.</p>
+  <div class="mini-code">PORTADA
+- Nombre del estudiante:
+- Unidad/Semana:
+- Fecha:
+- Objetivo del ejercicio:
+- Alcance (scope) y restricciones:
+
+1. Resumen Ejecutivo (máx. 10 líneas)
+- ¿Qué se evaluó?
+- ¿Qué se encontró más crítico?
+- ¿Qué se recomienda primero?
+
+2. Metodología
+- Reconocimiento:
+- Enumeración:
+- Validación / explotación controlada:
+- Evidencias recolectadas:
+
+3. Hallazgos (tabla)
+| ID | Hallazgo | Evidencia | Impacto | Recomendación | Severidad |
+|----|----------|----------|---------|---------------|----------|
+
+4. Detalle de hallazgos (uno por uno)
+H-01: [Título claro]
+- Descripción:
+- Prerrequisitos:
+- Pasos reproducibles:
+- Evidencia (captura/log):
+- Impacto (técnico y de negocio):
+- Mitigación (pasos concretos):
+- Referencia (CVE/CWE si aplica):
+
+5. Conclusiones y siguientes pasos
+- Lecciones aprendidas:
+- Qué reforzarías:
+- Riesgos residuales:
+</div>
+</div>
+
+<div class="checklist-box" id="checklist-evidencias">
+  <h3>2) Checklist de Evidencias (para no olvidar lo importante)</h3>
+  <ul>
+    <li><strong>Contexto:</strong> IP/host objetivo, fecha/hora, entorno (VM/red), alcance permitido.</li>
+    <li><strong>Comandos:</strong> captura del comando exacto y su salida (no solo “me salió”).</li>
+    <li><strong>Prueba:</strong> evidencia de que el hallazgo es real (respuesta del servidor, log, captura).</li>
+    <li><strong>Impacto:</strong> qué permite hacer (leer datos, ejecutar acciones, elevar privilegios, etc.).</li>
+    <li><strong>Recomendación:</strong> acción concreta (parche, configuración, control compensatorio).</li>
+    <li><strong>Reproducibilidad:</strong> pasos enumerados para que otra persona lo repita.</li>
+  </ul>
+  <p style="margin-top:12px"><span class="badge">Regla</span> Si una evidencia no puede repetirse, no cuenta como evidencia sólida.</p>
+</div>
+
+<div class="doc-card" id="ejemplo-reporte">
+  <span class="doc-title"><i class="fa-solid fa-file-pdf"></i> 3) Ejemplo de reporte (sanitizado) – cómo se ve un buen hallazgo</span>
+  <p>Ejemplo modelo de redacción (puedes adaptarlo):</p>
+  <div class="mini-code">H-02: Panel administrativo expuesto sin restricción de IP
+Descripción:
+Se detectó un panel de administración accesible desde la red de laboratorio sin controles de restricción (allowlist) ni autenticación reforzada.
+
+Evidencia:
+- URL/endpoint: /admin
+- Respuesta HTTP: 200 OK
+- Captura: [adjunta captura con fecha/hora]
+- Observación: el panel permite enumerar usuarios/roles.
+
+Impacto:
+Exposición de superficie crítica. Facilita intentos de fuerza bruta, phishing dirigido o abuso de funciones administrativas.
+
+Recomendación:
+- Restringir por IP/VPN (allowlist).
+- Habilitar MFA para cuentas administrativas.
+- Registrar intentos fallidos y alertas (SIEM/Logs).
+Severidad sugerida: Alta (por exposición + criticidad del panel).</div>
+  <p><span class="badge">Nota</span> “Sanitizado” significa sin datos reales: nunca publiques IPs reales, credenciales, tokens ni información sensible.</p>
+</div>
+
+<div class="doc-card" id="matriz-hallazgos">
+  <span class="doc-title"><i class="fa-solid fa-table"></i> 4) Matriz de Hallazgos (formato para priorizar)</span>
+  <p>Usa esta matriz para decidir qué corregir primero. Copia la tabla en tu informe o bitácora.</p>
+  <div class="mini-code">| Hallazgo | Evidencia | Probabilidad (1-5) | Impacto (1-5) | Riesgo (PxI) | Prioridad | Acción |
+|---------|----------|--------------------|---------------|-------------|----------|--------|
+|         |          |                    |               |             |          |        |</div>
+  <div class="tip-box">
+    <h3>Cómo puntuar rápido (sin enredarte)</h3>
+    <p><span class="badge">Probabilidad</span> 1 = difícil / requiere mucho; 5 = fácil / expuesto / repetible</p>
+    <p><span class="badge">Impacto</span> 1 = mínimo; 5 = compromiso de datos/servicios críticos</p>
+    <p><span class="badge">Prioridad</span> 16–25: inmediata · 9–15: alta · 4–8: media · 1–3: baja</p>
+  </div>
+</div>
+
+<div class="doc-card" id="cvss">
+  <span class="doc-title"><i class="fa-solid fa-shield-halved"></i> 5) Guía rápida de severidad (CVSS simplificado)</span>
+  <p>CVSS es un estándar para puntuar vulnerabilidades, pero aquí lo usamos de forma práctica:</p>
+  <div class="kv">
+    <div class="k">Crítica</div><div>Explotación sencilla + impacto muy alto (control total, datos críticos, ejecución remota).</div>
+    <div class="k">Alta</div><div>Explotación posible + impacto alto (acceso a datos, elevación de privilegios, bypass serio).</div>
+    <div class="k">Media</div><div>Requiere condiciones específicas o impacto moderado (fuga parcial, configuración débil).</div>
+    <div class="k">Baja</div><div>Impacto limitado o difícil de explotar (información no sensible, hardening menor).</div>
+  </div>
+  <p><span class="badge">Clave</span> La severidad final también depende del <strong>contexto</strong>: un panel admin expuesto suele subir de severidad.</p>
+</div>
+
+<div class="doc-card" id="pentest-log">
+  <span class="doc-title"><i class="fa-solid fa-terminal"></i> 6) Plantilla de Pentest Log (bitácora lista)</span>
+  <p>Registra todo aquí mientras practicas. Esto te ahorra horas al redactar el informe final.</p>
+  <div class="mini-code">[Fecha] [Hora] — Objetivo del día:
+Entorno: (VM / IP / Red) — Alcance:
+
+1) Reconocimiento
+- Herramienta/comando:
+- Resultado relevante:
+- Evidencia (captura/log):
+
+2) Enumeración
+- Servicio/puerto:
+- Detalles (versiones, rutas, usuarios, endpoints):
+- Hipótesis (qué podría fallar):
+
+3) Validación / Prueba controlada
+- Paso a paso:
+- Resultado:
+- Evidencia:
+
+4) Hallazgos provisionales
+- H-01:
+- H-02:
+
+5) Notas / Problemas / Soluciones
+- Error:
+- Causa probable:
+- Cómo lo resolví:
+
+6) Próximos pasos (mañana)
+- ...</div>
+</div>
+
+<div class="checklist-box" id="plantilla-evidencias">
+  <h3>7) Plantilla de Evidencias (carpetas + convención de nombres)</h3>
+  <p>Organiza tus capturas para que tu reporte se vea profesional:</p>
+  <div class="mini-code">/EVIDENCIAS
+  /01_Recon
+    2026-01-08_recon_nmap_resultado.png
+  /02_Enum
+    2026-01-08_enum_http_headers.png
+  /03_Validacion
+    2026-01-08_poc_panel_admin_200ok.png
+  /04_Reporte
+    informe_final.docx
+    matriz_hallazgos.xlsx</div>
+  <p><span class="badge">Consejo</span> Usa fecha + fase + descripción corta. Evita nombres como “captura1.png”.</p>
+</div>
+
+<div class="doc-card" id="como-usar">
+  <span class="doc-title"><i class="fa-solid fa-compass"></i> Cómo usar estos recursos sin perder tiempo</span>
+  <ol style="margin:0; padding-left:22px">
+    <li><strong>Antes del lab:</strong> copia la plantilla de Pentest Log y escribe el objetivo + alcance.</li>
+    <li><strong>Durante:</strong> pega comandos y resultados en la bitácora; guarda capturas con la convención.</li>
+    <li><strong>Después:</strong> crea la Matriz de Hallazgos y prioriza (no todos los hallazgos son urgentes).</li>
+    <li><strong>Entrega:</strong> arma el Informe Técnico con el resumen ejecutivo y los hallazgos detallados.</li>
+  </ol>
+</div>
+
+<div class="doc-card" id="glosario">
+  <span class="doc-title"><i class="fa-solid fa-book"></i> Mini-glosario (para reportes)</span>
+  <div class="kv">
+    <div class="k">Evidencia</div><div>Prueba verificable (captura, log, salida de comando) que respalda un hallazgo.</div>
+    <div class="k">Falso positivo</div><div>Cuando una herramienta marca “vulnerable”, pero al validar no aplica.</div>
+    <div class="k">Exposición</div><div>Servicio o información accesible desde donde no debería (puerto abierto, panel público).</div>
+    <div class="k">Enumeración</div><div>Recolectar detalles (versiones, rutas, usuarios, endpoints) para entender el sistema.</div>
+    <div class="k">POC</div><div>Proof of Concept: demostración controlada de que un hallazgo es explotable.</div>
+    <div class="k">Mitigación</div><div>Acción para reducir riesgo: parche, hardening, control compensatorio, monitoreo.</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

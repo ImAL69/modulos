@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tema 1.2</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .topic-card {
+        background: #fff; border: 1px solid #e0e0e0; padding: 25px; border-radius: 12px; margin-bottom: 25px;
+        transition: all 0.3s ease; border-left: 5px solid #90caf9;
+    }
+    .topic-card:hover { transform: translateX(5px); border-left-color: #1565c0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+    .topic-header { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
+    .topic-badge { background: #1565c0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+    .topic-title { font-size: 1.3rem; font-weight: 700; color: #0d47a1; font-family: 'Montserrat', sans-serif; }
+
+    .subtopic-list { margin-left: 20px; color: #546e7a; }
+    .subtopic-list li { margin-bottom: 5px; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+/* === PRO Components (added) === */
+.pro-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:18px}
+.pro-card{grid-column:span 12;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.06);border-radius:16px;padding:18px;box-shadow:0 10px 28px rgba(0,0,0,0.06)}
+.pro-card h3{margin:0 0 10px;font-size:1.15rem}
+.pro-card p{margin:0 0 10px;color:#334155;line-height:1.65}
+.kpi-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
+.kpi{background:linear-gradient(135deg,rgba(59,130,246,0.10),rgba(34,197,94,0.08));border:1px solid rgba(59,130,246,0.16);border-radius:14px;padding:12px}
+.kpi b{display:block;color:#0f172a;font-size:0.95rem;margin-bottom:4px}
+.kpi span{color:#475569;font-size:0.92rem;line-height:1.45;display:block}
+.pro-accordion{margin-top:10px}
+.acc-item{border:1px solid rgba(15,23,42,0.10);border-radius:14px;overflow:hidden;margin-bottom:10px;background:#fff}
+.acc-btn{width:100%;text-align:left;display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 14px;background:linear-gradient(180deg,rgba(15,23,42,0.04),rgba(15,23,42,0.02));border:0;cursor:pointer;font-weight:700;color:#0f172a}
+.acc-btn small{font-weight:600;color:#64748b}
+.acc-panel{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 14px}
+.acc-panel.open{padding:12px 14px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(2,132,199,0.20);background:rgba(2,132,199,0.08);color:#075985;font-weight:700;font-size:0.82rem}
+.badge.warn{border-color:rgba(234,179,8,0.25);background:rgba(234,179,8,0.12);color:#854d0e}
+.badge.danger{border-color:rgba(239,68,68,0.25);background:rgba(239,68,68,0.10);color:#7f1d1d}
+.callout{border-left:4px solid #3b82f6;background:rgba(59,130,246,0.07);padding:12px 14px;border-radius:14px;margin:10px 0;color:#0f172a}
+.callout b{color:#0b3b78}
+.callout.note{border-left-color:#22c55e;background:rgba(34,197,94,0.08)}
+.callout.warn{border-left-color:#eab308;background:rgba(234,179,8,0.12)}
+.callout.danger{border-left-color:#ef4444;background:rgba(239,68,68,0.10)}
+.table-pro{width:100%;border-collapse:separate;border-spacing:0;margin-top:8px;overflow:hidden;border-radius:14px;border:1px solid rgba(0,0,0,0.06)}
+.table-pro th,.table-pro td{padding:10px 12px;border-bottom:1px solid rgba(0,0,0,0.06);vertical-align:top}
+.table-pro th{background:rgba(15,23,42,0.04);text-align:left;color:#0f172a;font-size:0.92rem}
+.table-pro td{color:#334155;font-size:0.92rem;line-height:1.5}
+.table-pro tr:last-child td{border-bottom:0}
+.reveal{opacity:1;transform:none}
+html.js .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+html.js .reveal.visible{opacity:1;transform:none}
+@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+.fancy-btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:14px;padding:10px 14px;cursor:pointer;font-weight:800;color:#0b1220;background:linear-gradient(135deg,#60a5fa,#34d399);box-shadow:0 10px 28px rgba(16,185,129,0.18);transition:transform .15s ease,box-shadow .15s ease}
+.fancy-btn:hover{transform:translateY(-1px);box-shadow:0 14px 32px rgba(59,130,246,0.16),0 14px 32px rgba(16,185,129,0.14)}
+.pillbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;border:1px solid rgba(15,23,42,0.10);background:rgba(255,255,255,0.78);color:#0f172a;font-weight:700;font-size:0.82rem}
+.pill i{width:9px;height:9px;border-radius:999px;background:linear-gradient(135deg,#60a5fa,#34d399);display:inline-block}
+.quiz{margin-top:12px}
+.quiz-q{margin:10px 0 8px;font-weight:800;color:#0f172a}
+.quiz-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.kpi-row{grid-template-columns:1fr}.quiz-opts{grid-template-columns:1fr}}
+.quiz-opt{border:1px solid rgba(15,23,42,0.10);border-radius:14px;padding:10px 12px;background:#fff;cursor:pointer;transition:transform .12s ease,border .12s ease}
+.quiz-opt:hover{transform:translateY(-1px);border-color:rgba(59,130,246,0.25)}
+.quiz-opt input{margin-right:8px}
+.quiz-res{margin-top:10px;font-weight:800}
+</style>
+</head>
+<body>
+<div class="container-extended">
+  <img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+  <div class="header-box">
+    <h1 class="main-title">Tema 1.2</h1>
+    <p>Vulnerabilidades, amenazas y priorización por riesgo (con evidencias y comunicación profesional).</p>
+  </div>
+  <div class="topic-card">
+  <div class="topic-header">
+    <span class="topic-badge">TEMA 1.2</span>
+    <span class="topic-title">Vulnerabilidades y Amenazas: conceptos, taxonomía y análisis por riesgo</span>
+  </div>
+  <p>
+    En seguridad, “encontrar fallos” no es suficiente. Se requiere <b>clasificar</b>, <b>priorizar</b> y <b>explicar</b>
+    por qué un hallazgo importa. Este tema te da el lenguaje y los criterios para analizar debilidades en redes, web y sistemas,
+    y convertirlas en una historia de riesgo entendible por técnicos y directivos.
+  </p>
+</div>
+
+<div class="topic-card">
+  <div class="topic-header">
+    <span class="topic-badge"><i class="fa-solid fa-book"></i> Vocabulario esencial</span>
+    <span class="topic-title">Activo, vulnerabilidad, amenaza, riesgo y control</span>
+  </div>
+  <ul class="subtopic-list">
+    <li><strong>Activo:</strong> lo que tiene valor (datos, sistemas, procesos, reputación).</li>
+    <li><strong>Vulnerabilidad:</strong> debilidad explotable (error de software, mala configuración, control inexistente).</li>
+    <li><strong>Amenaza:</strong> actor o evento capaz de explotar una vulnerabilidad (adversario, malware, error humano, desastre).</li>
+    <li><strong>Riesgo:</strong> probabilidad de que una amenaza explote una vulnerabilidad y genere impacto sobre un activo.</li>
+    <li><strong>Control:</strong> medida para reducir probabilidad/impacto (parches, hardening, segmentación, MFA, monitoreo).</li>
+  </ul>
+  <details>
+    <summary><i class="fa-solid fa-lightbulb"></i> Ejemplo rápido (sin técnica ofensiva)</summary>
+    <div class="details-content">
+      <ul>
+        <li><b>Activo:</b> sistema académico con datos personales.</li>
+        <li><b>Vulnerabilidad:</b> configuración débil (por ejemplo, permisos excesivos o credenciales expuestas).</li>
+        <li><b>Amenaza:</b> actor no autorizado que busca acceso a información.</li>
+        <li><b>Riesgo:</b> fuga de datos + sanciones + pérdida de confianza.</li>
+        <li><b>Control:</b> hardening, MFA, revisión de permisos, monitoreo y gestión de secretos.</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+<div class="topic-card">
+  <div class="topic-header">
+    <span class="topic-badge"><i class="fa-solid fa-layer-group"></i> Tipos de vulnerabilidades</span>
+    <span class="topic-title">Qué buscar (por categorías)</span>
+  </div>
+  <ul class="subtopic-list">
+    <li><strong>Fallos de configuración:</strong> servicios expuestos innecesariamente, permisos excesivos, defaults, falta de hardening.</li>
+    <li><strong>Errores de software:</strong> fallos de validación, manejo de sesiones, errores de lógica, dependencias vulnerables.</li>
+    <li><strong>Red y servicios:</strong> exposición de puertos/servicios, protocolos inseguros, falta de segmentación.</li>
+    <li><strong>Web:</strong> fallas de autenticación/autorización, validación de entrada, configuración de seguridad, manejo de cookies/sesión.</li>
+    <li><strong>Sistemas operativos:</strong> parches atrasados, servicios innecesarios, políticas débiles, malas prácticas de administración.</li>
+  </ul>
+  <div class="callout">
+    <b>En auditoría profesional:</b> una vulnerabilidad “importa” según el activo expuesto, la exposición real y la facilidad de abuso,
+    no solo por su “nombre” o por estar en una lista.
+  </div>
+</div>
+
+<div class="topic-card">
+  <div class="topic-header">
+    <span class="topic-badge"><i class="fa-solid fa-user-shield"></i> Amenazas</span>
+    <span class="topic-title">Quién o qué explota (y por qué)</span>
+  </div>
+  <p>
+    Las amenazas no son solo “hackers”: incluyen errores humanos, cambios no controlados, fallas de terceros, malware,
+    y eventos físicos. Un análisis serio pregunta: <b>¿qué actor podría explotar esto?</b> y <b>¿qué motivación/capacidad tiene?</b>
+  </p>
+  <ul class="subtopic-list">
+    <li><strong>Adversarios externos:</strong> buscan acceso, fraude, extorsión o datos.</li>
+    <li><strong>Riesgo interno:</strong> abuso de privilegios, errores, credenciales compartidas.</li>
+    <li><strong>Automatización/malware:</strong> explotación masiva de debilidades comunes.</li>
+    <li><strong>Riesgo operativo:</strong> mala gestión de cambios, backups inexistentes, monitoreo insuficiente.</li>
+  </ul>
+</div>
+
+<div class="topic-card">
+  <div class="topic-header">
+    <span class="topic-badge"><i class="fa-solid fa-chart-line"></i> Priorizar por riesgo</span>
+    <span class="topic-title">Impacto × probabilidad + exposición</span>
+  </div>
+  <p>
+    Para priorizar, usa un criterio trazable: ¿qué tan grave sería el impacto y qué tan probable es que ocurra?
+    Complementa con exposición (qué tan accesible es) y controles existentes (qué tan mitigado ya está).
+  </p>
+  <details open>
+    <summary><i class="fa-solid fa-clipboard-list"></i> Checklist de priorización (profesional)</summary>
+    <div class="details-content">
+      <ul>
+        <li><b>Activo crítico:</b> ¿afecta datos sensibles, operación, reputación o cumplimiento?</li>
+        <li><b>Exposición:</b> ¿está accesible desde Internet, red interna, o solo localmente?</li>
+        <li><b>Facilidad de abuso:</b> ¿requiere muchas condiciones o es trivial bajo ciertas circunstancias?</li>
+        <li><b>Impacto:</b> confidencialidad, integridad, disponibilidad; además impacto legal y financiero.</li>
+        <li><b>Controles actuales:</b> MFA, segmentación, monitoreo, hardening, backups; ¿reducen probabilidad/impacto?</li>
+        <li><b>Reproducibilidad:</b> ¿puedes demostrarlo de forma controlada sin dañar?</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+<div class="topic-card">
+  <div class="topic-header">
+    <span class="topic-badge"><i class="fa-solid fa-file-signature"></i> Evidencia y redacción</span>
+    <span class="topic-title">Cómo reportar hallazgos sin “hacer daño”</span>
+  </div>
+  <p>
+    Un reporte profesional separa <b>hechos</b> (evidencia) de <b>interpretación</b> (riesgo) y de <b>acciones</b> (recomendaciones).
+    Evita detalles que faciliten abuso fuera de un entorno autorizado; enfócate en describir el control faltante y cómo mitigarlo.
+  </p>
+  <ul class="subtopic-list">
+    <li><strong>Evidencia mínima:</strong> captura/log, timestamp, contexto (dónde/cuándo), y explicación del impacto potencial.</li>
+    <li><strong>Lenguaje técnico:</strong> claro, reproducible, sin suposiciones absolutas.</li>
+    <li><strong>Recomendación:</strong> hardening, parches, control de acceso, segmentación, monitoreo, políticas.</li>
+  </ul>
+  <div class="callout">
+    <b>Buena práctica:</b> redacta una versión técnica y una ejecutiva: la ejecutiva explica riesgo y prioridad en 6–8 líneas.
+  </div>
+</div>
+
+<div class="topic-card">
+  <div class="topic-header">
+    <span class="topic-badge"><i class="fa-solid fa-flask"></i> Mini‑caso</span>
+    <span class="topic-title">Clasifica y prioriza (sin instrucciones ofensivas)</span>
+  </div>
+  <p>
+    Se observa un sistema con un servicio expuesto que no es necesario para la operación y que carece de controles fuertes.
+    Identifica: <b>activo</b>, <b>vulnerabilidad</b>, <b>amenaza</b>, <b>riesgo</b> y <b>control recomendado</b>.
+    Luego prioriza: ¿es crítico, alto, medio o bajo? Justifica en 5 líneas.
+  </p>
+</div>
+
+<section class="topic-section reveal">
+  <h2>Profundización profesional: 1.2 Vulnerabilidades y amenazas (visión de riesgo)</h2>
+  <p>
+    A nivel profesional, la diferencia clave es conceptual: <b>una amenaza</b> es un agente o evento potencial que puede causar daño;
+    <b>una vulnerabilidad</b> es una debilidad aprovechable; y <b>el riesgo</b> es la combinación de <i>probabilidad</i> e <i>impacto</i>.
+    La meta de esta unidad no es “listar fallas”, sino <b>entender vectores</b>, <b>priorizar</b> y <b>documentar</b> con criterio.
+  </p>
+
+  <div class="kpi-row">
+    <div class="kpi"><b>Vulnerabilidad</b><span>Debilidad técnica u organizacional (configuración, código, procesos) que habilita un abuso.</span></div>
+    <div class="kpi"><b>Amenaza</b><span>Actor o suceso que podría explotar debilidades (malware, insider, automatización, errores humanos).</span></div>
+    <div class="kpi"><b>Riesgo</b><span>Prioridad práctica: impacto en confidencialidad/integridad/disponibilidad + probabilidad + controles existentes.</span></div>
+  </div>
+
+  <div class="callout">
+    <b>Modelo mental profesional:</b> “No todo lo vulnerable es crítico”. Importa <b>exposición</b>, <b>ruta plausible</b> y <b>consecuencia</b>.
+    Por eso la priorización (p. ej., severidad/criticidad) es parte central del pentesting.
+  </div>
+
+  <div class="pro-card reveal">
+    <h3>Taxonomía práctica: fuentes comunes de vulnerabilidades</h3>
+    <table class="table-pro">
+      <thead><tr><th>Categoría</th><th>Descripción</th><th>Ejemplos típicos (sin operación)</th><th>Indicadores de riesgo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Misconfiguración</b></td>
+          <td>Parámetros inseguros, servicios expuestos, permisos excesivos.</td>
+          <td>Servicios innecesarios activos, roles amplios, cifrado débil, credenciales por defecto.</td>
+          <td>Exposición a internet, datos sensibles, ausencia de monitoreo.</td>
+        </tr>
+        <tr>
+          <td><b>Errores de software</b></td>
+          <td>Fallas de lógica, validación insuficiente, librerías vulnerables.</td>
+          <td>Validación de entradas deficiente, dependencias sin parchear, manejo incorrecto de sesiones.</td>
+          <td>Impacto en datos/usuarios, presencia de RCE/escape lógico, facilidad de abuso.</td>
+        </tr>
+        <tr>
+          <td><b>Arquitectura</b></td>
+          <td>Diseño inseguro, confianza implícita entre componentes.</td>
+          <td>Ausencia de segmentación, “todo habla con todo”, controles compensatorios inexistentes.</td>
+          <td>Movimiento lateral fácil, alto alcance del atacante si entra.</td>
+        </tr>
+        <tr>
+          <td><b>Proceso/operación</b></td>
+          <td>Prácticas débiles de cambio, backups, inventario, accesos.</td>
+          <td>Gestión pobre de parches, cuentas huérfanas, falta de MFA, backups no probados.</td>
+          <td>Alta probabilidad de incidente repetible, detección tardía.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pro-card reveal">
+    <h3>Superficie de ataque: cómo pensar exposición sin “recetas”</h3>
+    <p>
+      La superficie de ataque es el conjunto de puntos por donde un sistema puede ser alcanzado: servicios, interfaces, endpoints,
+      credenciales, terceros, y flujos de datos. En auditoría profesional se modela la superficie con:
+      <b>inventario</b>, <b>rutas de datos</b>, <b>identidad y acceso</b>, y <b>controles</b>.
+    </p>
+    <div class="callout note">
+      <b>En laboratorio:</b> tu objetivo es mapear y justificar. No necesitas “atacar”; necesitas demostrar entendimiento y priorización.
+    </div>
+    <ul class="subtopics">
+      <li><b>Exposición:</b> ¿es interno, VPN, o público? ¿existe WAF, IDS/IPS, rate limiting?</li>
+      <li><b>Identidad:</b> ¿cómo se autentica y autoriza? ¿qué pasa si un rol cambia?</li>
+      <li><b>Datos:</b> ¿qué datos transitan? ¿se cifran? ¿dónde descansan? ¿quién accede?</li>
+      <li><b>Terceros:</b> dependencias, SaaS, integraciones, claves API, proveedores.</li>
+    </ul>
+  </div>
+
+  <div class="pro-card reveal">
+    <h3>Priorización por riesgo (modelo operativo para informes)</h3>
+    <p>
+      Para priorizar hallazgos, combina <b>impacto</b>, <b>probabilidad</b> y <b>controles actuales</b>. Un modelo práctico:
+      <b>Impacto</b> (CIA + legal/reputación) × <b>Exposición</b> (público/interno) × <b>Facilidad</b> (requisitos del atacante).
+    </p>
+    <table class="table-pro">
+      <thead><tr><th>Factor</th><th>Preguntas guía</th><th>Ejemplo de evidencia</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Impacto</b></td>
+          <td>¿Qué se pierde? ¿datos personales? ¿interrupción? ¿fraude?</td>
+          <td>Mapa de datos, clasificación, impacto a operación.</td>
+        </tr>
+        <tr>
+          <td><b>Probabilidad</b></td>
+          <td>¿explotación sencilla? ¿requiere acceso previo? ¿hay explotación conocida?</td>
+          <td>Condiciones de acceso, controles, frecuencia de ataque en el sector.</td>
+        </tr>
+        <tr>
+          <td><b>Exposición</b></td>
+          <td>¿quién puede alcanzarlo? ¿internet? ¿red interna? ¿segmentación?</td>
+          <td>Diagrama de red lógico, rutas y segmentación.</td>
+        </tr>
+        <tr>
+          <td><b>Controles</b></td>
+          <td>¿MFA? ¿monitoring? ¿rate limit? ¿hardening? ¿parches?</td>
+          <td>Configuraciones, políticas, evidencia de logs y alertas.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout warn">
+      <b>Error común:</b> reportar severidad solo por “nombre” de la vulnerabilidad. En profesional se justifica por contexto.
+    </div>
+  </div>
+
+  <div class="pro-card reveal">
+    <h3>Casos prácticos (solo análisis, sin operación)</h3>
+    <p>Lee cada caso y determina: amenaza, vulnerabilidad, impacto, y mitigación inicial.</p>
+    <div class="pro-accordion">
+      <div class="acc-item">
+        <button class="acc-btn" type="button">Caso A — Servicio expuesto y credenciales débiles <small>misconfiguración</small></button>
+        <div class="acc-panel">
+          <p><span class="badge warn">Contexto</span> Un servicio administrativo queda expuesto fuera de la red interna por un cambio de firewall.</p>
+          <p><span class="badge">Análisis</span> Amenaza: automatización/bots + atacantes oportunistas. Vulnerabilidad: exposición + autenticación débil.</p>
+          <p><span class="badge danger">Impacto</span> Acceso no autorizado, alteración de configuraciones, potencial exfiltración de datos.</p>
+          <p><span class="badge">Mitigación</span> Cierre de exposición, MFA, allowlist, hardening, monitoreo, revisión de cambios.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" type="button">Caso B — Dependencia desactualizada en aplicación web <small>software</small></button>
+        <div class="acc-panel">
+          <p><span class="badge warn">Contexto</span> Una librería popular tiene vulnerabilidad reportada; el proyecto no actualiza versiones.</p>
+          <p><span class="badge">Análisis</span> Amenaza: explotación conocida. Vulnerabilidad: componente vulnerable + falta de control de dependencias.</p>
+          <p><span class="badge danger">Impacto</span> Compromiso de sesión/datos si la condición aplica al flujo real.</p>
+          <p><span class="badge">Mitigación</span> Gestión de parches, SBOM, política de actualizaciones, pruebas de regresión.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" type="button">Caso C — Permisos excesivos en nube <small>identidad/acceso</small></button>
+        <div class="acc-panel">
+          <p><span class="badge warn">Contexto</span> Un rol de servicio tiene permisos amplios “por comodidad”.</p>
+          <p><span class="badge">Análisis</span> Amenaza: insider o compromiso de credenciales. Vulnerabilidad: privilegios excesivos.</p>
+          <p><span class="badge danger">Impacto</span> Movimiento lateral, acceso a datos, borrado de recursos.</p>
+          <p><span class="badge">Mitigación</span> Principio de mínimo privilegio, rotación de credenciales, auditoría de IAM, alertas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pro-card reveal" data-checklist>
+    <h3>Checklist de documentación de hallazgos (formato profesional)</h3>
+    <p class="muted">Este checklist define la calidad mínima de un hallazgo en un informe. Se guarda localmente.</p>
+    <table class="table-pro">
+      <tbody>
+        <tr><td><label><input type="checkbox" id="c12_1"> Identifiqué el <b>activo</b> y su contexto (exposición, función, dueño).</label></td></tr>
+        <tr><td><label><input type="checkbox" id="c12_2"> Describí la <b>condición</b> (qué está mal) sin detalles sensibles innecesarios.</label></td></tr>
+        <tr><td><label><input type="checkbox" id="c12_3"> Argumenté <b>impacto</b> (CIA + negocio) y <b>probabilidad</b> (ruta plausible).</label></td></tr>
+        <tr><td><label><input type="checkbox" id="c12_4"> Incluí <b>evidencia</b> verificable (capturas/logs con timestamps, anonimización).</label></td></tr>
+        <tr><td><label><input type="checkbox" id="c12_5"> Propuse <b>mitigación</b> concreta (parches, hardening, controles compensatorios).</label></td></tr>
+        <tr><td><label><input type="checkbox" id="c12_6"> Definí <b>prioridad</b> basada en contexto, no solo por “nombre” de vulnerabilidad.</label></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pro-card reveal" data-quiz>
+    <h3>Autoevaluación: amenaza vs vulnerabilidad vs riesgo</h3>
+    <p class="muted">Refuerza tu criterio para el foro y el informe.</p>
+
+    <div class="quiz">
+      <div class="quiz-q">1) “Un actor externo automatiza intentos de acceso a un portal expuesto”. Eso es principalmente:</div>
+      <div class="quiz-opts">
+        <label class="quiz-opt"><input type="radio" name="qzA1" value="a" data-correct="1"> Amenaza.</label>
+        <label class="quiz-opt"><input type="radio" name="qzA1" value="b"> Vulnerabilidad.</label>
+        <label class="quiz-opt"><input type="radio" name="qzA1" value="c"> Control.</label>
+        <label class="quiz-opt"><input type="radio" name="qzA1" value="d"> Mitigación.</label>
+      </div>
+
+      <div class="quiz-q">2) “La aplicación no valida correctamente entradas y permite comportamiento inesperado”. Eso es:</div>
+      <div class="quiz-opts">
+        <label class="quiz-opt"><input type="radio" name="qzA2" value="a"> Amenaza.</label>
+        <label class="quiz-opt"><input type="radio" name="qzA2" value="b" data-correct="1"> Vulnerabilidad.</label>
+        <label class="quiz-opt"><input type="radio" name="qzA2" value="c"> Evento inevitable.</label>
+        <label class="quiz-opt"><input type="radio" name="qzA2" value="d"> Política.</label>
+      </div>
+
+      <div class="quiz-q">3) “Debido a exposición + condición vulnerable + falta de controles, existe alta probabilidad de impacto”. Eso describe:</div>
+      <div class="quiz-opts">
+        <label class="quiz-opt"><input type="radio" name="qzA3" value="a"> Herramienta.</label>
+        <label class="quiz-opt"><input type="radio" name="qzA3" value="b"> Amenaza.</label>
+        <label class="quiz-opt"><input type="radio" name="qzA3" value="c" data-correct="1"> Riesgo.</label>
+        <label class="quiz-opt"><input type="radio" name="qzA3" value="d"> Auditoría.</label>
+      </div>
+
+      <button class="fancy-btn" type="button" data-grade>Calificar</button>
+      <div class="quiz-res"></div>
+    </div>
+  </div>
+
+  <div class="pro-card reveal">
+    <h3>Material complementario ampliado (orientado a aprendizaje profundo)</h3>
+    <p>
+      Para dominar 1.2 a nivel profesional, enfócate en: (1) comprender el <b>porqué</b> de cada debilidad, (2) mapear
+      exposición y controles, y (3) priorizar por riesgo. Las siguientes lecturas/temas (sin depender de comandos o exploits)
+      te preparan para metodologías de la Unidad 2 y priorización de la Unidad 3.
+    </p>
+    <ul class="subtopics">
+      <li><b>Modelos de amenazas:</b> actor, objetivo, capacidad, motivación, y rutas plausibles.</li>
+      <li><b>Debilidades típicas:</b> configuración, dependencias, identidad, arquitectura y procesos.</li>
+      <li><b>Severidad vs criticidad:</b> severidad técnica vs criticidad en contexto (datos, exposición, controles).</li>
+      <li><b>Evidencias:</b> cómo registrar sin exponer secretos, y cómo sostener un hallazgo en revisión.</li>
+      <li><b>Mitigación:</b> parches, hardening, segmentación, controles compensatorios, concienciación.</li>
+    </ul>
+    <div class="callout note">
+      <b>Tip:</b> La calidad del informe depende más de tu análisis que de “encontrar muchas cosas”.
+    </div>
+  </div>
+</section>
+
+</div>
+
+
+<script>
+(function(){
+  // Enable js marker (but content stays visible if JS fails)
+  document.documentElement.classList.add('js');
+
+  // Reveal on scroll (fail-safe)
+  const els = Array.from(document.querySelectorAll('.reveal'));
+  const io = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12}) : null;
+
+  els.forEach(el=>{
+    if(io) io.observe(el);
+    else el.classList.add('visible');
+  });
+
+  // Accordion
+  document.querySelectorAll('.acc-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const item = btn.closest('.acc-item');
+      const panel = item.querySelector('.acc-panel');
+      const open = panel.classList.contains('open');
+      // close others in same accordion
+      item.parentElement.querySelectorAll('.acc-panel.open').forEach(p=>{
+        if(p!==panel){
+          p.style.maxHeight = null;
+          p.classList.remove('open');
+        }
+      });
+      if(open){
+        panel.style.maxHeight = null;
+        panel.classList.remove('open');
+      }else{
+        panel.classList.add('open');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Checklist persistence
+  const key = 'pro_checklist_' + (document.title || location.pathname);
+  const boxes = document.querySelectorAll('[data-checklist] input[type="checkbox"]');
+  const saved = (()=>{ try{return JSON.parse(localStorage.getItem(key)||'{}')}catch(e){return {}} })();
+  boxes.forEach(cb=>{
+    if(saved[cb.id]===true) cb.checked = true;
+    cb.addEventListener('change', ()=>{
+      saved[cb.id] = cb.checked;
+      localStorage.setItem(key, JSON.stringify(saved));
+    });
+  });
+
+  // Quiz scoring
+  document.querySelectorAll('[data-quiz]').forEach(q=>{
+    const btn = q.querySelector('[data-grade]');
+    const out = q.querySelector('.quiz-res');
+    btn?.addEventListener('click', ()=>{
+      const answers = Array.from(q.querySelectorAll('input[type="radio"]:checked')).map(x=>x.value);
+      const total = q.querySelectorAll('.quiz-q').length;
+      const correct = Array.from(q.querySelectorAll('input[data-correct="1"]')).filter(r=>r.checked).length;
+      if(answers.length < total){
+        out.textContent = 'Completa todas las preguntas para obtener tu retroalimentación.';
+        out.style.color = '#a16207';
+        return;
+      }
+      out.textContent = `Resultado: ${correct}/${total}. ` + (correct===total ? 'Excelente: criterio sólido y consistente.' : correct>=Math.ceil(total*0.7) ? 'Buen nivel: refuerza los ítems fallados con el material.' : 'Refuerzo recomendado: revisa secciones clave y vuelve a intentar.');
+      out.style.color = correct===total ? '#065f46' : (correct>=Math.ceil(total*0.7) ? '#0f172a' : '#7f1d1d');
+    });
+  });
+
+  // Quick tools
+  const toTop = document.querySelector('));
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .nist-guide-container {
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #2e7d32; /* Verde NIST */
+    }
+
+    /* --- LOGO UNIVERSIDAD (RESPONSIVE) --- */
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+        height: auto;
+        z-index: 100;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.95);
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .uni-logo:hover { transform: scale(1.05); }
+
+    /* --- ENCABEZADO --- */
+    .header-box {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 20px;
+    }
+
+    .main-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #1b5e20;
+        margin: 0 auto 25px auto;
+        line-height: 1.3;
+        max-width: 90%;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease both;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        color: #2e7d32;
+        text-align: center;
+        margin-bottom: 30px;
+        font-style: italic;
+    }
+
+    /* --- TEXTO GENERAL --- */
+    .content-block {
+        margin-bottom: 50px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .content-block p { margin-bottom: 15px; }
+
+    .content-block ul {
+        padding-left: 20px;
+        margin-bottom: 20px;
+        list-style-type: none;
+    }
+
+    .content-block li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .content-block li::before {
+        content: '🔍';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    /* Sub-listas */
+    .sub-list {
+        margin-top: 5px;
+        padding-left: 20px;
+        list-style: circle;
+        color: #546e7a;
+    }
+    .sub-list li::before { content: none; }
+    .sub-list li { padding-left: 0; list-style-type: circle; }
+
+    /* Títulos de Sección */
+    .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        color: #2e7d32;
+        border-bottom: 2px solid #a5d6a7;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    /* --- INTRODUCCIÓN (CAJA) --- */
+    .intro-box {
+        background: #e8f5e9;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        border-left: 5px solid #2e7d32;
+    }
+
+    .intro-highlight {
+        font-weight: 700;
+        color: #1b5e20;
+        font-style: italic;
+        text-align: center;
+        display: block;
+        margin: 20px 0;
+        font-size: 1.1rem;
+        background: #ffffffb3;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    /* --- GRID PARA TÉCNICAS --- */
+    .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .tech-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+        border-top: 4px solid #2e7d32;
+    }
+
+    .tech-card:hover { transform: translateY(-5px); border-color: #1b5e20; }
+
+    .tech-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #1b5e20;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .tech-content { font-size: 0.95rem; color: #455a64; line-height: 1.6; }
+
+    .tech-example {
+        margin-top: auto;
+        padding: 10px;
+        background: #e8f5e9;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        color: #1b5e20;
+        border-left: 3px solid #2e7d32;
+    }
+
+    .tech-example strong { display: block; margin-bottom: 5px; }
+
+    /* --- MÓDULOS (GRID) --- */
+    .module-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .module-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        transition: transform 0.3s;
+    }
+
+    .module-card:hover { transform: translateY(-5px); border-color: #2e7d32; }
+
+    .module-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #1b5e20;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .reading-list {
+        margin-top: 10px;
+        padding-left: 0;
+        list-style-type: none;
+    }
+    .reading-list li {
+        padding-left: 0;
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+    .reading-list li::before {
+        content: '📄';
+        margin-right: 8px;
+        font-size: 0.9rem;
+        position: relative;
+        left: auto;
+        top: auto;
+    }
+    .reading-list .sub-list {
+        margin-top: 5px;
+        padding-left: 30px;
+    }
+    .reading-list .sub-list li {
+        padding-left: 0;
+        list-style-type: circle;
+    }
+    .reading-list .sub-list li::before { content: none; }
+
+    .guide-questions {
+        margin-top: 15px;
+        padding-left: 20px;
+        list-style-type: none;
+    }
+    .guide-questions li {
+        font-size: 0.9rem;
+        color: #455a64;
+        padding-left: 25px;
+        margin-bottom: 12px;
+    }
+    .guide-questions li::before {
+        content: '❓';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.9rem;
+    }
+
+    .note-box {
+        background: #fff9c4;
+        padding: 15px 20px;
+        border-radius: 8px;
+        border-left: 4px solid #fbc02d;
+        margin-top: 20px;
+        font-size: 0.95rem;
+    }
+    .note-box strong { color: #f57f17; }
+
+    .tip-box {
+        background: #e8f5e9;
+        border-left: 5px solid #2e7d32;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 0 8px 8px 0;
+    }
+    .tip-box strong { color: #1b5e20; }
+
+    .warning-box {
+        background: #ffebee;
+        border-left: 5px solid #c62828;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 0 8px 8px 0;
+    }
+    .warning-box strong { color: #b71c1c; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .main-title { font-size: 1.8rem; }
+        .header-box { padding-top: 0; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="nist-guide-container">
+
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo Universidad" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">📘 Guía de Lectura: NIST SP 800-115</h1>
+        <div class="subtitle">Technical Guide to Information Security Testing and Assessment</div>
+          </div>
+
+    <div class="intro-box">
+        <p><strong>¡Bienvenido/a al mundo de las evaluaciones de seguridad!</strong> El documento NIST SP 800-115 es una guía técnica fundamental que establece las bases para planificar, ejecutar y analizar pruebas y evaluaciones de seguridad de la información. Es un recurso invaluable, pero su naturaleza técnica y exhaustiva (80 páginas) puede resultar abrumadora.</p>
+        <span class="intro-highlight">Esta guía de lectura está diseñada para ser tu hoja de ruta. Te indicaremos qué secciones son <strong>esenciales</strong> para comprender la metodología general, cuáles son <strong>clave</strong> para conocer las técnicas específicas, y qué partes son de <strong>consulta</strong> para aspectos operativos y avanzados.</span>
+        <p>El objetivo no es leerlo todo de una vez, sino utilizarlo de forma estratégica para construir un conocimiento sólido sobre cómo se realizan las evaluaciones de seguridad en el mundo real.</p>
+    </div>
+
+    <!-- PARTE 1: FUNDAMENTOS Y METODOLOGÍA -->
+    <div class="content-block">
+        <h2 class="section-title">📌 Parte 1: Fundamentos y Metodología de Evaluación</h2>
+        <p>Esta sección establece el "qué", "por qué" y "cómo" de las evaluaciones de seguridad. Es la base conceptual para todo el documento.</p>
+
+        <div class="module-grid">
+            <div class="module-card">
+                <span class="module-title">📖 Lectura Esencial</span>
+                <ul class="reading-list">
+                    <li><strong>Sección 1: Introducción (Págs. 1-4)</strong>
+                        <ul class="sub-list">
+                            <li>1.2 Purpose and Scope</li>
+                            <li>1.3 Audience</li>
+                        </ul>
+                    </li>
+                    <li><strong>Sección 2: Security Testing and Examination Overview (Págs. 5-10)</strong>
+                        <ul class="sub-list">
+                            <li>2.1 Information Security Assessment Methodology</li>
+                            <li>2.2 Technical Assessment Techniques (¡Importante!)</li>
+                            <li>2.4 Testing Viewpoints (External/Internal, Overt/Covert)</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="note-box">
+                    <strong>🔑 Clave:</strong> Comprende la diferencia entre las tres categorías de técnicas (Review, Target Identification, Target Vulnerability Validation). Esto estructura todo el documento.
+                </div>
+            </div>
+            <div class="module-card">
+                <span class="module-title">❓ Preguntas Guía</span>
+                <ul class="guide-questions">
+                    <li>¿Cuál es la diferencia entre "testing" y "examination" según el NIST?</li>
+                    <li>¿Qué fases comprende una metodología de evaluación de seguridad? (Pág. 6)</li>
+                    <li>Explica la diferencia entre pruebas externas e internas, y entre abiertas (overt) y encubiertas (covert). ¿Para qué sirve cada una? (Págs. 8-10)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PARTE 2: TÉCNICAS DE EXAMEN (REVIEW TECHNIQUES) -->
+    <div class="content-block">
+        <h2 class="section-title">📋 Parte 2: Técnicas de Examen (Review Techniques)</h2>
+        <p>Técnicas pasivas para obtener información sin interactuar directamente con los sistemas objetivo.</p>
+
+        <div class="tech-grid">
+            <div class="tech-card">
+                <span class="tech-title">📑 Revisión de Documentación (3.1)</span>
+                <div class="tech-content">Analiza políticas, planes de seguridad y procedimientos para encontrar brechas y debilidades que puedan llevar a controles mal implementados.</div>
+                <div class="tech-example"><strong>🔎 Qué buscar:</strong> Políticas obsoletas o que no cubren tecnologías actuales.</div>
+            </div>
+            <div class="tech-card">
+                <span class="tech-title">📊 Revisión de Logs (3.2)</span>
+                <div class="tech-content">Verifica que se esté registrando la información correcta y que la organización cumpla con sus políticas de gestión de logs. Puede revelar accesos no autorizados o intrusiones.</div>
+                <div class="tech-example"><strong>📌 Tipos de logs:</strong> Autenticación, sistema, firewall, IDS, antivirus.</div>
+            </div>
+            <div class="tech-card">
+                <span class="tech-title">🔐 Revisión de Reglas (3.3)</span>
+                <div class="tech-content">Evalúa reglas en firewalls, ACLs de routers y firmas de IDS/IPS para asegurar que son necesarias, efectivas y no crean brechas de seguridad.</div>
+                <div class="tech-example"><strong>🛡️ Chequeo común:</strong> Verificar que no haya reglas innecesarias o puertos abiertos de más.</div>
+            </div>
+            <div class="tech-card">
+                <span class="tech-title">⚙️ Revisión de Configuración (3.4)</span>
+                <div class="tech-content">Identifica debilidades en la configuración de seguridad de sistemas, como servicios innecesarios, cuentas inseguras o configuraciones fuera de la política de hardening.</div>
+                <div class="tech-example"><strong>🖥️ Herramientas:</strong> SCAP para automatizar la comprobación.</div>
+            </div>
+            <div class="tech-card">
+                <span class="tech-title">👂 Network Sniffing (3.5)</span>
+                <div class="tech-content">Técnica pasiva que monitorea el tráfico de red para identificar protocolos inseguros (ej. telnet), actividades no autorizadas o información sensible sin cifrar (como contraseñas).</div>
+                <div class="tech-example"><strong>⚠️ Limitación:</strong> No funciona con tráfico cifrado.</div>
+            </div>
+            <div class="tech-card">
+                <span class="tech-title">📦 File Integrity Checking (3.6)</span>
+                <div class="tech-content">Identifica cambios en archivos del sistema mediante checksums, ayudando a detectar la modificación de archivos críticos o la presencia de herramientas de atacantes.</div>
+                <div class="tech-example"><strong>💡 Recomendación:</strong> Usar checksums criptográficos (SHA).</div>
+            </div>
+        </div>
+        <div class="tip-box">
+            <strong>📌 RESUMEN (Tabla 3-1, Pág. 22):</strong> Las técnicas de revisión evalúan políticas, logs, reglas, configuraciones y tráfico de forma pasiva, con mínimo riesgo para los sistemas.
+        </div>
+    </div>
+
+    <!-- PARTE 3: IDENTIFICACIÓN Y ANÁLISIS DE OBJETIVOS -->
+    <div class="content-block">
+        <h2 class="section-title">🎯 Parte 3: Identificación y Análisis de Objetivos</h2>
+        <p>Técnicas activas para descubrir dispositivos, puertos, servicios y vulnerabilidades potenciales.</p>
+
+        <div class="tech-grid">
+            <div class="tech-card">
+                <span class="tech-title">🌐 Network Discovery (4.1)</span>
+                <div class="tech-content">Descubre hosts activos en la red, ya sea de forma pasiva (escuchando) o activa (enviando paquetes como pings). Ayuda a identificar dispositivos no autorizados (rogue devices).</div>
+                <div class="tech-example"><strong>🔎 OS Fingerprinting:</strong> Determinar el SO de un host por sus respuestas a paquetes.</div>
+            </div>
+            <div class="tech-card">
+                <span class="tech-title">🚪 Port and Service ID (4.2)</span>
+                <div class="tech-content">Usa escáneres de puertos para identificar puertos abiertos y los servicios/aplicaciones que corren en ellos (ej. banner grabbing).</div>
+                <div class="tech-example"><strong>⚠️ Precauciones:</strong> Puede generar ruido en la red y alertar a IDS. Usar con cuidado.</div>
+            </div>
+            <div class="tech-card">
+                <span class="tech-title">🔬 Vulnerability Scanning (4.3)</span>
+                <div class="tech-content">Identifica hosts, sistemas operativos y aplicaciones, y los compara con bases de datos de vulnerabilidades conocidas para encontrar puntos débiles (ej. parches faltantes, malas configuraciones).</div>
+                <div class="tech-example"><strong>📉 Debilidad:</strong> Alta tasa de falsos positivos. Requiere interpretación humana.</div>
+            </div>
+            <div class="tech-card">
+                <span class="tech-title">📡 Wireless Scanning (4.4)</span>
+                <div class="tech-content">Identifica dispositivos inalámbricos (puntos de acceso, clientes) no autorizados, evalúa su configuración de seguridad y puede localizarlos físicamente.</div>
+                <div class="tech-example"><strong>📡 Modos:</strong> Pasivo (solo escucha) y Activo (intenta conectar y probar).</div>
+            </div>
+        </div>
+        <div class="tip-box">
+            <strong>📌 RESUMEN (Tabla 4-1, Pág. 33):</strong> La identificación y análisis usa técnicas activas como escaneo de red y puertos para descubrir activos y vulnerabilidades superficiales.
+        </div>
+    </div>
+
+    <!-- PARTE 4: VALIDACIÓN DE VULNERABILIDADES -->
+    <div class="content-block">
+        <h2 class="section-title">⚔️ Parte 4: Validación de Vulnerabilidades</h2>
+        <p>Técnicas de alto riesgo que buscan <strong>probar y confirmar</strong> la existencia de vulnerabilidades, demostrando el impacto real de una explotación.</p>
+
+        <div class="tech-grid">
+            <div class="tech-card">
+                <span class="tech-title">🔑 Password Cracking (5.1)</span>
+                <div class="tech-content">Recupera contraseñas desde hashes (interceptados o copiados del sistema) mediante ataques de diccionario, híbridos, fuerza bruta o rainbow tables.</div>
+                <div class="tech-example"><strong>🎯 Objetivo:</strong> Identificar cuentas con contraseñas débiles y validar la política de contraseñas.</div>
+            </div>
+            <div class="tech-card">
+                <span class="tech-title">💣 Penetration Testing (5.2)</span>
+                <div class="tech-content">Simula ataques reales para explotar vulnerabilidades y ver qué nivel de acceso se puede conseguir. Busca combinaciones de vulnerabilidades para lograr un impacto mayor.</div>
+                <div class="tech-example"><strong>Fases:</strong> Planning → Discovery (Info gathering + vuln analysis) → Attack → Reporting. (Ver Figuras 5-1 y 5-2).</div>
+            </div>
+            <div class="tech-card">
+                <span class="tech-title">🗣️ Social Engineering (5.3)</span>
+                <div class="tech-content">Prueba el "factor humano" engañando a usuarios para que revelen información (ej. phishing). Evalúa la concienciación y el cumplimiento de procedimientos.</div>
+                <div class="tech-example"><strong>📧 Ejemplo:</strong> Enviar correos de phishing para ver quién cae y reporta.</div>
+            </div>
+        </div>
+        <div class="warning-box">
+            <strong>⚠️ ALTO RIESGO:</strong> Estas técnicas pueden causar indisponibilidad de servicios o daños en sistemas. Requieren una planificación meticulosa, autorización explícita (ROE) y ejecución por personal altamente capacitado.
+        </div>
+    </div>
+
+    <!-- PARTE 5: PLANIFICACIÓN, EJECUCIÓN Y POST-TESTING -->
+    <div class="content-block">
+        <h2 class="section-title">📋 Parte 5: El Ciclo de Vida de una Evaluación</h2>
+        <p>Más allá de las técnicas, una evaluación exitosa requiere una sólida planificación, ejecución controlada y análisis post-evaluación.</p>
+
+        <div class="module-grid">
+            <div class="module-card">
+                <span class="module-title">📝 Planificación (Sección 6)</span>
+                <ul class="reading-list">
+                    <li>6.1 Developing a Security Assessment Policy</li>
+                    <li>6.3 Selecting and Customizing Techniques</li>
+                    <li>6.5 Assessment Plan Development</li>
+                    <li>6.6 Legal Considerations</li>
+                </ul>
+                <div class="note-box">
+                    <strong>🎯 Clave:</strong> El plan de evaluación (o ROE) define QUÉ, DÓNDE, CUÁNDO y CÓMO se prueba, protegiendo tanto a la organización como a los evaluadores.
+                </div>
+            </div>
+            <div class="module-card">
+                <span class="module-title">⚙️ Ejecución (Sección 7)</span>
+                <ul class="reading-list">
+                    <li>7.1 Coordination</li>
+                    <li>7.3 Analysis</li>
+                    <li>7.4 Data Handling (Colección, almacenamiento, transmisión y destrucción)</li>
+                </ul>
+                 <div class="note-box">
+                    <strong>🔒 Importante:</strong> El manejo de datos sensibles (hallazgos, configuraciones) es crítico. Deben almacenarse y transmitirse de forma segura.
+                </div>
+            </div>
+            <div class="module-card">
+                <span class="module-title">📈 Post-Testing (Sección 8)</span>
+                <ul class="reading-list">
+                    <li>8.1 Mitigation Recommendations</li>
+                    <li>8.2 Reporting</li>
+                    <li>8.3 Remediation/Mitigation</li>
+                </ul>
+                <div class="note-box">
+                    <strong>📊 Objetivo:</strong> Traducir los hallazgos técnicos en acciones de remediación. El informe y el POA&M son los entregables clave.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PARTE 6: APÉNDICES ÚTILES -->
+    <div class="content-block">
+        <h2 class="section-title">📎 Apéndices: Para Consulta Rápida</h2>
+        <p>Los apéndices son una mina de oro de información práctica y referencias.</p>
+
+        <div class="module-grid">
+            <div class="module-card">
+                <span class="module-title">🔧 Apéndice A: Live CD Distributions</span>
+                <ul class="reading-list">
+                    <li>Lista de herramientas en BackTrack y Knoppix STD (Tablas A-1 y A-2).</li>
+                </ul>
+                <div class="tech-example">Útil para conocer qué herramientas existen para cada técnica (sniffing, password cracking, wireless, etc.).</div>
+            </div>
+            <div class="module-card">
+                <span class="module-title">📄 Apéndice B: Rules of Engagement (ROE) Template</span>
+                <ul class="reading-list">
+                    <li>Una plantilla detallada para crear un ROE.</li>
+                </ul>
+                 <div class="tech-example">Esencial si tienes que planificar una prueba de penetración real.</div>
+            </div>
+            <div class="module-card">
+                <span class="module-title">🌐 Apéndice E: Resources</span>
+                <ul class="reading-list">
+                    <li>Lista de metodologías (OSSTMM, OWASP), herramientas y bases de datos de vulnerabilidades (CVE, NVD).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN DE PREGUNTAS FINALES -->
+    <div class="content-block">
+        <h2 class="section-title">✅ Preguntas para la Reflexión Final</h2>
+        <p>Integrando todo lo aprendido:</p>
+
+        <ul class="guide-questions" style="list-style-type: none; padding-left: 0;">
+            <li style="padding-left: 25px;"><strong>❓</strong> ¿Cuál es la principal diferencia entre un vulnerability scan y un penetration test? ¿Qué valor añade cada uno?</li>
+            <li style="padding-left: 25px;"><strong>❓</strong> Si tuvieras que evaluar la seguridad de una nueva aplicación web de tu universidad, ¿qué técnicas de las estudiadas (revisión, identificación, validación) usarías y en qué orden? Justifica tu respuesta.</li>
+            <li style="padding-left: 25px;"><strong>❓</strong> ¿Por qué es crucial tener un "Assessment Plan" o "Rules of Engagement" antes de empezar cualquier prueba activa? ¿Qué tipo de información debe contener para proteger tanto a la organización como al evaluador?</li>
+            <li style="padding-left: 25px;"><strong>❓</strong> ¿Qué medidas de manejo de datos (data handling) considera el NIST como críticas durante y después de una evaluación? ¿Por qué son tan importantes?</li>
+        </ul>
+
+        <div class="tip-box">
+            <p style="margin-bottom: 0;"><strong>🎓 Conclusión:</strong> El NIST SP 800-115 te proporciona un marco completo y técnicas para realizar evaluaciones de seguridad de manera profesional. Recuerda siempre: <strong>Planificar cuidadosamente, ejecutar con precisión y reportar de forma útil para la remediación.</strong></p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

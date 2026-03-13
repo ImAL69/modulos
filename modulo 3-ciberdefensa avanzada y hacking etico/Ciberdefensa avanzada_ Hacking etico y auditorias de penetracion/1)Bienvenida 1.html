@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bienvenida: Ciberdefensa Avanzada</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        width: 150px;
+        height: auto;
+        z-index: 100;
+        padding: 5px;
+        background: #fff;
+        border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .uni-logo:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .header-box {
+        text-align: left;
+        margin-bottom: 50px;
+        padding-top: 30px;
+        padding-right: 180px; 
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #0d47a1;
+        margin: 0 0 10px 0;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        color: #546e7a;
+        font-weight: 400;
+        border-left: 4px solid #1976d2;
+        padding-left: 15px;
+    }
+
+    .content-block { margin-bottom: 40px; text-align: justify; }
+
+    .highlight-box {
+        background: #e3f2fd;
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 6px solid #0d47a1;
+        margin: 30px 0;
+        font-size: 1.05rem;
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .feature-card {
+        background: #f5faff;
+        border: 1px solid #bbdefb;
+        padding: 25px;
+        border-radius: 12px;
+        transition: transform 0.2s;
+    }
+    .feature-card:hover { transform: translateY(-5px); border-color: #1565c0; }
+
+    .card-icon { font-size: 2rem; color: #1565c0; margin-bottom: 15px; display: block; }
+    .card-title { font-weight: 700; color: #0d47a1; display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* Distintivo imagen (full width, sin overlays) */
+    .distintivo-img{
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 22px 0 28px 0;
+        border-radius: 16px;
+        box-shadow: 0 14px 40px rgba(0,0,0,0.10);
+        object-fit: contain;
+        background: #ffffff;
+    }
+
+
+    /* ====== GOD EXTENSIONS (contenido ampliado + animaciones suaves) ====== */
+    .god-section{ margin-top:34px; padding:26px; border-radius:16px; border:1px solid #e3f2fd; background: linear-gradient(180deg,#ffffff 0%, #f7fbff 100%); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .god-head{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:12px;}
+    .god-chip{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#0d47a1; color:#fff; font-weight:800; font-family:'Montserrat',sans-serif; font-size:0.9rem; }
+    .god-head h3{ margin:0; color:#0d47a1; font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.25rem; }
+    .god-lead{ margin: 0 0 14px 0; font-size:1.04rem; color:#37474f; }
+    .god-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin-top:14px; }
+    .god-card{ background:#fff; border:1px solid #bbdefb; border-radius:14px; padding:16px; transition: transform .18s ease, box-shadow .18s ease; }
+    .god-card:hover{ transform: translateY(-4px); box-shadow: 0 14px 28px rgba(13,71,161,0.12); border-color:#1565c0; }
+    .god-card h4{ margin:0 0 6px 0; color:#0d47a1; font-family:'Montserrat',sans-serif; font-weight:800; }
+    .god-note{ margin:12px 0 0 0; color:#607d8b; }
+    .god-callout{ margin-top:14px; padding:14px 16px; border-radius:14px; background:#e3f2fd; border-left:6px solid #1565c0; }
+    .god-check{ list-style:none; padding:0; margin: 10px 0 0 0; }
+    .god-check li{ display:flex; align-items:flex-start; gap:10px; padding:10px 10px; border-radius:12px; background:#fff; border:1px dashed #bbdefb; margin-bottom:10px; }
+    .god-check input{ transform: translateY(4px) scale(1.05); }
+    .god-steps{ margin:10px 0 0 18px; }
+    .god-bullets{ margin:10px 0 0 18px; }
+    .god-links{ list-style:none; padding:0; margin: 10px 0 0 0; }
+    .god-links li{ display:flex; gap:10px; align-items:center; padding:10px 12px; border-radius:12px; background:#fff; border:1px solid #e3f2fd; margin-bottom:10px; }
+    .tag{ display:inline-flex; padding:4px 10px; border-radius:999px; background:#0d47a1; color:#fff; font-weight:800; font-size:0.82rem; }
+    .god-timeline{ margin-top:10px; border-left:3px solid #bbdefb; padding-left:16px;}
+    .tl-item{ display:flex; gap:12px; margin:14px 0;}
+    .tl-dot{ width:12px; height:12px; border-radius:50%; background:#0d47a1; margin-top:6px; flex:0 0 auto;}
+    /* entrance animation */
+    @media (prefers-reduced-motion: no-preference){
+        .container-extended{ animation: godFadeUp .55s ease both; }
+        .god-section{ animation: godFadeUp .55s ease both; }
+        @keyframes godFadeUp{ from{ opacity:0; transform: translateY(10px);} to{ opacity:1; transform: translateY(0);} }
+    }
+    
+
+/* ===== GOD+ Animations & UX (no rompe estructura) ===== */
+[data-reveal]{ opacity:0; transform: translateY(10px); transition: opacity .55s ease, transform .55s ease; }
+[data-reveal].is-visible{ opacity:1; transform: translateY(0); }
+
+.god-mini-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-top:12px; }
+.god-pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid #bbdefb; background:#fff; font-weight:800; color:#0d47a1; font-size:.92rem; }
+.god-kpi{ background:#ffffff; border:1px solid #e3f2fd; border-radius:14px; padding:14px; }
+.god-kpi strong{ font-family:'Montserrat',sans-serif; color:#0d47a1; font-weight:900; font-size:1.05rem; }
+.god-kpi span{ display:block; color:#546e7a; margin-top:6px; }
+.god-code{ background:#0b1b2b; color:#e3f2fd; padding:14px 16px; border-radius:14px; overflow:auto; border:1px solid rgba(187,222,251,.35); box-shadow: 0 10px 26px rgba(0,0,0,.10); }
+.god-code code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:.92rem; line-height:1.55; }
+.god-faq details{ background:#fff; border:1px solid #bbdefb; border-radius:14px; margin:10px 0; overflow:hidden; }
+.god-faq summary{ padding:14px 16px; cursor:pointer; font-weight:900; color:#1565c0; font-family:'Montserrat',sans-serif; }
+.god-faq .details-content{ padding:16px; border-top:1px solid #e3f2fd; }
+.god-progress{ height:10px; border-radius:999px; background:#e3f2fd; overflow:hidden; border:1px solid #bbdefb; }
+.god-progress > div{ height:100%; width:0%; background:#1565c0; transition: width .7s ease; }
+
+@media (prefers-reduced-motion: reduce){
+  [data-reveal]{ opacity:1; transform:none; transition:none; }
+}
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Ciberdefensa Avanzada</h1>
+<span class="subtitle">Módulo 0: Hacking Ético y Auditorías de Penetración</span>
+</div>
+<img alt="Imagen distintiva" class="distintivo-img" src="https://www.dropbox.com/scl/fi/3zcxec8qsaoysp1pbvkd6/Gemini_Generated_Image_sgff1ssgff1ssgff.png?rlkey=9u7lpqcnw92xgv28diusyrdwi&amp;st=4yj32wae&amp;raw=1"/>
+<div class="content-block">
+<p>Bienvenidos a la primera línea de defensa. En un entorno digital donde los ataques automatizados ocurren cada 39 segundos, la seguridad pasiva (firewalls, antivirus) ya no es suficiente. Las organizaciones modernas requieren profesionales capaces de <strong>simular ataques reales</strong> para encontrar las brechas antes que los criminales.</p>
+<p>Este módulo es una inmersión técnica en el ciclo de vida del <strong>Pentesting (Test de Penetración)</strong>. No enseñamos "trucos de hacking"; enseñamos una metodología militar y científica para evaluar la seguridad de una infraestructura. Aprenderán a pensar de manera ofensiva para construir una defensa impenetrable.</p>
+<div class="highlight-box">
+<strong>🛡️ La Paradoja del Hacker Ético:</strong> Para defender un sistema, debes saber cómo romperlo. La única diferencia entre un delito informático y una auditoría profesional es el <strong>consentimiento informado y por escrito</strong>. Sin permiso, es cárcel; con permiso, es una carrera profesional de alto valor.
+        </div>
+</div><div class="god-section" data-reveal="">
+<div class="god-head"><span class="god-chip">🔗 Recursos</span><h3>Progreso del módulo (checklists centralizados)</h3></div>
+<div class="god-callout">
+    El <strong>Checklist Hub</strong> vive en un solo archivo para no duplicar estados:
+    <a href="3)Guia_Aprendizaje.html#checklists-hub"><strong>3)Guia_Aprendizaje.html → #checklists-hub</strong></a>.
+  </div>
+</div>
+<div class="content-block">
+<h3 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">🛠️ Ecosistema Técnico del Curso</h3>
+<p>Dejaremos la teoría abstracta para trabajar con el estándar de la industria:</p>
+<div class="feature-grid">
+<div class="feature-card">
+<i class="fa-brands fa-linux card-icon"></i>
+<span class="card-title">Kali Linux / Parrot OS</span>
+                Nuestra base de operaciones. Aprenderán a dominar la terminal, scripting en Bash/Python y gestión de procesos en entornos Linux ofensivos.
+            </div>
+<div class="feature-card">
+<i class="fa-solid fa-network-wired card-icon"></i>
+<span class="card-title">Escaneo &amp; Enumeración</span>
+                Dominio profundo de <strong>Nmap, Wireshark y Nessus</strong>. No solo "correr el escáner", sino interpretar los paquetes TCP/IP para evadir detección.
+            </div>
+<div class="feature-card">
+<i class="fa-solid fa-bomb card-icon"></i>
+<span class="card-title">Explotación Controlada</span>
+                Uso del framework <strong>Metasploit</strong> para explotar vulnerabilidades (CVEs) reales en entornos de laboratorio (Sandboxes) sin poner en riesgo activos productivos.
+            </div>
+</div>
+</div>
+<div style="background-color: #fff3e0; border-left: 6px solid #e65100; padding: 20px; border-radius: 8px; color: #bf360c; font-size: 0.95rem;">
+<strong>⚠️ Advertencia Legal (Disclaimer):</strong> El conocimiento adquirido en este curso otorga un gran poder técnico. El uso de estas técnicas contra sistemas ajenos sin autorización explícita constituye un delito grave tipificado en el código penal. Todas las prácticas deben limitarse estrictamente al laboratorio virtual proporcionado.
+    </div>
+<div class="content-block">
+<h3 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">🎯 Qué vas a lograr en este módulo</h3>
+<p>Al finalizar, podrás ejecutar una auditoría ofensiva completa con metodología profesional. No se trata de “correr herramientas”, sino de <strong>entender, validar y documentar</strong> hallazgos para que puedan corregirse.</p>
+<div class="feature-grid">
+<div class="feature-card">
+<i class="fa-solid fa-map-location-dot card-icon"></i>
+<span class="card-title">Mapear superficie de ataque</span>
+                Identificar hosts, puertos, servicios y vectores de entrada con enfoque práctico (qué expone realmente el objetivo).
+            </div>
+<div class="feature-card">
+<i class="fa-solid fa-magnifying-glass card-icon"></i>
+<span class="card-title">Validar vulnerabilidades</span>
+                Separar falsos positivos de riesgos reales verificando versiones, configuraciones y comportamiento del servicio.
+            </div>
+<div class="feature-card">
+<i class="fa-solid fa-clipboard-check card-icon"></i>
+<span class="card-title">Reportar como un profesional</span>
+                Redactar hallazgos con evidencia, impacto, severidad y recomendaciones accionables (no texto genérico).
+            </div>
+</div>
+</div>
+<div class="content-block">
+<h3 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">🧭 Metodología de trabajo (ciclo de vida del Pentest)</h3>
+<p>Trabajaremos con una ruta clara, usada en auditorías reales. Cada fase produce evidencia:</p>
+<div class="highlight-box">
+<ul style="margin:0; padding-left:20px;">
+<li><strong>Alcance y reglas:</strong> qué está permitido, qué está prohibido, y cómo se reporta un incidente.</li>
+<li><strong>Reconocimiento:</strong> OSINT + reconocimiento activo para entender qué expone el objetivo.</li>
+<li><strong>Enumeración:</strong> profundizar en servicios (versiones, rutas, usuarios, endpoints).</li>
+<li><strong>Análisis y priorización:</strong> evaluar impacto y probabilidad (no todo es crítico).</li>
+<li><strong>Explotación controlada:</strong> demostrar impacto sin causar daño ni DoS.</li>
+<li><strong>Reporte y cierre:</strong> hallazgos, evidencias y plan de mitigación.</li>
+</ul>
+</div>
+</div>
+<div class="content-block">
+<h3 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">📁 Bitácora y evidencias (tu “arma secreta”)</h3>
+<p>La seguridad se demuestra con evidencia. Desde el día 1, guarda:</p>
+<div class="feature-grid">
+<div class="feature-card">
+<i class="fa-solid fa-terminal card-icon"></i>
+<span class="card-title">Comandos exactos</span>
+                Copia y pega los comandos usados, con fecha/hora y objetivo. Si no es reproducible, no cuenta como evidencia.
+            </div>
+<div class="feature-card">
+<i class="fa-solid fa-camera card-icon"></i>
+<span class="card-title">Capturas con contexto</span>
+                Captura la pantalla mostrando el comando y el resultado (no solo la “bandera” o el mensaje final).
+            </div>
+<div class="feature-card">
+<i class="fa-solid fa-folder-open card-icon"></i>
+<span class="card-title">Estructura organizada</span>
+                Carpeta por semana: <code>Semana_1/</code>, <code>Semana_2/</code>… y dentro: <code>evidencias/</code>, <code>reporte/</code>.
+            </div>
+</div>
+<div class="highlight-box">
+<strong>Mini‑reto (15 min):</strong> En tu bitácora responde: (1) vulnerabilidad vs amenaza vs riesgo, (2) qué es “scope” y por qué te protege, (3) qué harías si un servicio se cae por accidente.
+        </div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">🧭 Ruta del módulo</span><h3>Cómo se ve tu progreso semana a semana</h3></div>
+<div class="god-timeline">
+<div class="tl-item"><span class="tl-dot"></span><div><h4>Semana 1–2: Reconocimiento</h4><p>OSINT, Nmap y enumeración. Objetivo: mapear superficie de ataque sin suposiciones.</p></div></div>
+<div class="tl-item"><span class="tl-dot"></span><div><h4>Semana 3–5: Explotación controlada</h4><p>Validación de vulnerabilidades en laboratorio, escalada de privilegios y evidencia.</p></div></div>
+<div class="tl-item"><span class="tl-dot"></span><div><h4>Semana 6–9: Reporte &amp; mitigación</h4><p>Priorizar por CVSS + contexto, plan de remediación y comunicación ejecutiva.</p></div></div>
+</div>
+<div class="god-callout"><strong>Meta final:</strong> entregar un reporte que un CISO pueda usar mañana para decidir presupuesto y acciones.</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">💡 Idea clave</span><h3>Lo esencial que no puedes olvidar</h3></div>
+<p class="god-lead">En hacking ético y auditorías, el valor no está en “hacer ruido”, sino en <strong>reducir incertidumbre</strong>: demostrar con evidencia qué puede pasar, cuánto duele y qué lo evita.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4>1) Evidencia</h4>
+<p>Todo hallazgo debe tener <strong>prueba reproducible</strong>: comando, captura, log, timestamp y contexto del activo.</p>
+</div>
+<div class="god-card">
+<h4>2) Riesgo</h4>
+<p>Conecta lo técnico con impacto: <strong>confidencialidad</strong>, <strong>integridad</strong>, <strong>disponibilidad</strong> y continuidad.</p>
+</div>
+<div class="god-card">
+<h4>3) Remediación</h4>
+<p>Propón controles y plazos. Un informe sin plan de acción es solo “miedo” con formato bonito.</p>
+</div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">🎯 Mini‑reto</span><h3>10–15 minutos para “subir de nivel”</h3></div>
+<ol class="god-steps">
+<li>Elige un activo de ejemplo (servidor web, base de datos, endpoint).</li>
+<li>Escribe 3 riesgos: <em>amenaza + vulnerabilidad + impacto</em>.</li>
+<li>Define 1 KPI por riesgo (ej. MTTD, MTTR, Patch SLA, phishing rate).</li>
+<li>Redacta una recomendación en formato: <strong>Acción → Responsable → Fecha → Evidencia</strong>.</li>
+</ol>
+<div class="god-callout">
+<strong>Entrega rápida:</strong> 1 tabla (riesgo / evidencia / KPI / decisión) y un párrafo ejecutivo.
+  </div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">⚠️ Errores comunes</span><h3>Lo que más hace perder puntos</h3></div>
+<div class="god-grid">
+<div class="god-card">
+<h4>“Herramientitis”</h4>
+<p>Usar 10 herramientas sin entender resultados. Prioriza: <strong>pregunta → técnica → evidencia</strong>.</p>
+</div>
+<div class="god-card">
+<h4>Hallazgos sin validar</h4>
+<p>No confirmas falsos positivos. Si no lo validas, no es hallazgo: es sospecha.</p>
+</div>
+<div class="god-card">
+<h4>Reporte “sin negocio”</h4>
+<p>Mucho tecnicismo y cero impacto. Los directivos deciden con <strong>riesgo, costo y tiempo</strong>.</p>
+</div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">📚 Recursos</span><h3>Para reforzar (sin perderte)</h3></div>
+<ul class="god-links">
+<li><span class="tag">Concepto</span> Tríada CIA, CVE, CVSS, superficie de ataque, riesgo residual.</li>
+<li><span class="tag">Práctica</span> Nmap básico → servicios → versión → scripts NSE (con ética).</li>
+<li><span class="tag">Reporte</span> Estructura: resumen ejecutivo, metodología, hallazgos, evidencia, remediación.</li>
+</ul>
+</div>
+<script>
+(() => {
+  // Reveal on scroll
+  const els = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('is-visible');
+        const bar = e.target.querySelector('.god-progress > div');
+        if(bar && !bar.dataset.filled){
+          bar.dataset.filled = '1';
+          bar.style.width = bar.getAttribute('data-pct') || '85%';
+        }
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+
+  // Persist checklist
+  document.querySelectorAll('[data-checklist]').forEach((ul, idx) => {
+    const key = 'godChecklist:' + location.pathname + ':' + idx;
+    const boxes = ul.querySelectorAll('input[type="checkbox"]');
+    try{
+      const saved = JSON.parse(localStorage.getItem(key) || '[]');
+      boxes.forEach((b,i)=> b.checked = !!saved[i]);
+    }catch(e){}
+    boxes.forEach((b,i)=>{
+      b.addEventListener('change', () => {
+        const arr = Array.from(boxes).map(x => x.checked);
+        localStorage.setItem(key, JSON.stringify(arr));
+      });
+    });
+  });
+})();
+</script>
+<!-- GOD-PLUS START: Bienvenida -->
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Mapa del curso</span>
+<h3>¿Qué vas a dominar en Ciberdefensa Avanzada?</h3>
+</div>
+<p class="god-lead">Este curso está diseñado como una experiencia **práctica y orientada a industria**: aprenderás a pensar como atacante (para anticiparte) y a operar como defensor (para contener, erradicar y recuperar). La meta es que puedas **diseñar, desplegar y mejorar** controles de seguridad en entornos reales con criterio técnico y ético.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4><i class="fa-solid fa-shield-halved"></i> Mentalidad Blue Team (Defensa)</h4>
+<p>Construirás un **modelo mental** para detectar señales tempranas (telemetría), correlacionar eventos y responder con playbooks: triage → contención → erradicación → lecciones aprendidas. Verás cómo se conectan SIEM/EDR, hardening, IAM y análisis forense.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-user-ninja"></i> Mentalidad Red Team (Ataque controlado)</h4>
+<p>Aprenderás tácticas ofensivas **con fines defensivos**: reconocimiento, enumeración, explotación (en laboratorios), post-explotación y persistencia simulada. Lo importante: entender la cadena completa para diseñar mitigaciones y detecciones.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-diagram-project"></i> Arquitectura Segura</h4>
+<p>Modelarás amenazas y diseñarás controles: segmentación, Zero Trust, gestión de secretos, cifrado, backups, y continuidad. La defensa avanzada no es ‘una herramienta’: es un **sistema**.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-triangle-exclamation"></i> Respuesta a Incidentes (IR)</h4>
+<p>Aplicarás metodologías de IR y documentación profesional: línea de tiempo, evidencia, cadena de custodia, análisis de causa raíz y recomendaciones. Practicarás cómo comunicar incidentes a no técnicos.</p>
+</div>
+</div>
+<ul class="god-bullets">
+<li><span class="tag">Outcome</span> Podrás explicar un ataque y **convertirlo en controles**: reglas, hardening, alertas y procesos.</li>
+<li><span class="tag">Skill</span> Interpretar logs (Windows/Linux/red) y construir hipótesis verificables.</li>
+<li><span class="tag">Practice</span> Laboratorios con casos: phishing, credenciales filtradas, ransomware simulado, exfiltración.</li>
+<li><span class="tag">Portfolio</span> Entregarás evidencias: reportes, diagramas, checklist de hardening y mini playbooks.</li>
+</ul>
+<div class="god-callout">
+<strong>Tip de ingeniería:</strong> lo que no se mide, no se defiende. Aquí vas a aprender a <em>instrumentar</em> sistemas para observarlos (telemetría) y decidir con datos.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Ruta profesional</span>
+<h3>Roles reales que se conectan con lo que harás aquí</h3>
+</div>
+<p class="god-lead">La ciberdefensa avanzada es un mapa de habilidades que se reutiliza en múltiples roles. Identifica desde ya cuál te llama más la atención para orientar tu portafolio.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4><i class="fa-solid fa-magnifying-glass"></i> SOC Analyst / Threat Hunter</h4>
+<p>Monitoreo + investigación: detección, correlación, hunting basado en hipótesis, reducción de falsos positivos, y escalamiento adecuado.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-gears"></i> Security Engineer</h4>
+<p>Diseño e implementación de controles: EDR, SIEM, segmentación, hardening, políticas, automatización (scripts), y mejora continua.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-fire-extinguisher"></i> Incident Responder</h4>
+<p>Gestión de incidentes: contención, coordinación, evidencia, comunicaciones y postmortems. El éxito se mide en tiempo de detección/contención.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-bug"></i> Pentester Ético</h4>
+<p>Evaluación ofensiva autorizada: pruebas de seguridad, reportes ejecutivos/técnicos y remediación. Siempre con alcance y reglas claras.</p>
+</div>
+</div>
+
+<div class="god-callout">
+<strong>Regla de oro:</strong> práctica sin documentación es como código sin repositorio: se pierde. Tu bitácora es parte de tu nota y de tu perfil profesional.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Mini‑reto 1</span>
+<h3>Calienta motores: tu primer ‘Threat Model’ en 20 minutos</h3>
+</div>
+<p class="god-lead">Vas a crear un mini modelo de amenazas (ligero) sobre un escenario simple. No necesitas herramientas complejas: papel, mente y método.</p>
+<ol class="god-steps">
+<li><strong>Escenario:</strong> Una app web de la universidad con login, panel de estudiante y módulo de notas.</li>
+<li><strong>Activos:</strong> ¿qué es crítico? (datos personales, credenciales, notas, certificados).</li>
+<li><strong>Amenazas:</strong> lista 6 (phishing, fuerza bruta, SQLi, sesión robada, malware, fuga de backups).</li>
+<li><strong>Controles:</strong> mapea 1–2 por amenaza (MFA, rate limiting, WAF, hashing, logs, backups, mínimos privilegios).</li>
+<li><strong>Detecciones:</strong> ¿qué log/alerta evidenciaría cada amenaza?</li>
+<li><strong>Entrega:</strong> una tabla sencilla (amenaza → control → evidencia) en tu bitácora.</li>
+</ol>
+<div class="god-callout">
+  Si lo haces bien, acabas de aprender la esencia de la defensa: <strong>anticipar</strong> + <strong>reducir superficie</strong> + <strong>detectar rápido</strong>.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Glosario rápido</span>
+<h3>Conceptos que vas a escuchar todo el tiempo (y que ya debes dominar)</h3>
+</div>
+<p class="god-lead">Aquí tienes un glosario ‘de batalla’ para no perderte. Regrésate a esta sección cuando un término se vuelva borroso.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4><i class="fa-solid fa-circle-nodes"></i> CIA Triad</h4>
+<p>Confidencialidad, Integridad, Disponibilidad. Casi todo control de seguridad existe para proteger una o más de estas.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-border-all"></i> Attack Surface</h4>
+<p>Todo lo que un atacante puede tocar: puertos, endpoints, credenciales, permisos, dependencias, usuarios, APIs.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-eye"></i> IOCs vs IOAs</h4>
+<p>IOC: indicador (hash, IP, dominio). IOA: comportamiento (creación sospechosa de procesos, lateral movement). En defensa moderna, IOA suele ser más robusto.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-chess-knight"></i> TTPs</h4>
+<p>Tácticas, Técnicas y Procedimientos: cómo operan los atacantes. Conocer TTPs ayuda a priorizar detecciones y controles.</p>
+</div>
+</div>
+<ul class="god-bullets">
+<li>“Hardening” = reducir superficie de ataque (configurar bien, cerrar lo innecesario, parches).</li>
+<li>“Telemetry” = datos observables (logs, eventos, métricas) para detectar y responder.</li>
+<li>“Least Privilege” = permisos mínimos necesarios, siempre.</li>
+<li>“Defense in depth” = múltiples capas: si una falla, otra contiene.</li>
+</ul>
+</section>
+<!-- GOD-PLUS END: Bienvenida -->
+<div class="god-section" data-reveal="">
+<div class="god-head"><span class="god-chip">🧭 Enfoque</span><h3>Qué es (y qué NO es) este módulo</h3></div>
+<p class="god-lead">Aquí aprenderás a pensar como atacante para defender mejor, pero siempre desde el marco ético: lo que hacemos es <strong>simulación controlada</strong>, no vandalismo.</p><p>No buscamos ‘coleccionar herramientas’. Buscamos criterio: saber <em>cuándo</em> usar una técnica, <em>por qué</em> y <em>cómo</em> demostrarlo con evidencia.</p>
+<ul class="god-bullets"><li>No es un curso de “hackear redes Wi‑Fi” o atacar gente real.</li><li>Sí es un curso de <strong>auditoría</strong>: identificar exposición, validar fallos y proponer mitigación.</li><li>Sí es un curso de <strong>comunicación</strong>: convertir técnica en decisiones (prioridad, costo, riesgo).</li></ul>
+<div class="god-callout"><strong>🎯 Mini‑reto:</strong> Graba (o escribe) un pitch de 45 segundos: “¿Qué hace un hacker ético y por qué una empresa paga por eso?”</div>
+</div>
+<div class="god-section" data-reveal="">
+<div class="god-head"><span class="god-chip">🟥🟦 Roles</span><h3>Mentalidad Red Team vs Blue Team (para entender tu rol)</h3></div>
+<p class="god-lead">Vas a alternar dos lentes: el ofensivo (red team) y el defensivo (blue team). El profesional valioso domina ambos: ataca para aprender, aprende para corregir.</p><p>En cada práctica, te pediré que cierres el ciclo: <strong>hallazgo → evidencia → riesgo → remediación → retest</strong>.</p>
+<ul class="god-bullets"><li><strong>Red Team:</strong> explora vectores, evasión, cadenas de ataque (sin dañar).</li><li><strong>Blue Team:</strong> monitorea, endurece (hardening), parchea, detecta, responde.</li><li><strong>Purple Team:</strong> colaboración: el hallazgo se convierte en mejora medible.</li></ul>
+<div class="god-callout"><strong>🎯 Mini‑reto:</strong> Elige un vector (p. ej., credenciales débiles) y escribe 1 acción red, 1 acción blue y 1 indicador para medir mejora.</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidad 2: Introducción</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    .subtitle { font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #546e7a; border-left: 4px solid #1976d2; padding-left: 15px; }
+
+    .content-block { margin-bottom: 40px; text-align: justify; }
+
+    .phase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+    .phase-card { 
+        background: #e3f2fd; border: 1px solid #bbdefb; padding: 20px; border-radius: 12px; 
+        text-align: center; transition: transform 0.2s;
+    }
+    .phase-card:hover { transform: translateY(-5px); border-color: #1565c0; }
+    .phase-icon { font-size: 2.5rem; color: #1565c0; margin-bottom: 15px; display: block; }
+    .phase-title { font-weight: 700; color: #0d47a1; display: block; margin-bottom: 5px; font-family: 'Montserrat', sans-serif; }
+
+    .highlight-box {
+        background: #263238; color: #eceff1; padding: 25px; border-radius: 12px; margin: 30px 0; font-family: 'Roboto', sans-serif;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* === BLOQUES EXTRA (complemento) === */
+    .section-title{
+        margin-top: 45px;
+        color:#1565c0;
+        font-family:'Montserrat', sans-serif;
+        font-weight:800;
+        font-size:1.45rem;
+        text-align:center;
+    }
+    .subnote{
+        color:#546e7a;
+        font-size:1.05rem;
+        margin: 10px 0 0 0;
+        text-align:center;
+    }
+    .info-box{
+        background:#e3f2fd;
+        border:1px solid #bbdefb;
+        border-left:6px solid #1565c0;
+        padding:18px 18px;
+        border-radius:12px;
+        margin:22px 0;
+    }
+    .info-box strong{ color:#0d47a1; }
+    .pill-row{
+        display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;
+    }
+    .pill{
+        background:#ffffff;
+        border:1px solid #bbdefb;
+        color:#1565c0;
+        padding:6px 10px;
+        border-radius:999px;
+        font-size:0.85rem;
+        font-weight:700;
+        display:inline-flex; align-items:center; gap:8px;
+    }
+    .two-col{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap:18px;
+        margin-top:18px;
+    }
+    .card-lite{
+        background:#ffffff;
+        border:1px solid #e0e0e0;
+        border-radius:12px;
+        padding:18px 18px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    }
+    .card-lite h4{
+        margin:0 0 8px 0;
+        font-family:'Montserrat', sans-serif;
+        color:#0d47a1;
+        font-size:1.05rem;
+    }
+    .checklist{
+        list-style:none;
+        padding:0;
+        margin:12px 0 0 0;
+    }
+    .checklist li{
+        margin:8px 0;
+        padding-left:28px;
+        position:relative;
+    }
+    .checklist li::before{
+        content:"✅";
+        position:absolute;
+        left:0;
+        top:0;
+    }
+    .warning-box{
+        background:#ffebee;
+        border:1px solid #ef9a9a;
+        border-left:6px solid #c62828;
+        color:#b71c1c;
+        padding:16px 18px;
+        border-radius:12px;
+        margin:22px 0;
+        font-weight:700;
+    }
+    .codebox{
+        background:#263238;
+        color:#eceff1;
+        padding:16px 16px;
+        border-radius:12px;
+        overflow:auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size:0.92rem;
+        line-height:1.6;
+        margin-top:10px;
+    }
+    .mini-grid{
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap:14px;
+        margin-top:18px;
+    }
+    .mini-card{
+        background:#f5faff;
+        border:1px solid #bbdefb;
+        border-radius:12px;
+        padding:16px 16px;
+    }
+    .mini-card .k{
+        font-weight:800;
+        color:#1565c0;
+        font-family:'Montserrat', sans-serif;
+        margin-bottom:6px;
+        display:block;
+    }
+    .qa{
+        margin-top:14px;
+        padding:12px 14px;
+        border-radius:12px;
+        border:1px dashed #bbdefb;
+        background:#ffffff;
+    }
+    .qa b{ color:#0d47a1; }
+    @media (max-width: 768px) {
+        .two-col{ grid-template-columns: 1fr; }
+    }
+
+    .compare-table{
+        width:100%;
+        border-collapse:collapse;
+        margin-top:12px;
+        font-size:0.95rem;
+    }
+    .compare-table th{
+        background:#1565c0;
+        color:#ffffff;
+        padding:10px;
+        text-align:left;
+    }
+    .compare-table td{
+        border:1px solid #ddd;
+        padding:10px;
+        vertical-align:top;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Unidad 2: Metodologías y Ejecución</h1>
+        <span class="subtitle">Semanas 3, 4 y 5: De la Teoría a la Acción</span>
+    </div>
+
+    <div class="content-block">
+        <p>Hemos dejado atrás el reconocimiento pasivo. En la <strong>Unidad 2</strong>, el pentester se convierte en un actor activo. Sin embargo, un ataque sin plan es solo ruido. Antes de disparar exploits, debemos definir nuestra estrategia de guerra.</p>
+        <p>Esta unidad se centra en la <strong>Profesionalización del Ataque</strong>. Aprenderán a estructurar su trabajo bajo estándares internacionales (como PTES u OWASP) para garantizar que sus resultados sean reproducibles, medibles y, sobre todo, seguros para el cliente.</p>
+        
+        <h3 style="color:#1565c0; font-family:'Montserrat', sans-serif; margin-top: 40px; text-align: center;">El Ciclo de Vida del Ataque</h3>
+        <div class="phase-grid">
+            <div class="phase-card">
+                <i class="fa-solid fa-clipboard-check phase-icon"></i>
+                <span class="phase-title">1. Planeación</span>
+                <p>Definir alcance y reglas.</p>
+            </div>
+            <div class="phase-card">
+                <i class="fa-solid fa-virus phase-icon"></i>
+                <span class="phase-title">2. Explotación</span>
+                <p>Comprometer el sistema.</p>
+            </div>
+            <div class="phase-card">
+                <i class="fa-solid fa-flag phase-icon"></i>
+                <span class="phase-title">3. Post-Explotación</span>
+                <p>Mantener acceso y escalar.</p>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <strong>🚀 Misión de la Unidad:</strong> Al finalizar estas tres semanas, habrás realizado tu primera intrusión completa documentada en un entorno de laboratorio, desde la planificación inicial hasta la obtención de privilegios de administrador (Root).
+        </div>
+    </div>
+
+    <h3 class="section-title">Lo que cambia en Unidad 2</h3>
+    <p class="subnote">Pasas de “ver información” a ejecutar un ataque controlado con metodología, evidencia y límites claros.</p>
+
+    <div class="info-box">
+        <strong>✅ Resultado tangible:</strong> terminarás con una intrusión documentada en laboratorio (de planeación → explotación → escalamiento), y un mini‑reporte listo para entregar.
+        <div class="pill-row">
+            <span class="pill"><i class="fa-solid fa-shield-halved"></i> Ética & permiso</span>
+            <span class="pill"><i class="fa-solid fa-list-check"></i> Evidencia reproducible</span>
+            <span class="pill"><i class="fa-solid fa-triangle-exclamation"></i> Pruebas seguras</span>
+            <span class="pill"><i class="fa-solid fa-file-lines"></i> Reporte profesional</span>
+        </div>
+    </div>
+
+    <div class="two-col">
+        <div class="card-lite">
+            <h4>Antes de empezar: preparación mínima del laboratorio</h4>
+            <ul class="checklist">
+                <li>Tu VM (Kali/Parrot) con <b>snapshot</b> creado.</li>
+                <li>Red aislada (Host‑Only o NAT controlado) y objetivo de laboratorio autorizado.</li>
+                <li>Carpeta <b>Evidencias/U2</b> con subcarpetas por tema: <b>2.1</b>, <b>2.2</b>, <b>Lab</b>.</li>
+                <li>Bitácora en formato simple (Objetivo → Pasos → Resultado → Evidencias → Aprendizajes).</li>
+            </ul>
+        </div>
+        <div class="card-lite">
+            <h4>Errores comunes (y cómo evitarlos)</h4>
+            <ul class="checklist">
+                <li>Escanear “a lo loco” sin alcance: primero <b>Scope</b> y <b>RoE</b>.</li>
+                <li>Confiar en el primer resultado: valida manualmente para evitar <b>falsos positivos</b>.</li>
+                <li>No guardar comandos: si no documentas, tu hallazgo no es defendible.</li>
+                <li>Intentar “root” sin control: define objetivo y límite por fase (no improvises).</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3 class="section-title">Mini‑reto de arranque (15–20 min)</h3>
+    <div class="mini-grid">
+        <div class="mini-card">
+            <span class="k">1) Define el alcance</span>
+            Escribe 5–7 líneas: ¿qué objetivo de laboratorio vas a probar? ¿Qué está prohibido tocar?
+        </div>
+        <div class="mini-card">
+            <span class="k">2) Define evidencia</span>
+            ¿Qué capturas/logs vas a guardar para demostrar cada fase (planeación, explotación, escalamiento)?
+        </div>
+        <div class="mini-card">
+            <span class="k">3) Define éxito</span>
+            ¿Qué significa “terminé” esta unidad? (ej: obtener privilegios elevados + reporte con 3 hallazgos)
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 2.3: Validación de Vulnerabilidades</title>
+
+    <style>
+      body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+        color: #37474f;
+        line-height: 1.8;
+      }
+      .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        border-top: 8px solid #1565c0;
+      }
+      .uni-logo {
+        position: absolute; top: 30px; right: 40px;
+        width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform .22s ease, box-shadow .22s ease;
+      }
+      .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+      .header-box {
+        text-align: left;
+        margin-bottom: 50px;
+        padding-top: 30px;
+        padding-right: 180px;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 20px;
+      }
+      .main-title {
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #1565c0;
+        margin: 0 0 10px 0;
+        letter-spacing: .2px;
+      }
+      .subtitle {
+        font-size: 1.12rem;
+        color: #546e7a;
+        border-left: 4px solid #1976d2;
+        padding-left: 15px;
+        margin: 0;
+      }
+      .concept-card {
+        background: #f5faff;
+        border: 1px solid #bbdefb;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        border-left: 6px solid #1565c0;
+        transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      }
+      .concept-card:hover {
+        transform: translateX(5px);
+        box-shadow: 0 10px 28px rgba(13,71,161,.10);
+        border-color: #90caf9;
+      }
+      .concept-title {
+        font-size: 1.25rem;
+        font-weight: 900;
+        color: #0d47a1;
+        margin-bottom: 10px;
+        display: block;
+      }
+      .pill-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+      .pill {
+        background:#ffffff;
+        border:1px solid #bbdefb;
+        color:#1565c0;
+        padding:6px 10px;
+        border-radius:999px;
+        font-size:0.86rem;
+        font-weight:800;
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+      }
+      .grid-2 {
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 18px;
+      }
+      .card-lite {
+        background:#ffffff;
+        border:1px solid #e0e0e0;
+        border-radius:12px;
+        padding:18px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        transition: transform .2s ease, box-shadow .2s ease;
+      }
+      .card-lite:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,0.08); }
+      .section-title {
+        margin-top: 45px;
+        color:#1565c0;
+        font-weight:900;
+        font-size:1.45rem;
+        text-align:center;
+      }
+      .subnote {
+        color:#546e7a;
+        font-size:1.05rem;
+        margin: 10px 0 0 0;
+        text-align:center;
+      }
+      details {
+        background: #f5faff;
+        margin-bottom: 18px;
+        border-radius: 12px;
+        border: 1px solid #bbdefb;
+        overflow: hidden;
+        transition: transform .18s ease;
+      }
+      details:hover { transform: translateY(-1px); }
+      summary {
+        padding: 18px 20px;
+        cursor: pointer;
+        font-weight: 900;
+        color: #1565c0;
+        display:flex;
+        align-items:center;
+        gap: 12px;
+        font-size: 1.05rem;
+        list-style:none;
+      }
+      summary::-webkit-details-marker { display:none; }
+      summary:hover { background:#e3f2fd; }
+      .details-content {
+        padding: 22px 22px;
+        background: #fff;
+        border-top: 1px solid #bbdefb;
+      }
+      .codebox {
+        background:#263238;
+        color:#eceff1;
+        padding:16px 16px;
+        border-radius:12px;
+        overflow:auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size:0.92rem;
+        line-height:1.6;
+        margin-top:10px;
+      }
+      .note {
+        background:#e8f5e9;
+        border:1px solid #a5d6a7;
+        border-left:6px solid #2e7d32;
+        padding:16px 18px;
+        border-radius:12px;
+        margin: 18px 0;
+        color:#1b5e20;
+        font-weight:800;
+      }
+      .warn {
+        background:#ffebee;
+        border:1px solid #ef9a9a;
+        border-left:6px solid #c62828;
+        padding:16px 18px;
+        border-radius:12px;
+        margin: 18px 0;
+        color:#b71c1c;
+        font-weight:900;
+      }
+      .tablewrap {
+        overflow-x:auto;
+        -webkit-overflow-scrolling: touch;
+        border:1px solid #e0e0e0;
+        border-radius: 12px;
+      }
+      table {
+        width:100%;
+        border-collapse: collapse;
+        min-width: 720px;
+        font-size: 0.95rem;
+      }
+      th {
+        background:#1565c0;
+        color:#fff;
+        padding: 12px 10px;
+        text-align:left;
+      }
+      td {
+        border-top:1px solid #eee;
+        padding: 12px 10px;
+        vertical-align: top;
+      }
+
+      /* CSS-only entrance animations (Q10 safe) */
+      .reveal { animation: fadeUp .55s ease both; }
+      .stagger > * { animation: fadeUp .55s ease both; }
+      .stagger > *:nth-child(2){animation-delay:.06s}
+      .stagger > *:nth-child(3){animation-delay:.12s}
+      .stagger > *:nth-child(4){animation-delay:.18s}
+      .stagger > *:nth-child(5){animation-delay:.24s}
+      @keyframes fadeUp { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)} }
+
+      @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .grid-2 { grid-template-columns: 1fr; }
+        table { min-width: 560px; }
+      }
+
+      
+    </style>
+    
+</head>
+<body>
+<div class="container-extended reveal">
+  <img decoding="async" loading="eager" referrerpolicy="no-referrer" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+  
+    <div class="header-box">
+      <h1 class="main-title">Tema 2.3: Validación de Vulnerabilidades</h1>
+      <p class="subtitle">Confirmar el fallo con evidencia, sin destruir el sistema (y sin ruido).</p>
+    </div>
+    
+<p style="margin-bottom: 26px; font-size: 1.08rem;">
+  Un escáner puede marcar “posible SQLi” o “XSS probable”. Un pentester profesional convierte esa señal en una conclusión:
+  <b>real</b> o <b>falso positivo</b>, y lo demuestra con una <b>PoC inocua</b> + evidencia replicable.
+  En este tema aprenderás un flujo de validación que prioriza seguridad, precisión y trazabilidad.
+</p>
+
+<div class="concept-card">
+  <span class="concept-title">🧠 Mentalidad: validar ≠ explotar al máximo</span>
+  <ul style="margin:10px 0 0 18px;">
+    <li><b>Validar</b> es confirmar una condición vulnerable con el mínimo impacto.</li>
+    <li><b>Explotar</b> (a fondo) solo ocurre si está permitido, es necesario para demostrar impacto y sigue siendo controlado.</li>
+    <li>El objetivo profesional es <b>reducir incertidumbre</b>: menos ruido, más certeza.</li>
+  </ul>
+  <div class="note">✅ Regla práctica: “demuestra lo suficiente para justificar riesgo y remediación”.</div>
+</div>
+
+<h3 class="section-title">Flujo profesional de validación (paso a paso)</h3>
+<p class="subnote">Este flujo sirve para web, API, servicios de red y misconfigurations.</p>
+
+<div class="tablewrap">
+<table>
+  <thead>
+    <tr>
+      <th>Fase</th>
+      <th>Qué haces</th>
+      <th>Qué buscas</th>
+      <th>Evidencia mínima</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>1) Baseline</b></td>
+      <td>Reproduces la petición/acción normal sin “payload”.</td>
+      <td>Respuesta esperada (control).</td>
+      <td>Captura/log con URL, parámetros y respuesta.</td>
+    </tr>
+    <tr>
+      <td><b>2) Hipótesis</b></td>
+      <td>Defines qué variable debe cambiar si hay vulnerabilidad.</td>
+      <td>Un indicador (tiempo, error, contenido, status).</td>
+      <td>Nota breve: “si X cambia, entonces Y”.</td>
+    </tr>
+    <tr>
+      <td><b>3) PoC inocua</b></td>
+      <td>Introduces un payload seguro, con mínimo impacto.</td>
+      <td>Cambio consistente vs baseline.</td>
+      <td>Request + response + timestamp.</td>
+    </tr>
+    <tr>
+      <td><b>4) Confirmación</b></td>
+      <td>Repites variando un parámetro a la vez.</td>
+      <td>Evitar coincidencias / flukes.</td>
+      <td>2–3 repeticiones registradas.</td>
+    </tr>
+    <tr>
+      <td><b>5) Impacto</b></td>
+      <td>Demuestras impacto mínimo viable (sin exfiltrar masivo).</td>
+      <td>Qué permite hacer un atacante.</td>
+      <td>Captura con evidencia de alcance logrado.</td>
+    </tr>
+    <tr>
+      <td><b>6) Recomendación</b></td>
+      <td>Defines corrección + re-test.</td>
+      <td>Acción concreta y verificable.</td>
+      <td>Texto: “cambiar X por Y” + cómo verificar.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="concept-card">
+  <span class="concept-title">🧪 PoC inocua: ejemplos seguros (solo laboratorio)</span>
+  <p style="margin:0 0 10px;">
+    Una PoC inocua demuestra control sin causar daño. No necesitas “borrar”, “tumbar” o “extraer masivo”.
+    Usa indicadores de confirmación (contenido, estado, tiempo) y mantén el impacto mínimo.
+  </p>
+
+  <details open>
+    <summary>📌 Ejemplo conceptual: XSS (prueba inocua)</summary>
+    <div class="details-content">
+      <p>La señal de confirmación es que el navegador ejecuta código. Para laboratorio, el clásico indicador inocuo es un <b>alert</b>:</p>
+      <div class="codebox">&lt;script&gt;alert('PoC: XSS validado en laboratorio')&lt;/script&gt;</div>
+      <p><b>Qué documentar:</b> el campo/parámetro vulnerable, el payload, y la captura donde se vea el alert (con URL visible).</p>
+      <p class="note">✅ Importante: no usar scripts para robar cookies ni acciones dañinas. La PoC es demostración, no ataque real.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>⏱️ Ejemplo conceptual: SQLi ciega (indicador por tiempo)</summary>
+    <div class="details-content">
+      <p>Cuando no puedes ver resultados, usas “timing” como indicador. Lo profesional es repetir y registrar tiempos:</p>
+      <div class="codebox">Baseline: respuesta ~120ms<br>PoC: respuesta ~5120ms (repetido 3 veces)</div>
+      <p><b>Qué documentar:</b> baseline, payload inocuo de tiempo, mediciones (3 repeticiones), y conclusión.</p>
+      <p class="warn">⚠️ Mantén límites de tasa y stop condition. Si hay degradación, paras y reportas.</p>
+    </div>
+  </details>
+</div>
+
+<h3 class="section-title">Cómo reducir falsos positivos (lo que diferencia a un pro)</h3>
+<p class="subnote">El 80% de la calidad viene de validar con criterio.</p>
+
+<div class="grid-2 stagger">
+  <div class="card-lite">
+    <h3 style="margin:0 0 10px;color:#0d47a1;font-weight:900;">🔍 Señales típicas de falso positivo</h3>
+    <ul style="margin:0 0 0 18px;">
+      <li>El banner dice una versión, pero el servicio real está “detrás” (proxy/WAF).</li>
+      <li>La ruta existe, pero está protegida (401/403) y no es explotable.</li>
+      <li>El CVE aplica solo a una configuración específica que aquí no está.</li>
+      <li>El “error” no cambia con el payload (es un error genérico).</li>
+      <li>El hallazgo desaparece al repetir o depende de caché.</li>
+    </ul>
+  </div>
+  <div class="card-lite">
+    <h3 style="margin:0 0 10px;color:#0d47a1;font-weight:900;">✅ Técnicas de confirmación</h3>
+    <ul style="margin:0 0 0 18px;">
+      <li>Comparar <b>baseline vs PoC</b> (antes/después) con un solo cambio.</li>
+      <li>Repetir 2–3 veces y registrar tiempos/estados.</li>
+      <li>Usar “controles negativos”: payload “seguro” que no debería activar nada.</li>
+      <li>Correlacionar con logs (si aplica) o con comportamiento consistente.</li>
+      <li>Explicar condiciones: “solo ocurre cuando…”.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="concept-card">
+  <span class="concept-title">⚖️ CVSS vs riesgo real (rápido y útil)</span>
+  <p style="margin:0 0 10px;">
+    CVSS ayuda a estandarizar severidad técnica, pero el riesgo real depende de contexto:
+    exposición, privilegios, datos afectados, controles compensatorios y valor del activo.
+  </p>
+  <div class="pill-row">
+    <span class="pill">Exposición</span><span class="pill">Impacto negocio</span><span class="pill">Controles</span><span class="pill">Probabilidad</span>
+  </div>
+</div>
+
+<h3 class="section-title">Bitácora y evidencia (estructura recomendada)</h3>
+<p class="subnote">Si no queda replicable, no queda defendible.</p>
+
+<details open>
+  <summary>🧾 Plantilla profesional (copia y pega)</summary>
+  <div class="details-content">
+    <div class="codebox" style="white-space:pre-wrap;">HALLAZGO:
+- Tipo:
+- Activo (IP/URL/Servicio):
+- Baseline (petición normal + respuesta):
+- PoC inocua (payload/comando + respuesta):
+- Evidencia (captura/log) + Timestamp:
+- Impacto (mínimo viable, sin exagerar):
+- Recomendación (cambio concreto) + Re-test:
+- Prioridad (Alta/Media/Baja) + Justificación (impacto + probabilidad):</div>
+    <p class="note">✅ Tip: usa nombres de archivos con FECHA + ACTIVO + ID-HALLAZGO para mantener trazabilidad.</p>
+  </div>
+</details>
+
+<details>
+  <summary>🧭 Criterios de detención (Stop conditions)</summary>
+  <div class="details-content">
+    <ul style="margin:0 0 0 18px;">
+      <li>Caída del servicio / degradación visible.</li>
+      <li>Bloqueo por WAF/IDS o saturación (muchos 429/5xx).</li>
+      <li>Exposición accidental de datos sensibles (parar, avisar, no copiar masivo).</li>
+      <li>Cambio no previsto en configuración/sistema.</li>
+    </ul>
+    <div class="warn">⚠️ En entornos reales, la RoE manda. En laboratorio, sigue la norma de “mínimo impacto”.</div>
+  </div>
+</details>
+
+<div class="note">
+  📌 Importante: Los <b>objetivos y evidencias esperadas</b> están en el HTML separado de Objetivos del Tema 2.3.
+</div>
+
+
+  <h2 class="section-title">Validación de vulnerabilidades — versión “de campo” (nivel profesional)</h2>
+  <p class="subnote">Más que “probar payloads”: construir una conclusión defendible, reproducible y segura.</p>
+
+  <div class="concept-card stagger">
+    <span class="concept-title">🎯 Resultado esperado (lo que un evaluador quiere ver)</span>
+    <ul style="margin:10px 0 0 18px;">
+      <li><b>Reproducción determinística:</b> pasos claros para repetir el hallazgo sin “magia”.</li>
+      <li><b>Cadena de evidencia:</b> request/response, tiempos, logs y contexto de autenticación.</li>
+      <li><b>PoC inocua:</b> demuestra el fallo con el <b>mínimo</b> impacto (sin daño, sin exfiltrar datos sensibles).</li>
+      <li><b>Impacto razonado:</b> qué podría pasar <i>si</i> un atacante lo explota (con supuestos explícitos).</li>
+      <li><b>Recomendación accionable:</b> corrección + verificación posterior (“cómo sé que quedó bien”).</li>
+    </ul>
+    <div class="pill-row">
+      <span class="pill">✅ Evidencia replicable</span>
+      <span class="pill">🧪 PoC mínima</span>
+      <span class="pill">🧾 Trazabilidad</span>
+      <span class="pill">🛡️ Seguridad operacional</span>
+    </div>
+  </div>
+
+  <h3 class="section-title">Checklist pre-validación (5 minutos)</h3>
+  <p class="subnote">Antes de tocar el objetivo, define límites y reduce el riesgo de “romper” el entorno.</p>
+  <div class="grid-2 stagger">
+    <div class="card-lite">
+      <b style="color:#0d47a1;">Alcance & autorización</b>
+      <ul style="margin:10px 0 0 18px;">
+        <li>¿Estoy validando en ambiente permitido (lab / staging / objetivo autorizado)?</li>
+        <li>¿Qué acciones están prohibidas (DoS, exfil, modificación de datos, brute force)?</li>
+        <li>¿Tengo ventana de pruebas y contacto técnico si algo falla?</li>
+      </ul>
+    </div>
+    <div class="card-lite">
+      <b style="color:#0d47a1;">Controles de seguridad</b>
+      <ul style="margin:10px 0 0 18px;">
+        <li>Trabajo con <b>cuentas de prueba</b> y datos ficticios.</li>
+        <li>Registro todo: hora, IP, usuario, herramienta, payload mínimo.</li>
+        <li>Si hay riesgo, preparo plan de reversión (snapshot / rollback / backup).</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-title">Marco de validación (4 pasos que siempre aplican)</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Paso</th>
+          <th>Acción</th>
+          <th>Pregunta clave</th>
+          <th>Evidencia mínima</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>1) Control</b></td>
+          <td>Ejecuta el flujo normal sin “payload”.</td>
+          <td>¿Cómo se ve la respuesta “sana”?</td>
+          <td>Captura request/response + estado + tamaño de respuesta.</td>
+        </tr>
+        <tr>
+          <td><b>2) Perturbación</b></td>
+          <td>Cambia <b>una variable</b> a la vez (parámetro, header, body).</td>
+          <td>¿Qué cambia cuando altero este input?</td>
+          <td>Diferencias medibles: código, cuerpo, tiempo, headers.</td>
+        </tr>
+        <tr>
+          <td><b>3) Confirmación</b></td>
+          <td>Usa una PoC inocua para demostrar condición vulnerable.</td>
+          <td>¿Puedo demostrarlo sin causar impacto?</td>
+          <td>Reproducción 2/2 o 3/3 + evidencia consistente.</td>
+        </tr>
+        <tr>
+          <td><b>4) Descarte</b></td>
+          <td>Prueba hipótesis alternativas (falsos positivos).</td>
+          <td>¿Podría ser caching, WAF, error genérico?</td>
+          <td>Prueba A/B, variaciones, control negativo.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn">
+    ⚠️ Regla de oro: <b>si no puedes reproducir</b> de forma consistente y explicar por qué ocurre, <b>no está validado</b>.
+  </div>
+
+  <h3 class="section-title">Guía por familia de vulnerabilidad (PoC mínima + evidencia)</h3>
+  <p class="subnote">Abre cada sección y quédate con el patrón: control → perturbación → confirmación → descarte.</p>
+
+  <details class="reveal">
+    <summary>🧩 SQL Injection (SQLi) — confirmar sin “dump”</summary>
+    <div class="details-content">
+      <p><b>Qué valida:</b> el input llega a una consulta SQL sin sanitización adecuada o sin parametrización.</p>
+      <div class="grid-2">
+        <div class="card-lite">
+          <b style="color:#0d47a1;">PoC inocua (ideas)</b>
+          <ul style="margin:10px 0 0 18px;">
+            <li><b>Boolean-based:</b> comparar respuesta de <code>1=1</code> vs <code>1=2</code>.</li>
+            <li><b>Error-based (si aplica):</b> provocar error controlado que revele sintaxis (sin datos).</li>
+            <li><b>Time-based:</b> micro-retardo medible (con límites y pocas repeticiones).</li>
+          </ul>
+        </div>
+        <div class="card-lite">
+          <b style="color:#0d47a1;">Falsos positivos comunes</b>
+          <ul style="margin:10px 0 0 18px;">
+            <li>Errores genéricos del backend para cualquier input raro.</li>
+            <li>WAF que responde distinto por patrón (sin que llegue a DB).</li>
+            <li>Cache/CDN que altera respuestas.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note">✅ Evidencia: dos requests casi iguales que producen diferencia consistente (status/body/time) + explicación de por qué.</div>
+    </div>
+  </details>
+
+  <details class="reveal">
+    <summary>🪞 XSS (Reflected/Stored) — demostrar ejecución segura</summary>
+    <div class="details-content">
+      <p><b>Qué valida:</b> el input se refleja o persiste y se interpreta como código en el navegador.</p>
+      <div class="grid-2">
+        <div class="card-lite">
+          <b style="color:#0d47a1;">PoC inocua</b>
+          <ul style="margin:10px 0 0 18px;">
+            <li>Usa un payload que solo genere un <b>marcador visual</b> (sin robar cookies).</li>
+            <li>Preferible: prueba con contexto (HTML/atributo/JS) para evitar “falso ok”.</li>
+            <li>Captura: DOM/console + dónde quedó el input (fuente exacta).</li>
+          </ul>
+        </div>
+        <div class="card-lite">
+          <b style="color:#0d47a1;">Descarte</b>
+          <ul style="margin:10px 0 0 18px;">
+            <li>¿Se codifica/escapa correctamente? (HTML entities)</li>
+            <li>¿CSP bloquea la ejecución? (sigue siendo hallazgo, cambia impacto).</li>
+            <li>¿Solo se ve texto? entonces es reflejo seguro, no XSS.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note">✅ Evidencia: input → punto de inyección → ejecución verificada + captura + paso a paso.</div>
+    </div>
+  </details>
+
+  <details class="reveal">
+    <summary>🧭 IDOR / Broken Access Control — “tengo acceso a lo que no debo”</summary>
+    <div class="details-content">
+      <p><b>Qué valida:</b> modificando un identificador (ID, UUID, ruta) accedes a recursos de otro usuario/rol.</p>
+      <div class="grid-2">
+        <div class="card-lite">
+          <b style="color:#0d47a1;">PoC inocua</b>
+          <ul style="margin:10px 0 0 18px;">
+            <li>Crear dos usuarios de prueba (A y B).</li>
+            <li>Capturar un recurso del usuario A (por ejemplo: <code>/orders/123</code>).</li>
+            <li>Intentar acceder con usuario B cambiando el ID.</li>
+          </ul>
+        </div>
+        <div class="card-lite">
+          <b style="color:#0d47a1;">Evidencia mínima</b>
+          <ul style="margin:10px 0 0 18px;">
+            <li>Request con sesión/Token de B.</li>
+            <li>Respuesta que entrega datos de A (o permite acción sobre A).</li>
+            <li>Comparación con control (B accediendo a su propio recurso).</li>
+          </ul>
+        </div>
+      </div>
+      <div class="warn">⚠️ Evita exponer datos reales: usa datos ficticios o redacta capturas (masking).</div>
+    </div>
+  </details>
+
+  <details class="reveal">
+    <summary>🌐 SSRF — validar sin “pegarle” a Internet</summary>
+    <div class="details-content">
+      <p><b>Qué valida:</b> el servidor hace peticiones a URLs controladas por el atacante (o internas).</p>
+      <div class="grid-2">
+        <div class="card-lite">
+          <b style="color:#0d47a1;">PoC inocua</b>
+          <ul style="margin:10px 0 0 18px;">
+            <li>Usar un endpoint controlado en laboratorio (no un tercero).</li>
+            <li>Validar por logs del servidor destino (hit) o por respuesta.</li>
+            <li>Si aplica: probar acceso a metadata interna <i>solo</i> en entorno controlado.</li>
+          </ul>
+        </div>
+        <div class="card-lite">
+          <b style="color:#0d47a1;">Falsos positivos</b>
+          <ul style="margin:10px 0 0 18px;">
+            <li>El servidor valida URL pero no la solicita.</li>
+            <li>Solo hace fetch de imágenes con proxy seguro.</li>
+            <li>Bloqueos por DNS o egress filtering.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note">✅ Evidencia: correlación entre tu request y un request saliente del servidor (timestamp + headers).</div>
+    </div>
+  </details>
+
+  <h3 class="section-title">Matriz de evidencia (qué guardar y por qué)</h3>
+  <p class="subnote">Un reporte sólido se “defiende” con artefactos: no con opiniones.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Artefacto</th>
+          <th>Qué contiene</th>
+          <th>Para qué sirve</th>
+          <th>Buenas prácticas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Request/Response</b></td>
+          <td>URL, método, headers, body, status, tamaño</td>
+          <td>Reproducción + comparación control vs PoC</td>
+          <td>Masking de tokens y datos sensibles</td>
+        </tr>
+        <tr>
+          <td><b>Captura/Video</b></td>
+          <td>Paso a paso visual (navegador/terminal)</td>
+          <td>Demostrar flujo completo</td>
+          <td>Mostrar reloj/tiempo si se usa time-based</td>
+        </tr>
+        <tr>
+          <td><b>Logs</b></td>
+          <td>Eventos del servidor, auth, errores</td>
+          <td>Confirmar causa raíz</td>
+          <td>Conservar correlación (request id / trace id)</td>
+        </tr>
+        <tr>
+          <td><b>Entorno</b></td>
+          <td>Versión, config relevante, rol/usuario</td>
+          <td>Contexto para corregir y re-test</td>
+          <td>Indicar supuestos (WAF, CDN, proxies)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="section-title">Plantilla de reporte (lo mínimo que debe tener)</h3>
+  <details class="reveal">
+    <summary>🧾 Estructura recomendada para el hallazgo (copiar/pegar)</summary>
+    <div class="details-content">
+      <div class="codebox">
+Título: [Tipo] — [Recurso] — [Condición]
+
+Severidad: [Crítica/Alta/Media/Baja]  |  Confianza: [Alta/Media/Baja]
+
+Activo afectado: [URL/IP/Servicio]
+
+Descripción breve: (1–2 párrafos)
+
+Impacto: (qué permite y bajo qué supuestos)
+
+Pasos para reproducir:
+
+  1) Control: ...
+
+  2) PoC inocua: ...
+
+  3) Evidencia: ...
+
+Evidencias adjuntas: [capturas / requests / logs]
+
+Recomendación:
+
+  - Fix inmediato: ...
+
+  - Fix estructural: ...
+
+Validación de corrección (re-test): ...
+
+      </div>
+      <div class="note">✅ “Confianza” es clave: si no estás 100% seguro, dilo y explica qué falta para confirmarlo.</div>
+    </div>
+  </details>
+
+  <h3 class="section-title">Mini‑reto profesional (para practicar)</h3>
+  <div class="concept-card">
+    <span class="concept-title">🏁 Reto: convertir un hallazgo “ruidoso” en evidencia sólida</span>
+    <ol style="margin:10px 0 0 18px;">
+      <li>El escáner reporta “Posible XSS” en un parámetro <code>q</code>.</li>
+      <li>Define tu control (request normal) y documenta respuesta base.</li>
+      <li>Haz 2 perturbaciones (cambia solo un elemento a la vez).</li>
+      <li>Si confirmas, redacta el hallazgo con la plantilla y define el re-test.</li>
+      <li>Si NO confirmas, escribe por qué: ¿código seguro? ¿WAF? ¿escape? ¿CSP?</li>
+    </ol>
+    <div class="pill-row">
+      <span class="pill">📌 Control</span>
+      <span class="pill">🧪 PoC mínima</span>
+      <span class="pill">🧾 Evidencia</span>
+      <span class="pill">🔁 Re-test</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tema 3.2: Avance de Informe (Borrador)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: visible;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .draft-card {
+        background: #fff; border: 1px solid #e0e0e0; padding: 25px; border-radius: 12px; margin-bottom: 25px;
+        border-left: 6px solid #ab47bc; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+    .draft-title { font-size: 1.3rem; font-weight: 700; color: #8e24aa; margin-bottom: 10px; display: block; font-family: 'Montserrat', sans-serif; }
+
+    .list-req { margin-left: 20px; color: #546e7a; }
+    .list-req li { margin-bottom: 8px; }
+
+    .alert-box {
+        background: #e1bee7; border: 1px solid #ba68c8; color: #4a148c; padding: 20px; border-radius: 8px; text-align: center; margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+
+/* ===== Animaciones GOD (Q10-safe) ===== */
+@keyframes fadeUp { from { opacity:0; transform: translateY(12px);} to { opacity:1; transform: translateY(0);} }
+@keyframes floaty { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-6px);} }
+@keyframes glowPulse { 0%,100%{ box-shadow:0 10px 40px rgba(0,0,0,0.08);} 50%{ box-shadow:0 16px 56px rgba(21,101,192,0.18);} }
+.reveal{ animation: fadeUp .6s ease both; }
+.stagger > *{ animation: fadeUp .6s ease both; }
+.stagger > *:nth-child(2){ animation-delay:.06s }
+.stagger > *:nth-child(3){ animation-delay:.12s }
+.stagger > *:nth-child(4){ animation-delay:.18s }
+.stagger > *:nth-child(5){ animation-delay:.24s }
+.stagger > *:nth-child(6){ animation-delay:.30s }
+.uni-logo{ animation: floaty 3s ease-in-out infinite; }
+.container-extended{ animation: glowPulse 4.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce){ .reveal,.stagger > *,.uni-logo,.container-extended{ animation:none !important; } }
+
+/* ===== Q10 SAFE: no recortar contenido ===== */
+html, body { height:auto !important; overflow:auto !important; }
+.container-extended { height:auto !important; max-height:none !important; overflow:visible !important; }
+
+/* ===== Componentes PRO ===== */
+.section-title{font-family:'Montserrat',sans-serif;font-size:1.55rem;font-weight:800;color:#1565c0;margin:34px 0 10px}
+.subnote{color:#546e7a;margin:0 0 18px}
+.doc-card{background:#f5faff;border:1px solid #bbdefb;padding:24px;border-radius:12px;margin:18px 0;border-left:6px solid #1565c0}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.pill{background:#fff;border:1px solid #bbdefb;color:#1565c0;padding:6px 10px;border-radius:999px;font-weight:800;font-size:.86rem}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #e0e0e0;border-radius:12px;margin:12px 0}
+.tablewrap table{width:100%;border-collapse:collapse;min-width:920px}
+.tablewrap th{background:#1565c0;color:#fff;padding:12px 10px;text-align:left}
+.tablewrap td{border-top:1px solid #eee;padding:12px 10px;vertical-align:top}
+.callout{background:#fff3e0;border:1px solid #ffe0b2;color:#4e342e;padding:16px;border-radius:10px;border-left:6px solid #fb8c00;margin:14px 0}
+.mini-code{background:#263238;color:#fff;padding:14px;border-radius:10px;font-family:'Courier New',monospace;font-size:.95rem;overflow:auto}
+.score-badge{display:inline-flex;align-items:center;gap:8px;background:#e3f2fd;border:1px solid #90caf9;color:#0d47a1;padding:8px 12px;border-radius:999px;font-weight:800}
+.progress{height:10px;background:#e0e0e0;border-radius:999px;overflow:hidden;margin-top:10px}
+.progress > div{height:100%;background:#1565c0;width:0%}
+.feedback-box{display:none;margin-top:16px;padding:16px;border-radius:10px;border:1px solid #c5e1a5;background:#f1f8e9;color:#1b5e20}
+
+
+
+
+/* ===== Extras PRO (sin cambiar estética base) ===== */
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 0}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #bbdefb;color:#1565c0;padding:8px 12px;border-radius:999px;font-weight:800;font-size:.86rem}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width: 900px){ .grid-2{grid-template-columns:1fr} }
+.qa{margin:10px 0 0}
+.qa details{border:1px solid #e0e0e0;border-radius:12px;padding:12px 14px;background:#fff;margin:10px 0}
+.qa summary{cursor:pointer;font-weight:800;color:#0d47a1}
+.kv{display:grid;grid-template-columns:180px 1fr;gap:10px;align-items:start}
+@media (max-width: 700px){ .kv{grid-template-columns:1fr} }
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Tema 3.2: Avance de Informe (Borrador)</h1>
+<p>Primera versión del entregable final. El momento de ajustar el rumbo.</p>
+<section class="draft-card" style="border-left-color:#26a69a;">
+<span class="draft-title" style="color:#00796b;"><i class="fa-solid fa-bullseye"></i> 3. ¿Qué debe incluir tu borrador (mínimo viable)?</span>
+<p>Tu avance no se evalúa por “ser bonito”, sino por demostrar que <strong>ya puedes tomar decisiones</strong>. Para que el feedback sea útil, incluye:</p>
+<ul class="list-req">
+<li><strong>Contexto del objetivo:</strong> tipo de sistema, alcance, restricciones (qué NO probaste).</li>
+<li><strong>Score general:</strong> una estimación razonada (no solo “alto/bajo”).</li>
+<li><strong>Top 3 riesgos:</strong> con impacto en negocio (ej. fuga de datos, caída de servicio, fraude).</li>
+<li><strong>Tabla de hallazgos:</strong> CVSS + evidencia + estado (validado / pendiente) + recomendación.</li>
+<li><strong>Plan de acción 30/60/90 días:</strong> quick wins vs correcciones estructurales.</li>
+</ul>
+</section>
+<section class="draft-card" style="border-left-color:#ffa000;">
+<span class="draft-title" style="color:#ef6c00;"><i class="fa-solid fa-clipboard-check"></i> 4. Evidencia mínima y “sanitización”</span>
+<p>Un borrador profesional demuestra rigor y cuidado con la privacidad. Asegúrate de:</p>
+<ul class="list-req">
+<li>Adjuntar capturas claras (con fecha/hora si es posible) y <strong>comandos exactos</strong> usados.</li>
+<li>Ocultar/anonimizar información sensible: usuarios reales, tokens, IPs públicas, URLs internas, correos.</li>
+<li>Evitar “screenshots sueltos”: cada evidencia debe explicar <strong>qué prueba</strong> y <strong>por qué importa</strong>.</li>
+</ul>
+</section>
+<section class="alert-box" style="margin-top: 20px;">
+<strong>✅ Checklist rápido antes de entregar:</strong>
+  ¿Se entiende tu informe en 2 minutos? ¿Las prioridades están justificadas? ¿Cada hallazgo tiene evidencia y recomendación?
+</section>
+
+</div>
+<p style="margin-bottom: 30px; font-size: 1.1rem;">
+        Esta semana no buscamos perfección, buscamos <strong>estructura</strong>. Debes entregar un borrador que demuestre que tienes la "carne" del informe, aunque falte pulir el estilo.
+    </p>
+<div class="draft-card">
+<span class="draft-title"><i class="fa-solid fa-file-contract"></i> 1. El Resumen Ejecutivo (Draft)</span>
+<p>Debe responder a la gerencia en 1 página:</p>
+<ul class="list-req">
+<li>¿Qué tan seguros estamos? (Score general).</li>
+<li>¿Cuáles son los 3 riesgos principales?</li>
+<li>¿Cuánto costará arreglarlo? (Estimación de esfuerzo).</li>
+</ul>
+</div>
+<div class="draft-card" style="border-left-color: #ec407a;">
+<span class="draft-title" style="color: #c2185b;"><i class="fa-solid fa-table-list"></i> 2. Matriz de Hallazgos Priorizada</span>
+<p>Una tabla limpia que ordene todo lo encontrado:</p>
+<ul class="list-req">
+<li>Orden descendente por CVSS (Críticos primero).</li>
+<li>Columna de "Facilidad de Explotación" (¿Lo hace un niño o un experto?).</li>
+<li>Estado actual (Validado / PoC creada).</li>
+</ul>
+</div>
+<div class="alert-box">
+<strong>💡 Objetivo Pedagógico:</strong> Recibir feedback temprano. Si tu enfoque está mal (ej. demasiado técnico para un ejecutivo), te corregiremos ahora antes de que afecte tu nota final.
+    </div>
+
+<h2 class="section-title reveal">Guía PRO: cómo construir el borrador en 90–120 minutos</h2>
+<p class="subnote reveal">La meta es estructura + decisiones. El estilo se pule después.</p>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">Paso 1 — “Resumen ejecutivo” en 12 líneas (sin jerga)</h3>
+  <div class="mini-code">Plantilla:
+1) Alcance (1–2 líneas): qué se evaluó y qué no.
+2) Score general (1 línea): nivel de riesgo razonado (no solo "alto/bajo").
+3) Top 3 riesgos (3–6 líneas): impacto en negocio + escenario.
+4) Recomendación (2–3 líneas): qué arreglar primero + por qué.
+5) Próximos pasos (1–2 líneas): plan 30/60/90.</div>
+  <div class="callout"><b>Regla:</b> si aparece un tecnicismo, acompáñalo del <b>impacto</b> (qué se puede lograr / qué se pierde).</div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#ec407a;">
+  <h3 class="doc-title">Paso 2 — Matriz priorizada (P0–P3) que sí sirve</h3>
+  <p>Ordenar por CVSS es un inicio, pero el borrador profesional agrega contexto y ejecutabilidad.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Hallazgo</th><th>Activo</th><th>CVSS</th><th>Exposición</th><th>Impacto negocio</th><th>Prioridad</th><th>Mitigación</th><th>Verificación (re-test)</th></tr></thead>
+      <tbody>
+        <tr><td>Enumeración de usuarios</td><td>Portal</td><td>5.3</td><td>Internet</td><td>Ataques dirigidos / credenciales</td><td>P1</td><td>Mensajes uniformes + rate limit</td><td>No diferencia respuestas + logs</td></tr>
+        <tr><td>Admin sin MFA</td><td>Backoffice</td><td>8.8</td><td>VPN</td><td>Toma de control</td><td>P0/P1</td><td>Habilitar MFA + política</td><td>MFA requerido + intento fallido</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#26c6da;">
+  <h3 class="doc-title">Paso 3 — Evidencia mínima + sanitización (como consultoría)</h3>
+  <ul class="list-req">
+    <li><b>1 evidencia ≠ 10 capturas:</b> mejor una prueba reproducible (comando + salida) bien explicada.</li>
+    <li><b>Sanitiza sin destruir:</b> oculta tokens/PII pero deja visible lo que valida el hallazgo.</li>
+    <li><b>Contexto:</b> 1 línea que diga qué prueba y por qué importa.</li>
+  </ul>
+  <div class="mini-code">Formato recomendado por evidencia:
+- Prueba: comando/herramienta
+- Resultado: qué se observa
+- Interpretación: qué significa
+- Riesgo: qué se puede lograr
+- Mitigación: qué hacer
+- Re-test: cómo validas cierre</div>
+</div>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">Paso 4 — Plan 30/60/90 (prioridades y realidad)</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Horizonte</th><th>Objetivo</th><th>Acciones</th><th>Indicador de cierre</th></tr></thead>
+      <tbody>
+        <tr><td><b>30 días</b></td><td>Reducir superficie</td><td>Quick wins: MFA, parches críticos, cerrar puertos expuestos</td><td>Re-test + reducción de hallazgos P0/P1</td></tr>
+        <tr><td><b>60 días</b></td><td>Estabilizar controles</td><td>Hardening, segmentación, backups probados, logging</td><td>Alertas + evidencia de control</td></tr>
+        <tr><td><b>90 días</b></td><td>Mejora estructural</td><td>SDLC seguro, gestión vulnerabilidades, capacitación</td><td>Proceso funcionando + métricas</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="callout reveal">
+  <b>Checklist final (antes de subir):</b> ¿Se entiende en 2 minutos? ¿Top 3 riesgos tienen escenario + impacto negocio?
+  ¿Cada hallazgo tiene evidencia + recomendación específica + verificación?
+</div>
+<!-- ===================== AMPLIACIÓN ULTRA PRO (Tema 3.2) ===================== -->
+
+<h2 class="section-title reveal">Estructura “consultoría” del borrador (lo que más puntúa)</h2>
+<p class="subnote reveal">Si sigues esta estructura, tu documento se vuelve claro para directivos y ejecutable para TI.</p>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">A. Portada + alcance (2–5 minutos)</h3>
+  <div class="mini-code">Incluye:
+- Nombre del sistema / entorno (producción, pruebas)
+- Alcance: IPs, dominios, apps, fechas
+- Metodología: caja negra/gris/blanca (si aplica)
+- Limitaciones: qué NO se probó y por qué</div>
+  <div class="badge-row">
+    <span class="badge"><i class="fa-solid fa-bullseye"></i> Alcance</span>
+    <span class="badge"><i class="fa-solid fa-triangle-exclamation"></i> Limitaciones</span>
+    <span class="badge"><i class="fa-solid fa-calendar-days"></i> Ventana de pruebas</span>
+  </div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#26a69a;">
+  <h3 class="doc-title">B. Resumen ejecutivo que sí decide (1 página)</h3>
+  <div class="grid-2">
+    <div>
+      <p><b>Regla de oro:</b> cada frase debe responder “¿y eso qué?” (impacto en negocio).</p>
+      <div class="mini-code">Plantilla (copiable):
+1) Situación: “Evaluamos X sobre Y”
+2) Hallazgo clave: “Detectamos Z riesgos”
+3) Top 3 (con impacto): “Podría causar…”
+4) Recomendación: “Priorizar…”
+5) Próximos pasos: “Plan 30/60/90…”</div>
+    </div>
+    <div>
+      <p><b>Ejemplo (modelo):</b></p>
+      <div class="callout">
+        <b>Score general:</b> Riesgo Alto (exposición + activos críticos).<br>
+        <b>Top 3:</b> (1) Admin sin MFA → posible toma de control. (2) Enumeración de usuarios → ataques dirigidos. (3) Logs con datos sensibles → fuga silenciosa.<br>
+        <b>Decisión:</b> aplicar quick wins en 30 días (MFA, rate limit, hardening) y plan estructural en 90 días.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#ec407a;">
+  <h3 class="doc-title">C. Narrativa de riesgo (qué → so what → now what)</h3>
+  <p>Esta narrativa convierte un hallazgo técnico en una historia de riesgo defendible.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Qué (técnico)</th><th>So what (impacto)</th><th>Now what (acción)</th><th>Verificación</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Enumeración de usuarios en login</td>
+          <td>Aumenta probabilidad de fuerza bruta y phishing dirigido</td>
+          <td>Mensajes uniformes + rate limit + bloqueo progresivo</td>
+          <td>Prueba: respuestas idénticas + logs de throttling</td>
+        </tr>
+        <tr>
+          <td>Admin sin MFA</td>
+          <td>Compromiso de cuentas privilegiadas y control del sistema</td>
+          <td>Habilitar MFA + políticas + revisar sesiones</td>
+          <td>Login exige segundo factor + intento de bypass falla</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><b>Tip:</b> si “So what” no menciona pérdida (dinero/operación/datos/clientes), reescríbelo.</div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#26c6da;">
+  <h3 class="doc-title">D. Estimación de esfuerzo (sin inventar, pero útil)</h3>
+  <p>En borradores profesionales se estima el esfuerzo por rangos y dependencias, no por “horas exactas”.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Etiqueta</th><th>Rango</th><th>Qué significa</th><th>Ejemplos</th></tr></thead>
+      <tbody>
+        <tr><td><b>S</b></td><td>0.5–2 días</td><td>Cambio simple, bajo riesgo</td><td>Mensajes de error, rate limit</td></tr>
+        <tr><td><b>M</b></td><td>3–10 días</td><td>Config + validación + despliegue</td><td>Hardening, WAF rules, MFA rollout</td></tr>
+        <tr><td><b>L</b></td><td>2–6 semanas</td><td>Refactor o cambios estructurales</td><td>Segmentación, SDLC seguro, migración</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mini-code">Cómo justificar esfuerzo:
+- Riesgo del cambio (¿rompe producción?)
+- Dependencias (infra, dev, seguridad)
+- Pruebas (QA, regresión)
+- Ventanas de mantenimiento</div>
+</div>
+
+<div class="doc-card stagger">
+  <h3 class="doc-title">E. Controles compensatorios (cuando no puedes “arreglar ya”)</h3>
+  <p>Un control compensatorio reduce el riesgo mientras llega la corrección definitiva.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Hallazgo</th><th>Corrección definitiva</th><th>Compensatorio inmediato</th><th>Qué logra</th></tr></thead>
+      <tbody>
+        <tr><td>Servicio vulnerable expuesto</td><td>Parche / upgrade</td><td>Restricción por IP + WAF + monitoreo</td><td>Baja probabilidad de explotación</td></tr>
+        <tr><td>Contraseñas débiles</td><td>Política + MFA + rotación</td><td>Rate limit + alertas de intentos</td><td>Reduce fuerza bruta</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h2 class="section-title reveal">Lo que el docente evalúa “de verdad” (rúbrica mental)</h2>
+<p class="subnote reveal">Esto te ayuda a orientar el borrador hacia nota alta, sin rellenar por rellenar.</p>
+
+<div class="doc-card stagger" style="border-left-color:#ffa000;">
+  <h3 class="doc-title">Criterios típicos</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Criterio</th><th>Regular</th><th>Bien</th><th>Excelente</th></tr></thead>
+      <tbody>
+        <tr><td>Claridad</td><td>Jerga + confuso</td><td>Entendible con esfuerzo</td><td>Directivo lo entiende en 2 min</td></tr>
+        <tr><td>Priorización</td><td>Solo CVSS</td><td>CVSS + algo de contexto</td><td>P0–P3 con justificación sólida</td></tr>
+        <tr><td>Evidencia</td><td>Capturas sueltas</td><td>Pruebas con explicación</td><td>Reproducible + sanitizada + verificable</td></tr>
+        <tr><td>Mitigación</td><td>Genérica</td><td>Medianamente concreta</td><td>Qué/cómo/dónde/quién/verificar</td></tr>
+        <tr><td>Plan</td><td>Lista sin orden</td><td>30/60/90 simple</td><td>Quick wins vs estructural + dependencias</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h2 class="section-title reveal">FAQ rápido (para evitar errores típicos)</h2>
+<div class="qa">
+  <details>
+    <summary>¿Mi borrador debe tener “todas” las capturas?</summary>
+    <p class="subnote">No. Debe tener <b>evidencia mínima reproducible</b> por hallazgo (1–2 pruebas bien explicadas). El exceso de capturas sin explicación baja calidad percibida.</p>
+  </details>
+  <details>
+    <summary>¿Cómo sé si un hallazgo es P0 o P1?</summary>
+    <p class="subnote">Si permite <b>compromiso inmediato</b> de un activo crítico (toma de control, credenciales expuestas, datos sensibles) y tiene alta exposición, tiende a P0/P1. Si depende de muchas condiciones o no está expuesto, baja.</p>
+  </details>
+  <details>
+    <summary>¿Puedo usar CVSS sin calculadora?</summary>
+    <p class="subnote">Puedes usar aproximación razonada, pero debes incluir <b>vector base</b> y explicar por qué (AV/AC/PR/UI/S/C/I/A). Lo importante es la consistencia.</p>
+  </details>
+  <details>
+    <summary>¿Qué hago si no puedo corregir algo en el tiempo?</summary>
+    <p class="subnote">Plantea un <b>control compensatorio</b> inmediato + fecha tentativa para la corrección definitiva y el método de verificación (re-test).</p>
+  </details>
+</div>
+
+<div class="alert-box" style="margin-top: 26px;">
+  <strong>✅ Mini‑taller recomendado (30 minutos):</strong>
+  Reescribe tu resumen ejecutivo con “qué/so what/now what”, reordena la matriz con P0–P3, y agrega verificación (re-test) a tus Top 3.
+</div>
+
+<!-- ===================== FIN AMPLIACIÓN ULTRA PRO ===================== -->
+
+</div>
+</body>
+</html>

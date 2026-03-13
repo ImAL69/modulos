@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tema 2.4 — Documentación y Aseguramiento</title>
+<style>
+
+body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+        color: #37474f;
+        line-height: 1.8;
+      }
+      .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        border-top: 8px solid #1565c0;
+      }
+      .uni-logo {
+        position: absolute; top: 30px; right: 40px;
+        width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform .22s ease, box-shadow .22s ease;
+      }
+      .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+      .header-box {
+        text-align: left;
+        margin-bottom: 50px;
+        padding-top: 30px;
+        padding-right: 180px;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 20px;
+      }
+      .main-title {
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #1565c0;
+        margin: 0 0 10px 0;
+        letter-spacing: .2px;
+      }
+      .subtitle {
+        font-size: 1.12rem;
+        color: #546e7a;
+        border-left: 4px solid #1976d2;
+        padding-left: 15px;
+        margin: 0;
+      }
+      .concept-card {
+        background: #f5faff;
+        border: 1px solid #bbdefb;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        border-left: 6px solid #1565c0;
+        transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      }
+      .concept-card:hover {
+        transform: translateX(5px);
+        box-shadow: 0 10px 28px rgba(13,71,161,.10);
+        border-color: #90caf9;
+      }
+      .concept-title {
+        font-size: 1.25rem;
+        font-weight: 900;
+        color: #0d47a1;
+        margin-bottom: 10px;
+        display: block;
+      }
+      .pill-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+      .pill {
+        background:#ffffff;
+        border:1px solid #bbdefb;
+        color:#1565c0;
+        padding:6px 10px;
+        border-radius:999px;
+        font-size:0.86rem;
+        font-weight:800;
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+      }
+      .grid-2 {
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 18px;
+      }
+      .card-lite {
+        background:#ffffff;
+        border:1px solid #e0e0e0;
+        border-radius:12px;
+        padding:18px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        transition: transform .2s ease, box-shadow .2s ease;
+      }
+      .card-lite:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,0.08); }
+      .section-title {
+        margin-top: 45px;
+        color:#1565c0;
+        font-weight:900;
+        font-size:1.45rem;
+        text-align:center;
+      }
+      .subnote {
+        color:#546e7a;
+        font-size:1.05rem;
+        margin: 10px 0 0 0;
+        text-align:center;
+      }
+      details {
+        background: #f5faff;
+        margin-bottom: 18px;
+        border-radius: 12px;
+        border: 1px solid #bbdefb;
+        overflow: hidden;
+        transition: transform .18s ease;
+      }
+      details:hover { transform: translateY(-1px); }
+      summary {
+        padding: 18px 20px;
+        cursor: pointer;
+        font-weight: 900;
+        color: #1565c0;
+        display:flex;
+        align-items:center;
+        gap: 12px;
+        font-size: 1.05rem;
+        list-style:none;
+      }
+      summary::-webkit-details-marker { display:none; }
+      summary:hover { background:#e3f2fd; }
+      .details-content {
+        padding: 22px 22px;
+        background: #fff;
+        border-top: 1px solid #bbdefb;
+      }
+      .codebox {
+        background:#263238;
+        color:#eceff1;
+        padding:16px 16px;
+        border-radius:12px;
+        overflow:auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size:0.92rem;
+        line-height:1.6;
+        margin-top:10px;
+      }
+      .note {
+        background:#e8f5e9;
+        border:1px solid #a5d6a7;
+        border-left:6px solid #2e7d32;
+        padding:16px 18px;
+        border-radius:12px;
+        margin: 18px 0;
+        color:#1b5e20;
+        font-weight:800;
+      }
+      .warn {
+        background:#ffebee;
+        border:1px solid #ef9a9a;
+        border-left:6px solid #c62828;
+        padding:16px 18px;
+        border-radius:12px;
+        margin: 18px 0;
+        color:#b71c1c;
+        font-weight:900;
+      }
+      .tablewrap {
+        overflow-x:auto;
+        -webkit-overflow-scrolling: touch;
+        border:1px solid #e0e0e0;
+        border-radius: 12px;
+      }
+      table {
+        width:100%;
+        border-collapse: collapse;
+        min-width: 720px;
+        font-size: 0.95rem;
+      }
+      th {
+        background:#1565c0;
+        color:#fff;
+        padding: 12px 10px;
+        text-align:left;
+      }
+      td {
+        border-top:1px solid #eee;
+        padding: 12px 10px;
+        vertical-align: top;
+      }
+
+      /* CSS-only entrance animations (Q10 safe) */
+      .reveal { animation: fadeUp .55s ease both; }
+      .stagger > * { animation: fadeUp .55s ease both; }
+      .stagger > *:nth-child(2){animation-delay:.06s}
+      .stagger > *:nth-child(3){animation-delay:.12s}
+      .stagger > *:nth-child(4){animation-delay:.18s}
+      .stagger > *:nth-child(5){animation-delay:.24s}
+      @keyframes fadeUp { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)} }
+
+      @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+        .grid-2 { grid-template-columns: 1fr; }
+        table { min-width: 560px; }
+      }
+
+
+/* ===== Fix logo visible ===== */
+.uni-logo{ max-width:150px; width:150px; height:auto; object-fit:contain; background:#ffffff; border:1px solid #e3f2fd; }
+
+
+/* ===== Animaciones PRO (solo CSS, seguro) ===== */
+@keyframes fadeUp { from {opacity:0; transform: translateY(10px);} to {opacity:1; transform: translateY(0);} }
+@keyframes floaty { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-3px);} }
+.reveal { animation: fadeUp .55s ease both; }
+.stagger > * { animation: fadeUp .55s ease both; }
+.stagger > *:nth-child(2){ animation-delay:.06s }
+.stagger > *:nth-child(3){ animation-delay:.12s }
+.stagger > *:nth-child(4){ animation-delay:.18s }
+.stagger > *:nth-child(5){ animation-delay:.24s }
+.uni-logo { animation: floaty 3.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce){
+  .reveal, .stagger > * { animation:none; }
+  .uni-logo { animation:none; }
+}
+
+
+.doc-card{background:#f5faff;border:1px solid #bbdefb;padding:25px;border-radius:12px;margin:18px 0;border-left:6px solid #1565c0;transition:transform .2s ease, box-shadow .2s ease;}
+.doc-card:hover{transform:translateX(4px);box-shadow:0 10px 28px rgba(13,71,161,.10);border-color:#90caf9;}
+.doc-title{font-size:1.18rem;font-weight:900;color:#0d47a1;margin-bottom:8px;display:block;}
+.quote-box{background:#263238;color:#eceff1;padding:22px;border-radius:12px;margin:20px 0;border-left:6px solid #ffca28;font-weight:800;}
+.small{font-size:.95rem;color:#546e7a}
+
+
+/* Tema 2.4 extras */
+.section-title{margin-top:45px;color:#1565c0;font-weight:900;font-size:1.45rem;text-align:center}
+.subnote{color:#546e7a;font-size:1.05rem;margin:10px 0 0 0;text-align:center}
+.kpi{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 0}
+.kpi .pill{background:#fff;border:1px solid #bbdefb;color:#1565c0;padding:6px 10px;border-radius:999px;font-weight:900;font-size:.86rem}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #e0e0e0;border-radius:12px;margin:12px 0}
+table{width:100%;border-collapse:collapse;min-width:760px;font-size:.95rem}
+th{background:#1565c0;color:#fff;padding:12px 10px;text-align:left}
+td{border-top:1px solid #eee;padding:12px 10px;vertical-align:top}
+details{background:#f5faff;margin:14px 0;border-radius:12px;border:1px solid #bbdefb;overflow:hidden}
+summary{padding:16px 18px;cursor:pointer;font-weight:900;color:#1565c0;list-style:none}
+summary::-webkit-details-marker{display:none}
+.details-content{padding:18px;background:#fff;border-top:1px solid #bbdefb}
+
+
+</style>
+</head>
+<body>
+<div class="container-extended reveal">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Tema 2.4: Documentación y Aseguramiento</h1>
+<p>Si no está escrito, no sucedió: evidencia, trazabilidad y reportes profesionales.</p>
+</div>
+
+<div class="quote-box reveal">"El producto final de un pentest no es el acceso root, es el informe que permite tomar decisiones."</div>
+
+<div class="doc-card stagger">
+  <span class="doc-title">📝 1. Registro de evidencias en tiempo real (Pentest Log)</span>
+  <p>Documentar <b>mientras</b> haces el ejercicio evita pérdidas y te permite explicar tu proceso con precisión. Un log profesional incluye <b>contexto</b>, <b>acción</b>, <b>resultado</b> y <b>decisión</b>.</p>
+  <div class="mini-code">Entrada #__
+Fecha/Hora:
+Objetivo del bloque:
+Acción (comando/herramienta):
+Resultado (salida relevante):
+Interpretación (qué significa):
+Evidencia (archivo):
+Siguiente paso (por qué):</div>
+</div>
+
+<div class="doc-card stagger">
+  <span class="doc-title">🚨 2. Manejo de hallazgos críticos</span>
+  <p>Si detectas datos sensibles, bypass de autenticación o RCE, prioriza <b>reducir riesgo</b> y <b>notificar</b>. No exfiltrar masivamente ni automatizar sin control.</p>
+  <div class="tip-box">
+    <h3>Protocolo de escalamiento</h3>
+    <ul>
+      <li><b>Detén</b> acciones que amplíen impacto.</li>
+      <li><b>Evidencia mínima</b> y sanitizada.</li>
+      <li><b>Notifica</b>: qué es, severidad, evidencia, mitigación inmediata.</li>
+      <li><b>Registra</b>: hora, canal, responsable y respuesta.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="doc-card stagger">
+  <span class="doc-title">👥 3. Trabajo en equipo y trazabilidad</span>
+  <p>Define roles (Recon/Enum/Validación/Reporte) y centraliza evidencias con convención de nombres para evitar duplicación.</p>
+  <div class="checklist-box">
+    <h3>Checklist de coordinación</h3>
+    <ul>
+      <li>Roles y activos por integrante.</li>
+      <li>Formato único para reportar hallazgos.</li>
+      <li>Técnicas prohibidas (DoS, bruteforce masivo, escaneo fuera de alcance).</li>
+      <li>Responsable de consolidación final.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="doc-card stagger">
+  <span class="doc-title">✅ 4. Checklist mínimo de documentación</span>
+  <div class="checklist-box">
+    <h3>Antes / Durante / Después</h3>
+    <ul>
+      <li><b>Antes:</b> alcance, objetivo, entorno, herramientas, convención de evidencias.</li>
+      <li><b>Durante:</b> comandos + timestamps + resultados + evidencia por fase.</li>
+      <li><b>Después:</b> hallazgos priorizados + mitigación concreta + resumen ejecutivo.</li>
+      <li><b>Siempre:</b> sanitización y trazabilidad.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="doc-card stagger">
+  <span class="doc-title">🕶️ 5. Evidencia sanitizada</span>
+  <p>Sanitizar es <b>minimizar exposición</b> manteniendo verificabilidad: muestra lo suficiente para probar, sin exponer datos reutilizables.</p>
+  <div class="mini-code">ANTES: Authorization: Bearer eyJhbGciOi...
+DESPUÉS: Authorization: Bearer eyJhbGciOi... (truncado)
+Motivo: evita exposición de token reutilizable.</div>
+</div>
+
+<div class="doc-card stagger">
+  <span class="doc-title">📊 6. De hallazgo a prioridad (severidad práctica)</span>
+  <p>Usa matriz: <b>Probabilidad (1–5)</b> × <b>Impacto (1–5)</b>. Justifica en 2 líneas.</p>
+  <div class="mini-code">Riesgo = P × I
+16–25: inmediata (Crítica)
+9–15: Alta
+4–8: Media
+1–3: Baja</div>
+</div>
+
+<div class="doc-card stagger">
+  <span class="doc-title">🧱 7. Plantillas pro para armar el reporte</span>
+  <div class="mini-code">Tabla de hallazgos:
+| ID | Hallazgo | Evidencia | Impacto | Recomendación | Severidad |
+
+Detalle por hallazgo:
+Descripción / Evidencia / Impacto / Mitigación / Referencias (CVE/CWE)
+
+Plan de remediación:
+Acción / Responsable / Esfuerzo / Validación / Fecha objetivo</div>
+</div>
+
+<div class="tip-box stagger">
+  <h3>Salida profesional</h3>
+  <p><span class="badge">Resumen ejecutivo</span> 8–12 líneas, impacto y prioridades.</p>
+  <p><span class="badge">Reproducibilidad</span> pasos numerados + evidencia nítida.</p>
+  <p><span class="badge">Mitigación</span> qué cambiar + cómo verificar.</p>
+</div>
+
+
+
+<h2 class="section-title">Marco profesional para documentación en pentesting</h2>
+<p class="subnote">Cómo documentar para que tu trabajo sea defendible, repetible y útil para tomar decisiones.</p>
+
+<div class="doc-card stagger">
+  <span class="doc-title">🎯 Qué significa “documentación profesional” (en la práctica)</span>
+  <p>En nivel profesional no basta con “hacer el exploit”. Se evalúa si puedes <b>demostrar</b> lo que ocurrió, <b>explicar</b> por qué ocurrió, y <b>proponer</b> una mitigación concreta. Un informe profesional debe permitir que:</p>
+  <ul>
+    <li>Un técnico reproduzca el hallazgo con tus pasos (sin adivinar).</li>
+    <li>Un líder priorice acciones (impacto, probabilidad, esfuerzo).</li>
+    <li>Un auditor verifique evidencia sin exponer datos sensibles.</li>
+  </ul>
+  <div class="kpi"><span class="pill">Repetible</span><span class="pill">Trazable</span><span class="pill">Sanitizado</span><span class="pill">Accionable</span></div>
+</div>
+
+<div class="doc-card stagger">
+  <span class="doc-title">🧭 Reglas de oro (para subir de 3.5 a 5.0)</span>
+  <ol style="margin:0;padding-left:22px">
+    <li><b>Una evidencia por afirmación.</b> Si dices “soy root”, muestra <code>whoami</code>/<code>id</code> + contexto.</li>
+    <li><b>Menos es más.</b> Evidencia mínima, clara, con el fragmento relevante visible.</li>
+    <li><b>Mitigación específica.</b> “Actualizar” no sirve: qué paquete/servicio, qué config y cómo verificar.</li>
+    <li><b>Sanitiza siempre.</b> Tokens, contraseñas, PII e IDs completos no deben aparecer.</li>
+    <li><b>Prioriza.</b> Lo crítico arriba: Top 3 acciones con justificación.</li>
+  </ol>
+</div>
+
+<div class="doc-card stagger">
+  <span class="doc-title">📌 Plantilla de “Hallazgo perfecto” (lista para copiar)</span>
+  <div class="mini-code">ID: H-01
+Título: [Vulnerabilidad + activo]
+Severidad: [Crítica/Alta/Media/Baja] — Justificación: P x I
+Descripción: ¿Qué es y dónde ocurre?
+Evidencia: (captura/log) + comando + salida relevante (sanitizada)
+Impacto: ¿Qué puede lograr un atacante? (en el contexto del sistema)
+Reproducción: pasos numerados (3–7 pasos)
+Mitigación: qué cambiar + controles compensatorios
+Verificación: cómo comprobar que quedó corregido</div>
+  <p class="small">Tip: si tu reproducción cabe en 6 pasos y cualquiera la entiende, estás en nivel pro.</p>
+</div>
+
+<div class="doc-card stagger">
+  <span class="doc-title">🧱 Convención de evidencias (evita caos)</span>
+  <p>Define una convención para que tus evidencias se ordenen solas (y el profe encuentre todo).</p>
+  <div class="mini-code">YYYYMMDD_fase_activo_hallazgo_evidencia.ext
+Ej: 20260115_enum_ftp_vsftpd_shell.png
+Ej: 20260115_post_root_id.txt</div>
+  <div class="checklist-box">
+    <h3>Checklist de evidencia mínima</h3>
+    <ul>
+      <li>Se ve IP atacante e IP objetivo (o host del lab).</li>
+      <li>Comando completo y salida relevante.</li>
+      <li>Timestamp en log o nombre de archivo.</li>
+      <li>Sanitización aplicada (sin tokens/PII/credenciales completas).</li>
+    </ul>
+  </div>
+</div>
+
+<details class="reveal">
+  <summary>🕵️ Ejemplos de sanitización (qué ocultar y cómo)</summary>
+  <div class="details-content">
+    <div class="doc-card"><span class="doc-title">Tokens y cabeceras</span>
+      <div class="mini-code">ANTES: Authorization: Bearer eyJhbGciOi...
+DESPUÉS: Authorization: Bearer eyJhbGciOi... (truncado)
+Motivo: evita reutilización.</div>
+    </div>
+    <div class="doc-card"><span class="doc-title">Usuarios/Correos</span>
+      <div class="mini-code">ANTES: maria.perez@empresa.com
+DESPUÉS: m***@empresa.com
+Motivo: PII.</div>
+    </div>
+    <div class="doc-card"><span class="doc-title">Rutas/Archivos sensibles</span>
+      <div class="mini-code">ANTES: /backup/clientes_2025.csv
+DESPUÉS: /backup/[archivo_sensible].csv
+Motivo: reduce exposición sin perder contexto.</div>
+    </div>
+  </div>
+</details>
+
+<div class="doc-card stagger">
+  <span class="doc-title">📊 Matriz rápida: riesgo (P×I) + esfuerzo</span>
+  <p>Además de riesgo, un buen informe propone una ruta de corrección. Ejemplo de tabla para priorizar acciones.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Hallazgo</th><th>Prob.</th><th>Impacto</th><th>Riesgo</th><th>Esfuerzo</th><th>Acción recomendada</th></tr></thead>
+      <tbody>
+        <tr><td>Servicio vulnerable expuesto</td><td>4</td><td>4</td><td>16 (Crítica)</td><td>Medio</td><td>Parche + hardening + restricción firewall</td></tr>
+        <tr><td>Credenciales débiles</td><td>5</td><td>3</td><td>15 (Alta)</td><td>Bajo</td><td>Política + MFA + bloqueo por intentos</td></tr>
+        <tr><td>Banner / info de versión</td><td>3</td><td>2</td><td>6 (Media)</td><td>Bajo</td><td>Ocultar banners + headers + proxy</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">Llena esta tabla con tus hallazgos reales del lab. Si algo no aplica, explica por qué.</p>
+</div>
+
+<div class="tip-box stagger">
+  <h3>Checklist final (antes de exportar)</h3>
+  <ul>
+    <li>Resumen ejecutivo con impacto + prioridad + 3 acciones.</li>
+    <li>Cada hallazgo: evidencia + reproducción + mitigación + verificación.</li>
+    <li>Todo sanitizado (tokens/PII).</li>
+    <li>Tu proceso se entiende sin preguntarte.</li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

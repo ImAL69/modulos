@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Justificación: ¿Por qué Hacking Ético?</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #0d47a1;
+    }
+
+    .uni-logo {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        width: 150px;
+        height: auto;
+        z-index: 100;
+        padding: 5px;
+        background: #fff;
+        border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .uni-logo:hover { 
+        transform: translateY(-2px) scale(1.02); 
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .header-box {
+        text-align: left;
+        margin-bottom: 50px;
+        padding-top: 30px;
+        padding-right: 180px; 
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 20px;
+    }
+
+    .main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #0d47a1;
+        margin: 0 0 10px 0;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        color: #546e7a;
+        font-weight: 400;
+    }
+
+    .problem-card {
+        background: #e3f2fd;
+        border: 1px solid #90caf9;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        border-left: 6px solid #1565c0;
+        transition: transform 0.3s;
+    }
+    .problem-card:hover { transform: translateY(-5px); }
+
+    .problem-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: #0d47a1;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .solution-text {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #90caf9;
+        color: #1b5e20;
+        font-weight: 600;
+    }
+
+    .context-block {
+        background: #fafafa;
+        border-left: 5px solid #607d8b;
+        padding: 20px;
+        margin-top: 40px;
+        font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+    /* ====== GOD EXTENSIONS (contenido ampliado + animaciones suaves) ====== */
+    .god-section{ margin-top:34px; padding:26px; border-radius:16px; border:1px solid #e3f2fd; background: linear-gradient(180deg,#ffffff 0%, #f7fbff 100%); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .god-head{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:12px;}
+    .god-chip{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#0d47a1; color:#fff; font-weight:800; font-family:'Montserrat',sans-serif; font-size:0.9rem; }
+    .god-head h3{ margin:0; color:#0d47a1; font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.25rem; }
+    .god-lead{ margin: 0 0 14px 0; font-size:1.04rem; color:#37474f; }
+    .god-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin-top:14px; }
+    .god-card{ background:#fff; border:1px solid #bbdefb; border-radius:14px; padding:16px; transition: transform .18s ease, box-shadow .18s ease; }
+    .god-card:hover{ transform: translateY(-4px); box-shadow: 0 14px 28px rgba(13,71,161,0.12); border-color:#1565c0; }
+    .god-card h4{ margin:0 0 6px 0; color:#0d47a1; font-family:'Montserrat',sans-serif; font-weight:800; }
+    .god-note{ margin:12px 0 0 0; color:#607d8b; }
+    .god-callout{ margin-top:14px; padding:14px 16px; border-radius:14px; background:#e3f2fd; border-left:6px solid #1565c0; }
+    .god-check{ list-style:none; padding:0; margin: 10px 0 0 0; }
+    .god-check li{ display:flex; align-items:flex-start; gap:10px; padding:10px 10px; border-radius:12px; background:#fff; border:1px dashed #bbdefb; margin-bottom:10px; }
+    .god-check input{ transform: translateY(4px) scale(1.05); }
+    .god-steps{ margin:10px 0 0 18px; }
+    .god-bullets{ margin:10px 0 0 18px; }
+    .god-links{ list-style:none; padding:0; margin: 10px 0 0 0; }
+    .god-links li{ display:flex; gap:10px; align-items:center; padding:10px 12px; border-radius:12px; background:#fff; border:1px solid #e3f2fd; margin-bottom:10px; }
+    .tag{ display:inline-flex; padding:4px 10px; border-radius:999px; background:#0d47a1; color:#fff; font-weight:800; font-size:0.82rem; }
+    .god-timeline{ margin-top:10px; border-left:3px solid #bbdefb; padding-left:16px;}
+    .tl-item{ display:flex; gap:12px; margin:14px 0;}
+    .tl-dot{ width:12px; height:12px; border-radius:50%; background:#0d47a1; margin-top:6px; flex:0 0 auto;}
+    /* entrance animation */
+    @media (prefers-reduced-motion: no-preference){
+        .container-extended{ animation: godFadeUp .55s ease both; }
+        .god-section{ animation: godFadeUp .55s ease both; }
+        @keyframes godFadeUp{ from{ opacity:0; transform: translateY(10px);} to{ opacity:1; transform: translateY(0);} }
+    }
+    
+
+/* ===== GOD+ Animations & UX (no rompe estructura) ===== */
+[data-reveal]{ opacity:0; transform: translateY(10px); transition: opacity .55s ease, transform .55s ease; }
+[data-reveal].is-visible{ opacity:1; transform: translateY(0); }
+
+.god-mini-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-top:12px; }
+.god-pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid #bbdefb; background:#fff; font-weight:800; color:#0d47a1; font-size:.92rem; }
+.god-kpi{ background:#ffffff; border:1px solid #e3f2fd; border-radius:14px; padding:14px; }
+.god-kpi strong{ font-family:'Montserrat',sans-serif; color:#0d47a1; font-weight:900; font-size:1.05rem; }
+.god-kpi span{ display:block; color:#546e7a; margin-top:6px; }
+.god-code{ background:#0b1b2b; color:#e3f2fd; padding:14px 16px; border-radius:14px; overflow:auto; border:1px solid rgba(187,222,251,.35); box-shadow: 0 10px 26px rgba(0,0,0,.10); }
+.god-code code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:.92rem; line-height:1.55; }
+.god-faq details{ background:#fff; border:1px solid #bbdefb; border-radius:14px; margin:10px 0; overflow:hidden; }
+.god-faq summary{ padding:14px 16px; cursor:pointer; font-weight:900; color:#1565c0; font-family:'Montserrat',sans-serif; }
+.god-faq .details-content{ padding:16px; border-top:1px solid #e3f2fd; }
+.god-progress{ height:10px; border-radius:999px; background:#e3f2fd; overflow:hidden; border:1px solid #bbdefb; }
+.god-progress > div{ height:100%; width:0%; background:#1565c0; transition: width .7s ease; }
+
+@media (prefers-reduced-motion: reduce){
+  [data-reveal]{ opacity:1; transform:none; transition:none; }
+}
+
+</style>
+</head>
+<body>
+<div class="container-extended">
+<img alt="Logo FET" class="uni-logo" src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&amp;st=8gcmg5vx&amp;raw=1"/>
+<div class="header-box">
+<h1 class="main-title">Justificación del Módulo</h1>
+<span class="subtitle">La necesidad crítica de la seguridad ofensiva</span>
+</div>
+<div class="content-block">
+<p>Históricamente, la seguridad informática se centraba en "construir muros más altos" (Firewalls, Antivirus). Sin embargo, la sofisticación de los ataques modernos (Ransomware, APTs, Ingeniería Social) ha demostrado que los muros no son suficientes. Las empresas necesitan validar si sus defensas realmente funcionan.</p>
+<div class="problem-card">
+<span class="problem-title"><i class="fa-solid fa-eye-slash"></i> 1. El Mito de la "Seguridad por Oscuridad"</span>
+<p>Muchas organizaciones creen que si nadie conoce su IP o arquitectura, están seguras. Esto es falso. Bots automatizados escanean todo el rango IPv4 de Internet múltiples veces al día. Si tienes un puerto abierto, un atacante lo encontrará en minutos. <strong>Riesgo:</strong> Exposición no detectada de servicios críticos (RDP, bases de datos).</p>
+<div class="solution-text">
+<i class="fa-solid fa-check"></i> <strong>Solución:</strong> Realizar <strong>Reconocimiento Activo (OSINT)</strong> para ver nuestra organización con los ojos del atacante y cerrar brechas antes de que sean explotadas.
+            </div>
+</div>
+<div class="problem-card">
+<span class="problem-title"><i class="fa-solid fa-file-contract"></i> 2. Cumplimiento Normativo (Compliance)</span>
+<p>Normativas internacionales como <strong>ISO 27001, PCI-DSS (Tarjetas de crédito), HIPAA (Salud) y GDPR</strong> exigen explícitamente la realización de pruebas de penetración (pentesting) periódicas. No hacerlo implica multas millonarias y la imposibilidad de operar en ciertos mercados.</p>
+<div class="solution-text">
+<i class="fa-solid fa-check"></i> <strong>Solución:</strong> Aprender a documentar hallazgos técnicos en un <strong>Informe Ejecutivo de Auditoría</strong> que cumpla con los estándares legales y de compliance.
+            </div>
+</div>
+<div class="problem-card">
+<span class="problem-title"><i class="fa-solid fa-bug"></i> 3. Vulnerabilidades de Lógica de Negocio</span>
+<p>Un escáner automático (como Nessus) puede detectar un parche faltante, pero no puede detectar un error lógico (ej: un carrito de compras que acepta valores negativos, permitiendo al atacante ganar dinero). Solo un humano puede encontrar estos fallos.</p>
+<div class="solution-text">
+<i class="fa-solid fa-check"></i> <strong>Solución:</strong> Desarrollar la mentalidad analítica del pentester para encontrar fallos que las herramientas automáticas ignoran.
+            </div>
+</div>
+<div class="context-block">
+<strong>💡 Dato Real:</strong> Según el informe de IBM, el costo promedio de una brecha de datos en 2023 fue de 4.45 millones de dólares. El pentesting es una inversión minúscula comparada con el costo de recuperación ante un desastre.
+        </div>
+</div><div class="god-section" data-reveal="">
+<div class="god-head"><span class="god-chip">🔗 Recursos</span><h3>Progreso del módulo (checklists centralizados)</h3></div>
+<div class="god-callout">
+    El <strong>Checklist Hub</strong> vive en un solo archivo para no duplicar estados:
+    <a href="3)Guia_Aprendizaje.html#checklists-hub"><strong>3)Guia_Aprendizaje.html → #checklists-hub</strong></a>.
+  </div>
+</div>
+<div class="content-block" style="margin-top:40px;">
+<h2 style="color:#0d47a1; font-family:'Montserrat', sans-serif;">🔍 Escaneo vs Pentest (diferencia que cambia todo)</h2>
+<div class="problem-card" style="border-left-color:#2e7d32;">
+<span class="problem-title" style="color:#1b5e20;"><i class="fa-solid fa-magnifying-glass"></i> Escaneo automatizado</span>
+<p>Un escaneo identifica posibles vulnerabilidades basándose en firmas, versiones y patrones. Es rápido, útil y necesario, pero genera <strong>falsos positivos</strong> y no siempre demuestra impacto real.</p>
+<div class="solution-text" style="color:#1b5e20;">
+<i class="fa-solid fa-check"></i> Resultado típico: “podría ser vulnerable a X”.
+            </div>
+</div>
+<div class="problem-card" style="border-left-color:#6a1b9a;">
+<span class="problem-title"><i class="fa-solid fa-user-secret"></i> Pentest (prueba de penetración)</span>
+<p>Un pentest valida, explota de forma controlada y traduce hallazgos a riesgo. No basta con detectar: se debe demostrar <strong>qué puede lograr un atacante</strong> y cómo mitigarlo.</p>
+<div class="solution-text">
+<i class="fa-solid fa-check"></i> Resultado típico: “se explotó X con evidencia, impacto y recomendación”.
+            </div>
+</div>
+</div>
+<div class="content-block">
+<div class="problem-card">
+<span class="problem-title"><i class="fa-solid fa-shield-halved"></i> 4. Configuraciones débiles (el enemigo silencioso)</span>
+<p>Muchas brechas no son “zero‑days”: son configuraciones incorrectas (puertos expuestos, credenciales por defecto, permisos excesivos, paneles administrativos sin restricción). Suelen pasar años en producción porque “todo funciona”.</p>
+<div class="solution-text">
+<i class="fa-solid fa-check"></i> <strong>Solución:</strong> Aplicar hardening, mínimo privilegio y validación periódica de exposición externa (superficie de ataque).
+            </div>
+</div>
+<div class="problem-card">
+<span class="problem-title"><i class="fa-solid fa-people-arrows"></i> 5. Factor humano e ingeniería social</span>
+<p>Las organizaciones pueden tener buena tecnología, pero fallar por procesos: contraseñas recicladas, falta de MFA, permisos heredados, links maliciosos y ausencia de cultura de reporte.</p>
+<div class="solution-text">
+<i class="fa-solid fa-check"></i> <strong>Solución:</strong> Simulaciones controladas, capacitación y controles (MFA, políticas de acceso, monitoreo, respuesta a incidentes).
+            </div>
+</div>
+<div class="context-block">
+<strong>📌 Resultado que buscamos:</strong> convertir seguridad en algo verificable. No “creemos” que estamos seguros; lo <em>probamos</em>, medimos y corregimos.
+        </div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">📌 En contexto</span><h3>¿Qué problema real resuelve el pentesting?</h3></div>
+<p class="god-lead">El pentesting reduce la probabilidad de incidentes graves al descubrir fallas antes del atacante. Pero su valor se maximiza cuando se integra a <strong>gestión de riesgos</strong>, <strong>cumplimiento</strong> y <strong>mejora continua</strong>.</p>
+<div class="god-grid">
+<div class="god-card"><h4>Riesgo</h4><p>Prioriza lo que más duele: datos, continuidad, reputación, sanciones.</p></div>
+<div class="god-card"><h4>Compliance</h4><p>Demuestra diligencia: pruebas periódicas, evidencias y remediación.</p></div>
+<div class="god-card"><h4>Aprendizaje</h4><p>Los hallazgos alimentan hardening, capacitación y monitoreo.</p></div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">💡 Idea clave</span><h3>Lo esencial que no puedes olvidar</h3></div>
+<p class="god-lead">En hacking ético y auditorías, el valor no está en “hacer ruido”, sino en <strong>reducir incertidumbre</strong>: demostrar con evidencia qué puede pasar, cuánto duele y qué lo evita.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4>1) Evidencia</h4>
+<p>Todo hallazgo debe tener <strong>prueba reproducible</strong>: comando, captura, log, timestamp y contexto del activo.</p>
+</div>
+<div class="god-card">
+<h4>2) Riesgo</h4>
+<p>Conecta lo técnico con impacto: <strong>confidencialidad</strong>, <strong>integridad</strong>, <strong>disponibilidad</strong> y continuidad.</p>
+</div>
+<div class="god-card">
+<h4>3) Remediación</h4>
+<p>Propón controles y plazos. Un informe sin plan de acción es solo “miedo” con formato bonito.</p>
+</div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">🎯 Mini‑reto</span><h3>10–15 minutos para “subir de nivel”</h3></div>
+<ol class="god-steps">
+<li>Elige un activo de ejemplo (servidor web, base de datos, endpoint).</li>
+<li>Escribe 3 riesgos: <em>amenaza + vulnerabilidad + impacto</em>.</li>
+<li>Define 1 KPI por riesgo (ej. MTTD, MTTR, Patch SLA, phishing rate).</li>
+<li>Redacta una recomendación en formato: <strong>Acción → Responsable → Fecha → Evidencia</strong>.</li>
+</ol>
+<div class="god-callout">
+<strong>Entrega rápida:</strong> 1 tabla (riesgo / evidencia / KPI / decisión) y un párrafo ejecutivo.
+  </div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">⚠️ Errores comunes</span><h3>Lo que más hace perder puntos</h3></div>
+<div class="god-grid">
+<div class="god-card">
+<h4>“Herramientitis”</h4>
+<p>Usar 10 herramientas sin entender resultados. Prioriza: <strong>pregunta → técnica → evidencia</strong>.</p>
+</div>
+<div class="god-card">
+<h4>Hallazgos sin validar</h4>
+<p>No confirmas falsos positivos. Si no lo validas, no es hallazgo: es sospecha.</p>
+</div>
+<div class="god-card">
+<h4>Reporte “sin negocio”</h4>
+<p>Mucho tecnicismo y cero impacto. Los directivos deciden con <strong>riesgo, costo y tiempo</strong>.</p>
+</div>
+</div>
+</div>
+<div class="god-section">
+<div class="god-head"><span class="god-chip">📚 Recursos</span><h3>Para reforzar (sin perderte)</h3></div>
+<ul class="god-links">
+<li><span class="tag">Concepto</span> Tríada CIA, CVE, CVSS, superficie de ataque, riesgo residual.</li>
+<li><span class="tag">Práctica</span> Nmap básico → servicios → versión → scripts NSE (con ética).</li>
+<li><span class="tag">Reporte</span> Estructura: resumen ejecutivo, metodología, hallazgos, evidencia, remediación.</li>
+</ul>
+</div>
+<script>
+(() => {
+  // Reveal on scroll
+  const els = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('is-visible');
+        const bar = e.target.querySelector('.god-progress > div');
+        if(bar && !bar.dataset.filled){
+          bar.dataset.filled = '1';
+          bar.style.width = bar.getAttribute('data-pct') || '85%';
+        }
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+
+  // Persist checklist
+  document.querySelectorAll('[data-checklist]').forEach((ul, idx) => {
+    const key = 'godChecklist:' + location.pathname + ':' + idx;
+    const boxes = ul.querySelectorAll('input[type="checkbox"]');
+    try{
+      const saved = JSON.parse(localStorage.getItem(key) || '[]');
+      boxes.forEach((b,i)=> b.checked = !!saved[i]);
+    }catch(e){}
+    boxes.forEach((b,i)=>{
+      b.addEventListener('change', () => {
+        const arr = Array.from(boxes).map(x => x.checked);
+        localStorage.setItem(key, JSON.stringify(arr));
+      });
+    });
+  });
+})();
+</script>
+<!-- GOD-PLUS START: Justificación -->
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Problema real</span>
+<h3>¿Por qué el Hacking Ético es crítico hoy?</h3>
+</div>
+<p class="god-lead">La seguridad ya no es ‘un lujo’: es un requisito operativo. Las organizaciones dependen de software, nube y datos; un fallo puede detener operaciones, afectar reputación y generar sanciones. El hacking ético permite **medir el riesgo antes de que lo mida un atacante**.</p>
+<div class="god-grid">
+<div class="god-card">
+<h4><i class="fa-solid fa-chart-line"></i> Crecimiento del ataque</h4>
+<p>Más digitalización = más superficie. APIs, integraciones, móviles, IoT y trabajo remoto aumentan puntos de entrada y complejidad.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-person-circle-exclamation"></i> Errores humanos</h4>
+<p>Phishing, contraseñas reutilizadas, permisos excesivos, compartir archivos sin control. La tecnología sola no resuelve procesos débiles.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-link"></i> Dependencias y cadena de suministro</h4>
+<p>Librerías, contenedores y terceros. Un paquete vulnerable puede abrir la puerta. La defensa moderna incluye inventario y revisión.</p>
+</div>
+<div class="god-card">
+<h4><i class="fa-solid fa-robot"></i> Automatización del atacante</h4>
+<p>Los atacantes automatizan escaneo y explotación. Defender exige automatizar detección, parches y respuesta tanto como sea posible.</p>
+</div>
+</div>
+<div class="god-callout">
+<strong>Idea clave:</strong> el hacking ético no es ‘hackear por hackear’. Es una forma estructurada de <em>evaluar, priorizar y mejorar</em> controles.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Metodología</span>
+<h3>De ‘encontrar fallas’ a ‘reducir riesgo’: cómo se hace bien</h3>
+</div>
+<p class="god-lead">Una evaluación profesional sigue fases y produce evidencias claras. La calidad se nota en el reporte: hallazgos reproducibles, impacto, priorización y remediación.</p>
+<div class="god-timeline">
+<div class="tl-item">
+<span class="tl-dot"></span>
+<div><strong>1) Alcance y reglas</strong><br/><span style="color:#546e7a">Qué se puede probar, qué no, ventanas horarias, permisos, contactos de emergencia y límites legales.</span></div>
+</div>
+<div class="tl-item">
+<span class="tl-dot"></span>
+<div><strong>2) Reconocimiento</strong><br/><span style="color:#546e7a">Mapear superficie: dominios, IPs, tecnologías, endpoints, roles y flujos. Sin tocar de más.</span></div>
+</div>
+<div class="tl-item">
+<span class="tl-dot"></span>
+<div><strong>3) Enumeración y pruebas</strong><br/><span style="color:#546e7a">Validar hipótesis: configuración, autenticación, autorización, input validation, exposición de datos, cifrado.</span></div>
+</div>
+<div class="tl-item">
+<span class="tl-dot"></span>
+<div><strong>4) Explotación controlada</strong><br/><span style="color:#546e7a">Demostrar impacto con el mínimo daño. Capturar evidencia (capturas, logs, POC).</span></div>
+</div>
+<div class="tl-item">
+<span class="tl-dot"></span>
+<div><strong>5) Reporte y remediación</strong><br/><span style="color:#546e7a">Riesgo, severidad, pasos, fix recomendado, verificación. Cerrar el ciclo.</span></div>
+</div>
+</div>
+<div class="god-callout">
+  La diferencia entre ‘amateur’ y ‘profesional’ está en el <strong>control</strong>: alcance claro, mínima intrusión, evidencia sólida y remediación verificable.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Valor para tu carrera</span>
+<h3>Lo que esta disciplina te da (aunque no seas pentester)</h3>
+</div>
+<p class="god-lead">Incluso si terminas en desarrollo, datos o redes, entender hacking ético te vuelve un profesional más completo.</p>
+<ul class="god-bullets">
+<li><strong>Desarrollo seguro:</strong> escribir código que resista ataques (validación, authz, manejo de secretos, logs).</li>
+<li><strong>Arquitectura:</strong> diseñar sistemas con segmentación, control de acceso y fallos tolerables.</li>
+<li><strong>Operación:</strong> monitorear y responder sin apagar la empresa (IR pragmática).</li>
+<li><strong>Comunicación:</strong> explicar riesgo a negocio: impacto, costo, probabilidad, mitigación.</li>
+<li><strong>Ética:</strong> actuar con responsabilidad, consentimiento y confidencialidad.</li>
+</ul>
+<div class="god-callout">
+<strong>Mini‑proyecto recomendado:</strong> crea un reporte tipo consultoría (1–2 páginas) sobre una app demo: 5 hallazgos, evidencia y plan de mejora.
+</div>
+</section>
+<section class="god-section" data-reveal="">
+<div class="god-head">
+<span class="god-chip"><i class="fa-solid fa-bolt"></i> Checklist de seguridad</span>
+<h3>10 preguntas que un ingeniero serio se hace antes de desplegar algo</h3>
+</div>
+<p class="god-lead">Úsalas como filtro rápido para casi cualquier sistema (web, API, app, red).</p>
+
+</section>
+<!-- GOD-PLUS END: Justificación -->
+<div class="god-section" data-reveal="">
+<div class="god-head"><span class="god-chip">💼 Impacto</span><h3>Por qué el pentesting importa (en lenguaje de negocio)</h3></div>
+<p class="god-lead">Las organizaciones no pierden por “tener una vulnerabilidad”, pierden por el <strong>impacto</strong>: indisponibilidad, fuga de datos, fraude, sanciones, reputación y costo operativo.</p><p>Un pentest bien hecho reduce incertidumbre: muestra qué rutas de ataque son reales y cuáles son ruido.</p>
+<ul class="god-bullets"><li>Riesgo = probabilidad × impacto (y el impacto no siempre es solo dinero).</li><li>Un hallazgo sin evidencia es una <em>hipótesis</em>, no una conclusión.</li><li>Remediar primero lo crítico ahorra tiempo: priorización basada en contexto.</li></ul>
+<div class="god-callout"><strong>🎯 Mini‑reto:</strong> Escribe 3 impactos distintos para una misma falla (técnico, operativo, reputacional).</div>
+</div>
+<div class="god-section" data-reveal="">
+<div class="god-head"><span class="god-chip">🔎 Criterio</span><h3>Falsos positivos, ruido y cómo evitarlos</h3></div>
+<p class="god-lead">Escáneres y listas de CVE sirven, pero el valor está en <strong>validar</strong>. Un ‘match’ de versión no siempre es explotable en tu contexto.</p><p>Tu trabajo como auditor es separar señal de ruido con pruebas reproducibles.</p>
+<ul class="god-bullets"><li>Valida con banners, configuración real y comportamiento del servicio.</li><li>Documenta condiciones: autenticación, roles, endpoint exacto, parámetros.</li><li>Si no puedes validar, clasifica como ‘observación’ y explica por qué.</li></ul>
+</div>
+</body>
+</html>

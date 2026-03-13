@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 3.3: Estrategias de Mitigación</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: visible;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .strat-list { list-style: none; padding: 0; }
+    .strat-item {
+        background: #f5faff; border: 1px solid #bbdefb; padding: 20px; margin-bottom: 20px; border-radius: 12px; display: flex; gap: 20px; align-items: start; transition: transform 0.2s;
+    }
+    .strat-item:hover { transform: translateX(5px); border-left: 5px solid #1565c0; }
+    
+    .icon-box {
+        background: #1565c0; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    }
+
+    .strat-content h3 { margin: 0 0 5px 0; color: #0d47a1; font-family: 'Montserrat', sans-serif; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+
+
+/* AMPLIACION_PRO */
+
+/* ===== Animaciones GOD (Q10-safe) ===== */
+@keyframes fadeUp { from { opacity:0; transform: translateY(12px);} to { opacity:1; transform: translateY(0);} }
+@keyframes floaty { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-6px);} }
+@keyframes glowPulse { 0%,100%{ box-shadow:0 10px 40px rgba(0,0,0,0.08);} 50%{ box-shadow:0 16px 56px rgba(21,101,192,0.18);} }
+.reveal{ animation: fadeUp .6s ease both; }
+.stagger > *{ animation: fadeUp .6s ease both; }
+.stagger > *:nth-child(2){ animation-delay:.06s }
+.stagger > *:nth-child(3){ animation-delay:.12s }
+.stagger > *:nth-child(4){ animation-delay:.18s }
+.stagger > *:nth-child(5){ animation-delay:.24s }
+.stagger > *:nth-child(6){ animation-delay:.30s }
+.container-extended{ animation: glowPulse 4.2s ease-in-out infinite; }
+.uni-logo{ animation: floaty 3.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce){ .reveal,.stagger > *,.container-extended,.uni-logo{ animation:none !important; } }
+
+/* ===== Q10 SAFE (no recortar) ===== */
+html, body { height:auto !important; overflow:auto !important; }
+.container-extended{ height:auto !important; max-height:none !important; overflow:visible !important; }
+
+/* ===== Componentes PRO ===== */
+.section-title{margin-top:34px;color:#1565c0;font-weight:900;font-size:1.55rem;font-family:'Montserrat',sans-serif}
+.subnote{color:#546e7a;margin:-6px 0 16px}
+.doc-card{background:#f5faff;border:1px solid #bbdefb;padding:22px;border-radius:12px;margin:18px 0;border-left:6px solid #1565c0;transition:transform .2s}
+.doc-card:hover{transform:translateY(-2px)}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.pill{background:#fff;border:1px solid #bbdefb;color:#1565c0;padding:6px 10px;border-radius:999px;font-weight:900;font-size:.86rem}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #e0e0e0;border-radius:12px;margin:12px 0}
+.tablewrap table{width:100%;border-collapse:collapse;min-width:920px}
+.tablewrap th{background:#1565c0;color:#fff;padding:12px 10px;text-align:left}
+.tablewrap td{border-top:1px solid #eee;padding:12px 10px;vertical-align:top}
+.callout{background:#fff3e0;border:1px solid #ffe0b2;border-left:6px solid #fb8c00;padding:16px;border-radius:12px;margin:14px 0;color:#5d4037}
+.mini-code{background:#0b1020;color:#e6edf3;padding:14px;border-radius:10px;border:1px solid #1f2a44;font-family:'Courier New',monospace;font-size:.95rem;overflow:auto}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+
+
+
+/* AMPLIACION_PRO_ULTRA */
+
+/* ===== ULTRA components (sin romper estética) ===== */
+.pro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:14px}
+.pro-tile{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:16px;transition:transform .2s}
+.pro-tile:hover{transform:translateY(-3px)}
+.pro-tile h4{margin:0 0 8px 0;color:#0d47a1;font-family:'Montserrat',sans-serif}
+kbd.tag{display:inline-block;background:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;padding:3px 8px;border-radius:999px;font-weight:900;font-size:.78rem;margin-right:6px}
+.stepper{counter-reset:step;margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.stepper li{background:#f5faff;border:1px solid #bbdefb;border-radius:12px;padding:14px 14px 14px 56px;position:relative}
+.stepper li::before{counter-increment:step;content:counter(step);position:absolute;left:14px;top:14px;width:32px;height:32px;border-radius:50%;background:#1565c0;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}
+.details-pro{margin-top:14px}
+.details-pro details{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:12px 14px;margin:10px 0}
+.details-pro summary{cursor:pointer;font-weight:900;color:#1565c0}
+hr.soft{border:none;border-top:1px solid #e0e0e0;margin:26px 0}
+
+</style>
+</head>
+<body style="margin:0;padding:0;background:#f0f2f5;">
+
+<style>
+/* Q10 INLINEFIX: overrides mínimos para evitar recortes */
+html,body{height:100% !important;max-height:none !important;}
+body{overflow:visible !important;}
+.container-extended{height:auto !important;max-height:none !important;overflow:visible !important;}
+.tablewrap{overflow:auto !important;}
+.mini-code{overflow:auto !important;}
+</style>
+
+<div id="q10-inline-scroll" style="height:100vh;max-height:100vh;overflow:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:18px;box-sizing:border-box;">
+
+
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Tema 3.3: Estrategias de Mitigación</h1>
+        <p>Soluciones técnicas para cerrar las brechas encontradas.</p>
+    </div>
+
+    <p style="margin-bottom: 30px; font-size: 1.1rem;">
+        No basta con decir "arréglalo". Debes decir <strong>cómo</strong>. Existen cuatro estrategias principales para mitigar riesgos técnicos:
+    </p>
+
+    <ul class="strat-list">
+        <li class="strat-item">
+            <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="strat-content">
+                <h3>1. Hardening (Endurecimiento)</h3>
+                <p>Configurar el sistema para ser seguro por defecto. Cerrar puertos innecesarios, deshabilitar servicios no usados, eliminar usuarios "guest" y aplicar políticas de contraseñas robustas.</p>
+            </div>
+        </li>
+
+        <li class="strat-item">
+            <div class="icon-box"><i class="fa-solid fa-bandage"></i></div>
+            <div class="strat-content">
+                <h3>2. Gestión de Parches (Patch Management)</h3>
+                <p>La cura definitiva para vulnerabilidades de software (CVEs). Implica actualizar sistemas operativos, frameworks y librerías de terceros a sus versiones seguras más recientes.</p>
+            </div>
+        </li>
+
+        <li class="strat-item">
+            <div class="icon-box"><i class="fa-solid fa-network-wired"></i></div>
+            <div class="strat-content">
+                <h3>3. Segmentación de Red</h3>
+                <p>Evitar el movimiento lateral. Si un atacante compromete el servidor web en la DMZ, no debería poder saltar directamente a la base de datos interna. Usar VLANs y Firewalls internos.</p>
+            </div>
+        </li>
+
+        <li class="strat-item">
+            <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
+            <div class="strat-content">
+                <h3>4. Controles Compensatorios</h3>
+                <p>Cuando no se puede parchear (ej. sistema legado crítico), se añade una capa extra de defensa, como un WAF (Web Application Firewall) o monitoreo intensivo.</p>
+            </div>
+        </li>
+    </ul>
+
+
+
+    <div style="margin-top:35px; padding:22px 24px; background:#fff3e0; border:1px solid #ffe0b2; border-radius:12px;">
+        <h2 style="margin:0 0 10px 0; color:#e65100; font-family:'Montserrat',sans-serif; font-size:1.35rem;">
+            <i class="fa-solid fa-bullseye"></i> Cómo elegir la estrategia correcta (guía rápida)
+        </h2>
+        <p style="margin:0 0 12px 0;">
+            En un reporte profesional no basta con “recomendar”. Debes proponer una acción <strong>realista</strong>, alineada al riesgo y al contexto del activo
+            (criticidad, ventana de mantenimiento, equipo responsable y restricciones).
+        </p>
+        <ul style="margin:0 0 0 18px; color:#5d4037;">
+            <li><strong>Si el riesgo es crítico y explotable remotamente:</strong> prioriza <em>parche + hardening</em> (y un control compensatorio temporal).</li>
+            <li><strong>Si el sistema es legado y no se puede actualizar:</strong> usa <em>controles compensatorios</em> (WAF/IPS, segmentación, allowlist, monitoreo).</li>
+            <li><strong>Si el fallo es de configuración:</strong> aplica <em>hardening</em> (baseline CIS, cierre de puertos, TLS seguro, deshabilitar features).</li>
+            <li><strong>Si el problema es “movimiento lateral”:</strong> segmentación, MFA, y separación de privilegios.</li>
+        </ul>
+    </div>
+
+    <div style="margin-top:22px; padding:24px; background:#f5faff; border:1px solid #bbdefb; border-radius:12px;">
+        <h2 style="margin:0 0 12px 0; color:#0d47a1; font-family:'Montserrat',sans-serif; font-size:1.35rem;">
+            <i class="fa-solid fa-screwdriver-wrench"></i> Ejemplos de mitigación (listo para copiar al informe)
+        </h2>
+        <p style="margin:0 0 14px 0;">Usa estas frases como base y ajusta con tu evidencia (servicio, versión, ruta, host y fecha):</p>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:14px;">
+            <div style="background:#fff; border:1px solid #e0e0e0; border-radius:10px; padding:14px;">
+                <strong>Hardening</strong>
+                <p style="margin:8px 0 0 0; color:#455a64;">
+                    “Deshabilitar servicios no utilizados y cerrar puertos expuestos. Implementar política de contraseñas y eliminar cuentas por defecto.
+                    Aplicar baseline de configuración segura y verificar con revisión posterior.”
+                </p>
+            </div>
+            <div style="background:#fff; border:1px solid #e0e0e0; border-radius:10px; padding:14px;">
+                <strong>Patch Management</strong>
+                <p style="margin:8px 0 0 0; color:#455a64;">
+                    “Actualizar el componente afectado a una versión corregida según el aviso del proveedor. Validar dependencias y realizar pruebas en staging.
+                    Registrar cambio en control de versiones y programar retest.”
+                </p>
+            </div>
+            <div style="background:#fff; border:1px solid #e0e0e0; border-radius:10px; padding:14px;">
+                <strong>Segmentación</strong>
+                <p style="margin:8px 0 0 0; color:#455a64;">
+                    “Separar la capa web de la base de datos en redes distintas. Limitar el tráfico solo a puertos necesarios mediante reglas de firewall internas.
+                    Implementar allowlist y monitorear accesos.”
+                </p>
+            </div>
+            <div style="background:#fff; border:1px solid #e0e0e0; border-radius:10px; padding:14px;">
+                <strong>Controles compensatorios</strong>
+                <p style="margin:8px 0 0 0; color:#455a64;">
+                    “Implementar WAF/IPS con reglas para el patrón explotable. Aumentar logging y alertas, y restringir el acceso por IP/rol.
+                    Mantener como medida temporal mientras se planifica el reemplazo/actualización.”
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top:22px; padding:24px; background:#e8f5e9; border:1px dashed #2e7d32; border-radius:12px;">
+        <h2 style="margin:0 0 10px 0; color:#1b5e20; font-family:'Montserrat',sans-serif; font-size:1.35rem;">
+            <i class="fa-solid fa-clipboard-check"></i> Checklist de cierre (para tu evidencia)
+        </h2>
+        <ul style="margin:0 0 0 18px; color:#2e7d32;">
+            <li>La recomendación indica <strong>qué</strong> cambiar, <strong>dónde</strong>, <strong>quién</strong> lo ejecuta y <strong>cuándo</strong>.</li>
+            <li>Incluye si aplica: ventana de mantenimiento, rollback y pruebas post-cambio.</li>
+            <li>Define un criterio de “listo”: evidencia de configuración/parche + retest exitoso.</li>
+        </ul>
+    </div>
+
+
+<h2 class="section-title reveal">Estrategias de mitigación: del “parche” al programa</h2>
+<p class="subnote reveal">Un enfoque profesional combina quick wins con cambios estructurales, dueños claros y verificación (retest).</p>
+
+<div class="doc-card stagger">
+  <h3 style="margin:0;color:#0d47a1;font-family:'Montserrat',sans-serif;">5. Baselines de configuración segura (CIS/STIG)</h3>
+  <p>El hardening “de verdad” se apoya en un baseline repetible: define parámetros mínimos (SO, servicios, TLS, logging, cuentas) y los audita periódicamente.</p>
+  <div class="pills"><span class="pill">CIS</span><span class="pill">STIG</span><span class="pill">Auditoría</span><span class="pill">Automatización</span></div>
+  <div class="mini-code">Checklist baseline (ejemplos):
+- Deshabilitar servicios innecesarios / eliminar cuentas por defecto
+- TLS 1.2/1.3 + headers seguros
+- SSH sin root, llaves, rotación
+- Logging centralizado + retención</div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#26a69a;">
+  <h3 style="margin:0;color:#00796b;font-family:'Montserrat',sans-serif;">6. IAM “multiplicador” (MFA + mínimo privilegio)</h3>
+  <p>IAM reduce la probabilidad de explotación incluso antes de aplicar el parche: <b>MFA</b>, roles, separación de funciones, rotación de secretos.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Control</th><th>Qué mitiga</th><th>Ejemplo</th><th>Re-test</th></tr></thead>
+    <tbody>
+      <tr><td>MFA</td><td>Robo de credenciales</td><td>Admins siempre con 2FA</td><td>Login exige 2FA + logs</td></tr>
+      <tr><td>Least Privilege</td><td>Impacto de compromiso</td><td>Roles por función</td><td>Revisión permisos + prueba</td></tr>
+      <tr><td>Secrets Manager</td><td>Tokens filtrados</td><td>Rotación automática</td><td>Caducidad + auditoría</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#7e57c2;">
+  <h3 style="margin:0;color:#4527a0;font-family:'Montserrat',sans-serif;">7. Defensa en profundidad (prevención + detección + respuesta)</h3>
+  <p>Asume fallos: si un control cae, otro debe limitar el impacto. Esto hace tus recomendaciones “a prueba de realidad”.</p>
+  <div class="grid2">
+    <div class="callout" style="margin:0;"><b>Prevención</b><br>Parches, hardening, segmentación, WAF, MFA.</div>
+    <div class="callout" style="margin:0;background:#e8f5e9;border-color:#c8e6c9;border-left-color:#2e7d32;color:#1b5e20;"><b>Detección/Respuesta</b><br>SIEM/EDR, alertas, playbooks, backups probados.</div>
+  </div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#ef6c00;">
+  <h3 style="margin:0;color:#e65100;font-family:'Montserrat',sans-serif;">8. Matriz Impacto vs Esfuerzo (priorización ejecutiva)</h3>
+  <p>Sirve para justificar por qué algo va primero: <b>alto impacto + bajo esfuerzo</b> es quick win.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Cuadrante</th><th>Qué significa</th><th>Ejemplos</th><th>Horizonte</th></tr></thead>
+    <tbody>
+      <tr><td><b>Quick wins</b></td><td>Impacto alto / esfuerzo bajo</td><td>MFA, rate limit, cerrar puertos</td><td>≤ 30 días</td></tr>
+      <tr><td><b>Proyectos</b></td><td>Impacto alto / esfuerzo alto</td><td>Segmentación, SDLC seguro</td><td>60–90 días</td></tr>
+      <tr><td><b>Mantenimiento</b></td><td>Impacto bajo / esfuerzo bajo</td><td>Headers, limpieza cuentas</td><td>Continuo</td></tr>
+      <tr><td><b>Reevaluar</b></td><td>Impacto bajo / esfuerzo alto</td><td>Refactor total sin necesidad</td><td>Revisión</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="doc-card reveal">
+  <h3 style="margin:0;color:#0d47a1;font-family:'Montserrat',sans-serif;">9. Plantilla recomendación PRO (copiable)</h3>
+  <div class="mini-code">- Cambio (qué):
+- Ubicación (host/app/ruta):
+- Responsable (rol/área):
+- Prioridad (P0–P3) + plazo:
+- Dependencias:
+- Verificación (re-test):
+- Evidencia esperada:
+- Riesgo residual:</div>
+  <div class="callout"><b>Tip:</b> si falta “re-test”, la recomendación queda incompleta.</div>
+</div>
+
+<hr class="soft">
+
+<h2 class="section-title reveal">10. Kit de estrategias por categoría de riesgo (nivel PRO)</h2>
+<p class="subnote reveal">Este bloque cuatriplica valor: transforma conceptos en decisiones ejecutables por tipo de hallazgo (identidad, exposición, CVEs, configuración y procesos).</p>
+
+<div class="doc-card stagger">
+  <h3 style="margin:0;color:#0d47a1;font-family:'Montserrat',sans-serif;">10.1 Identidad y cuentas (IAM + higiene)</h3>
+  <p>Cuando el vector principal es identidad (password reuse, tokens filtrados, cuentas huérfanas), la mitigación más efectiva es <b>MFA</b> + <b>mínimo privilegio</b> + <b>gestión de secretos</b>, con auditoría y verificación.</p>
+  <div class="pro-grid">
+    <div class="pro-tile"><h4><span class="icon-box" style="width:34px;height:34px;font-size:1rem;display:inline-flex;margin-right:8px;"><i class="fa-solid fa-key"></i></span>MFA &amp; Access Policies</h4>
+      <p><kbd class="tag">Quick win</kbd>Exige MFA en privilegios, endurece recuperación de cuenta y aplica políticas por contexto (ubicación/dispositivo).</p>
+      <div class="mini-code">Re-test:
+- Login sin 2FA falla
+- Se registra challenge en logs
+- No hay bypass por endpoints alternos</div>
+    </div>
+    <div class="pro-tile"><h4><span class="icon-box" style="width:34px;height:34px;font-size:1rem;display:inline-flex;margin-right:8px;"><i class="fa-solid fa-user-shield"></i></span>Least Privilege</h4>
+      <p><kbd class="tag">Estructural</kbd>Roles por función, separación de funciones, y revisión periódica de permisos para evitar “acceso por costumbre”.</p>
+      <div class="mini-code">Re-test:
+- Usuario estándar no ejecuta acciones admin
+- Se evidencia reducción de permisos en auditoría</div>
+    </div>
+    <div class="pro-tile"><h4><span class="icon-box" style="width:34px;height:34px;font-size:1rem;display:inline-flex;margin-right:8px;"><i class="fa-solid fa-rotate"></i></span>Rotación y secrets</h4>
+      <p><kbd class="tag">Quick win</kbd>Rota claves/tokens, elimina secretos en código y centraliza en un gestor de secretos.</p>
+      <div class="mini-code">Re-test:
+- Secret anterior invalida
+- Nuevo secret funciona
+- No hay secretos hardcodeados</div>
+    </div>
+  </div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#26a69a;">
+  <h3 style="margin:0;color:#00796b;font-family:'Montserrat',sans-serif;">10.2 Exposición y superficie de ataque (puertas abiertas)</h3>
+  <p>Si el hallazgo depende de estar “público” (puertos, endpoints, paneles), la estrategia ganadora es <b>cerrar/limitar</b> + <b>filtrar</b> + <b>monitorear</b> para cortar el vector incluso antes del parche.</p>
+  <ol class="stepper">
+    <li><b>Inventario</b>: lista servicios expuestos y valida necesidad (principio de mínima exposición).</li>
+    <li><b>Restricción</b>: allowlist por IP/rol/segmento y ocultar rutas administrativas.</li>
+    <li><b>Protección</b>: reverse proxy/WAF, rate limit, bloqueo progresivo y headers seguros.</li>
+    <li><b>Monitoreo</b>: alertas por scanning, fuerza bruta, enumeración y anomalías.</li>
+  </ol>
+  <div class="callout"><b>Regla práctica:</b> “No exponer” suele ser la mitigación más barata y con mayor impacto.</div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#7e57c2;">
+  <h3 style="margin:0;color:#4527a0;font-family:'Montserrat',sans-serif;">10.3 Vulnerabilidades de software (CVEs): flujo completo</h3>
+  <p>Patch management profesional es proceso, no evento: <b>triage</b> → <b>prueba</b> → <b>despliegue</b> → <b>retest</b>. Esto evita “parches falsos” y reduce reincidencia.</p>
+  <div class="mini-code">Flujo recomendado:
+1) Identificar versiones afectadas + alcance (activos críticos primero)
+2) Evaluar explotabilidad (PoC público / explotación conocida / exposición)
+3) Probar en staging + plan de rollback
+4) Desplegar en ventana controlada
+5) Retest + evidencia + cierre</div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Escenario</th><th>Riesgo</th><th>Mitigación</th><th>Evidencia / Retest</th></tr></thead>
+      <tbody>
+        <tr><td>CVE crítico en componente web expuesto</td><td>RCE / toma de control</td><td>Parche urgente + WAF temporal</td><td>Version update + bloqueo patrón</td></tr>
+        <tr><td>CVE medio en servicio interno</td><td>Escalada con acceso previo</td><td>Parche en sprint + segmentación</td><td>Re-scan interno + reglas</td></tr>
+        <tr><td>Dependencia vulnerable indirecta</td><td>Riesgo “transitivo”</td><td>Actualizar cadena + lockfiles</td><td>SBOM/scan sin hallazgo</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#ef6c00;">
+  <h3 style="margin:0;color:#e65100;font-family:'Montserrat',sans-serif;">10.4 Configuración insegura (hardening con baseline)</h3>
+  <p>La configuración insegura vuelve si no se estandariza. Convierte hardening en baseline, audítalo y automatiza donde puedas.</p>
+  <div class="details-pro">
+    <details>
+      <summary><i class="fa-solid fa-gear"></i> Checklist mínimo (servidores)</summary>
+      <div class="mini-code">- Servicios mínimos y puertos cerrados
+- Logs centralizados + retención
+- Usuarios sin privilegios innecesarios
+- TLS moderno y cifrados fuertes
+- Backups verificados (restore test)</div>
+    </details>
+    <details>
+      <summary><i class="fa-solid fa-globe"></i> Checklist mínimo (apps web)</summary>
+      <div class="mini-code">- Headers: HSTS, X-Content-Type-Options, CSP (según caso)
+- Rate limit en auth y endpoints sensibles
+- Mensajes uniformes (evitar enumeración)
+- Validación + encoding (inyecciones)
+- Sesión segura (cookies HttpOnly/SameSite)</div>
+    </details>
+  </div>
+</div>
+
+<div class="doc-card reveal" style="border-left-color:#2e7d32;background:#e8f5e9;border-color:#c8e6c9;">
+  <h3 style="margin:0;color:#1b5e20;font-family:'Montserrat',sans-serif;">10.5 Mini‑taller consultoría (45–60 min)</h3>
+  <ul style="margin:10px 0 0 18px;color:#1b5e20;">
+    <li>Selecciona 3 hallazgos (IAM, exposición, CVE).</li>
+    <li>Escribe recomendación PRO (qué/dónde/quién/plazo) para cada uno.</li>
+    <li>Define control compensatorio si el parche tarda.</li>
+    <li>Describe retest y evidencia esperada.</li>
+    <li>Ordénalos en matriz Impacto/Esfuerzo y arma un plan 30/60/90.</li>
+  </ul>
+</div>
+
+<h2 class="section-title reveal">11. Casos realistas (plantillas para informes)</h2>
+<p class="subnote reveal">Sustituye “host/ruta/servicio” por tu evidencia y tendrás un texto profesional sin inventar.</p>
+
+<div class="doc-card stagger">
+  <h3 style="margin:0;color:#0d47a1;font-family:'Montserrat',sans-serif;">Caso A: Panel administrativo expuesto</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Observación</th><th>Riesgo</th><th>Mitigación</th><th>Retest</th></tr></thead>
+      <tbody>
+        <tr><td>Ruta /admin accesible públicamente</td><td>Fuerza bruta / toma de control</td><td>Restricción IP/rol + MFA + rate limit</td><td>Acceso fuera allowlist bloqueado + logs</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#26a69a;">
+  <h3 style="margin:0;color:#00796b;font-family:'Montserrat',sans-serif;">Caso B: Enumeración de usuarios</h3>
+  <div class="mini-code">Mitigación copiable:
+“Uniformar mensajes de error, aplicar rate limiting y bloqueo progresivo por intentos fallidos, y monitorear patrones de ataque.”</div>
+  <div class="callout"><b>Retest:</b> usuario existente/inexistente responde igual; se observan límites de intentos.</div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#7e57c2;">
+  <h3 style="margin:0;color:#4527a0;font-family:'Montserrat',sans-serif;">Caso C: Legado sin parche</h3>
+  <div class="mini-code">Acciones típicas:
+- Aislar por segmentación (solo tráfico imprescindible)
+- Virtual patching (WAF/IPS) según patrón
+- Monitoreo intensivo (IOC/anomalías) + alertas
+- Roadmap de reemplazo con fecha y responsable</div>
+</div>
+
+<hr class="soft">
+
+<h2 class="section-title reveal">12. Estrategias por fase del ataque (Kill Chain / MITRE como guía práctica)</h2>
+<p class="subnote reveal">Una forma “consultoría” de escribir mitigación es mapearla contra fases: si cortas una fase temprana, evitas el incidente completo.</p>
+
+<div class="doc-card stagger">
+  <h3 style="margin:0;color:#0d47a1;font-family:'Montserrat',sans-serif;">12.1 Reconocimiento &amp; Enumeración</h3>
+  <p>El atacante busca información para perfilar usuarios, endpoints y rutas. Tu objetivo es <b>reducir señal</b> y <b>castigar abuso</b>.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Señal típica</th><th>Riesgo</th><th>Mitigación</th><th>Re-test</th></tr></thead>
+    <tbody>
+      <tr><td>Mensajes distintos en login</td><td>Enumeración de usuarios</td><td>Mensajes uniformes + rate limit</td><td>Respuestas idénticas + límites</td></tr>
+      <tr><td>Endpoints “adivinables” (/admin)</td><td>Fuerza bruta</td><td>Restricción por IP/rol + MFA</td><td>Acceso bloqueado sin rol</td></tr>
+      <tr><td>Versiones expuestas</td><td>Explotación dirigida</td><td>Ocultar banners + hardening</td><td>Header/banner no revela versión</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#26a69a;">
+  <h3 style="margin:0;color:#00796b;font-family:'Montserrat',sans-serif;">12.2 Acceso inicial</h3>
+  <p>Es donde “ganas” más barato: MFA, surface reduction, phishing-resistance, políticas de sesión y cierre de servicios expuestos.</p>
+  <div class="mini-code">Checklist acceso inicial:
+- MFA (preferible resistente a phishing)
+- Bloqueo progresivo / CAPTCHA adaptativo
+- Restricción de paneles y APIs sensibles
+- Validación de sesiones: expiración, rotación, revocación</div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#7e57c2;">
+  <h3 style="margin:0;color:#4527a0;font-family:'Montserrat',sans-serif;">12.3 Persistencia y escalada</h3>
+  <p>Si el atacante entra, quiere quedarse y subir privilegios. Mitiga con <b>segmentación</b>, <b>control de privilegios</b> y <b>detección</b> (EDR/SIEM).</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Técnica</th><th>Indicador</th><th>Control preventivo</th><th>Control de detección</th></tr></thead>
+    <tbody>
+      <tr><td>Credenciales locales</td><td>Accesos raros</td><td>Least privilege</td><td>Alertas por anomalías</td></tr>
+      <tr><td>Servicios nuevos</td><td>Puertos inesperados</td><td>Hardening baseline</td><td>EDR + inventario</td></tr>
+      <tr><td>Movimiento lateral</td><td>Tráfico inusual</td><td>Segmentación</td><td>Netflow/IDS</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="doc-card stagger" style="border-left-color:#ef6c00;">
+  <h3 style="margin:0;color:#e65100;font-family:'Montserrat',sans-serif;">12.4 Exfiltración e impacto</h3>
+  <p>Reduce impacto con controles de datos y resiliencia: <b>clasificación</b>, <b>DLP</b> (si aplica), <b>backups probados</b>, y planes de respuesta.</p>
+  <div class="mini-code">Checklist impacto:
+- Backups 3-2-1 + restore test
+- Retención de logs para investigación
+- Plan IR: roles, comunicación, contención
+- Controles de acceso a datos sensibles</div>
+</div>
+
+<h2 class="section-title reveal">13. Cómo escribir un plan 30/60/90 “perfecto”</h2>
+<p class="subnote reveal">Esto vuelve tus recomendaciones coherentes y accionables: cada acción tiene dueño, evidencia y dependencia.</p>
+
+<div class="doc-card stagger">
+  <div class="tablewrap"><table>
+    <thead><tr><th>Horizonte</th><th>Objetivo</th><th>Acciones típicas</th><th>Entregable</th><th>Re-test</th></tr></thead>
+    <tbody>
+      <tr><td><b>30 días</b></td><td>Reducir probabilidad</td><td>MFA, rate limit, cerrar puertos</td><td>Configuraciones + políticas</td><td>Pruebas y logs</td></tr>
+      <tr><td><b>60 días</b></td><td>Reducir superficie</td><td>Inventario, segmentación inicial</td><td>Mapa de red + ACL</td><td>Escaneo + verificación</td></tr>
+      <tr><td><b>90 días</b></td><td>Reducir reincidencia</td><td>SDLC seguro, automatización</td><td>Pipeline con controles</td><td>Hallazgos bajan</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="doc-card reveal" style="border-left-color:#2e7d32;background:#e8f5e9;border-color:#c8e6c9;">
+  <h3 style="margin:0;color:#1b5e20;font-family:'Montserrat',sans-serif;">14. Plantillas de texto (para copiar en entregables)</h3>
+  <div class="mini-code">Plantilla “Riesgo”:
+“Este hallazgo incrementa la probabilidad de (evento) debido a (causa). El impacto potencial incluye (consecuencia).”
+
+Plantilla “Recomendación”:
+“Se recomienda (acción) en (ubicación) para reducir (riesgo). Responsable: (rol). Plazo: (días). Verificación: (re-test).”</div>
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

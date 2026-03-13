@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recurso: Estructura Informe Técnico</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    body {
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #37474f;
+        line-height: 1.8;
+    }
+
+    .container-extended {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+        border-top: 8px solid #1565c0;
+    }
+
+    .uni-logo {
+        position: absolute; top: 30px; right: 40px; width: 150px; height: auto; z-index: 100;
+        background: rgba(255,255,255,0.95); padding: 5px; border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uni-logo:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    .header-box { text-align: left; margin-bottom: 50px; padding-top: 30px; padding-right: 180px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+    .main-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: #1565c0; margin: 0 0 10px 0; }
+    
+    .structure-box {
+        background: #fff; border: 1px solid #90caf9; padding: 0; border-radius: 12px; overflow: hidden; margin-bottom: 30px;
+    }
+    .structure-header {
+        background: #e3f2fd; padding: 15px 25px; border-bottom: 1px solid #90caf9; font-weight: bold; color: #0d47a1;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .structure-body { padding: 25px; }
+
+    .section-tag {
+        display: inline-block; background: #1565c0; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 10px; vertical-align: middle;
+    }
+
+    .detail-list { margin: 0; padding-left: 20px; color: #546e7a; }
+    .detail-list li { margin-bottom: 5px; }
+
+    @media (max-width: 768px) {
+        .uni-logo { position: static; display: block; margin: 0 auto 20px auto; }
+        .header-box { padding-right: 0; text-align: center; }
+    }
+</style>
+</head>
+<body style="margin:0;background:#f0f2f5;">
+<style>
+/* Q10 ROOT SCROLL WRAPPER: método que sí funcionó (Indicadores) */
+html,body{height:100% !important;max-height:100% !important;}
+body{margin:0 !important; background:#f0f2f5 !important; overflow:hidden !important;}
+#q10-root-scroll{height:100vh !important; max-height:100vh !important; overflow:auto !important; overflow-x:hidden !important; -webkit-overflow-scrolling:touch !important;}
+/* Evitar recortes internos */
+.container-extended, main,.wrapper,.content,.container{height:auto !important; max-height:none !important; overflow:visible !important;}
+.tablewrap, .rubric-wrap, .mini-code, pre, code{overflow:auto !important; max-height:none !important;}
+</style>
+
+<div id="q10-root-scroll" style="height:100vh;max-height:100vh;overflow:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:0;margin:0;box-sizing:border-box;">
+<div class="container-extended">
+    <img src="https://www.dropbox.com/scl/fi/j7mrxq795h9ekhifpcink/logo.png?rlkey=bsh9h5f98pd67n3bfejh368vk&st=8gcmg5vx&raw=1" alt="Logo FET" class="uni-logo">
+
+    <div class="header-box">
+        <h1 class="main-title">Recurso: Estructura del Informe Técnico</h1>
+        <p>Guía de contenido para el entregable "Informe Técnico Detallado".</p>
+    </div>
+
+    <p style="margin-bottom: 30px;">
+        Este documento es para el personal de TI (SysAdmins, Desarrolladores). Debe ser lo suficientemente detallado para que puedan reproducir el ataque y aplicar la solución sin preguntarte nada.
+    </p>
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>1. Información del Hallazgo</span>
+            <i class="fa-solid fa-circle-info"></i>
+        </div>
+        <div class="structure-body">
+            <ul class="detail-list">
+                <li><strong>ID:</strong> Código único (ej. VULN-001).</li>
+                <li><strong>Nombre:</strong> Descriptivo (ej. "Inyección SQL en Formulario de Login").</li>
+                <li><strong>Activo Afectado:</strong> URL, IP o Servidor específico.</li>
+                <li><strong>Severidad (CVSS):</strong> Score v3.1 (Base, Temporal y Ambiental si aplica).</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>2. Descripción y Prueba de Concepto (PoC)</span>
+            <i class="fa-solid fa-code"></i>
+        </div>
+        <div class="structure-body">
+            <p style="margin-top:0;">El "paso a paso" para replicar el fallo:</p>
+            <ul class="detail-list">
+                <li><strong>Herramientas:</strong> ¿Qué software usaste? (Burp Suite, Nmap, script python).</li>
+                <li><strong>Pasos de Reproducción:</strong> 1. Ir a la URL... 2. Ingresar payload... 3. Observar error.</li>
+                <li><strong>Evidencia:</strong> Capturas de pantalla OBLIGATORIAS mostrando el resultado.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>3. Recomendación Técnica</span>
+            <i class="fa-solid fa-wrench"></i>
+        </div>
+        <div class="structure-body">
+            <p style="margin-top:0;">La solución concreta:</p>
+            <ul class="detail-list">
+                <li><strong>Solución Inmediata:</strong> ¿Qué hacer ya? (ej. Sanitizar inputs, actualizar librería).</li>
+                <li><strong>Solución a Largo Plazo:</strong> (ej. Implementar WAF, capacitación de código seguro).</li>
+                <li><strong>Referencias:</strong> Enlaces a documentación oficial o CVEs.</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>4. Análisis de Impacto (Lenguaje Técnico + Negocio)</span>
+            <i class="fa-solid fa-chart-pie"></i>
+        </div>
+        <div class="structure-body">
+            <p style="margin-top:0;">Explica <strong>qué podría pasar</strong> si el hallazgo se explota, en dos niveles:</p>
+            <ul class="detail-list">
+                <li><strong>Impacto técnico:</strong> fuga de datos, ejecución remota, escalamiento de privilegios, denegación de servicio, etc.</li>
+                <li><strong>Impacto de negocio:</strong> caída de ventas, sanciones por datos, interrupción operativa, reputación, costos de recuperación.</li>
+                <li><strong>Condiciones de explotación:</strong> ¿requiere autenticación? ¿se puede hacer remoto? ¿hay mitigaciones existentes?</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>5. Priorización (Qué arreglar primero y por qué)</span>
+            <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <div class="structure-body">
+            <p style="margin-top:0;">Recomendación práctica: prioriza con una mezcla de <strong>severidad</strong> + <strong>explotabilidad</strong> + <strong>criticidad del activo</strong>.</p>
+            <ul class="detail-list">
+                <li><strong>P1 (Inmediato):</strong> RCE, auth bypass, exposición de datos sensibles, credenciales por defecto.</li>
+                <li><strong>P2 (Alta):</strong> XSS almacenado, configuraciones débiles, rutas administrativas expuestas.</li>
+                <li><strong>P3 (Programable):</strong> versiones con riesgo bajo, hardening recomendado, mejoras de logging.</li>
+            </ul>
+            <p style="margin-bottom:0;"><strong>Tip:</strong> Si dos hallazgos tienen CVSS similar, arregla primero el que tenga mayor impacto real (datos críticos o sistemas core).</p>
+        </div>
+    </div>
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>6. Retest y Criterio de Cierre</span>
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="structure-body">
+            <ul class="detail-list">
+                <li><strong>Qué se prueba:</strong> el mismo vector de ataque que funcionó, con evidencia antes/después.</li>
+                <li><strong>Qué NO se asume:</strong> “ya actualizamos” no es evidencia; se confirma con retest.</li>
+                <li><strong>Salida esperada:</strong> el exploit ya no funciona y la configuración/versión evidencia la corrección.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="structure-box">
+        <div class="structure-header">
+            <span>7. Anexo de Evidencias (Formato recomendado)</span>
+            <i class="fa-solid fa-paperclip"></i>
+        </div>
+        <div class="structure-body">
+            <p style="margin-top:0;">Ordena tus capturas y logs para que el equipo de TI pueda seguirlas sin preguntarte:</p>
+            <ul class="detail-list">
+                <li><strong>E-01:</strong> Recon/Enumeración (puertos, endpoints, versión).</li>
+                <li><strong>E-02:</strong> PoC (payload/steps + resultado).</li>
+                <li><strong>E-03:</strong> Impacto (prueba controlada: lectura de dato, acceso limitado, etc.).</li>
+                <li><strong>E-04:</strong> Remediación (cambio aplicado o comandos sugeridos).</li>
+                <li><strong>E-05:</strong> Retest (antes/después).</li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+<div style="background:#fff; border:1px solid #e0e0e0; padding:26px; border-radius:14px;">
+  <h2 style="margin:0 0 10px 0; color:#0d47a1; font-family:'Montserrat',sans-serif;">
+    <i class="fa-solid fa-file-signature"></i> 11. Plantilla “Informe Técnico” lista para copiar (formato auditoría real)
+  </h2>
+  <p style="margin:0 0 14px 0; color:#546e7a;">
+    Esta plantilla te garantiza consistencia. Úsala como estructura base por cada hallazgo (VULN-001, VULN-002...).
+  </p>
+
+  <div class="tablewrap" style="border:1px solid #eceff1; border-radius:12px; overflow:auto; background:#fafafa;">
+    <table style="width:100%; border-collapse:collapse; min-width:980px;">
+      <thead>
+        <tr style="background:#1565c0; color:#fff;">
+          <th style="padding:12px; text-align:left;">Sección</th>
+          <th style="padding:12px; text-align:left;">Qué escribir</th>
+          <th style="padding:12px; text-align:left;">Ejemplo breve</th>
+          <th style="padding:12px; text-align:left;">Evidencia mínima</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:12px;border-top:1px solid #eceff1;"><b>Resumen del hallazgo</b></td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">1 párrafo: qué es + dónde + por qué importa</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">“Inyección SQL en /login permite…”</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">Captura/response + URL</td>
+        </tr>
+        <tr>
+          <td style="padding:12px;border-top:1px solid #eceff1;"><b>Alcance</b></td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">Activos y límites de prueba</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">“Solo staging, sin DoS…”</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">Listado de activos</td>
+        </tr>
+        <tr>
+          <td style="padding:12px;border-top:1px solid #eceff1;"><b>Precondiciones</b></td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">Requisitos: rol, sesión, IP</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">“Requiere rol editor…”</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">Usuario/rol (sin credenciales)</td>
+        </tr>
+        <tr>
+          <td style="padding:12px;border-top:1px solid #eceff1;"><b>PoC paso a paso</b></td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">Pasos numerados con payloads</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">“1) Enviar payload …”</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">E-02 + logs</td>
+        </tr>
+        <tr>
+          <td style="padding:12px;border-top:1px solid #eceff1;"><b>Causa raíz</b></td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">Por qué ocurre (validación, permisos, config)</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">“No hay validación server-side…”</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">Código/config (si aplica)</td>
+        </tr>
+        <tr>
+          <td style="padding:12px;border-top:1px solid #eceff1;"><b>Impacto</b></td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">Técnico + negocio + condiciones de explotación</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">“Fuga de datos → sanciones…”</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">E-03 controlada</td>
+        </tr>
+        <tr>
+          <td style="padding:12px;border-top:1px solid #eceff1;"><b>Mitigación en capas</b></td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">Quick win + definitiva + prevención</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">“Sanitizar + WAF + SDLC…”</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">Ticket + PR + config</td>
+        </tr>
+        <tr>
+          <td style="padding:12px;border-top:1px solid #eceff1;"><b>Retest y cierre</b></td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">Cómo validar el cierre (antes/después)</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">“El payload ya no genera…”</td>
+          <td style="padding:12px;border-top:1px solid #eceff1;">E-05 comparativa</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div style="margin-top:18px; background:#e3f2fd; border:1px solid #90caf9; padding:22px; border-radius:14px;">
+  <h2 style="margin:0 0 10px 0; color:#0d47a1; font-family:'Montserrat',sans-serif;">
+    <i class="fa-solid fa-triangle-exclamation"></i> 12. Errores comunes que hacen que te “tiren” el informe (y cómo evitarlos)
+  </h2>
+  <ul class="detail-list" style="margin:0 0 0 18px;">
+    <li><b>Sin reproducibilidad:</b> pasos incompletos (“hice SQLi y funcionó”). Solución: pasos + payload + respuesta.</li>
+    <li><b>Falsos positivos:</b> copiar salida de scanner sin validar. Solución: PoC controlada + evidencia clara.</li>
+    <li><b>Recomendación genérica:</b> “mejorar seguridad”. Solución: acción ejecutable (qué/dónde/cómo).</li>
+    <li><b>Sin retest:</b> “ya se arregló” sin prueba. Solución: evidencia antes/después.</li>
+    <li><b>Sin contexto de negocio:</b> solo técnico. Solución: impacto negocio en 4–6 líneas.</li>
+  </ul>
+</div>
+
+<div style="margin-top:18px; background:#263238; color:#fff; padding:22px; border-radius:14px; border:2px solid #1565c0;">
+  <h2 style="margin:0 0 10px 0; color:#90caf9; font-family:'Montserrat',sans-serif;">
+    <i class="fa-solid fa-clipboard-list"></i> 13. Checklist final (si respondes “sí” a todo, estás en nivel 5.0)
+  </h2>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px;">
+    <div style="background:#1c2427; border:1px solid #37474f; border-radius:12px; padding:14px;">
+      <b style="color:#bbdefb;">Calidad técnica</b>
+      <ul style="margin:8px 0 0 18px; color:#eceff1;">
+        <li>PoC paso a paso (numerada)</li>
+        <li>Causa raíz explicada</li>
+        <li>Mitigación en capas</li>
+        <li>Retest antes/después</li>
+      </ul>
+    </div>
+    <div style="background:#1c2427; border:1px solid #37474f; border-radius:12px; padding:14px;">
+      <b style="color:#bbdefb;">Gestión y evidencia</b>
+      <ul style="margin:8px 0 0 18px; color:#eceff1;">
+        <li>Evidencias E-01…E-n con contexto</li>
+        <li>Priorización P1/P2/P3 justificada</li>
+        <li>Dueño + plazo + criterio de cierre</li>
+        <li>Riesgo residual documentado</li>
+      </ul>
+    </div>
+    <div style="background:#1c2427; border:1px solid #37474f; border-radius:12px; padding:14px;">
+      <b style="color:#bbdefb;">Comunicación</b>
+      <ul style="margin:8px 0 0 18px; color:#eceff1;">
+        <li>Executive brief claro</li>
+        <li>Una historia coherente</li>
+        <li>Lenguaje sin jerga innecesaria</li>
+        <li>Acciones concretas y medibles</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:18px; background:#fff; border:1px solid #e0e0e0; padding:26px; border-radius:14px;">
+  <h2 style="margin:0 0 10px 0; color:#37474f; font-family:'Montserrat',sans-serif;">
+    <i class="fa-solid fa-book"></i> 14. Glosario práctico (para escribir como profesional sin inflar)
+  </h2>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px;">
+    <div style="border:1px solid #eceff1; border-radius:12px; padding:14px;">
+      <b>PoC controlada</b>
+      <div style="color:#607d8b;">Demostración limitada que prueba el riesgo sin causar daño ni exfiltrar datos reales.</div>
+    </div>
+    <div style="border:1px solid #eceff1; border-radius:12px; padding:14px;">
+      <b>Riesgo residual</b>
+      <div style="color:#607d8b;">Lo que queda luego de mitigar (aceptado, transferido o controlado con compensatorios).</div>
+    </div>
+    <div style="border:1px solid #eceff1; border-radius:12px; padding:14px;">
+      <b>Mitigación en capas</b>
+      <div style="color:#607d8b;">Controles preventivos + detectivos + correctivos para bajar probabilidad e impacto.</div>
+    </div>
+    <div style="border:1px solid #eceff1; border-radius:12px; padding:14px;">
+      <b>Criterio de cierre</b>
+      <div style="color:#607d8b;">Condición verificable que confirma que el hallazgo ya no es explotable.</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
